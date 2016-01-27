@@ -1,9 +1,12 @@
-﻿@using ClaudeData.Models.Admin
+﻿@using System.Web.Script.Serialization
+@using ClaudeData.Models.Admin
 @model ClaudeViewManagement.ViewModels.Settings.GiftCardViewModel
 
 @{
     ViewBag.Title = "Gift Card Management";
 }
+
+@{ string data = new JavaScriptSerializer().Serialize(Model);  }
 
 @using (Html.BeginForm())
 {
@@ -125,6 +128,7 @@
 
     if (Model.IsListAreaVisible)
     {
+
         <!-- BEGIN GRID AREA -->
         <div class="table-responsive">
             <table class="table table-condensed table-bordered table-striped table-hover">
@@ -176,9 +180,14 @@
 
 @section scripts {
 
+    <script src="~/Scripts/knockout-3.4.0.js"></script>
+    <script src="~/Scripts/knockout.mapping-latest.js"></script>
+    <script type="text/javascript">
+    </script>
+
     <script>
-        $(document).ready(function () {
-            $("[data-pdsa-action]").on("click", function (e) {
+        $(document).ready(function() {
+            $("[data-pdsa-action]").on("click", function(e) {
                 e.preventDefault();
 
                 $("#EventCommand").val(

@@ -9,7 +9,6 @@ namespace ClaudeBootstrap.Controllers.Settings
         public ActionResult Index()
         {
             GiftCardViewModel vm = new GiftCardViewModel();
-
             vm.HandleRequest();
 
             return View(vm);
