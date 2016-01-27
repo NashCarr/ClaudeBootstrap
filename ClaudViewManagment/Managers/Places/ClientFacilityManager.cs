@@ -5,11 +5,11 @@ using ClaudeData.DataRepository.SettingsRepository;
 using ClaudeData.Models.Lists.Settings;
 using ClaudeData.ViewModels.Settings;
 
-namespace ClaudeViewManagement.Managers.Settings.Places
+namespace ClaudeViewManagement.Managers.Places
 {
-    public class OrganizationManager : IDisposable
+    public class ClientFacilityManager : IDisposable
     {
-        public OrganizationManager()
+        public ClientFacilityManager()
         {
             ValidationErrors = new List<KeyValuePair<string, string>>();
         }
@@ -26,14 +26,14 @@ namespace ClaudeViewManagement.Managers.Settings.Places
         {
         }
 
-        public List<OrganizationInfo> Get()
+        public List<ClientFacilityInfo> Get()
         {
             return Get(string.Empty);
         }
 
-        public List<OrganizationInfo> Get(string searchValue)
+        public List<ClientFacilityInfo> Get(string searchValue)
         {
-            List<OrganizationInfo> ret = RetrieveActiveData();
+            List<ClientFacilityInfo> ret = RetrieveActiveData();
 
             if (ret.Count == 0) return ret;
 
@@ -48,18 +48,18 @@ namespace ClaudeViewManagement.Managers.Settings.Places
             return ret;
         }
 
-        public OrganizationView Get(int recordId)
+        public ClientFacilityView Get(int recordId)
         {
             return RetrieveRecord(recordId);
         }
 
-        public bool Update(OrganizationView entity, ref int placeId)
+        public bool Update(ClientFacilityView entity, ref int placeId)
         {
             bool ret = Validate(entity);
 
             if (ret)
             {
-                entity.Organization.ErrMsg = SaveRecord(entity, ref placeId);
+                entity.Facility.ErrMsg = SaveRecord(entity, ref placeId);
             }
             return ret;
         }
@@ -70,14 +70,14 @@ namespace ClaudeViewManagement.Managers.Settings.Places
             return true;
         }
 
-        public bool Validate(OrganizationView entity)
+        public bool Validate(ClientFacilityView entity)
         {
             ValidationErrors.Clear();
 
-            if (string.IsNullOrEmpty(entity.Organization.Name)) return ValidationErrors.Count == 0;
+            if (string.IsNullOrEmpty(entity.Facility.Name)) return ValidationErrors.Count == 0;
 
-            if (entity.Organization.Name.ToLower() ==
-                entity.Organization.Name)
+            if (entity.Facility.Name.ToLower() ==
+                entity.Facility.Name)
             {
                 ValidationErrors.Add(new
                     KeyValuePair<string, string>("Name",
@@ -87,38 +87,38 @@ namespace ClaudeViewManagement.Managers.Settings.Places
             return ValidationErrors.Count == 0;
         }
 
-        public bool Insert(OrganizationView entity, ref int placeId)
+        public bool Insert(ClientFacilityView entity, ref int placeId)
         {
             bool ret = Validate(entity);
 
             if (ret)
             {
-                entity.Organization.ErrMsg = SaveRecord(entity, ref placeId);
+                entity.Facility.ErrMsg = SaveRecord(entity, ref placeId);
             }
             return ret;
         }
 
-        private static List<OrganizationInfo> RetrieveActiveData()
+        private static List<ClientFacilityInfo> RetrieveActiveData()
         {
-            using (DbOrganizationInfoGet data = new DbOrganizationInfoGet())
+            using (DbClientFacilityInfoGet data = new DbClientFacilityInfoGet())
             {
                 return data.GetActiveRecords();
             }
         }
 
-        private static OrganizationView RetrieveRecord(int recordId)
+        private static ClientFacilityView RetrieveRecord(int recordId)
         {
-            using (DbOrganizationInfoGet data = new DbOrganizationInfoGet())
+            using (DbClientFacilityInfoGet data = new DbClientFacilityInfoGet())
             {
                 return data.GetRecord(recordId);
             }
         }
 
-        private static string SaveRecord(OrganizationView entity, ref int placeId)
+        private static string SaveRecord(ClientFacilityView entity, ref int placeId)
         {
-            using (DbOrganizationSave data = new DbOrganizationSave())
+            using (DbClientFacilitySave data = new DbClientFacilitySave())
             {
-                return data.SaveOrganization(ref entity, ref placeId);
+                return data.SaveClientFacility(ref entity, ref placeId);
             }
         }
 
@@ -126,7 +126,7 @@ namespace ClaudeViewManagement.Managers.Settings.Places
         {
             using (DbPlaceSetInactive data = new DbPlaceSetInactive())
             {
-                data.SetOrganizationInactive(recordId);
+                data.SetFacilityInactive(recordId);
             }
         }
     }

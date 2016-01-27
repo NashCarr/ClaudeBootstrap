@@ -1,15 +1,15 @@
 using System;
 using System.Collections.Generic;
-using ClaudeData.DataRepository.PersonRepository;
+using ClaudeData.DataRepository.PlaceRepository;
 using ClaudeData.DataRepository.SettingsRepository;
 using ClaudeData.Models.Lists.Settings;
 using ClaudeData.ViewModels.Settings;
 
-namespace ClaudeViewManagement.Managers.Settings.People
+namespace ClaudeViewManagement.Managers.Places
 {
-    public class StaffMemberManager : IDisposable
+    public class OrganizationManager : IDisposable
     {
-        public StaffMemberManager()
+        public OrganizationManager()
         {
             ValidationErrors = new List<KeyValuePair<string, string>>();
         }
@@ -26,14 +26,14 @@ namespace ClaudeViewManagement.Managers.Settings.People
         {
         }
 
-        public List<StaffMemberInfo> Get()
+        public List<OrganizationInfo> Get()
         {
             return Get(string.Empty);
         }
 
-        public List<StaffMemberInfo> Get(string searchValue)
+        public List<OrganizationInfo> Get(string searchValue)
         {
-            List<StaffMemberInfo> ret = RetrieveActiveData();
+            List<OrganizationInfo> ret = RetrieveActiveData();
 
             if (ret.Count == 0) return ret;
 
@@ -41,25 +41,25 @@ namespace ClaudeViewManagement.Managers.Settings.People
             if (!string.IsNullOrEmpty(searchValue))
             {
                 ret = ret.FindAll(
-                    p => p.FullName.ToLower().
+                    p => p.Name.ToLower().
                         Contains(searchValue));
             }
 
             return ret;
         }
 
-        public StaffMemberView Get(int recordId)
+        public OrganizationView Get(int recordId)
         {
             return RetrieveRecord(recordId);
         }
 
-        public bool Update(StaffMemberView entity, ref int personId, ref int facilityStaffId)
+        public bool Update(OrganizationView entity, ref int placeId)
         {
             bool ret = Validate(entity);
 
             if (ret)
             {
-                entity.StaffUser.ErrMsg = SaveRecord(entity, ref personId, ref facilityStaffId);
+                entity.Organization.ErrMsg = SaveRecord(entity, ref placeId);
             }
             return ret;
         }
@@ -70,14 +70,14 @@ namespace ClaudeViewManagement.Managers.Settings.People
             return true;
         }
 
-        public bool Validate(StaffMemberView entity)
+        public bool Validate(OrganizationView entity)
         {
             ValidationErrors.Clear();
 
-            if (string.IsNullOrEmpty(entity.StaffUser.FullName)) return ValidationErrors.Count == 0;
+            if (string.IsNullOrEmpty(entity.Organization.Name)) return ValidationErrors.Count == 0;
 
-            if (entity.StaffUser.FullName.ToLower() ==
-                entity.StaffUser.FullName)
+            if (entity.Organization.Name.ToLower() ==
+                entity.Organization.Name)
             {
                 ValidationErrors.Add(new
                     KeyValuePair<string, string>("Name",
@@ -87,46 +87,46 @@ namespace ClaudeViewManagement.Managers.Settings.People
             return ValidationErrors.Count == 0;
         }
 
-        public bool Insert(StaffMemberView entity, ref int personId, ref int facilityStaffId)
+        public bool Insert(OrganizationView entity, ref int placeId)
         {
             bool ret = Validate(entity);
 
             if (ret)
             {
-                entity.StaffUser.ErrMsg = SaveRecord(entity, ref personId, ref facilityStaffId);
+                entity.Organization.ErrMsg = SaveRecord(entity, ref placeId);
             }
             return ret;
         }
 
-        private static List<StaffMemberInfo> RetrieveActiveData()
+        private static List<OrganizationInfo> RetrieveActiveData()
         {
-            using (DbStaffMemberInfoGet data = new DbStaffMemberInfoGet())
+            using (DbOrganizationInfoGet data = new DbOrganizationInfoGet())
             {
                 return data.GetActiveRecords();
             }
         }
 
-        private static StaffMemberView RetrieveRecord(int recordId)
+        private static OrganizationView RetrieveRecord(int recordId)
         {
-            using (DbStaffMemberInfoGet data = new DbStaffMemberInfoGet())
+            using (DbOrganizationInfoGet data = new DbOrganizationInfoGet())
             {
                 return data.GetRecord(recordId);
             }
         }
 
-        private static string SaveRecord(StaffMemberView entity, ref int personId, ref int facilityStaffId)
+        private static string SaveRecord(OrganizationView entity, ref int placeId)
         {
-            using (DbStaffMemberSave data = new DbStaffMemberSave())
+            using (DbOrganizationSave data = new DbOrganizationSave())
             {
-                return data.SaveStaffMember(ref entity, ref personId, ref facilityStaffId);
+                return data.SaveOrganization(ref entity, ref placeId);
             }
         }
 
         private static void DeleteRecord(int recordId)
         {
-            using (DbPersonSetInactive data = new DbPersonSetInactive())
+            using (DbPlaceSetInactive data = new DbPlaceSetInactive())
             {
-                data.SetStaffUserInactive(recordId);
+                data.SetOrganizationInactive(recordId);
             }
         }
     }

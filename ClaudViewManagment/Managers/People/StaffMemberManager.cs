@@ -1,15 +1,15 @@
 using System;
 using System.Collections.Generic;
-using ClaudeData.DataRepository.PlaceRepository;
+using ClaudeData.DataRepository.PersonRepository;
 using ClaudeData.DataRepository.SettingsRepository;
 using ClaudeData.Models.Lists.Settings;
 using ClaudeData.ViewModels.Settings;
 
-namespace ClaudeViewManagement.Managers.Settings.Places
+namespace ClaudeViewManagement.Managers.People
 {
-    public class CustomerManager : IDisposable
+    public class StaffMemberManager : IDisposable
     {
-        public CustomerManager()
+        public StaffMemberManager()
         {
             ValidationErrors = new List<KeyValuePair<string, string>>();
         }
@@ -26,14 +26,14 @@ namespace ClaudeViewManagement.Managers.Settings.Places
         {
         }
 
-        public List<CustomerInfo> Get()
+        public List<StaffMemberInfo> Get()
         {
             return Get(string.Empty);
         }
 
-        public List<CustomerInfo> Get(string searchValue)
+        public List<StaffMemberInfo> Get(string searchValue)
         {
-            List<CustomerInfo> ret = RetrieveActiveData();
+            List<StaffMemberInfo> ret = RetrieveActiveData();
 
             if (ret.Count == 0) return ret;
 
@@ -41,25 +41,25 @@ namespace ClaudeViewManagement.Managers.Settings.Places
             if (!string.IsNullOrEmpty(searchValue))
             {
                 ret = ret.FindAll(
-                    p => p.Name.ToLower().
+                    p => p.FullName.ToLower().
                         Contains(searchValue));
             }
 
             return ret;
         }
 
-        public CustomerView Get(int recordId)
+        public StaffMemberView Get(int recordId)
         {
             return RetrieveRecord(recordId);
         }
 
-        public bool Update(CustomerView entity, ref int placeId)
+        public bool Update(StaffMemberView entity, ref int personId, ref int facilityStaffId)
         {
             bool ret = Validate(entity);
 
             if (ret)
             {
-                entity.Customer.ErrMsg = SaveRecord(entity, ref placeId);
+                entity.StaffUser.ErrMsg = SaveRecord(entity, ref personId, ref facilityStaffId);
             }
             return ret;
         }
@@ -70,14 +70,14 @@ namespace ClaudeViewManagement.Managers.Settings.Places
             return true;
         }
 
-        public bool Validate(CustomerView entity)
+        public bool Validate(StaffMemberView entity)
         {
             ValidationErrors.Clear();
 
-            if (string.IsNullOrEmpty(entity.Customer.Name)) return ValidationErrors.Count == 0;
+            if (string.IsNullOrEmpty(entity.StaffUser.FullName)) return ValidationErrors.Count == 0;
 
-            if (entity.Customer.Name.ToLower() ==
-                entity.Customer.Name)
+            if (entity.StaffUser.FullName.ToLower() ==
+                entity.StaffUser.FullName)
             {
                 ValidationErrors.Add(new
                     KeyValuePair<string, string>("Name",
@@ -87,46 +87,46 @@ namespace ClaudeViewManagement.Managers.Settings.Places
             return ValidationErrors.Count == 0;
         }
 
-        public bool Insert(CustomerView entity, ref int placeId)
+        public bool Insert(StaffMemberView entity, ref int personId, ref int facilityStaffId)
         {
             bool ret = Validate(entity);
 
             if (ret)
             {
-                entity.Customer.ErrMsg = SaveRecord(entity, ref placeId);
+                entity.StaffUser.ErrMsg = SaveRecord(entity, ref personId, ref facilityStaffId);
             }
             return ret;
         }
 
-        private static List<CustomerInfo> RetrieveActiveData()
+        private static List<StaffMemberInfo> RetrieveActiveData()
         {
-            using (DbCustomerInfoGet data = new DbCustomerInfoGet())
+            using (DbStaffMemberInfoGet data = new DbStaffMemberInfoGet())
             {
                 return data.GetActiveRecords();
             }
         }
 
-        private static CustomerView RetrieveRecord(int recordId)
+        private static StaffMemberView RetrieveRecord(int recordId)
         {
-            using (DbCustomerInfoGet data = new DbCustomerInfoGet())
+            using (DbStaffMemberInfoGet data = new DbStaffMemberInfoGet())
             {
                 return data.GetRecord(recordId);
             }
         }
 
-        private static string SaveRecord(CustomerView entity, ref int placeId)
+        private static string SaveRecord(StaffMemberView entity, ref int personId, ref int facilityStaffId)
         {
-            using (DbCustomerSave data = new DbCustomerSave())
+            using (DbStaffMemberSave data = new DbStaffMemberSave())
             {
-                return data.SaveCustomer(ref entity, ref placeId);
+                return data.SaveStaffMember(ref entity, ref personId, ref facilityStaffId);
             }
         }
 
         private static void DeleteRecord(int recordId)
         {
-            using (DbPlaceSetInactive data = new DbPlaceSetInactive())
+            using (DbPersonSetInactive data = new DbPersonSetInactive())
             {
-                data.SetCustomerInactive(recordId);
+                data.SetStaffUserInactive(recordId);
             }
         }
     }

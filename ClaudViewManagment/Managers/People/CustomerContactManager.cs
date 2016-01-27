@@ -5,11 +5,11 @@ using ClaudeData.DataRepository.SettingsRepository;
 using ClaudeData.Models.Lists.Settings;
 using ClaudeData.ViewModels.Settings;
 
-namespace ClaudeViewManagement.Managers.Settings.People
+namespace ClaudeViewManagement.Managers.People
 {
-    public class AssessorManager : IDisposable
+    public class CustomerContactManager : IDisposable
     {
-        public AssessorManager()
+        public CustomerContactManager()
         {
             ValidationErrors = new List<KeyValuePair<string, string>>();
         }
@@ -26,14 +26,14 @@ namespace ClaudeViewManagement.Managers.Settings.People
         {
         }
 
-        public List<AssessorInfo> Get()
+        public List<CustomerContactInfo> Get()
         {
             return Get(string.Empty);
         }
 
-        public List<AssessorInfo> Get(string searchValue)
+        public List<CustomerContactInfo> Get(string searchValue)
         {
-            List<AssessorInfo> ret = RetrieveActiveData();
+            List<CustomerContactInfo> ret = RetrieveActiveData();
 
             if (ret.Count == 0) return ret;
 
@@ -48,18 +48,18 @@ namespace ClaudeViewManagement.Managers.Settings.People
             return ret;
         }
 
-        public AssessorView Get(int recordId)
+        public CustomerContactView Get(int recordId)
         {
             return RetrieveRecord(recordId);
         }
 
-        public bool Update(AssessorView entity, ref int personId)
+        public bool Update(CustomerContactView entity, ref int personId)
         {
             bool ret = Validate(entity);
 
             if (ret)
             {
-                entity.Assessor.ErrMsg = SaveRecord(entity, ref personId);
+                entity.CustomerContact.ErrMsg = SaveRecord(entity, ref personId);
             }
             return ret;
         }
@@ -70,14 +70,14 @@ namespace ClaudeViewManagement.Managers.Settings.People
             return true;
         }
 
-        public bool Validate(AssessorView entity)
+        public bool Validate(CustomerContactView entity)
         {
             ValidationErrors.Clear();
 
-            if (string.IsNullOrEmpty(entity.Assessor.FullName)) return ValidationErrors.Count == 0;
+            if (string.IsNullOrEmpty(entity.CustomerContact.FullName)) return ValidationErrors.Count == 0;
 
-            if (entity.Assessor.FullName.ToLower() ==
-                entity.Assessor.FullName)
+            if (entity.CustomerContact.FullName.ToLower() ==
+                entity.CustomerContact.FullName)
             {
                 ValidationErrors.Add(new
                     KeyValuePair<string, string>("Name",
@@ -87,38 +87,38 @@ namespace ClaudeViewManagement.Managers.Settings.People
             return ValidationErrors.Count == 0;
         }
 
-        public bool Insert(AssessorView entity, ref int personId)
+        public bool Insert(CustomerContactView entity, ref int personId)
         {
             bool ret = Validate(entity);
 
             if (ret)
             {
-                entity.Assessor.ErrMsg = SaveRecord(entity, ref personId);
+                entity.CustomerContact.ErrMsg = SaveRecord(entity, ref personId);
             }
             return ret;
         }
 
-        private static List<AssessorInfo> RetrieveActiveData()
+        private static List<CustomerContactInfo> RetrieveActiveData()
         {
-            using (DbAssessorInfoGet data = new DbAssessorInfoGet())
+            using (DbCustomerContactInfoGet data = new DbCustomerContactInfoGet())
             {
                 return data.GetActiveRecords();
             }
         }
 
-        private static AssessorView RetrieveRecord(int recordId)
+        private static CustomerContactView RetrieveRecord(int recordId)
         {
-            using (DbAssessorInfoGet data = new DbAssessorInfoGet())
+            using (DbCustomerContactInfoGet data = new DbCustomerContactInfoGet())
             {
                 return data.GetRecord(recordId);
             }
         }
 
-        private static string SaveRecord(AssessorView entity, ref int personId)
+        private static string SaveRecord(CustomerContactView entity, ref int personId)
         {
-            using (DbAssessorSave data = new DbAssessorSave())
+            using (DbCustomerContactSave data = new DbCustomerContactSave())
             {
-                return data.SaveAssessor(ref entity, ref personId);
+                return data.SaveCustomerContact(ref entity, ref personId);
             }
         }
 
@@ -126,7 +126,7 @@ namespace ClaudeViewManagement.Managers.Settings.People
         {
             using (DbPersonSetInactive data = new DbPersonSetInactive())
             {
-                data.SetAssessorInactive(recordId);
+                data.SetCustomerContactInactive(recordId);
             }
         }
     }

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using ClaudeViewManagement.ViewModels.Settings.People;
+using ClaudeViewManagement.ViewModels.People;
 
 namespace ClaudeBootstrap.Controllers.Settings.People
 {

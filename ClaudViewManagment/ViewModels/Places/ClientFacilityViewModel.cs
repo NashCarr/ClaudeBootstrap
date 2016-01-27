@@ -1,24 +1,24 @@
 using System;
 using System.Collections.Generic;
-using ClaudeData.DataRepository.LookupRepository;
 using ClaudeData.Models.Lists.Settings;
 using ClaudeData.Models.LookupLists;
 using ClaudeData.ViewModels.Settings;
 using ClaudeViewManagement.Bases;
-using ClaudeViewManagement.Managers.Settings.People;
+using ClaudeViewManagement.Managers.Places;
 
-namespace ClaudeViewManagement.ViewModels.Settings.People
+namespace ClaudeViewManagement.ViewModels.Places
 {
-    public class CustomerContactViewModel : ViewModelBase
+    public class ClientFacilityViewModel : ViewModelBase
     {
-        public CustomerContactViewModel()
+        public ClientFacilityViewModel()
         {
             SearchEntity = string.Empty;
         }
 
+        public int ANumber { get; set; }
         public string SearchEntity { get; set; }
-        public CustomerContactView Entity { get; set; }
-        public List<CustomerContactInfo> ListEntity { get; set; }
+        public ClientFacilityView Entity { get; set; }
+        public List<ClientFacilityInfo> ListEntity { get; set; }
 
         public override void HandleRequest()
         {
@@ -40,13 +40,9 @@ namespace ClaudeViewManagement.ViewModels.Settings.People
             }
 
             Entity.CountryList = new CountryLookupList();
+            Entity.TimeZoneList = new TimeZoneLookupList();
             Entity.PhoneTypeList = new PhoneTypeLookupList();
             Entity.MobileCarrierList = new MobileCarrierLookupList();
-
-            using (DbPlacesLookup db = new DbPlacesLookup())
-            {
-                Entity.FacilityList = db.GetFacilityLookup();
-            }
         }
 
         protected override void Add()
@@ -54,7 +50,7 @@ namespace ClaudeViewManagement.ViewModels.Settings.People
             IsValid = true;
 
             // Initialize Entity Object
-            Entity = new CustomerContactView();
+            Entity = new ClientFacilityView();
 
             AddEdit();
 
@@ -63,7 +59,7 @@ namespace ClaudeViewManagement.ViewModels.Settings.People
 
         protected override void Edit()
         {
-            using (CustomerContactManager mgr = new CustomerContactManager())
+            using (ClientFacilityManager mgr = new ClientFacilityManager())
             {
                 // Get Product Data
                 Entity = mgr.Get(Convert.ToInt32(EventArgument));
@@ -75,18 +71,16 @@ namespace ClaudeViewManagement.ViewModels.Settings.People
 
         protected override void Save()
         {
-            int personId = Entity.CustomerContact.PersonId;
-            int facilityStaffId = Entity.FacilityStaffId;
-
-            using (CustomerContactManager mgr = new CustomerContactManager())
+            int placeId = Entity.Facility.PlaceId;
+            using (ClientFacilityManager mgr = new ClientFacilityManager())
             {
                 if (Mode == "Add")
                 {
-                    mgr.Insert(Entity, ref personId);
+                    mgr.Insert(Entity, ref placeId);
                 }
                 else
                 {
-                    mgr.Update(Entity, ref personId);
+                    mgr.Update(Entity, ref placeId);
                 }
 
                 // Set any validation errors
@@ -94,16 +88,14 @@ namespace ClaudeViewManagement.ViewModels.Settings.People
 
                 // Set mode based on validation errors
             }
-
-            Entity.CustomerContact.PersonId = personId;
-            Entity.FacilityStaffId = facilityStaffId;
+            Entity.Facility.PlaceId = placeId;
 
             base.Save();
         }
 
         protected override void Delete()
         {
-            using (CustomerContactManager mgr = new CustomerContactManager())
+            using (ClientFacilityManager mgr = new ClientFacilityManager())
             {
                 // Call data layer to delete record
                 mgr.Delete(Convert.ToInt32(EventArgument));
@@ -127,7 +119,7 @@ namespace ClaudeViewManagement.ViewModels.Settings.People
                 Entity = null;
             }
 
-            using (CustomerContactManager mgr = new CustomerContactManager())
+            using (ClientFacilityManager mgr = new ClientFacilityManager())
             {
                 ListEntity = mgr.Get(SearchEntity);
             }

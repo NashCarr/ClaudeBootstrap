@@ -1,15 +1,15 @@
 using System;
 using System.Collections.Generic;
-using ClaudeData.DataRepository.PlaceRepository;
+using ClaudeData.DataRepository.PersonRepository;
 using ClaudeData.DataRepository.SettingsRepository;
 using ClaudeData.Models.Lists.Settings;
 using ClaudeData.ViewModels.Settings;
 
-namespace ClaudeViewManagement.Managers.Settings.Places
+namespace ClaudeViewManagement.Managers.People
 {
-    public class ClientFacilityManager : IDisposable
+    public class AssessorManager : IDisposable
     {
-        public ClientFacilityManager()
+        public AssessorManager()
         {
             ValidationErrors = new List<KeyValuePair<string, string>>();
         }
@@ -26,14 +26,14 @@ namespace ClaudeViewManagement.Managers.Settings.Places
         {
         }
 
-        public List<ClientFacilityInfo> Get()
+        public List<AssessorInfo> Get()
         {
             return Get(string.Empty);
         }
 
-        public List<ClientFacilityInfo> Get(string searchValue)
+        public List<AssessorInfo> Get(string searchValue)
         {
-            List<ClientFacilityInfo> ret = RetrieveActiveData();
+            List<AssessorInfo> ret = RetrieveActiveData();
 
             if (ret.Count == 0) return ret;
 
@@ -41,25 +41,25 @@ namespace ClaudeViewManagement.Managers.Settings.Places
             if (!string.IsNullOrEmpty(searchValue))
             {
                 ret = ret.FindAll(
-                    p => p.Name.ToLower().
+                    p => p.FullName.ToLower().
                         Contains(searchValue));
             }
 
             return ret;
         }
 
-        public ClientFacilityView Get(int recordId)
+        public AssessorView Get(int recordId)
         {
             return RetrieveRecord(recordId);
         }
 
-        public bool Update(ClientFacilityView entity, ref int placeId)
+        public bool Update(AssessorView entity, ref int personId)
         {
             bool ret = Validate(entity);
 
             if (ret)
             {
-                entity.Facility.ErrMsg = SaveRecord(entity, ref placeId);
+                entity.Assessor.ErrMsg = SaveRecord(entity, ref personId);
             }
             return ret;
         }
@@ -70,14 +70,14 @@ namespace ClaudeViewManagement.Managers.Settings.Places
             return true;
         }
 
-        public bool Validate(ClientFacilityView entity)
+        public bool Validate(AssessorView entity)
         {
             ValidationErrors.Clear();
 
-            if (string.IsNullOrEmpty(entity.Facility.Name)) return ValidationErrors.Count == 0;
+            if (string.IsNullOrEmpty(entity.Assessor.FullName)) return ValidationErrors.Count == 0;
 
-            if (entity.Facility.Name.ToLower() ==
-                entity.Facility.Name)
+            if (entity.Assessor.FullName.ToLower() ==
+                entity.Assessor.FullName)
             {
                 ValidationErrors.Add(new
                     KeyValuePair<string, string>("Name",
@@ -87,46 +87,46 @@ namespace ClaudeViewManagement.Managers.Settings.Places
             return ValidationErrors.Count == 0;
         }
 
-        public bool Insert(ClientFacilityView entity, ref int placeId)
+        public bool Insert(AssessorView entity, ref int personId)
         {
             bool ret = Validate(entity);
 
             if (ret)
             {
-                entity.Facility.ErrMsg = SaveRecord(entity, ref placeId);
+                entity.Assessor.ErrMsg = SaveRecord(entity, ref personId);
             }
             return ret;
         }
 
-        private static List<ClientFacilityInfo> RetrieveActiveData()
+        private static List<AssessorInfo> RetrieveActiveData()
         {
-            using (DbClientFacilityInfoGet data = new DbClientFacilityInfoGet())
+            using (DbAssessorInfoGet data = new DbAssessorInfoGet())
             {
                 return data.GetActiveRecords();
             }
         }
 
-        private static ClientFacilityView RetrieveRecord(int recordId)
+        private static AssessorView RetrieveRecord(int recordId)
         {
-            using (DbClientFacilityInfoGet data = new DbClientFacilityInfoGet())
+            using (DbAssessorInfoGet data = new DbAssessorInfoGet())
             {
                 return data.GetRecord(recordId);
             }
         }
 
-        private static string SaveRecord(ClientFacilityView entity, ref int placeId)
+        private static string SaveRecord(AssessorView entity, ref int personId)
         {
-            using (DbClientFacilitySave data = new DbClientFacilitySave())
+            using (DbAssessorSave data = new DbAssessorSave())
             {
-                return data.SaveClientFacility(ref entity, ref placeId);
+                return data.SaveAssessor(ref entity, ref personId);
             }
         }
 
         private static void DeleteRecord(int recordId)
         {
-            using (DbPlaceSetInactive data = new DbPlaceSetInactive())
+            using (DbPersonSetInactive data = new DbPersonSetInactive())
             {
-                data.SetFacilityInactive(recordId);
+                data.SetAssessorInactive(recordId);
             }
         }
     }

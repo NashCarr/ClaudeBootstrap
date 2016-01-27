@@ -7,7 +7,7 @@ using ClaudeViewManagement.Managers.Settings;
 namespace ClaudeViewManagement.ViewModels.Settings
 {
     public sealed class GiftCardViewModel : ViewModelBase
-    {
+    { 
         public GiftCardViewModel()
         {
             SearchEntity = string.Empty;

@@ -1,23 +1,24 @@
 using System;
 using System.Collections.Generic;
+using ClaudeData.DataRepository.LookupRepository;
 using ClaudeData.Models.Lists.Settings;
 using ClaudeData.Models.LookupLists;
 using ClaudeData.ViewModels.Settings;
 using ClaudeViewManagement.Bases;
-using ClaudeViewManagement.Managers.Settings.Places;
+using ClaudeViewManagement.Managers.People;
 
-namespace ClaudeViewManagement.ViewModels.Settings.Places
+namespace ClaudeViewManagement.ViewModels.People
 {
-    public class CustomerViewModel : ViewModelBase
+    public class StaffMemberViewModel : ViewModelBase
     {
-        public CustomerViewModel()
+        public StaffMemberViewModel()
         {
             SearchEntity = string.Empty;
         }
 
         public string SearchEntity { get; set; }
-        public CustomerView Entity { get; set; }
-        public List<CustomerInfo> ListEntity { get; set; }
+        public StaffMemberView Entity { get; set; }
+        public List<StaffMemberInfo> ListEntity { get; set; }
 
         public override void HandleRequest()
         {
@@ -39,9 +40,13 @@ namespace ClaudeViewManagement.ViewModels.Settings.Places
             }
 
             Entity.CountryList = new CountryLookupList();
-            Entity.TimeZoneList = new TimeZoneLookupList();
             Entity.PhoneTypeList = new PhoneTypeLookupList();
             Entity.MobileCarrierList = new MobileCarrierLookupList();
+
+            using (DbPlacesLookup db = new DbPlacesLookup())
+            {
+                Entity.FacilityList = db.GetFacilityLookup();
+            }
         }
 
         protected override void Add()
@@ -49,7 +54,7 @@ namespace ClaudeViewManagement.ViewModels.Settings.Places
             IsValid = true;
 
             // Initialize Entity Object
-            Entity = new CustomerView();
+            Entity = new StaffMemberView();
 
             AddEdit();
 
@@ -58,7 +63,7 @@ namespace ClaudeViewManagement.ViewModels.Settings.Places
 
         protected override void Edit()
         {
-            using (CustomerManager mgr = new CustomerManager())
+            using (StaffMemberManager mgr = new StaffMemberManager())
             {
                 // Get Product Data
                 Entity = mgr.Get(Convert.ToInt32(EventArgument));
@@ -70,16 +75,18 @@ namespace ClaudeViewManagement.ViewModels.Settings.Places
 
         protected override void Save()
         {
-            int placeId = Entity.Customer.PlaceId;
-            using (CustomerManager mgr = new CustomerManager())
+            int personId = Entity.StaffUser.PersonId;
+            int facilityStaffId = Entity.FacilityStaffId;
+
+            using (StaffMemberManager mgr = new StaffMemberManager())
             {
                 if (Mode == "Add")
                 {
-                    mgr.Insert(Entity, ref placeId);
+                    mgr.Insert(Entity, ref personId, ref facilityStaffId);
                 }
                 else
                 {
-                    mgr.Update(Entity, ref placeId);
+                    mgr.Update(Entity, ref personId, ref facilityStaffId);
                 }
 
                 // Set any validation errors
@@ -87,14 +94,16 @@ namespace ClaudeViewManagement.ViewModels.Settings.Places
 
                 // Set mode based on validation errors
             }
-            Entity.Customer.PlaceId = placeId;
+
+            Entity.StaffUser.PersonId = personId;
+            Entity.FacilityStaffId = facilityStaffId;
 
             base.Save();
         }
 
         protected override void Delete()
         {
-            using (CustomerManager mgr = new CustomerManager())
+            using (StaffMemberManager mgr = new StaffMemberManager())
             {
                 // Call data layer to delete record
                 mgr.Delete(Convert.ToInt32(EventArgument));
@@ -118,7 +127,7 @@ namespace ClaudeViewManagement.ViewModels.Settings.Places
                 Entity = null;
             }
 
-            using (CustomerManager mgr = new CustomerManager())
+            using (StaffMemberManager mgr = new StaffMemberManager())
             {
                 ListEntity = mgr.Get(SearchEntity);
             }

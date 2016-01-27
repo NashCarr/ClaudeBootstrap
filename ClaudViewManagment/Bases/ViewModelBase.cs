@@ -44,6 +44,7 @@ namespace ClaudeViewManagement.Bases
 
         protected virtual void Get()
         {
+            DefaultListMode();
         }
 
         public virtual void HandleRequest()

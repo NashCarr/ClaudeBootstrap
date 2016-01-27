@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using ClaudeViewManagement.ViewModels.Settings.Places;
+using ClaudeViewManagement.ViewModels.Places;
 
 namespace ClaudeBootstrap.Controllers.Settings.Places
 {

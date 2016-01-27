@@ -4,21 +4,20 @@ using ClaudeData.Models.Lists.Settings;
 using ClaudeData.Models.LookupLists;
 using ClaudeData.ViewModels.Settings;
 using ClaudeViewManagement.Bases;
-using ClaudeViewManagement.Managers.Settings.Places;
+using ClaudeViewManagement.Managers.Places;
 
-namespace ClaudeViewManagement.ViewModels.Settings.Places
+namespace ClaudeViewManagement.ViewModels.Places
 {
-    public class ClientFacilityViewModel : ViewModelBase
+    public class OrganizationViewModel : ViewModelBase
     {
-        public ClientFacilityViewModel()
+        public OrganizationViewModel()
         {
             SearchEntity = string.Empty;
         }
 
-        public int ANumber { get; set; }
         public string SearchEntity { get; set; }
-        public ClientFacilityView Entity { get; set; }
-        public List<ClientFacilityInfo> ListEntity { get; set; }
+        public OrganizationView Entity { get; set; }
+        public List<OrganizationInfo> ListEntity { get; set; }
 
         public override void HandleRequest()
         {
@@ -50,7 +49,7 @@ namespace ClaudeViewManagement.ViewModels.Settings.Places
             IsValid = true;
 
             // Initialize Entity Object
-            Entity = new ClientFacilityView();
+            Entity = new OrganizationView();
 
             AddEdit();
 
@@ -59,7 +58,7 @@ namespace ClaudeViewManagement.ViewModels.Settings.Places
 
         protected override void Edit()
         {
-            using (ClientFacilityManager mgr = new ClientFacilityManager())
+            using (OrganizationManager mgr = new OrganizationManager())
             {
                 // Get Product Data
                 Entity = mgr.Get(Convert.ToInt32(EventArgument));
@@ -71,8 +70,8 @@ namespace ClaudeViewManagement.ViewModels.Settings.Places
 
         protected override void Save()
         {
-            int placeId = Entity.Facility.PlaceId;
-            using (ClientFacilityManager mgr = new ClientFacilityManager())
+            int placeId = Entity.Organization.PlaceId;
+            using (OrganizationManager mgr = new OrganizationManager())
             {
                 if (Mode == "Add")
                 {
@@ -88,14 +87,14 @@ namespace ClaudeViewManagement.ViewModels.Settings.Places
 
                 // Set mode based on validation errors
             }
-            Entity.Facility.PlaceId = placeId;
+            Entity.Organization.PlaceId = placeId;
 
             base.Save();
         }
 
         protected override void Delete()
         {
-            using (ClientFacilityManager mgr = new ClientFacilityManager())
+            using (OrganizationManager mgr = new OrganizationManager())
             {
                 // Call data layer to delete record
                 mgr.Delete(Convert.ToInt32(EventArgument));
@@ -119,7 +118,7 @@ namespace ClaudeViewManagement.ViewModels.Settings.Places
                 Entity = null;
             }
 
-            using (ClientFacilityManager mgr = new ClientFacilityManager())
+            using (OrganizationManager mgr = new OrganizationManager())
             {
                 ListEntity = mgr.Get(SearchEntity);
             }

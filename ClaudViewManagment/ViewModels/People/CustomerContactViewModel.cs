@@ -5,20 +5,20 @@ using ClaudeData.Models.Lists.Settings;
 using ClaudeData.Models.LookupLists;
 using ClaudeData.ViewModels.Settings;
 using ClaudeViewManagement.Bases;
-using ClaudeViewManagement.Managers.Settings.People;
+using ClaudeViewManagement.Managers.People;
 
-namespace ClaudeViewManagement.ViewModels.Settings.People
+namespace ClaudeViewManagement.ViewModels.People
 {
-    public class StaffMemberViewModel : ViewModelBase
+    public class CustomerContactViewModel : ViewModelBase
     {
-        public StaffMemberViewModel()
+        public CustomerContactViewModel()
         {
             SearchEntity = string.Empty;
         }
 
         public string SearchEntity { get; set; }
-        public StaffMemberView Entity { get; set; }
-        public List<StaffMemberInfo> ListEntity { get; set; }
+        public CustomerContactView Entity { get; set; }
+        public List<CustomerContactInfo> ListEntity { get; set; }
 
         public override void HandleRequest()
         {
@@ -54,7 +54,7 @@ namespace ClaudeViewManagement.ViewModels.Settings.People
             IsValid = true;
 
             // Initialize Entity Object
-            Entity = new StaffMemberView();
+            Entity = new CustomerContactView();
 
             AddEdit();
 
@@ -63,7 +63,7 @@ namespace ClaudeViewManagement.ViewModels.Settings.People
 
         protected override void Edit()
         {
-            using (StaffMemberManager mgr = new StaffMemberManager())
+            using (CustomerContactManager mgr = new CustomerContactManager())
             {
                 // Get Product Data
                 Entity = mgr.Get(Convert.ToInt32(EventArgument));
@@ -75,18 +75,18 @@ namespace ClaudeViewManagement.ViewModels.Settings.People
 
         protected override void Save()
         {
-            int personId = Entity.StaffUser.PersonId;
+            int personId = Entity.CustomerContact.PersonId;
             int facilityStaffId = Entity.FacilityStaffId;
 
-            using (StaffMemberManager mgr = new StaffMemberManager())
+            using (CustomerContactManager mgr = new CustomerContactManager())
             {
                 if (Mode == "Add")
                 {
-                    mgr.Insert(Entity, ref personId, ref facilityStaffId);
+                    mgr.Insert(Entity, ref personId);
                 }
                 else
                 {
-                    mgr.Update(Entity, ref personId, ref facilityStaffId);
+                    mgr.Update(Entity, ref personId);
                 }
 
                 // Set any validation errors
@@ -95,7 +95,7 @@ namespace ClaudeViewManagement.ViewModels.Settings.People
                 // Set mode based on validation errors
             }
 
-            Entity.StaffUser.PersonId = personId;
+            Entity.CustomerContact.PersonId = personId;
             Entity.FacilityStaffId = facilityStaffId;
 
             base.Save();
@@ -103,7 +103,7 @@ namespace ClaudeViewManagement.ViewModels.Settings.People
 
         protected override void Delete()
         {
-            using (StaffMemberManager mgr = new StaffMemberManager())
+            using (CustomerContactManager mgr = new CustomerContactManager())
             {
                 // Call data layer to delete record
                 mgr.Delete(Convert.ToInt32(EventArgument));
@@ -127,7 +127,7 @@ namespace ClaudeViewManagement.ViewModels.Settings.People
                 Entity = null;
             }
 
-            using (StaffMemberManager mgr = new StaffMemberManager())
+            using (CustomerContactManager mgr = new CustomerContactManager())
             {
                 ListEntity = mgr.Get(SearchEntity);
             }
