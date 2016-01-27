@@ -112,7 +112,7 @@ namespace ClaudeData.DataRepository.SettingsRepository
                                     Name = Convert.ToString(dr[ordName]),
                                     PlaceId = Convert.ToInt32(dr[ordPlaceId]),
                                     Division = Convert.ToString(dr[ordDivision]),
-                                    Department = Convert.ToString(dr[ordDepartment]),
+                                    Department = Convert.ToString(dr[ordDepartment])
                                 };
                                 data.Add(item);
                             }

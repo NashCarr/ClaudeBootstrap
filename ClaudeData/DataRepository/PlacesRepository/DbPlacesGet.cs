@@ -40,7 +40,7 @@ namespace ClaudeData.DataRepository.PlacesRepository
                                 {
                                     Name = Convert.ToString(dr[ordName]),
                                     PlaceId = Convert.ToInt32(dr[ordPlaceId]),
-                                    TimeZone = (ClaudeTimeZone)Convert.ToByte(dr[ordTimeZone]),
+                                    TimeZone = (ClaudeTimeZone) Convert.ToByte(dr[ordTimeZone]),
                                     IsActive = Convert.ToBoolean(dr[ordIsActive]),
                                     CreateDate = Convert.ToDateTime(dr[ordCreateDate]),
                                     DisplayOrder = Convert.ToInt16(dr[ordDisplayOrder])

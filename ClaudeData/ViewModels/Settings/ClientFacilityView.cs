@@ -48,7 +48,7 @@ namespace ClaudeData.ViewModels.Settings
             Addresses = null;
             AccessData = null;
             TimeZoneList = null;
- 
+
             CountryList?.LookupList.Clear();
             TimeZoneList?.LookupList.Clear();
             PhoneTypeList?.LookupList.Clear();

@@ -3,7 +3,7 @@ using ClaudeData.Models.Phones;
 
 namespace ClaudeData.ViewModels.Shared
 {
-    public class PhoneViewModel: IDisposable
+    public class PhoneViewModel : IDisposable
     {
         public PhoneViewModel()
         {
@@ -13,6 +13,7 @@ namespace ClaudeData.ViewModels.Shared
             WorkPhone = new PhoneAssociation();
             PhoneSettings = new PhoneSetting();
         }
+
         public PhoneAssociation FaxPhone { get; set; }
         public PhoneAssociation CellPhone { get; set; }
         public PhoneAssociation HomePhone { get; set; }

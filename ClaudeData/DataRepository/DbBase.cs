@@ -151,25 +151,25 @@ namespace ClaudeData.DataRepository
             if (ConnSql != null) ConnSql.Dispose();
         }
 
-        //protected internal class DataOrder : List<DisplayOrder>, IEnumerable<SqlDataRecord>
-        //{
-        //    IEnumerator<SqlDataRecord> IEnumerable<SqlDataRecord>.GetEnumerator()
-        //    {
-        //        SqlDataRecord sdr = new SqlDataRecord(
-        //            new SqlMetaData("ID", SqlDbType.Int),
-        //            new SqlMetaData("DisplayOrder", SqlDbType.Int)
-        //            );
+        //protected internal class PhoneLink : List<PhoneAssociation>, IEnumerable<SqlDataRecord>
+        //}
+        //    }
+        //        }
+        //            yield return sdr;
+        //            sdr.SetInt16(1, data.Order);
+        //            sdr.SetInt32(0, data.Id);
+        //        {
 
         //        foreach (DisplayOrder data in this)
-        //        {
-        //            sdr.SetInt32(0, data.Id);
-        //            sdr.SetInt16(1, data.Order);
-        //            yield return sdr;
-        //        }
-        //    }
-        //}
+        //            );
+        //            new SqlMetaData("DisplayOrder", SqlDbType.Int)
+        //            new SqlMetaData("ID", SqlDbType.Int),
+        //        SqlDataRecord sdr = new SqlDataRecord(
+        //    {
+        //    IEnumerator<SqlDataRecord> IEnumerable<SqlDataRecord>.GetEnumerator()
+        //{
 
-        //protected internal class PhoneLink : List<PhoneAssociation>, IEnumerable<SqlDataRecord>
+        //protected internal class DataOrder : List<DisplayOrder>, IEnumerable<SqlDataRecord>
         //{
         //    IEnumerator<SqlDataRecord> IEnumerable<SqlDataRecord>.GetEnumerator()
         //    {
