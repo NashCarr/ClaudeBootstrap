@@ -1,0 +1,44 @@
+﻿@model ClaudeViewManagement.ViewModels.Settings.KoGiftCard
+<!-- BEGIN GRID AREA -->
+<div class="table-responsive">
+    <table class="table table-condensed table-bordered table-striped table-hover">
+        <thead>
+        <tr>
+            <th class="pdsa-action-button-area">
+                Edit
+            </th>
+            <th>Gift Card</th>
+            <th>Create Date</th>
+            <th>Order</th>
+            <th class="pdsa-action-button-area">
+                Delete
+            </th>
+        </tr>
+        </thead>
+
+        <tbody data-bind="foreach: listentity">
+            <tr>
+                <td class="pdsa-action-button-area">
+                    <a href="#" data-pdsa-action="edit"
+                       data-pdsa-val="1"
+                       class="btn btn-default btn-sm">
+                        <i class="glyphicon glyphicon-edit"></i>
+                    </a>
+                </td>
+                <td data-bind="text: Name"></td>
+                <td data-bind="text: CreateDate"></td>
+                <td data-bind="text: DisplayOrder"></td>
+                <td class="pdsa-action-button-area">
+                    <a href="#" data-pdsa-action="delete"
+                       data-pdsa-val="1"
+                       onclick="return confirm('Delete this Gift Card?');"
+                       class="btn btn-default btn-sm">
+                        <i class="glyphicon glyphicon-trash"></i>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+
+    </table>
+</div>
+<!-- END GRID AREA -->
