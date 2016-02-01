@@ -235,7 +235,6 @@
     <Content Include="Views\KoGiftCard\Search.cshtml" />
     <Content Include="Views\KoGiftCard\AddEdit.cshtml" />
     <Content Include="Views\KoGiftCard\List.cshtml" />
-    <Content Include="Views\KoGiftCard\List - Copy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ClaudeCommon\ClaudeCommon.csproj">
