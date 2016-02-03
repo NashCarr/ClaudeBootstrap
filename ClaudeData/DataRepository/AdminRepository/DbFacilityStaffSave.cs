@@ -11,12 +11,12 @@ namespace ClaudeData.DataRepository.AdminRepository
             if (data.StaffUserId == 0)
             {
                 SetZeroNumberMessage("Staff User");
-                return ErrMsg;
+                return ReturnValues.ErrMsg;
             }
 
             try
             {
-                IdValue = data.FacilityStaffId;
+                ReturnValues.Id = data.FacilityStaffId;
                 IdParameter = "@FacilityStaffId";
 
                 SetConnectToDatabase("[Admin].[usp_FacilityStaff_Upsert]");
@@ -31,13 +31,13 @@ namespace ClaudeData.DataRepository.AdminRepository
 
                 SendNonQueryGetId();
 
-                data.FacilityStaffId = IdValue;
+                data.FacilityStaffId = ReturnValues.Id;
             }
             catch (Exception ex)
             {
-                ErrMsg = ex.Message;
+                ReturnValues.ErrMsg = ex.Message;
             }
-            return ErrMsg;
+            return ReturnValues.ErrMsg;
         }
 
         public string SetInactive(int facilityStaffId)
@@ -54,9 +54,9 @@ namespace ClaudeData.DataRepository.AdminRepository
             }
             catch (Exception ex)
             {
-                ErrMsg = ex.Message;
+                ReturnValues.ErrMsg = ex.Message;
             }
-            return ErrMsg;
+            return ReturnValues.ErrMsg;
         }
     }
 }

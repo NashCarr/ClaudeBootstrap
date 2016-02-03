@@ -1,77 +1,106 @@
 ﻿
 GiftCardViewModel = function(data) {
     var self = this;
-    var baseUrl = "/KoGiftCard/";
+    var baseUrl = "/GiftCard/";
 
-    self.IsListAreaVisible = ko.observable();
-    self.IsSearchAreaVisible = ko.observable();
-    self.IsAddEditAreaVisible = ko.observable();
+    self.IsListAreaVisible = ko.observable(true);
+    self.IsSearchAreaVisible = ko.observable(true);
+    self.IsAddEditAreaVisible = ko.observable(false);
+    self.IsMessageAreaVisible = ko.observable(false);
 
-    self.errmsg = data.Entity.ErrMsg;
-    self.isactive = data.Entity.IsActive;
-    self.recordid = data.Entity.RecordId;
-    self.name = ko.observable(data.Entity.Name);
-    self.displayorder = ko.observable(data.Entity.DisplayOrder);
-    self.listentity = ko.observableArray(data.ListEntity);
+    self.errmsg = ko.observable();
+    self.searchvalue = ko.observable("");
 
-    self.searchvalue = "";
+    self.name = ko.observable();
+    self.recordid = ko.observable();
+    self.displayorder = ko.observable();
 
-    self.list = ko.computed(function() {
-        this.IsListAreaVisible = ko.observable(true);
-        this.IsSearchAreaVisible = ko.observable(true);
-        this.IsAddEditAreaVisible = ko.observable(false);
-    }, this);
+    self.listitems = ko.observableArray(data.ListEntity);
 
-    self.addedit = function () {
-        this.IsListAreaVisible = ko.observable(false);
-        this.IsSearchAreaVisible = ko.observable(false);
-        this.IsAddEditAreaVisible = ko.observable(true);
-        return this;
+    self.setmessageview = function() {
+        if (self.errmsg() === "") {
+            self.IsMessageAreaVisible(false);
+        } else {
+            self.IsMessageAreaVisible(true);
+        }
     };
 
-    self.edit = function () {
-        location.href = "/KoGiftCard/" + self.recordid;
+    self.toggleview = function() {
+        self.setmessageview();
+        self.IsListAreaVisible(!self.IsListAreaVisible());
+        self.IsSearchAreaVisible(!self.IsSearchAreaVisible());
+        self.IsAddEditAreaVisible(!self.IsAddEditAreaVisible());
     };
 
-    self.description = ko.computed(function () {
-        return ko.unwrap(self.displayorder) + " " + ko.unwrap(self.name) + " (" + ko.unwrap(self.recordid) + ")";
+    self.returnmessage = ko.computed(function() {
+        return ko.unwrap(self.errmsg);
     });
 
-    self.show = function() {
-        alert(self.description());
+    self.handlereturndata = function(returndata) {
+        self.recordid(returndata.Id);
+        self.errmsg(returndata.ErrMsg);
+        self.setmessageview();
+
     };
 
-    self.edit = function() {
-        location.href = "/KoGiftCard/" + self.recordid;
+    self.edit = function(data) {
+        self.name(data.Name);
+        self.recordid(data.RecordId);
+        self.displayorder(data.DisplayOrder);
+        self.toggleview();
+    };
+
+    self.addorcancel = function() {
+        self.clear();
+        self.toggleview();
+    };
+
+    self.reset = function() {
+        self.searchvalue("");
+    };
+
+    self.clear = function() {
+        self.name("");
+        self.errmsg("");
+        self.recordid(0);
+        self.displayorder(0);
     };
 
     self.save = function() {
+        var item = {
+            Name: self.name(),
+            RecordId: self.recordid(),
+            DisplayOrder: self.displayorder(),
+            StringCreateDate: ""
+        };
         $.ajax({
             url: baseUrl,
             type: "post",
-            data: {
-                entity: {
-                    Name: self.name(),
-                    RecordId: self.recordid,
-                    DisplayOrder: self.displayorder()
-                }
+            data: item
+        }).then(function(returndata) {
+            self.handlereturndata(returndata);
+            if (!self.IsMessageAreaVisible()) {
+                item.RecordId = returndata.id;
+                self.listitems.push(item);
+                self.clear();
             }
-        }).then(function(result) {
-            self.recordid = result.Entity.RecordId;
-            location.href = baseUrl;
         });
     };
 
-    self.remove = function() {
-        if (confirm("Delete '" + self.description() + "'?")) {
+    self.removelistitem = function(id) {
+        self.name(id.Name);
+        self.recordid(id.RecordId);
+        if (confirm("Delete Gift Card: '" + self.name() + "'?")) {
             $.ajax({
-                url: baseUrl +  self.recordid,
+                url: baseUrl + self.recordid(),
                 type: "delete"
-        }).then(function () {
-                //I'm deleted now
+            }).then(function(returndata) {
+                self.handlereturndata(returndata);
+                if (!self.IsMessageAreaVisible()) {
+                    self.listitems.remove(id);
+                    self.clear();
+                }
             });
         }
     };
-}
-
-
+};

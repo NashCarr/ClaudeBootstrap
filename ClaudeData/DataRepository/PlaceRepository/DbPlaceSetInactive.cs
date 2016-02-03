@@ -17,7 +17,7 @@ namespace ClaudeData.DataRepository.PlaceRepository
             }
             catch (Exception ex)
             {
-                ErrMsg = ex.Message;
+                ReturnValues.ErrMsg = ex.Message;
             }
         }
 
@@ -31,9 +31,9 @@ namespace ClaudeData.DataRepository.PlaceRepository
             }
             catch (Exception ex)
             {
-                ErrMsg = ex.Message;
+                ReturnValues.ErrMsg = ex.Message;
             }
-            return ErrMsg;
+            return ReturnValues.ErrMsg;
         }
 
         public string SetFacilityInactive(int placeId)
@@ -46,9 +46,9 @@ namespace ClaudeData.DataRepository.PlaceRepository
             }
             catch (Exception ex)
             {
-                ErrMsg = ex.Message;
+                ReturnValues.ErrMsg = ex.Message;
             }
-            return ErrMsg;
+            return ReturnValues.ErrMsg;
         }
 
         public string SetCustomerInactive(int placeId)
@@ -61,9 +61,9 @@ namespace ClaudeData.DataRepository.PlaceRepository
             }
             catch (Exception ex)
             {
-                ErrMsg = ex.Message;
+                ReturnValues.ErrMsg = ex.Message;
             }
-            return ErrMsg;
+            return ReturnValues.ErrMsg;
         }
     }
 }

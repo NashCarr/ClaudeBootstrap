@@ -1,22 +1,25 @@
 ﻿using System;
 using System.Data;
-using ClaudeData.Models.Admin;
+using ClaudeCommon.BaseModels;
+using ClaudeCommon.Models;
 
 namespace ClaudeData.DataRepository.AdminRepository
 {
     public class DbGiftCardSave : DbSaveBase
     {
-        public string AddUpdateRecord(GiftCard data)
+        public ReturnBase AddUpdateRecord(GiftCard data)
         {
+            ReturnValues.Id = data.RecordId;
+
             if (string.IsNullOrEmpty(data.Name))
             {
                 SetEmptyStringMessage("Gift Card");
-                return ErrMsg;
+                return ReturnValues;
             }
 
             try
             {
-                IdValue = data.RecordId;
+                ReturnValues.Id = data.RecordId;
                 IdParameter = "@GiftCardId";
 
                 SetConnectToDatabase("[Admin].[usp_GiftCard_Upsert]");
@@ -25,7 +28,6 @@ namespace ClaudeData.DataRepository.AdminRepository
 
                 CmdSql.Parameters.Add("@Name", SqlDbType.NVarChar, 50).Value = data.Name.Trim();
                 CmdSql.Parameters.Add("@DisplayOrder", SqlDbType.Int).Value = data.DisplayOrder;
-                CmdSql.Parameters.Add("@IsActive", SqlDbType.Bit).Value = data.IsActive;
 
                 SetErrMsgParameter();
 
@@ -33,18 +35,19 @@ namespace ClaudeData.DataRepository.AdminRepository
             }
             catch (Exception ex)
             {
-                ErrMsg = ex.Message;
+                ReturnValues.ErrMsg = ex.Message;
             }
-            return ErrMsg;
+            return ReturnValues;
         }
 
-        public string SetInactive(int giftCardId)
+        public ReturnBase SetInactive(int recordId)
         {
+            ReturnValues.Id = recordId;
             try
             {
                 SetConnectToDatabase("[Admin].[usp_GiftCard_SetInactive]");
 
-                CmdSql.Parameters.Add("@GiftCardId", SqlDbType.Int).Value = giftCardId;
+                CmdSql.Parameters.Add("@GiftCardId", SqlDbType.Int).Value = ReturnValues.Id;
 
                 SetErrMsgParameter();
 
@@ -52,9 +55,10 @@ namespace ClaudeData.DataRepository.AdminRepository
             }
             catch (Exception ex)
             {
-                ErrMsg = ex.Message;
+                ReturnValues.ErrMsg = ex.Message;
             }
-            return ErrMsg;
+
+            return ReturnValues;
         }
     }
 }

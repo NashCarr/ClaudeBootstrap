@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Web;
+using ClaudeCommon.BaseModels;
 
 namespace ClaudeData.DataRepository
 {
@@ -14,16 +15,14 @@ namespace ClaudeData.DataRepository
         protected internal SqlCommand CmdSql;
         protected internal SqlConnection ConnSql;
 
-        protected internal string ErrMsg;
         protected internal string IdParameter;
 
-        protected internal int IdValue;
+        protected internal ReturnBase ReturnValues;
 
         protected DbSaveBase()
         {
-            IdValue = 0;
-            ErrMsg = string.Empty;
             IdParameter = string.Empty;
+            ReturnValues = new ReturnBase();
         }
 
         public void Dispose()
@@ -34,18 +33,18 @@ namespace ClaudeData.DataRepository
 
         protected internal void SetEmptyStringMessage(string fieldName)
         {
-            ErrMsg = fieldName + " must have a value.";
+            ReturnValues.ErrMsg = fieldName + " must have a value.";
         }
 
         protected internal void SetZeroNumberMessage(string fieldName)
         {
-            ErrMsg = fieldName + " cannot be zero.";
+            ReturnValues.ErrMsg = fieldName + " cannot be zero.";
         }
 
         protected internal void SetErrMsgParameter()
         {
-            ErrMsg = string.Empty;
-            CmdSql.Parameters.Add(ErrParameter, SqlDbType.NVarChar, 512).Value = ErrMsg;
+            ReturnValues.ErrMsg = string.Empty;
+            CmdSql.Parameters.Add(ErrParameter, SqlDbType.NVarChar, 512).Value = ReturnValues.ErrMsg;
             CmdSql.Parameters[ErrParameter].Direction = ParameterDirection.InputOutput;
         }
 
@@ -63,7 +62,7 @@ namespace ClaudeData.DataRepository
 
         protected internal void SetIdInputOutputParameter()
         {
-            CmdSql.Parameters.Add(IdParameter, SqlDbType.Int).Value = IdValue;
+            CmdSql.Parameters.Add(IdParameter, SqlDbType.Int).Value = ReturnValues.Id;
             CmdSql.Parameters[IdParameter].Direction = ParameterDirection.InputOutput;
         }
 
@@ -100,7 +99,7 @@ namespace ClaudeData.DataRepository
                         CmdSql.ExecuteNonQuery();
                         if (!Convert.IsDBNull(CmdSql.Parameters[ErrParameter].Value))
                         {
-                            ErrMsg = CmdSql.Parameters[ErrParameter].Value.ToString();
+                            ReturnValues.ErrMsg = CmdSql.Parameters[ErrParameter].Value.ToString();
                         }
                     }
                     ConnSql.Close();
@@ -109,7 +108,7 @@ namespace ClaudeData.DataRepository
             catch (Exception ex)
             {
                 DocumentErrorMessage(ex.Message);
-                ErrMsg = ex.Message;
+                ReturnValues.ErrMsg = ex.Message;
             }
         }
 
@@ -125,9 +124,9 @@ namespace ClaudeData.DataRepository
                         CmdSql.ExecuteNonQuery();
                         if (!Convert.IsDBNull(CmdSql.Parameters[ErrParameter].Value))
                         {
-                            ErrMsg = CmdSql.Parameters[ErrParameter].Value.ToString();
+                            ReturnValues.ErrMsg = CmdSql.Parameters[ErrParameter].Value.ToString();
                         }
-                        IdValue = Convert.ToInt32(CmdSql.Parameters[IdParameter].Value);
+                        ReturnValues.Id = Convert.ToInt32(CmdSql.Parameters[IdParameter].Value);
                     }
                     ConnSql.Close();
                 }
@@ -135,11 +134,11 @@ namespace ClaudeData.DataRepository
             catch (Exception ex)
             {
                 DocumentErrorMessage(ex.Message);
-                ErrMsg = ex.Message;
+                ReturnValues.ErrMsg = ex.Message;
             }
             finally
             {
-                HttpContext.Current.Session["CurrentKey"] = IdValue.ToString();
+                HttpContext.Current.Session["CurrentKey"] = ReturnValues.Id.ToString();
             }
         }
 

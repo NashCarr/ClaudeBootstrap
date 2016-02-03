@@ -10,19 +10,19 @@ namespace ClaudeData.DataRepository.PhoneRepository
     {
         protected internal PhoneAssociation GetPlacePhone(int phoneAssociationId)
         {
-            IdValue = phoneAssociationId;
+            ReturnValues.Id = phoneAssociationId;
             IdParameter = "@PlacePhoneId";
 
             SetConnectToDatabase("[Phone].[usp_PlacePhone_GetPhone]");
 
-            CmdSql.Parameters.Add(IdParameter, SqlDbType.Int).Value = IdValue;
+            CmdSql.Parameters.Add(IdParameter, SqlDbType.Int).Value = ReturnValues.Id;
 
             return GetRecord();
         }
 
         protected internal PhoneAssociation GetPersonPhone(int phoneAssociationId)
         {
-            IdValue = phoneAssociationId;
+            ReturnValues.Id = phoneAssociationId;
             IdParameter = "@PersonPhoneId";
 
             SetConnectToDatabase("[Phone].[usp_PersonPhone_GetPhone]");
@@ -35,7 +35,7 @@ namespace ClaudeData.DataRepository.PhoneRepository
             PhoneAssociation data = new PhoneAssociation();
             try
             {
-                CmdSql.Parameters.Add(IdParameter, SqlDbType.Int).Value = IdValue;
+                CmdSql.Parameters.Add(IdParameter, SqlDbType.Int).Value = ReturnValues.Id;
                 using (ConnSql)
                 {
                     ConnSql.Open();

@@ -1,54 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using ClaudeData.Models.Admin;
+using ClaudeCommon.Models;
 
 namespace ClaudeData.DataRepository.AdminRepository
 {
     public class DbGiftCardGet : DbGetBase
     {
-        public List<GiftCard> GetActiveRecords()
+        public List<GiftCard> GetViewModel()
         {
-            SetConnectToDatabase("[Admin].[usp_GiftCard_GetActive]");
+            SetConnectToDatabase("[ViewModel].[usp_GiftCard_GetActive]");
 
             return LoadRecords();
-        }
-
-        public List<GiftCard> GetInactiveRecords()
-        {
-            SetConnectToDatabase("[Admin].[usp_GiftCard_GetInactive]");
-
-            return LoadRecords();
-        }
-
-        public GiftCard GetRecord(int recordId)
-        {
-            return GetRecords(recordId, string.Empty).SingleOrDefault();
-        }
-
-        public List<GiftCard> GetRecords()
-        {
-            return GetRecords(0, string.Empty);
-        }
-
-        private List<GiftCard> GetRecords(int giftCardId, string name)
-        {
-            try
-            {
-                SetConnectToDatabase("[Admin].[usp_GiftCard_Get]");
-
-                CmdSql.Parameters.Add("@GiftCardId", SqlDbType.Int).Value = giftCardId;
-                CmdSql.Parameters.Add("@Name", SqlDbType.NVarChar, 50).Value = name?.Trim() ?? string.Empty;
-
-                return LoadRecords();
-            }
-            catch (Exception ex)
-            {
-                DocumentErrorMessage(ex.ToString());
-                return new List<GiftCard>();
-            }
         }
 
         private List<GiftCard> LoadRecords()
@@ -68,22 +31,22 @@ namespace ClaudeData.DataRepository.AdminRepository
                                 return data;
                             }
 
-                            int ordGiftCardId = dr.GetOrdinal("GiftCardId");
                             int ordName = dr.GetOrdinal("Name");
-                            int ordDisplayOrder = dr.GetOrdinal("DisplayOrder");
                             int ordCreateDate = dr.GetOrdinal("CreateDate");
-                            int ordIsActive = dr.GetOrdinal("IsActive");
+                            int ordGiftCardId = dr.GetOrdinal("GiftCardId");
+                            int ordDisplayOrder = dr.GetOrdinal("DisplayOrder");
 
                             while (dr.Read())
                             {
                                 GiftCard item = new GiftCard
                                 {
-                                    RecordId = Convert.ToInt32(dr[ordGiftCardId]),
                                     Name = Convert.ToString(dr[ordName]),
+                                    RecordId = Convert.ToInt32(dr[ordGiftCardId]),
                                     DisplayOrder = Convert.ToInt16(dr[ordDisplayOrder]),
-                                    CreateDate = Convert.ToDateTime(dr[ordCreateDate]),
-                                    IsActive = Convert.ToBoolean(dr[ordIsActive])
+                                    StringCreateDate =
+                                        Convert.ToDateTime(dr[ordCreateDate]).ToString("MM/dd/yyyy hh:mm:ss tt")
                                 };
+
                                 data.Add(item);
                             }
                         }

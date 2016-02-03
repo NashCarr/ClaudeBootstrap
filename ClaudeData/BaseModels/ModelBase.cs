@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 
 namespace ClaudeData.BaseModels
 {
@@ -9,10 +10,12 @@ namespace ClaudeData.BaseModels
             IsActive = true;
             ErrMsg = string.Empty;
             CreateDate = DateTime.Now;
+            StringCreateDate = DateTime.Now.ToString(CultureInfo.InvariantCulture);
         }
 
         public bool IsActive { get; set; }
         public string ErrMsg { get; set; }
+        public string StringCreateDate { get; set; }
         public DateTime? CreateDate { get; set; }
     }
 }

@@ -12,12 +12,12 @@ namespace ClaudeData.DataRepository.PersonRepository
             if (string.IsNullOrEmpty(data.FullName))
             {
                 SetEmptyStringMessage("Name");
-                return ErrMsg;
+                return ReturnValues.ErrMsg;
             }
 
             try
             {
-                IdValue = data.PersonId;
+                ReturnValues.Id = data.PersonId;
                 IdParameter = "@PersonId";
 
                 SetConnectToDatabase(storedProcedure);
@@ -37,13 +37,13 @@ namespace ClaudeData.DataRepository.PersonRepository
 
                 SendNonQueryGetId();
 
-                data.PersonId = IdValue;
+                data.PersonId = ReturnValues.Id;
             }
             catch (Exception ex)
             {
-                ErrMsg = ex.Message;
+                ReturnValues.ErrMsg = ex.Message;
             }
-            return ErrMsg;
+            return ReturnValues.ErrMsg;
         }
 
         protected internal string SaveAssessor(ref Person data)

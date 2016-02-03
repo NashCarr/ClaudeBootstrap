@@ -11,7 +11,7 @@ namespace ClaudeData.DataRepository.PlaceRepository
         {
             try
             {
-                IdValue = data.PlaceId;
+                ReturnValues.Id = data.PlaceId;
                 SetIdInputOutputParameter();
 
                 CmdSql.Parameters.Add("@Name", SqlDbType.NVarChar, 50).Value = data.Name?.Trim() ?? string.Empty;
@@ -26,13 +26,13 @@ namespace ClaudeData.DataRepository.PlaceRepository
 
                 SendNonQueryGetId();
 
-                data.PlaceId = IdValue;
+                data.PlaceId = ReturnValues.Id;
             }
             catch (Exception ex)
             {
-                ErrMsg = ex.Message;
+                ReturnValues.ErrMsg = ex.Message;
             }
-            return ErrMsg;
+            return ReturnValues.ErrMsg;
         }
 
         protected internal string SaveFacility(ref Place data)
@@ -40,7 +40,7 @@ namespace ClaudeData.DataRepository.PlaceRepository
             if (string.IsNullOrEmpty(data.Name))
             {
                 SetEmptyStringMessage("Name");
-                return ErrMsg;
+                return ReturnValues.ErrMsg;
             }
 
             IdParameter = "@FacilityId";
@@ -55,7 +55,7 @@ namespace ClaudeData.DataRepository.PlaceRepository
             if (string.IsNullOrEmpty(data.Name))
             {
                 SetEmptyStringMessage("Name");
-                return ErrMsg;
+                return ReturnValues.ErrMsg;
             }
 
             IdParameter = "@CustomerId";
@@ -70,7 +70,7 @@ namespace ClaudeData.DataRepository.PlaceRepository
             if (string.IsNullOrEmpty(data.Name))
             {
                 SetEmptyStringMessage("Name");
-                return ErrMsg;
+                return ReturnValues.ErrMsg;
             }
 
             IdParameter = "@OrganizationId";

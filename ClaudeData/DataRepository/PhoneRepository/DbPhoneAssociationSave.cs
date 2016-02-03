@@ -11,12 +11,12 @@ namespace ClaudeData.DataRepository.PhoneRepository
     {
         protected internal string SavePlacePhone(int placeId, byte placeType, PhoneAssociation data)
         {
-            IdValue = placeId;
+            ReturnValues.Id = placeId;
             IdParameter = "@PlaceId";
 
             SetConnectToDatabase("[Phone].[usp_PlacePhone_Upsert]");
 
-            CmdSql.Parameters.Add(IdParameter, SqlDbType.Int).Value = IdValue;
+            CmdSql.Parameters.Add(IdParameter, SqlDbType.Int).Value = ReturnValues.Id;
             CmdSql.Parameters.Add("@PlaceType", SqlDbType.TinyInt).Value = placeType;
 
             return SavePhone(ref data);
@@ -24,12 +24,12 @@ namespace ClaudeData.DataRepository.PhoneRepository
 
         protected internal string SavePersonPhone(int personId, byte personType, PhoneAssociation data)
         {
-            IdValue = personId;
+            ReturnValues.Id = personId;
             IdParameter = "@PersonId";
 
             SetConnectToDatabase("[Phone].[usp_PersonPhone_Upsert]");
 
-            CmdSql.Parameters.Add(IdParameter, SqlDbType.Int).Value = IdValue;
+            CmdSql.Parameters.Add(IdParameter, SqlDbType.Int).Value = ReturnValues.Id;
             CmdSql.Parameters.Add("@PersonType", SqlDbType.TinyInt).Value = personType;
 
             return SavePhone(ref data);
@@ -54,9 +54,9 @@ namespace ClaudeData.DataRepository.PhoneRepository
             }
             catch (Exception ex)
             {
-                ErrMsg = ex.Message;
+                ReturnValues.ErrMsg = ex.Message;
             }
-            return ErrMsg;
+            return ReturnValues.ErrMsg;
         }
     }
 }

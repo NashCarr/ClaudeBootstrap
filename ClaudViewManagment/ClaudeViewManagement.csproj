@@ -69,12 +69,15 @@
     <Compile Include="ViewModels\Places\ClientFacilityViewModel.cs" />
     <Compile Include="ViewModels\Places\CustomerViewModel.cs" />
     <Compile Include="ViewModels\Places\OrganizationViewModel.cs" />
-    <Compile Include="ViewModels\Settings\GiftCardViewModel.cs" />
     <Compile Include="ViewModels\Settings\HearAboutUsViewModel.cs" />
-    <Compile Include="ViewModels\Settings\koGiftCard.cs" />
+    <Compile Include="ViewModels\Settings\GiftCardViewModel.cs" />
     <Compile Include="ViewModels\Settings\ProductGroupViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ClaudeCommon\ClaudeCommon.csproj">
+      <Project>{FB0DEC60-3BA3-4BD7-A268-5A78AB280F3A}</Project>
+      <Name>ClaudeCommon</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ClaudeData\ClaudeData.csproj">
       <Project>{0d5b2f72-aedc-40a6-a308-8647854ea70e}</Project>
       <Name>ClaudeData</Name>

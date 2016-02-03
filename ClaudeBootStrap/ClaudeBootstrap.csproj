@@ -133,7 +133,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\KoGiftCardController.cs" />
+    <Compile Include="Controllers\GiftCardController.cs" />
     <Compile Include="Controllers\Settings\People\CustomerContactController.cs" />
     <Compile Include="Controllers\Settings\People\AssessorController.cs" />
     <Compile Include="Controllers\Settings\People\StaffMemberController.cs" />
@@ -142,7 +142,6 @@
     <Compile Include="Controllers\Settings\Places\OrganizationController.cs" />
     <Compile Include="Controllers\Settings\Places\ClientFacilityController.cs" />
     <Compile Include="Controllers\Settings\ProductGroupController.cs" />
-    <Compile Include="Controllers\Settings\GiftCardController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -220,7 +219,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\GiftCard\Index.cshtml" />
     <Content Include="Views\ProductGroup\Index.cshtml" />
     <Content Include="Views\HearAboutUs\Index.cshtml" />
     <Content Include="Views\StaffMember\Index.cshtml" />
@@ -229,17 +227,20 @@
     <Content Include="Views\Assessor\Index.cshtml" />
     <Content Include="Views\Organization\Index.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
-    <Content Include="Views\KoGiftCard\Index.cshtml" />
-    <Content Include="Views\KoGiftCard\Edit.cshtml" />
-    <Content Include="Views\KoGiftCard\Create.cshtml" />
-    <Content Include="Views\KoGiftCard\Search.cshtml" />
-    <Content Include="Views\KoGiftCard\AddEdit.cshtml" />
-    <Content Include="Views\KoGiftCard\List.cshtml" />
+    <Content Include="Views\GiftCard\Index.cshtml" />
+    <Content Include="Views\GiftCard\Search.cshtml" />
+    <Content Include="Views\GiftCard\AddEdit.cshtml" />
+    <Content Include="Views\GiftCard\List.cshtml" />
+    <Content Include="Views\GiftCard\Message.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ClaudeCommon\ClaudeCommon.csproj">
       <Project>{fb0dec60-3ba3-4bd7-a268-5a78ab280f3a}</Project>
       <Name>ClaudeCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClaudeData\ClaudeData.csproj">
+      <Project>{0D5B2F72-AEDC-40A6-A308-8647854EA70E}</Project>
+      <Name>ClaudeData</Name>
     </ProjectReference>
     <ProjectReference Include="..\ClaudViewManagment\ClaudeViewManagement.csproj">
       <Project>{ae8c6db1-6e44-4fa9-b6dc-396f9c61e0f8}</Project>

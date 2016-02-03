@@ -11,12 +11,12 @@ namespace ClaudeData.DataRepository.AdminRepository
             if (string.IsNullOrEmpty(data.Name))
             {
                 SetEmptyStringMessage("Name");
-                return ErrMsg;
+                return ReturnValues.ErrMsg;
             }
 
             try
             {
-                IdValue = data.RecordId;
+                ReturnValues.Id = data.RecordId;
                 IdParameter = "@HearAboutUsId";
 
                 SetConnectToDatabase("[Admin].[usp_HearAboutUs_Upsert]");
@@ -34,9 +34,9 @@ namespace ClaudeData.DataRepository.AdminRepository
             }
             catch (Exception ex)
             {
-                ErrMsg = ex.Message;
+                ReturnValues.ErrMsg = ex.Message;
             }
-            return ErrMsg;
+            return ReturnValues.ErrMsg;
         }
 
         public string SetInactive(int hearAboutUsId)
@@ -53,9 +53,9 @@ namespace ClaudeData.DataRepository.AdminRepository
             }
             catch (Exception ex)
             {
-                ErrMsg = ex.Message;
+                ReturnValues.ErrMsg = ex.Message;
             }
-            return ErrMsg;
+            return ReturnValues.ErrMsg;
         }
     }
 }

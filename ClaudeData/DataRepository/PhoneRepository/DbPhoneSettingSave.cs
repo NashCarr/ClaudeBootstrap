@@ -8,12 +8,12 @@ namespace ClaudeData.DataRepository.PhoneRepository
     {
         protected internal string SavePlacePhoneSetting(int placeId, byte placeType, PhoneSetting data)
         {
-            IdValue = data.RecordId;
+            ReturnValues.Id = data.RecordId;
             IdParameter = "@PlacePhoneSettingId";
 
             SetConnectToDatabase("[Phone].[usp_PlacePhoneSetting_Upsert]");
 
-            CmdSql.Parameters.Add(IdParameter, SqlDbType.Int).Value = IdValue;
+            CmdSql.Parameters.Add(IdParameter, SqlDbType.Int).Value = ReturnValues.Id;
             CmdSql.Parameters.Add("@PlaceId", SqlDbType.TinyInt).Value = placeId;
             CmdSql.Parameters.Add("@PlaceType", SqlDbType.TinyInt).Value = placeType;
 
@@ -22,12 +22,12 @@ namespace ClaudeData.DataRepository.PhoneRepository
 
         protected internal string SavePersonPhoneSetting(int personId, byte personType, PhoneSetting data)
         {
-            IdValue = data.RecordId;
+            ReturnValues.Id = data.RecordId;
             IdParameter = "@PersonPhoneSettingId";
 
             SetConnectToDatabase("[Phone].[usp_PersonPhoneSetting_Upsert]");
 
-            CmdSql.Parameters.Add(IdParameter, SqlDbType.Int).Value = IdValue;
+            CmdSql.Parameters.Add(IdParameter, SqlDbType.Int).Value = ReturnValues.Id;
             CmdSql.Parameters.Add("@PersonId", SqlDbType.TinyInt).Value = personId;
             CmdSql.Parameters.Add("@PersonType", SqlDbType.TinyInt).Value = personType;
 
@@ -48,9 +48,9 @@ namespace ClaudeData.DataRepository.PhoneRepository
             }
             catch (Exception ex)
             {
-                ErrMsg = ex.Message;
+                ReturnValues.ErrMsg = ex.Message;
             }
-            return ErrMsg;
+            return ReturnValues.ErrMsg;
         }
     }
 }
