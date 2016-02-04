@@ -10,7 +10,7 @@
 @section scripts {
     <script src="~/Scripts/knockout-3.4.0.js"></script>
     <script src="~/Scripts/KOViewModels/vmGiftCard.js"></script>
-
+    <script src="~/Scripts/knockout.mapping-latest.js"></script>
     <script>
         var rawData = new GiftCardViewModel(@Html.Raw(data));
         ko.applyBindings(rawData);
@@ -36,7 +36,9 @@
     </div>*@
 
 <a class="btn btn-info btn-force-refresh pull-right" type="button"
-   data-bind="click: toggleview" href="#"><i class="icon-refresh"></i>Refresh</a>
+   data-bind="click: toggleview" href="#">
+    <i class="icon-refresh"></i>Refresh
+</a>
 
 
 @using (Html.BeginForm())
