@@ -1,39 +1,40 @@
 ﻿<!-- BEGIN GRID AREA -->
-<div class="table-responsive">
-    <table class="table table-condensed table-bordered table-striped table-hover">
+<div>
+    <div class="table-responsive" id="itemslist">
+        <table class="table table-condensed table-bordered table-striped table-hover">
 
-        <thead>
-        <tr>
-            <th class="pdsa-action-button-area">
-                Edit
-            </th>
-            <th>Gift Card</th>
-            <th>Create Date</th>
-            <th>Order</th>
-            <th class="pdsa-action-button-area">
-                Delete
-            </th>
-        </tr>
-        </thead>
+            <thead>
+                <tr>
+                    <th class="pdsa-action-button-area">
+                        Edit
+                    </th>
+                    <th data-bind="click: namesort">Gift Card<i class="glyphicon glyphicon-arrow-down"></i></th>
+                    <th>Create Date</th>
+                    <th data-bind="click: displayordersort">Order<i class="glyphicon glyphicon-arrow-down pull-right"></i></th>
+                    <th class="pdsa-action-button-area">
+                        Delete
+                    </th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: filteredItems()">
+                <tr>
+                    <td class="priority">
+                        <a class="btn btn-default btn-sm" data-bind="click: $parent.edit" href="#" type="button">
+                            <i class="glyphicon glyphicon-edit"></i>
+                        </a>
+                    </td>
+                    <td class="priority" data-bind="text: Name"></td>
+                    <td class="priority" data-bind="text: StringCreateDate"></td>
+                    <td class="priority" data-bind="text: ($index() + 1)"></td>
+                    <td class="priority">
+                        <a class="btn btn-default btn-sm" data-bind="click: $parent.removelistitem.bind($data.RecordId)" href="#" type="button">
+                            <i class="glyphicon glyphicon-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
 
-        <tbody data-bind="foreach: filteredItems().sort(function (l, r) { return l.DisplayOrder() > r.DisplayOrder() ? 1 : -1 })">
-        <tr>
-            <td class="pdsa-action-button-area">
-                <a class="btn btn-default btn-sm" data-bind="click: $parent.edit" href="#" type="button">
-                    <i class="glyphicon glyphicon-edit"></i>
-                </a>
-            </td>
-            <td data-bind="text: Name"></td>
-            <td data-bind="text: StringCreateDate"></td>
-            <td data-bind="text: DisplayOrder"></td>
-            <td class="pdsa-action-button-area">
-                <a class="btn btn-default btn-sm" data-bind="click: $parent.removelistitem.bind($data.RecordId)" href="#" type="button">
-                    <i class="glyphicon glyphicon-trash"></i>
-                </a>
-            </td>
-        </tr>
-        </tbody>
-
-    </table>
+        </table>
+    </div>
 </div>
 <!-- END GRID AREA -->

@@ -3,6 +3,9 @@ GiftCardViewModel = function(data) {
     var self = this;
     var baseUrl = "/GiftCard/";
 
+    self.sorttype = 1;
+    self.sortdirection = ko.observable(1);
+
     self.IsEdit = ko.observable(false);
     self.IsListAreaVisible = ko.observable(true);
     self.IsSearchAreaVisible = ko.observable(true);
@@ -17,26 +20,85 @@ GiftCardViewModel = function(data) {
     self.displayorder = ko.observable(0);
     self.stringcreatedate = ko.observable("");
 
-    self.listitems = ko.mapping.fromJS(data.ListEntity);
+    self.listitems = ko.mapping.fromJS(data.ListEntity).extend({ deferred: true });
+
+    self.namesort = function() {
+        self.managesortdirection(2);
+    };
+
+    self.displayordersort = function() {
+        self.managesortdirection(1);
+    };
+
+    self.managesortdirection = function(type) {
+        if (self.sorttype !== type) {
+            self.sorttype = type;
+            self.pauseNotifications = true;
+            self.sortdirection(0);
+            self.pauseNotifications = false;
+        }
+        if (self.sortdirection() === 1) {
+            self.sortdirection(2);
+            return;
+        }
+        self.sortdirection(1);
+    };
 
     self.filteredItems = ko.dependentObservable(function() {
         var filter = self.searchvalue().toLowerCase();
+
+        if (self.sorttype === 2) {
+            return self.filterednamesort(filter);
+        }
+
         if (!filter) {
-            return self.listitems();
-        } else {
+            if (self.sortdirection() === 1) {
+                return self.listitems().sort(
+                    function(l, r) { return parseInt(l.DisplayOrder()) > parseInt(r.DisplayOrder()) ? 1 : -1 });
+            }
+            return self.listitems().sort(
+                function(l, r) { return parseInt(l.DisplayOrder()) < parseInt(r.DisplayOrder()) ? 1 : -1 });
+        }
+
+        if (self.sortdirection() === 1) {
             return ko.utils.arrayFilter(self.listitems(), function(item) {
                 return ko.unwrap(item.Name).toLowerCase().indexOf(filter) !== -1;
-            });
+            }).sort(
+                function(l, r) { return parseInt(l.DisplayOrder()) > parseInt(r.DisplayOrder()) ? 1 : -1 }
+            );
         }
+
+        return ko.utils.arrayFilter(self.listitems(), function(item) {
+            return ko.unwrap(item.Name).toLowerCase().indexOf(filter) !== -1;
+        }).sort(
+            function(l, r) { return parseInt(l.DisplayOrder()) < parseInt(r.DisplayOrder()) ? 1 : -1 }
+        );
     }, self);
 
-    self.clear = function() {
-        self.name("");
-        self.errmsg("");
-        self.recordid(0);
-        self.displayorder(0);
+    self.filterednamesort = function(filter) {
 
-        self.IsEdit(false);
+        if (!filter) {
+            if (self.sortdirection() === 1) {
+                return self.listitems().sort(
+                    function(l, r) { return l.Name() > r.Name() ? 1 : -1 });
+            }
+            return self.listitems().sort(
+                function(l, r) { return l.Name() < r.Name() ? 1 : -1 });
+        }
+
+        if (self.sortdirection() === 1) {
+            return ko.utils.arrayFilter(self.listitems(), function(item) {
+                return ko.unwrap(item.Name).toLowerCase().indexOf(filter) !== -1;
+            }).sort(
+                function(l, r) { return l.Name() > r.Name() ? 1 : -1 }
+            );
+        }
+
+        return ko.utils.arrayFilter(self.listitems(), function(item) {
+            return ko.unwrap(item.Name).toLowerCase().indexOf(filter) !== -1;
+        }).sort(
+            function(l, r) { return l.Name() < r.Name() ? 1 : -1 }
+        );
     };
 
     self.setmessageview = function() {
@@ -54,11 +116,20 @@ GiftCardViewModel = function(data) {
         self.IsAddEditAreaVisible(!self.IsAddEditAreaVisible());
     };
 
-    self.returnmessage = ko.computed(function() {
+    self.clear = function() {
+        self.name("");
+        self.errmsg("");
+        self.recordid(0);
+        self.displayorder(0);
+
+        self.IsEdit(false);
+    };
+
+    self.returnmessage = ko.pureComputed(function() {
         return ko.unwrap(self.errmsg);
     });
 
-    self.handlereturndata = function(returndata) {
+    self.handlereturndata = function (returndata) {
         self.recordid(returndata.Id);
         self.errmsg(returndata.ErrMsg);
         self.setmessageview();
@@ -87,11 +158,7 @@ GiftCardViewModel = function(data) {
         self.searchvalue("");
     };
 
-    self.search = function () {
-        self.clear();
-    };
-
-    self.save = function () {
+    self.save = function() {
         var item = {
             Name: self.name(),
             RecordId: self.recordid(),
@@ -109,27 +176,32 @@ GiftCardViewModel = function(data) {
                 return;
             }
 
-            if (self.IsEdit()) {
-                self.updatelistitem(item);
-                self.clearandtoggle();
-                return;
-            }
-
-            item.RecordId = returndata.Id;
-            self.listitems.push(
-                {
-                    Name: ko.observable(item.Name),
-                    RecordId: ko.observable(item.RecordId),
-                    DisplayOrder: ko.observable(item.DisplayOrder),
-                    StringCreateDate: ko.observable(item.StringCreateDate)
-                }
-            );
+            self.managesave(item);
             self.clearandtoggle();
         });
     };
 
+    self.managesave = function(item) {
+        if (self.IsEdit()) {
+            self.processedit(item);
+            return;
+        }
+        item.RecordId = self.recordid();
+        self.processadd(item);
+    };
 
-    self.updatelistitem = function(item) {
+    self.processadd = function(item) {
+        self.listitems.push(
+            {
+                Name: ko.observable(item.Name),
+                RecordId: ko.observable(item.RecordId),
+                DisplayOrder: ko.observable(item.DisplayOrder),
+                StringCreateDate: ko.observable(item.StringCreateDate)
+            }
+        );
+    };
+
+    self.processedit = function(item) {
         for (var i = 0; i < self.listitems().length; i++) {
             if (self.listitems()[i].RecordId() === item.RecordId) {
                 self.listitems()[i].Name(item.Name);
@@ -141,15 +213,17 @@ GiftCardViewModel = function(data) {
 
     self.removelistitem = function(removedata) {
 
-        self.name(removedata.Name());
-        self.recordid(removedata.RecordId());
-
         if (!confirm("Delete Gift Card: '" + self.name() + "'?")) {
             return;
         }
 
+        self.setiteminactive(removedata);
+    };
+
+    self.setiteminactive = function(removedata) {
+
         $.ajax({
-            url: baseUrl + self.recordid(),
+            url: baseUrl + removedata.RecordId(),
             type: "delete"
         }).then(function(returndata) {
 
@@ -162,4 +236,18 @@ GiftCardViewModel = function(data) {
             self.clear();
         });
     };
+
+    var fixHelperModified = function (e, tr) {
+        var $originals = tr.children();
+        var $helper = tr.clone();
+        $helper.children().each(function (index) {
+            $(this).width($originals.eq(index).width());
+        });
+        return $helper;
+    };
+
+    $("#itemslist tbody").sortable({
+        helper: fixHelperModified
+    }).disableSelection();
+
 };

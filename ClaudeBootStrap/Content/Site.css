@@ -1,5 +1,5 @@
 ﻿body {
-    font-family: 'Source Sans Pro', sans-serif  !important;
+    font-family: 'Source Sans Pro', sans-serif !important;
     padding-bottom: 20px;
     padding-top: 80px;
 }
@@ -7,9 +7,9 @@
 /* Set padding to keep content from hitting the edges */
 
 .checkboxFive {
-width: 25px;
-margin: 20px 100px;
-position: relative;
+    width: 25px;
+    margin: 20px 100px;
+    position: relative;
 }
 
 
@@ -19,18 +19,32 @@ position: relative;
 }
 
 .pdsa-action-button-area {
-    text-align: center; 
-    width: 4em; 
+    text-align: center;
+    width: 4em;
 }
+
 
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
 
-.dl-horizontal dt { white-space: normal; }
+.dl-horizontal dt {
+    white-space: normal;
+}
 
 /* Set width on the form input elements since they're 100% wide by default */
 
 input,
 select,
-textarea { max-width: 280px; }
+textarea {
+    max-width: 280px;
+}
+
+.ui-sortable tr {
+    cursor: pointer;
+}
+
+.ui-sortable tr:hover {
+    background: #f4fb11;
+    background: rgba(244,251,17,0.45);
+}

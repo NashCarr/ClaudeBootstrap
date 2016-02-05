@@ -1,45 +1,9 @@
 ﻿@using System.Web.Script.Serialization
 @model ClaudeViewManagement.ViewModels.Settings.GiftCardViewModel
 
-@{ string data = new JavaScriptSerializer().Serialize(Model); }
-
 @{
     ViewBag.Title = "Gift Card Managements";
 }
-
-@section scripts {
-    <script src="~/Scripts/knockout-3.4.0.js"></script>
-    <script src="~/Scripts/KOViewModels/vmGiftCard.js"></script>
-    <script src="~/Scripts/knockout.mapping-latest.js"></script>
-    <script>
-        var rawData = new GiftCardViewModel(@Html.Raw(data));
-        ko.applyBindings(rawData);
-    </script>
-}
-
-
-@*<h2>Details</h2>
-    <div>
-        <div class="form-group">
-            <label>Gift Card:</label>
-            <span data-bind="text: description"></span>
-            <button data-bind="click: remove">Delete</button>
-            <button data-bind="click: edit">Edit</button>
-
-            <div class="form-group">
-                @Html.LabelFor(m => m.Entity.Name, "Gift Card")
-                @Html.TextBoxFor(m => m.Entity.Name, new {@class = "form-control", data_bind = "value:name"})
-            </div>
-
-
-        </div>
-    </div>*@
-
-<a class="btn btn-info btn-force-refresh pull-right" type="button"
-   data-bind="click: toggleview" href="#">
-    <i class="icon-refresh"></i>Refresh
-</a>
-
 
 @using (Html.BeginForm())
 {
@@ -55,4 +19,17 @@
     <div data-bind="visible: IsListAreaVisible">
         @{ Html.RenderPartial("List"); }
     </div>
+}
+
+@{ string data = new JavaScriptSerializer().Serialize(Model); }
+
+@section scripts {
+    <script src="~/Scripts/knockout-3.4.0.js"></script>
+    <script src="~/Scripts/KOViewModels/vmGiftCard.js"></script>
+    <script src="~/Scripts/knockout.mapping-latest.js"></script>
+    <script src="~/Scripts/jquery-ui-1.11.4.min.js"></script>
+    <script>
+        var rawData = new GiftCardViewModel(@Html.Raw(data));
+        ko.applyBindings(rawData);
+    </script>
 }

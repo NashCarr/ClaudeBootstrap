@@ -6,29 +6,16 @@
     <div class="panel-body">
         <div class="form-group">
             @Html.Label("GiftCard", "Gift Card")
-            @Html.TextBox("GiftCard", "", new { @class = "form-control", data_bind = "value:searchvalue" })
+            @Html.TextBox("GiftCard", "", new { @class = "form-control", data_bind = "value:searchvalue, valueUpdate: 'keyup'" })
         </div>
     </div>
     <div class="panel-footer">
         <a class="btn btn-sm btn-primary" type="button"
-           data-bind="click: search" href="#"><i class="glyphicon glyphicon-search"></i>Search</a>
-
-        @*<button id="btnSearch"
-                    class="btn btn-sm btn-primary"
-                    data-pdsa-action="search">
-                <i class="glyphicon glyphicon-search"></i>
-                &nbsp;Search
-            </button>*@
-
-        <a class="btn btn-sm btn-primary" type="button"
            data-bind="click: reset" href="#"><i class="glyphicon glyphicon-share-alt"></i>Reset</a>
-
         <a class="btn btn-sm btn-primary" type="button"
            data-bind="click: addorcancel" href="#"><i class="glyphicon glyphicon-plus"></i>Add</a>
-
         <a class="btn btn-info btn-force-refresh pull-right" type="button"
            data-bind="click: toggleview" href="#"><i class="icon-refresh"></i>Refresh</a>
-
     </div>
 </div>
 <!-- ** END SEARCH AREA ** -->
