@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using ClaudeCommon.BaseModels;
 using ClaudeCommon.Models;
 using ClaudeData.DataRepository.AdminRepository;
+using ClaudeData.DataRepository.ReorderRepository;
 
 namespace ClaudeViewManagement.Managers.Settings
 {
@@ -45,6 +46,14 @@ namespace ClaudeViewManagement.Managers.Settings
             using (DbGiftCardSave data = new DbGiftCardSave())
             {
                 return data.SetDisplayOrder(id, value);
+            }
+        }
+
+        public void SaveDisplayReorder(List<DisplayReorder> data)
+        {
+            using (DbReorderSave db = new DbReorderSave())
+            {
+                db.GiftCardReorderSave(data);
             }
         }
 

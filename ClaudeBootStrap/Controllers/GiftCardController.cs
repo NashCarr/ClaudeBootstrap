@@ -1,7 +1,10 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
+using ClaudeCommon.BaseModels;
 using ClaudeCommon.Models;
 using ClaudeViewManagement.Managers.Settings;
 using ClaudeViewManagement.ViewModels.Settings;
+using Microsoft.Ajax.Utilities;
 
 namespace ClaudeBootstrap.Controllers
 {
@@ -15,8 +18,9 @@ namespace ClaudeBootstrap.Controllers
             return View(new GiftCardViewModel());
         }
 
-        [Route("")]
+        //[Route("")]
         [HttpPost]
+        //[ActionName("save")]
         public JsonResult Save(GiftCard entity)
         {
             using (GiftCardManager mgr = new GiftCardManager())
@@ -25,13 +29,14 @@ namespace ClaudeBootstrap.Controllers
             }
         }
 
-        [Route("")]
-        [HttpPut]
-        public JsonResult DisplayOrder(int id, int value)
+        //[Route("")]
+        [HttpPost]
+        //[ActionName("reorder")]
+        public void DisplayOrder(List<DisplayReorder> list)
         {
             using (GiftCardManager mgr = new GiftCardManager())
             {
-                return Json(mgr.SetDisplayOrder(id, value));
+                mgr.SaveDisplayReorder(list);
             }
         }
 

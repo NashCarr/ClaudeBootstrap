@@ -163,7 +163,7 @@ namespace ClaudeData.DataRepository
         //        foreach (DisplayOrder data in this)
         //            );
         //            new SqlMetaData("DisplayOrder", SqlDbType.Int)
-        //            new SqlMetaData("ID", SqlDbType.Int),
+        //            new SqlMetaData("Id", SqlDbType.Int),
         //        SqlDataRecord sdr = new SqlDataRecord(
         //    {
         //    IEnumerator<SqlDataRecord> IEnumerable<SqlDataRecord>.GetEnumerator()
@@ -174,7 +174,7 @@ namespace ClaudeData.DataRepository
         //    IEnumerator<SqlDataRecord> IEnumerable<SqlDataRecord>.GetEnumerator()
         //    {
         //        SqlDataRecord sdr = new SqlDataRecord(
-        //            new SqlMetaData("ID", SqlDbType.Int),
+        //            new SqlMetaData("Id", SqlDbType.Int),
         //            new SqlMetaData("PhoneId", SqlDbType.Int)
         //            );
 
@@ -192,7 +192,7 @@ namespace ClaudeData.DataRepository
         //    IEnumerator<SqlDataRecord> IEnumerable<SqlDataRecord>.GetEnumerator()
         //    {
         //        SqlDataRecord sdr = new SqlDataRecord(
-        //            new SqlMetaData("ID", SqlDbType.Int),
+        //            new SqlMetaData("Id", SqlDbType.Int),
         //            new SqlMetaData("AddressId", SqlDbType.Int)
         //            );
 

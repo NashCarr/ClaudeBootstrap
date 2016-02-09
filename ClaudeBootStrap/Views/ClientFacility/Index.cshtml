@@ -7,15 +7,15 @@
 
 @using (Html.BeginForm())
 {
-    <!-- BEGIN HIDDEN FIELDS AREA -->
+    <!-- BEGIN HIdDEN FIELDS AREA -->
     @Html.HiddenFor(m => m.EventCommand, new {data_val = "false"})
     @Html.HiddenFor(m => m.EventArgument, new {data_val = "false"})
     @Html.HiddenFor(m => m.Entity.Facility.PlaceId, new {data_val = "false"})
-    <!-- END HIDDEN FIELDS AREA -->
+    <!-- END HIdDEN FIELDS AREA -->
 
     if (Model.IsDetailAreaVisible)
     {
-        <!-- BEGIN HIDDEN FIELDS AREA -->
+        <!-- BEGIN HIdDEN FIELDS AREA -->
         @Html.HiddenFor(m => m.Mode, new {data_val = "false"})
         if (Model.Entity.Addresses.MailingAddress.AddressAssociationId != 0)
         {
@@ -55,7 +55,7 @@
             @Html.HiddenFor(m => m.Entity.Phones.WorkPhone.PhoneType, new {data_val = "false"})
             @Html.HiddenFor(m => m.Entity.Phones.WorkPhone.PhoneAssociationId, new {data_val = "false"})
         }
-        <!-- END HIDDEN FIELDS AREA -->
+        <!-- END HIdDEN FIELDS AREA -->
 
         <div class="panel panel-primary">
 
@@ -366,7 +366,7 @@
         </div>
         <div class="panel-body">
 
-            <!-- BEGIN GRID AREA -->
+            <!-- BEGIN GRId AREA -->
             <h2 class="panel-title">Facilities</h2>&nbsp;&nbsp;
             <button id="btnAdd"
                     class="btn btn-sm btn-success"
@@ -415,7 +415,7 @@
                     </tbody>
                 </table>
             </div>
-            <!-- END GRID AREA -->
+            <!-- END GRId AREA -->
             <!-- ** BEGIN INPUT AREA -->
 
             <div class="container">

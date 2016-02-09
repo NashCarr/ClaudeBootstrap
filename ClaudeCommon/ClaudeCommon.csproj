@@ -56,6 +56,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseModels\DisplayOrder.cs" />
     <Compile Include="Enums\AddressEnums.cs" />
     <Compile Include="Enums\AdministrationEnums.cs" />
     <Compile Include="Enums\AssessorEnums.cs" />

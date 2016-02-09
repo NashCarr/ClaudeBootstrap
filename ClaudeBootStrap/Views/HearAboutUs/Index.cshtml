@@ -7,11 +7,11 @@
 
 @using (Html.BeginForm())
 {
-    <!-- BEGIN HIDDEN FIELDS AREA -->
+    <!-- BEGIN HIdDEN FIELDS AREA -->
     @Html.HiddenFor(m => m.EventCommand, new { data_val = "false" })
     @Html.HiddenFor(m => m.EventArgument, new { data_val = "false" })
     @Html.HiddenFor(m => m.Entity.RecordId, new { data_val = "false" })
-    <!-- END HIDDEN FIELDS AREA -->
+    <!-- END HIdDEN FIELDS AREA -->
 
     if (Model.IsSearchAreaVisible)
     {
@@ -80,11 +80,11 @@
                     </div>
                 </div>
                 <!-- ** END MESSAGE AREA -->
-                <!-- BEGIN HIDDEN FIELDS AREA -->
+                <!-- BEGIN HIdDEN FIELDS AREA -->
                 @Html.HiddenFor(m => m.Mode, new { data_val = "false" })
                 @Html.HiddenFor(m => m.SearchEntity, new { data_val = "false" })
                 @Html.HiddenFor(m => m.Entity.IsSystem, new { data_val = "false" })
-                <!-- END HIDDEN FIELDS AREA -->
+                <!-- END HIdDEN FIELDS AREA -->
                 <!-- ** BEGIN INPUT AREA -->
 
                 <div class="form-group">
@@ -126,7 +126,7 @@
 
     if (Model.IsListAreaVisible)
     {
-        <!-- BEGIN GRID AREA -->
+        <!-- BEGIN GRId AREA -->
         <div class="table-responsive">
             <table class="table table-condensed table-bordered table-striped table-hover">
                 <thead>
@@ -177,7 +177,7 @@
                 </tbody>
             </table>
         </div>
-        <!-- END GRID AREA -->
+        <!-- END GRId AREA -->
     }
 }
 

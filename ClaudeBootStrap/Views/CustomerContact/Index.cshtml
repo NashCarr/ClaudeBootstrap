@@ -7,11 +7,11 @@
 
 @using (Html.BeginForm())
 {
-    <!-- BEGIN HIDDEN FIELDS AREA -->
+    <!-- BEGIN HIdDEN FIELDS AREA -->
     @Html.HiddenFor(m => m.EventCommand, new { data_val = "false" })
     @Html.HiddenFor(m => m.EventArgument, new { data_val = "false" })
     @Html.HiddenFor(m => m.Entity.CustomerContact.PersonId, new { data_val = "false" })
-    <!-- END HIDDEN FIELDS AREA -->
+    <!-- END HIdDEN FIELDS AREA -->
 
     if (Model.IsSearchAreaVisible)
     {
@@ -52,7 +52,7 @@
 
     if (Model.IsDetailAreaVisible)
     {
-        <!-- BEGIN HIDDEN FIELDS AREA -->
+        <!-- BEGIN HIdDEN FIELDS AREA -->
         @Html.HiddenFor(m => m.Mode, new { data_val = "false" })
         if (Model.Entity.Addresses.MailingAddress.AddressAssociationId != 0)
         {
@@ -92,7 +92,7 @@
             @Html.HiddenFor(m => m.Entity.Phones.WorkPhone.PhoneType, new { data_val = "false" })
             @Html.HiddenFor(m => m.Entity.Phones.WorkPhone.PhoneAssociationId, new { data_val = "false" })
         }
-        <!-- END HIDDEN FIELDS AREA -->
+        <!-- END HIdDEN FIELDS AREA -->
 
         <div class="panel panel-primary">
 
@@ -396,7 +396,7 @@
 
     if (Model.IsListAreaVisible)
     {
-        <!-- BEGIN GRID AREA -->
+        <!-- BEGIN GRId AREA -->
         <div class="table-responsive">
             <table class="table table-condensed table-bordered table-striped table-hover">
                 <thead>
@@ -441,7 +441,7 @@
                 </tbody>
             </table>
         </div>
-        <!-- END GRID AREA -->
+        <!-- END GRId AREA -->
     }
 }
 
