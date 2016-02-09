@@ -25,6 +25,16 @@ namespace ClaudeBootstrap.Controllers
             }
         }
 
+        [Route("")]
+        [HttpPut]
+        public JsonResult DisplayOrder(int id, int value)
+        {
+            using (GiftCardManager mgr = new GiftCardManager())
+            {
+                return Json(mgr.SetDisplayOrder(id, value));
+            }
+        }
+
         [Route("{id:int}")]
         [HttpDelete]
         public JsonResult Delete(int id)

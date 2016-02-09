@@ -3,6 +3,7 @@ GiftCardViewModel = function(data) {
     var self = this;
     var baseUrl = "/GiftCard/";
 
+    self.init = true;
     self.sorttype = 1;
     self.sortdirection = ko.observable(1);
 
@@ -11,6 +12,7 @@ GiftCardViewModel = function(data) {
     self.IsSearchAreaVisible = ko.observable(true);
     self.IsAddEditAreaVisible = ko.observable(false);
     self.IsMessageAreaVisible = ko.observable(false);
+    self.IsDisplayOrderChanged = ko.observable(false);
 
     self.errmsg = ko.observable("");
     self.searchvalue = ko.observable("");
@@ -44,12 +46,7 @@ GiftCardViewModel = function(data) {
         self.sortdirection(1);
     };
 
-    self.filteredItems = ko.dependentObservable(function() {
-        var filter = self.searchvalue().toLowerCase();
-
-        if (self.sorttype === 2) {
-            return self.filterednamesort(filter);
-        }
+    self.filtereddisplayordersort = function(filter) {
 
         if (!filter) {
             if (self.sortdirection() === 1) {
@@ -73,6 +70,30 @@ GiftCardViewModel = function(data) {
         }).sort(
             function(l, r) { return parseInt(l.DisplayOrder()) < parseInt(r.DisplayOrder()) ? 1 : -1 }
         );
+    };
+
+    self.initdisplayorder = function() {
+        for (var i = 0; i < self.listitems().length; i++) {
+            if (self.listitems()[i].DisplayOrder() !== (i + 1)) {
+                self.listitems()[i].DisplayOrder(i + 1);
+            }
+        };
+    };
+
+    self.filteredItems = ko.dependentObservable(function() {
+
+        if (self.init) {
+            self.initdisplayorder();
+            self.init = false;
+        }
+
+        var filter = self.searchvalue().toLowerCase();
+
+        if (self.sorttype === 2) {
+            return self.filterednamesort(filter);
+        }
+        return self.filtereddisplayordersort(filter);
+
     }, self);
 
     self.filterednamesort = function(filter) {
@@ -129,7 +150,7 @@ GiftCardViewModel = function(data) {
         return ko.unwrap(self.errmsg);
     });
 
-    self.handlereturndata = function (returndata) {
+    self.handlereturndata = function(returndata) {
         self.recordid(returndata.Id);
         self.errmsg(returndata.ErrMsg);
         self.setmessageview();
@@ -211,13 +232,11 @@ GiftCardViewModel = function(data) {
         }
     };
 
-    self.removelistitem = function(removedata) {
-
-        if (!confirm("Delete Gift Card: '" + self.name() + "'?")) {
+    self.removelistitem = function(item) {
+        if (!confirm("Delete Gift Card: '" + ko.unwrap(item.Name) + "'?")) {
             return;
         }
-
-        self.setiteminactive(removedata);
+        self.setiteminactive(item);
     };
 
     self.setiteminactive = function(removedata) {
@@ -231,23 +250,65 @@ GiftCardViewModel = function(data) {
             if (self.IsMessageAreaVisible()) {
                 return;
             }
-
             self.listitems.remove(removedata);
             self.clear();
         });
     };
 
-    var fixHelperModified = function (e, tr) {
+    self.savedisplayorder = function (id, value) {
+        self.IsDisplayOrderChanged(true);
+        $.ajax({
+            url: baseUrl,
+            type: "put",
+            data: { id: id, value: value }
+        }).then(function (returndata) {
+
+            self.handlereturndata(returndata);
+            if (self.IsMessageAreaVisible()) {
+                return;
+            }
+            self.clear();
+        });
+        self.IsDisplayOrderChanged(false);
+    };
+
+    self.updatedisplayorder = function (recordid, value) {
+        for (var i = 0; i < self.filteredItems().length; i++) {
+            if (self.filteredItems()[i].RecordId() === recordid) {
+                if (self.filteredItems()[i].DisplayOrder() !== (value)) {
+                    self.savedisplayorder(recordid, value);
+                    self.pauseNotifications = true;
+                    self.filteredItems()[i].DisplayOrder(value);
+                    self.pauseNotifications = false;
+                }
+                break;
+            }
+        }
+    };
+
+    self.reorder = function() {
+        var rowindex = 0;
+        $("#itemslist tbody").children().each(function(i, elm) {
+            var newwindex = rowindex + 1;
+            var rowrecordid = parseInt($("#itemslist tbody").children()[rowindex].children[1].innerText);
+            $("#itemslist tbody").children()[rowindex].children[4].innerText = newwindex;
+            self.updatedisplayorder(rowrecordid, newwindex);
+            rowindex = newwindex;
+        });
+    };
+
+    var fixHelperModified = function(e, tr) {
         var $originals = tr.children();
         var $helper = tr.clone();
-        $helper.children().each(function (index) {
+        $helper.children().each(function(index) {
             $(this).width($originals.eq(index).width());
         });
         return $helper;
     };
 
     $("#itemslist tbody").sortable({
-        helper: fixHelperModified
+        helper: fixHelperModified,
+        stop: self.reorder
     }).disableSelection();
 
 };

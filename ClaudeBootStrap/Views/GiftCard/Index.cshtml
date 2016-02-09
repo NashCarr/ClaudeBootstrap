@@ -24,10 +24,10 @@
 @{ string data = new JavaScriptSerializer().Serialize(Model); }
 
 @section scripts {
-    <script src="~/Scripts/knockout-3.4.0.js"></script>
-    <script src="~/Scripts/KOViewModels/vmGiftCard.js"></script>
-    <script src="~/Scripts/knockout.mapping-latest.js"></script>
     <script src="~/Scripts/jquery-ui-1.11.4.min.js"></script>
+    <script src="~/Scripts/knockout-3.4.0.js"></script>
+    <script src="~/Scripts/knockout.mapping-latest.js"></script>
+    <script src="~/Scripts/KOViewModels/vmGiftCard.js"></script>
     <script>
         var rawData = new GiftCardViewModel(@Html.Raw(data));
         ko.applyBindings(rawData);

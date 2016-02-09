@@ -40,6 +40,14 @@ namespace ClaudeViewManagement.Managers.Settings
             }
         }
 
+        public ReturnBase SetDisplayOrder(int id, int value)
+        {
+            using (DbGiftCardSave data = new DbGiftCardSave())
+            {
+                return data.SetDisplayOrder(id, value);
+            }
+        }
+
         public ReturnBase DeleteRecord(int recordId)
         {
             using (DbGiftCardSave data = new DbGiftCardSave())

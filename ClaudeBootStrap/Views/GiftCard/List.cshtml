@@ -8,7 +8,8 @@
                     <th class="pdsa-action-button-area">
                         Edit
                     </th>
-                    <th data-bind="click: namesort">Gift Card<i class="glyphicon glyphicon-arrow-down"></i></th>
+                    <th style="display: none">RecordId</th>
+                    <th data-bind="click: namesort">Gift Card<i class="glyphicon glyphicon-arrow-down pull-right"></i></th>
                     <th>Create Date</th>
                     <th data-bind="click: displayordersort">Order<i class="glyphicon glyphicon-arrow-down pull-right"></i></th>
                     <th class="pdsa-action-button-area">
@@ -16,18 +17,19 @@
                     </th>
                 </tr>
             </thead>
-            <tbody data-bind="foreach: filteredItems()">
-                <tr>
-                    <td class="priority">
+            <tbody data-bind="foreach: filteredItems()" id="items">
+                <tr id="itemrow">
+                    <td class="ui-priority-secondary" id="edit">
                         <a class="btn btn-default btn-sm" data-bind="click: $parent.edit" href="#" type="button">
                             <i class="glyphicon glyphicon-edit"></i>
                         </a>
                     </td>
-                    <td class="priority" data-bind="text: Name"></td>
-                    <td class="priority" data-bind="text: StringCreateDate"></td>
-                    <td class="priority" data-bind="text: ($index() + 1)"></td>
-                    <td class="priority">
-                        <a class="btn btn-default btn-sm" data-bind="click: $parent.removelistitem.bind($data.RecordId)" href="#" type="button">
+                    <td class="ui-priority-secondary" data-bind="text: RecordId" id="recordid" style="display: none"></td>
+                    <td class="ui-priority-secondary" data-bind="text: Name" id="name"></td>
+                    <td class="ui-priority-secondary" data-bind="text: StringCreateDate" id="createdate"></td>
+                    <td class="ui-priority-secondary" data-bind="text: DisplayOrder" id="displayorder"></td>
+                    <td class="ui-priority-secondary" id="delete">
+                        <a class="btn btn-default btn-sm" data-bind="click: $parent.removelistitem.bind($data)" href="#" type="button">
                             <i class="glyphicon glyphicon-trash"></i>
                         </a>
                     </td>
@@ -38,3 +40,9 @@
     </div>
 </div>
 <!-- END GRID AREA -->
+
+@*<div id="debug" style="clear: both">
+    <hr />
+    <h2>Debug</h2>
+    <div data-bind="text: ko.toJSON($data)"></div>
+</div>*@

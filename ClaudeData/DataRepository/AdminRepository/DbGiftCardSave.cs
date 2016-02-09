@@ -60,5 +60,27 @@ namespace ClaudeData.DataRepository.AdminRepository
 
             return ReturnValues;
         }
+
+        public ReturnBase SetDisplayOrder(int recordId, int displayOrder)
+        {
+            ReturnValues.Id = recordId;
+            try
+            {
+                SetConnectToDatabase("[Admin].[usp_GiftCard_SetDisplayOrder]");
+
+                CmdSql.Parameters.Add("@GiftCardId", SqlDbType.Int).Value = ReturnValues.Id;
+                CmdSql.Parameters.Add("@DisplayOrder", SqlDbType.Int).Value = displayOrder;
+
+                SetErrMsgParameter();
+
+                SendNonQuery();
+            }
+            catch (Exception ex)
+            {
+                ReturnValues.ErrMsg = ex.Message;
+            }
+
+            return ReturnValues;
+        }
     }
 }
