@@ -216,12 +216,13 @@ GiftCardViewModel = function(data) {
         self.processadd(item);
     };
 
-    self.processadd = function (itemToAdd) {
-        var match = ko.utils.arrayFirst(self.listitems(), function (item) {
+    self.processadd = function(itemToAdd) {
+        var match = ko.utils.arrayFirst(self.listitems(), function(item) {
             return item.RecordId() === itemToAdd.RecordId;
         });
 
         if (!match) {
+            self.reorderfilteredlist();
             var newitem = {
                 Name: ko.observable(itemToAdd.Name),
                 RecordId: ko.observable(itemToAdd.RecordId),
@@ -242,14 +243,7 @@ GiftCardViewModel = function(data) {
         }
     };
 
-    self.removelistitem = function(item) {
-        if (!confirm("Delete Gift Card: '" + ko.unwrap(item.Name) + "'?")) {
-            return;
-        }
-        self.setiteminactive(item);
-    };
-
-    self.setiteminactive = function(removedata) {
+    self.setlistiteminactive = function(removedata) {
 
         $.ajax({
             url: baseUrl + removedata.RecordId(),
@@ -265,7 +259,14 @@ GiftCardViewModel = function(data) {
         });
     };
 
-    self.savedisplayorder = function() {
+    self.removelistitem = function(item) {
+        if (!confirm("Delete Gift Card: '" + ko.unwrap(item.Name) + "'?")) {
+            return;
+        }
+        self.setlistiteminactive(item);
+    };
+
+    self.savenewdisplayorder = function() {
         if (self.displayreorder().length !== 0) {
             $.ajax({
                 type: "post",
@@ -278,39 +279,51 @@ GiftCardViewModel = function(data) {
         self.IsDisplayOrderChanged(false);
     };
 
-    self.updatedisplayorder = function(recordid, value) {
+    self.editlistdisplayorder = function(recordid, value) {
+        for (var i = 0; i < self.listitems().length; i++) {
+            if (self.listitems()[i].RecordId() === recordid) {
+                if (self.listitems()[i].DisplayOrder() !== (value)) {
+                    self.listitems()[i].DisplayOrder(value);
+                }
+                break;
+            }
+        }
+    };
+
+    self.managelistdisplayorder = function() {
+        for (var i = 0; i < self.displayreorder().length; i++) {
+            self.editlistdisplayorder(
+                ko.unwrap(self.displayreorder()[i].Id),
+                ko.unwrap(self.displayreorder()[i].DisplayOrder)
+            );
+        }
+        self.displayreorder([]);
+    };
+
+    self.capturenewdisplayorder = function(recordid, value) {
         self.displayreorder.push(
         {
             Id: recordid,
             DisplayOrder: value
         });
         self.IsDisplayOrderChanged(true);
-
-        //for (var i = 0; i < self.filteredItems().length; i++) {
-        //    if (self.filteredItems()[i].RecordId() === recordid) {
-        //        //if (self.filteredItems()[i].DisplayOrder() !== (value)) {
-        //            //self.pauseNotifications = true;
-        //            self.filteredItems()[i].DisplayOrder(value);
-        //            //self.pauseNotifications = false;
-        //        //}
-        //        break;
-        //    }
-        //}
     };
 
-    self.reorder = function() {
+    self.reorderfilteredlist = function() {
         var rowindex = 0;
         var newwindex = 0;
         var rowrecordid = 0;
+        self.displayreorder([]);
         $("#itemslist tbody").children().each(function() {
             newwindex = rowindex + 1;
             rowrecordid = parseInt($("#itemslist tbody").children()[rowindex].children[1].innerText);
             $("#itemslist tbody").children()[rowindex].children[4].innerText = newwindex;
-            self.updatedisplayorder(rowrecordid, newwindex);
+            self.capturenewdisplayorder(rowrecordid, newwindex);
             rowindex = newwindex;
         });
         if (self.IsDisplayOrderChanged) {
-            self.savedisplayorder();
+            self.savenewdisplayorder();
+            self.managelistdisplayorder();
         }
     };
 
@@ -325,7 +338,7 @@ GiftCardViewModel = function(data) {
 
     $("#itemslist tbody").sortable({
         helper: fixHelperModified,
-        stop: self.reorder
+        stop: self.reorderfilteredlist
     }).disableSelection();
 
 };

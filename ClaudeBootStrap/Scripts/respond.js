@@ -70,7 +70,7 @@
     return;
   }
   var doc = w.document, docElem = doc.documentElement, mediastyles = [], rules = [], appendedEls = [], parsedSheets = {}, resizeThrottle = 30, head = doc.getElementsByTagName("head")[0] || docElem, base = doc.getElementsByTagName("base")[0], links = head.getElementsByTagName("link"), lastCall, resizeDefer, eminpx, getEmValue = function() {
-    var ret, div = doc.createElement("div"), body = doc.body, originalHTMLFontSize = docElem.style.fontSize, originalBodyFontSize = body && body.style.fontSize, fakeUsed = false;
+    var ret, div = doc.createElement("div"), body = doc.body, originalHtmlFontSize = docElem.style.fontSize, originalBodyFontSize = body && body.style.fontSize, fakeUsed = false;
     div.style.cssText = "position:absolute;font-size:1em;width:1em";
     if (!body) {
       body = fakeUsed = doc.createElement("body");
@@ -88,7 +88,7 @@
     } else {
       body.removeChild(div);
     }
-    docElem.style.fontSize = originalHTMLFontSize;
+    docElem.style.fontSize = originalHtmlFontSize;
     if (originalBodyFontSize) {
       body.style.fontSize = originalBodyFontSize;
     }
@@ -188,10 +188,10 @@
         }, 0);
       });
     }
-  }, ripCSS = function() {
+  }, ripCss = function() {
     for (var i = 0; i < links.length; i++) {
-      var sheet = links[i], href = sheet.href, media = sheet.media, isCSS = sheet.rel && sheet.rel.toLowerCase() === "stylesheet";
-      if (!!href && isCSS && !parsedSheets[href]) {
+      var sheet = links[i], href = sheet.href, media = sheet.media, isCss = sheet.rel && sheet.rel.toLowerCase() === "stylesheet";
+      if (!!href && isCss && !parsedSheets[href]) {
         if (sheet.styleSheet && sheet.styleSheet.rawCssText) {
           translate(sheet.styleSheet.rawCssText, href, media);
           parsedSheets[href] = true;
@@ -210,8 +210,8 @@
     }
     makeRequests();
   };
-  ripCSS();
-  respond.update = ripCSS;
+  ripCss();
+  respond.update = ripCss;
   respond.getEmValue = getEmValue;
   function callMedia() {
     applyMedia(true);
