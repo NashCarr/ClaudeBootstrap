@@ -9,9 +9,9 @@
                         Edit
                     </th>
                     <th style="display: none">RecordId</th>
-                    <th data-bind="click: namesort">Gift Card<i class="glyphicon pull-right"></i></th>
+                    <th data-bind="click: namesort">Gift Card<i class="glyphicon glyphicon-sort pull-right"></i></th>
                     <th>Create Date</th>
-                    <th data-bind="click: displayordersort">Order<i class="glyphicon glyphicon-arrow-down pull-right"></i></th>
+                    <th data-bind="click: displayordersort">Order<i class="glyphicon glyphicon-sort pull-right"></i></th>
                     <th class="pdsa-action-button-area">
                         Delete
                     </th>
@@ -44,5 +44,5 @@
 <div id="debug" style="clear: both">
     <hr />
     <h2>Debug</h2>
-    <div data-bind="text: ko.toJSON(self.displayreorder)"></div>
+    <div data-bind="text: ko.toJSON($data)"></div>
 </div>

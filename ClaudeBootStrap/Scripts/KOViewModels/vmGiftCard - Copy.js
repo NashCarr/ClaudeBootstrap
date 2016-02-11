@@ -1,11 +1,13 @@
-﻿
-GiftCardViewModel = function(data) {
+﻿GiftCardViewModel = function(data) {
     var self = this;
     var baseUrl = "/GiftCard/";
 
     self.init = true;
     self.sorttype = 1;
     self.sortdirection = ko.observable(1);
+
+    self.namesortimage = ko.observable("glyphicon-arrow-down");
+    self.ordersortimage = ko.observable("glyphicon-arrow-down");
 
     self.IsEdit = ko.observable(false);
     self.IsListAreaVisible = ko.observable(true);
@@ -74,18 +76,9 @@ GiftCardViewModel = function(data) {
         );
     };
 
-    self.initdisplayorder = function() {
-        for (var i = 0; i < self.listitems().length; i++) {
-            if (self.listitems()[i].DisplayOrder() !== (i + 1)) {
-                self.listitems()[i].DisplayOrder(i + 1);
-            }
-        };
-    };
-
     self.filteredItems = ko.dependentObservable(function() {
 
         if (self.init) {
-            self.initdisplayorder();
             self.init = false;
         }
 
@@ -156,7 +149,6 @@ GiftCardViewModel = function(data) {
         self.recordid(returndata.Id);
         self.errmsg(returndata.ErrMsg);
         self.stringcreatedate(returndata.StringCreateDate);
-
         self.setmessageview();
     };
 
@@ -212,12 +204,13 @@ GiftCardViewModel = function(data) {
             return;
         }
         item.RecordId = self.recordid();
-        item.StringCreateDate = self.stringcreatedate();
         self.processadd(item);
     };
 
-    self.processadd = function (itemToAdd) {
-        var match = ko.utils.arrayFirst(self.listitems(), function (item) {
+    self.processadd = function(itemToAdd) {
+        self.reorder();
+
+        var match = ko.utils.arrayFirst(self.listitems(), function(item) {
             return item.RecordId() === itemToAdd.RecordId;
         });
 
@@ -266,36 +259,33 @@ GiftCardViewModel = function(data) {
     };
 
     self.savedisplayorder = function() {
-        if (self.displayreorder().length !== 0) {
-            $.ajax({
-                type: "post",
-                url: baseUrl + "DisplayOrder",
-                dataType: "json",
-                data: ko.toJSON(self.displayreorder),
-                contentType: "application/json; charset=utf-8"
-            });
-        }
+        $.ajax({
+            type: "post",
+            url: baseUrl + "DisplayOrder",
+            dataType: "json",
+            data: ko.toJSON(self.displayreorder),
+            contentType: "application/json; charset=utf-8"
+        });
         self.IsDisplayOrderChanged(false);
+        self.displayreorder([]);
     };
 
     self.updatedisplayorder = function(recordid, value) {
         self.displayreorder.push(
-        {
-            Id: recordid,
-            DisplayOrder: value
-        });
+            {
+                Id: recordid,
+                DisplayOrder: value
+            }
+        );
         self.IsDisplayOrderChanged(true);
-
-        //for (var i = 0; i < self.filteredItems().length; i++) {
-        //    if (self.filteredItems()[i].RecordId() === recordid) {
-        //        //if (self.filteredItems()[i].DisplayOrder() !== (value)) {
-        //            //self.pauseNotifications = true;
-        //            self.filteredItems()[i].DisplayOrder(value);
-        //            //self.pauseNotifications = false;
-        //        //}
-        //        break;
-        //    }
-        //}
+        for (var i = 0; i < self.filteredItems().length; i++) {
+            if (self.filteredItems()[i].RecordId() === recordid) {
+                //self.pauseNotifications = true;
+                self.filteredItems()[i].DisplayOrder(value);
+                //self.pauseNotifications = false;
+                break;
+            }
+        }
     };
 
     self.reorder = function() {
@@ -327,5 +317,4 @@ GiftCardViewModel = function(data) {
         helper: fixHelperModified,
         stop: self.reorder
     }).disableSelection();
-
 };
