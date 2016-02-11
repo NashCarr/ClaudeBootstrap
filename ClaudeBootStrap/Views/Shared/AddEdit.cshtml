@@ -1,16 +1,14 @@
 ﻿<!-- ** BEGIN DETAIL AREA ** -->
 <div class="panel panel-primary">
     <div class="panel-heading">
-        <h1 class="panel-title">
-            Gift Card Information
-        </h1>
+        <h1 class="panel-title">Add or Edit Item</h1>
     </div>
     <div class="panel-body">
          <!-- ** BEGIN INPUT AREA -->
 
         <div class="form-group">
-            @Html.Label("GiftCard", "Gift Card")
-            @Html.TextBox("GiftCard", "", new { @class = "form-control", data_bind = "value:name" })
+            @Html.Label("Item", "Enter or Edit Item")
+            @Html.TextBox("Name", "", new { @class = "form-control", data_bind = "value:name" })
         </div>
 
         <!-- ** END INPUT AREA -->

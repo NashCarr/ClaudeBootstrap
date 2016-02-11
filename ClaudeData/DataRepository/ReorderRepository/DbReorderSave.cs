@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using ClaudeCommon.BaseModels;
 
 namespace ClaudeData.DataRepository.ReorderRepository
@@ -49,11 +48,10 @@ namespace ClaudeData.DataRepository.ReorderRepository
             DisplayReorder("[Admin].[usp_GiftCard_DisplayReorder]", data);
         }
 
-        //public void HearAboutUsReorderSave(IEnumerable<HearAboutUs> data)
-        //{
-        //    DataOrder dOrder = new DataOrder();
-        //    dOrder.AddRange(
-        //        data.Select(item => new DisplayOrder {Id = item.HearAboutUsId, Order = item.DisplayOrder}));
+        public void HearAboutUsReorderSave(List<DisplayReorder> data)
+        {
+            DisplayReorder("[Admin].[usp_HearAboutUs_DisplayReorder]", data);
+        }
 
         //    DisplayReorder("[Admin].[usp_HearAboutUs_DisplayReorder]", dOrder);
         //}

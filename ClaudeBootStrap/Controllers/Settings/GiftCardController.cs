@@ -4,9 +4,8 @@ using ClaudeCommon.BaseModels;
 using ClaudeCommon.Models;
 using ClaudeViewManagement.Managers.Settings;
 using ClaudeViewManagement.ViewModels.Settings;
-using Microsoft.Ajax.Utilities;
 
-namespace ClaudeBootstrap.Controllers
+namespace ClaudeBootstrap.Controllers.Settings
 {
     [RoutePrefix("GiftCard")]
     public class GiftCardController : Controller
@@ -18,9 +17,7 @@ namespace ClaudeBootstrap.Controllers
             return View(new GiftCardViewModel());
         }
 
-        //[Route("")]
         [HttpPost]
-        //[ActionName("save")]
         public JsonResult Save(GiftCard entity)
         {
             using (GiftCardManager mgr = new GiftCardManager())
@@ -29,9 +26,7 @@ namespace ClaudeBootstrap.Controllers
             }
         }
 
-        //[Route("")]
         [HttpPost]
-        //[ActionName("reorder")]
         public void DisplayOrder(List<DisplayReorder> list)
         {
             using (GiftCardManager mgr = new GiftCardManager())

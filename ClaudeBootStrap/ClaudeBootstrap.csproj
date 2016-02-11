@@ -132,8 +132,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\GiftCardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Settings\GiftCardController.cs" />
     <Compile Include="Controllers\Settings\People\CustomerContactController.cs" />
     <Compile Include="Controllers\Settings\People\AssessorController.cs" />
     <Compile Include="Controllers\Settings\People\StaffMemberController.cs" />
@@ -222,6 +222,7 @@
     <Content Include="Scripts\knockout-3.4.0.js" />
     <Content Include="Scripts\knockout.mapping-latest.debug.js" />
     <Content Include="Scripts\knockout.mapping-latest.js" />
+    <Content Include="Scripts\KOViewModels\vmHearAboutUs.js" />
     <Content Include="Scripts\KOViewModels\vmGiftCard.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\r.js" />
@@ -251,10 +252,11 @@
     <Content Include="Views\Organization\Index.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\GiftCard\Index.cshtml" />
-    <Content Include="Views\GiftCard\Search.cshtml" />
-    <Content Include="Views\GiftCard\AddEdit.cshtml" />
     <Content Include="Views\GiftCard\List.cshtml" />
-    <Content Include="Views\GiftCard\Message.cshtml" />
+    <Content Include="Views\Shared\Message.cshtml" />
+    <Content Include="Views\Shared\AddEdit.cshtml" />
+    <Content Include="Views\Shared\Search.cshtml" />
+    <Content Include="Views\HearAboutUs\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ClaudeCommon\ClaudeCommon.csproj">
@@ -273,9 +275,7 @@
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Scripts\KoBindingHandlers\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

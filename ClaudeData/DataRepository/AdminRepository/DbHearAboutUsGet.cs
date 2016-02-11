@@ -1,54 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using ClaudeData.Models.Admin;
+using ClaudeCommon.Models;
 
 namespace ClaudeData.DataRepository.AdminRepository
 {
     public class DbHearAboutUsGet : DbGetBase
     {
-        public List<HearAboutUs> GetActiveRecords()
+        public List<HearAboutUs> GetViewModel()
         {
-            SetConnectToDatabase("[Admin].[usp_HearAboutUs_GetActive]");
+            SetConnectToDatabase("[ViewModel].[usp_HearAboutUs_GetActive]");
 
             return LoadRecords();
-        }
-
-        public List<HearAboutUs> GetInactiveRecords()
-        {
-            SetConnectToDatabase("[Admin].[usp_HearAboutUs_GetInactive]");
-
-            return LoadRecords();
-        }
-
-        public HearAboutUs GetRecord(int recordId)
-        {
-            return GetRecords(recordId, string.Empty).SingleOrDefault();
-        }
-
-        public List<HearAboutUs> GetRecords()
-        {
-            return GetRecords(0, string.Empty);
-        }
-
-        private List<HearAboutUs> GetRecords(int hearAboutUsId, string name)
-        {
-            try
-            {
-                SetConnectToDatabase("[Admin].[usp_HearAboutUs_Get]");
-
-                CmdSql.Parameters.Add("@HearAboutUsId", SqlDbType.Int).Value = hearAboutUsId;
-                CmdSql.Parameters.Add("@Name", SqlDbType.NVarChar, 50).Value = name?.Trim() ?? string.Empty;
-
-                return LoadRecords();
-            }
-            catch (Exception ex)
-            {
-                DocumentErrorMessage(ex.ToString());
-                return new List<HearAboutUs>();
-            }
         }
 
         private List<HearAboutUs> LoadRecords()
@@ -70,7 +33,6 @@ namespace ClaudeData.DataRepository.AdminRepository
 
                             int ordName = dr.GetOrdinal("Name");
                             int ordIsSystem = dr.GetOrdinal("IsSystem");
-                            int ordIsActive = dr.GetOrdinal("IsActive");
                             int ordCreateDate = dr.GetOrdinal("CreateDate");
                             int ordDisplayOrder = dr.GetOrdinal("DisplayOrder");
                             int ordHearAboutUsId = dr.GetOrdinal("HearAboutUsId");
@@ -81,11 +43,12 @@ namespace ClaudeData.DataRepository.AdminRepository
                                 {
                                     Name = Convert.ToString(dr[ordName]),
                                     IsSystem = Convert.ToBoolean(dr[ordIsSystem]),
-                                    IsActive = Convert.ToBoolean(dr[ordIsActive]),
                                     RecordId = Convert.ToInt32(dr[ordHearAboutUsId]),
-                                    CreateDate = Convert.ToDateTime(dr[ordCreateDate]),
-                                    DisplayOrder = Convert.ToInt16(dr[ordDisplayOrder])
+                                    DisplayOrder = Convert.ToInt16(dr[ordDisplayOrder]),
+                                    StringCreateDate =
+                                        Convert.ToDateTime(dr[ordCreateDate]).ToString("MM/dd/yyyy hh:mm:ss tt")
                                 };
+
                                 data.Add(item);
                             }
                         }

@@ -50,9 +50,9 @@
     <Compile Include="DataRepository\AdminRepository\DbFacilityStaffGet.cs" />
     <Compile Include="DataRepository\AdminRepository\DbFacilityStaffSave.cs" />
     <Compile Include="DataRepository\AdminRepository\DbGiftCardGet.cs" />
+    <Compile Include="DataRepository\AdminRepository\DbHearAboutUsSave.cs" />
     <Compile Include="DataRepository\AdminRepository\DbGiftCardSave.cs" />
     <Compile Include="DataRepository\AdminRepository\DbHearAboutUsGet.cs" />
-    <Compile Include="DataRepository\AdminRepository\DbHearAboutUsSave.cs" />
     <Compile Include="DataRepository\AdminRepository\DbProductGroupGet.cs" />
     <Compile Include="DataRepository\AdminRepository\DbProductGroupSave.cs" />
     <Compile Include="DataRepository\AdminRepository\DbProgramOptionGet.cs" />

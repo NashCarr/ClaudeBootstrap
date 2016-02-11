@@ -19,12 +19,6 @@ namespace ClaudeViewManagement.Managers.Settings
         {
         }
 
-        public bool Delete(int recordId)
-        {
-            DeleteRecord(recordId);
-            return true;
-        }
-
         public List<GiftCard> GetList()
         {
             using (DbGiftCardGet data = new DbGiftCardGet())
@@ -38,14 +32,6 @@ namespace ClaudeViewManagement.Managers.Settings
             using (DbGiftCardSave data = new DbGiftCardSave())
             {
                 return data.AddUpdateRecord(entity);
-            }
-        }
-
-        public ReturnBase SetDisplayOrder(int id, int value)
-        {
-            using (DbGiftCardSave data = new DbGiftCardSave())
-            {
-                return data.SetDisplayOrder(id, value);
             }
         }
 

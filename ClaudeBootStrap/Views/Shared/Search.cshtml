@@ -1,12 +1,12 @@
 ﻿<!-- ** BEGIN SEARCH AREA ** -->
 <div class="panel panel-primary">
     <div class="panel-heading">
-        <h1 class="panel-title">Search for Gift Cards</h1>
+        <h1 class="panel-title">Search for Items in List</h1>
     </div>
     <div class="panel-body">
         <div class="form-group">
-            @Html.Label("GiftCard", "Gift Card")
-            @Html.TextBox("GiftCard", "", new { @class = "form-control", data_bind = "value:searchvalue, valueUpdate: 'keyup'" })
+            @Html.Label("Search", "Enter Search Value")
+            @Html.TextBox("Value", "", new { @class = "form-control", data_bind = "value:searchvalue, valueUpdate: 'keyup'" })
         </div>
     </div>
     <div class="panel-footer">

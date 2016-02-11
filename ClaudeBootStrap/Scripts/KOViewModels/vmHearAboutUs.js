@@ -1,7 +1,7 @@
 ﻿
-GiftCardViewModel = function(data) {
+HearAboutUsViewModel = function(data) {
     var self = this;
-    var baseUrl = "/GiftCard/";
+    var baseUrl = "/HearAboutUs/";
 
     self.init = true;
     self.sorttype = 1;
@@ -19,6 +19,7 @@ GiftCardViewModel = function(data) {
 
     self.name = ko.observable("");
     self.recordid = ko.observable(0);
+    self.issystem = ko.observable(false);
     self.displayorder = ko.observable(0);
     self.stringcreatedate = ko.observable("");
 
@@ -48,30 +49,26 @@ GiftCardViewModel = function(data) {
         self.sortdirection(1);
     };
 
-    self.filtereddisplayordersort = function(filter) {
+    self.unfilteredsortbyorder = function (sortDirection) {
+        return self.listitems().sort(function (l, r) {
+            return (parseInt(l.DisplayOrder()) > parseInt(r.DisplayOrder())) ^ (sortDirection === 2);
+        });
+    }
 
-        if (!filter) {
-            if (self.sortdirection() === 1) {
-                return self.listitems().sort(
-                    function(l, r) { return parseInt(l.DisplayOrder()) > parseInt(r.DisplayOrder()) ? 1 : -1 });
-            }
-            return self.listitems().sort(
-                function(l, r) { return parseInt(l.DisplayOrder()) < parseInt(r.DisplayOrder()) ? 1 : -1 });
-        }
-
-        if (self.sortdirection() === 1) {
-            return ko.utils.arrayFilter(self.listitems(), function(item) {
-                return ko.unwrap(item.Name).toLowerCase().indexOf(filter) !== -1;
-            }).sort(
-                function(l, r) { return parseInt(l.DisplayOrder()) > parseInt(r.DisplayOrder()) ? 1 : -1 }
-            );
-        }
-
-        return ko.utils.arrayFilter(self.listitems(), function(item) {
+    self.filteredsortbyorder = function (filter, sortDirection) {
+        return ko.utils.arrayFilter(self.listitems(), function (item) {
             return ko.unwrap(item.Name).toLowerCase().indexOf(filter) !== -1;
-        }).sort(
-            function(l, r) { return parseInt(l.DisplayOrder()) < parseInt(r.DisplayOrder()) ? 1 : -1 }
-        );
+        }).sort(function (l, r) {
+            return (parseInt(l.DisplayOrder()) > parseInt(r.DisplayOrder())) ^ (sortDirection === 2);
+        });
+    };
+
+    self.filtereddisplayordersort = function (filter) {
+        if (!filter) {
+            return self.unfilteredsortbyorder(self.sortdirection());
+        }
+
+        return self.unfilteredsortbyorder(self.sortdirection());
     };
 
     self.initdisplayorder = function() {
@@ -99,32 +96,28 @@ GiftCardViewModel = function(data) {
     }, self);
 
     self.filterednamesort = function(filter) {
-
         if (!filter) {
-            if (self.sortdirection() === 1) {
-                return self.listitems().sort(
-                    function(l, r) { return l.Name() > r.Name() ? 1 : -1 });
-            }
-            return self.listitems().sort(
-                function(l, r) { return l.Name() < r.Name() ? 1 : -1 });
+            return self.unfilteredsortbyname(self.sortdirection());
         }
 
-        if (self.sortdirection() === 1) {
-            return ko.utils.arrayFilter(self.listitems(), function(item) {
-                return ko.unwrap(item.Name).toLowerCase().indexOf(filter) !== -1;
-            }).sort(
-                function(l, r) { return l.Name() > r.Name() ? 1 : -1 }
-            );
-        }
-
-        return ko.utils.arrayFilter(self.listitems(), function(item) {
-            return ko.unwrap(item.Name).toLowerCase().indexOf(filter) !== -1;
-        }).sort(
-            function(l, r) { return l.Name() < r.Name() ? 1 : -1 }
-        );
+        return self.unfilteredsortbyname(self.sortdirection());
     };
 
-    self.setmessageview = function() {
+    self.unfilteredsortbyname = function(sortDirection) {
+        return self.listitems().sort(function(l, r) {
+            return (l.Name().toLowerCase() > r.Name().toLowerCase()) ^ (sortDirection === 2);
+        });
+    }
+
+    self.filteredsortbyname = function (filter, sortDirection) {
+        return ko.utils.arrayFilter(self.listitems(), function (item) {
+            return ko.unwrap(item.Name).toLowerCase().indexOf(filter) !== -1;
+        }).sort(function(l, r) {
+            return (l.Name().toLowerCase() > r.Name().toLowerCase()) ^ (sortDirection === 2);
+        });
+    };
+
+    self.setmessageview = function () {
         if (self.errmsg() === "") {
             self.IsMessageAreaVisible(false);
             return;
@@ -144,6 +137,7 @@ GiftCardViewModel = function(data) {
         self.errmsg("");
         self.recordid(0);
         self.displayorder(0);
+        self.issystem(false);
 
         self.IsEdit(false);
     };
@@ -163,6 +157,7 @@ GiftCardViewModel = function(data) {
     self.edit = function(editdata) {
         self.name(editdata.Name());
         self.recordid(editdata.RecordId());
+        self.issystem(editdata.IsSystem());
         self.displayorder(editdata.DisplayOrder());
         self.stringcreatedate(editdata.StringCreateDate());
 
@@ -187,6 +182,7 @@ GiftCardViewModel = function(data) {
         var item = {
             Name: self.name(),
             RecordId: self.recordid(),
+            IsSystem: self.issystem(),
             DisplayOrder: self.displayorder(),
             StringCreateDate: self.stringcreatedate()
         };
@@ -226,6 +222,7 @@ GiftCardViewModel = function(data) {
             var newitem = {
                 Name: ko.observable(itemToAdd.Name),
                 RecordId: ko.observable(itemToAdd.RecordId),
+                IsSystem: ko.observable(itemToAdd.IsSystem),
                 DisplayOrder: ko.observable(itemToAdd.DisplayOrder),
                 StringCreateDate: ko.observable(itemToAdd.StringCreateDate)
             };
