@@ -1,9 +1,8 @@
 ﻿
-GiftCardViewModel = function(data) {
+HearAboutUsViewModel = function (data) {
     var self = this;
     var baseUrl = "/GiftCard/";
 
-    self.init = true;
     self.sorttype = 1;
     self.sortdirection = ko.observable(1);
 
@@ -26,15 +25,15 @@ GiftCardViewModel = function(data) {
 
     self.displayreorder = ko.observableArray();
 
-    self.namesort = function() {
+    self.namesort = function () {
         self.managesortdirection(2);
     };
 
-    self.displayordersort = function() {
+    self.displayordersort = function () {
         self.managesortdirection(1);
     };
 
-    self.managesortdirection = function(type) {
+    self.managesortdirection = function (type) {
         if (self.sorttype !== type) {
             self.sorttype = type;
             self.pauseNotifications = true;
@@ -48,83 +47,57 @@ GiftCardViewModel = function(data) {
         self.sortdirection(1);
     };
 
-    self.filtereddisplayordersort = function(filter) {
+    self.unfilteredsortbyorder = function (sortDirection) {
+        return self.listitems().sort(function (l, r) {
+            return (parseInt(l.DisplayOrder()) > parseInt(r.DisplayOrder())) ^ (sortDirection === 2);
+        });
+    };
 
-        if (!filter) {
-            if (self.sortdirection() === 1) {
-                return self.listitems().sort(
-                    function(l, r) { return parseInt(l.DisplayOrder()) > parseInt(r.DisplayOrder()) ? 1 : -1 });
-            }
-            return self.listitems().sort(
-                function(l, r) { return parseInt(l.DisplayOrder()) < parseInt(r.DisplayOrder()) ? 1 : -1 });
-        }
-
-        if (self.sortdirection() === 1) {
-            return ko.utils.arrayFilter(self.listitems(), function(item) {
-                return ko.unwrap(item.Name).toLowerCase().indexOf(filter) !== -1;
-            }).sort(
-                function(l, r) { return parseInt(l.DisplayOrder()) > parseInt(r.DisplayOrder()) ? 1 : -1 }
-            );
-        }
-
-        return ko.utils.arrayFilter(self.listitems(), function(item) {
+    self.filteredsortbyorder = function (filter, sortDirection) {
+        return ko.utils.arrayFilter(self.listitems(), function (item) {
             return ko.unwrap(item.Name).toLowerCase().indexOf(filter) !== -1;
-        }).sort(
-            function(l, r) { return parseInt(l.DisplayOrder()) < parseInt(r.DisplayOrder()) ? 1 : -1 }
-        );
+        }).sort(function (l, r) {
+            return (parseInt(l.DisplayOrder()) > parseInt(r.DisplayOrder())) ^ (sortDirection === 2);
+        });
     };
 
-    self.initdisplayorder = function() {
-        for (var i = 0; i < self.listitems().length; i++) {
-            if (self.listitems()[i].DisplayOrder() !== (i + 1)) {
-                self.listitems()[i].DisplayOrder(i + 1);
-            }
-        };
+    self.managedisplayordersort = function (filter) {
+        return (filter.length === 0)
+            ? self.unfilteredsortbyorder(self.sortdirection())
+            : self.filteredsortbyorder(filter, self.sortdirection());
     };
 
-    self.filteredItems = ko.dependentObservable(function() {
-
-        if (self.init) {
-            self.initdisplayorder();
-            self.init = false;
-        }
-
+    self.filteredItems = function () {
         var filter = self.searchvalue().toLowerCase();
 
         if (self.sorttype === 2) {
-            return self.filterednamesort(filter);
+            return self.managenamesort(filter);
         }
-        return self.filtereddisplayordersort(filter);
+        return self.managedisplayordersort(filter);
 
-    }, self);
-
-    self.filterednamesort = function(filter) {
-
-        if (!filter) {
-            if (self.sortdirection() === 1) {
-                return self.listitems().sort(
-                    function(l, r) { return l.Name() > r.Name() ? 1 : -1 });
-            }
-            return self.listitems().sort(
-                function(l, r) { return l.Name() < r.Name() ? 1 : -1 });
-        }
-
-        if (self.sortdirection() === 1) {
-            return ko.utils.arrayFilter(self.listitems(), function(item) {
-                return ko.unwrap(item.Name).toLowerCase().indexOf(filter) !== -1;
-            }).sort(
-                function(l, r) { return l.Name() > r.Name() ? 1 : -1 }
-            );
-        }
-
-        return ko.utils.arrayFilter(self.listitems(), function(item) {
-            return ko.unwrap(item.Name).toLowerCase().indexOf(filter) !== -1;
-        }).sort(
-            function(l, r) { return l.Name() < r.Name() ? 1 : -1 }
-        );
     };
 
-    self.setmessageview = function() {
+    self.managenamesort = function (filter) {
+        return (filter.length === 0)
+            ? self.unfilteredsortbyname(self.sortdirection())
+            : self.filteredsortbyname(filter, self.sortdirection());
+    };
+
+    self.unfilteredsortbyname = function (sortDirection) {
+        return self.listitems().sort(function (l, r) {
+            return (l.Name().toLowerCase() > r.Name().toLowerCase()) ^ (sortDirection === 2);
+        });
+    };
+
+    self.filteredsortbyname = function (filter, sortDirection) {
+        return ko.utils.arrayFilter(self.listitems(), function (item) {
+            return ko.unwrap(item.Name).toLowerCase().indexOf(filter) !== -1;
+        }).sort(function (l, r) {
+            return (l.Name().toLowerCase() > r.Name().toLowerCase()) ^ (sortDirection === 2);
+        });
+    };
+
+    self.setmessageview = function () {
         if (self.errmsg() === "") {
             self.IsMessageAreaVisible(false);
             return;
@@ -132,14 +105,14 @@ GiftCardViewModel = function(data) {
         self.IsMessageAreaVisible(true);
     };
 
-    self.toggleview = function() {
+    self.toggleview = function () {
         self.setmessageview();
         self.IsListAreaVisible(!self.IsListAreaVisible());
         self.IsSearchAreaVisible(!self.IsSearchAreaVisible());
         self.IsAddEditAreaVisible(!self.IsAddEditAreaVisible());
     };
 
-    self.clear = function() {
+    self.clear = function () {
         self.name("");
         self.errmsg("");
         self.recordid(0);
@@ -148,11 +121,11 @@ GiftCardViewModel = function(data) {
         self.IsEdit(false);
     };
 
-    self.returnmessage = ko.pureComputed(function() {
+    self.returnmessage = ko.pureComputed(function () {
         return ko.unwrap(self.errmsg);
     });
 
-    self.handlereturndata = function(returndata) {
+    self.handlereturndata = function (returndata) {
         self.recordid(returndata.Id);
         self.errmsg(returndata.ErrMsg);
         self.stringcreatedate(returndata.StringCreateDate);
@@ -160,7 +133,7 @@ GiftCardViewModel = function(data) {
         self.setmessageview();
     };
 
-    self.edit = function(editdata) {
+    self.edit = function (editdata) {
         self.name(editdata.Name());
         self.recordid(editdata.RecordId());
         self.displayorder(editdata.DisplayOrder());
@@ -170,20 +143,20 @@ GiftCardViewModel = function(data) {
         self.toggleview();
     };
 
-    self.clearandtoggle = function() {
+    self.clearandtoggle = function () {
         self.clear();
         self.toggleview();
     };
 
-    self.addorcancel = function() {
+    self.addorcancel = function () {
         self.clearandtoggle();
     };
 
-    self.reset = function() {
+    self.reset = function () {
         self.searchvalue("");
     };
 
-    self.save = function() {
+    self.save = function () {
         var item = {
             Name: self.name(),
             RecordId: self.recordid(),
@@ -194,7 +167,7 @@ GiftCardViewModel = function(data) {
             url: baseUrl + "Save",
             type: "post",
             data: item
-        }).then(function(returndata) {
+        }).then(function (returndata) {
 
             self.handlereturndata(returndata);
             if (self.IsMessageAreaVisible()) {
@@ -206,7 +179,7 @@ GiftCardViewModel = function(data) {
         });
     };
 
-    self.managesave = function(item) {
+    self.managesave = function (item) {
         if (self.IsEdit()) {
             self.processedit(item);
             return;
@@ -216,8 +189,8 @@ GiftCardViewModel = function(data) {
         self.processadd(item);
     };
 
-    self.processadd = function(itemToAdd) {
-        var match = ko.utils.arrayFirst(self.listitems(), function(item) {
+    self.processadd = function (itemToAdd) {
+        var match = ko.utils.arrayFirst(self.listitems(), function (item) {
             return item.RecordId() === itemToAdd.RecordId;
         });
 
@@ -233,7 +206,7 @@ GiftCardViewModel = function(data) {
         }
     };
 
-    self.processedit = function(item) {
+    self.processedit = function (item) {
         for (var i = 0; i < self.listitems().length; i++) {
             if (self.listitems()[i].RecordId() === item.RecordId) {
                 self.listitems()[i].Name(item.Name);
@@ -243,12 +216,12 @@ GiftCardViewModel = function(data) {
         }
     };
 
-    self.setlistiteminactive = function(removedata) {
+    self.setlistiteminactive = function (removedata) {
 
         $.ajax({
             url: baseUrl + removedata.RecordId(),
             type: "delete"
-        }).then(function(returndata) {
+        }).then(function (returndata) {
 
             self.handlereturndata(returndata);
             if (self.IsMessageAreaVisible()) {
@@ -259,14 +232,14 @@ GiftCardViewModel = function(data) {
         });
     };
 
-    self.removelistitem = function(item) {
+    self.removelistitem = function (item) {
         if (!confirm("Delete Item: '" + ko.unwrap(item.Name) + "'?")) {
             return;
         }
         self.setlistiteminactive(item);
     };
 
-    self.savenewdisplayorder = function() {
+    self.savenewdisplayorder = function () {
         if (self.displayreorder().length !== 0) {
             $.ajax({
                 type: "post",
@@ -279,28 +252,36 @@ GiftCardViewModel = function(data) {
         self.IsDisplayOrderChanged(false);
     };
 
-    self.editlistdisplayorder = function(recordid, value) {
-        for (var i = 0; i < self.listitems().length; i++) {
-            if (self.listitems()[i].RecordId() === recordid) {
-                if (self.listitems()[i].DisplayOrder() !== (value)) {
-                    self.listitems()[i].DisplayOrder(value);
+    self.editlistdisplayorder = function (recordid, value) {
+        for (var i = 0; i < self.filteredItems().length; i++) {
+            if (self.filteredItems()[i].RecordId() === recordid) {
+                if (self.filteredItems()[i].DisplayOrder() !== (value)) {
+                    self.filteredItems()[i].DisplayOrder(value);
                 }
                 break;
             }
         }
     };
 
-    self.managelistdisplayorder = function() {
-        for (var i = 0; i < self.displayreorder().length; i++) {
-            self.editlistdisplayorder(
-                ko.unwrap(self.displayreorder()[i].Id),
-                ko.unwrap(self.displayreorder()[i].DisplayOrder)
-            );
+    self.managelistdisplayorder = function () {
+        if (self.displayreorder().length !== 0) {
+            for (var i = 0; i < self.displayreorder().length; i++) {
+                self.editlistdisplayorder(
+                    ko.unwrap(self.displayreorder()[i].Id),
+                    ko.unwrap(self.displayreorder()[i].DisplayOrder)
+                );
+            }
+            self.displayreorder([]);
         }
-        self.displayreorder([]);
     };
 
-    self.capturenewdisplayorder = function(recordid, value) {
+    self.syncdisplayorder = function () {
+        self.savenewdisplayorder();
+        self.managelistdisplayorder();
+        self.IsDisplayOrderChanged(false);
+    };
+
+    self.capturenewdisplayorder = function (recordid, value) {
         self.displayreorder.push(
         {
             Id: recordid,
@@ -309,36 +290,38 @@ GiftCardViewModel = function(data) {
         self.IsDisplayOrderChanged(true);
     };
 
-    self.reorderfilteredlist = function() {
+    self.reorderfilteredlist = function () {
         var rowindex = 0;
-        var newwindex = 0;
+        var newindex = 0;
         var rowrecordid = 0;
+        var rowdisplayorder = 0;
         self.displayreorder([]);
-        $("#itemslist tbody").children().each(function() {
-            newwindex = rowindex + 1;
-            rowrecordid = parseInt($("#itemslist tbody").children()[rowindex].children[1].innerText);
-            $("#itemslist tbody").children()[rowindex].children[4].innerText = newwindex;
-            self.capturenewdisplayorder(rowrecordid, newwindex);
-            rowindex = newwindex;
+        $("#datatable tbody").children().each(function () {
+            newindex = rowindex + 1;
+            rowrecordid = parseInt($("#datatable tbody").children()[rowindex].children[1].innerText);
+            rowdisplayorder = parseInt($("#datatable tbody").children()[rowindex].children[4].innerText);
+            if (rowdisplayorder !== newindex) {
+                self.capturenewdisplayorder(rowrecordid, newindex);
+                $("#datatable tbody").children()[rowindex].children[4].innerText = newindex;
+            }
+            rowindex = newindex;
         });
         if (self.IsDisplayOrderChanged) {
-            self.savenewdisplayorder();
-            self.managelistdisplayorder();
+            self.syncdisplayorder();
         }
     };
 
-    var fixHelperModified = function(e, tr) {
+    var fixHelperModified = function (e, tr) {
         var $originals = tr.children();
         var $helper = tr.clone();
-        $helper.children().each(function(index) {
+        $helper.children().each(function (index) {
             $(this).width($originals.eq(index).width());
         });
         return $helper;
     };
 
-    $("#itemslist tbody").sortable({
+    $("#datatable tbody").sortable({
         helper: fixHelperModified,
         stop: self.reorderfilteredlist
     }).disableSelection();
-
 };

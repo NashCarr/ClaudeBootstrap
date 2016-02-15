@@ -3,7 +3,6 @@ HearAboutUsViewModel = function(data) {
     var self = this;
     var baseUrl = "/HearAboutUs/";
 
-    self.init = true;
     self.sorttype = 1;
     self.sortdirection = ko.observable(1);
 
@@ -27,6 +26,10 @@ HearAboutUsViewModel = function(data) {
 
     self.displayreorder = ko.observableArray();
 
+    self.DragDropComplete = ko.computed(function() {
+        return !self.IsDisplayOrderChanged();
+    });
+
     self.namesort = function() {
         self.managesortdirection(2);
     };
@@ -49,75 +52,54 @@ HearAboutUsViewModel = function(data) {
         self.sortdirection(1);
     };
 
-    self.unfilteredsortbyorder = function (sortDirection) {
-        return self.listitems().sort(function (l, r) {
+    self.unfilteredsortbyorder = function(sortDirection) {
+        return self.listitems().sort(function(l, r) {
             return (parseInt(l.DisplayOrder()) > parseInt(r.DisplayOrder())) ^ (sortDirection === 2);
         });
-    }
+    };
 
-    self.filteredsortbyorder = function (filter, sortDirection) {
-        return ko.utils.arrayFilter(self.listitems(), function (item) {
+    self.filteredsortbyorder = function(filter, sortDirection) {
+        return ko.utils.arrayFilter(self.listitems(), function(item) {
             return ko.unwrap(item.Name).toLowerCase().indexOf(filter) !== -1;
-        }).sort(function (l, r) {
+        }).sort(function(l, r) {
             return (parseInt(l.DisplayOrder()) > parseInt(r.DisplayOrder())) ^ (sortDirection === 2);
         });
     };
 
-    self.filtereddisplayordersort = function (filter) {
-        if (!filter) {
-            return self.unfilteredsortbyorder(self.sortdirection());
-        }
-
-        return self.unfilteredsortbyorder(self.sortdirection());
+    self.managedisplayordersort = function(filter) {
+        return (filter.length === 0)
+            ? self.unfilteredsortbyorder(self.sortdirection())
+            : self.filteredsortbyorder(filter, self.sortdirection());
     };
 
-    self.initdisplayorder = function() {
-        for (var i = 0; i < self.listitems().length; i++) {
-            if (self.listitems()[i].DisplayOrder() !== (i + 1)) {
-                self.listitems()[i].DisplayOrder(i + 1);
-            }
-        };
-    };
-
-    self.filteredItems = ko.dependentObservable(function() {
-
-        if (self.init) {
-            self.initdisplayorder();
-            self.init = false;
-        }
-
-        var filter = self.searchvalue().toLowerCase();
-
-        if (self.sorttype === 2) {
-            return self.filterednamesort(filter);
-        }
-        return self.filtereddisplayordersort(filter);
-
-    }, self);
-
-    self.filterednamesort = function(filter) {
-        if (!filter) {
-            return self.unfilteredsortbyname(self.sortdirection());
-        }
-
-        return self.unfilteredsortbyname(self.sortdirection());
+    self.managenamesort = function(filter) {
+        return (filter.length === 0)
+            ? self.unfilteredsortbyname(self.sortdirection())
+            : self.filteredsortbyname(filter, self.sortdirection());
     };
 
     self.unfilteredsortbyname = function(sortDirection) {
         return self.listitems().sort(function(l, r) {
             return (l.Name().toLowerCase() > r.Name().toLowerCase()) ^ (sortDirection === 2);
         });
-    }
+    };
 
-    self.filteredsortbyname = function (filter, sortDirection) {
-        return ko.utils.arrayFilter(self.listitems(), function (item) {
+    self.filteredsortbyname = function(filter, sortDirection) {
+        return ko.utils.arrayFilter(self.listitems(), function(item) {
             return ko.unwrap(item.Name).toLowerCase().indexOf(filter) !== -1;
         }).sort(function(l, r) {
             return (l.Name().toLowerCase() > r.Name().toLowerCase()) ^ (sortDirection === 2);
         });
     };
 
-    self.setmessageview = function () {
+    self.filteredItems = function() {
+        var filter = self.searchvalue().toLowerCase();
+        return self.sorttype === 1
+            ? self.managedisplayordersort(filter)
+            : self.managenamesort(filter);
+    };
+
+    self.setmessageview = function() {
         if (self.errmsg() === "") {
             self.IsMessageAreaVisible(false);
             return;
@@ -217,26 +199,28 @@ HearAboutUsViewModel = function(data) {
             return item.RecordId() === itemToAdd.RecordId;
         });
 
-        if (!match) {
-            self.reorderfilteredlist();
-            var newitem = {
-                Name: ko.observable(itemToAdd.Name),
-                RecordId: ko.observable(itemToAdd.RecordId),
-                IsSystem: ko.observable(itemToAdd.IsSystem),
-                DisplayOrder: ko.observable(itemToAdd.DisplayOrder),
-                StringCreateDate: ko.observable(itemToAdd.StringCreateDate)
-            };
-            self.listitems.push(newitem);
+        if (match) {
+            return;
         }
+
+        self.reorderfilteredlist();
+        var newitem = {
+            Name: ko.observable(itemToAdd.Name),
+            RecordId: ko.observable(itemToAdd.RecordId),
+            IsSystem: ko.observable(itemToAdd.IsSystem),
+            DisplayOrder: ko.observable(itemToAdd.DisplayOrder),
+            StringCreateDate: ko.observable(itemToAdd.StringCreateDate)
+        };
+        self.listitems.push(newitem);
     };
 
     self.processedit = function(item) {
         for (var i = 0; i < self.listitems().length; i++) {
-            if (self.listitems()[i].RecordId() === item.RecordId) {
-                self.listitems()[i].Name(item.Name);
-                self.listitems()[i].DisplayOrder(item.DisplayOrder);
-                break;
-            }
+            if (self.listitems()[i].RecordId() !== item.RecordId)
+                continue;
+            self.listitems()[i].Name(item.Name);
+            self.listitems()[i].DisplayOrder(item.DisplayOrder);
+            break;
         }
     };
 
@@ -273,21 +257,22 @@ HearAboutUsViewModel = function(data) {
                 contentType: "application/json; charset=utf-8"
             });
         }
-        self.IsDisplayOrderChanged(false);
     };
 
     self.editlistdisplayorder = function(recordid, value) {
-        for (var i = 0; i < self.listitems().length; i++) {
-            if (self.listitems()[i].RecordId() === recordid) {
-                if (self.listitems()[i].DisplayOrder() !== (value)) {
-                    self.listitems()[i].DisplayOrder(value);
-                }
-                break;
+        for (var i = 0; i < self.filteredItems().length; i++) {
+            if (self.filteredItems()[i].RecordId() !== recordid)
+                continue;
+            if (self.filteredItems()[i].DisplayOrder() !== (value)) {
+                self.filteredItems()[i].DisplayOrder(value);
             }
+            break;
         }
     };
 
     self.managelistdisplayorder = function() {
+        if (self.displayreorder().length === 0)
+            return;
         for (var i = 0; i < self.displayreorder().length; i++) {
             self.editlistdisplayorder(
                 ko.unwrap(self.displayreorder()[i].Id),
@@ -295,33 +280,6 @@ HearAboutUsViewModel = function(data) {
             );
         }
         self.displayreorder([]);
-    };
-
-    self.capturenewdisplayorder = function(recordid, value) {
-        self.displayreorder.push(
-        {
-            Id: recordid,
-            DisplayOrder: value
-        });
-        self.IsDisplayOrderChanged(true);
-    };
-
-    self.reorderfilteredlist = function() {
-        var rowindex = 0;
-        var newwindex = 0;
-        var rowrecordid = 0;
-        self.displayreorder([]);
-        $("#itemslist tbody").children().each(function() {
-            newwindex = rowindex + 1;
-            rowrecordid = parseInt($("#itemslist tbody").children()[rowindex].children[1].innerText);
-            $("#itemslist tbody").children()[rowindex].children[4].innerText = newwindex;
-            self.capturenewdisplayorder(rowrecordid, newwindex);
-            rowindex = newwindex;
-        });
-        if (self.IsDisplayOrderChanged) {
-            self.savenewdisplayorder();
-            self.managelistdisplayorder();
-        }
     };
 
     var fixHelperModified = function(e, tr) {
@@ -333,9 +291,51 @@ HearAboutUsViewModel = function(data) {
         return $helper;
     };
 
-    $("#itemslist tbody").sortable({
-        helper: fixHelperModified,
-        stop: self.reorderfilteredlist
-    }).disableSelection();
+    self.makelistsortable = function() {
+        $("#datatable tbody").sortable({
+            helper: fixHelperModified,
+            stop: self.reorderfilteredlist
+        }).disableSelection();
+    };
 
+    self.refreshlisthtml = function() {
+        self.IsDisplayOrderChanged(true);
+        self.IsDisplayOrderChanged(false);
+        self.makelistsortable();
+    };
+
+    self.syncdisplayorder = function() {
+        self.savenewdisplayorder();
+        self.managelistdisplayorder();
+        self.refreshlisthtml();
+    };
+
+    self.capturenewdisplayorder = function(recordid, value) {
+        self.displayreorder.push(
+        {
+            Id: recordid,
+            DisplayOrder: value
+        });
+    };
+
+    self.reorderfilteredlist = function() {
+        var rowindex = 0;
+        var newindex = 0;
+        var rowrecordid = 0;
+        var rowdisplayorder = 0;
+        self.displayreorder([]);
+        $("#datatable tbody").children().each(function() {
+            newindex = rowindex + 1;
+            rowrecordid = parseInt($("#datatable tbody").children()[rowindex].children[1].innerText);
+            rowdisplayorder = parseInt($("#datatable tbody").children()[rowindex].children[4].innerText);
+            if (rowdisplayorder !== newindex) {
+                self.capturenewdisplayorder(rowrecordid, newindex);
+                $("#datatable tbody").children()[rowindex].children[4].innerText = newindex;
+            }
+            rowindex = newindex;
+        });
+        self.syncdisplayorder();
+    };
+
+    self.makelistsortable();
 };
