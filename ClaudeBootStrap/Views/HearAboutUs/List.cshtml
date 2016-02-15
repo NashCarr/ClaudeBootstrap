@@ -1,44 +1,40 @@
 ﻿<!-- BEGIN GRID AREA -->
-<div>
-    <div class="table-responsive" id="itemslist">
-        <table id="datatable" class="table table-condensed table-bordered table-striped table-hover">
+<div class="table-responsive" id="itemslist">
+    <table class="table table-condensed table-bordered table-striped table-hover" id="datatable">
 
-            <thead>
-                <tr>
-                    <th class="pdsa-action-button-area">
-                        Edit
-                    </th>
-                    <th style="display: none">RecordId</th>
-                    <th data-bind="click: namesort">HearAboutUs<i class="glyphicon glyphicon-sort pull-right"></i></th>
-                    <th>Create Date</th>
-                    <th data-bind="click: displayordersort">Order<i class="glyphicon glyphicon-sort pull-right"></i></th>
-                    <th>Is System</th>
-                    <th class="pdsa-action-button-area">
-                        Delete
-                    </th>
-                </tr>
-            </thead>
-            <tbody data-bind="foreach: filteredItems()" id="items">
-                <tr id="itemrow">
-                    <td class="ui-priority-secondary" id="edit">
-                        <a class="btn btn-default btn-sm" data-bind="click: $parent.edit" href="#" type="button">
-                            <i class="glyphicon glyphicon-edit"></i>
-                        </a>
-                    </td>
-                    <td class="ui-priority-secondary" data-bind="text: RecordId" id="recordid" style="display: none"></td>
-                    <td class="ui-priority-secondary" data-bind="text: Name" id="name"></td>
-                    <td class="ui-priority-secondary" data-bind="text: StringCreateDate" id="createdate"></td>
-                    <td class="ui-priority-secondary" data-bind="text: DisplayOrder" id="displayorder"></td>
-                    <td class="ui-priority-secondary" data-bind="text: IsSystem" id="issystem"></td>
-                    <td class="ui-priority-secondary" id="delete">
-                        <a class="btn btn-default btn-sm" data-bind="click: $parent.removelistitem.bind($data)" href="#" type="button">
-                            <i class="glyphicon glyphicon-trash"></i>
-                        </a>
-                    </td>
-                </tr>
-            </tbody>
+        <thead>
+        <tr>
+            <th class="pdsa-action-button-area">Edit</th>
+            <th style="display: none">RecordId</th>
+            <th data-bind="click: namesort">Name<i class="glyphicon glyphicon-sort pull-right"></i></th>
+            <th class="listcentered">Create Date</th>
+            <th class="listcentered" data-bind="click: displayordersort">Order<i class="glyphicon glyphicon-sort pull-right"></i></th>
+            <th class="listcentered">Is System</th>
+            <th class="pdsa-action-button-area">Delete</th>
+        </tr>
+        </thead>
+        <tbody data-bind="foreach: filteredItems()" id="items">
+        <tr id="itemrow">
+            <td class="listcentered" id="edit">
+                <a class="btn btn-default btn-sm" data-bind="click: $parent.edit" href="#" type="button">
+                    <i class="glyphicon glyphicon-edit"></i>
+                </a>
+            </td>
+            <td class="listcentered" data-bind="text: RecordId" id="recordid" style="display: none"></td>
+            <td class="ui-priority-secondary" data-bind="text: Name" id="name"></td>
+            <td class="listcentered" data-bind="text: StringCreateDate" id="createdate"></td>
+            <td class="listcentered" data-bind="text: DisplayOrder" id="displayorder"></td>
+            <td class="listcentered" id="issystem">
+                <input data-bind="text: IsSystem" disabled name="issystem" type="checkbox">
+            </td>
+            <td class="listcentered" id="delete">
+                <a class="btn btn-default btn-sm" data-bind="click: $parent.removelistitem.bind($data)" href="#" type="button">
+                    <i class="glyphicon glyphicon-trash"></i>
+                </a>
+            </td>
+        </tr>
+        </tbody>
 
-        </table>
-    </div>
+    </table>
 </div>
 <!-- END GRId AREA -->

@@ -17,7 +17,9 @@
         @{ Html.RenderPartial("AddEdit"); }
     </div>
     <div data-bind="visible: IsListAreaVisible">
+        <!--ko if: DragDropComplete-->
         @{ Html.RenderPartial("List"); }
+        <!--/ko-->
     </div>
 }
 
@@ -34,4 +36,3 @@
         ko.applyBindings(rawData);
     </script>
 }
-

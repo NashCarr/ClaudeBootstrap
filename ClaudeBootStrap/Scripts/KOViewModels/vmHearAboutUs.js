@@ -22,13 +22,32 @@ HearAboutUsViewModel = function(data) {
     self.displayorder = ko.observable(0);
     self.stringcreatedate = ko.observable("");
 
+    self.displayreorder = ko.observableArray();
+
     self.listitems = ko.mapping.fromJS(data.ListEntity).extend({ deferred: true });
 
-    self.displayreorder = ko.observableArray();
+    self.setmessageview = function() {
+        self.IsMessageAreaVisible((self.errmsg().length === 0));
+    };
 
     self.DragDropComplete = ko.computed(function() {
         return !self.IsDisplayOrderChanged();
     });
+
+    self.managesorttype = function(type) {
+        if (self.sorttype === type) {
+            return;
+        }
+        self.sorttype = type;
+        self.pauseNotifications = true;
+        self.sortdirection(-1);
+        self.pauseNotifications = false;
+    };
+
+    self.managesortdirection = function(type) {
+        self.managesorttype(type);
+        self.sortdirection(self.sortdirection() * -1);
+    };
 
     self.namesort = function() {
         self.managesortdirection(2);
@@ -38,23 +57,9 @@ HearAboutUsViewModel = function(data) {
         self.managesortdirection(1);
     };
 
-    self.managesortdirection = function(type) {
-        if (self.sorttype !== type) {
-            self.sorttype = type;
-            self.pauseNotifications = true;
-            self.sortdirection(0);
-            self.pauseNotifications = false;
-        }
-        if (self.sortdirection() === 1) {
-            self.sortdirection(2);
-            return;
-        }
-        self.sortdirection(1);
-    };
-
     self.unfilteredsortbyorder = function(sortDirection) {
         return self.listitems().sort(function(l, r) {
-            return (parseInt(l.DisplayOrder()) > parseInt(r.DisplayOrder())) ^ (sortDirection === 2);
+            return (parseInt(l.DisplayOrder()) > parseInt(r.DisplayOrder())) ^ (sortDirection === -1);
         });
     };
 
@@ -62,7 +67,21 @@ HearAboutUsViewModel = function(data) {
         return ko.utils.arrayFilter(self.listitems(), function(item) {
             return ko.unwrap(item.Name).toLowerCase().indexOf(filter) !== -1;
         }).sort(function(l, r) {
-            return (parseInt(l.DisplayOrder()) > parseInt(r.DisplayOrder())) ^ (sortDirection === 2);
+            return (parseInt(l.DisplayOrder()) > parseInt(r.DisplayOrder())) ^ (sortDirection === -1);
+        });
+    };
+
+    self.unfilteredsortbyname = function(sortDirection) {
+        return self.listitems().sort(function(l, r) {
+            return (l.Name().toLowerCase() > r.Name().toLowerCase()) ^ (sortDirection === -1);
+        });
+    };
+
+    self.filteredsortbyname = function(filter, sortDirection) {
+        return ko.utils.arrayFilter(self.listitems(), function(item) {
+            return ko.unwrap(item.Name).toLowerCase().indexOf(filter) !== -1;
+        }).sort(function(l, r) {
+            return (l.Name().toLowerCase() > r.Name().toLowerCase()) ^ (sortDirection === -1);
         });
     };
 
@@ -78,33 +97,11 @@ HearAboutUsViewModel = function(data) {
             : self.filteredsortbyname(filter, self.sortdirection());
     };
 
-    self.unfilteredsortbyname = function(sortDirection) {
-        return self.listitems().sort(function(l, r) {
-            return (l.Name().toLowerCase() > r.Name().toLowerCase()) ^ (sortDirection === 2);
-        });
-    };
-
-    self.filteredsortbyname = function(filter, sortDirection) {
-        return ko.utils.arrayFilter(self.listitems(), function(item) {
-            return ko.unwrap(item.Name).toLowerCase().indexOf(filter) !== -1;
-        }).sort(function(l, r) {
-            return (l.Name().toLowerCase() > r.Name().toLowerCase()) ^ (sortDirection === 2);
-        });
-    };
-
     self.filteredItems = function() {
         var filter = self.searchvalue().toLowerCase();
         return self.sorttype === 1
             ? self.managedisplayordersort(filter)
             : self.managenamesort(filter);
-    };
-
-    self.setmessageview = function() {
-        if (self.errmsg() === "") {
-            self.IsMessageAreaVisible(false);
-            return;
-        }
-        self.IsMessageAreaVisible(true);
     };
 
     self.toggleview = function() {
@@ -152,12 +149,61 @@ HearAboutUsViewModel = function(data) {
         self.toggleview();
     };
 
-    self.addorcancel = function() {
+    self.add = function() {
+        self.clearandtoggle();
+        self.name(self.searchvalue());
+    };
+
+    self.cancel = function() {
         self.clearandtoggle();
     };
 
     self.reset = function() {
         self.searchvalue("");
+    };
+
+    self.itemExists = function(id) {
+        var match = ko.utils.arrayFirst(self.listitems(), function(item) {
+            return item.RecordId() === id;
+        });
+        return match;
+    };
+
+    self.processadd = function(itemToAdd) {
+        self.reorderfilteredlist();
+        var newitem = {
+            Name: ko.observable(itemToAdd.Name),
+            RecordId: ko.observable(itemToAdd.RecordId),
+            IsSystem: ko.observable(itemToAdd.IsSystem),
+            DisplayOrder: ko.observable(itemToAdd.DisplayOrder),
+            StringCreateDate: ko.observable(itemToAdd.StringCreateDate)
+        };
+        self.listitems.push(newitem);
+    };
+
+    self.processedit = function(item) {
+        for (var i = 0; i < self.listitems().length; i++) {
+            if (self.listitems()[i].RecordId() !== item.RecordId)
+                continue;
+            self.listitems()[i].Name(item.Name);
+            self.listitems()[i].DisplayOrder(item.DisplayOrder);
+            break;
+        }
+    };
+
+    self.managesave = function(item) {
+        if (self.IsEdit()) {
+            self.processedit(item);
+            return;
+        }
+
+        if (self.itemExists(self.recordid())) {
+            return;
+        }
+
+        item.RecordId = self.recordid();
+        item.StringCreateDate = self.stringcreatedate();
+        self.processadd(item);
     };
 
     self.save = function() {
@@ -184,48 +230,7 @@ HearAboutUsViewModel = function(data) {
         });
     };
 
-    self.managesave = function(item) {
-        if (self.IsEdit()) {
-            self.processedit(item);
-            return;
-        }
-        item.RecordId = self.recordid();
-        item.StringCreateDate = self.stringcreatedate();
-        self.processadd(item);
-    };
-
-    self.processadd = function(itemToAdd) {
-        var match = ko.utils.arrayFirst(self.listitems(), function(item) {
-            return item.RecordId() === itemToAdd.RecordId;
-        });
-
-        if (match) {
-            return;
-        }
-
-        self.reorderfilteredlist();
-        var newitem = {
-            Name: ko.observable(itemToAdd.Name),
-            RecordId: ko.observable(itemToAdd.RecordId),
-            IsSystem: ko.observable(itemToAdd.IsSystem),
-            DisplayOrder: ko.observable(itemToAdd.DisplayOrder),
-            StringCreateDate: ko.observable(itemToAdd.StringCreateDate)
-        };
-        self.listitems.push(newitem);
-    };
-
-    self.processedit = function(item) {
-        for (var i = 0; i < self.listitems().length; i++) {
-            if (self.listitems()[i].RecordId() !== item.RecordId)
-                continue;
-            self.listitems()[i].Name(item.Name);
-            self.listitems()[i].DisplayOrder(item.DisplayOrder);
-            break;
-        }
-    };
-
     self.setlistiteminactive = function(removedata) {
-
         $.ajax({
             url: baseUrl + removedata.RecordId(),
             type: "delete"
@@ -248,15 +253,13 @@ HearAboutUsViewModel = function(data) {
     };
 
     self.savenewdisplayorder = function() {
-        if (self.displayreorder().length !== 0) {
-            $.ajax({
-                type: "post",
-                url: baseUrl + "DisplayOrder",
-                dataType: "json",
-                data: ko.toJSON(self.displayreorder),
-                contentType: "application/json; charset=utf-8"
-            });
-        }
+        $.ajax({
+            type: "post",
+            url: baseUrl + "DisplayOrder",
+            dataType: "json",
+            data: ko.toJSON(self.displayreorder),
+            contentType: "application/json; charset=utf-8"
+        });
     };
 
     self.editlistdisplayorder = function(recordid, value) {
@@ -271,15 +274,12 @@ HearAboutUsViewModel = function(data) {
     };
 
     self.managelistdisplayorder = function() {
-        if (self.displayreorder().length === 0)
-            return;
         for (var i = 0; i < self.displayreorder().length; i++) {
             self.editlistdisplayorder(
                 ko.unwrap(self.displayreorder()[i].Id),
                 ko.unwrap(self.displayreorder()[i].DisplayOrder)
             );
         }
-        self.displayreorder([]);
     };
 
     var fixHelperModified = function(e, tr) {
@@ -304,10 +304,14 @@ HearAboutUsViewModel = function(data) {
         self.makelistsortable();
     };
 
-    self.syncdisplayorder = function() {
+    self.managedisplayreorder = function() {
+        if (self.displayreorder().length === 0) {
+            return;
+        }
         self.savenewdisplayorder();
         self.managelistdisplayorder();
         self.refreshlisthtml();
+        self.displayreorder([]);
     };
 
     self.capturenewdisplayorder = function(recordid, value) {
@@ -318,23 +322,38 @@ HearAboutUsViewModel = function(data) {
         });
     };
 
+    self.getnewindex = function(n) {
+        if (ko.unwrap(self.sortdirection) === 1) {
+            return n + 1;
+        }
+        return n - 1;
+    };
+
+    self.initnewindex = function() {
+        if (ko.unwrap(self.sortdirection) === 1) {
+            return 0;
+        }
+        return (self.filteredItems().length) + 1;
+    };
+
     self.reorderfilteredlist = function() {
         var rowindex = 0;
-        var newindex = 0;
         var rowrecordid = 0;
         var rowdisplayorder = 0;
+        var newindex = self.initnewindex();
+
         self.displayreorder([]);
         $("#datatable tbody").children().each(function() {
-            newindex = rowindex + 1;
+            newindex = self.getnewindex(newindex);
             rowrecordid = parseInt($("#datatable tbody").children()[rowindex].children[1].innerText);
             rowdisplayorder = parseInt($("#datatable tbody").children()[rowindex].children[4].innerText);
             if (rowdisplayorder !== newindex) {
                 self.capturenewdisplayorder(rowrecordid, newindex);
                 $("#datatable tbody").children()[rowindex].children[4].innerText = newindex;
             }
-            rowindex = newindex;
+            rowindex = rowindex + 1;
         });
-        self.syncdisplayorder();
+        self.managedisplayreorder();
     };
 
     self.makelistsortable();

@@ -4,11 +4,11 @@
         <h1 class="panel-title">Add or Edit Item</h1>
     </div>
     <div class="panel-body">
-         <!-- ** BEGIN INPUT AREA -->
+        <!-- ** BEGIN INPUT AREA -->
 
         <div class="form-group">
             @Html.Label("Item", "Enter or Edit Item")
-            @Html.TextBox("Name", "", new { @class = "form-control", data_bind = "value:name" })
+            @Html.TextBox("Name", "", new {@class = "form-control", data_bind = "value:name"})
         </div>
 
         <!-- ** END INPUT AREA -->
@@ -17,9 +17,13 @@
         <div class="row">
             <div class="col-sm-12">
                 <a class="btn btn-sm btn-primary" type="button"
-                   data-bind="click: save" href="#"><i class="glyphicon glyphicon-floppy-disk"></i>Save</a>
+                   data-bind="click: save" href="#">
+                    <i class="glyphicon glyphicon-floppy-disk"></i>Save
+                </a>
                 <a class="btn btn-sm btn-primary" type="button"
-                   data-bind="click: addorcancel" href="#"><i class="glyphicon glyphicon-remove-circle"></i>Cancel</a>
+                   data-bind="click: cancel" href="#">
+                    <i class="glyphicon glyphicon-remove-circle"></i>Cancel
+                </a>
             </div>
         </div>
     </div>

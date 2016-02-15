@@ -8,9 +8,9 @@
 @using (Html.BeginForm())
 {
     <!-- BEGIN HIdDEN FIELDS AREA -->
-    @Html.HiddenFor(m => m.EventCommand, new { data_val = "false" })
-    @Html.HiddenFor(m => m.EventArgument, new { data_val = "false" })
-    @Html.HiddenFor(m => m.Entity.RecordId, new { data_val = "false" })
+    @Html.HiddenFor(m => m.EventCommand, new {data_val = "false"})
+    @Html.HiddenFor(m => m.EventArgument, new {data_val = "false"})
+    @Html.HiddenFor(m => m.Entity.RecordId, new {data_val = "false"})
     <!-- END HIdDEN FIELDS AREA -->
 
     if (Model.IsSearchAreaVisible)
@@ -23,7 +23,7 @@
             <div class="panel-body">
                 <div class="form-group">
                     @Html.LabelFor(m => m.SearchEntity, "Product Group")
-                    @Html.TextBoxFor(m => m.SearchEntity, new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.SearchEntity, new {@class = "form-control"})
                 </div>
             </div>
             <div class="panel-footer">
@@ -81,20 +81,20 @@
                 </div>
                 <!-- ** END MESSAGE AREA -->
                 <!-- BEGIN HIdDEN FIELDS AREA -->
-                @Html.HiddenFor(m => m.Mode, new { data_val = "false" })
-                @Html.HiddenFor(m => m.Entity.IsSystem, new { data_val = "false" })
+                @Html.HiddenFor(m => m.Mode, new {data_val = "false"})
+                @Html.HiddenFor(m => m.Entity.IsSystem, new {data_val = "false"})
                 <!-- END HIdDEN FIELDS AREA -->
                 <!-- ** BEGIN INPUT AREA -->
 
                 <div class="form-group">
                     @Html.LabelFor(m => m.Entity.Name, "Product Group")
                     @Html.TextBoxFor(m => m.Entity.Name,
-                        new { @class = "form-control" })
+                        new {@class = "form-control"})
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(m => m.Entity.DisplayOrder, "Display Order")
                     @Html.TextBoxFor(m => m.Entity.DisplayOrder,
-                        new { @class = "form-control" })
+                        new {@class = "form-control"})
                 </div>
 
                 <!-- ** END INPUT AREA -->
@@ -127,51 +127,51 @@
         <div class="table-responsive">
             <table class="table table-condensed table-bordered table-striped table-hover">
                 <thead>
-                    <tr>
-                        <th class="pdsa-action-button-area">
-                            Edit
-                        </th>
-                        <th>Product Group</th>
-                        <th>Create Date</th>
-                        <th>Order</th>
-                        <th style="text-align: center">IsSystem</th>
-                        <th class="pdsa-action-button-area">
-                            Delete
-                        </th>
-                    </tr>
+                <tr>
+                    <th class="pdsa-action-button-area">
+                        Edit
+                    </th>
+                    <th>Product Group</th>
+                    <th>Create Date</th>
+                    <th>Order</th>
+                    <th style="text-align: center">IsSystem</th>
+                    <th class="pdsa-action-button-area">
+                        Delete
+                    </th>
+                </tr>
                 </thead>
 
                 <tbody>
-                    @foreach (ProductGroup item in Model.ListEntity)
-                    {
-                        <tr>
-                            <td class="pdsa-action-button-area">
-                                <a href="#" data-pdsa-action="edit"
-                                   data-pdsa-val="@item.RecordId"
-                                   class="btn btn-default btn-sm">
-                                    <i class="glyphicon glyphicon-edit"></i>
-                                </a>
-                            </td>
+                @foreach (ProductGroup item in Model.ListEntity)
+                {
+                    <tr>
+                        <td class="pdsa-action-button-area">
+                            <a href="#" data-pdsa-action="edit"
+                               data-pdsa-val="@item.RecordId"
+                               class="btn btn-default btn-sm">
+                                <i class="glyphicon glyphicon-edit"></i>
+                            </a>
+                        </td>
 
-                            <td>@item.Name</td>
-                            <td>@item.CreateDate</td>
-                            <td>@item.DisplayOrder</td>
+                        <td>@item.Name</td>
+                        <td>@item.CreateDate</td>
+                        <td>@item.DisplayOrder</td>
 
-                            <td style="text-align: center" disabled="disabled">
-                                @(@item.IsSystem ? Html.CheckBox("IsSystem", true) : Html.CheckBox("IsSystem", false))
-                            </td>
+                        <td style="text-align: center" disabled="disabled">
+                            @(@item.IsSystem ? Html.CheckBox("IsSystem", true) : Html.CheckBox("IsSystem", false))
+                        </td>
 
-                            <td class="pdsa-action-button-area">
-                                <a href="#" data-pdsa-action="delete"
-                                   data-pdsa-val="@item.RecordId"
-                                   onclick="return confirm('Delete this Product Group?');"
-                                   class="btn btn-default btn-sm">
-                                    <i class="glyphicon glyphicon-trash"></i>
-                                </a>
-                            </td>
+                        <td class="pdsa-action-button-area">
+                            <a href="#" data-pdsa-action="delete"
+                               data-pdsa-val="@item.RecordId"
+                               onclick="return confirm('Delete this Product Group?');"
+                               class="btn btn-default btn-sm">
+                                <i class="glyphicon glyphicon-trash"></i>
+                            </a>
+                        </td>
 
-                        </tr>
-                    }
+                    </tr>
+                }
                 </tbody>
             </table>
         </div>
@@ -182,8 +182,8 @@
 @section scripts {
 
     <script>
-        $(document).ready(function () {
-            $("[data-pdsa-action]").on("click", function (e) {
+        $(document).ready(function() {
+            $("[data-pdsa-action]").on("click", function(e) {
                 e.preventDefault();
 
                 $("#EventCommand").val(

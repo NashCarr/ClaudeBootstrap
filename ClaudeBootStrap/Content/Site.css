@@ -48,3 +48,7 @@ textarea {
     background: #f4fb11;
     background: rgba(244,251,17,0.45);
 }
+
+.listcentered {
+    text-align:center;
+}
