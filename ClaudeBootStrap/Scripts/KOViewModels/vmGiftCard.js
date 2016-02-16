@@ -18,7 +18,6 @@ GiftCardViewModel = function (data) {
 
     self.name = ko.observable("");
     self.recordid = ko.observable(0);
-    self.issystem = ko.observable(false);
     self.displayorder = ko.observable(0);
     self.stringcreatedate = ko.observable("");
 
@@ -27,7 +26,7 @@ GiftCardViewModel = function (data) {
     self.listitems = ko.mapping.fromJS(data.ListEntity).extend({ deferred: true });
 
     self.setmessageview = function () {
-        self.IsMessageAreaVisible((self.errmsg().length === 0));
+        self.IsMessageAreaVisible(self.errmsg().length);
     };
 
     self.DragDropComplete = ko.computed(function () {
@@ -116,7 +115,6 @@ GiftCardViewModel = function (data) {
         self.errmsg("");
         self.recordid(0);
         self.displayorder(0);
-        self.issystem(false);
 
         self.IsEdit(false);
     };
@@ -136,7 +134,6 @@ GiftCardViewModel = function (data) {
     self.edit = function (editdata) {
         self.name(editdata.Name());
         self.recordid(editdata.RecordId());
-        self.issystem(editdata.IsSystem());
         self.displayorder(editdata.DisplayOrder());
         self.stringcreatedate(editdata.StringCreateDate());
 
@@ -174,7 +171,6 @@ GiftCardViewModel = function (data) {
         var newitem = {
             Name: ko.observable(itemToAdd.Name),
             RecordId: ko.observable(itemToAdd.RecordId),
-            IsSystem: ko.observable(itemToAdd.IsSystem),
             DisplayOrder: ko.observable(itemToAdd.DisplayOrder),
             StringCreateDate: ko.observable(itemToAdd.StringCreateDate)
         };
@@ -210,7 +206,6 @@ GiftCardViewModel = function (data) {
         var item = {
             Name: self.name(),
             RecordId: self.recordid(),
-            IsSystem: self.issystem(),
             DisplayOrder: self.displayorder(),
             StringCreateDate: self.stringcreatedate()
         };

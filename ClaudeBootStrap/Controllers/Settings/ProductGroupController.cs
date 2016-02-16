@@ -1,41 +1,48 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
+using ClaudeCommon.BaseModels;
+using ClaudeCommon.Models;
+using ClaudeViewManagement.Managers.Settings;
 using ClaudeViewManagement.ViewModels.Settings;
 
 namespace ClaudeBootstrap.Controllers.Settings
 {
+    [RoutePrefix("ProductGroup")]
     public class ProductGroupController : Controller
     {
+        [Route("")]
+        [HttpGet]
         public ActionResult Index()
         {
-            ProductGroupViewModel vm = new ProductGroupViewModel();
-
-            vm.HandleRequest();
-
-            return View(vm);
+            return View(new ProductGroupViewModel());
         }
 
         [HttpPost]
-        public ActionResult Index(ProductGroupViewModel vm)
+        public JsonResult Save(ProductGroup entity)
         {
-            vm.IsValid = ModelState.IsValid;
-            vm.HandleRequest();
-
-            if (vm.IsValid)
+            using (ProductGroupManager mgr = new ProductGroupManager())
             {
-                // NOTE: Must clear the model state in order to bind
-                //       the @Html helpers to the new model values
-                ModelState.Clear();
+                return Json(mgr.SaveRecord(entity));
             }
-            else
-            {
-                foreach (KeyValuePair<string, string> item in vm.ValidationErrors)
-                {
-                    ModelState.AddModelError(item.Key, item.Value);
-                }
-            }
+        }
 
-            return View(vm);
+        [HttpPost]
+        public void DisplayOrder(List<DisplayReorder> list)
+        {
+            using (ProductGroupManager mgr = new ProductGroupManager())
+            {
+                mgr.SaveDisplayReorder(list);
+            }
+        }
+
+        [Route("{id:int}")]
+        [HttpDelete]
+        public JsonResult Delete(int id)
+        {
+            using (ProductGroupManager mgr = new ProductGroupManager())
+            {
+                return Json(mgr.DeleteRecord(id));
+            }
         }
     }
 }

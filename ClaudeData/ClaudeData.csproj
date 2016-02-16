@@ -122,7 +122,6 @@
     <Compile Include="Models\Admin\FacilityResource.cs" />
     <Compile Include="Models\Admin\FacilityStaff.cs" />
     <Compile Include="Models\Admin\HearAboutUs.cs" />
-    <Compile Include="Models\Admin\ProductGroup.cs" />
     <Compile Include="Models\Admin\ProgramOption.cs" />
     <Compile Include="Models\Admin\RoleRight.cs" />
     <Compile Include="Models\Admin\StaffUserActivity.cs" />

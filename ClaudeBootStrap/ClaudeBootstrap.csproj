@@ -224,6 +224,7 @@
     <Content Include="Scripts\knockout-sortable.min.js" />
     <Content Include="Scripts\knockout.mapping-latest.debug.js" />
     <Content Include="Scripts\knockout.mapping-latest.js" />
+    <Content Include="Scripts\KoViewModels\vmProductGroup.js" />
     <Content Include="Scripts\KoViewModels\vmHearAboutUs.js" />
     <Content Include="Scripts\KoViewModels\vmGiftCard.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
@@ -256,9 +257,10 @@
     <Content Include="Views\GiftCard\Index.cshtml" />
     <Content Include="Views\GiftCard\List.cshtml" />
     <Content Include="Views\Shared\Message.cshtml" />
-    <Content Include="Views\Shared\AddEdit.cshtml" />
+    <Content Include="Views\Shared\AddEditName.cshtml" />
     <Content Include="Views\Shared\Search.cshtml" />
     <Content Include="Views\HearAboutUs\List.cshtml" />
+    <Content Include="Views\ProductGroup\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ClaudeCommon\ClaudeCommon.csproj">

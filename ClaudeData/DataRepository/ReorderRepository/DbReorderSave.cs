@@ -53,17 +53,10 @@ namespace ClaudeData.DataRepository.ReorderRepository
             DisplayReorder("[Admin].[usp_HearAboutUs_DisplayReorder]", data);
         }
 
-        //    DisplayReorder("[Admin].[usp_HearAboutUs_DisplayReorder]", dOrder);
-        //}
-
-        //public void ProductGroupReorderSave(IEnumerable<ProductGroup> data)
-        //{
-        //    DataOrder dOrder = new DataOrder();
-        //    dOrder.AddRange(
-        //        data.Select(item => new DisplayOrder {Id = item.ProductGroupId, Order = item.DisplayOrder}));
-
-        //    DisplayReorder("[Admin].[usp_ProductGroup_DisplayReorder]", dOrder);
-        //}
+        public void ProductGroupReorderSave(List<DisplayReorder> data)
+        {
+            DisplayReorder("[Admin].[usp_ProductGroup_DisplayReorder]", data);
+        }
 
         private void DisplayReorder(string storedProcedure, List<DisplayReorder> data)
         {

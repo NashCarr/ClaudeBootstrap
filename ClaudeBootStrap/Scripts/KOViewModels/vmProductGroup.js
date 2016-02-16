@@ -1,7 +1,7 @@
 ﻿
-HearAboutUsViewModel = function(data) {
+ProductGroupViewModel = function(data) {
     var self = this;
-    var baseUrl = "/HearAboutUs/";
+    var baseUrl = "/ProductGroup/";
 
     self.sorttype = 1;
     self.sortdirection = ko.observable(1);

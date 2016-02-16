@@ -6,9 +6,10 @@
         <tr>
             <th class="pdsa-action-button-area">Edit</th>
             <th style="display: none">RecordId</th>
-            <th data-bind="click: namesort">Gift Card<i class="glyphicon glyphicon-sort pull-right"></i></th>
+            <th data-bind="click: namesort">Product Group<i class="glyphicon glyphicon-sort pull-right"></i></th>
             <th class="listcentered">Create Date</th>
             <th class="listcentered" data-bind="click: displayordersort">Order<i class="glyphicon glyphicon-sort pull-right"></i></th>
+            <th class="listcentered">Is System</th>
             <th class="pdsa-action-button-area">Delete</th>
         </tr>
         </thead>
@@ -23,6 +24,9 @@
             <td class="ui-priority-secondary" data-bind="text: Name" id="name"></td>
             <td class="listcentered" data-bind="text: StringCreateDate" id="createdate"></td>
             <td class="listcentered" data-bind="text: DisplayOrder" id="displayorder"></td>
+            <td class="listcentered" id="issystem">
+                <input data-bind="text: IsSystem" disabled name="issystem" type="checkbox">
+            </td>
             <td class="listcentered" id="delete">
                 <a class="btn btn-default btn-sm" data-bind="click: $parent.removelistitem.bind($data)" href="#" type="button">
                     <i class="glyphicon glyphicon-trash"></i>
