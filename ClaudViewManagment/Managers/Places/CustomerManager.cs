@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using ClaudeCommon.Models;
 using ClaudeData.DataRepository.PlaceRepository;
+using ClaudeData.DataRepository.PlacesRepository;
 using ClaudeData.DataRepository.SettingsRepository;
 using ClaudeData.Models.Lists.Settings;
 using ClaudeData.ViewModels.Settings;
@@ -26,108 +28,95 @@ namespace ClaudeViewManagement.Managers.Places
         {
         }
 
-        public List<CustomerInfo> Get()
+        public List<Place> GetList()
         {
-            return Get(string.Empty);
+            //using (DbPlacesGetActive data = new DbPlacesGetActive())
+            //{
+            //    return data.GetActiveCustomers();
+            //}
+            return null;
         }
 
-        public List<CustomerInfo> Get(string searchValue)
-        {
-            List<CustomerInfo> ret = RetrieveActiveData();
+        //public CustomerView Get(int recordId)
+        //{
+        //    return RetrieveRecord(recordId);
+        //}
 
-            if (ret.Count == 0) return ret;
+        //public bool Update(CustomerView entity, ref int placeId)
+        //{
+        //    bool ret = Validate(entity);
 
-            // Do any searching
-            if (!string.IsNullOrEmpty(searchValue))
-            {
-                ret = ret.FindAll(
-                    p => p.Name.ToLower().
-                        Contains(searchValue));
-            }
+        //    if (ret)
+        //    {
+        //        entity.Customer.ErrMsg = SaveRecord(entity, ref placeId);
+        //    }
+        //    return ret;
+        //}
 
-            return ret;
-        }
+        //public bool Delete(int recordId)
+        //{
+        //    DeleteRecord(recordId);
+        //    return true;
+        //}
 
-        public CustomerView Get(int recordId)
-        {
-            return RetrieveRecord(recordId);
-        }
+        //public bool Validate(CustomerView entity)
+        //{
+        //    ValidationErrors.Clear();
 
-        public bool Update(CustomerView entity, ref int placeId)
-        {
-            bool ret = Validate(entity);
+        //    if (string.IsNullOrEmpty(entity.Customer.Name)) return ValidationErrors.Count == 0;
 
-            if (ret)
-            {
-                entity.Customer.ErrMsg = SaveRecord(entity, ref placeId);
-            }
-            return ret;
-        }
+        //    if (entity.Customer.Name.ToLower() ==
+        //        entity.Customer.Name)
+        //    {
+        //        ValidationErrors.Add(new
+        //            KeyValuePair<string, string>("Name",
+        //                "Staff User Name must not be all lower case."));
+        //    }
 
-        public bool Delete(int recordId)
-        {
-            DeleteRecord(recordId);
-            return true;
-        }
+        //    return ValidationErrors.Count == 0;
+        //}
 
-        public bool Validate(CustomerView entity)
-        {
-            ValidationErrors.Clear();
+        //public bool Insert(CustomerView entity, ref int placeId)
+        //{
+        //    bool ret = Validate(entity);
 
-            if (string.IsNullOrEmpty(entity.Customer.Name)) return ValidationErrors.Count == 0;
+        //    if (ret)
+        //    {
+        //        entity.Customer.ErrMsg = SaveRecord(entity, ref placeId);
+        //    }
+        //    return ret;
+        //}
 
-            if (entity.Customer.Name.ToLower() ==
-                entity.Customer.Name)
-            {
-                ValidationErrors.Add(new
-                    KeyValuePair<string, string>("Name",
-                        "Staff User Name must not be all lower case."));
-            }
+        //private static List<CustomerInfo> RetrieveActiveData()
+        //{
+        //    using (DbCustomerInfoGet data = new DbCustomerInfoGet())
+        //    {
+        //        return data.GetActiveRecords();
+        //    }
+        //}
 
-            return ValidationErrors.Count == 0;
-        }
+        //private static CustomerView RetrieveRecord(int recordId)
+        //{
+        //    using (DbCustomerInfoGet data = new DbCustomerInfoGet())
+        //    {
+        //        return data.GetRecord(recordId);
+        //    }
+        //}
 
-        public bool Insert(CustomerView entity, ref int placeId)
-        {
-            bool ret = Validate(entity);
+        //private static string SaveRecord(CustomerView entity, ref int placeId)
+        //{
+        //    using (DbCustomerSave data = new DbCustomerSave())
+        //    {
+        //        return data.SaveCustomer(ref entity, ref placeId);
+        //    }
+        //}
 
-            if (ret)
-            {
-                entity.Customer.ErrMsg = SaveRecord(entity, ref placeId);
-            }
-            return ret;
-        }
-
-        private static List<CustomerInfo> RetrieveActiveData()
-        {
-            using (DbCustomerInfoGet data = new DbCustomerInfoGet())
-            {
-                return data.GetActiveRecords();
-            }
-        }
-
-        private static CustomerView RetrieveRecord(int recordId)
-        {
-            using (DbCustomerInfoGet data = new DbCustomerInfoGet())
-            {
-                return data.GetRecord(recordId);
-            }
-        }
-
-        private static string SaveRecord(CustomerView entity, ref int placeId)
-        {
-            using (DbCustomerSave data = new DbCustomerSave())
-            {
-                return data.SaveCustomer(ref entity, ref placeId);
-            }
-        }
-
-        private static void DeleteRecord(int recordId)
-        {
-            using (DbPlaceSetInactive data = new DbPlaceSetInactive())
-            {
-                data.SetCustomerInactive(recordId);
-            }
-        }
+        //private static void DeleteRecord(int recordId)
+        //{
+        //    using (DbPlaceSetInactive data = new DbPlaceSetInactive())
+        //    {
+        //        data.SetCustomerInactive(recordId);
+        //    }
+        //}
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using ClaudeData.Models.Places;
+using ClaudeCommon.Models;
 using static ClaudeCommon.Enums.TimeZoneEnums;
 
 namespace ClaudeData.DataRepository.PlacesRepository
@@ -30,9 +30,9 @@ namespace ClaudeData.DataRepository.PlacesRepository
                             int ordName = dr.GetOrdinal("Name");
                             int ordPlaceId = dr.GetOrdinal("PlaceId");
                             int ordTimeZone = dr.GetOrdinal("TimeZone");
-                            int ordIsActive = dr.GetOrdinal("IsActive");
+                            int ordDivision = dr.GetOrdinal("Division");
+                            int ordDepartment = dr.GetOrdinal("Department");
                             int ordDisplayOrder = dr.GetOrdinal("DisplayOrder");
-                            int ordCreateDate = dr.GetOrdinal("CreateDate");
 
                             while (dr.Read())
                             {
@@ -40,10 +40,10 @@ namespace ClaudeData.DataRepository.PlacesRepository
                                 {
                                     Name = Convert.ToString(dr[ordName]),
                                     PlaceId = Convert.ToInt32(dr[ordPlaceId]),
-                                    TimeZone = (ClaudeTimeZone) Convert.ToByte(dr[ordTimeZone]),
-                                    IsActive = Convert.ToBoolean(dr[ordIsActive]),
-                                    CreateDate = Convert.ToDateTime(dr[ordCreateDate]),
-                                    DisplayOrder = Convert.ToInt16(dr[ordDisplayOrder])
+                                    Division = Convert.ToString(dr[ordDivision]),
+                                    Department = Convert.ToString(dr[ordDepartment]),
+                                    DisplayOrder = Convert.ToInt16(dr[ordDisplayOrder]),
+                                    TimeZone = (ClaudeTimeZone)Convert.ToByte(dr[ordTimeZone])
                                 };
                                 data.Add(item);
                             }

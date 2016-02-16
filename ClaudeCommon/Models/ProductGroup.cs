@@ -1,4 +1,4 @@
-﻿using static System.DateTime;
+﻿using System;
 
 namespace ClaudeCommon.Models
 {
@@ -9,7 +9,7 @@ namespace ClaudeCommon.Models
             RecordId = 0;
             DisplayOrder = 0;
             Name = string.Empty;
-            StringCreateDate = Now.ToString("MM/dd/yyyy hh:mm:ss tt");
+            StringCreateDate = DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss tt");
         }
 
         public string Name { get; set; }

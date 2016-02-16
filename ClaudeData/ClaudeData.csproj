@@ -94,7 +94,6 @@
     <Compile Include="BaseModels\AdminBase.cs" />
     <Compile Include="DataRepository\PlacesRepository\DbPlacesGet.cs" />
     <Compile Include="DataRepository\PlacesRepository\DbPlacesGetActive.cs" />
-    <Compile Include="DataRepository\PlacesRepository\DbPlacesGetInactive.cs" />
     <Compile Include="DataRepository\ReorderRepository\DBReorder.cs" />
     <Compile Include="DataRepository\ReorderRepository\DbReorderSave.cs" />
     <Compile Include="DataRepository\SettingsRepository\DbCustomerContactSave.cs" />

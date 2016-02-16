@@ -19,110 +19,110 @@ namespace ClaudeViewManagement.ViewModels.Places
         public CustomerView Entity { get; set; }
         public List<CustomerInfo> ListEntity { get; set; }
 
-        public override void HandleRequest()
-        {
-            // This is an example of adding on a new command
-            switch (EventCommand.ToLower())
-            {
-                case "newcommand":
-                    break;
-            }
-            base.HandleRequest();
-        }
+    //    public override void HandleRequest()
+    //    {
+    //        // This is an example of adding on a new command
+    //        switch (EventCommand.ToLower())
+    //        {
+    //            case "newcommand":
+    //                break;
+    //        }
+    //        base.HandleRequest();
+    //    }
 
-        private void AddEdit()
-        {
-            if (ListEntity != null)
-            {
-                ListEntity.Clear();
-                ListEntity = null;
-            }
+    //    private void AddEdit()
+    //    {
+    //        if (ListEntity != null)
+    //        {
+    //            ListEntity.Clear();
+    //            ListEntity = null;
+    //        }
 
-            Entity.CountryList = new CountryLookupList();
-            Entity.TimeZoneList = new TimeZoneLookupList();
-            Entity.PhoneTypeList = new PhoneTypeLookupList();
-            Entity.MobileCarrierList = new MobileCarrierLookupList();
-        }
+    //        Entity.CountryList = new CountryLookupList();
+    //        Entity.TimeZoneList = new TimeZoneLookupList();
+    //        Entity.PhoneTypeList = new PhoneTypeLookupList();
+    //        Entity.MobileCarrierList = new MobileCarrierLookupList();
+    //    }
 
-        protected override void Add()
-        {
-            IsValid = true;
+    //    protected override void Add()
+    //    {
+    //        IsValid = true;
 
-            // Initialize Entity Object
-            Entity = new CustomerView();
+    //        // Initialize Entity Object
+    //        Entity = new CustomerView();
 
-            AddEdit();
+    //        AddEdit();
 
-            base.Add();
-        }
+    //        base.Add();
+    //    }
 
-        protected override void Edit()
-        {
-            using (CustomerManager mgr = new CustomerManager())
-            {
-                // Get Product Data
-                Entity = mgr.Get(Convert.ToInt32(EventArgument));
-            }
-            AddEdit();
+    //    protected override void Edit()
+    //    {
+    //        using (CustomerManager mgr = new CustomerManager())
+    //        {
+    //            // Get Product Data
+    //            Entity = mgr.Get(Convert.ToInt32(EventArgument));
+    //        }
+    //        AddEdit();
 
-            base.Edit();
-        }
+    //        base.Edit();
+    //    }
 
-        protected override void Save()
-        {
-            int placeId = Entity.Customer.PlaceId;
-            using (CustomerManager mgr = new CustomerManager())
-            {
-                if (Mode == "Add")
-                {
-                    mgr.Insert(Entity, ref placeId);
-                }
-                else
-                {
-                    mgr.Update(Entity, ref placeId);
-                }
+    //    protected override void Save()
+    //    {
+    //        int placeId = Entity.Customer.PlaceId;
+    //        using (CustomerManager mgr = new CustomerManager())
+    //        {
+    //            if (Mode == "Add")
+    //            {
+    //                mgr.Insert(Entity, ref placeId);
+    //            }
+    //            else
+    //            {
+    //                mgr.Update(Entity, ref placeId);
+    //            }
 
-                // Set any validation errors
-                ValidationErrors = mgr.ValidationErrors;
+    //            // Set any validation errors
+    //            ValidationErrors = mgr.ValidationErrors;
 
-                // Set mode based on validation errors
-            }
-            Entity.Customer.PlaceId = placeId;
+    //            // Set mode based on validation errors
+    //        }
+    //        Entity.Customer.PlaceId = placeId;
 
-            base.Save();
-        }
+    //        base.Save();
+    //    }
 
-        protected override void Delete()
-        {
-            using (CustomerManager mgr = new CustomerManager())
-            {
-                // Call data layer to delete record
-                mgr.Delete(Convert.ToInt32(EventArgument));
-            }
+    //    protected override void Delete()
+    //    {
+    //        using (CustomerManager mgr = new CustomerManager())
+    //        {
+    //            // Call data layer to delete record
+    //            mgr.Delete(Convert.ToInt32(EventArgument));
+    //        }
 
-            Get();
-            base.Delete();
-        }
+    //        Get();
+    //        base.Delete();
+    //    }
 
-        protected override void ResetSearch()
-        {
-            SearchEntity = string.Empty;
-            base.ResetSearch();
-        }
+    //    protected override void ResetSearch()
+    //    {
+    //        SearchEntity = string.Empty;
+    //        base.ResetSearch();
+    //    }
 
-        protected override void Get()
-        {
-            if (Entity != null)
-            {
-                Entity.Dispose();
-                Entity = null;
-            }
+    //    protected override void Get()
+    //    {
+    //        if (Entity != null)
+    //        {
+    //            Entity.Dispose();
+    //            Entity = null;
+    //        }
 
-            using (CustomerManager mgr = new CustomerManager())
-            {
-                ListEntity = mgr.Get(SearchEntity);
-            }
-            base.Get();
-        }
+    //        using (CustomerManager mgr = new CustomerManager())
+    //        {
+    //            ListEntity = mgr.Get(SearchEntity);
+    //        }
+    //        base.Get();
+    //    }
     }
 }

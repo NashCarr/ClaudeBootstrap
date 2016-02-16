@@ -58,6 +58,7 @@
     <Compile Include="Managers\People\StaffMemberManager.cs" />
     <Compile Include="Managers\Places\ClientFacilityManager.cs" />
     <Compile Include="Managers\Places\CustomerManager.cs" />
+    <Compile Include="Managers\Places\PlaceManager.cs" />
     <Compile Include="Managers\Places\OrganizationManager.cs" />
     <Compile Include="Managers\Settings\GiftCardManager.cs" />
     <Compile Include="Managers\Settings\HearAboutUsManager.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="ViewModels\People\StaffMemberViewModel.cs" />
     <Compile Include="ViewModels\Places\ClientFacilityViewModel.cs" />
     <Compile Include="ViewModels\Places\CustomerViewModel.cs" />
+    <Compile Include="ViewModels\Places\PlaceViewModel.cs" />
     <Compile Include="ViewModels\Places\OrganizationViewModel.cs" />
     <Compile Include="ViewModels\Settings\HearAboutUsViewModel.cs" />
     <Compile Include="ViewModels\Settings\GiftCardViewModel.cs" />

@@ -26,29 +26,29 @@ namespace ClaudeData.DataRepository.LookupRepository
             return GetLookUpList(PlaceType.Customer);
         }
 
-        private static List<Place> GetOrganizations()
-        {
-            using (DbPlacesGetActive db = new DbPlacesGetActive())
-            {
-                return db.GetActiveOrganizations();
-            }
-        }
+        //private static List<Place> GetOrganizations()
+        //{
+        //    using (DbPlacesGetActive db = new DbPlacesGetActive())
+        //    {
+        //        return db.GetActiveOrganizations();
+        //    }
+        //}
 
-        private static List<Place> GetCustomers()
-        {
-            using (DbPlacesGetActive db = new DbPlacesGetActive())
-            {
-                return db.GetActiveCustomers();
-            }
-        }
+        //private static List<Place> GetCustomers()
+        //{
+        //    using (DbPlacesGetActive db = new DbPlacesGetActive())
+        //    {
+        //        return db.GetActiveCustomers();
+        //    }
+        //}
 
-        private static List<Place> GetFacilities()
-        {
-            using (DbPlacesGetActive db = new DbPlacesGetActive())
-            {
-                return db.GetActiveFacilities();
-            }
-        }
+        //private static List<Place> GetFacilities()
+        //{
+        //    using (DbPlacesGetActive db = new DbPlacesGetActive())
+        //    {
+        //        return db.GetActiveFacilities();
+        //    }
+        //}
 
         private static PlaceLookupList GetLookUpList(PlaceType placeType)
         {
@@ -59,15 +59,15 @@ namespace ClaudeData.DataRepository.LookupRepository
 
             switch (placeType)
             {
-                case PlaceType.Facility:
-                    data = GetFacilities();
-                    break;
-                case PlaceType.Organization:
-                    data = GetOrganizations();
-                    break;
-                case PlaceType.Customer:
-                    data = GetCustomers();
-                    break;
+                //case PlaceType.Facility:
+                //    data = GetFacilities();
+                //    break;
+                //case PlaceType.Organization:
+                //    data = GetOrganizations();
+                //    break;
+                //case PlaceType.Customer:
+                //    data = GetCustomers();
+                //    break;
                 case PlaceType.None:
                     return lu;
                 default:

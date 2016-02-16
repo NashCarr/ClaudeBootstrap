@@ -1,41 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using ClaudeData.Models.Places;
+using ClaudeCommon.Models;
 using static ClaudeCommon.Enums.PlaceEnums;
 
 namespace ClaudeData.DataRepository.PlacesRepository
 {
     public class DbPlacesGetActive : DbPlacesGet
     {
-        protected internal List<Place> GetActiveFacilities()
-        {
-            IdValue = (byte) PlaceType.Facility;
-            TypeName = Enum.GetName(typeof (PlaceType), IdValue);
-            return GetActive();
-        }
-
-        protected internal List<Place> GetActiveOrganizations()
-        {
-            IdValue = (byte) PlaceType.Organization;
-            TypeName = Enum.GetName(typeof (PlaceType), IdValue);
-            return GetActive();
-        }
-
-        protected internal List<Place> GetActiveCustomers()
-        {
-            IdValue = (byte) PlaceType.Customer;
-            TypeName = Enum.GetName(typeof (PlaceType), IdValue);
-            return GetActive();
-        }
-
-        private List<Place> GetActive()
+        public List<Place> GetActive(PlaceType pt)
         {
             try
             {
+                IdValue = (byte) pt;
                 IdParameter = "@PlaceType";
 
-                SetConnectToDatabase("[Admin].[usp_Places_GetActive]");
+                SetConnectToDatabase("[ViewModel].[usp_Places_List]");
 
                 CmdSql.Parameters.Add(IdParameter, SqlDbType.Int).Value = IdValue;
 

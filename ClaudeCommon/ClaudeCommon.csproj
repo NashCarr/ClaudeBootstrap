@@ -69,9 +69,10 @@
     <Compile Include="Enums\TimeZoneEnums.cs" />
     <Compile Include="Helpers\EnumHelpers.cs" />
     <Compile Include="BaseModels\ReturnBase.cs" />
-    <Compile Include="Models\ProductGroup.cs" />
-    <Compile Include="Models\HearAboutUs.cs" />
     <Compile Include="Models\GiftCard.cs" />
+    <Compile Include="Models\HearAboutUs.cs" />
+    <Compile Include="Models\Place.cs" />
+    <Compile Include="Models\ProductGroup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
