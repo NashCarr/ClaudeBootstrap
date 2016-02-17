@@ -25,7 +25,7 @@
             <td class="listcentered" data-bind="text: StringCreateDate" id="createdate"></td>
             <td class="listcentered" data-bind="text: DisplayOrder" id="displayorder"></td>
             <td class="listcentered" id="issystem">
-                <input data-bind="text: IsSystem" disabled name="issystem" type="checkbox">
+                <input data-bind="checked: IsSystem" disabled name="issystem" type="checkbox">
             </td>
             <td class="listcentered" id="delete">
                 <a class="btn btn-default btn-sm" data-bind="click: $parent.removelistitem.bind($data)" href="#" type="button">

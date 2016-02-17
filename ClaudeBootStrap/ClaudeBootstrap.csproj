@@ -264,6 +264,10 @@
     <Content Include="Views\Customer\List.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\Shared\AddEditPlace.cshtml" />
+    <Content Include="Views\Shared\Place.cshtml" />
+    <Content Include="Views\Shared\Address\ShippingAddress.cshtml" />
+    <Content Include="Views\Shared\Address\MailingAddress.cshtml" />
+    <Content Include="Views\Shared\Address\Addresses.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ClaudeCommon\ClaudeCommon.csproj">

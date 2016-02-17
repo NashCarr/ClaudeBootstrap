@@ -9,6 +9,7 @@ CustomerViewModel = function(data) {
     self.IsEdit = ko.observable(false);
     self.IsListAreaVisible = ko.observable(true);
     self.IsSearchAreaVisible = ko.observable(true);
+    self.UseMailingforShipping = ko.observable(true);
     self.IsAddEditAreaVisible = ko.observable(false);
     self.IsMessageAreaVisible = ko.observable(false);
     self.IsDisplayOrderChanged = ko.observable(false);
@@ -39,7 +40,11 @@ CustomerViewModel = function(data) {
         return !self.IsDisplayOrderChanged();
     });
 
-    self.managesorttype = function(type) {
+    self.ShowShipping = ko.computed(function () {
+        return !self.UseMailingforShipping();
+    });
+
+    self.managesorttype = function (type) {
         if (self.sorttype === type) {
             return;
         }

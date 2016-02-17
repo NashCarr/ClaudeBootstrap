@@ -1,0 +1,25 @@
+﻿<!-- ** BEGIN Place Info AREA -->
+<div class="panel panel-default" id="Place">
+    <div class="panel-heading">
+        Place
+    </div>
+    <div class="panel-body">
+        <div class="form-group" id="Name">
+            @Html.Label("Name", "Name")
+            @Html.TextBox("Name", "", new { @class = "form-control", data_bind = "value:name" })
+        </div>
+        <div class="form-group" id="Division">
+            @Html.Label("Division", "Division")
+            @Html.TextBox("Division", "", new { @class = "form-control", data_bind = "value:division" })
+        </div>
+        <div class="form-group" id="Department">
+            @Html.Label("Department", "Department")
+            @Html.TextBox("Department", "", new { @class = "form-control", data_bind = "value:department" })
+        </div>
+        <div class="form-group" id="TimeZone">
+            @Html.Label("TimeZone", "TimeZone")
+            <select class="form-control" data-bind="options: timezones, optionsText: 'Text', optionsValue: 'Value', optionsCaption: 'Choose...'"></select>
+        </div>
+    </div>
+</div>
+<!-- ** END Place Info AREA -->

@@ -3,36 +3,13 @@ GiftCardViewModel = function (data) {
     var self = this;
     var baseUrl = "/GiftCard/";
 
+    //filter
+    self.searchvalue = ko.observable("");
+    //filter
+
+    //sorting
     self.sorttype = 1;
     self.sortdirection = ko.observable(1);
-
-    self.IsEdit = ko.observable(false);
-    self.IsListAreaVisible = ko.observable(true);
-    self.IsSearchAreaVisible = ko.observable(true);
-    self.IsAddEditAreaVisible = ko.observable(false);
-    self.IsMessageAreaVisible = ko.observable(false);
-    self.IsDisplayOrderChanged = ko.observable(false);
-
-    self.errmsg = ko.observable("");
-    self.searchvalue = ko.observable("");
-
-    self.name = ko.observable("");
-    self.recordid = ko.observable(0);
-    self.displayorder = ko.observable(0);
-    self.stringcreatedate = ko.observable("");
-
-    self.displayreorder = ko.observableArray();
-
-    self.listitems = ko.mapping.fromJS(data.ListEntity).extend({ deferred: true });
-
-    self.setmessageview = function () {
-        self.IsMessageAreaVisible(self.errmsg().length);
-    };
-
-    self.DragDropComplete = ko.computed(function () {
-        return !self.IsDisplayOrderChanged();
-    });
-
     self.managesorttype = function (type) {
         if (self.sorttype === type) {
             return;
@@ -42,74 +19,38 @@ GiftCardViewModel = function (data) {
         self.sortdirection(-1);
         self.pauseNotifications = false;
     };
-
     self.managesortdirection = function (type) {
         self.managesorttype(type);
         self.sortdirection(self.sortdirection() * -1);
     };
-
     self.namesort = function () {
         self.managesortdirection(2);
     };
-
     self.displayordersort = function () {
         self.managesortdirection(1);
     };
+    //sorting
 
-    self.unfilteredsortbyorder = function (sortDirection) {
-        return self.listitems().sort(function (l, r) {
-            return (parseInt(l.DisplayOrder()) > parseInt(r.DisplayOrder())) ^ (sortDirection === -1);
-        });
+    //errmsg
+    self.errmsg = ko.observable("");
+    self.IsMessageAreaVisible = ko.observable(false);
+    self.setmessageview = function () {
+        self.IsMessageAreaVisible(self.errmsg().length);
     };
+    self.returnmessage = ko.pureComputed(function () {
+        return ko.unwrap(self.errmsg);
+    });
+    //errmsg
 
-    self.filteredsortbyorder = function (filter, sortDirection) {
-        return ko.utils.arrayFilter(self.listitems(), function (item) {
-            return ko.unwrap(item.Name).toLowerCase().indexOf(filter) !== -1;
-        }).sort(function (l, r) {
-            return (parseInt(l.DisplayOrder()) > parseInt(r.DisplayOrder())) ^ (sortDirection === -1);
-        });
-    };
+    //addedit
+    self.IsEdit = ko.observable(false);
+    //addedit
 
-    self.unfilteredsortbyname = function (sortDirection) {
-        return self.listitems().sort(function (l, r) {
-            return (l.Name().toLowerCase() > r.Name().toLowerCase()) ^ (sortDirection === -1);
-        });
-    };
-
-    self.filteredsortbyname = function (filter, sortDirection) {
-        return ko.utils.arrayFilter(self.listitems(), function (item) {
-            return ko.unwrap(item.Name).toLowerCase().indexOf(filter) !== -1;
-        }).sort(function (l, r) {
-            return (l.Name().toLowerCase() > r.Name().toLowerCase()) ^ (sortDirection === -1);
-        });
-    };
-
-    self.managedisplayordersort = function (filter) {
-        return (filter.length === 0)
-            ? self.unfilteredsortbyorder(self.sortdirection())
-            : self.filteredsortbyorder(filter, self.sortdirection());
-    };
-
-    self.managenamesort = function (filter) {
-        return (filter.length === 0)
-            ? self.unfilteredsortbyname(self.sortdirection())
-            : self.filteredsortbyname(filter, self.sortdirection());
-    };
-
-    self.filteredItems = function () {
-        var filter = self.searchvalue().toLowerCase();
-        return self.sorttype === 1
-            ? self.managedisplayordersort(filter)
-            : self.managenamesort(filter);
-    };
-
-    self.toggleview = function () {
-        self.setmessageview();
-        self.IsListAreaVisible(!self.IsListAreaVisible());
-        self.IsSearchAreaVisible(!self.IsSearchAreaVisible());
-        self.IsAddEditAreaVisible(!self.IsAddEditAreaVisible());
-    };
-
+    //listvalues
+    self.name = ko.observable("");
+    self.recordid = ko.observable(0);
+    self.displayorder = ko.observable(0);
+    self.stringcreatedate = ko.observable("");
     self.clear = function () {
         self.name("");
         self.errmsg("");
@@ -118,10 +59,75 @@ GiftCardViewModel = function (data) {
 
         self.IsEdit(false);
     };
+    //listvalues
 
-    self.returnmessage = ko.pureComputed(function () {
-        return ko.unwrap(self.errmsg);
+    //sectionvisible
+    self.IsListAreaVisible = ko.observable(true);
+    self.IsSearchAreaVisible = ko.observable(true);
+    self.IsAddEditAreaVisible = ko.observable(false);
+    self.toggleview = function () {
+        self.setmessageview();
+        self.IsListAreaVisible(!self.IsListAreaVisible());
+        self.IsSearchAreaVisible(!self.IsSearchAreaVisible());
+        self.IsAddEditAreaVisible(!self.IsAddEditAreaVisible());
+    };
+    self.clearandtoggle = function () {
+        self.clear();
+        self.toggleview();
+    };    //sectionvisible
+
+    //displayorder
+    self.displayreorder = ko.observableArray();
+    self.IsDisplayOrderChanged = ko.observable(false);
+    self.DragDropComplete = ko.computed(function () {
+        return !self.IsDisplayOrderChanged();
     });
+    //displayorder
+
+    self.listitems = ko.mapping.fromJS(data.ListEntity).extend({ deferred: true });
+
+    //listmanagment
+    self.unfilteredsortbyorder = function (sortDirection) {
+        return self.listitems().sort(function (l, r) {
+            return (parseInt(l.DisplayOrder()) > parseInt(r.DisplayOrder())) ^ (sortDirection === -1);
+        });
+    };
+    self.filteredsortbyorder = function (filter, sortDirection) {
+        return ko.utils.arrayFilter(self.listitems(), function (item) {
+            return ko.unwrap(item.Name).toLowerCase().indexOf(filter) !== -1;
+        }).sort(function (l, r) {
+            return (parseInt(l.DisplayOrder()) > parseInt(r.DisplayOrder())) ^ (sortDirection === -1);
+        });
+    };
+    self.unfilteredsortbyname = function (sortDirection) {
+        return self.listitems().sort(function (l, r) {
+            return (l.Name().toLowerCase() > r.Name().toLowerCase()) ^ (sortDirection === -1);
+        });
+    };
+    self.filteredsortbyname = function (filter, sortDirection) {
+        return ko.utils.arrayFilter(self.listitems(), function (item) {
+            return ko.unwrap(item.Name).toLowerCase().indexOf(filter) !== -1;
+        }).sort(function (l, r) {
+            return (l.Name().toLowerCase() > r.Name().toLowerCase()) ^ (sortDirection === -1);
+        });
+    };
+    self.managedisplayordersort = function (filter) {
+        return (filter.length === 0)
+            ? self.unfilteredsortbyorder(self.sortdirection())
+            : self.filteredsortbyorder(filter, self.sortdirection());
+    };
+    self.managenamesort = function (filter) {
+        return (filter.length === 0)
+            ? self.unfilteredsortbyname(self.sortdirection())
+            : self.filteredsortbyname(filter, self.sortdirection());
+    };
+    self.filteredItems = function () {
+        var filter = self.searchvalue().toLowerCase();
+        return self.sorttype === 1
+            ? self.managedisplayordersort(filter)
+            : self.managenamesort(filter);
+    };
+    //listmanagment
 
     self.handlereturndata = function (returndata) {
         self.recordid(returndata.Id);
@@ -131,6 +137,7 @@ GiftCardViewModel = function (data) {
         self.setmessageview();
     };
 
+    //buttons
     self.edit = function (editdata) {
         self.name(editdata.Name());
         self.recordid(editdata.RecordId());
@@ -138,11 +145,6 @@ GiftCardViewModel = function (data) {
         self.stringcreatedate(editdata.StringCreateDate());
 
         self.IsEdit(true);
-        self.toggleview();
-    };
-
-    self.clearandtoggle = function () {
-        self.clear();
         self.toggleview();
     };
 
@@ -158,6 +160,7 @@ GiftCardViewModel = function (data) {
     self.reset = function () {
         self.searchvalue("");
     };
+    //buttons
 
     self.itemExists = function (id) {
         var match = ko.utils.arrayFirst(self.listitems(), function (item) {
