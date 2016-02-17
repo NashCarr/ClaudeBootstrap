@@ -1,5 +1,5 @@
 ﻿
-CustomerViewModel = function (data) {
+CustomerViewModel = function(data) {
     var self = this;
     var baseUrl = "/Customer/";
 
@@ -31,15 +31,15 @@ CustomerViewModel = function (data) {
     self.listitems = ko.mapping.fromJS(data.ListEntity).extend({ deferred: true });
     self.timezones = ko.mapping.fromJS(data.TimeZones).extend({ deferred: true });
 
-    self.setmessageview = function () {
+    self.setmessageview = function() {
         self.IsMessageAreaVisible(self.errmsg().length);
     };
 
-    self.DragDropComplete = ko.computed(function () {
+    self.DragDropComplete = ko.computed(function() {
         return !self.IsDisplayOrderChanged();
     });
 
-    self.managesorttype = function (type) {
+    self.managesorttype = function(type) {
         if (self.sorttype === type) {
             return;
         }
@@ -49,74 +49,74 @@ CustomerViewModel = function (data) {
         self.pauseNotifications = false;
     };
 
-    self.managesortdirection = function (type) {
+    self.managesortdirection = function(type) {
         self.managesorttype(type);
         self.sortdirection(self.sortdirection() * -1);
     };
 
-    self.namesort = function () {
+    self.namesort = function() {
         self.managesortdirection(2);
     };
 
-    self.displayordersort = function () {
+    self.displayordersort = function() {
         self.managesortdirection(1);
     };
 
-    self.unfilteredsortbyorder = function (sortDirection) {
-        return self.listitems().sort(function (l, r) {
+    self.unfilteredsortbyorder = function(sortDirection) {
+        return self.listitems().sort(function(l, r) {
             return (parseInt(l.DisplayOrder()) > parseInt(r.DisplayOrder())) ^ (sortDirection === -1);
         });
     };
 
-    self.filteredsortbyorder = function (filter, sortDirection) {
-        return ko.utils.arrayFilter(self.listitems(), function (item) {
+    self.filteredsortbyorder = function(filter, sortDirection) {
+        return ko.utils.arrayFilter(self.listitems(), function(item) {
             return ko.unwrap(item.Name).toLowerCase().indexOf(filter) !== -1;
-        }).sort(function (l, r) {
+        }).sort(function(l, r) {
             return (parseInt(l.DisplayOrder()) > parseInt(r.DisplayOrder())) ^ (sortDirection === -1);
         });
     };
 
-    self.unfilteredsortbyname = function (sortDirection) {
-        return self.listitems().sort(function (l, r) {
+    self.unfilteredsortbyname = function(sortDirection) {
+        return self.listitems().sort(function(l, r) {
             return (l.Name().toLowerCase() > r.Name().toLowerCase()) ^ (sortDirection === -1);
         });
     };
 
-    self.filteredsortbyname = function (filter, sortDirection) {
-        return ko.utils.arrayFilter(self.listitems(), function (item) {
+    self.filteredsortbyname = function(filter, sortDirection) {
+        return ko.utils.arrayFilter(self.listitems(), function(item) {
             return ko.unwrap(item.Name).toLowerCase().indexOf(filter) !== -1;
-        }).sort(function (l, r) {
+        }).sort(function(l, r) {
             return (l.Name().toLowerCase() > r.Name().toLowerCase()) ^ (sortDirection === -1);
         });
     };
 
-    self.managedisplayordersort = function (filter) {
+    self.managedisplayordersort = function(filter) {
         return (filter.length === 0)
             ? self.unfilteredsortbyorder(self.sortdirection())
             : self.filteredsortbyorder(filter, self.sortdirection());
     };
 
-    self.managenamesort = function (filter) {
+    self.managenamesort = function(filter) {
         return (filter.length === 0)
             ? self.unfilteredsortbyname(self.sortdirection())
             : self.filteredsortbyname(filter, self.sortdirection());
     };
 
-    self.filteredItems = function () {
+    self.filteredItems = function() {
         var filter = self.searchvalue().toLowerCase();
         return self.sorttype === 1
             ? self.managedisplayordersort(filter)
             : self.managenamesort(filter);
     };
 
-    self.toggleview = function () {
+    self.toggleview = function() {
         self.setmessageview();
         self.IsListAreaVisible(!self.IsListAreaVisible());
         self.IsSearchAreaVisible(!self.IsSearchAreaVisible());
         self.IsAddEditAreaVisible(!self.IsAddEditAreaVisible());
     };
 
-    self.clear = function () {
+    self.clear = function() {
         self.name("");
         self.errmsg("");
         self.placeid(0);
@@ -128,18 +128,18 @@ CustomerViewModel = function (data) {
         self.IsEdit(false);
     };
 
-    self.returnmessage = ko.pureComputed(function () {
+    self.returnmessage = ko.pureComputed(function() {
         return ko.unwrap(self.errmsg);
     });
 
-    self.handlereturndata = function (returndata) {
+    self.handlereturndata = function(returndata) {
         self.placeid(returndata.Id);
         self.errmsg(returndata.ErrMsg);
 
         self.setmessageview();
     };
 
-    self.edit = function (editdata) {
+    self.edit = function(editdata) {
         self.name(editdata.Name());
         self.placeid(editdata.PlaceId());
         self.timezone(editdata.TimeZone());
@@ -151,32 +151,32 @@ CustomerViewModel = function (data) {
         self.toggleview();
     };
 
-    self.clearandtoggle = function () {
+    self.clearandtoggle = function() {
         self.clear();
         self.toggleview();
     };
 
-    self.add = function () {
+    self.add = function() {
         self.clearandtoggle();
         self.name(self.searchvalue());
     };
 
-    self.cancel = function () {
+    self.cancel = function() {
         self.clearandtoggle();
     };
 
-    self.reset = function () {
+    self.reset = function() {
         self.searchvalue("");
     };
 
-    self.itemExists = function (id) {
-        var match = ko.utils.arrayFirst(self.listitems(), function (item) {
+    self.itemExists = function(id) {
+        var match = ko.utils.arrayFirst(self.listitems(), function(item) {
             return item.PlaceId() === id;
         });
         return match;
     };
 
-    self.processadd = function (itemToAdd) {
+    self.processadd = function(itemToAdd) {
         self.reorderfilteredlist();
         var newitem = {
             Name: ko.observable(itemToAdd.Name),
@@ -189,7 +189,7 @@ CustomerViewModel = function (data) {
         self.listitems.push(newitem);
     };
 
-    self.processedit = function (item) {
+    self.processedit = function(item) {
         for (var i = 0; i < self.listitems().length; i++) {
             if (self.listitems()[i].PlaceId() !== item.PlaceId)
                 continue;
@@ -202,7 +202,7 @@ CustomerViewModel = function (data) {
         }
     };
 
-    self.managesave = function (item) {
+    self.managesave = function(item) {
         if (self.IsEdit()) {
             self.processedit(item);
             return;
@@ -216,7 +216,7 @@ CustomerViewModel = function (data) {
         self.processadd(item);
     };
 
-    self.save = function () {
+    self.save = function() {
         var item = {
             Name: self.name(),
             PlaceId: self.placeid(),
@@ -229,7 +229,7 @@ CustomerViewModel = function (data) {
             url: baseUrl + "Save",
             type: "post",
             data: item
-        }).then(function (returndata) {
+        }).then(function(returndata) {
 
             self.handlereturndata(returndata);
             if (self.IsMessageAreaVisible()) {
@@ -241,11 +241,11 @@ CustomerViewModel = function (data) {
         });
     };
 
-    self.setlistiteminactive = function (removedata) {
+    self.setlistiteminactive = function(removedata) {
         $.ajax({
             url: baseUrl + removedata.PlaceId(),
             type: "delete"
-        }).then(function (returndata) {
+        }).then(function(returndata) {
 
             self.handlereturndata(returndata);
             if (self.IsMessageAreaVisible()) {
@@ -256,14 +256,14 @@ CustomerViewModel = function (data) {
         });
     };
 
-    self.removelistitem = function (item) {
+    self.removelistitem = function(item) {
         if (!confirm("Delete Item: '" + ko.unwrap(item.Name) + "'?")) {
             return;
         }
         self.setlistiteminactive(item);
     };
 
-    self.savenewdisplayorder = function () {
+    self.savenewdisplayorder = function() {
         $.ajax({
             type: "post",
             url: baseUrl + "DisplayOrder",
@@ -273,7 +273,7 @@ CustomerViewModel = function (data) {
         });
     };
 
-    self.editlistdisplayorder = function (placeid, value) {
+    self.editlistdisplayorder = function(placeid, value) {
         for (var i = 0; i < self.filteredItems().length; i++) {
             if (self.filteredItems()[i].PlaceId() !== placeid)
                 continue;
@@ -284,7 +284,7 @@ CustomerViewModel = function (data) {
         }
     };
 
-    self.managelistdisplayorder = function () {
+    self.managelistdisplayorder = function() {
         for (var i = 0; i < self.displayreorder().length; i++) {
             self.editlistdisplayorder(
                 ko.unwrap(self.displayreorder()[i].Id),
@@ -293,29 +293,29 @@ CustomerViewModel = function (data) {
         }
     };
 
-    var fixHelperModified = function (e, tr) {
+    var fixHelperModified = function(e, tr) {
         var $originals = tr.children();
         var $helper = tr.clone();
-        $helper.children().each(function (index) {
+        $helper.children().each(function(index) {
             $(this).width($originals.eq(index).width());
         });
         return $helper;
     };
 
-    self.makelistsortable = function () {
+    self.makelistsortable = function() {
         $("#datatable tbody").sortable({
             helper: fixHelperModified,
             stop: self.reorderfilteredlist
         }).disableSelection();
     };
 
-    self.refreshlisthtml = function () {
+    self.refreshlisthtml = function() {
         self.IsDisplayOrderChanged(true);
         self.IsDisplayOrderChanged(false);
         self.makelistsortable();
     };
 
-    self.managedisplayreorder = function () {
+    self.managedisplayreorder = function() {
         if (self.displayreorder().length === 0) {
             return;
         }
@@ -325,7 +325,7 @@ CustomerViewModel = function (data) {
         self.displayreorder([]);
     };
 
-    self.capturenewdisplayorder = function (placeid, value) {
+    self.capturenewdisplayorder = function(placeid, value) {
         self.displayreorder.push(
         {
             Id: placeid,
@@ -333,28 +333,28 @@ CustomerViewModel = function (data) {
         });
     };
 
-    self.getnewindex = function (n) {
+    self.getnewindex = function(n) {
         if (ko.unwrap(self.sortdirection) === 1) {
             return n + 1;
         }
         return n - 1;
     };
 
-    self.initnewindex = function () {
+    self.initnewindex = function() {
         if (ko.unwrap(self.sortdirection) === 1) {
             return 0;
         }
         return (self.filteredItems().length) + 1;
     };
 
-    self.reorderfilteredlist = function () {
+    self.reorderfilteredlist = function() {
         var rowindex = 0;
         var rowplaceid = 0;
         var rowdisplayorder = 0;
         var newindex = self.initnewindex();
 
         self.displayreorder([]);
-        $("#datatable tbody").children().each(function () {
+        $("#datatable tbody").children().each(function() {
             newindex = self.getnewindex(newindex);
             rowplaceid = parseInt($("#datatable tbody").children()[rowindex].children[1].innerText);
             rowdisplayorder = parseInt($("#datatable tbody").children()[rowindex].children[4].innerText);
