@@ -53,11 +53,11 @@ namespace ClaudeViewManagement.Managers.Places
         //    return ret;
         //}
 
-        //public bool Delete(int recordId)
-        //{
-        //    DeleteRecord(recordId);
-        //    return true;
-        //}
+        public bool Delete(int recordId)
+        {
+            //DeleteRecord(recordId);
+            return true;
+        }
 
         //public bool Validate(CustomerView entity)
         //{

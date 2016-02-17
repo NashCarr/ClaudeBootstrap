@@ -262,6 +262,8 @@
     <Content Include="Views\HearAboutUs\List.cshtml" />
     <Content Include="Views\ProductGroup\List.cshtml" />
     <Content Include="Views\Customer\List.cshtml" />
+    <Content Include="Views\Customer\Index.cshtml" />
+    <Content Include="Views\Shared\AddEditPlace.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ClaudeCommon\ClaudeCommon.csproj">

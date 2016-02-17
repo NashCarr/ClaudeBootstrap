@@ -1,0 +1,57 @@
+﻿<!-- ** BEGIN DETAIL AREA ** -->
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h1 class="panel-title">Add or Edit Place</h1>
+    </div>
+    <div class="panel-body">
+        <!-- ** BEGIN INPUT AREA -->
+
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    @Html.Label("Name", "Name")
+                    @Html.TextBox("Name", "", new { @class = "form-control", data_bind = "value:name" })
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    @Html.Label("Division", "Division")
+                    @Html.TextBox("Division", "", new { @class = "form-control", data_bind = "value:division" })
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    @Html.Label("Department", "Department")
+                    @Html.TextBox("Department", "", new { @class = "form-control", data_bind = "value:department" })
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    @Html.Label("TimeZone", "TimeZone")
+                   <select class = "form-control" data-bind="options: timezones, optionsText: 'Text', optionsValue: 'Value', optionsCaption: 'Choose...'"></select>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- ** END INPUT AREA -->
+    </div>
+    <div class="panel-footer">
+        <div class="row">
+            <div class="col-sm-12">
+                <a class="btn btn-sm btn-primary" type="button"
+                   data-bind="click: save" href="#">
+                    <i class="glyphicon glyphicon-floppy-disk"></i>Save
+                </a>
+                <a class="btn btn-sm btn-primary" type="button"
+                   data-bind="click: cancel" href="#">
+                    <i class="glyphicon glyphicon-remove-circle"></i>Cancel
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ** END DETAIL AREA ** -->

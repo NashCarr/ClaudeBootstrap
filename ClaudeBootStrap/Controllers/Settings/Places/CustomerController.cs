@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using ClaudeCommon.BaseModels;
+using ClaudeViewManagement.Managers.Places;
 using ClaudeViewManagement.Managers.Settings;
 using ClaudeViewManagement.ViewModels.Places;
 using static ClaudeCommon.Enums.PlaceEnums;
@@ -8,19 +9,19 @@ using static ClaudeCommon.Enums.PlaceEnums;
 namespace ClaudeBootstrap.Controllers.Settings.Places
 {
     [RoutePrefix("Customer")]
-    public class GiftCardController : Controller
+    public class CustomerController : Controller
     {
         [Route("")]
         [HttpGet]
         public ActionResult Index()
         {
-            return View(new PlaceViewModel(PlaceType.Customer));
+            return View(new PlaceListViewModel(PlaceType.Customer));
         }
 
         //[HttpPost]
-        //public JsonResult Save(GiftCard entity)
+        //public JsonResult Save(Customer entity)
         //{
-        //    using (GiftCardManager mgr = new GiftCardManager())
+        //    using (CustomerManager mgr = new CustomerManager())
         //    {
         //        return Json(mgr.SaveRecord(entity));
         //    }
@@ -29,9 +30,9 @@ namespace ClaudeBootstrap.Controllers.Settings.Places
         [HttpPost]
         public void DisplayOrder(List<DisplayReorder> list)
         {
-            using (GiftCardManager mgr = new GiftCardManager())
+            using (PlaceManager mgr = new PlaceManager())
             {
-                mgr.SaveDisplayReorder(list);
+                //mgr.SaveDisplayReorder(list);
             }
         }
 
@@ -39,9 +40,9 @@ namespace ClaudeBootstrap.Controllers.Settings.Places
         [HttpDelete]
         public JsonResult Delete(int id)
         {
-            using (GiftCardManager mgr = new GiftCardManager())
+            using (PlaceManager mgr = new PlaceManager())
             {
-                return Json(mgr.DeleteRecord(id));
+                return Json(mgr.DeleteRecord(PlaceType.Customer, id));
             }
         }
     }

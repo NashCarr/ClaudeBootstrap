@@ -50,6 +50,10 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bases\ViewModelBase.cs" />
@@ -69,7 +73,7 @@
     <Compile Include="ViewModels\People\StaffMemberViewModel.cs" />
     <Compile Include="ViewModels\Places\ClientFacilityViewModel.cs" />
     <Compile Include="ViewModels\Places\CustomerViewModel.cs" />
-    <Compile Include="ViewModels\Places\PlaceViewModel.cs" />
+    <Compile Include="ViewModels\Places\PlaceListViewModel.cs" />
     <Compile Include="ViewModels\Places\OrganizationViewModel.cs" />
     <Compile Include="ViewModels\Settings\HearAboutUsViewModel.cs" />
     <Compile Include="ViewModels\Settings\GiftCardViewModel.cs" />

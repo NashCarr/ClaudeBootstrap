@@ -5,7 +5,7 @@ using static ClaudeCommon.Enums.TimeZoneEnums;
 
 namespace ClaudeData.Models.LookupLists
 {
-    public class TimeZoneLookupList
+    public class TimeZoneLookupList 
     {
         public TimeZoneLookupList()
         {
@@ -15,7 +15,6 @@ namespace ClaudeData.Models.LookupLists
                 item.Value = EnumHelpers.GetByteFromEnum<ClaudeTimeZone>(item.Value).ToString();
             }
         }
-
         public List<SelectListItem> LookupList { get; set; }
     }
 }

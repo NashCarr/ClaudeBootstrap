@@ -1,5 +1,5 @@
 ﻿
-GiftCardViewModel = function (data) {
+CustomerViewModel = function (data) {
     var self = this;
     var baseUrl = "/Customer/";
 
@@ -26,7 +26,10 @@ GiftCardViewModel = function (data) {
 
     self.displayreorder = ko.observableArray();
 
+    self.timezones = ko.observableArray();
+
     self.listitems = ko.mapping.fromJS(data.ListEntity).extend({ deferred: true });
+    self.timezones = ko.mapping.fromJS(data.TimeZones).extend({ deferred: true });
 
     self.setmessageview = function () {
         self.IsMessageAreaVisible(self.errmsg().length);

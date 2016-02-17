@@ -15,11 +15,13 @@ namespace ClaudeCommon.Models
             PlaceType = PlaceType.None;
             TimeZone = ClaudeTimeZone.None;
         }
+
         public int PlaceId { get; set; }
         public string Name { get; set; }
         public string Division { get; set; }
         public string Department { get; set; }
         public short DisplayOrder { get; set; }
+        public string TimeZoneName { get; set; }
         public PlaceType PlaceType { get; set; }
         public ClaudeTimeZone TimeZone { get; set; }
     }
