@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using ClaudeCommon.Models;
-using ClaudeData.Models.LookupLists;
 using ClaudeViewManagement.Managers.Places;
 using static ClaudeCommon.Enums.PlaceEnums;
 
@@ -14,10 +13,16 @@ namespace ClaudeViewManagement.ViewModels.Places
             using (PlaceManager mgr = new PlaceManager())
             {
                 ListEntity = mgr.GetList(pt);
+                Countries = mgr.GetCountries();
+                TimeZones = mgr.GetTimeZones();
+                MobileCarriers = mgr.GetMobileCarriers();
+                StatesProvinces = mgr.GetStatesProvinces();
             }
-            TimeZones = new TimeZoneLookupList().LookupList;
         }
         public List<Place> ListEntity { get; set; }
         public List<SelectListItem> TimeZones { get; set; }
+        public List<SelectListItem> Countries { get; set; }
+        public List<SelectListItem> MobileCarriers { get; set; }
+        public List<SelectListItem> StatesProvinces { get; set; }
     }
 }

@@ -43,9 +43,9 @@ namespace ClaudeData.DataRepository.PlacesRepository
                                     Division = Convert.ToString(dr[ordDivision]),
                                     Department = Convert.ToString(dr[ordDepartment]),
                                     DisplayOrder = Convert.ToInt16(dr[ordDisplayOrder]),
-                                    TimeZone = (ClaudeTimeZone)Convert.ToByte(dr[ordTimeZone])
+                                    TimeZone = (ClaudeTimeZone) Convert.ToByte(dr[ordTimeZone])
                                 };
-                                item.TimeZoneName = Enum.GetName(typeof(TimeZone), item.TimeZone);
+                                item.TimeZoneName = Enum.GetName(typeof (TimeZone), item.TimeZone);
                                 data.Add(item);
                             }
                         }

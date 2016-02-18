@@ -41,7 +41,7 @@ namespace ClaudeViewManagement.ViewModels.People
 
             Entity.CountryList = new CountryLookupList();
             Entity.PhoneTypeList = new PhoneTypeLookupList();
-            Entity.MobileCarrierList = new MobileCarrierLookupList();
+            //Entity.MobileCarrierList = new MobileCarrierLookupList();
 
             using (DbPlacesLookup db = new DbPlacesLookup())
             {

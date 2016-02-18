@@ -8,5 +8,10 @@ namespace ClaudeData.DataRepository
         {
             return WebConfigurationManager.ConnectionStrings["ClaudeConnection"].ConnectionString;
         }
+
+        public static string GetGatewayConnStr()
+        {
+            return WebConfigurationManager.ConnectionStrings["GatewayConnStr"].ConnectionString;
+        }
     }
 }

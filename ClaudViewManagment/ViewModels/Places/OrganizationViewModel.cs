@@ -41,7 +41,7 @@ namespace ClaudeViewManagement.ViewModels.Places
             Entity.CountryList = new CountryLookupList();
             Entity.TimeZoneList = new TimeZoneLookupList();
             Entity.PhoneTypeList = new PhoneTypeLookupList();
-            Entity.MobileCarrierList = new MobileCarrierLookupList();
+            //Entity.MobileCarrierList = new MobileCarrierLookupList();
         }
 
         protected override void Add()

@@ -7,6 +7,8 @@ CustomerViewModel = function(data) {
     self.sortdirection = ko.observable(1);
 
     self.IsEdit = ko.observable(false);
+    self.LookupsLoaded = ko.observable(true);
+
     self.IsListAreaVisible = ko.observable(true);
     self.IsSearchAreaVisible = ko.observable(true);
     self.UseMailingforShipping = ko.observable(true);
@@ -28,11 +30,17 @@ CustomerViewModel = function(data) {
     self.displayreorder = ko.observableArray();
 
     self.timezones = ko.observableArray();
+    self.countries = ko.observableArray();
+    self.mobilecarriers = ko.observableArray();
+    self.statesprovinces = ko.observableArray();
 
-    self.listitems = ko.mapping.fromJS(data.ListEntity).extend({ deferred: true });
     self.timezones = ko.mapping.fromJS(data.TimeZones).extend({ deferred: true });
+    self.countries = ko.mapping.fromJS(data.Countries).extend({ deferred: true });
+    self.listitems = ko.mapping.fromJS(data.ListEntity).extend({ deferred: true });
+    self.mobilecarriers = ko.mapping.fromJS(data.MobileCarriers).extend({ deferred: true });
+    self.statesprovinces = ko.mapping.fromJS(data.StatesProvinces).extend({ deferred: true });
 
-    self.setmessageview = function() {
+    self.setmessageview = function () {
         self.IsMessageAreaVisible(self.errmsg().length);
     };
 
@@ -133,7 +141,7 @@ CustomerViewModel = function(data) {
         self.IsEdit(false);
     };
 
-    self.returnmessage = ko.pureComputed(function() {
+    self.returnmessage = ko.pureComputed(function () {
         return ko.unwrap(self.errmsg);
     });
 

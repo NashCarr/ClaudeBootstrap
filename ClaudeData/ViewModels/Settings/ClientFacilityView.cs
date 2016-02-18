@@ -29,7 +29,7 @@ namespace ClaudeData.ViewModels.Settings
         public CountryLookupList CountryList { get; set; }
         public TimeZoneLookupList TimeZoneList { get; set; }
         public PhoneTypeLookupList PhoneTypeList { get; set; }
-        public MobileCarrierLookupList MobileCarrierList { get; set; }
+        //public MobileCarrierLookupList MobileCarrierList { get; set; }
 
         public void Dispose()
         {
@@ -52,12 +52,12 @@ namespace ClaudeData.ViewModels.Settings
             CountryList?.LookupList.Clear();
             TimeZoneList?.LookupList.Clear();
             PhoneTypeList?.LookupList.Clear();
-            MobileCarrierList?.LookupList.Clear();
+            //MobileCarrierList?.LookupList.Clear();
 
             CountryList = null;
             TimeZoneList = null;
             PhoneTypeList = null;
-            MobileCarrierList = null;
+            //MobileCarrierList = null;
         }
     }
 }
