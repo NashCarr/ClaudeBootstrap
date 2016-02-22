@@ -7,11 +7,9 @@ CustomerViewModel = function(data) {
     self.sortdirection = ko.observable(1);
 
     self.IsEdit = ko.observable(false);
-    self.LookupsLoaded = ko.observable(true);
 
     self.IsListAreaVisible = ko.observable(true);
     self.IsSearchAreaVisible = ko.observable(true);
-    self.UseMailingforShipping = ko.observable(true);
     self.IsAddEditAreaVisible = ko.observable(false);
     self.IsMessageAreaVisible = ko.observable(false);
     self.IsDisplayOrderChanged = ko.observable(false);
@@ -19,8 +17,14 @@ CustomerViewModel = function(data) {
     self.errmsg = ko.observable("");
     self.searchvalue = ko.observable("");
 
-    self.errmsg = ko.observable("");
-    self.searchvalue = ko.observable("");
+    self.displayorder = ko.observable(0);
+    self.displayreorder = ko.observableArray();
+
+    self.UseMailingforShipping = ko.observable(true);
+
+    self.cellisprimary = ko.observable(true);
+    self.homeisprimary = ko.observable(true);
+    self.workisprimary = ko.observable(true);
 
     self.placeid = ko.observable(0);
     self.placename = ko.observable("");
@@ -28,9 +32,6 @@ CustomerViewModel = function(data) {
     self.placetimezone = ko.observable("");
     self.placedivision = ko.observable("");
     self.placedepartment = ko.observable("");
-
-    self.displayorder = ko.observable(0);
-    self.displayreorder = ko.observableArray();
 
     self.faxcountry = ko.observable(0);
     self.faxphonenumber = ko.observableArray([]);
@@ -72,7 +73,31 @@ CustomerViewModel = function(data) {
 
     self.placedata = ko.observableArray([]);
 
-    self.setfaxcountry = function () {
+    self.setcellasprimary = function () {
+        if (!self.cellisprimary()) {
+                return;
+        };
+        self.homeisprimary(false);
+        self.workisprimary(false);
+    };
+
+    self.sethomeasprimary = function () {
+        if (!self.homeisprimary()) {
+            return;
+        };
+        self.cellisprimary(false);
+        self.workisprimary(false);
+    };
+
+    self.setworkasprimary = function () {
+        if (!self.workisprimary()) {
+            return;
+        };
+        self.cellisprimary(false);
+        self.homeisprimary(false);
+    };
+
+    self.defaultfaxcountry = function () {
         if (typeof self.faxcountry() !== "undefined") {
             if (self.faxcountry() !== 0) {
                 return;
@@ -81,7 +106,7 @@ CustomerViewModel = function(data) {
         self.faxcountry(self.placecountry());
     };
 
-    self.setcellcountry = function () {
+    self.defaultcellcountry = function() {
         if (typeof self.cellcountry() !== "undefined") {
             if (self.cellcountry() !== 0) {
                 return;
@@ -90,7 +115,7 @@ CustomerViewModel = function(data) {
         self.cellcountry(self.placecountry());
     };
 
-    self.sethomecountry = function () {
+    self.defaulthomecountry = function() {
         if (typeof self.homecountry() !== "undefined") {
             if (self.homecountry() !== 0) {
                 return;
@@ -99,7 +124,7 @@ CustomerViewModel = function(data) {
         self.homecountry(self.placecountry());
     };
 
-    self.setworkcountry = function () {
+    self.defaultworkcountry = function() {
         if (typeof self.workcountry() !== "undefined") {
             if (self.workcountry() !== 0) {
                 return;
@@ -108,7 +133,7 @@ CustomerViewModel = function(data) {
         self.workcountry(self.placecountry());
     };
 
-    self.setmailingcountry = function () {
+    self.defaultmailingcountry = function() {
         if (typeof self.mailingcountry() !== "undefined") {
             if (self.mailingcountry() !== 0) {
                 return;
@@ -117,7 +142,7 @@ CustomerViewModel = function(data) {
         self.mailingcountry(self.placecountry());
     };
 
-    self.setshippingcountry = function () {
+    self.defaultshippingcountry = function() {
         if (typeof self.shippingcountry() !== "undefined") {
             if (self.shippingcountry() !== 0) {
                 return;
@@ -126,14 +151,87 @@ CustomerViewModel = function(data) {
         self.shippingcountry(self.placecountry());
     };
 
-    self.setcountrydefaults = function () {
-        self.setfaxcountry();
-        self.setcellcountry();
-        self.sethomecountry();
-        self.setworkcountry();
-        self.setmailingcountry();
-        self.setshippingcountry();
-     };
+    self.defaultshippingcity = function() {
+        if (typeof self.mailingcity() !== "undefined") {
+            if (
+                (self.UseMailingforShipping()) ||
+                (typeof self.shippingcity() === "undefined") 
+            ) {
+                self.shippingcity(self.mailingcity());
+                return;
+            };
+            if (self.shippingcity().length === 0) {
+                self.shippingcity(self.mailingcity());
+            };
+        };
+    };
+
+    self.defaultshippingaddress1 = function() {
+        if (typeof self.mailingaddress1() !== "undefined") {
+                self.shippingaddress1(self.mailingaddress1());
+        };
+    };
+
+    self.defaultshippingaddress2 = function() {
+        if (typeof self.mailingaddress2() !== "undefined") {
+                self.shippingaddress2(self.mailingaddress2());
+        };
+    };
+
+    self.defaultshippingpostalcode = function() {
+        if (typeof self.mailingpostalcode() !== "undefined") {
+            if (
+                (self.UseMailingforShipping()) ||
+                (typeof self.shippingpostalcode() === "undefined")
+            ) {
+                self.shippingpostalcode(self.mailingpostalcode());
+                return;
+            };
+            if (self.shippingpostalcode().length === 0) {
+                self.shippingpostalcode(self.mailingpostalcode());
+            };
+        };
+    };
+
+    self.defaultshippingstateprovince = function() {
+        if (typeof self.mailingstateprovince() !== "undefined") {
+            if (
+                (self.UseMailingforShipping()) ||
+                (typeof self.shippingstateprovince() === "undefined")
+            ) {
+                self.shippingstateprovince(self.mailingstateprovince());
+                return;
+            };
+            if (self.shippingstateprovince() === 0) {
+                self.shippingstateprovince(self.mailingstateprovince());
+            };
+        };
+    };
+
+    self.setshippingbasicdefaults = function() {
+        self.defaultshippingcity();
+        self.defaultshippingpostalcode();
+        self.defaultshippingstateprovince();
+    };
+
+    self.setshippingdefaults = function() {
+        if (self.UseMailingforShipping()) {
+            self.defaultshippingaddress1();
+            self.defaultshippingaddress2();
+        };
+        self.setshippingbasicdefaults();
+    };
+
+    self.setcountrydefaults = function() {
+        if (typeof self.placecountry() !== "undefined") {
+            self.defaultfaxcountry();
+            self.defaultcellcountry();
+            self.defaulthomecountry();
+            self.defaultworkcountry();
+            self.defaultmailingcountry();
+            self.defaultshippingcountry();
+        }
+    };
 
     self.setplacedefaults = function() {
         self.placeid = ko.observable(0);

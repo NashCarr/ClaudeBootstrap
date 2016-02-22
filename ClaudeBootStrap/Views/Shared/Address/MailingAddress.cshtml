@@ -3,7 +3,7 @@
     <div class="panel-heading">
         Mailing Address
         <div class="form-group pull-right">
-            <input data-bind="checked: UseMailingforShipping" name="issystem" type="checkbox">
+            <input data-bind="checked: UseMailingforShipping, event: { change: setshippingdefaults }" name="issystem" type="checkbox">
             @Html.Label("SameAddress", "Use For Shipping")
         </div>
     </div>
