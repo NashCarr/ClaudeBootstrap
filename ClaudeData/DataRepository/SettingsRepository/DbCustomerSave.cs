@@ -31,7 +31,7 @@ namespace ClaudeData.DataRepository.SettingsRepository
 
             PlaceData p = new PlaceData
             {
-                Place = data.Customer,
+                Place = data.Place,
                 AddressData = new AddressData(),
                 PhoneData = new PhoneData {PhoneSettings = data.Phones.PhoneSettings}
             };

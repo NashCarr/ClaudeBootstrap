@@ -32,7 +32,7 @@ namespace ClaudeData.DataRepository.SettingsRepository
 
             using (DbPlaceDataGet a = new DbPlaceDataGet())
             {
-                p = a.GetFacilityData(recordId);
+                p = a.GetCustomerData(recordId);
             }
 
             using (DbPlaceDataStub a = new DbPlaceDataStub())
@@ -42,7 +42,7 @@ namespace ClaudeData.DataRepository.SettingsRepository
 
             CustomerView m = new CustomerView
             {
-                Customer = p.Place,
+                Place = p.Place,
                 Addresses =
                 {
                     MailingAddress = p.AddressData.MailingAddress,

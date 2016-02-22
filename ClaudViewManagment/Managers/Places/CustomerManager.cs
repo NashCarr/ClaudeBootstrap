@@ -28,6 +28,14 @@ namespace ClaudeViewManagement.Managers.Places
         {
         }
 
+        //public static string SavePlace(Place entity)
+        //{
+        //    using (DbCustomerSave data = new DbCustomerSave())
+        //    {
+        //        return data.SaveCustomer(ref entity);
+        //    }
+        //}
+
         public List<Place> GetList()
         {
             //using (DbPlacesGetActive data = new DbPlacesGetActive())

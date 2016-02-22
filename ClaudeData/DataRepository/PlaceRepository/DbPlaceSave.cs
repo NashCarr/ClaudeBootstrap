@@ -50,7 +50,7 @@ namespace ClaudeData.DataRepository.PlaceRepository
             return AddUpdatePlace(ref data);
         }
 
-        protected internal string SaveCustomer(ref Place data)
+        public string SaveCustomer(ref Place data)
         {
             if (string.IsNullOrEmpty(data.Name))
             {

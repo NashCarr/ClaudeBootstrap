@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using ClaudeCommon.BaseModels;
+using ClaudeData.DataRepository.PlaceRepository;
+using ClaudeData.Models.Places;
 using ClaudeViewManagement.Managers.Places;
-using ClaudeViewManagement.Managers.Settings;
 using ClaudeViewManagement.ViewModels.Places;
 using static ClaudeCommon.Enums.PlaceEnums;
 
@@ -18,19 +19,28 @@ namespace ClaudeBootstrap.Controllers.Settings.Places
             return View(new PlaceListViewModel(PlaceType.Customer));
         }
 
-        //[HttpPost]
-        //public JsonResult Save(Customer entity)
-        //{
-        //    using (CustomerManager mgr = new CustomerManager())
-        //    {
-        //        return Json(mgr.SaveRecord(entity));
-        //    }
-        //}
+        [HttpPost]
+        public JsonResult SavePlace(Place p)
+        {
+            using (DbPlaceSave mgr = new DbPlaceSave())
+            {
+                return Json(mgr.SaveCustomer(ref p));
+            }
+        }
+
+        [HttpPost]
+        public JsonResult GetCustomer(string id)
+        {
+            using (PlaceManager mgr = new PlaceManager())
+            {
+                return Json(id != null ? mgr.GetCustomer(int.Parse(id)) : mgr.GetCustomer(0));
+            }
+        }
 
         [HttpPost]
         public void DisplayOrder(List<DisplayReorder> list)
         {
-            using (PlaceManager mgr = new PlaceManager())
+            using (PlaceListManager mgr = new PlaceListManager())
             {
                 //mgr.SaveDisplayReorder(list);
             }
@@ -40,7 +50,7 @@ namespace ClaudeBootstrap.Controllers.Settings.Places
         [HttpDelete]
         public JsonResult Delete(int id)
         {
-            using (PlaceManager mgr = new PlaceManager())
+            using (PlaceListManager mgr = new PlaceListManager())
             {
                 return Json(mgr.DeleteRecord(PlaceType.Customer, id));
             }

@@ -6,19 +6,23 @@
     <div class="panel-body">
         <div class="form-group" id="Name">
             @Html.Label("Name", "Name")
-            @Html.TextBox("Name", "", new { @class = "form-control", data_bind = "value:name" })
+            @Html.TextBox("Name", "", new { @class = "form-control", data_bind = "text: placename" })
         </div>
         <div class="form-group" id="Division">
             @Html.Label("Division", "Division")
-            @Html.TextBox("Division", "", new { @class = "form-control", data_bind = "value:division" })
+            @Html.TextBox("Division", "", new { @class = "form-control", data_bind = "text: placedivision" })
         </div>
         <div class="form-group" id="Department">
             @Html.Label("Department", "Department")
-            @Html.TextBox("Department", "", new { @class = "form-control", data_bind = "value:department" })
+            @Html.TextBox("Department", "", new { @class = "form-control", data_bind = "text: placedepartment" })
         </div>
         <div class="form-group" id="TimeZone">
             @Html.Label("TimeZone", "TimeZone")
-            <select class="form-control" data-bind="options: timezones, optionsText: 'Text', optionsValue: 'Value', optionsCaption: 'Choose...'"></select>
+            <select class="form-control" data-bind="value: placetimezone, options: timezones, optionsText: 'Text', optionsValue: 'Value', optionsCaption: 'Choose...'"></select>
+        </div>
+        <div class="form-group">
+            @Html.Label("Country", "Country")
+            <select class="form-control" data-bind="value: placecountry, options: countries, optionsText: 'Text', optionsValue: 'Value', event: { change: setcountrydefaults }, optionsCaption: 'Choose...'"></select>
         </div>
     </div>
 </div>

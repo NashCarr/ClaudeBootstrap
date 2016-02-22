@@ -8,13 +8,13 @@
             <div class="col-sm-5">
                 <div class="form-group">
                     @Html.Label("Address1", "Address1")
-                    @Html.TextBox("Address1", "", new {@class = "form-control", data_bind = "value:name"})
+                    @Html.TextBox("Address1", "", new {@class = "form-control", data_bind = "value:shippingaddress1"})
                 </div>
             </div>
             <div class="col-sm-5">
                 <div class="form-group">
                     @Html.Label("Address2", "Address2")
-                    @Html.TextBox("Address2", "", new {@class = "form-control", data_bind = "value:division"})
+                    @Html.TextBox("Address2", "", new {@class = "form-control", data_bind = "value:shippingaddress2"})
                 </div>
             </div>
         </div>
@@ -25,13 +25,13 @@
                     <a class="btn btn-sm btn-secondary pull-right" data-bind="click: cancel" href="#" type="button">
                         Verify
                     </a>
-                    @Html.TextBox("Postal", "", new {@class = "form-control", data_bind = "value:name"})
+                    @Html.TextBox("Postal", "", new {@class = "form-control", data_bind = "value:shippingpostalcode"})
                 </div>
             </div>
             <div class="col-sm-5">
                 <div class="form-group">
                     @Html.Label("Country", "Country")
-                    <select class="form-control" data-bind="options: countries, optionsText: 'Text', optionsValue: 'Value', optionsCaption: 'Choose...'"></select>
+                    <select class="form-control" data-bind="value: shippingcountry, options: countries, optionsText: 'Text', optionsValue: 'Value', optionsCaption: 'Choose...'"></select>
                 </div>
             </div>
         </div>
@@ -39,13 +39,13 @@
             <div class="col-sm-5">
                 <div class="form-group">
                     @Html.Label("City", "City")
-                    @Html.TextBox("City", "", new {@class = "form-control", data_bind = "value:department"})
+                    @Html.TextBox("City", "", new {@class = "form-control", data_bind = "value:shippingcity"})
                 </div>
             </div>
             <div class="col-sm-5">
                 <div class="form-group">
                     @Html.Label("State", "State")
-                    <select class="form-control" data-bind="options: statesprovinces, optionsText: 'Text', optionsValue: 'Value', optionsCaption: 'Choose...'"></select>
+                    <select class="form-control" data-bind="value: shippingstateprovince, options: statesprovinces, optionsText: 'Text', optionsValue: 'Value', optionsCaption: 'Choose...'"></select>
                 </div>
             </div>
         </div>

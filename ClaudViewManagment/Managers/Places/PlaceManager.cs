@@ -1,12 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.Web.Mvc;
 using ClaudeCommon.BaseModels;
-using ClaudeCommon.Models;
-using ClaudeData.DataRepository.LookupRepository;
-using ClaudeData.DataRepository.PlacesRepository;
-using ClaudeData.Models.LookupLists;
-using static ClaudeCommon.Enums.CountryEnums;
+using ClaudeData.DataRepository.SettingsRepository;
+using ClaudeData.ViewModels.Settings;
 using static ClaudeCommon.Enums.PlaceEnums;
 
 namespace ClaudeViewManagement.Managers.Places
@@ -23,43 +19,11 @@ namespace ClaudeViewManagement.Managers.Places
         {
         }
 
-        public List<Place> GetList(PlaceType pt)
+        public CustomerView GetCustomer(int recordId)
         {
-            using (DbPlacesGetActive data = new DbPlacesGetActive())
+            using (DbCustomerInfoGet data = new DbCustomerInfoGet())
             {
-                return data.GetActive(pt);
-            }
-        }
-
-        public List<SelectListItem> GetMobileCarriers()
-        {
-            using (DbMobileCarrierLookup db = new DbMobileCarrierLookup())
-            {
-                return db.GetLookUpList();
-            }
-        }
-
-        public List<SelectListItem> GetStatesProvinces()
-        {
-            using (DbStateProvinceLookup db = new DbStateProvinceLookup())
-            {
-                return db.GetLookup();
-            }
-        }
-
-        public List<SelectListItem> GetCountries()
-        {
-            using (CountryLookupList db = new CountryLookupList())
-            {
-                return db.LookupList;
-            }
-        }
-
-        public List<SelectListItem> GetTimeZones()
-        {
-            using (TimeZoneLookupList db = new TimeZoneLookupList())
-            {
-                return db.LookupList;
+                return data.GetRecord(recordId);
             }
         }
 

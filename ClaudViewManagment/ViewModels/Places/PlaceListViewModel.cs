@@ -10,7 +10,7 @@ namespace ClaudeViewManagement.ViewModels.Places
     {
         public PlaceListViewModel(PlaceType pt)
         {
-            using (PlaceManager mgr = new PlaceManager())
+            using (PlaceListManager mgr = new PlaceListManager())
             {
                 ListEntity = mgr.GetList(pt);
                 Countries = mgr.GetCountries();

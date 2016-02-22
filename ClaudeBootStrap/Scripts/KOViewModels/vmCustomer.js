@@ -19,20 +19,50 @@ CustomerViewModel = function(data) {
     self.errmsg = ko.observable("");
     self.searchvalue = ko.observable("");
 
-    self.name = ko.observable("");
-    self.placeid = ko.observable(0);
-    self.timezone = ko.observable(0);
-    self.placetype = ko.observable(2);
-    self.division = ko.observable("");
-    self.department = ko.observable("");
-    self.displayorder = ko.observable(0);
+    self.errmsg = ko.observable("");
+    self.searchvalue = ko.observable("");
 
+    self.placeid = ko.observable(0);
+    self.placename = ko.observable("");
+    self.placecountry = ko.observable("");
+    self.placetimezone = ko.observable("");
+    self.placedivision = ko.observable("");
+    self.placedepartment = ko.observable("");
+
+    self.displayorder = ko.observable(0);
     self.displayreorder = ko.observableArray();
 
-    self.timezones = ko.observableArray();
-    self.countries = ko.observableArray();
-    self.mobilecarriers = ko.observableArray();
-    self.statesprovinces = ko.observableArray();
+    self.faxcountry = ko.observable(0);
+    self.faxphonenumber = ko.observableArray([]);
+
+    self.cellcountry = ko.observable(0);
+    self.cellphonenumber = ko.observableArray([]);
+
+    self.homecountry = ko.observable(0);
+    self.homephonenumber = ko.observableArray([]);
+
+    self.workcountry = ko.observable(0);
+    self.workphonenumber = ko.observableArray([]);
+
+    self.mailingcity = ko.observable("");
+    self.mailingcountry = ko.observable(0);
+    self.mailingaddress1 = ko.observable("");
+    self.mailingaddress2 = ko.observable("");
+    self.mailingpostalcode = ko.observable("");
+    self.mailingstateprovince = ko.observable("");
+
+    self.shippingcity = ko.observable("");
+    self.shippingcountry = ko.observable(0);
+    self.shippingaddress1 = ko.observable("");
+    self.shippingaddress2 = ko.observable("");
+    self.shippingpostalcode = ko.observable("");
+    self.shippingstateprovince = ko.observable("");
+
+    self.listitems = ko.observableArray([]);
+    self.timezones = ko.observableArray([]);
+    self.countries = ko.observableArray([]);
+    self.mobilecarriers = ko.observableArray([]);
+    self.statesprovinces = ko.observableArray([]);
 
     self.timezones = ko.mapping.fromJS(data.TimeZones).extend({ deferred: true });
     self.countries = ko.mapping.fromJS(data.Countries).extend({ deferred: true });
@@ -40,7 +70,115 @@ CustomerViewModel = function(data) {
     self.mobilecarriers = ko.mapping.fromJS(data.MobileCarriers).extend({ deferred: true });
     self.statesprovinces = ko.mapping.fromJS(data.StatesProvinces).extend({ deferred: true });
 
-    self.setmessageview = function () {
+    self.placedata = ko.observableArray([]);
+
+    self.setfaxcountry = function () {
+        if (typeof self.faxcountry() !== "undefined") {
+            if (self.faxcountry() !== 0) {
+                return;
+            };
+        };
+        self.faxcountry(self.placecountry());
+    };
+
+    self.setcellcountry = function () {
+        if (typeof self.cellcountry() !== "undefined") {
+            if (self.cellcountry() !== 0) {
+                return;
+            };
+        };
+        self.cellcountry(self.placecountry());
+    };
+
+    self.sethomecountry = function () {
+        if (typeof self.homecountry() !== "undefined") {
+            if (self.homecountry() !== 0) {
+                return;
+            };
+        };
+        self.homecountry(self.placecountry());
+    };
+
+    self.setworkcountry = function () {
+        if (typeof self.workcountry() !== "undefined") {
+            if (self.workcountry() !== 0) {
+                return;
+            };
+        };
+        self.workcountry(self.placecountry());
+    };
+
+    self.setmailingcountry = function () {
+        if (typeof self.mailingcountry() !== "undefined") {
+            if (self.mailingcountry() !== 0) {
+                return;
+            };
+        };
+        self.mailingcountry(self.placecountry());
+    };
+
+    self.setshippingcountry = function () {
+        if (typeof self.shippingcountry() !== "undefined") {
+            if (self.shippingcountry() !== 0) {
+                return;
+            };
+        };
+        self.shippingcountry(self.placecountry());
+    };
+
+    self.setcountrydefaults = function () {
+        self.setfaxcountry();
+        self.setcellcountry();
+        self.sethomecountry();
+        self.setworkcountry();
+        self.setmailingcountry();
+        self.setshippingcountry();
+     };
+
+    self.setplacedefaults = function() {
+        self.placeid = ko.observable(0);
+        self.placename = ko.observable("");
+        self.placecountry = ko.observable(0);
+        self.placetimezone = ko.observable(0);
+        self.placedivision = ko.observable("");
+        self.placedepartment = ko.observable("");
+    };
+
+    self.setplacevalues = function() {
+        self.placename = self.placedata.name;
+        self.placeid = self.placedata.placeid;
+        self.placecountry = self.placedata.country;
+        self.placetimezone = self.placedata.timezone;
+        self.placedivision = self.placedata.division;
+        self.placedepartment = self.placedata.department;
+    };
+
+    self.manageplacevalues = function() {
+        if (self.placedata.length === 0) {
+            self.setplacedefaults();
+            return;
+        }
+        self.setplacevalues();
+    };
+
+    self.GetPlaceData = function() {
+        $.ajax({
+            url: baseUrl + "GetCustomer/" + ko.unwrap(self.placeid()),
+            type: "post"
+        }).then(function(returndata) {
+
+            self.placedata = ko.mapping.fromJS(returndata.Place);
+
+            //self.FaxPhone = ko.mapping.fromJS(returndata.Phones.FaxPhone);
+            //self.CellPhone = ko.mapping.fromJS(returndata.Phones.CellPhone);
+            //self.HomePhone = ko.mapping.fromJS(returndata.Phones.HomePhone);
+            //self.WorkPhone = ko.mapping.fromJS(returndata.Phones.WorkPhone);
+            //self.MailingAddress = ko.mapping.fromJS(returndata.Addresses.ShippingAddress);
+            //self.ShippingAddress = ko.mapping.fromJS(returndata.Addresses.MailingAddress);
+        });
+    };
+
+    self.setmessageview = function() {
         self.IsMessageAreaVisible(self.errmsg().length);
     };
 
@@ -48,15 +186,16 @@ CustomerViewModel = function(data) {
         return !self.IsDisplayOrderChanged();
     });
 
-    self.ShowShipping = ko.computed(function () {
+    self.ShowShipping = ko.computed(function() {
         return !self.UseMailingforShipping();
     });
 
-    self.managesorttype = function (type) {
+    self.managesorttype = function(type) {
         if (self.sorttype === type) {
             return;
         }
         self.sorttype = type;
+
         self.pauseNotifications = true;
         self.sortdirection(-1);
         self.pauseNotifications = false;
@@ -130,18 +269,13 @@ CustomerViewModel = function(data) {
     };
 
     self.clear = function() {
-        self.name("");
         self.errmsg("");
-        self.placeid(0);
-        self.timezone(0);
-        self.division("");
-        self.department("");
-        self.displayorder(0);
-
         self.IsEdit(false);
+        self.displayorder(0);
+        self.setplacedefaults();
     };
 
-    self.returnmessage = ko.pureComputed(function () {
+    self.returnmessage = ko.pureComputed(function() {
         return ko.unwrap(self.errmsg);
     });
 
@@ -153,12 +287,12 @@ CustomerViewModel = function(data) {
     };
 
     self.edit = function(editdata) {
-        self.name(editdata.Name());
+        self.placename(editdata.Name());
         self.placeid(editdata.PlaceId());
-        self.timezone(editdata.TimeZone());
-        self.division(editdata.Division());
-        self.department(editdata.Department());
+        self.placetimezone(editdata.TimeZone());
+        self.placedivision(editdata.Division());
         self.displayorder(editdata.DisplayOrder());
+        self.placedepartment(editdata.Department());
 
         self.IsEdit(true);
         self.toggleview();
@@ -170,8 +304,10 @@ CustomerViewModel = function(data) {
     };
 
     self.add = function() {
+        self.placeid(0);
+        self.GetPlaceData();
         self.clearandtoggle();
-        self.name(self.searchvalue());
+        self.placename(self.searchvalue());
     };
 
     self.cancel = function() {
@@ -229,29 +365,47 @@ CustomerViewModel = function(data) {
         self.processadd(item);
     };
 
-    self.save = function() {
-        var item = {
-            Name: self.name(),
-            PlaceId: self.placeid(),
-            TimeZone: self.timezone(),
-            Division: self.division(),
-            Department: self.department(),
-            DisplayOrder: self.displayorder()
-        };
+    self.savePlace = function() {
         $.ajax({
-            url: baseUrl + "Save",
+            url: baseUrl + "SavePlace",
             type: "post",
-            data: item
+            data: self.place
         }).then(function(returndata) {
 
-            self.handlereturndata(returndata);
-            if (self.IsMessageAreaVisible()) {
-                return;
-            }
+            //self.handlereturndata(returndata);
+            //if (self.IsMessageAreaVisible()) {
+            //    return;
+            //}
 
-            self.managesave(item);
-            self.clearandtoggle();
+            //self.managesave(item);
+            //self.clearandtoggle();
         });
+    };
+
+    self.save = function() {
+        self.savePlace();
+        //var item = {
+        //    Name: self.name(),
+        //    PlaceId: self.placeid(),
+        //    TimeZone: self.timezone(),
+        //    Division: self.division(),
+        //    Department: self.department(),
+        //    DisplayOrder: self.displayorder()
+        //};
+        //$.ajax({
+        //    url: baseUrl + "Save",
+        //    type: "post",
+        //    data: item
+        //}).then(function(returndata) {
+
+        //    self.handlereturndata(returndata);
+        //    if (self.IsMessageAreaVisible()) {
+        //        return;
+        //    }
+
+        //    self.managesave(item);
+        //    self.clearandtoggle();
+        //});
     };
 
     self.setlistiteminactive = function(removedata) {
