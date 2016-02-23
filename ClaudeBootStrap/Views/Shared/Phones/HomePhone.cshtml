@@ -1,4 +1,4 @@
-﻿<!-- ** BEGIN Cell Phone AREA -->
+﻿<!-- ** BEGIN Home Phone AREA -->
 <div class="panel panel-default" data-bind="" id="HomePhone">
     <div class="panel-heading">
         Home
@@ -11,17 +11,17 @@
         <div class="row">
             <div class="col-sm-5">
                 <div class="form-group">
-                    @Html.Label("PhoneNumber", "Phone Number")
+                    @Html.Label("HomePhoneNumber", "Phone Number")
                     @Html.TextBox("Home", "", new {@class = "form-control", data_bind = "value:homephonenumber" })
                 </div>
             </div>
             <div class="col-sm-5">
                 <div class="form-group">
-                    @Html.Label("Country", "Country")
+                    @Html.Label("HomeCountry", "Country")
                     <select class="form-control" data-bind="value: homecountry, options: countries, optionsText: 'Text', optionsValue: 'Value', optionsCaption: 'Choose...'"></select>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<!-- ** END Cell Phone AREA -->
+<!-- ** END Home Phone AREA -->
