@@ -1,0 +1,35 @@
+﻿<!-- ** BEGIN Cell Phone AREA -->
+<div class="panel panel-default" data-bind="" id="WorkPhone">
+    <div class="panel-heading">
+        Work
+        <div class="form-group pull-right">
+            <input data-bind="checked: workisprimary, event: { change: workprimarychange }" name="WorkIsPrimary" type="checkbox">
+            @Html.Label("PrimaryWork", "Is Primary")
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="form-group">
+                    @Html.Label("PhoneNumber", "Phone Number")
+                    @Html.TextBox("Address1", "", new {@class = "form-control", data_bind = "value:cellphonenumber", Mask = "(999) 999-9999" })
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <div class="form-group">
+                    @Html.Label("Country", "Country")
+                    <select class="form-control" data-bind="value: cellcountry, options: countries, optionsText: 'Text', optionsValue: 'Value', optionsCaption: 'Choose...'"></select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="form-group">
+                    @Html.Label("Extension", "Extension")
+                    @Html.TextBox("Extension", "", new { @class = "form-control", data_bind = "value:workextension" })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ** END Cell Phone AREA -->

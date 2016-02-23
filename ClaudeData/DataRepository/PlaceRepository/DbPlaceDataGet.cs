@@ -64,6 +64,7 @@ namespace ClaudeData.DataRepository.PlaceRepository
                             int ordDivision = dr.GetOrdinal("Division");
                             int ordDepartment = dr.GetOrdinal("Department");
 
+                            int ordCountry = dr.GetOrdinal("Country");
                             int ordIsActive = dr.GetOrdinal("IsActive");
                             int ordTimeZone = dr.GetOrdinal("TimeZone");
                             int ordCreateDate = dr.GetOrdinal("CreateDate");
@@ -78,9 +79,10 @@ namespace ClaudeData.DataRepository.PlaceRepository
                                 data.Place.Department = Convert.ToString(dr[ordDepartment]);
 
                                 data.Place.IsActive = Convert.ToBoolean(dr[ordIsActive]);
-                                data.Place.TimeZone = (ClaudeTimeZone) Convert.ToByte(dr[ordTimeZone]);
                                 data.Place.CreateDate = Convert.ToDateTime(dr[ordCreateDate]);
                                 data.Place.DisplayOrder = Convert.ToByte(dr[ordDisplayOrder]);
+                                data.Place.Country = (Country)Convert.ToByte(dr[ordCountry]);
+                                data.Place.TimeZone = (ClaudeTimeZone) Convert.ToByte(dr[ordTimeZone]);
                             }
 
                             //Addresses
@@ -95,7 +97,6 @@ namespace ClaudeData.DataRepository.PlaceRepository
                                 int ordPostalCodeId = dr.GetOrdinal("PostalCodeId");
 
                                 int ordCity = dr.GetOrdinal("City");
-                                int ordCountry = dr.GetOrdinal("Country");
                                 int ordZipCode = dr.GetOrdinal("ZipCode");
                                 int ordAddress1 = dr.GetOrdinal("Address1");
                                 int ordAddress2 = dr.GetOrdinal("Address2");
@@ -107,6 +108,7 @@ namespace ClaudeData.DataRepository.PlaceRepository
                                 int ordPostalLatitude = dr.GetOrdinal("PostalLatitude");
                                 int ordPostalLongitude = dr.GetOrdinal("PostalLongitude");
 
+                                ordCountry = dr.GetOrdinal("Country");
                                 ordIsActive = dr.GetOrdinal("IsActive");
                                 ordCreateDate = dr.GetOrdinal("CreateDate");
 
@@ -146,12 +148,12 @@ namespace ClaudeData.DataRepository.PlaceRepository
 
                             if (dr.HasRows)
                             {
-                                int ordPhoneAssociationId = dr.GetOrdinal("PhoneAssociationId");
                                 int ordPhoneId = dr.GetOrdinal("PhoneId");
-                                int ordPhoneNumber = dr.GetOrdinal("PhoneNumber");
-                                int ordCountry = dr.GetOrdinal("Country");
                                 int ordPhoneType = dr.GetOrdinal("PhoneType");
+                                int ordPhoneNumber = dr.GetOrdinal("PhoneNumber");
+                                int ordPhoneAssociationId = dr.GetOrdinal("PhoneAssociationId");
 
+                                ordCountry = dr.GetOrdinal("Country");
                                 ordIsActive = dr.GetOrdinal("IsActive");
                                 ordCreateDate = dr.GetOrdinal("CreateDate");
 
@@ -159,13 +161,13 @@ namespace ClaudeData.DataRepository.PlaceRepository
                                 {
                                     PhoneAssociation item = new PhoneAssociation
                                     {
-                                        PhoneAssociationId = Convert.ToInt32(dr[ordPhoneAssociationId]),
                                         PhoneId = Convert.ToInt32(dr[ordPhoneId]),
+                                        IsActive = Convert.ToBoolean(dr[ordIsActive]),
                                         PhoneNumber = Convert.ToInt64(dr[ordPhoneNumber]),
+                                        CreateDate = Convert.ToDateTime(dr[ordCreateDate]),
                                         Country = (Country) Convert.ToInt16(dr[ordCountry]),
                                         PhoneType = (PhoneType) Convert.ToInt16(dr[ordPhoneType]),
-                                        IsActive = Convert.ToBoolean(dr[ordIsActive]),
-                                        CreateDate = Convert.ToDateTime(dr[ordCreateDate])
+                                        PhoneAssociationId = Convert.ToInt32(dr[ordPhoneAssociationId])
                                     };
                                     data.PhoneData.Phones.Add(item);
                                 }

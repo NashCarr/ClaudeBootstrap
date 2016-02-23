@@ -1,0 +1,23 @@
+﻿<!-- ** BEGIN Cell Phone AREA -->
+<div class="panel panel-default" data-bind="" id="FaxPhone">
+    <div class="panel-heading">
+        Fax
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="form-group">
+                    @Html.Label("Fax", "Phone Number")
+                    @Html.TextBox("Fax", "", new {@class = "form-control", data_bind = "value:faxphonenumber" })
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <div class="form-group">
+                    @Html.Label("Country", "Country")
+                    <select class="form-control" data-bind="value: faxcountry, options: countries, optionsText: 'Text', optionsValue: 'Value', optionsCaption: 'Choose...'"></select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ** END Cell Phone AREA -->

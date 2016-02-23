@@ -1,4 +1,5 @@
 ﻿using ClaudeData.BaseModels;
+using static ClaudeCommon.Enums.CountryEnums;
 using static ClaudeCommon.Enums.PlaceEnums;
 using static ClaudeCommon.Enums.TimeZoneEnums;
 
@@ -13,10 +14,12 @@ namespace ClaudeData.Models.Places
             Department = string.Empty;
             PlaceType = PlaceType.None;
             PlaceTypeName = string.Empty;
+            Country = Country.None;
             TimeZone = ClaudeTimeZone.None;
         }
 
         public int PlaceId { get; set; }
+        public Country Country { get; set; }
         public string Division { get; set; }
         public string Department { get; set; }
         public PlaceType PlaceType { get; set; }

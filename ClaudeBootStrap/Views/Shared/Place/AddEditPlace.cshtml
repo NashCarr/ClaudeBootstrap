@@ -15,20 +15,27 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         Details
-                        <a class="btn btn-sm btn-secondary pull-right" data-bind="click: cancel" href="#" type="button">
+                        <a class="btn btn-sm btn-secondary pull-right" data-bind="click: viewprimary" href="#" type="button">
                             Primary
                         </a>
-                        <a class="btn btn-sm btn-secondary pull-right" data-bind="click: cancel" href="#" type="button">
+                        <a class="btn btn-sm btn-secondary pull-right" data-bind="click: viewphones" href="#" type="button">
                             Phones
                         </a>
-                        <a class="btn btn-sm btn-secondary pull-right" data-bind="click: cancel" href="#" type="button">
+                        <a class="btn btn-sm btn-secondary pull-right" data-bind="click: viewaddresses" href="#" type="button">
                             Addresses
                         </a>
                     </div>
                     <div class="panel-body">
 
+                        <div data-bind="visible: IsPrimaryDetailVisible()">
+                            @{ Html.RenderPartial("Primary/PlacePrimary"); }
+                        </div>
+                        <div data-bind="visible: IsPhoneDetailVisible()">
                             @{ Html.RenderPartial("Phones/Phones"); }
+                        </div>
+                        <div data-bind="visible: IsAddressDetailVisible()">
                             @{ Html.RenderPartial("Address/Addresses"); }
+                        </div>
 
                     </div>
                 </div>

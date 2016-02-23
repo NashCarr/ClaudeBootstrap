@@ -1,0 +1,27 @@
+﻿<!-- ** BEGIN Cell Phone AREA -->
+<div class="panel panel-default" data-bind="" id="HomePhone">
+    <div class="panel-heading">
+        Home
+        <div class="form-group pull-right">
+            <input data-bind="checked: homeisprimary, event: { change: homeprimarychange }" name="HomeIsPrimary" type="checkbox">
+            @Html.Label("PrimaryHome", "Is Primary")
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="form-group">
+                    @Html.Label("PhoneNumber", "Phone Number")
+                    @Html.TextBox("Home", "", new {@class = "form-control", data_bind = "value:homephonenumber" })
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <div class="form-group">
+                    @Html.Label("Country", "Country")
+                    <select class="form-control" data-bind="value: homecountry, options: countries, optionsText: 'Text', optionsValue: 'Value', optionsCaption: 'Choose...'"></select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ** END Cell Phone AREA -->

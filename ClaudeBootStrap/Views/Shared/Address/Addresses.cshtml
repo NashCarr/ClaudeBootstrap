@@ -1,6 +1,8 @@
 ﻿<!-- ** BEGIN Addresses AREA -->
-@{ Html.RenderPartial("Address/MailingAddress"); }
-<div data-bind="visible: !UseMailingforShipping()">
-    @{ Html.RenderPartial("Address/ShippingAddress"); }
+<div class="panel-group">
+    @{ Html.RenderPartial("Address/MailingAddress"); }
+    <div data-bind="visible: !UseMailingforShipping()">
+        @{ Html.RenderPartial("Address/ShippingAddress"); }
+    </div>
 </div>
 <!-- ** END Addresses AREA -->

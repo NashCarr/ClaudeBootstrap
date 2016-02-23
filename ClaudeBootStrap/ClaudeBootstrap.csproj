@@ -263,12 +263,17 @@
     <Content Include="Views\ProductGroup\List.cshtml" />
     <Content Include="Views\Customer\List.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
-    <Content Include="Views\Shared\AddEditPlace.cshtml" />
     <Content Include="Views\Shared\Place.cshtml" />
     <Content Include="Views\Shared\Address\ShippingAddress.cshtml" />
     <Content Include="Views\Shared\Address\MailingAddress.cshtml" />
     <Content Include="Views\Shared\Address\Addresses.cshtml" />
+    <Content Include="Views\Shared\Phones\FaxPhone.cshtml" />
+    <Content Include="Views\Shared\Phones\WorkPhone.cshtml" />
+    <Content Include="Views\Shared\Phones\HomePhone.cshtml" />
+    <Content Include="Views\Shared\Phones\CellPhone.cshtml" />
     <Content Include="Views\Shared\Phones\Phones.cshtml" />
+    <Content Include="Views\Shared\Place\AddEditPlace.cshtml" />
+    <Content Include="Views\Shared\Primary\PlacePrimary.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ClaudeCommon\ClaudeCommon.csproj">

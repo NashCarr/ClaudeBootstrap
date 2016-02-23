@@ -1,0 +1,14 @@
+﻿<!-- ** BEGIN Primary AREA -->
+<div class="panel-group">
+    <div data-bind="visible: cellisprimary()">
+        @{ Html.RenderPartial("Phones/CellPhone"); }
+    </div>
+    <div data-bind="visible: workisprimary()">
+        @{ Html.RenderPartial("Phones/WorkPhone"); }
+    </div>
+    <div data-bind="visible: homeisprimary()">
+        @{ Html.RenderPartial("Phones/HomePhone"); }
+    </div>
+    @{ Html.RenderPartial("Address/MailingAddress"); }
+</div>
+<!-- ** END Primary AREA -->

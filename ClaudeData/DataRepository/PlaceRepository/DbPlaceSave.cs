@@ -16,9 +16,9 @@ namespace ClaudeData.DataRepository.PlaceRepository
 
                 CmdSql.Parameters.Add("@Name", SqlDbType.NVarChar, 50).Value = data.Name?.Trim() ?? string.Empty;
                 CmdSql.Parameters.Add("@Division", SqlDbType.NVarChar, 50).Value = data.Division?.Trim() ?? string.Empty;
-                CmdSql.Parameters.Add("@Department", SqlDbType.NVarChar, 50).Value = data.Department?.Trim() ??
-                                                                                     string.Empty;
+                CmdSql.Parameters.Add("@Department", SqlDbType.NVarChar, 50).Value = data.Department?.Trim() ?? string.Empty;
                 CmdSql.Parameters.Add("@TimeZone", SqlDbType.TinyInt).Value = data.TimeZone;
+                CmdSql.Parameters.Add("@Country", SqlDbType.SmallInt).Value = data.Country;
                 CmdSql.Parameters.Add("@DisplayOrder", SqlDbType.Int).Value = data.DisplayOrder;
                 CmdSql.Parameters.Add("@IsActive", SqlDbType.Bit).Value = data.IsActive;
 
