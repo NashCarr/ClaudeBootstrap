@@ -8,9 +8,11 @@ namespace ClaudeData.Models.Addresses
     {
         public AddressData()
         {
+            UseMailingForShipping = true;
             Addresses = new List<AddressAssociation>();
         }
 
+        public bool UseMailingForShipping { get; set; }
         public List<AddressAssociation> Addresses { get; set; }
 
         public AddressAssociation MailingAddress

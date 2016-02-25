@@ -1,6 +1,6 @@
-﻿using static System.DateTime;
+﻿using System;
 
-namespace ClaudeCommon.BaseModels
+namespace ClaudeCommon.BaseModels.Returns
 {
     public class ReturnBase
     {
@@ -8,7 +8,7 @@ namespace ClaudeCommon.BaseModels
         {
             Id = 0;
             ErrMsg = string.Empty;
-            StringCreateDate = Now.ToString("MM/dd/yyyy hh:mm:ss tt");
+            StringCreateDate = DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss tt");
         }
 
         public int Id { get; set; }

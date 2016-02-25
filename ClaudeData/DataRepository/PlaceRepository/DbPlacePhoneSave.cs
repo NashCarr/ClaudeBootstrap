@@ -26,7 +26,7 @@ namespace ClaudeData.DataRepository.PlaceRepository
             }
         }
 
-        protected internal string SaveCustomerPhone(int placeId, PhoneAssociation data)
+        public string SaveCustomerPhone(int placeId, PhoneAssociation data)
         {
             if (data == null) return string.Empty;
             if (data.PhoneNumber == 0) return "Phone Number Cannot Be Zero";

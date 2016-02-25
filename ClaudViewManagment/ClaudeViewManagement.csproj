@@ -73,6 +73,7 @@
     <Compile Include="ViewModels\People\CustomerContactViewModel.cs" />
     <Compile Include="ViewModels\People\StaffMemberViewModel.cs" />
     <Compile Include="ViewModels\Places\ClientFacilityViewModel.cs" />
+    <Compile Include="ViewModels\Places\PlaceSaveModel.cs" />
     <Compile Include="ViewModels\Places\PlaceListViewModel.cs" />
     <Compile Include="ViewModels\Places\OrganizationViewModel.cs" />
     <Compile Include="ViewModels\Settings\HearAboutUsViewModel.cs" />

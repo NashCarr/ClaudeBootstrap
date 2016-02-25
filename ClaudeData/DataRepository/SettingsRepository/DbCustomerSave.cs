@@ -1,4 +1,5 @@
 ﻿using System;
+using ClaudeCommon.BaseModels.Returns;
 using ClaudeData.DataRepository.PlaceRepository;
 using ClaudeData.Models.Addresses;
 using ClaudeData.Models.Phones;
@@ -17,39 +18,42 @@ namespace ClaudeData.DataRepository.SettingsRepository
             GC.SuppressFinalize(this);
         }
 
-        public string SaveCustomer(ref CustomerView data, ref int placeId)
+        public ReturnBase SaveCustomer(ref CustomerView data, ref int placeId)
         {
-            string msg;
-
-            data.Phones.FaxPhone.PhoneType = PhoneType.Fax;
-            data.Phones.CellPhone.PhoneType = PhoneType.Cell;
-            data.Phones.HomePhone.PhoneType = PhoneType.Home;
-            data.Phones.WorkPhone.PhoneType = PhoneType.Work;
-
-            data.Addresses.MailingAddress.AddressType = AddressType.Mailing;
-            data.Addresses.ShippingAddress.AddressType = AddressType.Physical;
-
-            PlaceData p = new PlaceData
+            try
             {
-                Place = data.Place,
-                AddressData = new AddressData(),
-                PhoneData = new PhoneData {PhoneSettings = data.Phones.PhoneSettings}
-            };
+                data.Phones.FaxPhone.PhoneType = PhoneType.Fax;
+                data.Phones.CellPhone.PhoneType = PhoneType.Cell;
+                data.Phones.HomePhone.PhoneType = PhoneType.Home;
+                data.Phones.WorkPhone.PhoneType = PhoneType.Work;
 
-            p.PhoneData.Phones.Add(data.Phones.FaxPhone);
-            p.PhoneData.Phones.Add(data.Phones.CellPhone);
-            p.PhoneData.Phones.Add(data.Phones.HomePhone);
-            p.PhoneData.Phones.Add(data.Phones.WorkPhone);
+                data.Addresses.MailingAddress.AddressType = AddressType.Mailing;
+                data.Addresses.ShippingAddress.AddressType = AddressType.Physical;
 
-            p.AddressData.Addresses.Add(data.Addresses.MailingAddress);
-            p.AddressData.Addresses.Add(data.Addresses.ShippingAddress);
+                PlaceData p = new PlaceData
+                {
+                    Place = data.Place,
+                    AddressData = new AddressData(),
+                    PhoneData = new PhoneData {PhoneSettings = data.Phones.PhoneSettings}
+                };
 
-            using (DbPlaceSave db = new DbPlaceSave())
-            {
-                msg = db.SaveCustomerData(p, ref placeId);
+                p.PhoneData.Phones.Add(data.Phones.FaxPhone);
+                p.PhoneData.Phones.Add(data.Phones.CellPhone);
+                p.PhoneData.Phones.Add(data.Phones.HomePhone);
+                p.PhoneData.Phones.Add(data.Phones.WorkPhone);
+
+                p.AddressData.Addresses.Add(data.Addresses.MailingAddress);
+                p.AddressData.Addresses.Add(data.Addresses.ShippingAddress);
+
+                using (DbPlaceSave db = new DbPlaceSave())
+                {
+                    return db.SaveCustomerData(p, ref placeId);
+                }
             }
-
-            return msg;
+            catch (Exception ex)
+            {
+                return new ReturnBase {ErrMsg = ex.Message};
+            }
         }
 
         protected virtual void Dispose(bool iAmBeingCalledFromDisposeAndNotFinalize)

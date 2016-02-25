@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using ClaudeCommon.BaseModels;
 using ClaudeData.DataRepository.PlaceRepository;
+using ClaudeData.Models.Phones;
 using ClaudeData.Models.Places;
 using ClaudeViewManagement.Managers.Places;
 using ClaudeViewManagement.ViewModels.Places;
@@ -20,16 +21,25 @@ namespace ClaudeBootstrap.Controllers.Settings.Places
         }
 
         [HttpPost]
-        public JsonResult SavePlace(Place p)
+        public JsonResult SavePlace(PlaceSaveModel p)
         {
-            using (DbPlaceSave mgr = new DbPlaceSave())
+            using (PlaceManager mgr = new PlaceManager())
             {
-                return Json(mgr.SaveCustomer(ref p));
+                return Json(mgr.SavePlace(p));
             }
         }
 
         [HttpPost]
-        public JsonResult GetCustomer(string id)
+        public JsonResult SavePhone(int id, PhoneAssociation p)
+        {
+            using (DbPlacePhoneSave mgr = new DbPlacePhoneSave())
+            {
+                return Json(mgr.SaveCustomerPhone(id, p));
+            }
+        }
+
+        [HttpPost]
+        public JsonResult GetPlace(string id)
         {
             using (PlaceManager mgr = new PlaceManager())
             {

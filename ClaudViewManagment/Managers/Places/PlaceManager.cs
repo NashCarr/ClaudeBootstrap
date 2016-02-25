@@ -1,8 +1,14 @@
 using System;
 using System.Collections.Generic;
 using ClaudeCommon.BaseModels;
+using ClaudeCommon.BaseModels.Returns;
+using ClaudeData.DataRepository.PlaceRepository;
 using ClaudeData.DataRepository.SettingsRepository;
+using ClaudeData.Models.Addresses;
+using ClaudeData.Models.Phones;
+using ClaudeData.Models.Places;
 using ClaudeData.ViewModels.Settings;
+using ClaudeViewManagement.ViewModels.Places;
 using static ClaudeCommon.Enums.PlaceEnums;
 
 namespace ClaudeViewManagement.Managers.Places
@@ -42,6 +48,53 @@ namespace ClaudeViewManagement.Managers.Places
             //    return data.(recordId);
             //}
             return null;
+        }
+
+        public ReturnBase SavePlace(PlaceSaveModel data)
+        {
+            PlaceData p = new PlaceData
+            {
+                Place = data.Place,
+                PhoneData = new PhoneData(),
+                AddressData = new AddressData {UseMailingForShipping = data.UseMailingForShipping}
+            };
+
+            if (data.PhoneSetting != null)
+            {
+                p.PhoneData.PhoneSettings = data.PhoneSetting;
+            }
+            if (data.FaxPhone != null && data.FaxPhone.PhoneNumber != 0)
+            {
+                p.PhoneData.Phones.Add(data.FaxPhone);
+            }
+            if (data.CellPhone != null && data.CellPhone.PhoneNumber != 0)
+            {
+                p.PhoneData.Phones.Add(data.CellPhone);
+            }
+            if (data.HomePhone != null && data.HomePhone.PhoneNumber != 0)
+            {
+                p.PhoneData.Phones.Add(data.HomePhone);
+            }
+            if (data.WorkPhone != null && data.WorkPhone.PhoneNumber != 0)
+            {
+                p.PhoneData.Phones.Add(data.WorkPhone);
+            }
+            if (data.MailingAddress.Address1 != null && data.MailingAddress != null &&
+                data.MailingAddress.Address1.Length != 0)
+            {
+                p.AddressData.Addresses.Add(data.MailingAddress);
+            }
+            if (data.ShippingAddress.Address1 != null && data.ShippingAddress != null &&
+                data.ShippingAddress.Address1.Length != 0)
+            {
+                p.AddressData.Addresses.Add(data.ShippingAddress);
+            }
+
+            int id = p.Place.PlaceId;
+            using (DbPlaceSave mgr = new DbPlaceSave())
+            {
+                return mgr.SavePlace(p, id);
+            }
         }
     }
 }
