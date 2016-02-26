@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
-using ClaudeCommon.BaseModels;
-using ClaudeCommon.BaseModels.Returns;
 using ClaudeCommon.Models;
 using ClaudeData.DataRepository.LookupRepository;
 using ClaudeData.DataRepository.PlacesRepository;
@@ -61,23 +59,6 @@ namespace ClaudeViewManagement.Managers.Places
             {
                 return db.LookupList;
             }
-        }
-
-        public void SaveDisplayReorder(PlaceType pt, List<DisplayReorder> data)
-        {
-            //using (DbReorderSave db = new DbReorderSave())
-            //{
-            //    db.PlaceReorderSave(data);
-            //}
-        }
-
-        public ReturnBase DeleteRecord(PlaceType pt, int id)
-        {
-            //using (DbPlaceSave data = new DbPlaceSave())
-            //{
-            //    return data.(recordId);
-            //}
-            return null;
         }
     }
 }

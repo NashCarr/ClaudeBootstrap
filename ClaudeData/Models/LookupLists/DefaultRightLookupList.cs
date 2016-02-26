@@ -15,6 +15,7 @@ namespace ClaudeData.Models.LookupLists
                 item.Value = EnumHelpers.GetByteFromEnum<DefaultRight>(item.Value).ToString();
             }
         }
+
         public List<SelectListItem> LookupList { get; set; }
     }
 }

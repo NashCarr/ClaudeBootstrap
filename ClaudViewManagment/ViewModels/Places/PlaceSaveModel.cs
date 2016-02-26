@@ -1,7 +1,6 @@
-﻿using ClaudeCommon.Models;
-using ClaudeData.Models.Addresses;
+﻿using ClaudeData.Models.Addresses;
 using ClaudeData.Models.Phones;
-using Place = ClaudeData.Models.Places.Place;
+using ClaudeData.Models.Places;
 
 namespace ClaudeViewManagement.ViewModels.Places
 {

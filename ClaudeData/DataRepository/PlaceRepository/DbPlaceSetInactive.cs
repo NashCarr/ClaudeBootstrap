@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using ClaudeCommon.BaseModels.Returns;
 
 namespace ClaudeData.DataRepository.PlaceRepository
 {
@@ -51,7 +52,7 @@ namespace ClaudeData.DataRepository.PlaceRepository
             return ReturnValues.ErrMsg;
         }
 
-        public string SetCustomerInactive(int placeId)
+        public ReturnBase SetCustomerInactive(int placeId)
         {
             try
             {
@@ -63,7 +64,7 @@ namespace ClaudeData.DataRepository.PlaceRepository
             {
                 ReturnValues.ErrMsg = ex.Message;
             }
-            return ReturnValues.ErrMsg;
+            return ReturnValues;
         }
     }
 }

@@ -81,7 +81,7 @@ namespace ClaudeData.DataRepository.PlaceRepository
                                 data.Place.IsActive = Convert.ToBoolean(dr[ordIsActive]);
                                 data.Place.CreateDate = Convert.ToDateTime(dr[ordCreateDate]);
                                 data.Place.DisplayOrder = Convert.ToByte(dr[ordDisplayOrder]);
-                                data.Place.Country = (Country)Convert.ToByte(dr[ordCountry]);
+                                data.Place.Country = (Country) Convert.ToByte(dr[ordCountry]);
                                 data.Place.TimeZone = (ClaudeTimeZone) Convert.ToByte(dr[ordTimeZone]);
                             }
 

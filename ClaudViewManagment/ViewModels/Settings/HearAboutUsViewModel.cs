@@ -13,6 +13,7 @@ namespace ClaudeViewManagement.ViewModels.Settings
                 ListEntity = mgr.GetList();
             }
         }
+
         public List<HearAboutUs> ListEntity { get; set; }
     }
 }

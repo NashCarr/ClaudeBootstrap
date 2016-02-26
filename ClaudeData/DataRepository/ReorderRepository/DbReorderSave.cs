@@ -43,6 +43,11 @@ namespace ClaudeData.DataRepository.ReorderRepository
         //    DisplayReorder("[Admin].[usp_FacilityResource_DisplayReorder]", dOrder);
         //}
 
+        public void CustomerReorderSave(List<DisplayReorder> data)
+        {
+            DisplayReorder("[Admin].[usp_Customer_DisplayReorder]", data);
+        }
+
         public void GiftCardReorderSave(List<DisplayReorder> data)
         {
             DisplayReorder("[Admin].[usp_GiftCard_DisplayReorder]", data);

@@ -24,7 +24,6 @@ CustomerViewModel = function(data) {
     self.searchvalue = ko.observable("");
 
     //displayorder
-    self.displayorder = ko.observable(0);
     self.IsDisplayOrderChanged = ko.observable(false);
 
     //place
@@ -35,8 +34,7 @@ CustomerViewModel = function(data) {
     self.placedivision = ko.observable("");
     self.placedepartment = ko.observable("");
 
-    //phonesettings
-    self.phonesettingid = 0;
+    self.placedata = ko.observableArray([]);
 
     //associations
     self.faxassociationid = 0;
@@ -54,6 +52,7 @@ CustomerViewModel = function(data) {
     self.workid = 0;
     self.mailingid = 0;
     self.shippingid = 0;
+    self.phonesettingid = 0;
     //ids
 
     //fax
@@ -109,7 +108,35 @@ CustomerViewModel = function(data) {
     self.statesprovinces = ko.mapping.fromJS(data.StatesProvinces).extend({ deferred: true });
     //lookups
 
-    self.placedata = ko.observableArray([]);
+    self.DragDropComplete = ko.computed(function() {
+        return !self.IsDisplayOrderChanged();
+    });
+
+    self.ShowShipping = ko.computed(function() {
+        return !self.UseMailingforShipping();
+    });
+
+    self.returnmessage = ko.pureComputed(function() {
+        return ko.unwrap(self.errmsg);
+    });
+
+    self.setmessageview = function() {
+        self.IsMessageAreaVisible(self.errmsg().length);
+    };
+
+    self.toggleview = function() {
+        self.setmessageview();
+        self.IsListAreaVisible(!self.IsListAreaVisible());
+        self.IsSearchAreaVisible(!self.IsSearchAreaVisible());
+        self.IsAddEditAreaVisible(!self.IsAddEditAreaVisible());
+    };
+
+    self.handleeturndata = function(returndata) {
+        self.placeid(returndata.Id);
+        self.errmsg(returndata.ErrMsg);
+
+        self.setmessageview();
+    };
 
     self.PrimaryPhone = {
         phoneprimaryid: 0,
@@ -690,18 +717,6 @@ CustomerViewModel = function(data) {
         });
     };
 
-    self.setmessageview = function() {
-        self.IsMessageAreaVisible(self.errmsg().length);
-    };
-
-    self.DragDropComplete = ko.computed(function() {
-        return !self.IsDisplayOrderChanged();
-    });
-
-    self.ShowShipping = ko.computed(function() {
-        return !self.UseMailingforShipping();
-    });
-
     self.ManageSort = {
         ManageType: function(type) {
             if (self.sorttype === type) {
@@ -775,17 +790,9 @@ CustomerViewModel = function(data) {
             : self.SortName.Manage(filter);
     };
 
-    self.toggleview = function() {
-        self.setmessageview();
-        self.IsListAreaVisible(!self.IsListAreaVisible());
-        self.IsSearchAreaVisible(!self.IsSearchAreaVisible());
-        self.IsAddEditAreaVisible(!self.IsAddEditAreaVisible());
-    };
-
     self.clear = function() {
         self.errmsg("");
         self.IsEdit(false);
-        self.displayorder(0);
 
         self.Fax.Clear();
         self.Cell.Clear();
@@ -795,17 +802,6 @@ CustomerViewModel = function(data) {
         self.Mailing.Clear();
         self.Shipping.Clear();
         self.PhoneSettings.Clear();
-    };
-
-    self.returnmessage = ko.pureComputed(function() {
-        return ko.unwrap(self.errmsg);
-    });
-
-    self.handleeturndata = function(returndata) {
-        self.placeid(returndata.Id);
-        self.errmsg(returndata.ErrMsg);
-
-        self.setmessageview();
     };
 
     self.edit = function(editdata) {
@@ -835,56 +831,79 @@ CustomerViewModel = function(data) {
     };
 
     self.ProcessSave = {
-        TimeZone: function () {
-            var zone = "";
-            for (var i = 0; i < self.timezones().length; i++) {
-                if (parseInt(self.timezones()[i].Value()) !== parseInt(self.placetimezone()))
-                    continue;
-                zone = self.timezones()[i].Text();
-                break;
-            }
-            return zone;
-        },
-        ItemExists: function (id) {
-            var match = ko.utils.arrayFirst(self.listitems(), function(item) {
-                return item.PlaceId() === id;
+        CountryName: function() {
+            var id = parseInt(self.placecountry());
+            if (id === 0) {
+                return "";
+            };
+            var n = "";
+            var match = ko.utils.arrayFirst(self.countries(), function (item) {
+                return parseInt(item.Value()) === id;
             });
-            return match;
+            if (match) {
+                n = match.Text();
+            }
+            return n;
         },
-        ProcessAdd: function(itemToAdd) {
+        TimeZoneName: function() {
+            var id = parseInt(self.placetimezone());
+            if (id === 0) {
+                return "";
+            };
+            var n = "";
+            var match = ko.utils.arrayFirst(self.timezones(), function (item) {
+                return parseInt(item.Value()) === id;
+            });
+            if (match) {
+                n = match.Text();
+            }
+            return n;
+        },
+        ProcessAdd: function() {
             self.ReorderList.ReorderFilteredList();
             var newitem = {
-                Name: ko.observable(itemToAdd.Name),
-                PlaceId: ko.observable(itemToAdd.PlaceId),
-                TimeZone: ko.observable(itemToAdd.TimeZone),
-                Division: ko.observable(itemToAdd.Division),
-                Department: ko.observable(itemToAdd.Department),
-                DisplayOrder: ko.observable(itemToAdd.DisplayOrder)
+                PlaceType: ko.observable(0),
+                DisplayOrder: ko.observable(0),
+                PlaceId: ko.observable(self.placeid()),
+                Name: ko.observable(self.placename()),
+                Country: ko.observable(self.placecountry()),
+                TimeZone: ko.observable(self.placetimezone()),
+                Division: ko.observable(self.placedivision()),
+                Department: ko.observable(self.placedepartment()),
+                CountryName: ko.observable(self.ProcessSave.CountryName()),
+                TimeZoneName: ko.observable(self.ProcessSave.TimeZoneName())
             };
             self.listitems.push(newitem);
         },
-        ProcessEdit: function(item) {
+        ProcessEdit: function() {
             for (var i = 0; i < self.listitems().length; i++) {
-                if (self.listitems()[i].PlaceId() !== item.Id)
+                if (self.listitems()[i].PlaceId() !== self.placeid())
                     continue;
                 self.listitems()[i].Name(self.placename());
+                self.listitems()[i].Country(self.placecountry());
                 self.listitems()[i].Division(self.placedivision());
                 self.listitems()[i].TimeZone(self.placetimezone());
                 self.listitems()[i].Department(self.placedepartment());
-                self.listitems()[i].TimeZoneName(self.ProcessSave.TimeZone());
+                self.listitems()[i].CountryName(self.ProcessSave.CountryName());
+                self.listitems()[i].TimeZoneName(self.ProcessSave.TimeZoneName());
                 break;
             }
         },
-        Manage: function(item) {
+        ItemExists: function () {
+            var match = ko.utils.arrayFirst(self.listitems(), function (item) {
+                return item.PlaceId() === self.placeid();
+            });
+            return match;
+        },
+        Manage: function () {
             if (self.IsEdit()) {
-                self.ProcessSave.ProcessEdit(item);
+                self.ProcessSave.ProcessEdit();
                 return;
             }
-            if (self.ProcessSave.ItemExists(self.placeid())) {
+            if (self.ProcessSave.ItemExists()) {
                 return;
             }
-            item.PlaceId = self.placeid();
-            self.ProcessSave.ProcessAdd(item);
+            self.ProcessSave.ProcessAdd();
         }
     };
 
@@ -913,7 +932,7 @@ CustomerViewModel = function(data) {
             if (self.IsMessageAreaVisible()) {
                 return;
             }
-            self.ProcessSave.Manage(returndata);
+            self.ProcessSave.Manage();
             self.clearandtoggle();
         });
     };
@@ -1000,7 +1019,7 @@ CustomerViewModel = function(data) {
                 self.ReorderList.displayreorder([]);
             }
         },
-        Capture: function (placeid, value) {
+        Capture: function(placeid, value) {
             self.ReorderList.displayreorder.push(
             {
                 Id: placeid,
@@ -1029,10 +1048,10 @@ CustomerViewModel = function(data) {
             $("#datatable tbody").children().each(function() {
                 newindex = self.ReorderList.GetNewIndex(newindex);
                 rowplaceid = parseInt($("#datatable tbody").children()[rowindex].children[1].innerText);
-                rowdisplayorder = parseInt($("#datatable tbody").children()[rowindex].children[4].innerText);
+                rowdisplayorder = parseInt($("#datatable tbody").children()[rowindex].children[2].innerText);
                 if (rowdisplayorder !== newindex) {
                     self.ReorderList.Capture(rowplaceid, newindex);
-                    $("#datatable tbody").children()[rowindex].children[4].innerText = newindex;
+                    $("#datatable tbody").children()[rowindex].children[2].innerText = newindex;
                 }
                 rowindex = rowindex + 1;
             });

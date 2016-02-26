@@ -19,6 +19,7 @@ namespace ClaudeViewManagement.ViewModels.Places
                 StatesProvinces = mgr.GetStatesProvinces();
             }
         }
+
         public List<Place> ListEntity { get; set; }
         public List<SelectListItem> TimeZones { get; set; }
         public List<SelectListItem> Countries { get; set; }

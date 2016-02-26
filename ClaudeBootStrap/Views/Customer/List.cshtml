@@ -6,11 +6,12 @@
         <tr>
             <th class="pdsa-action-button-area">Edit</th>
             <th style="display: none">PlaceId</th>
-            <th data-bind="click: namesort">Customer<i class="glyphicon glyphicon-sort pull-right"></i></th>
+            <th style="display: none">Order</th>
+            <th data-bind="click: namesort">Customer</th>
             <th>Division</th>
             <th>Department</th>
             <th class="listcentered">TimeZone</th>
-            <th class="listcentered" data-bind="click: displayordersort">Order<i class="glyphicon glyphicon-sort pull-right"></i></th>
+            <th class="listcentered" data-bind="click: displayordersort">Order</th>
             <th class="pdsa-action-button-area">Delete</th>
         </tr>
         </thead>
@@ -22,11 +23,12 @@
                 </a>
             </td>
             <td class="listcentered" data-bind="text: PlaceId" id="placeid" style="display: none"></td>
+            <td class="listcentered" data-bind="text: DisplayOrder" id="order" style="display: none"></td>
             <td class="ui-priority-secondary" data-bind="text: Name" id="name"></td>
             <td class="ui-priority-secondary" data-bind="text: Division" id="division"></td>
             <td class="ui-priority-secondary" data-bind="text: Department" id="department"></td>
             <td class="listcentered" data-bind="text: TimeZoneName" id="timezonename"></td>
-            <td class="listcentered" data-bind="text: DisplayOrder" id="displayorder"></td>
+            <td class="listcentered" data-bind="text: CountryName" id="country"></td>
             <td class="listcentered" id="delete">
                 <a class="btn btn-default btn-sm" data-bind="click: $parent.removelistitem.bind($data)" href="#" type="button">
                     <i class="glyphicon glyphicon-trash"></i>
