@@ -1,12 +1,12 @@
 ﻿<!-- ** BEGIN Primary AREA -->
 <div class="panel-group">
-    <div data-bind="visible: cellisprimary()">
+    <div data-bind="visible: PrimaryPhone.cellisprimary()">
         @{ Html.RenderPartial("Phones/CellPhone"); }
     </div>
-    <div data-bind="visible: workisprimary()">
+    <div data-bind="visible: PrimaryPhone.workisprimary()">
         @{ Html.RenderPartial("Phones/WorkPhone"); }
     </div>
-    <div data-bind="visible: homeisprimary()">
+    <div data-bind="visible: PrimaryPhone.homeisprimary()">
         @{ Html.RenderPartial("Phones/HomePhone"); }
     </div>
     @{ Html.RenderPartial("Address/MailingAddress"); }

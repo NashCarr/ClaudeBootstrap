@@ -22,7 +22,7 @@
         </div>
         <div class="form-group">
             @Html.Label("Country", "Country")
-            <select class="form-control" data-bind="value: placecountry, options: countries, optionsText: 'Text', optionsValue: 'Value', event: { change: setcountrydefaults }, optionsCaption: 'Choose...'"></select>
+            <select class="form-control" data-bind="value: placecountry, options: countries, optionsText: 'Text', optionsValue: 'Value', event: { change: DefaultCountry.Set }, optionsCaption: 'Choose...'"></select>
         </div>
     </div>
 </div>

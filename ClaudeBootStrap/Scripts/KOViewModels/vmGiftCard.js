@@ -280,16 +280,15 @@ GiftCardViewModel = function (data) {
         }
     };
 
-    var fixHelperModified = function (e, tr) {
-        var $originals = tr.children();
-        var $helper = tr.clone();
-        $helper.children().each(function (index) {
-            $(this).width($originals.eq(index).width());
-        });
-        return $helper;
-    };
-
-    self.makelistsortable = function () {
+    self.makelistsortable = function() {
+        var fixHelperModified = function (e, tr) {
+            var $originals = tr.children();
+            var $helper = tr.clone();
+            $helper.children().each(function (index) {
+                $(this).width($originals.eq(index).width());
+            });
+            return $helper;
+        };
         $("#datatable tbody").sortable({
             helper: fixHelperModified,
             stop: self.reorderfilteredlist
