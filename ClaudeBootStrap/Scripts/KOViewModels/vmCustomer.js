@@ -33,6 +33,7 @@ CustomerViewModel = function(data) {
     self.placetimezone = ko.observable("");
     self.placedivision = ko.observable("");
     self.placedepartment = ko.observable("");
+    self.placedisplayorder = ko.observable(0);
 
     self.placedata = ko.observableArray([]);
 
@@ -175,7 +176,6 @@ CustomerViewModel = function(data) {
         }
     };
 
-    //country defaults
     self.DefaultCountry = {
         Fax: function() {
             if (typeof self.faxcountry() !== "undefined") {
@@ -249,9 +249,7 @@ CustomerViewModel = function(data) {
             self.DefaultCountry.Shipping();
         }
     };
-    //country defaults
 
-    //shipping defaults
     self.DefaultShipping = {
         Address1: function() {
             switch (typeof self.mailingaddress1()) {
@@ -338,7 +336,6 @@ CustomerViewModel = function(data) {
             self.DefaultShipping.Basic();
         }
     };
-    //shipping defaults
 
     self.DetailView = {
         Primary: function() {
@@ -360,6 +357,9 @@ CustomerViewModel = function(data) {
 
     self.Fax = {
         Build: function() {
+            if (self.faxphonenumber().length === 0) {
+                return null;
+            };
             return {
                 PhoneType: 4,
                 PhoneId: self.faxid,
@@ -397,6 +397,9 @@ CustomerViewModel = function(data) {
 
     self.Cell = {
         Build: function() {
+            if (self.cellphonenumber().length === 0) {
+                return null;
+            };
             return {
                 PhoneType: 2,
                 PhoneId: self.cellid,
@@ -436,6 +439,9 @@ CustomerViewModel = function(data) {
 
     self.Home = {
         Build: function() {
+            if (self.homephonenumber().length === 0) {
+                return null;
+            };
             return {
                 PhoneType: 1,
                 PhoneId: self.homeid,
@@ -473,6 +479,9 @@ CustomerViewModel = function(data) {
 
     self.Work = {
         Build: function() {
+            if (self.workphonenumber().length === 0) {
+                return null;
+            };
             return {
                 PhoneType: 3,
                 PhoneId: self.workid,
@@ -511,6 +520,9 @@ CustomerViewModel = function(data) {
 
     self.Shipping = {
         Build: function() {
+            if (self.shippingaddress1().length === 0) {
+                return null;
+            };
             return {
                 AddressType: 2,
                 AddressId: self.shippingid,
@@ -561,6 +573,9 @@ CustomerViewModel = function(data) {
 
     self.Mailing = {
         Build: function() {
+            if (self.mailingaddress1().length === 0) {
+                return null;
+            };
             return {
                 AddressType: 2,
                 AddressId: self.mailingid,
@@ -609,24 +624,28 @@ CustomerViewModel = function(data) {
     };
 
     self.Place = {
-        Build: function() {
+        Build: function () {
             return {
-                PlaceType: 2,
-                Name: self.placename(),
-                PlaceId: self.placeid(),
-                Country: self.placecountry(),
-                TimeZone: self.placetimezone(),
-                Division: self.placedivision(),
-                Department: self.placedepartment()
+                PlaceType: ko.observable(2),
+                PlaceId: ko.observable(self.placeid()),
+                Name: ko.observable(self.placename()),
+                Country: ko.observable(self.placecountry()),
+                TimeZone: ko.observable(self.placetimezone()),
+                Division: ko.observable(self.placedivision()),
+                Department: ko.observable(self.placedepartment()),
+                DisplayOrder: ko.observable(self.placedisplayorder()),
+                CountryName: ko.observable(self.ProcessSave.CountryName()),
+                TimeZoneName: ko.observable(self.ProcessSave.TimeZoneName())
             };
         },
-        Clear: function() {
+        Clear: function () {
             self.placeid(0);
             self.placename("");
             self.placecountry(0);
             self.placetimezone(0);
             self.placedivision("");
             self.placedepartment("");
+            self.placedisplayorder(0);
         },
         Set: function() {
             self.placeid(ko.unwrap(self.placedata.PlaceId));
@@ -639,6 +658,7 @@ CustomerViewModel = function(data) {
             self.placetimezone(ko.unwrap(self.placedata.TimeZone));
             self.placedivision(ko.unwrap(self.placedata.Division));
             self.placedepartment(ko.unwrap(self.placedata.Department));
+            self.placedisplayorder(ko.unwrap(self.placedata.DisplayOrder));
 
             self.DefaultCountry.Set();
         },
@@ -742,23 +762,44 @@ CustomerViewModel = function(data) {
         self.ManageSort.ManageDirection(1);
     };
 
-    self.SortDisplayOrder = {
+    self.SortCountry = {
+        Filtered: function (filter, sortDirection) {
+            return ko.utils.arrayFilter(self.listitems(), function (item) {
+                return ko.unwrap(item.Name).toLowerCase().indexOf(filter) !== -1;
+            }).sort(function (l, r) {
+                return (parseInt(l.Country()) > parseInt(r.Country())) ^ (sortDirection === -1);
+            });
+        },
+        Unfiltered: function (sortDirection) {
+            return self.listitems().sort(function (l, r) {
+                return (parseInt(l.Country()) > parseInt(r.Country())) ^ (sortDirection === -1);
+            });
+        },
+        Manage: function (filter) {
+            return (filter.length === 0)
+                ? self.SortCountry.Unfiltered(self.sortdirection())
+                : self.SortCountry.Filtered(filter, self.sortdirection());
+        }
+
+    };
+
+    self.SortTimeZone = {
         Filtered: function(filter, sortDirection) {
             return ko.utils.arrayFilter(self.listitems(), function(item) {
                 return ko.unwrap(item.Name).toLowerCase().indexOf(filter) !== -1;
             }).sort(function(l, r) {
-                return (parseInt(l.DisplayOrder()) > parseInt(r.DisplayOrder())) ^ (sortDirection === -1);
+                return (parseInt(l.TimeZone()) > parseInt(r.TimeZone())) ^ (sortDirection === -1);
             });
         },
         Unfiltered: function(sortDirection) {
             return self.listitems().sort(function(l, r) {
-                return (parseInt(l.DisplayOrder()) > parseInt(r.DisplayOrder())) ^ (sortDirection === -1);
+                return (parseInt(l.TimeZone()) > parseInt(r.TimeZone())) ^ (sortDirection === -1);
             });
         },
         Manage: function(filter) {
             return (filter.length === 0)
-                ? self.SortDisplayOrder.Unfiltered(self.sortdirection())
-                : self.SortDisplayOrder.Filtered(filter, self.sortdirection());
+                ? self.SortTimeZone.Unfiltered(self.sortdirection())
+                : self.SortTimeZone.Filtered(filter, self.sortdirection());
         }
 
     };
@@ -783,7 +824,47 @@ CustomerViewModel = function(data) {
         }
     };
 
-    self.filteredItems = function() {
+    self.SortDepartment = {
+        Filtered: function (filter, sortDirection) {
+            return ko.utils.arrayFilter(self.listitems(), function (item) {
+                return ko.unwrap(item.Name).toLowerCase().indexOf(filter) !== -1;
+            }).sort(function (l, r) {
+                return (l.Department().toLowerCase() > r.Department().toLowerCase()) ^ (sortDirection === -1);
+            });
+        },
+        Unfiltered: function (sortDirection) {
+            return self.listitems().sort(function (l, r) {
+                return (l.Department().toLowerCase() > r.Department().toLowerCase()) ^ (sortDirection === -1);
+            });
+        },
+        Manage: function (filter) {
+            return (filter.length === 0)
+                ? self.SortDepartment.Unfiltered(self.sortdirection())
+                : self.SortDepartment.Filtered(filter, self.sortdirection());
+        }
+    };
+
+    self.SortDivision = {
+        Filtered: function (filter, sortDirection) {
+            return ko.utils.arrayFilter(self.listitems(), function (item) {
+                return ko.unwrap(item.Name).toLowerCase().indexOf(filter) !== -1;
+            }).sort(function (l, r) {
+                return (l.Division().toLowerCase() > r.Division().toLowerCase()) ^ (sortDirection === -1);
+            });
+        },
+        Unfiltered: function (sortDirection) {
+            return self.listitems().sort(function (l, r) {
+                return (l.Division().toLowerCase() > r.Division().toLowerCase()) ^ (sortDirection === -1);
+            });
+        },
+        Manage: function (filter) {
+            return (filter.length === 0)
+                ? self.SortDivision.Unfiltered(self.sortdirection())
+                : self.SortDivision.Filtered(filter, self.sortdirection());
+        }
+    };
+
+    self.filteredItems = function () {
         var filter = self.searchvalue().toLowerCase();
         return self.sorttype === 1
             ? self.SortDisplayOrder.Manage(filter)
@@ -859,41 +940,18 @@ CustomerViewModel = function(data) {
             }
             return n;
         },
-        ProcessAdd: function() {
+        ProcessAdd: function () {
             self.ReorderList.ReorderFilteredList();
-            var newitem = {
-                PlaceType: ko.observable(0),
-                DisplayOrder: ko.observable(0),
-                PlaceId: ko.observable(self.placeid()),
-                Name: ko.observable(self.placename()),
-                Country: ko.observable(self.placecountry()),
-                TimeZone: ko.observable(self.placetimezone()),
-                Division: ko.observable(self.placedivision()),
-                Department: ko.observable(self.placedepartment()),
-                CountryName: ko.observable(self.ProcessSave.CountryName()),
-                TimeZoneName: ko.observable(self.ProcessSave.TimeZoneName())
-            };
-            self.listitems.push(newitem);
-        },
-        ProcessEdit: function() {
-            for (var i = 0; i < self.listitems().length; i++) {
-                if (self.listitems()[i].PlaceId() !== self.placeid())
-                    continue;
-                self.listitems()[i].Name(self.placename());
-                self.listitems()[i].Country(self.placecountry());
-                self.listitems()[i].Division(self.placedivision());
-                self.listitems()[i].TimeZone(self.placetimezone());
-                self.listitems()[i].Department(self.placedepartment());
-                self.listitems()[i].CountryName(self.ProcessSave.CountryName());
-                self.listitems()[i].TimeZoneName(self.ProcessSave.TimeZoneName());
-                break;
-            }
+            self.listitems.push(self.Place.Build());
         },
         ItemExists: function () {
             var match = ko.utils.arrayFirst(self.listitems(), function (item) {
                 return item.PlaceId() === self.placeid();
             });
             return match;
+        },
+        ProcessEdit: function () {
+            self.listitems.replace(self.ProcessSave.ItemExists(), self.Place.Build());
         },
         Manage: function () {
             if (self.IsEdit()) {

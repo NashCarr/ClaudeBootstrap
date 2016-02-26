@@ -49,13 +49,11 @@ namespace ClaudeViewManagement.Managers.Places
             {
                 p.PhoneData.Phones.Add(data.WorkPhone);
             }
-            if (data.MailingAddress.Address1 != null && data.MailingAddress != null &&
-                data.MailingAddress.Address1.Length != 0)
+            if (!string.IsNullOrEmpty(data.MailingAddress?.Address1))
             {
                 p.AddressData.Addresses.Add(data.MailingAddress);
             }
-            if (data.ShippingAddress.Address1 != null && data.ShippingAddress != null &&
-                data.ShippingAddress.Address1.Length != 0)
+            if (!string.IsNullOrEmpty(data.ShippingAddress?.Address1))
             {
                 p.AddressData.Addresses.Add(data.ShippingAddress);
             }

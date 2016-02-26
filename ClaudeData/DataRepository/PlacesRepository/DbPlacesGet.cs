@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using ClaudeCommon.Models;
+using static ClaudeCommon.Enums.CountryEnums;
 using static ClaudeCommon.Enums.TimeZoneEnums;
 
 namespace ClaudeData.DataRepository.PlacesRepository
@@ -29,6 +30,7 @@ namespace ClaudeData.DataRepository.PlacesRepository
 
                             int ordName = dr.GetOrdinal("Name");
                             int ordPlaceId = dr.GetOrdinal("PlaceId");
+                            int ordCountry = dr.GetOrdinal("Country");
                             int ordTimeZone = dr.GetOrdinal("TimeZone");
                             int ordDivision = dr.GetOrdinal("Division");
                             int ordDepartment = dr.GetOrdinal("Department");
@@ -42,10 +44,12 @@ namespace ClaudeData.DataRepository.PlacesRepository
                                     PlaceId = Convert.ToInt32(dr[ordPlaceId]),
                                     Division = Convert.ToString(dr[ordDivision]),
                                     Department = Convert.ToString(dr[ordDepartment]),
+                                    Country = (Country)Convert.ToInt16(dr[ordCountry]),
                                     DisplayOrder = Convert.ToInt16(dr[ordDisplayOrder]),
-                                    TimeZone = (ClaudeTimeZone) Convert.ToByte(dr[ordTimeZone])
+                                    TimeZone = (ClaudeTimeZone)Convert.ToByte(dr[ordTimeZone])
                                 };
-                                item.TimeZoneName = Enum.GetName(typeof (ClaudeTimeZone), item.TimeZone);
+                                item.CountryName = Enum.GetName(typeof (Country), item.Country);
+                                item.TimeZoneName = Enum.GetName(typeof(ClaudeTimeZone), item.TimeZone);
                                 data.Add(item);
                             }
                         }
