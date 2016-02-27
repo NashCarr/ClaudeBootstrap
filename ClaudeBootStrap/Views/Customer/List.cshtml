@@ -7,11 +7,11 @@
             <th class="pdsa-action-button-area">Edit</th>
             <th style="display: none">PlaceId</th>
             <th style="display: none">Order</th>
-            <th data-bind="click: namesort">Customer</th>
-            <th>Division</th>
-            <th>Department</th>
-            <th class="listcentered">TimeZone</th>
-            <th class="listcentered">Country</th>
+            <th data-bind="click: ManageSort.Change(2)">Customer</th>
+            <th data-bind="click: ManageSort.Change(3)">Division</th>
+            <th data-bind="click: ManageSort.Change(4)">Department</th>
+            <th class="listcentered" data-bind="click: ManageSort.Change(5)">TimeZone</th>
+            <th class="listcentered" data-bind="click: ManageSort.Change(6)">Country</th>
             <th class="pdsa-action-button-area">Delete</th>
         </tr>
         </thead>
