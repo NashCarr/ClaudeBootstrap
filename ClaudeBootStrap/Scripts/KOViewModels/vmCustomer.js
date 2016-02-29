@@ -4,6 +4,7 @@ CustomerViewModel = function(data) {
     var baseUrl = "/Customer/";
 
     self.sorttype = 1;
+    self.direction = 1;
     self.sortdirection = ko.observable(1);
 
     self.IsEdit = ko.observable(false);
@@ -12,16 +13,17 @@ CustomerViewModel = function(data) {
     self.IsPrimaryDetailVisible = ko.observable(true);
     self.IsAddressDetailVisible = ko.observable(false);
 
-
     self.IsListAreaVisible = ko.observable(true);
     self.IsSearchAreaVisible = ko.observable(true);
     self.IsAddEditAreaVisible = ko.observable(false);
     self.IsMessageAreaVisible = ko.observable(false);
 
-    self.errmsg = ko.observable("");
-    self.searchvalue = ko.observable("");
-
     self.IsDisplayOrderChanged = ko.observable(false);
+
+    self.errmsg = ko.observable("");
+
+    self.filter = "";
+    self.searchvalue = ko.observable("");
 
     //place
     self.placeid = ko.observable(0);
@@ -733,6 +735,9 @@ CustomerViewModel = function(data) {
 
     self.ManageSort = {
         ManageType: function(type) {
+            if (type === 0) {
+                type = self.sorttype;
+            }
             if (self.sorttype === type) {
                 return;
             }
@@ -752,142 +757,143 @@ CustomerViewModel = function(data) {
     };
 
     self.SortDisplayOrder = {
-        Filtered: function(filter, sortDirection) {
+        Filtered: function() {
             return ko.utils.arrayFilter(self.listitems(), function(item) {
-                return ko.unwrap(item.Name).toLowerCase().indexOf(filter) !== -1;
+                return ko.unwrap(item.Name).toLowerCase().indexOf(self.filter) !== -1;
             }).sort(function(l, r) {
-                return (parseInt(l.DisplayOrder()) > parseInt(r.DisplayOrder())) ^ (sortDirection === -1);
+                return (parseInt(l.DisplayOrder()) > parseInt(r.DisplayOrder())) ^ (self.direction === -1);
             });
         },
-        Unfiltered: function(sortDirection) {
+        Unfiltered: function() {
             return self.listitems().sort(function(l, r) {
-                return (parseInt(l.DisplayOrder()) > parseInt(r.DisplayOrder())) ^ (sortDirection === -1);
+                return (parseInt(l.DisplayOrder()) > parseInt(r.DisplayOrder())) ^ (self.direction === -1);
             });
         },
-        Manage: function(filter) {
-            return (filter.length === 0)
-                ? self.SortDisplayOrder.Unfiltered(self.sortdirection())
-                : self.SortDisplayOrder.Filtered(filter, self.sortdirection());
+        Manage: function() {
+            return (self.filter.length === 0)
+                ? self.SortDisplayOrder.Unfiltered()
+                : self.SortDisplayOrder.Filtered();
         }
     };
 
     self.SortCountry = {
-        Filtered: function(filter, sortDirection) {
+        Filtered: function() {
             return ko.utils.arrayFilter(self.listitems(), function(item) {
-                return ko.unwrap(item.Name).toLowerCase().indexOf(filter) !== -1;
+                return ko.unwrap(item.Name).toLowerCase().indexOf(self.filter) !== -1;
             }).sort(function(l, r) {
-                return (parseInt(l.Country()) > parseInt(r.Country())) ^ (sortDirection === -1);
+                return (parseInt(l.Country()) > parseInt(r.Country())) ^ (self.direction === -1);
             });
         },
-        Unfiltered: function(sortDirection) {
+        Unfiltered: function() {
             return self.listitems().sort(function(l, r) {
-                return (parseInt(l.Country()) > parseInt(r.Country())) ^ (sortDirection === -1);
+                return (parseInt(l.Country()) > parseInt(r.Country())) ^ (self.direction === -1);
             });
         },
-        Manage: function(filter) {
-            return (filter.length === 0)
+        Manage: function() {
+            return (self.filter.length === 0)
                 ? self.SortCountry.Unfiltered(self.sortdirection())
-                : self.SortCountry.Filtered(filter, self.sortdirection());
+                : self.SortCountry.Filtered(self.sortdirection());
         }
     };
 
     self.SortTimeZone = {
-        Filtered: function(filter, sortDirection) {
+        Filtered: function() {
             return ko.utils.arrayFilter(self.listitems(), function(item) {
-                return ko.unwrap(item.Name).toLowerCase().indexOf(filter) !== -1;
+                return ko.unwrap(item.Name).toLowerCase().indexOf(self.filter) !== -1;
             }).sort(function(l, r) {
-                return (parseInt(l.TimeZone()) > parseInt(r.TimeZone())) ^ (sortDirection === -1);
+                return (l.TimeZoneName().toLowerCase() > r.TimeZoneName().toLowerCase()) ^ (self.direction === -1);
             });
         },
-        Unfiltered: function(sortDirection) {
+        Unfiltered: function() {
             return self.listitems().sort(function(l, r) {
-                return (parseInt(l.TimeZone()) > parseInt(r.TimeZone())) ^ (sortDirection === -1);
+                return (l.TimeZoneName().toLowerCase() > r.TimeZoneName().toLowerCase()) ^ (self.direction === -1);
             });
         },
-        Manage: function(filter) {
-            return (filter.length === 0)
+        Manage: function() {
+            return (self.filter.length === 0)
                 ? self.SortTimeZone.Unfiltered(self.sortdirection())
-                : self.SortTimeZone.Filtered(filter, self.sortdirection());
+                : self.SortTimeZone.Filtered(self.sortdirection());
         }
     };
 
     self.SortName = {
-        Filtered: function(filter, sortDirection) {
+        Filtered: function() {
             return ko.utils.arrayFilter(self.listitems(), function(item) {
-                return ko.unwrap(item.Name).toLowerCase().indexOf(filter) !== -1;
+                return ko.unwrap(item.Name).toLowerCase().indexOf(self.filter) !== -1;
             }).sort(function(l, r) {
-                return (l.Name().toLowerCase() > r.Name().toLowerCase()) ^ (sortDirection === -1);
+                return (l.Name().toLowerCase() > r.Name().toLowerCase()) ^ (self.direction === -1);
             });
         },
-        Unfiltered: function(sortDirection) {
+        Unfiltered: function() {
             return self.listitems().sort(function(l, r) {
-                return (l.Name().toLowerCase() > r.Name().toLowerCase()) ^ (sortDirection === -1);
+                return (l.Name().toLowerCase() > r.Name().toLowerCase()) ^ (self.direction === -1);
             });
         },
-        Manage: function(filter) {
-            return (filter.length === 0)
+        Manage: function() {
+            return (self.filter.length === 0)
                 ? self.SortName.Unfiltered(self.sortdirection())
-                : self.SortName.Filtered(filter, self.sortdirection());
+                : self.SortName.Filtered(self.sortdirection());
         }
     };
 
     self.SortDepartment = {
-        Filtered: function(filter, sortDirection) {
+        Filtered: function() {
             return ko.utils.arrayFilter(self.listitems(), function(item) {
-                return ko.unwrap(item.Name).toLowerCase().indexOf(filter) !== -1;
+                return ko.unwrap(item.Name).toLowerCase().indexOf(self.filter) !== -1;
             }).sort(function(l, r) {
-                return (l.Department().toLowerCase() > r.Department().toLowerCase()) ^ (sortDirection === -1);
+                return (l.Department().toLowerCase() > r.Department().toLowerCase()) ^ (self.direction === -1);
             });
         },
-        Unfiltered: function(sortDirection) {
+        Unfiltered: function() {
             return self.listitems().sort(function(l, r) {
-                return (l.Department().toLowerCase() > r.Department().toLowerCase()) ^ (sortDirection === -1);
+                return (l.Department().toLowerCase() > r.Department().toLowerCase()) ^ (self.direction === -1);
             });
         },
-        Manage: function(filter) {
-            return (filter.length === 0)
+        Manage: function() {
+            return (self.filter.length === 0)
                 ? self.SortDepartment.Unfiltered(self.sortdirection())
-                : self.SortDepartment.Filtered(filter, self.sortdirection());
+                : self.SortDepartment.Filtered(self.sortdirection());
         }
     };
 
     self.SortDivision = {
-        Filtered: function(filter, sortDirection) {
+        Filtered: function() {
             return ko.utils.arrayFilter(self.listitems(), function(item) {
-                return ko.unwrap(item.Name).toLowerCase().indexOf(filter) !== -1;
+                return ko.unwrap(item.Name).toLowerCase().indexOf(self.filter) !== -1;
             }).sort(function(l, r) {
-                return (l.Division().toLowerCase() > r.Division().toLowerCase()) ^ (sortDirection === -1);
+                return (l.Division().toLowerCase() > r.Division().toLowerCase()) ^ (self.direction === -1);
             });
         },
-        Unfiltered: function(sortDirection) {
+        Unfiltered: function() {
             return self.listitems().sort(function(l, r) {
-                return (l.Division().toLowerCase() > r.Division().toLowerCase()) ^ (sortDirection === -1);
+                return (l.Division().toLowerCase() > r.Division().toLowerCase()) ^ (self.direction === -1);
             });
         },
-        Manage: function(filter) {
-            return (filter.length === 0)
-                ? self.SortDivision.Unfiltered(self.sortdirection())
-                : self.SortDivision.Filtered(filter, self.sortdirection());
+        Manage: function() {
+            return (self.filter.length === 0)
+                ? self.SortDivision.Unfiltered()
+                : self.SortDivision.Filtered();
         }
     };
 
     self.filteredItems = function() {
-        var filter = self.searchvalue().toLowerCase();
+        self.direction = ko.unwrap(self.sortdirection);
+        self.filter = ko.unwrap(self.searchvalue).toLowerCase();
         switch (self.sorttype) {
         case 1:
-            return self.SortDisplayOrder.Manage(filter);
+            return self.SortDisplayOrder.Manage();
         case 2:
-            return self.SortName.Manage(filter);
+            return self.SortName.Manage();
         case 3:
-            return self.SortDepartment.Manage(filter);
+            return self.SortDepartment.Manage();
         case 4:
-            return self.SortDivision.Manage(filter);
+            return self.SortDivision.Manage();
         case 5:
-            return self.SortTimeZone.Manage(filter);
+            return self.SortTimeZone.Manage();
         case 6:
-            return self.SortCountry.Manage(filter);
+            return self.SortCountry.Manage();
         default:
-            return self.SortDisplayOrder.Manage(filter);
+            return self.SortDisplayOrder.Manage();
         }
     };
 
@@ -937,28 +943,26 @@ CustomerViewModel = function(data) {
             if (id === 0) {
                 return "";
             };
-            var n = "";
             var match = ko.utils.arrayFirst(self.countries(), function(item) {
                 return parseInt(item.Value()) === id;
             });
             if (match) {
-                n = match.Text();
+                return ko.unwrap(match.Text);
             }
-            return n;
+            return "";
         },
         TimeZoneName: function() {
             var id = parseInt(self.placetimezone());
             if (id === 0) {
                 return "";
             };
-            var n = "";
             var match = ko.utils.arrayFirst(self.timezones(), function(item) {
                 return parseInt(item.Value()) === id;
             });
             if (match) {
-                n = match.Text();
+                return ko.unwrap(match.Text);
             }
-            return n;
+            return "";
         },
         ProcessAdd: function() {
             self.ReorderList.ReorderFilteredList();
@@ -1065,13 +1069,13 @@ CustomerViewModel = function(data) {
                 });
             },
             EditList: function(placeid, value) {
-                for (var i = 0; i < self.filteredItems().length; i++) {
-                    if (self.filteredItems()[i].PlaceId() !== placeid)
-                        continue;
-                    if (self.filteredItems()[i].DisplayOrder() !== (value)) {
-                        self.filteredItems()[i].DisplayOrder(value);
-                    }
-                    break;
+                var match = ko.utils.arrayFirst(self.listitems(), function(item) {
+                    return parseInt(item.PlaceId()) === placeid;
+                });
+                if (match) {
+                    self.pauseNotifications = true;
+                    match.DisplayOrder(value);
+                    self.pauseNotifications = false;
                 }
             },
             ManageList: function() {
@@ -1105,16 +1109,10 @@ CustomerViewModel = function(data) {
             });
         },
         GetNewIndex: function(n) {
-            if (ko.unwrap(self.sortdirection) === 1) {
-                return n + 1;
-            }
-            return n - 1;
+            return n + 1;
         },
         InitNewIndex: function() {
-            if (ko.unwrap(self.sortdirection) === 1) {
-                return 0;
-            }
-            return (self.filteredItems().length) + 1;
+            return 0;
         },
         ReorderFilteredList: function() {
             var rowindex = 0;
@@ -1134,6 +1132,9 @@ CustomerViewModel = function(data) {
                 rowindex = rowindex + 1;
             });
             self.ReorderList.Reorder.Manage();
+            //if (self.sorttype !== 1) {
+            //    self.ManageSort.Change(1);
+            //};
         }
     };
 

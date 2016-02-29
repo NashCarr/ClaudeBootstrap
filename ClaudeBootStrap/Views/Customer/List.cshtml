@@ -4,15 +4,15 @@
 
         <thead>
         <tr>
-            <th class="pdsa-action-button-area">Edit</th>
-            <th style="display: none">PlaceId</th>
-            <th style="display: none">Order</th>
+            <th class="pdsa-action-button-area" data-bind="click: ManageSort.Change(0)">Edit</th>
+            <th style="display: none" data-bind="click: ManageSort.Change(0)">PlaceId</th>
+            <th data-bind="click: ManageSort.Change(1)">Order</th>
             <th data-bind="click: ManageSort.Change(2)">Customer</th>
             <th data-bind="click: ManageSort.Change(3)">Division</th>
             <th data-bind="click: ManageSort.Change(4)">Department</th>
             <th class="listcentered" data-bind="click: ManageSort.Change(5)">TimeZone</th>
             <th class="listcentered" data-bind="click: ManageSort.Change(6)">Country</th>
-            <th class="pdsa-action-button-area">Delete</th>
+            <th class="pdsa-action-button-area" data-bind="click: ManageSort.Change(0)">Delete</th>
         </tr>
         </thead>
         <tbody data-bind="foreach: filteredItems()" id="items">
@@ -23,7 +23,7 @@
                 </a>
             </td>
             <td class="listcentered" data-bind="text: PlaceId" id="placeid" style="display: none"></td>
-            <td class="listcentered" data-bind="text: DisplayOrder" id="order" style="display: none"></td>
+            <td class="listcentered" data-bind="text: DisplayOrder" id="order"></td>
             <td class="ui-priority-secondary" data-bind="text: Name" id="name"></td>
             <td class="ui-priority-secondary" data-bind="text: Division" id="division"></td>
             <td class="ui-priority-secondary" data-bind="text: Department" id="department"></td>
