@@ -5,6 +5,7 @@ CustomerViewModel = function(data) {
 
     self.sorttype = 1;
     self.direction = 1;
+    self.IsSorting = ko.observable(false);
     self.sortdirection = ko.observable(1);
 
     self.IsEdit = ko.observable(false);
@@ -736,11 +737,11 @@ CustomerViewModel = function(data) {
     self.ManageSort = {
         ManageType: function(type) {
             if (type === 0) {
-                type = self.sorttype;
-            }
+                type = 1;
+            };
             if (self.sorttype === type) {
                 return;
-            }
+            };
             self.sorttype = type;
 
             self.pauseNotifications = true;
@@ -752,7 +753,13 @@ CustomerViewModel = function(data) {
             self.sortdirection(self.sortdirection() * -1);
         },
         Change: function(type) {
-            self.ManageSort.ManageDirection(type);
+            if (type === 0) {
+                self.IsSorting(!self.IsSorting());
+            };
+            if (!self.IsSorting() && (type !== 0)) {
+                self.ManageSort.ManageDirection(type);
+                self.ReorderList.ReorderAfterSort();
+            };
         }
     };
 
@@ -965,7 +972,7 @@ CustomerViewModel = function(data) {
             return "";
         },
         ProcessAdd: function() {
-            self.ReorderList.ReorderFilteredList();
+            self.ReorderList.ReorderDragDrop();
             self.listitems.push(self.Place.Build());
         },
         ItemExists: function() {
@@ -1052,7 +1059,7 @@ CustomerViewModel = function(data) {
         };
         $("#datatable tbody").sortable({
             helper: fixHelperModified,
-            stop: self.ReorderList.ReorderFilteredList
+            stop: self.ReorderList.ReorderDragDrop
         }).disableSelection();
     };
 
@@ -1091,7 +1098,14 @@ CustomerViewModel = function(data) {
                 self.IsDisplayOrderChanged(false);
                 self.makelistsortable();
             },
-            Manage: function() {
+            ManageSort: function() {
+                if (self.ReorderList.displayreorder().length === 0) {
+                    return;
+                }
+                self.ReorderList.Reorder.Save();
+                self.ReorderList.displayreorder([]);
+            },
+            ManageDragDrop: function() {
                 if (self.ReorderList.displayreorder().length === 0) {
                     return;
                 }
@@ -1108,21 +1122,15 @@ CustomerViewModel = function(data) {
                 DisplayOrder: value
             });
         },
-        GetNewIndex: function(n) {
-            return n + 1;
-        },
-        InitNewIndex: function() {
-            return 0;
-        },
-        ReorderFilteredList: function() {
+        ReorderInnerText: function() {
+            var newindex = 0;
             var rowindex = 0;
             var rowplaceid = 0;
             var rowdisplayorder = 0;
-            var newindex = self.ReorderList.InitNewIndex();
-
+ 
             self.ReorderList.displayreorder([]);
             $("#datatable tbody").children().each(function() {
-                newindex = self.ReorderList.GetNewIndex(newindex);
+                newindex = newindex + 1;
                 rowplaceid = parseInt($("#datatable tbody").children()[rowindex].children[1].innerText);
                 rowdisplayorder = parseInt($("#datatable tbody").children()[rowindex].children[2].innerText);
                 if (rowdisplayorder !== newindex) {
@@ -1131,10 +1139,14 @@ CustomerViewModel = function(data) {
                 }
                 rowindex = rowindex + 1;
             });
-            self.ReorderList.Reorder.Manage();
-            //if (self.sorttype !== 1) {
-            //    self.ManageSort.Change(1);
-            //};
+        },
+        ReorderAfterSort: function() {
+            self.ReorderList.ReorderInnerText();
+            self.ReorderList.Reorder.ManageSort();
+        },
+        ReorderDragDrop: function() {
+            self.ReorderList.ReorderInnerText();
+            self.ReorderList.Reorder.ManageDragDrop();
         }
     };
 
