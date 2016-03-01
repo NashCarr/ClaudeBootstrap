@@ -78,7 +78,6 @@ CustomerViewModel = function(data) {
     self.workphonenumber = ko.observable("");
 
     //mailing
-    self.mailingaddresstype = "Mailing";
     self.mailingcity = ko.observable("");
     self.mailingcountry = ko.observable(0);
     self.mailingaddress1 = ko.observable("");
@@ -88,7 +87,6 @@ CustomerViewModel = function(data) {
     self.UseMailingforShipping = ko.observable(true);
 
     //shipping
-    self.shippingaddresstype = "Shipping";
     self.shippingcity = ko.observable("");
     self.shippingcountry = ko.observable(0);
     self.shippingaddress1 = ko.observable("");
@@ -111,28 +109,59 @@ CustomerViewModel = function(data) {
     self.mobilecarriers = ko.mapping.fromJS(data.MobileCarriers).extend({ deferred: true });
     self.statesprovinces = ko.mapping.fromJS(data.StatesProvinces).extend({ deferred: true });
 
-    self.mailingaddress = ko.computed(function () {
-        return self.mailingaddress1() + " " + self.mailingaddress2();
+    self.stateprovincename = function(id) {
+        if (parseInt(id) === 0) {
+            return "";
+        };
+        var match = ko.utils.arrayFirst(self.statesprovinces(), function(item) {
+            return parseInt(item.Value()) === parseInt(id);
+        });
+        if (match) {
+            return ko.unwrap(match.Text);
+        }
+        return "";
+    };
+
+    self.mailingaddress = ko.computed(function() {
+        if (self.mailingaddress1().length === 0) {
+            return "";
+        };
+        if (self.mailingaddress2().length === 0) {
+            return ko.unwrap(self.mailingaddress1());
+        };
+        return ko.unwrap(self.mailingaddress1()) + ", " + ko.unwrap(self.mailingaddress2());
     });
 
-    self.mailingcitystatezip = ko.computed(function () {
-        return self.mailingcity() + " " + self.mailingstateprovince() + " " + self.shippingpostalcode();
+    self.mailingcitystatezip = ko.computed(function() {
+        if (self.mailingcity().length === 0) {
+            return "";
+        };
+        return ko.unwrap(self.mailingcity()) + ", " + self.stateprovincename(ko.unwrap(self.mailingstateprovince())) + "   " + ko.unwrap(self.mailingpostalcode());
     });
 
-    self.shippingaddress = ko.computed(function () {
-        return self.shippingaddress1() + " " + self.shippingaddress2();
+    self.shippingaddress = ko.computed(function() {
+        if (self.shippingaddress1().length === 0) {
+            return "";
+        };
+        if (self.shippingaddress2().length === 0) {
+            return ko.unwrap(self.shippingaddress1());
+        };
+        return ko.unwrap(self.shippingaddress1()) + ", " + ko.unwrap(self.shippingaddress2());
     });
 
-    self.shippingcitystatezip = ko.computed(function () {
-        return self.shippingcity() + " " + self.shippingstateprovince() + " " + self.shippingpostalcode();
+    self.shippingcitystatezip = ko.computed(function() {
+        if (self.shippingcity().length === 0) {
+            return "";
+        };
+        return ko.unwrap(self.shippingcity()) + ", " + self.stateprovincename(ko.unwrap(self.shippingstateprovince())) + "   " + ko.unwrap(self.shippingpostalcode());
+    });
+
+    self.ShowShipping = ko.computed(function () {
+        return !self.UseMailingforShipping();
     });
 
     self.DragDropComplete = ko.computed(function () {
         return !self.IsDisplayOrderChanged();
-    });
-
-    self.ShowShipping = ko.computed(function() {
-        return !self.UseMailingforShipping();
     });
 
     self.returnmessage = ko.pureComputed(function() {
@@ -143,14 +172,7 @@ CustomerViewModel = function(data) {
         self.IsMessageAreaVisible(self.errmsg().length);
     };
 
-    self.toggleview = function() {
-        self.setmessageview();
-        self.IsListAreaVisible(!self.IsListAreaVisible());
-        self.IsSearchAreaVisible(!self.IsSearchAreaVisible());
-        self.IsAddEditAreaVisible(!self.IsAddEditAreaVisible());
-    };
-
-    self.handleeturndata = function(returndata) {
+    self.handlereturndata = function(returndata) {
         self.placeid(returndata.Id);
         self.errmsg(returndata.ErrMsg);
 
@@ -961,16 +983,25 @@ CustomerViewModel = function(data) {
         self.PhoneSettings.Clear();
     };
 
-    self.edit = function(editdata) {
+    self.toggleview = function () {
+        self.setmessageview();
+        self.IsListAreaVisible(!self.IsListAreaVisible());
+        self.IsSearchAreaVisible(!self.IsSearchAreaVisible());
+        self.IsAddEditAreaVisible(!self.IsAddEditAreaVisible());
+    };
+
+    self.clearandtoggle = function () {
+        self.clear();
+        self.toggleview();
+    };
+
+    self.edit = function (editdata) {
         self.IsEdit(true);
         self.placeid(editdata.PlaceId());
 
         self.GetPlaceData();
-        self.toggleview();
-    };
+        self.DetailView.Primary();
 
-    self.clearandtoggle = function() {
-        self.clear();
         self.toggleview();
     };
 
@@ -1060,7 +1091,7 @@ CustomerViewModel = function(data) {
             data: self.BuildPlaceData()
         }).then(function(returndata) {
 
-            self.handleeturndata(returndata);
+            self.handlereturndata(returndata);
             if (self.IsMessageAreaVisible()) {
                 return;
             }
@@ -1075,7 +1106,7 @@ CustomerViewModel = function(data) {
             type: "delete"
         }).then(function(returndata) {
 
-            self.handleeturndata(returndata);
+            self.handlereturndata(returndata);
             if (self.IsMessageAreaVisible()) {
                 return;
             }

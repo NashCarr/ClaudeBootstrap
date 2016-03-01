@@ -4,12 +4,12 @@
 
         <thead>
         <tr>
-            <th class="pdsa-action-button-area">Edit</th>
-            <th style="display: none">RecordId</th>
-            <th data-bind="click: namesort">Gift Card<i class="glyphicon glyphicon-sort pull-right"></i></th>
-            <th class="listcentered">Create Date</th>
-            <th class="listcentered" data-bind="click: displayordersort">Order<i class="glyphicon glyphicon-sort pull-right"></i></th>
-            <th class="pdsa-action-button-area">Delete</th>
+            <th class="pdsa-action-button-area" data-bind="click: ManageSort.Change(0)">Edit</th>
+            <th data-bind="click: ManageSort.Change(1)" style="display: none">RecordId</th>
+            <th data-bind="click: ManageSort.Change(1)" style="display: none">Order</th>
+            <th data-bind="click: ManageSort.Change(2)">Gift Card</th>
+            <th class="listcentered" data-bind="click: ManageSort.Change(3)">Create date</th>
+            <th class="pdsa-action-button-area" data-bind="click: ManageSort.Change(0)">Delete</th>
         </tr>
         </thead>
         <tbody data-bind="foreach: filteredItems()" id="items">
@@ -19,10 +19,10 @@
                     <i class="glyphicon glyphicon-edit"></i>
                 </a>
             </td>
-            <td class="listcentered" data-bind="text: RecordId" id="recordid" style="display: none"></td>
+            <td class="listcentered" data-bind="text: RecordId" id="placeid" style="display: none"></td>
+            <td class="listcentered" data-bind="text: DisplayOrder" id="order" style="display: none"></td>
             <td class="ui-priority-secondary" data-bind="text: Name" id="name"></td>
             <td class="listcentered" data-bind="text: StringCreateDate" id="createdate"></td>
-            <td class="listcentered" data-bind="text: DisplayOrder" id="displayorder"></td>
             <td class="listcentered" id="delete">
                 <a class="btn btn-default btn-sm" data-bind="click: $parent.removelistitem.bind($data)" href="#" type="button">
                     <i class="glyphicon glyphicon-trash"></i>

@@ -3,6 +3,9 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             Phones
+            <a class="btn btn-sm btn-secondary pull-right" data-bind="click: DetailView.Phones" href="#" type="button">
+                Edit
+            </a>
         </div>
         <div class="panel-body">
             <div class="table-responsive">
@@ -54,31 +57,43 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             Addresses
+            <a class="btn btn-sm btn-secondary pull-right" data-bind="click: DetailView.Addresses" href="#" type="button">
+                Edit
+            </a>
         </div>
         <div class="panel-body">
             <div class="table-responsive">
                 <table class="table table-condensed table-bordered table-striped table-hover">
+                    <tbody>
+                        <tr>
+                            <td>
+                                Mailing
+                                @Html.Label("SameAddress", "Use For Shipping", new { @class = "pull-right" })
+                                <input data-bind="checked: UseMailingforShipping" disabled type="checkbox" class="pull-right">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="ui-priority-secondary" data-bind="text: mailingaddress"></td>
+                        </tr>
+                        <tr>
+                            <td class="ui-priority-secondary" data-bind="text: mailingcitystatezip"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="table-responsive" data-bind="visible: !UseMailingforShipping()">
+                <table class="table table-condensed table-bordered table-striped table-hover">
                     <thead>
                     <tr>
-                        <th>Type</th>
-                        <th>Address</th>
+                        <th>Shipping</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td class="ui-priority-secondary" data-bind="text: mailingaddresstype"></td>
-                        <td class="ui-priority-secondary" data-bind="text: mailingaddress"></td>
-                    </tr>
-                    <tr>
-                        <td class="ui-priority-secondary"></td>
-                        <td class="ui-priority-secondary" data-bind="text: mailingcitystatezip"></td>
-                    </tr>
-                    <tr>
-                        <td class="ui-priority-secondary" data-bind="text: shippingaddresstype"></td>
                         <td class="ui-priority-secondary" data-bind="text: shippingaddress"></td>
                     </tr>
                     <tr>
-                        <td class="ui-priority-secondary"></td>
                         <td class="ui-priority-secondary" data-bind="text: shippingcitystatezip"></td>
                     </tr>
                     </tbody>
