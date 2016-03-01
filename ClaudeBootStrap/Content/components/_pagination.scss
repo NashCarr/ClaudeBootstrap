@@ -1,0 +1,52 @@
+.pagination {
+  li {
+    margin-right: 0.5rem;
+  }
+  a {
+    background: $white;
+    border-radius: 1rem;
+    border: rem(1) solid $gray-3;
+    display: inline-block;
+    color: $gray-3;
+    font-weight: 700;
+    height: 2rem;
+    padding: 0.25rem 0.5rem;
+    text-decoration: none;
+    text-align: center;
+    width: 2rem;
+  }
+
+  a.hover,
+  a:hover {
+    background: $gray-3;
+    border: rem(1) solid $gray-3;
+    color: $white;
+  }
+
+  .next a,
+  .prev a {
+    display: inline;
+    padding: 0.25rem 1rem;
+  }
+
+  .next.arrow a:after {
+    @include icon("\E212");
+    margin-left: 0.5rem;
+    vertical-align: bottom;
+  }
+
+  .prev.arrow a:after {
+    @include icon("\E211");
+    margin-left: 0.5rem;
+    vertical-align: bottom;
+  }
+
+  .prev.no-text.arrow,
+  .next.no-text.arrow {
+    a:after {
+      margin-left: 0;
+    }
+  }
+
+
+}

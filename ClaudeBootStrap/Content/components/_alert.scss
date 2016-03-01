@@ -1,0 +1,31 @@
+.alert {
+  padding: 0.85rem 0 0.85rem 1rem;
+  color: $white;
+  border-radius: rem(3);
+  border: none;
+  @include font(rem(17), 700);
+
+  .close-button {
+    right: 0.5rem;
+  }
+
+  .glyphicons {
+    color: rgba($black-1, 0.5);
+    font-size: rem(20);
+    line-height: rem(25);
+  }
+
+  &.error {
+    background: $red;
+  }
+  &.success {
+    background: $green;
+  }
+  &.warning {
+    color: rgba($black-1, 0.5);
+    background: $yellow;
+  }
+  &.info {
+    background: $blue-2;
+  }
+}

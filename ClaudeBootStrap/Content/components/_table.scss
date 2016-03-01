@@ -1,0 +1,75 @@
+table.tabled {
+  position: relative;
+
+  tbody,
+  thead,
+  tr {
+    border: none;
+    background: none;
+  }
+
+  thead {
+    background: $gray-1;
+    border: rem(1) solid $gray-1;
+    color: $white;
+
+    th {
+      padding: 1rem;
+    }
+
+    .custom-checkbox {
+      border: rem(1) solid $white;
+
+      &::before,
+      &::after {
+        background: $white;
+      }
+    }
+  }
+
+
+  tbody tr {
+    border-top: rem(1) solid $gray-1;
+    border-left: rem(1) solid $gray-1;
+    border-right: rem(1) solid $gray-1;
+    @include transition(0.2s all);
+
+    &:last-child {
+      border-bottom: rem(1) solid $gray-1;
+    }
+  }
+
+  tbody tr:hover {
+    background: $blue-1;
+    border: rem(10) solid $blue-1;
+    box-shadow: 0 0 10px rgba($black, 0.9);
+    color: $white;
+    @include transition(0.2s all);
+    padding: 0.5rem;
+    width: 100%;
+
+    .custom-checkbox {
+      border: rem(1) solid $blue-2;
+
+      &::before,
+      &::after {
+        background: $blue-2;
+      }
+    }
+  }
+
+  tbody td {
+    padding: 1rem;
+    vertical-align: top;
+  }
+
+  td.quarter {
+    width: 25%;
+  }
+  td.half {
+    width: 50%;
+  }
+  td.three-quarter {
+    width: 75%;
+  }
+}

@@ -1,0 +1,35 @@
+@import 'foundation/foundation';
+// Includes all of foundation. Options can be customized
+// in founation/foundation.scss
+@include foundation-everything;
+
+// Fonts
+@import 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,400italic,600,700';
+
+// Mixin library
+// Docs at http://bourbon.io
+@import 'bourbon/bourbon';
+
+@import  'helper/colors';
+@import  'helper/typography';
+@import  'helper/mixins';
+@import  'helper/functions';
+@import  'helper/base';
+
+// Import components
+@import 'components/buttons';
+@import 'components/section-heading';
+@import 'components/color-card';
+@import 'components/forms';
+@import 'components/read-more';
+@import 'components/alert';
+@import 'components/icons';
+@import 'components/avatar';
+@import 'components/datepicker';
+@import 'components/pagination';
+@import 'components/table';
+@import 'components/navigation';
+@import 'components/notifications';
+
+// Import layouts
+@import 'layout/page';

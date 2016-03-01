@@ -1,0 +1,16 @@
+.glyphicons {
+  color: $gray-1;
+}
+
+.icon-list {
+  .glyphicons {
+    display: inline-block;
+    font-size: rem(20);
+  }
+
+  li {
+    display: inline-block;
+    margin-bottom: 1rem;
+    width: 8.5%;
+  }
+}

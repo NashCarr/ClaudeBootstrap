@@ -1,0 +1,26 @@
+$grid-row-width: 1280;
+
+body {
+  @include font();
+  color: $black-1;
+  font-size: 15px;
+}
+
+// Links
+a {
+  color: $blue-1;
+
+  &:hover {
+    color: $blue-1;
+    text-decoration: underline;
+  }
+}
+
+// Helper classes
+.inline {
+  display: inline;
+}
+
+.center {
+  text-align: center;
+}

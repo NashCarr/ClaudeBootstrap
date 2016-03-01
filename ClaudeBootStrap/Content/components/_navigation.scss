@@ -1,0 +1,112 @@
+.menu {
+  border: rem(1) solid $gray-1;
+  min-height: rem(800);
+  margin-bottom: 2rem;
+
+  h4 {
+    @include font(1rem, bold);
+    margin: 0;
+    padding: 1.5rem 2rem;
+    text-transform: uppercase;
+  }
+
+  .logo {
+    display: block;
+    color: $gray-3;
+    @include font(rem(30), bold);
+    background: $gray-1;
+    padding: 1rem;
+    text-transform: uppercase;
+  }
+
+  .nav {
+    list-style-type: none;
+    margin: 0;
+  }
+
+  .nav li .glyphicons {
+    font-size: rem(20);
+    vertical-align: middle;
+  }
+
+  .nav li a {
+    color: $black-1;
+    display: block;
+    font-weight: 600;
+    padding: 0.5rem 1.5rem;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  .nav li {
+    &.parent > a::after {
+      @include icon("\E191");
+      color: $gray-1;
+      float: right;
+      margin-top: rem(2);
+    }
+
+    &.parent.active > a::after {
+      @include icon("\E192");
+      color: $gray-1;
+      float: right;
+      margin-top: rem(2);
+    }
+  }
+
+  .nav li.active,
+  .nav li.parent.active {
+    border-left: rem(3) solid $blue-2;
+    background: $gray-5;
+  }
+
+  .nav li.parent ul {
+    display: none;
+    list-style-type: none;
+    margin: 0;
+
+    li a {
+      color: $gray-3;
+      padding: 0.5rem 4rem;
+    }
+
+    &.visible {
+      display: inline;
+    }
+  }
+}
+
+.menu.narrow {
+  ul.nav {
+    margin-top: 3rem;
+  }
+  ul li a {
+    padding: 0.5rem 1rem 0.5rem 1rem;
+  }
+}
+
+.menu.dark {
+  background: $black-2;
+
+  .logo {
+    background: $black-1;
+  }
+
+  h4 {
+    color: $white;
+  }
+
+  .nav li a {
+    color: $gray-1;
+  }
+
+  .nav li.active {
+    background: $black-3;
+  }
+
+  .nav li.active > a {
+    color: $white;
+  }
+}

@@ -1,0 +1,212 @@
+// Label
+label {
+  color: $gray-1;
+  @include font(1rem, bold);
+  text-transform: uppercase;
+}
+
+input[type=search],
+input[type=text] {
+  color: $black-1;
+  background: $white;
+  border-radius: rem(3);
+  border: rem(1) solid $gray-1;
+  box-shadow: none;
+  font-weight: normal;
+  padding: 1.25rem 1rem;
+
+  @include placeholder {
+    color: $black-1;
+  }
+}
+
+input[type=text][disabled] {
+  background: $white;
+  border: rem(1) solid $gray-5;
+
+  @include placeholder {
+    color: $gray-3;
+  }
+}
+
+input[type=text].error {
+  background: url('../img/error.svg') 98% center no-repeat;
+  border: rem(2) solid $red;
+  color: $red;
+}
+
+input[type=text].success {
+  background: url('../img/success.svg') 98% center no-repeat;
+  border: rem(2) solid $green;
+  color: $green;
+}
+
+input[type=text].selected,
+input[type=text]:focus {
+  border: rem(2) solid $blue-2;
+  outline: none;
+  box-shadow: none;
+}
+
+// Select
+select {
+  color: $black-1;
+  background: url('../img/select.svg') 98% center no-repeat;
+  border: rem(1) solid $gray-3;
+  border-radius: rem(3) !important; // overrides foundation input-group
+  font-weight: normal;
+  height: 3rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+select.focused,
+select:focus {
+  border: rem(2) solid $blue-2;
+  outline: none;
+}
+
+// Adjust for dropdown question mark
+.input-group-button .glyphicons {
+  margin-top: rem(-10);
+}
+
+// Search
+input[type=search] {
+  background: url('../img/search.svg') 97.5% center no-repeat;
+  border-radius: rem(20);
+  padding: 1.25rem 1rem;
+}
+
+// Radio
+.radio-button {
+  cursor: pointer;
+
+  input[type="radio"] {
+    display: none;
+
+    &:checked + .custom-radio::before{
+      transform: scale(1);
+    }
+  }
+
+  .custom-radio {
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 50%;
+    border: 1px solid $gray-3;
+    margin-right: 5px;
+    display: inline-block;
+    position: relative;
+    vertical-align: -4px;
+
+    &::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      background: $gray-3;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      border-radius: 50%;
+      margin-left: -5px;
+      margin-top: -5px;
+      transform: scale(0);
+      transition: all 0.3s ease;
+    }
+  }
+}
+
+// Checkbox
+.checkbox {
+  display: inline-block;
+  cursor: pointer;
+
+  input[type="checkbox"] {
+    display: none;
+
+    &:checked + .custom-checkbox::before,
+    &:checked + .custom-checkbox::after {
+      display: block;
+    }
+  }
+
+  .custom-checkbox {
+    display: inline-block;
+    width: 1.25rem;
+    height: 1.25rem;
+    border: rem(1) solid $gray-3;
+    border-radius: rem(3);
+    margin-right: 3px;
+    vertical-align: middle;
+    margin-top: -2px;
+    position: relative;
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      display: none;
+      background: $gray-3;
+      height: rem(2);
+      left: rem(7);
+      bottom: rem(5);
+      transform-origin: 1px 1px;
+    }
+
+    &::before {
+      transform: rotate(-45deg);
+      width: 9px;
+    }
+
+    &::after {
+      transform: rotate(-135deg);
+      width: 6px;
+    }
+  }
+}
+
+// Switch
+.custom-switch {
+  position: relative;
+  display: inline-block;
+  user-select: none;
+}
+.custom-switch input {
+  display: none;
+}
+.custom-switch label {
+  position: relative;
+  display: block;
+  width: 2.8rem;
+  height: 1.5rem;
+  background: $gray-3;
+  cursor: pointer;
+}
+.custom-switch label:after {
+  background: $black-1;
+  position: relative;
+  display: block;
+  content: '';
+  width: 1rem;
+  height: 1rem;
+  top: rem(4);
+  left: rem(4);
+  background: #fff;
+  pointer-events: none;
+  transition: all .3s ease-in-out
+}
+
+.custom-switch label:active:after {
+  width: 2.4rem;
+}
+.custom-switch input:checked + label {
+  background: $black-1;
+}
+.custom-switch input:checked + label:active:after {
+  left: rem(55);
+}
+.custom-switch input:checked + label:after {
+  left: rem(25);
+  background: $white;
+}

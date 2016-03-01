@@ -1,0 +1,13 @@
+.section-heading {
+  border-bottom: rem(1) solid $gray-6;
+  @include font(rem(26), 600);
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  padding-bottom: 0.5rem;
+
+  .number {
+    color: $gray-6;
+    float: right;
+    @include font(rem(30), bold);
+  }
+}

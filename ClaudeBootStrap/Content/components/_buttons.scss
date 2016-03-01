@@ -1,0 +1,88 @@
+.button {
+  background: $blue-1;
+  border-radius: rem(3);
+  color: $white;
+  @include font(rem(17), bold);
+  padding: 1rem 2rem;
+  text-transform: uppercase;
+
+  &.hover-solid,
+  &:hover {
+    background: $blue-2;
+    text-decoration: none;
+  }
+}
+
+.button.disabled-solid {
+  background: rgba($blue-1, 0.9);
+}
+
+.button.outline {
+  background: none;
+  border: rem(3) solid $blue-1;
+  color: $blue-1;
+  padding: 0.85rem 2rem;
+
+  &.hover-outline,
+  &:hover {
+    border: rem(3) solid $blue-2;
+    color: $blue-2;
+  }
+}
+
+.button-add {
+  background: $blue-2;
+  border-radius: 50%;
+  clear: left;
+  display: inline-block;
+  color: $white;
+  padding: 0.5rem 0.45rem;
+  @include transition(0.2s border);
+
+  .glyphicons {
+    color: $white;
+    @include transition(0.2s border);
+  }
+
+  &.hover,
+  &:hover {
+    background: none;
+    border: rem(3) solid $blue-2;
+    color: $blue-2;
+    padding: 0.3rem 0.25rem;
+    @include transition(0.2s background);
+
+    .glyphicons {
+      color: $blue-2;
+      @include transition(0.2s background);
+    }
+  }
+}
+
+.button.file-upload {
+  background: $black-3;
+  color: $white;
+}
+
+.button.search-solid {
+  background: $gray-3;
+  border-radius: 100%;
+  padding: 0.35rem 0.25rem;
+
+  .glyphicons {
+    color: $white;
+    font-size: rem(20);
+  }
+}
+
+.button.search-outline{
+  background: $white;
+  border: rem(2) solid $gray-1;
+  border-radius: 100%;
+  padding: 0.25rem 0.15rem;
+
+  .glyphicons {
+    color: $gray-1;
+    font-size: rem(20);
+  }
+}

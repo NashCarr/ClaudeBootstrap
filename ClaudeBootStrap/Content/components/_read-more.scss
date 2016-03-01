@@ -1,0 +1,7 @@
+.read-more {
+  @include font(rem(15), 700);
+
+  .glyphicons {
+    color: $blue-1;
+  }
+}

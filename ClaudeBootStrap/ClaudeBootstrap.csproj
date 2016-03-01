@@ -70,6 +70,22 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Reactive.Core, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rx-Core.2.2.5\lib\net45\System.Reactive.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rx-Interfaces.2.2.5\lib\net45\System.Reactive.Interfaces.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.Linq, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rx-Linq.2.2.5\lib\net45\System.Reactive.Linq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.PlatformServices, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rx-PlatformServices.2.2.5\lib\net45\System.Reactive.PlatformServices.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -155,6 +171,10 @@
     <Content Include="Content\bourbon-neat\readme.txt" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\glyphicons.css" />
+    <Content Include="Content\pickadate.classic.css" />
+    <Content Include="Content\pickadate.css" />
+    <Content Include="Content\style.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -191,8 +211,15 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\glyphicons-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="img\avatar-large.svg" />
+    <Content Include="img\avatar-small.svg" />
+    <Content Include="img\error.svg" />
+    <Content Include="img\search.svg" />
+    <Content Include="img\select.svg" />
+    <Content Include="img\success.svg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -280,6 +307,87 @@
     <Content Include="Content\bourbon-neat\functions\_new-breakpoint.scss" />
     <None Include=".bin\git.cmd" />
     <None Include=".bin\grunt.cmd" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-regular.eot" />
+    <Content Include="fonts\glyphicons-regular.ttf" />
+    <Content Include="fonts\glyphicons-regular.woff" />
+    <Content Include="fonts\glyphicons-regular.woff2" />
+    <Content Include="Content\components\_base.scss" />
+    <Content Include="Content\components\_colors.scss" />
+    <Content Include="Content\components\_functions.scss" />
+    <Content Include="Content\components\_mixins.scss" />
+    <Content Include="Content\components\_typography.scss" />
+    <Content Include="Content\foundation\util\_breakpoint.scss" />
+    <Content Include="Content\foundation\util\_color.scss" />
+    <Content Include="Content\foundation\util\_mixins.scss" />
+    <Content Include="Content\foundation\util\_selector.scss" />
+    <Content Include="Content\foundation\util\_unit.scss" />
+    <Content Include="Content\foundation\util\_util.scss" />
+    <Content Include="Content\foundation\util\_value.scss" />
+    <Content Include="Content\foundation\typography\_alignment.scss" />
+    <Content Include="Content\foundation\typography\_base.scss" />
+    <Content Include="Content\foundation\typography\_helpers.scss" />
+    <Content Include="Content\foundation\typography\_print.scss" />
+    <Content Include="Content\foundation\typography\_typography.scss" />
+    <Content Include="Content\foundation\settings\_settings.scss" />
+    <Content Include="Content\foundation\grid\_classes.scss" />
+    <Content Include="Content\foundation\grid\_column.scss" />
+    <Content Include="Content\foundation\grid\_flex-grid.scss" />
+    <Content Include="Content\foundation\grid\_grid.scss" />
+    <Content Include="Content\foundation\grid\_gutter.scss" />
+    <Content Include="Content\foundation\grid\_layout.scss" />
+    <Content Include="Content\foundation\grid\_position.scss" />
+    <Content Include="Content\foundation\grid\_row.scss" />
+    <Content Include="Content\foundation\grid\_size.scss" />
+    <Content Include="Content\foundation\forms\_checkbox.scss" />
+    <Content Include="Content\foundation\forms\_error.scss" />
+    <Content Include="Content\foundation\forms\_fieldset.scss" />
+    <Content Include="Content\foundation\forms\_forms.scss" />
+    <Content Include="Content\foundation\forms\_help-text.scss" />
+    <Content Include="Content\foundation\forms\_input-group.scss" />
+    <Content Include="Content\foundation\forms\_label.scss" />
+    <Content Include="Content\foundation\forms\_select.scss" />
+    <Content Include="Content\foundation\forms\_text.scss" />
+    <Content Include="Content\foundation\components\_accordion-menu.scss" />
+    <Content Include="Content\foundation\components\_accordion.scss" />
+    <Content Include="Content\foundation\components\_badge.scss" />
+    <Content Include="Content\foundation\components\_breadcrumbs.scss" />
+    <Content Include="Content\foundation\components\_button-group.scss" />
+    <Content Include="Content\foundation\components\_button.scss" />
+    <Content Include="Content\foundation\components\_callout.scss" />
+    <Content Include="Content\foundation\components\_close-button.scss" />
+    <Content Include="Content\foundation\components\_drilldown.scss" />
+    <Content Include="Content\foundation\components\_dropdown-menu.scss" />
+    <Content Include="Content\foundation\components\_dropdown.scss" />
+    <Content Include="Content\foundation\components\_flex-video.scss" />
+    <Content Include="Content\foundation\components\_float.scss" />
+    <Content Include="Content\foundation\components\_label.scss" />
+    <Content Include="Content\foundation\components\_media-object.scss" />
+    <Content Include="Content\foundation\components\_menu.scss" />
+    <Content Include="Content\foundation\components\_off-canvas.scss" />
+    <Content Include="Content\foundation\components\_orbit.scss" />
+    <Content Include="Content\foundation\components\_pagination.scss" />
+    <Content Include="Content\foundation\components\_progress-bar.scss" />
+    <Content Include="Content\foundation\components\_reveal.scss" />
+    <Content Include="Content\foundation\components\_slider.scss" />
+    <Content Include="Content\foundation\components\_sticky.scss" />
+    <Content Include="Content\foundation\components\_switch.scss" />
+    <Content Include="Content\foundation\components\_table.scss" />
+    <Content Include="Content\foundation\components\_tabs.scss" />
+    <Content Include="Content\foundation\components\_thumbnail.scss" />
+    <Content Include="Content\foundation\components\_title-bar.scss" />
+    <Content Include="Content\foundation\components\_tooltip.scss" />
+    <Content Include="Content\foundation\components\_top-bar.scss" />
+    <Content Include="Content\foundation\components\_visibility.scss" />
+    <Content Include="Content\foundation\_foundation.scss" />
+    <Content Include="Content\foundation\_global.scss" />
+    <Content Include="Content\helper\_base.scss" />
+    <Content Include="Content\helper\_colors.scss" />
+    <Content Include="Content\helper\_functions.scss" />
+    <Content Include="Content\helper\_mixins.scss" />
+    <Content Include="Content\helper\_typography.scss" />
+    <Content Include="Content\layout\_page.scss" />
+    <Content Include="Content\style.scss" />
     <None Include=".bin\node.cmd" />
     <None Include=".bin\npm.cmd" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />

@@ -93,7 +93,6 @@ CustomerViewModel = function(data) {
     //list
     self.listitems = ko.observableArray([]);
     self.listitems = ko.mapping.fromJS(data.ListEntity).extend({ deferred: true });
-    //list
 
     //lookups
     self.timezones = ko.observableArray([]);
@@ -170,6 +169,26 @@ CustomerViewModel = function(data) {
             self.PrimaryPhone.cellisprimary(false);
             self.PrimaryPhone.homeisprimary(false);
             self.PrimaryPhone.phoneprimaryid = 3;
+        },
+        Set: function() {
+            switch (self.PrimaryPhone.phoneprimaryid) {
+            case 1:
+                self.PrimaryPhone.homeisprimarye(true);
+                self.PrimaryPhone.Home();
+                break;
+            case 2:
+                self.PrimaryPhone.cellisprimary(true);
+                self.PrimaryPhone.Cell();
+                break;
+            case 3:
+                self.PrimaryPhone.workisprimary(true);
+                self.PrimaryPhone.Work();
+                break;
+            default:
+                self.PrimaryPhone.workisprimary(true);
+                self.PrimaryPhone.Work();
+                break;
+            }
         }
     };
 
@@ -691,6 +710,8 @@ CustomerViewModel = function(data) {
             self.cellaccepttext(ko.unwrap(self.placedata.AllowText));
             self.cellcarrier(ko.unwrap(self.placedata.MobileCarrier));
             self.PrimaryPhone.phoneprimaryid = ko.unwrap(self.placedata.PrimaryPhoneType);
+
+            self.PrimaryPhone.Set();
         },
         Populate: function() {
             if (typeof self.placedata === "undefined") {
@@ -1127,7 +1148,7 @@ CustomerViewModel = function(data) {
             var rowindex = 0;
             var rowplaceid = 0;
             var rowdisplayorder = 0;
- 
+
             self.ReorderList.displayreorder([]);
             $("#datatable tbody").children().each(function() {
                 newindex = newindex + 1;

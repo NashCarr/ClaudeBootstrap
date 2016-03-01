@@ -1,0 +1,82 @@
+.color-card {
+  margin-bottom: 2rem;
+
+  .inner {
+    box-shadow: 0 0 10px rgba($black, 0.20);
+    border-radius: rem(4);
+    overflow: hidden;
+  }
+
+  .color {
+    height: rem(102);
+    width: 100%;
+
+    &.blue-1 {
+      background-color: $blue-1;
+    }
+    &.blue-2 {
+      background-color: $blue-2;
+    }
+    &.green {
+      background-color: $green;
+    }
+    &.yellow {
+      background-color: $yellow;
+    }
+    &.red {
+      background-color: $red;
+    }
+    &.black-1 {
+      background-color: $black-1;
+    }
+    &.black-2 {
+      background-color: $black-2;
+    }
+    &.black-3 {
+      background-color: $black-3;
+    }
+    &.gray-1 {
+      background-color: $gray-1;
+    }
+    &.gray-2 {
+      background-color: $gray-2;
+    }
+    &.gray-3 {
+      background-color: $gray-3;
+    }
+    &.gray-4 {
+      background-color: $gray-4;
+    }
+    &.gray-5 {
+      background-color: $gray-5;
+    }
+    &.gray-6 {
+      background-color: $gray-6;
+    }
+  }
+
+  .color.half {
+    width: 50%;
+    float: left;
+
+    &:nth-of-type(2) {
+      float: right;
+    }
+  }
+
+  .hex {
+    @include font(rem(15), bold);
+    clear: left;
+    padding: 0.5rem 0;
+    margin: 0;
+    text-align: center;
+  }
+
+  p.hex.half {
+    display: inline-block;
+    width: 49%;
+
+    &:nth-of-type(2) {
+    }
+  }
+}

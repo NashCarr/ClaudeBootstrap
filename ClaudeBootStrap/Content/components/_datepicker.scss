@@ -1,0 +1,100 @@
+.picker__holder {
+  border-radius: rem(3) !important;
+  border: none;
+  max-width: 100%;
+  padding: 0;
+}
+
+.picker__box {
+  padding: 0;
+}
+
+.picker__header {
+  background: $green;
+  margin-top: 0;
+  padding: 1rem;
+
+  .picker__year,
+  .picker__month {
+    color: $white;
+    @include font(rem(17), bold);
+    padding: 0;
+    text-transform: uppercase;
+  }
+
+  .picker__nav--next,
+  .picker__nav--prev {
+    top: 20%;
+    font-size: rem(12);
+  }
+
+  .picker__nav--prev {
+    left: 0.5rem;
+  }
+
+  .picker__nav--next {
+    right: 0.5rem;
+  }
+
+  .picker__nav--prev:before {
+    @include icon("\E225");
+    border: none;
+    color: $white;
+  }
+
+  .picker__nav--next:before {
+    @include icon("\E224");
+    border: none;
+    color: $white;
+  }
+}
+
+.picker__table {
+  tbody,
+  tbody tr:nth-child(even),
+  thead,
+  tr {
+    border: none;
+    background: none;
+  }
+
+  .picker__weekday {
+    @include font(1rem, bold);
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .picker__day {
+    @include font(rem(19), bold);
+    color: $gray-3;
+    padding: 1rem;
+
+    &:hover {
+      background: $gray-4;
+    }
+
+    &.picker__day--outfocus {
+      color: $gray-4;
+    }
+
+    &.picker__day--today {
+      background: $green;
+      color: $white;
+
+      &:before {
+        display: none;
+      }
+    }
+  }
+}
+
+.picker__footer {
+  display: none;
+}
+
+// Dashboard settings
+.dashboard-panel.datepicker {
+  .input-group {
+    position: relative;
+  }
+}
