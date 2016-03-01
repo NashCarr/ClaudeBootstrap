@@ -55,25 +55,30 @@ CustomerViewModel = function(data) {
     self.phonesettingid = 0;
 
     //fax
+    self.faxphonetype = "Fax";
     self.faxcountry = ko.observable(0);
     self.faxphonenumber = ko.observable("");
 
     //cell
+    self.cellphonetype = "Cell";
     self.cellcountry = ko.observable(0);
     self.cellcarrier = ko.observable(0);
     self.cellphonenumber = ko.observable("");
     self.cellaccepttext = ko.observable(true);
 
     //home
+    self.homephonetype = "Home";
     self.homecountry = ko.observable(0);
     self.homephonenumber = ko.observable("");
 
     //work
+    self.workphonetype = "Work";
     self.workcountry = ko.observable(0);
     self.workextension = ko.observable("");
     self.workphonenumber = ko.observable("");
 
     //mailing
+    self.mailingaddresstype = "Mailing";
     self.mailingcity = ko.observable("");
     self.mailingcountry = ko.observable(0);
     self.mailingaddress1 = ko.observable("");
@@ -83,6 +88,7 @@ CustomerViewModel = function(data) {
     self.UseMailingforShipping = ko.observable(true);
 
     //shipping
+    self.shippingaddresstype = "Shipping";
     self.shippingcity = ko.observable("");
     self.shippingcountry = ko.observable(0);
     self.shippingaddress1 = ko.observable("");
@@ -105,7 +111,23 @@ CustomerViewModel = function(data) {
     self.mobilecarriers = ko.mapping.fromJS(data.MobileCarriers).extend({ deferred: true });
     self.statesprovinces = ko.mapping.fromJS(data.StatesProvinces).extend({ deferred: true });
 
-    self.DragDropComplete = ko.computed(function() {
+    self.mailingaddress = ko.computed(function () {
+        return self.mailingaddress1() + " " + self.mailingaddress2();
+    });
+
+    self.mailingcitystatezip = ko.computed(function () {
+        return self.mailingcity() + " " + self.mailingstateprovince() + " " + self.shippingpostalcode();
+    });
+
+    self.shippingaddress = ko.computed(function () {
+        return self.shippingaddress1() + " " + self.shippingaddress2();
+    });
+
+    self.shippingcitystatezip = ko.computed(function () {
+        return self.shippingcity() + " " + self.shippingstateprovince() + " " + self.shippingpostalcode();
+    });
+
+    self.DragDropComplete = ko.computed(function () {
         return !self.IsDisplayOrderChanged();
     });
 

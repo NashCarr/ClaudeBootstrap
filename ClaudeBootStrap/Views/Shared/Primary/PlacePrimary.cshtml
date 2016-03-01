@@ -1,14 +1,91 @@
 ﻿<!-- ** BEGIN Primary AREA -->
 <div class="panel-group">
-    <div data-bind="visible: PrimaryPhone.cellisprimary()">
-        @{ Html.RenderPartial("Phones/CellPhone"); }
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Phones
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table table-condensed table-bordered table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Number</th>
+                        <th>Extension</th>
+                        <th class="listcentered">IsPrimary</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="ui-priority-secondary" data-bind="text: homephonetype"></td>
+                        <td class="ui-priority-secondary" data-bind="text: homephonenumber"></td>
+                        <td class="ui-priority-secondary"></td>
+                        <td class="listcentered">
+                            <input data-bind="checked: PrimaryPhone.homeisprimary" disabled type="checkbox">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ui-priority-secondary" data-bind="text: cellphonetype"></td>
+                        <td class="ui-priority-secondary" data-bind="text: cellphonenumber"></td>
+                        <td class="ui-priority-secondary"></td>
+                        <td class="listcentered">
+                            <input data-bind="checked: PrimaryPhone.cellisprimary" disabled type="checkbox">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ui-priority-secondary" data-bind="text: workphonetype"></td>
+                        <td class="ui-priority-secondary" data-bind="text: workphonenumber"></td>
+                        <td class="ui-priority-secondary" data-bind="text: workextension"></td>
+                        <td class="listcentered">
+                            <input data-bind="checked: PrimaryPhone.workisprimary" disabled type="checkbox">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ui-priority-secondary" data-bind="text: faxphonetype"></td>
+                        <td class="ui-priority-secondary" data-bind="text: faxphonenumber"></td>
+                        <td class="ui-priority-secondary"></td>
+                        <td class="ui-priority-secondary"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-    <div data-bind="visible: PrimaryPhone.workisprimary()">
-        @{ Html.RenderPartial("Phones/WorkPhone"); }
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Addresses
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table table-condensed table-bordered table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Address</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="ui-priority-secondary" data-bind="text: mailingaddresstype"></td>
+                        <td class="ui-priority-secondary" data-bind="text: mailingaddress"></td>
+                    </tr>
+                    <tr>
+                        <td class="ui-priority-secondary"></td>
+                        <td class="ui-priority-secondary" data-bind="text: mailingcitystatezip"></td>
+                    </tr>
+                    <tr>
+                        <td class="ui-priority-secondary" data-bind="text: shippingaddresstype"></td>
+                        <td class="ui-priority-secondary" data-bind="text: shippingaddress"></td>
+                    </tr>
+                    <tr>
+                        <td class="ui-priority-secondary"></td>
+                        <td class="ui-priority-secondary" data-bind="text: shippingcitystatezip"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-    <div data-bind="visible: PrimaryPhone.homeisprimary()">
-        @{ Html.RenderPartial("Phones/HomePhone"); }
-    </div>
-    @{ Html.RenderPartial("Address/MailingAddress"); }
+
 </div>
 <!-- ** END Primary AREA -->
