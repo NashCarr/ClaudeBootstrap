@@ -213,7 +213,7 @@ GiftCardViewModel = function (data) {
         Clear: function () {
             self.name("");
             self.recordid(0);
-            self.placedisplayorder(0);
+            self.displayorder(0);
         }
     };
 
@@ -259,26 +259,27 @@ GiftCardViewModel = function (data) {
         });
     };
 
-    self.setlistiteminactive = function (removedata) {
-        $.ajax({
-            url: baseUrl + removedata.PlaceId(),
-            type: "delete"
-        }).then(function (returndata) {
+    self.RemoveItem = {
+        SetListItemInactive: function (removedata) {
+            $.ajax({
+                url: baseUrl + removedata.RecordId(),
+                type: "delete"
+            }).then(function (returndata) {
 
-            self.handlereturndata(returndata);
-            if (self.IsMessageAreaVisible()) {
+                self.handlereturndata(returndata);
+                if (self.IsMessageAreaVisible()) {
+                    return;
+                }
+                self.listitems.remove(removedata);
+                self.clear();
+            });
+        },
+        Validate: function (item) {
+            if (!confirm("Delete Item: '" + ko.unwrap(item.Name) + "'?")) {
                 return;
             }
-            self.listitems.remove(removedata);
-            self.clear();
-        });
-    };
-
-    self.removelistitem = function (item) {
-        if (!confirm("Delete Item: '" + ko.unwrap(item.Name) + "'?")) {
-            return;
+            self.RemoveItem.SetListItemInactive(item);
         }
-        self.setlistiteminactive(item);
     };
 
     self.makelistsortable = function () {
@@ -308,9 +309,9 @@ GiftCardViewModel = function (data) {
                     contentType: "application/json; charset=utf-8"
                 });
             },
-            EditList: function (placeid, value) {
+            EditList: function (recordid, value) {
                 var match = ko.utils.arrayFirst(self.listitems(), function (item) {
-                    return parseInt(item.PlaceId()) === placeid;
+                    return parseInt(item.RecordId()) === recordid;
                 });
                 if (match) {
                     self.pauseNotifications = true;
@@ -348,26 +349,26 @@ GiftCardViewModel = function (data) {
                 self.ReorderList.displayreorder([]);
             }
         },
-        Capture: function (placeid, value) {
+        Capture: function (recordid, value) {
             self.ReorderList.displayreorder.push(
             {
-                Id: placeid,
+                Id: recordid,
                 DisplayOrder: value
             });
         },
         ReorderInnerText: function () {
             var newindex = 0;
             var rowindex = 0;
-            var rowplaceid = 0;
+            var rowrecordid = 0;
             var rowdisplayorder = 0;
 
             self.ReorderList.displayreorder([]);
             $("#datatable tbody").children().each(function () {
                 newindex = newindex + 1;
-                rowplaceid = parseInt($("#datatable tbody").children()[rowindex].children[1].innerText);
+                rowrecordid = parseInt($("#datatable tbody").children()[rowindex].children[1].innerText);
                 rowdisplayorder = parseInt($("#datatable tbody").children()[rowindex].children[2].innerText);
                 if (rowdisplayorder !== newindex) {
-                    self.ReorderList.Capture(rowplaceid, newindex);
+                    self.ReorderList.Capture(rowrecordid, newindex);
                     $("#datatable tbody").children()[rowindex].children[2].innerText = newindex;
                 }
                 rowindex = rowindex + 1;

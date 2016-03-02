@@ -7,7 +7,7 @@
             <th class="pdsa-action-button-area" data-bind="click: ManageSort.Change(0)">Edit</th>
             <th data-bind="click: ManageSort.Change(1)" style="display: none">PlaceId</th>
             <th data-bind="click: ManageSort.Change(1)" style="display: none">Order</th>
-            <th data-bind="click: ManageSort.Change(2)">Customer</th>
+            <th data-bind="click: ManageSort.Change(2)">Name</th>
             <th data-bind="click: ManageSort.Change(3)">Division</th>
             <th data-bind="click: ManageSort.Change(4)">Department</th>
             <th class="listcentered" data-bind="click: ManageSort.Change(5)">TimeZone</th>
@@ -30,7 +30,7 @@
             <td class="listcentered" data-bind="text: TimeZoneName" id="timezonename"></td>
             <td class="listcentered" data-bind="text: CountryName" id="country"></td>
             <td class="listcentered" id="delete">
-                <a class="btn btn-default btn-sm" data-bind="click: $parent.removelistitem.bind($data)" href="#" type="button">
+                <a class="btn btn-default btn-sm" data-bind="click: $parent.RemoveItem.Validate.bind($data)" href="#" type="button">
                     <i class="glyphicon glyphicon-trash"></i>
                 </a>
             </td>

@@ -2,7 +2,7 @@
 @model ClaudeViewManagement.ViewModels.Places.PlaceListViewModel
 
 @{
-    ViewBag.Title = "Customer Managements";
+    ViewBag.Title = "Customer Management";
 }
 
 @using (Html.BeginForm())
@@ -14,11 +14,11 @@
         @{ Html.RenderPartial("Message"); }
     </div>
     <div data-bind="visible: IsAddEditAreaVisible">
-        @{ Html.RenderPartial("Place/AddEditPlace"); }
+        @{ Html.RenderPartial("Place/AddEdit"); }
     </div>
     <div data-bind="visible: IsListAreaVisible">
         <!--ko if: DragDropComplete-->
-        @{ Html.RenderPartial("List"); }
+        @{ Html.RenderPartial("Place/List"); }
         <!--/ko-->
     </div>
 }

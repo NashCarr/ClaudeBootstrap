@@ -1100,26 +1100,27 @@ CustomerViewModel = function(data) {
         });
     };
 
-    self.setlistiteminactive = function(removedata) {
-        $.ajax({
-            url: baseUrl + removedata.PlaceId(),
-            type: "delete"
-        }).then(function(returndata) {
+    self.RemoveItem = {
+        SetListItemInactive: function (removedata) {
+            $.ajax({
+                url: baseUrl + removedata.PlaceId(),
+                type: "delete"
+            }).then(function (returndata) {
 
-            self.handlereturndata(returndata);
-            if (self.IsMessageAreaVisible()) {
+                self.handlereturndata(returndata);
+                if (self.IsMessageAreaVisible()) {
+                    return;
+                }
+                self.listitems.remove(removedata);
+                self.clear();
+            });
+        },
+        Validate: function (item) {
+            if (!confirm("Delete Item: '" + ko.unwrap(item.Name) + "'?")) {
                 return;
             }
-            self.listitems.remove(removedata);
-            self.clear();
-        });
-    };
-
-    self.removelistitem = function(item) {
-        if (!confirm("Delete Item: '" + ko.unwrap(item.Name) + "'?")) {
-            return;
+            self.RemoveItem.SetListItemInactive(item);
         }
-        self.setlistiteminactive(item);
     };
 
     self.makelistsortable = function() {

@@ -444,7 +444,6 @@
     <Content Include="Views\Shared\Search.cshtml" />
     <Content Include="Views\HearAboutUs\List.cshtml" />
     <Content Include="Views\ProductGroup\List.cshtml" />
-    <Content Include="Views\Customer\List.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\Shared\Address\ShippingAddress.cshtml" />
     <Content Include="Views\Shared\Address\MailingAddress.cshtml" />
@@ -454,9 +453,10 @@
     <Content Include="Views\Shared\Phones\HomePhone.cshtml" />
     <Content Include="Views\Shared\Phones\CellPhone.cshtml" />
     <Content Include="Views\Shared\Phones\Phones.cshtml" />
-    <Content Include="Views\Shared\Place\AddEditPlace.cshtml" />
+    <Content Include="Views\Shared\Place\AddEdit.cshtml" />
     <Content Include="Views\Shared\Primary\PlacePrimary.cshtml" />
     <Content Include="Views\Shared\Place\Place.cshtml" />
+    <Content Include="Views\Shared\Place\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ClaudeCommon\ClaudeCommon.csproj">
