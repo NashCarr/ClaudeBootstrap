@@ -10,7 +10,7 @@ using static ClaudeCommon.Enums.PhoneEnums;
 
 namespace ClaudeData.DataRepository.SettingsRepository
 {
-    public class DbOrganizationSave : IDisposable
+    public class DbFacilitySave : IDisposable
     {
         public void Dispose()
         {
@@ -18,7 +18,7 @@ namespace ClaudeData.DataRepository.SettingsRepository
             GC.SuppressFinalize(this);
         }
 
-        public ReturnBase SaveOrganization(ref OrganizationView data, ref int placeId)
+        public ReturnBase SaveFacility(ref FacilityView data, ref int placeId)
         {
             try
             {
@@ -47,7 +47,7 @@ namespace ClaudeData.DataRepository.SettingsRepository
 
                 using (DbPlaceSave db = new DbPlaceSave())
                 {
-                    return db.SaveOrganizationData(p, ref placeId);
+                    return db.SaveFacilityData(p, ref placeId);
                 }
             }
             catch (Exception ex)

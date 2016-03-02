@@ -109,10 +109,10 @@
     <Compile Include="DataRepository\SettingsRepository\DbOrganizationInfoGet.cs" />
     <Compile Include="DataRepository\SettingsRepository\DbAssessorInfoGet.cs" />
     <Compile Include="DataRepository\SettingsRepository\DbStaffMemberInfoGet.cs" />
-    <Compile Include="DataRepository\SettingsRepository\DbClientFacilitySave.cs" />
+    <Compile Include="DataRepository\SettingsRepository\DbFacilitySave.cs" />
     <Compile Include="DataRepository\SettingsRepository\DbAssessorSave.cs" />
     <Compile Include="DataRepository\SettingsRepository\DbStaffMemberSave.cs" />
-    <Compile Include="DataRepository\SettingsRepository\DbClientFacilityInfoGet.cs" />
+    <Compile Include="DataRepository\SettingsRepository\DbFacilityInfoGet.cs" />
     <Compile Include="Models\Addresses\StateProvince.cs" />
     <Compile Include="Models\Addresses\Address.cs" />
     <Compile Include="Models\Addresses\AddressAssociation.cs" />
@@ -136,7 +136,7 @@
     <Compile Include="Models\Lists\Settings\CustomerContactInfo.cs" />
     <Compile Include="Models\Lists\Settings\OrganizationInfo.cs" />
     <Compile Include="Models\Lists\Settings\CustomerInfo.cs" />
-    <Compile Include="Models\Lists\Settings\ClientFacilityInfo.cs" />
+    <Compile Include="Models\Lists\Settings\FacilityInfo.cs" />
     <Compile Include="Models\Lists\Settings\AssessorInfo.cs" />
     <Compile Include="Models\Lists\Settings\StaffMemberInfo.cs" />
     <Compile Include="Models\LookupLists\AddressTypeLookupList.cs" />
@@ -164,7 +164,7 @@
     <Compile Include="ViewModels\Settings\CustomerView.cs" />
     <Compile Include="ViewModels\Settings\OrganizationView.cs" />
     <Compile Include="ViewModels\Settings\CustomerContactView.cs" />
-    <Compile Include="ViewModels\Settings\ClientFacilityView.cs" />
+    <Compile Include="ViewModels\Settings\FacilityView.cs" />
     <Compile Include="ViewModels\Settings\AssessorView.cs" />
     <Compile Include="ViewModels\Settings\StaffMemberView.cs" />
     <Compile Include="ViewModels\Shared\AddressViewModel.cs" />

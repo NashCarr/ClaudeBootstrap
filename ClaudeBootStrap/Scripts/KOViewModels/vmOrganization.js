@@ -1,7 +1,7 @@
 ﻿
-CustomerViewModel = function(data) {
+OrganizationViewModel = function(data) {
     var self = this;
-    var baseUrl = "/Customer/";
+    var baseUrl = "/Organization/";
 
     self.sorttype = 1;
     self.direction = 1;
@@ -686,7 +686,7 @@ CustomerViewModel = function(data) {
     self.Place = {
         Build: function() {
             return {
-                PlaceType: ko.observable(2),
+                PlaceType: ko.observable(3),
                 Name: ko.observable(self.placename()),
                 PlaceId: ko.observable(self.placeid()),
                 Country: ko.observable(self.placecountry()),

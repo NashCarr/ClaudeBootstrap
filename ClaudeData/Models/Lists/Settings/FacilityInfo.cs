@@ -2,7 +2,7 @@
 
 namespace ClaudeData.Models.Lists.Settings
 {
-    public class ClientFacilityInfo : Place
+    public class FacilityInfo : Place
     {
     }
 }

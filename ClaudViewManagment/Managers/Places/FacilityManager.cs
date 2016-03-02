@@ -9,7 +9,7 @@ using ClaudeData.ViewModels.Settings;
 
 namespace ClaudeViewManagement.Managers.Places
 {
-    public class OrganizationManager : IDisposable
+    public class FacilityManager : IDisposable
     {
         public void Dispose()
         {
@@ -21,27 +21,27 @@ namespace ClaudeViewManagement.Managers.Places
         {
         }
 
-        public OrganizationView GetOrganization(int recordId)
+        public FacilityView GetFacility(int recordId)
         {
-            using (DbOrganizationInfoGet data = new DbOrganizationInfoGet())
+            using (DbFacilityInfoGet data = new DbFacilityInfoGet())
             {
                 return data.GetRecord(recordId);
             }
         }
 
-        public void SaveOrganizationOrder(List<DisplayReorder> data)
+        public void SaveFacilityOrder(List<DisplayReorder> data)
         {
             using (DbReorderSave db = new DbReorderSave())
             {
-                db.OrganizationReorderSave(data);
+                db.FacilityReorderSave(data);
             }
         }
 
-        public ReturnBase DeleteOrganization(int id)
+        public ReturnBase DeleteFacility(int id)
         {
             using (DbPlaceSetInactive data = new DbPlaceSetInactive())
             {
-                return data.SetOrganizationInactive(id);
+                return data.SetFacilityInactive(id);
             }
         }
     }

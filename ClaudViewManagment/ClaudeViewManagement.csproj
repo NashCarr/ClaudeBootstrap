@@ -60,7 +60,7 @@
     <Compile Include="Managers\People\AssessorManager.cs" />
     <Compile Include="Managers\People\CustomerContactManager.cs" />
     <Compile Include="Managers\People\StaffMemberManager.cs" />
-    <Compile Include="Managers\Places\ClientFacilityManager.cs" />
+    <Compile Include="Managers\Places\FacilityManager.cs" />
     <Compile Include="Managers\Places\CustomerManager.cs" />
     <Compile Include="Managers\Places\PlaceManager.cs" />
     <Compile Include="Managers\Places\PlaceListManager.cs" />
@@ -72,10 +72,8 @@
     <Compile Include="ViewModels\People\AssessorViewModel.cs" />
     <Compile Include="ViewModels\People\CustomerContactViewModel.cs" />
     <Compile Include="ViewModels\People\StaffMemberViewModel.cs" />
-    <Compile Include="ViewModels\Places\ClientFacilityViewModel.cs" />
     <Compile Include="ViewModels\Places\PlaceSaveModel.cs" />
     <Compile Include="ViewModels\Places\PlaceListViewModel.cs" />
-    <Compile Include="ViewModels\Places\OrganizationViewModel.cs" />
     <Compile Include="ViewModels\Settings\HearAboutUsViewModel.cs" />
     <Compile Include="ViewModels\Settings\GiftCardViewModel.cs" />
     <Compile Include="ViewModels\Settings\ProductGroupViewModel.cs" />

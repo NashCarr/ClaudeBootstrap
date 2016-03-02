@@ -156,7 +156,7 @@
     <Compile Include="Controllers\Settings\HearAboutUsController.cs" />
     <Compile Include="Controllers\Settings\Places\CustomerController.cs" />
     <Compile Include="Controllers\Settings\Places\OrganizationController.cs" />
-    <Compile Include="Controllers\Settings\Places\ClientFacilityController.cs" />
+    <Compile Include="Controllers\Settings\Places\FacilityController.cs" />
     <Compile Include="Controllers\Settings\ProductGroupController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -407,6 +407,8 @@
     <Content Include="Scripts\knockout-sortable.min.js" />
     <Content Include="Scripts\knockout.mapping-latest.debug.js" />
     <Content Include="Scripts\knockout.mapping-latest.js" />
+    <Content Include="Scripts\KoViewModels\vmFacility.js" />
+    <Content Include="Scripts\KoViewModels\vmOrganization.js" />
     <Content Include="Scripts\KoViewModels\vmCustomer.js" />
     <Content Include="Scripts\KoViewModels\vmProductGroup.js" />
     <Content Include="Scripts\KoViewModels\vmHearAboutUs.js" />
@@ -433,7 +435,7 @@
     <Content Include="Views\ProductGroup\Index.cshtml" />
     <Content Include="Views\HearAboutUs\Index.cshtml" />
     <Content Include="Views\StaffMember\Index.cshtml" />
-    <Content Include="Views\ClientFacility\Index.cshtml" />
+    <Content Include="Views\Facility\Index.cshtml" />
     <Content Include="Views\CustomerContact\Index.cshtml" />
     <Content Include="Views\Assessor\Index.cshtml" />
     <Content Include="Views\Organization\Index.cshtml" />

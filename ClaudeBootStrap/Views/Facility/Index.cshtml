@@ -2,7 +2,7 @@
 @model ClaudeViewManagement.ViewModels.Places.PlaceListViewModel
 
 @{
-    ViewBag.Title = "Organization Management";
+    ViewBag.Title = "Facility Management";
 }
 
 @using (Html.BeginForm())
@@ -30,9 +30,9 @@
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/knockout-3.4.0.js"></script>
     <script src="~/Scripts/knockout.mapping-latest.js"></script>
-    <script src="~/Scripts/KOViewModels/vmOrganization.js"></script>
+    <script src="~/Scripts/KOViewModels/vmFacility.js"></script>
     <script>
-        var rawData = new OrganizationViewModel(@Html.Raw(data));
+        var rawData = new FacilityViewModel(@Html.Raw(data));
         ko.applyBindings(rawData);
     </script>
 }

@@ -10,23 +10,23 @@ using static ClaudeCommon.Enums.PlaceEnums;
 
 namespace ClaudeData.DataRepository.SettingsRepository
 {
-    public class DbClientFacilityInfoGet : DbGetBase
+    public class DbFacilityInfoGet : DbGetBase
     {
-        public List<ClientFacilityInfo> GetActiveRecords()
+        public List<FacilityInfo> GetActiveRecords()
         {
-            SetConnectToDatabase("[ViewModel].[usp_Settings_ClientFacilityList]");
+            SetConnectToDatabase("[ViewModel].[usp_Settings_FacilityList]");
 
             return LoadList();
         }
 
-        public List<ClientFacilityInfo> GetInactiveRecords()
+        public List<FacilityInfo> GetInactiveRecords()
         {
-            SetConnectToDatabase("[Admin].[usp_ClientFacility_GetInactive]");
+            SetConnectToDatabase("[Admin].[usp_Facility_GetInactive]");
 
             return LoadList();
         }
 
-        public ClientFacilityView GetRecord(int recordId)
+        public FacilityView GetRecord(int recordId)
         {
             PlaceData p;
 
@@ -40,9 +40,9 @@ namespace ClaudeData.DataRepository.SettingsRepository
                 p = a.Prefill(PlaceType.Facility, p);
             }
 
-            ClientFacilityView m = new ClientFacilityView
+            FacilityView m = new FacilityView
             {
-                Facility = p.Place,
+                Place = p.Place,
                 Addresses =
                 {
                     MailingAddress = p.AddressData.MailingAddress,
@@ -61,31 +61,31 @@ namespace ClaudeData.DataRepository.SettingsRepository
             return m;
         }
 
-        public List<ClientFacilityInfo> GetRecords()
+        public List<FacilityInfo> GetRecords()
         {
             return GetRecords(0);
         }
 
-        private List<ClientFacilityInfo> GetRecords(int clientFacilityId)
+        private List<FacilityInfo> GetRecords(int placeId)
         {
             try
             {
-                SetConnectToDatabase("[Admin].[usp_ClientFacility_Get]");
+                SetConnectToDatabase("[Admin].[usp_Facility_Get]");
 
-                CmdSql.Parameters.Add("@ClientFacilityId", SqlDbType.Int).Value = clientFacilityId;
+                CmdSql.Parameters.Add("@FacilityId", SqlDbType.Int).Value = placeId;
 
                 return LoadList();
             }
             catch (Exception ex)
             {
                 DocumentErrorMessage(ex.ToString());
-                return new List<ClientFacilityInfo>();
+                return new List<FacilityInfo>();
             }
         }
 
-        private List<ClientFacilityInfo> LoadList()
+        private List<FacilityInfo> LoadList()
         {
-            List<ClientFacilityInfo> data = new List<ClientFacilityInfo>();
+            List<FacilityInfo> data = new List<FacilityInfo>();
             try
             {
                 using (ConnSql)
@@ -107,7 +107,7 @@ namespace ClaudeData.DataRepository.SettingsRepository
 
                             while (dr.Read())
                             {
-                                ClientFacilityInfo item = new ClientFacilityInfo
+                                FacilityInfo item = new FacilityInfo
                                 {
                                     Name = Convert.ToString(dr[ordName]),
                                     PlaceId = Convert.ToInt32(dr[ordPlaceId]),

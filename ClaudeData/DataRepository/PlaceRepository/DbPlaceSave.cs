@@ -82,36 +82,62 @@ namespace ClaudeData.DataRepository.PlaceRepository
             return AddUpdatePlace(ref data);
         }
 
-        protected internal string SaveFacilityData(PlaceData data, ref int placeId)
+        protected internal ReturnBase SaveFacilityData(PlaceData data, ref int placeId)
         {
-            //Place p = data.Place;
+            Place p = data.Place;
 
-            //if (p.PlaceId != placeId)
-            //{
-            //    placeId = p.PlaceId;
-            //}
+            if (p.PlaceId != placeId)
+            {
+                placeId = p.PlaceId;
+            }
 
-            //string msg = SaveFacility(ref p);
-            //if (msg.Length != 0) return msg;
+            ReturnBase rb = SaveFacility(ref p);
+            if (rb.ErrMsg.Length != 0) return rb;
 
-            //using (DbPlaceAddressSave db = new DbPlaceAddressSave())
-            //{
-            //    msg = db.SaveFacilityAddresses(placeId, data.AddressData.Addresses);
-            //}
-            //if (msg.Length != 0) return msg;
+            string msg;
+            if (data.AddressData?.Addresses != null)
+            {
+                if (data.AddressData.Addresses.Count != 0)
+                {
+                    using (DbPlaceAddressSave db = new DbPlaceAddressSave())
+                    {
+                        msg = db.SaveFacilityAddresses(placeId, data.AddressData.Addresses);
+                        if (msg.Length != 0)
+                        {
+                            rb.ErrMsg = msg;
+                            return rb;
+                        }
+                    }
+                }
+            }
 
-            //using (DbPlacePhoneSave db = new DbPlacePhoneSave())
-            //{
-            //    msg = db.SaveFacilityPhones(placeId, data.PhoneData.Phones);
-            //}
-            //if (msg.Length != 0) return msg;
+            if (data.PhoneData == null) return rb;
 
-            //using (DbPlacePhoneSettingSave db = new DbPlacePhoneSettingSave())
-            //{
-            //    msg = db.SaveFacilityPhoneSetting(placeId, data.PhoneData.PhoneSettings);
-            //}
-            //return msg;
-            return string.Empty;
+            if (data.PhoneData.Phones != null)
+            {
+                if (data.PhoneData.Phones.Count != 0)
+                {
+                    using (DbPlacePhoneSave db = new DbPlacePhoneSave())
+                    {
+                        msg = db.SaveFacilityPhones(placeId, data.PhoneData.Phones);
+                        if (msg.Length != 0)
+                        {
+                            rb.ErrMsg = msg;
+                            return rb;
+                        }
+                    }
+                }
+            }
+
+            if (data.PhoneData.PhoneSettings == null) return rb;
+
+            using (DbPlacePhoneSettingSave db = new DbPlacePhoneSettingSave())
+            {
+                msg = db.SaveFacilityPhoneSetting(placeId, data.PhoneData.PhoneSettings);
+                if (msg.Length == 0) return rb;
+                rb.ErrMsg = msg;
+                return rb;
+            }
         }
 
         protected internal ReturnBase SaveCustomerData(PlaceData data, ref int placeId)
@@ -172,37 +198,62 @@ namespace ClaudeData.DataRepository.PlaceRepository
             }
         }
 
-        protected internal string SaveOrganizationData(PlaceData data, ref int placeId)
+        protected internal ReturnBase SaveOrganizationData(PlaceData data, ref int placeId)
         {
-            //Place p = data.Place;
+            Place p = data.Place;
 
-            //if (p.PlaceId != placeId)
-            //{
-            //    placeId = p.PlaceId;
-            //}
+            if (p.PlaceId != placeId)
+            {
+                placeId = p.PlaceId;
+            }
 
-            //string msg = SaveOrganization(ref p);
-            //if (msg.Length != 0) return msg;
+            ReturnBase rb = SaveOrganization(ref p);
+            if (rb.ErrMsg.Length != 0) return rb;
 
-            //using (DbPlaceAddressSave db = new DbPlaceAddressSave())
-            //{
-            //    msg = db.SaveOrganizationAddresses(placeId, data.AddressData.Addresses);
-            //}
-            //if (msg.Length != 0) return msg;
+            string msg;
+            if (data.AddressData?.Addresses != null)
+            {
+                if (data.AddressData.Addresses.Count != 0)
+                {
+                    using (DbPlaceAddressSave db = new DbPlaceAddressSave())
+                    {
+                        msg = db.SaveOrganizationAddresses(placeId, data.AddressData.Addresses);
+                        if (msg.Length != 0)
+                        {
+                            rb.ErrMsg = msg;
+                            return rb;
+                        }
+                    }
+                }
+            }
 
-            //using (DbPlacePhoneSave db = new DbPlacePhoneSave())
-            //{
-            //    msg = db.SaveOrganizationPhones(placeId, data.PhoneData.Phones);
-            //}
-            //if (msg.Length != 0) return msg;
+            if (data.PhoneData == null) return rb;
 
-            //using (DbPlacePhoneSettingSave db = new DbPlacePhoneSettingSave())
-            //{
-            //    msg = db.SaveOrganizationPhoneSetting(placeId, data.PhoneData.PhoneSettings);
-            //}
+            if (data.PhoneData.Phones != null)
+            {
+                if (data.PhoneData.Phones.Count != 0)
+                {
+                    using (DbPlacePhoneSave db = new DbPlacePhoneSave())
+                    {
+                        msg = db.SaveOrganizationPhones(placeId, data.PhoneData.Phones);
+                        if (msg.Length != 0)
+                        {
+                            rb.ErrMsg = msg;
+                            return rb;
+                        }
+                    }
+                }
+            }
 
-            //return msg;
-            return string.Empty;
+            if (data.PhoneData.PhoneSettings == null) return rb;
+
+            using (DbPlacePhoneSettingSave db = new DbPlacePhoneSettingSave())
+            {
+                msg = db.SaveOrganizationPhoneSetting(placeId, data.PhoneData.PhoneSettings);
+                if (msg.Length == 0) return rb;
+                rb.ErrMsg = msg;
+                return rb;
+            }
         }
 
         public ReturnBase SavePlace(PlaceData data, int placeId)
@@ -210,11 +261,11 @@ namespace ClaudeData.DataRepository.PlaceRepository
             switch (data.Place.PlaceType)
             {
                 case PlaceType.Facility:
-                //return SaveFacilityData(data, ref placeId);
+                  return SaveFacilityData(data, ref placeId);
                 case PlaceType.Customer:
                     return SaveCustomerData(data, ref placeId);
                 case PlaceType.Organization:
-                //return SaveOrganizationData(data, ref placeId);
+                    return SaveOrganizationData(data, ref placeId);
                 default:
                     return new ReturnBase {ErrMsg = "Place Type Undetermined"};
             }

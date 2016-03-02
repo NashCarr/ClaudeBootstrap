@@ -1,41 +1,58 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
+using ClaudeCommon.BaseModels;
+using ClaudeViewManagement.Managers.Places;
 using ClaudeViewManagement.ViewModels.Places;
+using static ClaudeCommon.Enums.PlaceEnums;
 
 namespace ClaudeBootstrap.Controllers.Settings.Places
 {
+    [RoutePrefix("Organization")]
     public class OrganizationController : Controller
     {
+        [Route("")]
+        [HttpGet]
         public ActionResult Index()
         {
-            OrganizationViewModel vm = new OrganizationViewModel();
-
-            vm.HandleRequest();
-
-            return View(vm);
+            return View(new PlaceListViewModel(PlaceType.Organization));
         }
 
         [HttpPost]
-        public ActionResult Index(OrganizationViewModel vm)
+        public JsonResult SavePlace(PlaceSaveModel p)
         {
-            vm.IsValid = ModelState.IsValid;
-            vm.HandleRequest();
-
-            if (vm.IsValid)
+            if (p.Place != null) p.Place.PlaceType = PlaceType.Organization;
+            using (PlaceManager mgr = new PlaceManager())
             {
-                // NOTE: Must clear the model state in order to bind
-                //       the @Html helpers to the new model values
-                ModelState.Clear();
+                return Json(mgr.SavePlace(p));
             }
-            else
-            {
-                foreach (KeyValuePair<string, string> item in vm.ValidationErrors)
-                {
-                    ModelState.AddModelError(item.Key, item.Value);
-                }
-            }
+        }
 
-            return View(vm);
+        [HttpPost]
+        public JsonResult GetPlace(string id)
+        {
+            using (OrganizationManager mgr = new OrganizationManager())
+            {
+                return Json(id != null ? mgr.GetOrganization(int.Parse(id)) : mgr.GetOrganization(0));
+            }
+        }
+
+        [HttpPost]
+        public void DisplayOrder(List<DisplayReorder> list)
+        {
+            using (OrganizationManager mgr = new OrganizationManager())
+            {
+                mgr.SaveOrganizationOrder(list);
+            }
+        }
+
+        [Route("{id:int}")]
+        [HttpDelete]
+        public JsonResult Delete(int id)
+        {
+            using (OrganizationManager mgr = new OrganizationManager())
+            {
+                return Json(mgr.DeleteOrganization(id));
+            }
         }
     }
 }

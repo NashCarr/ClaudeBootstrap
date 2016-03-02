@@ -4,9 +4,9 @@ using ClaudeData.ViewModels.Shared;
 
 namespace ClaudeData.ViewModels.Settings
 {
-    public class OrganizationView : IDisposable
+    public class FacilityView : IDisposable
     {
-        public OrganizationView()
+        public FacilityView()
         {
             Place = new Place();
             Phones = new PhoneViewModel();

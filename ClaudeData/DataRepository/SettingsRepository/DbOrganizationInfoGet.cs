@@ -32,7 +32,7 @@ namespace ClaudeData.DataRepository.SettingsRepository
 
             using (DbPlaceDataGet a = new DbPlaceDataGet())
             {
-                p = a.GetFacilityData(recordId);
+                p = a.GetOrganizationData(recordId);
             }
 
             using (DbPlaceDataStub a = new DbPlaceDataStub())
@@ -42,7 +42,7 @@ namespace ClaudeData.DataRepository.SettingsRepository
 
             OrganizationView m = new OrganizationView
             {
-                Organization = p.Place,
+                Place = p.Place,
                 Addresses =
                 {
                     MailingAddress = p.AddressData.MailingAddress,
@@ -66,13 +66,13 @@ namespace ClaudeData.DataRepository.SettingsRepository
             return GetRecords(0);
         }
 
-        private List<OrganizationInfo> GetRecords(int organizationId)
+        private List<OrganizationInfo> GetRecords(int placeId)
         {
             try
             {
                 SetConnectToDatabase("[Admin].[usp_Organization_Get]");
 
-                CmdSql.Parameters.Add("@OrganizationId", SqlDbType.Int).Value = organizationId;
+                CmdSql.Parameters.Add("@OrganizationId", SqlDbType.Int).Value = placeId;
 
                 return LoadList();
             }

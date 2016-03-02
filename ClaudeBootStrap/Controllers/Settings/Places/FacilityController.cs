@@ -7,20 +7,20 @@ using static ClaudeCommon.Enums.PlaceEnums;
 
 namespace ClaudeBootstrap.Controllers.Settings.Places
 {
-    [RoutePrefix("Customer")]
-    public class CustomerController : Controller
+    [RoutePrefix("Facility")]
+    public class FacilityController : Controller
     {
         [Route("")]
         [HttpGet]
         public ActionResult Index()
         {
-            return View(new PlaceListViewModel(PlaceType.Customer));
+            return View(new PlaceListViewModel(PlaceType.Facility));
         }
 
         [HttpPost]
         public JsonResult SavePlace(PlaceSaveModel p)
         {
-            if (p.Place != null) p.Place.PlaceType = PlaceType.Customer;
+            if (p.Place != null) p.Place.PlaceType = PlaceType.Facility;
             using (PlaceManager mgr = new PlaceManager())
             {
                 return Json(mgr.SavePlace(p));
@@ -30,18 +30,18 @@ namespace ClaudeBootstrap.Controllers.Settings.Places
         [HttpPost]
         public JsonResult GetPlace(string id)
         {
-            using (CustomerManager mgr = new CustomerManager())
+            using (FacilityManager mgr = new FacilityManager())
             {
-                return Json(id != null ? mgr.GetCustomer(int.Parse(id)) : mgr.GetCustomer(0));
+                return Json(id != null ? mgr.GetFacility(int.Parse(id)) : mgr.GetFacility(0));
             }
         }
 
         [HttpPost]
         public void DisplayOrder(List<DisplayReorder> list)
         {
-            using (CustomerManager mgr = new CustomerManager())
+            using (FacilityManager mgr = new FacilityManager())
             {
-                mgr.SaveCustomerOrder(list);
+                mgr.SaveFacilityOrder(list);
             }
         }
 
@@ -49,9 +49,9 @@ namespace ClaudeBootstrap.Controllers.Settings.Places
         [HttpDelete]
         public JsonResult Delete(int id)
         {
-            using (CustomerManager mgr = new CustomerManager())
+            using (FacilityManager mgr = new FacilityManager())
             {
-                return Json(mgr.DeleteCustomer(id));
+                return Json(mgr.DeleteFacility(id));
             }
         }
     }

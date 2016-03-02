@@ -22,7 +22,7 @@ namespace ClaudeData.DataRepository.PlaceRepository
             }
         }
 
-        public string SetOrganizationInactive(int placeId)
+        public ReturnBase SetOrganizationInactive(int placeId)
         {
             try
             {
@@ -34,10 +34,10 @@ namespace ClaudeData.DataRepository.PlaceRepository
             {
                 ReturnValues.ErrMsg = ex.Message;
             }
-            return ReturnValues.ErrMsg;
+            return ReturnValues;
         }
 
-        public string SetFacilityInactive(int placeId)
+        public ReturnBase SetFacilityInactive(int placeId)
         {
             try
             {
@@ -49,7 +49,7 @@ namespace ClaudeData.DataRepository.PlaceRepository
             {
                 ReturnValues.ErrMsg = ex.Message;
             }
-            return ReturnValues.ErrMsg;
+            return ReturnValues;
         }
 
         public ReturnBase SetCustomerInactive(int placeId)
