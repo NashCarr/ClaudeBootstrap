@@ -261,7 +261,7 @@ namespace ClaudeData.DataRepository.PlaceRepository
             switch (data.Place.PlaceType)
             {
                 case PlaceType.Facility:
-                  return SaveFacilityData(data, ref placeId);
+                    return SaveFacilityData(data, ref placeId);
                 case PlaceType.Customer:
                     return SaveCustomerData(data, ref placeId);
                 case PlaceType.Organization:

@@ -8,7 +8,7 @@ namespace ClaudeData.DataRepository.PlacesRepository
 {
     public class DbPlacesGetActive : DbPlacesGet
     {
-        public List<Place> GetActive(PlaceType pt)
+        public List<PlaceList> GetActive(PlaceType pt)
         {
             try
             {
@@ -24,7 +24,7 @@ namespace ClaudeData.DataRepository.PlacesRepository
             catch (Exception ex)
             {
                 DocumentErrorMessage(ex.ToString());
-                return new List<Place>();
+                return new List<PlaceList>();
             }
         }
     }

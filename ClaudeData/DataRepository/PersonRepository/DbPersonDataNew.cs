@@ -26,7 +26,6 @@ namespace ClaudeData.DataRepository.PersonRepository
                 data.Person = new Person
                 {
                     PersonType = personType,
-                    PersonTypeName = Enum.GetName(typeof (PersonType), personType)
                 };
 
                 data.AddressData = new AddressData {Addresses = new List<AddressAssociation>()};

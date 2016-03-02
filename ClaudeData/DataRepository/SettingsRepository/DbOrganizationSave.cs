@@ -34,7 +34,7 @@ namespace ClaudeData.DataRepository.SettingsRepository
                 {
                     Place = data.Place,
                     AddressData = new AddressData(),
-                    PhoneData = new PhoneData { PhoneSettings = data.Phones.PhoneSettings }
+                    PhoneData = new PhoneData {PhoneSettings = data.Phones.PhoneSettings}
                 };
 
                 p.PhoneData.Phones.Add(data.Phones.FaxPhone);
@@ -52,7 +52,7 @@ namespace ClaudeData.DataRepository.SettingsRepository
             }
             catch (Exception ex)
             {
-                return new ReturnBase { ErrMsg = ex.Message };
+                return new ReturnBase {ErrMsg = ex.Message};
             }
         }
 

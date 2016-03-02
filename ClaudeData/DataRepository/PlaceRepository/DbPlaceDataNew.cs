@@ -26,7 +26,6 @@ namespace ClaudeData.DataRepository.PlaceRepository
                 data.Place = new Place
                 {
                     PlaceType = placeType,
-                    PlaceTypeName = Enum.GetName(typeof (PlaceType), placeType)
                 };
 
                 data.AddressData = new AddressData {Addresses = new List<AddressAssociation>()};

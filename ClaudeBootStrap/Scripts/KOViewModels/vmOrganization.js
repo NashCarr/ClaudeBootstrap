@@ -1070,34 +1070,35 @@ OrganizationViewModel = function(data) {
         }
     };
 
-    self.BuildPlaceData = function() {
-        return {
-            Place: self.Place.Build(),
-            FaxPhone: self.Fax.Build(),
-            CellPhone: self.Cell.Build(),
-            HomePhone: self.Home.Build(),
-            WorkPhone: self.Work.Build(),
-            MailingAddress: self.Mailing.Build(),
-            ShippingAddress: self.Shipping.Build(),
-            PhoneSetting: self.PhoneSettings.Build(),
-            UseMailingForShipping: self.UseMailingforShipping()
-        };
-    };
+    self.SavePlaceData = {
+        BuildPlaceData: function () {
+            return {
+                Place: self.Place.Build(),
+                FaxPhone: self.Fax.Build(),
+                CellPhone: self.Cell.Build(),
+                HomePhone: self.Home.Build(),
+                WorkPhone: self.Work.Build(),
+                MailingAddress: self.Mailing.Build(),
+                ShippingAddress: self.Shipping.Build(),
+                PhoneSetting: self.PhoneSettings.Build(),
+                UseMailingForShipping: self.UseMailingforShipping()
+            };
+        },
+        Save: function () {
+            $.ajax({
+                url: baseUrl + "SavePlace",
+                type: "post",
+                data: self.SavePlaceData.BuildPlaceData()
+            }).then(function (returndata) {
 
-    self.save = function() {
-        $.ajax({
-            url: baseUrl + "SavePlace",
-            type: "post",
-            data: self.BuildPlaceData()
-        }).then(function(returndata) {
-
-            self.handlereturndata(returndata);
-            if (self.IsMessageAreaVisible()) {
-                return;
-            }
-            self.ProcessSave.Manage();
-            self.clearandtoggle();
-        });
+                self.handlereturndata(returndata);
+                if (self.IsMessageAreaVisible()) {
+                    return;
+                }
+                self.ProcessSave.Manage();
+                self.clearandtoggle();
+            });
+        }
     };
 
     self.RemoveItem = {

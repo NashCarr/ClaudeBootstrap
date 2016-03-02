@@ -11,9 +11,9 @@ namespace ClaudeData.DataRepository.PlacesRepository
     {
         protected internal string TypeName;
 
-        protected internal List<Place> GetRecords()
+        protected internal List<PlaceList> GetRecords()
         {
-            List<Place> data = new List<Place>();
+            List<PlaceList> data = new List<PlaceList>();
             try
             {
                 using (ConnSql)
@@ -38,7 +38,7 @@ namespace ClaudeData.DataRepository.PlacesRepository
 
                             while (dr.Read())
                             {
-                                Place item = new Place
+                                PlaceList item = new PlaceList
                                 {
                                     Name = Convert.ToString(dr[ordName]),
                                     PlaceId = Convert.ToInt32(dr[ordPlaceId]),

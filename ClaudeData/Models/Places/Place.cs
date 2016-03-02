@@ -13,7 +13,6 @@ namespace ClaudeData.Models.Places
             Division = string.Empty;
             Department = string.Empty;
             PlaceType = PlaceType.None;
-            PlaceTypeName = string.Empty;
             Country = Country.None;
             TimeZone = ClaudeTimeZone.None;
         }
@@ -23,7 +22,6 @@ namespace ClaudeData.Models.Places
         public string Division { get; set; }
         public string Department { get; set; }
         public PlaceType PlaceType { get; set; }
-        public string PlaceTypeName { get; set; }
         public ClaudeTimeZone TimeZone { get; set; }
     }
 }

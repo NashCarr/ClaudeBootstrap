@@ -4,9 +4,9 @@ using static ClaudeCommon.Enums.TimeZoneEnums;
 
 namespace ClaudeCommon.Models
 {
-    public class Place
+    public class PlaceList
     {
-        public Place()
+        public PlaceList()
         {
             PlaceId = 0;
             DisplayOrder = 0;

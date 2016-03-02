@@ -156,11 +156,11 @@ CustomerViewModel = function(data) {
         return ko.unwrap(self.shippingcity()) + ", " + self.stateprovincename(ko.unwrap(self.shippingstateprovince())) + "   " + ko.unwrap(self.shippingpostalcode());
     });
 
-    self.ShowShipping = ko.computed(function () {
+    self.ShowShipping = ko.computed(function() {
         return !self.UseMailingforShipping();
     });
 
-    self.DragDropComplete = ko.computed(function () {
+    self.DragDropComplete = ko.computed(function() {
         return !self.IsDisplayOrderChanged();
     });
 
@@ -983,19 +983,19 @@ CustomerViewModel = function(data) {
         self.PhoneSettings.Clear();
     };
 
-    self.toggleview = function () {
+    self.toggleview = function() {
         self.setmessageview();
         self.IsListAreaVisible(!self.IsListAreaVisible());
         self.IsSearchAreaVisible(!self.IsSearchAreaVisible());
         self.IsAddEditAreaVisible(!self.IsAddEditAreaVisible());
     };
 
-    self.clearandtoggle = function () {
+    self.clearandtoggle = function() {
         self.clear();
         self.toggleview();
     };
 
-    self.edit = function (editdata) {
+    self.edit = function(editdata) {
         self.IsEdit(true);
         self.placeid(editdata.PlaceId());
 
@@ -1070,42 +1070,43 @@ CustomerViewModel = function(data) {
         }
     };
 
-    self.BuildPlaceData = function() {
-        return {
-            Place: self.Place.Build(),
-            FaxPhone: self.Fax.Build(),
-            CellPhone: self.Cell.Build(),
-            HomePhone: self.Home.Build(),
-            WorkPhone: self.Work.Build(),
-            MailingAddress: self.Mailing.Build(),
-            ShippingAddress: self.Shipping.Build(),
-            PhoneSetting: self.PhoneSettings.Build(),
-            UseMailingForShipping: self.UseMailingforShipping()
-        };
-    };
+    self.SavePlaceData = {
+        BuildPlaceData: function() {
+            return {
+                Place: self.Place.Build(),
+                FaxPhone: self.Fax.Build(),
+                CellPhone: self.Cell.Build(),
+                HomePhone: self.Home.Build(),
+                WorkPhone: self.Work.Build(),
+                MailingAddress: self.Mailing.Build(),
+                ShippingAddress: self.Shipping.Build(),
+                PhoneSetting: self.PhoneSettings.Build(),
+                UseMailingForShipping: self.UseMailingforShipping()
+            };
+        },
+        Save: function() {
+            $.ajax({
+                url: baseUrl + "SavePlace",
+                type: "post",
+                data: self.SavePlaceData.BuildPlaceData()
+            }).then(function(returndata) {
 
-    self.save = function() {
-        $.ajax({
-            url: baseUrl + "SavePlace",
-            type: "post",
-            data: self.BuildPlaceData()
-        }).then(function(returndata) {
-
-            self.handlereturndata(returndata);
-            if (self.IsMessageAreaVisible()) {
-                return;
-            }
-            self.ProcessSave.Manage();
-            self.clearandtoggle();
-        });
+                self.handlereturndata(returndata);
+                if (self.IsMessageAreaVisible()) {
+                    return;
+                }
+                self.ProcessSave.Manage();
+                self.clearandtoggle();
+            });
+        }
     };
 
     self.RemoveItem = {
-        SetListItemInactive: function (removedata) {
+        SetListItemInactive: function(removedata) {
             $.ajax({
                 url: baseUrl + removedata.PlaceId(),
                 type: "delete"
-            }).then(function (returndata) {
+            }).then(function(returndata) {
 
                 self.handlereturndata(returndata);
                 if (self.IsMessageAreaVisible()) {
@@ -1115,7 +1116,7 @@ CustomerViewModel = function(data) {
                 self.clear();
             });
         },
-        Validate: function (item) {
+        Validate: function(item) {
             if (!confirm("Delete Item: '" + ko.unwrap(item.Name) + "'?")) {
                 return;
             }

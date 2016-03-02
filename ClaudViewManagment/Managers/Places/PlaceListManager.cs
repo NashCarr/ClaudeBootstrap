@@ -21,7 +21,7 @@ namespace ClaudeViewManagement.Managers.Places
         {
         }
 
-        public List<Place> GetList(PlaceType pt)
+        public List<PlaceList> GetList(PlaceType pt)
         {
             using (DbPlacesGetActive data = new DbPlacesGetActive())
             {

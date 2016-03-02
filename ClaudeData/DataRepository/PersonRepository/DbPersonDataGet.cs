@@ -192,7 +192,6 @@ namespace ClaudeData.DataRepository.PersonRepository
                     ConnSql.Close();
                 }
                 data.Person.PersonType = (PersonType) personType;
-                data.Person.PersonTypeName = Enum.GetName(typeof (PersonType), personType);
             }
             catch (Exception ex)
             {

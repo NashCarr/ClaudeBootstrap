@@ -51,7 +51,7 @@ namespace ClaudeCommon.Helpers
 
         public static short GetShortFromEnum<T>(string value)
         {
-            return Convert.ToInt16(Enum.Parse(typeof(T), value));
+            return Convert.ToInt16(Enum.Parse(typeof (T), value));
         }
     }
 }

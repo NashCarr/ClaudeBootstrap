@@ -134,9 +134,6 @@
     <Compile Include="Models\Admin\UserLogin.cs" />
     <Compile Include="Models\Admin\UserRole.cs" />
     <Compile Include="Models\Lists\Settings\CustomerContactInfo.cs" />
-    <Compile Include="Models\Lists\Settings\OrganizationInfo.cs" />
-    <Compile Include="Models\Lists\Settings\CustomerInfo.cs" />
-    <Compile Include="Models\Lists\Settings\FacilityInfo.cs" />
     <Compile Include="Models\Lists\Settings\AssessorInfo.cs" />
     <Compile Include="Models\Lists\Settings\StaffMemberInfo.cs" />
     <Compile Include="Models\LookupLists\AddressTypeLookupList.cs" />
@@ -177,9 +174,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\Assessor\" />
-    <Folder Include="Models\Email\" />
-    <Folder Include="Models\FundRaising\" />
     <Folder Include="Models\Shared\" />
     <Folder Include="Models\Study\" />
     <Folder Include="Models\Survey\" />

@@ -1,11 +1,10 @@
-﻿using ClaudeData.BaseModels;
-using static ClaudeCommon.Enums.PersonEnums;
+﻿using static ClaudeCommon.Enums.PersonEnums;
 
-namespace ClaudeData.Models.People
+namespace ClaudeCommon.Models
 {
-    public class Person : ModelBase
+    public class PersonList
     {
-        public Person()
+        public PersonList()
         {
             PlaceId = 0;
             PersonId = 0;
@@ -17,15 +16,12 @@ namespace ClaudeData.Models.People
         }
 
         public int PlaceId { get; set; }
-
         public int PersonId { get; set; }
-
-        public PersonType PersonType { get; set; }
-
         public string Email { get; set; }
         public string LastName { get; set; }
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
+        public PersonType PersonType { get; set; }
 
         public string FullName => ((FirstName + ' ' + MiddleName).Trim() + ' ' + LastName).Trim();
     }

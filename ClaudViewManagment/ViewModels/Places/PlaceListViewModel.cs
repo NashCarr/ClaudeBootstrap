@@ -20,7 +20,7 @@ namespace ClaudeViewManagement.ViewModels.Places
             }
         }
 
-        public List<Place> ListEntity { get; set; }
+        public List<PlaceList> ListEntity { get; set; }
         public List<SelectListItem> TimeZones { get; set; }
         public List<SelectListItem> Countries { get; set; }
         public List<SelectListItem> MobileCarriers { get; set; }

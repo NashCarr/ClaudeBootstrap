@@ -77,7 +77,6 @@ namespace ClaudeData.DataRepository.PlaceRepository
                     ConnSql.Close();
                 }
                 data.PlaceType = placeType;
-                data.PlaceTypeName = Enum.GetName(typeof (PlaceType), placeType);
             }
             catch (Exception ex)
             {
