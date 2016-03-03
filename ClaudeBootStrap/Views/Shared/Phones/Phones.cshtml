@@ -1,8 +1,36 @@
 ﻿<!-- ** BEGIN Phones AREA -->
-<div class="panel-group">
-    @{ Html.RenderPartial("Phones/CellPhone"); }
-    @{ Html.RenderPartial("Phones/HomePhone"); }
-    @{ Html.RenderPartial("Phones/WorkPhone"); }
-    @{ Html.RenderPartial("Phones/faxPhone"); }
+<div class="panel panel-default" id="Phones">
+    <div class="panel-heading">
+        Phones
+        <a class="btn btn-sm btn-secondary pull-right" data-bind="click: PhoneView.Primary" href="#" type="button">
+            Primary
+        </a>
+        <a class="btn btn-sm btn-secondary pull-right" data-bind="click: PhoneView.Fax" href="#" type="button">
+            Fax
+        </a>
+        <a class="btn btn-sm btn-secondary pull-right" data-bind="click: PhoneView.Work" href="#" type="button">
+            Work
+        </a>
+        <a class="btn btn-sm btn-secondary pull-right" data-bind="click: PhoneView.Cell" href="#" type="button">
+            Cell
+        </a>
+        <a class="btn btn-sm btn-secondary pull-right" data-bind="click: PhoneView.Home" href="#" type="button">
+            Home
+        </a>
+    </div>
+    <div class="panel-body">
+        <div data-bind="visible: IsHomePhoneVisible">
+            @{ Html.RenderPartial("Phones/HomePhone"); }
+        </div>
+        <div data-bind="visible: IsCellPhoneVisible">
+            @{ Html.RenderPartial("Phones/CellPhone"); }
+        </div>
+        <div data-bind="visible: IsWorkPhoneVisible">
+            @{ Html.RenderPartial("Phones/WorkPhone"); }
+        </div>
+        <div data-bind="visible: IsFaxPhoneVisible">
+            @{ Html.RenderPartial("Phones/FaxPhone"); }
+        </div>
+    </div>
 </div>
 <!-- ** END Phones AREA -->

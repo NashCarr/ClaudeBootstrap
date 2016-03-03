@@ -14,9 +14,9 @@
             <div class="col-sm-8">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        Details
+                        @Html.Label("detailheader", new { data_bind = "text: detailHeader" })
                         <a class="btn btn-sm btn-secondary pull-right" data-bind="click: DetailView.Primary" href="#" type="button">
-                            Primary
+                            List
                         </a>
                         <a class="btn btn-sm btn-secondary pull-right" data-bind="click: DetailView.Phones" href="#" type="button">
                             Phones

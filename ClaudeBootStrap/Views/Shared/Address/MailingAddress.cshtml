@@ -1,57 +1,59 @@
 ﻿<!-- ** BEGIN Mailing Address AREA -->
-<div class="panel panel-default" id="MailingAddress">
-    <div class="panel-heading">
-        Mailing Address
+<div class="row">
+    <div class="col-sm-5">
+        <div class="form-group">
+            @Html.Label("Mailing", "Mailing")
+        </div>
+    </div>
+    <div class="col-sm-5">
         <div class="form-group pull-right">
             <input data-bind="checked: UseMailingforShipping, event: { change: DefaultShipping.Set }" name="issystem" type="checkbox">
             @Html.Label("SameAddress", "Use For Shipping")
         </div>
     </div>
-    <div class="panel-body">
-        <div class="row">
-            <div class="col-sm-5">
-                <div class="form-group">
-                    @Html.Label("Address1", "Address1")
-                    @Html.TextBox("Address1", "", new {@class = "form-control", data_bind = "value:mailingaddress1"})
-                </div>
-            </div>
-            <div class="col-sm-5">
-                <div class="form-group">
-                    @Html.Label("Address2", "Address2")
-                    @Html.TextBox("Address2", "", new {@class = "form-control", data_bind = "value:mailingaddress2" })
-                </div>
-            </div>
+</div>
+<div class="row">
+    <div class="col-sm-5">
+        <div class="form-group">
+            @Html.Label("Address1", "Address1")
+            @Html.TextBox("Address1", "", new {@class = "form-control", data_bind = "value:mailingaddress1"})
         </div>
-        <div class="row">
-            <div class="col-sm-5">
-                <div class="form-group">
-                    @Html.Label("Postal", "Postal")
-                    <a class="btn btn-sm btn-secondary pull-right" data-bind="click: cancel" href="#" type="button">
-                        Verify
-                    </a>
-                    @Html.TextBox("Postal", "", new {@class = "form-control", data_bind = "value:mailingpostalcode" })
-                </div>
-            </div>
-            <div class="col-sm-5">
-                <div class="form-group">
-                    @Html.Label("Country", "Country")
-                    <select class="form-control" data-bind="value: mailingcountry, options: countries, optionsText: 'Text', optionsValue: 'Value', optionsCaption: 'Choose...'"></select>
-                </div>
-            </div>
+    </div>
+    <div class="col-sm-5">
+        <div class="form-group">
+            @Html.Label("Address2", "Address2")
+            @Html.TextBox("Address2", "", new {@class = "form-control", data_bind = "value:mailingaddress2"})
         </div>
-        <div class="row">
-            <div class="col-sm-5">
-                <div class="form-group">
-                    @Html.Label("City", "City")
-                    @Html.TextBox("City", "", new {@class = "form-control", data_bind = "value:mailingcity"})
-                </div>
-            </div>
-            <div class="col-sm-5">
-                <div class="form-group">
-                    @Html.Label("State", "State")
-                    <select class="form-control" data-bind="value: mailingstateprovince, options: statesprovinces, optionsText: 'Text', optionsValue: 'Value', optionsCaption: 'Choose...'"></select>
-                </div>
-            </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-5">
+        <div class="form-group">
+            @Html.Label("Postal", "Postal")
+            <a class="btn btn-sm btn-secondary pull-right" data-bind="click: cancel" href="#" type="button">
+                Verify
+            </a>
+            @Html.TextBox("Postal", "", new {@class = "form-control", data_bind = "value:mailingpostalcode"})
+        </div>
+    </div>
+    <div class="col-sm-5">
+        <div class="form-group">
+            @Html.Label("Country", "Country")
+            <select class="form-control" data-bind="value: mailingcountry, options: countries, optionsText: 'Text', optionsValue: 'Value', optionsCaption: 'Choose...'"></select>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-5">
+        <div class="form-group">
+            @Html.Label("City", "City")
+            @Html.TextBox("City", "", new {@class = "form-control", data_bind = "value:mailingcity"})
+        </div>
+    </div>
+    <div class="col-sm-5">
+        <div class="form-group">
+            @Html.Label("State", "State")
+            <select class="form-control" data-bind="value: mailingstateprovince, options: statesprovinces, optionsText: 'Text', optionsValue: 'Value', optionsCaption: 'Choose...'"></select>
         </div>
     </div>
 </div>

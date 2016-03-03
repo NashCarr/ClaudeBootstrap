@@ -1,106 +1,117 @@
 ﻿<!-- ** BEGIN Primary AREA -->
-<div class="panel-group">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            Phones
-            <a class="btn btn-sm btn-secondary pull-right" data-bind="click: DetailView.Phones" href="#" type="button">
-                Edit
-            </a>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        List
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table table-condensed table-bordered table-striped table-hover">
+                <thead>
+                <tr>
+                    <th class="pdsa-action-button-area">Edit</th>
+                    <th>Type</th>
+                    <th>Number</th>
+                    <th>Extension</th>
+                    <th>Carrier</th>
+                    <th class="listcentered">IsPrimary</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="listcentered">
+                        <a class="btn btn-default btn-sm" data-bind="click: DetailListEdit.Home" href="#" type="button">
+                            <i class="glyphicon glyphicon-edit"></i>
+                        </a>
+                    </td>
+                    <td class="ui-priority-secondary" data-bind="text: homephonetype"></td>
+                    <td class="ui-priority-secondary" data-bind="text: homephonenumber"></td>
+                    <td class="ui-priority-secondary"></td>
+                    <td class="ui-priority-secondary"></td>
+                    <td class="listcentered">
+                        <input data-bind="checked: PrimaryPhone.homeisprimary" disabled type="checkbox">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="listcentered">
+                        <a class="btn btn-default btn-sm" data-bind="click: DetailListEdit.Cell" href="#" type="button">
+                            <i class="glyphicon glyphicon-edit"></i>
+                        </a>
+                    </td>
+                    <td class="ui-priority-secondary" data-bind="text: cellphonetype"></td>
+                    <td class="ui-priority-secondary" data-bind="text: cellphonenumber"></td>
+                    <td class="ui-priority-secondary"></td>
+                    <td class="ui-priority-secondary" data-bind="text: cellcarriername"></td>
+                    <td class="listcentered">
+                        <input data-bind="checked: PrimaryPhone.cellisprimary" disabled type="checkbox">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="listcentered">
+                        <a class="btn btn-default btn-sm" data-bind="click: DetailListEdit.Work" href="#" type="button">
+                            <i class="glyphicon glyphicon-edit"></i>
+                        </a>
+                    </td>
+                    <td class="ui-priority-secondary" data-bind="text: workphonetype"></td>
+                    <td class="ui-priority-secondary" data-bind="text: workphonenumber"></td>
+                    <td class="ui-priority-secondary" data-bind="text: workextension"></td>
+                    <td class="ui-priority-secondary"></td>
+                    <td class="listcentered">
+                        <input data-bind="checked: PrimaryPhone.workisprimary" disabled type="checkbox">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="listcentered">
+                        <a class="btn btn-default btn-sm" data-bind="click: DetailListEdit.Fax" href="#" type="button">
+                            <i class="glyphicon glyphicon-edit"></i>
+                        </a>
+                    </td>
+                    <td class="ui-priority-secondary" data-bind="text: faxphonetype"></td>
+                    <td class="ui-priority-secondary" data-bind="text: faxphonenumber"></td>
+                    <td class="ui-priority-secondary"></td>
+                    <td class="ui-priority-secondary"></td>
+                    <td class="ui-priority-secondary"></td>
+                </tr>
+                </tbody>
+            </table>
         </div>
-        <div class="panel-body">
-            <div class="table-responsive">
-                <table class="table table-condensed table-bordered table-striped table-hover">
-                    <thead>
-                    <tr>
-                        <th>Type</th>
-                        <th>Number</th>
-                        <th>Extension</th>
-                        <th class="listcentered">IsPrimary</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td class="ui-priority-secondary" data-bind="text: homephonetype"></td>
-                        <td class="ui-priority-secondary" data-bind="text: homephonenumber"></td>
-                        <td class="ui-priority-secondary"></td>
-                        <td class="listcentered">
-                            <input data-bind="checked: PrimaryPhone.homeisprimary" disabled type="checkbox">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="ui-priority-secondary" data-bind="text: cellphonetype"></td>
-                        <td class="ui-priority-secondary" data-bind="text: cellphonenumber"></td>
-                        <td class="ui-priority-secondary"></td>
-                        <td class="listcentered">
-                            <input data-bind="checked: PrimaryPhone.cellisprimary" disabled type="checkbox">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="ui-priority-secondary" data-bind="text: workphonetype"></td>
-                        <td class="ui-priority-secondary" data-bind="text: workphonenumber"></td>
-                        <td class="ui-priority-secondary" data-bind="text: workextension"></td>
-                        <td class="listcentered">
-                            <input data-bind="checked: PrimaryPhone.workisprimary" disabled type="checkbox">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="ui-priority-secondary" data-bind="text: faxphonetype"></td>
-                        <td class="ui-priority-secondary" data-bind="text: faxphonenumber"></td>
-                        <td class="ui-priority-secondary"></td>
-                        <td class="ui-priority-secondary"></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+        <div class="table-responsive">
+            <table class="table table-condensed table-bordered table-striped table-hover">
+                <thead>
+                <tr>
+                    <th class="pdsa-action-button-area">Edit</th>
+                    <th>Type</th>
+                    <th>Address</th>
+                    <th class="listcentered">IsShipping</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="listcentered">
+                        <a class="btn btn-default btn-sm" data-bind="click: DetailListEdit.Mailing" href="#" type="button">
+                            <i class="glyphicon glyphicon-edit"></i>
+                        </a>
+                    </td>
+                    <td class="ui-priority-secondary" data-bind="text: mailingaddresstype"></td>
+                    <td class="ui-priority-secondary" data-bind="text: MailingAddress.Value()"></td>
+                    <td class="listcentered">
+                        <input data-bind="checked: UseMailingforShipping()" disabled type="checkbox">
+                    </td>
+                </tr>
+                <tr data-bind="visible: !UseMailingforShipping()">
+                    <td class="listcentered">
+                        <a class="btn btn-default btn-sm" data-bind="click: DetailListEdit.Shipping" href="#" type="button">
+                            <i class="glyphicon glyphicon-edit"></i>
+                        </a>
+                    </td>
+                    <td class="ui-priority-secondary" data-bind="text: shippingaddresstype"></td>
+                    <td class="ui-priority-secondary" data-bind="text: ShippingAddress.Value()"></td>
+                    <td class="listcentered">
+                        <input data-bind="checked: !UseMailingforShipping()" disabled type="checkbox">
+                    </td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            Addresses
-            <a class="btn btn-sm btn-secondary pull-right" data-bind="click: DetailView.Addresses" href="#" type="button">
-                Edit
-            </a>
-        </div>
-        <div class="panel-body">
-            <div class="table-responsive">
-                <table class="table table-condensed table-bordered table-striped table-hover">
-                    <tbody>
-                        <tr>
-                            <td>
-                                Mailing
-                                @Html.Label("SameAddress", "Use For Shipping", new { @class = "pull-right" })
-                                <input data-bind="checked: UseMailingforShipping" disabled type="checkbox" class="pull-right">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="ui-priority-secondary" data-bind="text: mailingaddress"></td>
-                        </tr>
-                        <tr>
-                            <td class="ui-priority-secondary" data-bind="text: mailingcitystatezip"></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="table-responsive" data-bind="visible: !UseMailingforShipping()">
-                <table class="table table-condensed table-bordered table-striped table-hover">
-                    <thead>
-                    <tr>
-                        <th>Shipping</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td class="ui-priority-secondary" data-bind="text: shippingaddress"></td>
-                    </tr>
-                    <tr>
-                        <td class="ui-priority-secondary" data-bind="text: shippingcitystatezip"></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
 </div>
 <!-- ** END Primary AREA -->
