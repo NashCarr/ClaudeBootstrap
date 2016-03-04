@@ -13,6 +13,7 @@ CustomerViewModel = function(data) {
     self.sortdirection = ko.observable(1);
 
     self.IsEdit = ko.observable(false);
+    self.IsEditContact = ko.observable(true);
 
     self.IsFaxPhoneVisible = ko.observable(false);
     self.IsCellPhoneVisible = ko.observable(false);
@@ -22,6 +23,7 @@ CustomerViewModel = function(data) {
 
     self.IsPrimaryDetailVisible = ko.observable(true);
 
+    self.IsContactDetailVisible = ko.observable(false);
     self.IsAddressDetailVisible = ko.observable(false);
     self.IsMailingAddressVisible = ko.observable(false);
     self.IsShippingAddressVisible = ko.observable(false);
@@ -53,7 +55,6 @@ CustomerViewModel = function(data) {
     self.personemail = ko.observable("");
     self.personfirst = ko.observable("");
     self.personmiddle = ko.observable("");
-    self.persondisplayorder = ko.observable(0);
 
     //associations
     self.faxassociationid = 0;
@@ -249,25 +250,32 @@ CustomerViewModel = function(data) {
 
     self.DetailView = {
         Primary: function() {
-            self.detailSubHeader("List");
             self.IsPhoneDetailVisible(false);
             self.IsPrimaryDetailVisible(true);
             self.IsAddressDetailVisible(false);
+            self.IsContactDetailVisible(false);
+        },
+        Contacts: function() {
+            self.IsEditContact(false);
+            self.IsPhoneDetailVisible(false);
+            self.IsPrimaryDetailVisible(false);
+            self.IsAddressDetailVisible(false);
+            self.IsContactDetailVisible(true);
         },
         Phones: function() {
-            self.detailSubHeader("Phones");
             self.IsPhoneDetailVisible(true);
             self.IsPrimaryDetailVisible(false);
             self.IsAddressDetailVisible(false);
+            self.IsContactDetailVisible(false);
 
             self.PhoneView.Primary();
             self.AddressView.Default();
         },
         Addresses: function() {
-            self.detailSubHeader("Addresses");
             self.IsPhoneDetailVisible(false);
             self.IsAddressDetailVisible(true);
             self.IsPrimaryDetailVisible(false);
+            self.IsContactDetailVisible(false);
 
             self.PhoneView.Default();
             self.AddressView.Mailing();
@@ -551,6 +559,91 @@ CustomerViewModel = function(data) {
                 self.DefaultShipping.Address2();
             };
             self.DefaultShipping.Basic();
+        }
+    };
+
+    self.Contact = {
+        Clear: function() {
+            self.personid(0);
+            self.personlast("");
+            self.personemail("");
+            self.personfirst("");
+            self.personmiddle("");
+        },
+        Add: function() {
+            self.Contact.Clear();
+            self.IsEditContact(true);
+        },
+        Cancel: function() {
+            self.Contact.Clear();
+            self.IsEditContact(false);
+        },
+        Edit: function(editdata) {
+            self.IsEditContact(true);
+            self.placeid(editdata.PlaceId());
+            self.personid(editdata.PersonId());
+            self.personemail(editdata.Email());
+            self.personlast(editdata.LastName());
+            self.personfirst(editdata.FirstName());
+            self.personmiddle(editdata.MiddleName());
+        }
+    };
+
+    self.SaveContact = {
+        FullName: function() {
+            return ((ko.unwrap(self.personfirst()) + " " + ko.unwrap(self.personmiddle())).trim() + " " + ko.unwrap(self.personlast())).trim();
+        },
+        Build: function() {
+            return {
+                PersonType: 0,
+                PlaceId: ko.unwrap(self.placeid()),
+                PersonId: ko.unwrap(self.personid()),
+                Email: ko.unwrap(self.personemail()),
+                FullName: self.SaveContact.FullName(),
+                LastName: ko.unwrap(self.personlast()),
+                FirstName: ko.unwrap(self.personfirst()),
+                MiddleName: ko.unwrap(self.personmiddle())
+            };
+        },
+        ProcessAdd: function() {
+            self.personlist.push(self.SaveContact.Build());
+        },
+        ItemExists: function() {
+            var match = ko.utils.arrayFirst(self.personlist(), function(item) {
+                return item.PersonId() === self.personid();
+            });
+            return match;
+        },
+        ProcessEdit: function() {
+            self.personlist.replace(self.SaveContact.ItemExists(), self.SaveContact.Build());
+        },
+        Process: function() {
+            if (self.SaveContact.ItemExists()) {
+                self.SaveContact.ProcessEdit();
+                return;
+            };
+            self.SaveContact.ProcessAdd();
+        },
+        HandleReturn: function(returndata) {
+            self.personid(returndata.Id);
+            self.errmsg(returndata.ErrMsg);
+
+            self.setmessageview();
+        },
+        Save: function() {
+            $.ajax({
+                url: baseUrl + "SaveContact",
+                type: "post",
+                data: self.SaveContact.Build()
+            }).then(function(returndata) {
+
+                self.SaveContact.HandleReturn(returndata);
+                if (self.IsMessageAreaVisible()) {
+                    return;
+                }
+                self.SaveContact.Process();
+                self.DetailView.Contacts();
+            });
         }
     };
 
@@ -906,6 +999,23 @@ CustomerViewModel = function(data) {
         }
     };
 
+    self.Contacts = {
+        Clear: function() {
+            self.personlist([]);
+        },
+        Set: function() {
+            self.personlist = ko.mapping.fromJS(self.placedata);
+        },
+        Populate: function() {
+            if (typeof self.placedata === "undefined") {
+                self.Contacts.Clear();
+                return;
+            }
+            self.Contacts.Set();
+            self.placedata = ko.observableArray([]);
+        }
+    };
+
     self.GetPlaceData = function() {
         $.ajax({
             url: baseUrl + "GetPlace/" + ko.unwrap(self.placeid()),
@@ -932,6 +1042,9 @@ CustomerViewModel = function(data) {
 
             self.placedata = ko.mapping.fromJS(returndata.Addresses.MailingAddress);
             self.Mailing.Populate();
+
+            self.placedata = ko.mapping.fromJS(returndata.Contacts);
+            self.Contacts.Populate();
 
             self.placedata = ko.mapping.fromJS(returndata.Place);
             self.Place.Populate();
@@ -1111,14 +1224,17 @@ CustomerViewModel = function(data) {
     self.clear = function() {
         self.errmsg("");
         self.IsEdit(false);
+        self.IsEditContact(false);
 
         self.Fax.Clear();
         self.Cell.Clear();
         self.Home.Clear();
         self.Work.Clear();
         self.Place.Clear();
+        self.Contact.Clear();
         self.Mailing.Clear();
         self.Shipping.Clear();
+        self.Contacts.Clear();
         self.PhoneSettings.Clear();
     };
 
@@ -1260,6 +1376,29 @@ CustomerViewModel = function(data) {
                 return;
             }
             self.RemoveItem.SetListItemInactive(item);
+        }
+    };
+
+    self.RemoveContact = {
+        SetListItemInactive: function(removedata) {
+            //$.ajax({
+            //    url: baseUrl + removedata.PlaceId(),
+            //    type: "delete"
+            //}).then(function (returndata) {
+
+            //    self.handlereturndata(returndata);
+            //    if (self.IsMessageAreaVisible()) {
+            //        return;
+            //    }
+            //    self.listitems.remove(removedata);
+            //    self.clear();
+            //});
+        },
+        Validate: function(item) {
+            //if (!confirm("Delete Item: '" + ko.unwrap(item.Name) + "'?")) {
+            //    return;
+            //}
+            //self.RemoveItem.SetListItemInactive(item);
         }
     };
 

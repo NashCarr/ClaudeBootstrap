@@ -1,0 +1,43 @@
+﻿<!-- ** BEGIN Edit Contact AREA -->
+<div class="panel panel-default" id="Contacts">
+    <div class="panel-heading">
+        Contact
+        <a class="btn btn-sm btn-secondary pull-right" data-bind="click: Contact.Cancel" href="#" type="button">
+            Cancel
+        </a>
+        <a class="btn btn-sm btn-secondary pull-right" data-bind="click: SaveContact.Save" href="#" type="button">
+            Save
+        </a>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="form-group">
+                    @Html.Label("FirstName", "First Name")
+                    @Html.TextBox("First", "", new {@class = "form-control", data_bind = "value:personfirst"})
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <div class="form-group">
+                    @Html.Label("MiddleName", "Middle Name")
+                    @Html.TextBox("Middle", "", new {@class = "form-control", data_bind = "value:personmiddle"})
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="form-group">
+                    @Html.Label("LastName", "Last Name")
+                    @Html.TextBox("Last", "", new {@class = "form-control", data_bind = "value:personlast"})
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <div class="form-group">
+                    @Html.Label("Email", "Email")
+                    @Html.TextBox("Email", "", new {@class = "form-control", data_bind = "value:personemail"})
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ** END Edit Contact AREA -->

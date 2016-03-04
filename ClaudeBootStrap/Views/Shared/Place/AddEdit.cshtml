@@ -24,6 +24,9 @@
                         <a class="btn btn-sm btn-secondary pull-right" data-bind="click: DetailView.Addresses" href="#" type="button">
                             Addresses
                         </a>
+                        <a class="btn btn-sm btn-secondary pull-right" data-bind="click: DetailView.Contacts" href="#" type="button">
+                            Contacts
+                        </a>
                     </div>
                     <div class="panel-body">
 
@@ -35,6 +38,9 @@
                         </div>
                         <div data-bind="visible: IsAddressDetailVisible()">
                             @{ Html.RenderPartial("Address/Addresses"); }
+                        </div>
+                        <div data-bind="visible: IsContactDetailVisible()">
+                            @{ Html.RenderPartial("Contacts/Contacts"); }
                         </div>
 
                     </div>

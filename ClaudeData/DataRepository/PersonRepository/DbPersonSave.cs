@@ -51,12 +51,12 @@ namespace ClaudeData.DataRepository.PersonRepository
             return AddUpdatePerson("[Admin].[usp_Assessor_Upsert]", ref data);
         }
 
-        protected internal string SaveCustomerContact(ref Person data)
+        public string SaveCustomerContact(ref Person data)
         {
             return AddUpdatePerson("[Admin].[usp_CustomerContact_Upsert]", ref data);
         }
 
-        protected internal string SaveStaffUser(ref Person data)
+        public string SaveStaffUser(ref Person data)
         {
             return AddUpdatePerson("[Admin].[usp_StaffUser_Upsert]", ref data);
         }

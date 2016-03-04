@@ -2,9 +2,9 @@
 
 namespace ClaudeCommon.Models
 {
-    public class PersonList
+    public class Contact
     {
-        public PersonList()
+        public Contact()
         {
             PlaceId = 0;
             PersonId = 0;

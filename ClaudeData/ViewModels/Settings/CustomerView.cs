@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using ClaudeCommon.Models;
 using ClaudeData.Models.Places;
 using ClaudeData.ViewModels.Shared;
 
@@ -10,13 +12,13 @@ namespace ClaudeData.ViewModels.Settings
         {
             Place = new Place();
             Phones = new PhoneViewModel();
+            Contacts = new List<Contact>();
             Addresses = new AddressViewModel();
         }
 
-        public int FacilityStaffId { get; set; }
-
         public Place Place { get; set; }
         public PhoneViewModel Phones { get; set; }
+        public List<Contact> Contacts { get; set; }
         public AddressViewModel Addresses { get; set; }
 
         public void Dispose()
@@ -27,11 +29,13 @@ namespace ClaudeData.ViewModels.Settings
 
         protected virtual void Dispose(bool iAmBeingCalledFromDisposeAndNotFinalize)
         {
-            Phones.Dispose();
-            Addresses.Dispose();
+            Phones?.Dispose();
+            Contacts?.Clear();
+            Addresses?.Dispose();
 
-            Phones = null;
             Place = null;
+            Phones = null;
+            Contacts = null;
             Addresses = null;
         }
     }

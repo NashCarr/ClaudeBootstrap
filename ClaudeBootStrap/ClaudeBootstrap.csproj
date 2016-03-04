@@ -459,6 +459,9 @@
     <Content Include="Views\Shared\Primary\PlacePrimary.cshtml" />
     <Content Include="Views\Shared\Place\Place.cshtml" />
     <Content Include="Views\Shared\Place\List.cshtml" />
+    <Content Include="Views\Shared\Contacts\List.cshtml" />
+    <Content Include="Views\Shared\Contacts\Contacts.cshtml" />
+    <Content Include="Views\Shared\Contacts\Contact.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ClaudeCommon\ClaudeCommon.csproj">

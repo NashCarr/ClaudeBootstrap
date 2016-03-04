@@ -1,0 +1,46 @@
+﻿<!-- BEGIN Contact List AREA -->
+<div class="panel panel-default" id="Contacts">
+    <div class="panel-heading">
+        Contact
+        <a class="btn btn-sm btn-secondary pull-right" data-bind="click: Contact.Add" href="#" type="button">
+            Add
+        </a>
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive" id="contacts">
+            <table class="table table-condensed table-bordered table-striped table-hover" id="datatable">
+
+                <thead>
+                <tr>
+                    <th class="pdsa-action-button-area" data-bind="click: ManageSort.Change(0)">Edit</th>
+                    <th data-bind="click: ManageSort.Change(2)" style="display: none">PersonId</th>
+                    <th data-bind="click: ManageSort.Change(2)" style="display: none">PlaceId</th>
+                    <th data-bind="click: ManageSort.Change(2)">Name</th>
+                    <th data-bind="click: ManageSort.Change(3)">Email</th>
+                    <th class="pdsa-action-button-area" data-bind="click: ManageSort.Change(0)">Delete</th>
+                </tr>
+                </thead>
+                <tbody data-bind="foreach: personlist()" id="contactlist">
+                <tr id="itemrow">
+                    <td class="listcentered" id="edit">
+                        <a class="btn btn-default btn-sm" data-bind="click: $parent.Contact.Edit" href="#" type="button">
+                            <i class="glyphicon glyphicon-edit"></i>
+                        </a>
+                    </td>
+                    <td class="listcentered" data-bind="text: PersonId" id="personid" style="display: none"></td>
+                    <td class="listcentered" data-bind="text: PlaceId" id="place" style="display: none"></td>
+                    <td class="ui-priority-secondary" data-bind="text: FullName" id="fullname"></td>
+                    <td class="ui-priority-secondary" data-bind="text: Email" id="email"></td>
+                    <td class="listcentered" id="delete">
+                        <a class="btn btn-default btn-sm" data-bind="click: $parent.RemoveContact.Validate.bind($data)" href="#" type="button">
+                            <i class="glyphicon glyphicon-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+<!-- END Contact List AREA -->

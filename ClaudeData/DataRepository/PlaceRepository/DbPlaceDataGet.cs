@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using ClaudeCommon.Models;
 using ClaudeData.Models.Addresses;
 using ClaudeData.Models.Phones;
 using ClaudeData.Models.Places;
@@ -36,6 +37,7 @@ namespace ClaudeData.DataRepository.PlaceRepository
             try
             {
                 data.Place = new Place();
+                data.Contacts = new List<Contact>();
                 data.PhoneData = new PhoneData {Phones = new List<PhoneAssociation>()};
                 data.AddressData = new AddressData {Addresses = new List<AddressAssociation>()};
 
@@ -190,6 +192,34 @@ namespace ClaudeData.DataRepository.PlaceRepository
                                     data.PhoneData.PhoneSettings.MobileCarrier = Convert.ToInt16(dr[ordMobileCarrierId]);
                                     data.PhoneData.PhoneSettings.PrimaryPhoneType =
                                         (PhoneType) Convert.ToInt16(dr[ordPrimaryPhoneType]);
+                                }
+                            }
+
+                            //Contacts
+                            dr.NextResult();
+
+                            if (dr.HasRows)
+                            {
+                                ordPlaceId = dr.GetOrdinal("PlaceId");
+                                int ordEmail = dr.GetOrdinal("Email");
+                                int ordPersonId = dr.GetOrdinal("PersonId");
+                                int ordLastName = dr.GetOrdinal("LastName");
+                                int ordFirstName = dr.GetOrdinal("FirstName");
+                                int ordMiddleName = dr.GetOrdinal("MiddleName");
+
+                                while (dr.Read())
+                                {
+                                    Contact item = new Contact
+                                    {
+                                        PersonType = 0,
+                                        Email = Convert.ToString(dr[ordEmail]),
+                                        PlaceId = Convert.ToInt32(dr[ordPlaceId]),
+                                        PersonId = Convert.ToInt32(dr[ordPersonId]),
+                                        LastName = Convert.ToString(dr[ordLastName]),
+                                        FirstName = Convert.ToString(dr[ordFirstName]),
+                                        MiddleName = Convert.ToString(dr[ordMiddleName])
+                                    };
+                                    data.Contacts.Add(item);
                                 }
                             }
                         }

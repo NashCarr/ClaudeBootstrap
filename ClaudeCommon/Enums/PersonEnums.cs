@@ -7,7 +7,8 @@
             None,
             Assessor,
             StaffUser,
-            CustomerContact
+            CustomerContact,
+            OrganizationContact
         }
     }
 }

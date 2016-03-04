@@ -24,6 +24,7 @@ namespace ClaudeData.DataRepository.SettingsRepository
             CustomerView m = new CustomerView
             {
                 Place = p.Place,
+                Contacts = p.Contacts,
                 Addresses =
                 {
                     MailingAddress = p.AddressData.MailingAddress,
