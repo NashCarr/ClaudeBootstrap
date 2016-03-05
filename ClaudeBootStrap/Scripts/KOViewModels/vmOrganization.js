@@ -1225,7 +1225,7 @@ OrganizationViewModel = function(data) {
     self.clear = function () {
         self.errmsg("");
         self.IsEdit(false);
-        self.IsEditContact(false);
+        self.IsEditContact(true);
 
         self.Fax.Clear();
         self.Cell.Clear();
@@ -1381,25 +1381,27 @@ OrganizationViewModel = function(data) {
     };
 
     self.RemoveContact = {
-        SetListItemInactive: function (removedata) {
-            //$.ajax({
-            //    url: baseUrl + removedata.PlaceId(),
-            //    type: "delete"
-            //}).then(function (returndata) {
+        SetListItemInactive: function (item) {
+            $.ajax({
+                url: baseUrl + "DeleteContact/" + ko.unwrap(item.PersonId()),
+                type: "post"
+            }).then(function (returndata) {
 
-            //    self.handlereturndata(returndata);
-            //    if (self.IsMessageAreaVisible()) {
-            //        return;
-            //    }
-            //    self.listitems.remove(removedata);
-            //    self.clear();
-            //});
+                self.errmsg(returndata);
+                self.setmessageview();
+                if (self.IsMessageAreaVisible()) {
+                    return;
+                }
+                self.personlist.remove(item);
+                self.IsEditContact(true);
+                self.IsEditContact(false);
+            });
         },
         Validate: function (item) {
-            //if (!confirm("Delete Item: '" + ko.unwrap(item.Name) + "'?")) {
-            //    return;
-            //}
-            //self.RemoveItem.SetListItemInactive(item);
+            if (!confirm("Delete Contact: '" + ko.unwrap(item.FullName) + "'?")) {
+                return;
+            }
+            self.RemoveContact.SetListItemInactive(item);
         }
     };
 

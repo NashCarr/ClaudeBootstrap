@@ -19,6 +19,22 @@ namespace ClaudeViewManagement.Managers.People
         {
         }
 
+        public string DeleteStaffUser(int id)
+        {
+            using (DbPersonSetInactive data = new DbPersonSetInactive())
+            {
+                return data.SetStaffUserInactive(id);
+            }
+        }
+
+        public string DeleteCustomer(int id)
+        {
+            using (DbPersonSetInactive data = new DbPersonSetInactive())
+            {
+                return data.SetCustomerContactInactive(id);
+            }
+        }
+
         public ReturnBase SaveContact(ContactSaveModel c)
         {
             ReturnBase rb = new ReturnBase();

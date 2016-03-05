@@ -67,5 +67,14 @@ namespace ClaudeBootstrap.Controllers.Settings.Places
                 return Json(mgr.DeleteCustomer(id));
             }
         }
+
+        [HttpPost]
+        public JsonResult DeleteContact(int id)
+        {
+            using (ContactManager mgr = new ContactManager())
+            {
+                return Json(mgr.DeleteCustomer(id));
+            }
+        }
     }
 }
