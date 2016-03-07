@@ -8,8 +8,8 @@ namespace ClaudeData.BaseModels
         protected ModelBase()
         {
             IsActive = true;
-            ErrMsg = string.Empty;
             CreateDate = Now;
+            ErrMsg = string.Empty;
             StringCreateDate = Now.ToString("MM/dd/yyyy hh:mm:ss tt");
         }
 

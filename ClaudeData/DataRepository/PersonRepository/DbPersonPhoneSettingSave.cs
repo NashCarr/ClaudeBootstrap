@@ -41,6 +41,15 @@ namespace ClaudeData.DataRepository.PersonRepository
             }
         }
 
+        protected internal string SaveOrganizationContactPhoneSetting(int personId, PhoneSetting data)
+        {
+            if (data == null) return string.Empty;
+            using (DbPhoneSettingSave db = new DbPhoneSettingSave())
+            {
+                return db.SavePersonPhoneSetting(personId, (byte)PersonType.OrganizationContact, data);
+            }
+        }
+
         protected internal string SavePersonPhoneSetting(PersonData data)
         {
             if (data.PhoneData == null) return string.Empty;
@@ -52,6 +61,8 @@ namespace ClaudeData.DataRepository.PersonRepository
                     return SaveAssessorPhoneSetting(data.Person.PersonId, data.PhoneData.PhoneSettings);
                 case PersonType.CustomerContact:
                     return SaveCustomerContactPhoneSetting(data.Person.PersonId, data.PhoneData.PhoneSettings);
+                case PersonType.OrganizationContact:
+                    return SaveOrganizationContactPhoneSetting(data.Person.PersonId, data.PhoneData.PhoneSettings);
                 case PersonType.None:
                     return "Person Type Undetermined";
                 default:

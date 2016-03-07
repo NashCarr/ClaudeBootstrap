@@ -6,6 +6,8 @@ OrganizationViewModel = function(data) {
     self.placeHeader = "Organization";
     self.detailHeader = "Organization Details";
     self.detailSubHeader = ko.observable("List");
+    self.phoneHeader = ko.observable("Primary");
+    self.addressHeader = ko.observable("Mailing");
 
     self.sorttype = 1;
     self.direction = 1;
@@ -15,18 +17,18 @@ OrganizationViewModel = function(data) {
     self.IsEdit = ko.observable(false);
     self.IsEditContact = ko.observable(true);
 
-    self.IsFaxPhoneVisible = ko.observable(false);
-    self.IsCellPhoneVisible = ko.observable(false);
-    self.IsHomePhoneVisible = ko.observable(false);
-    self.IsWorkPhoneVisible = ko.observable(false);
+    self.IsPlaceFaxPhoneVisible = ko.observable(false);
+    self.IsPlaceCellPhoneVisible = ko.observable(false);
+    self.IsPlaceHomePhoneVisible = ko.observable(false);
+    self.IsPlaceWorkPhoneVisible = ko.observable(false);
     self.IsPhoneDetailVisible = ko.observable(false);
 
     self.IsPrimaryDetailVisible = ko.observable(true);
 
     self.IsContactDetailVisible = ko.observable(false);
-    self.IsAddressDetailVisible = ko.observable(false);
-    self.IsMailingAddressVisible = ko.observable(false);
-    self.IsShippingAddressVisible = ko.observable(false);
+    self.IsPlaceAddressDetailVisible = ko.observable(false);
+    self.IsPlaceMailingAddressVisible = ko.observable(false);
+    self.IsPlaceShippingAddressVisible = ko.observable(false);
 
     self.IsListAreaVisible = ko.observable(true);
     self.IsSearchAreaVisible = ko.observable(true);
@@ -55,24 +57,26 @@ OrganizationViewModel = function(data) {
     self.personemail = ko.observable("");
     self.personfirst = ko.observable("");
     self.personmiddle = ko.observable("");
+    self.personcountry = ko.observable("");
+    self.persontimezone = ko.observable("");
     self.persondisplayorder = ko.observable(0);
 
     //associations
-    self.faxassociationid = 0;
-    self.cellassociationid = 0;
-    self.homeassociationid = 0;
-    self.workassociationid = 0;
-    self.mailingassociationid = 0;
-    self.shippingassociationid = 0;
+    self.placefaxassociationid = 0;
+    self.placecellassociationid = 0;
+    self.placehomeassociationid = 0;
+    self.placeworkassociationid = 0;
+    self.placemailingassociationid = 0;
+    self.placeshippingassociationid = 0;
 
     //ids
-    self.faxid = 0;
-    self.cellid = 0;
-    self.homeid = 0;
-    self.workid = 0;
-    self.mailingid = 0;
-    self.shippingid = 0;
-    self.phonesettingid = 0;
+    self.placefaxid = 0;
+    self.placecellid = 0;
+    self.placehomeid = 0;
+    self.placeworkid = 0;
+    self.placemailingid = 0;
+    self.placeshippingid = 0;
+    self.placephonesettingid = 0;
 
     //fax
     self.faxphonetype = "Fax";
@@ -128,189 +132,193 @@ OrganizationViewModel = function(data) {
     self.mobilecarriers = ko.mapping.fromJS(data.MobileCarriers).extend({ deferred: true });
     self.statesprovinces = ko.mapping.fromJS(data.StatesProvinces).extend({ deferred: true });
 
-    self.PrimaryPhone = {
+    self.PlacePrimaryPhone = {
         phoneprimaryid: 0,
         workisprimary: ko.observable(true),
         cellisprimary: ko.observable(false),
         homeisprimary: ko.observable(false),
 
         Cell: function() {
-            if (!self.PrimaryPhone.cellisprimary()) {
-                self.PrimaryPhone.phoneprimaryid = 0;
+            if (!self.PlacePrimaryPhone.cellisprimary()) {
+                self.PlacePrimaryPhone.phoneprimaryid = 0;
                 return;
             };
-            self.PrimaryPhone.homeisprimary(false);
-            self.PrimaryPhone.workisprimary(false);
-            self.PrimaryPhone.phoneprimaryid = 2;
+            self.PlacePrimaryPhone.homeisprimary(false);
+            self.PlacePrimaryPhone.workisprimary(false);
+            self.PlacePrimaryPhone.phoneprimaryid = 2;
         },
 
         Home: function() {
-            if (!self.PrimaryPhone.homeisprimary()) {
-                self.PrimaryPhone.phoneprimaryid = 0;
+            if (!self.PlacePrimaryPhone.homeisprimary()) {
+                self.PlacePrimaryPhone.phoneprimaryid = 0;
                 return;
             };
-            self.PrimaryPhone.cellisprimary(false);
-            self.PrimaryPhone.workisprimary(false);
-            self.PrimaryPhone.phoneprimaryid = 1;
+            self.PlacePrimaryPhone.cellisprimary(false);
+            self.PlacePrimaryPhone.workisprimary(false);
+            self.PlacePrimaryPhone.phoneprimaryid = 1;
         },
 
         Work: function() {
-            if (!self.PrimaryPhone.workisprimary()) {
-                self.PrimaryPhone.phoneprimaryid = 0;
+            if (!self.PlacePrimaryPhone.workisprimary()) {
+                self.PlacePrimaryPhone.phoneprimaryid = 0;
                 return;
             };
-            self.PrimaryPhone.cellisprimary(false);
-            self.PrimaryPhone.homeisprimary(false);
-            self.PrimaryPhone.phoneprimaryid = 3;
+            self.PlacePrimaryPhone.cellisprimary(false);
+            self.PlacePrimaryPhone.homeisprimary(false);
+            self.PlacePrimaryPhone.phoneprimaryid = 3;
         },
         Set: function() {
-            switch (self.PrimaryPhone.phoneprimaryid) {
+            switch (self.PlacePrimaryPhone.phoneprimaryid) {
             case 1:
-                self.PrimaryPhone.homeisprimarye(true);
-                self.PrimaryPhone.Home();
+                self.PlacePrimaryPhone.homeisprimarye(true);
+                self.PlacePrimaryPhone.Home();
                 break;
             case 2:
-                self.PrimaryPhone.cellisprimary(true);
-                self.PrimaryPhone.Cell();
+                self.PlacePrimaryPhone.cellisprimary(true);
+                self.PlacePrimaryPhone.Cell();
                 break;
             case 3:
-                self.PrimaryPhone.workisprimary(true);
-                self.PrimaryPhone.Work();
+                self.PlacePrimaryPhone.workisprimary(true);
+                self.PlacePrimaryPhone.Work();
                 break;
             default:
-                self.PrimaryPhone.workisprimary(true);
-                self.PrimaryPhone.Work();
+                self.PlacePrimaryPhone.workisprimary(true);
+                self.PlacePrimaryPhone.Work();
                 break;
             };
         }
     };
 
-    self.PhoneView = {
-        Fax: function() {
-            self.IsFaxPhoneVisible(true);
-            self.IsCellPhoneVisible(false);
-            self.IsHomePhoneVisible(false);
-            self.IsWorkPhoneVisible(false);
+    self.PlacePhoneView = {
+        Fax: function () {
+            self.IsPlaceFaxPhoneVisible(true);
+            self.IsPlaceCellPhoneVisible(false);
+            self.IsPlaceHomePhoneVisible(false);
+            self.IsPlaceWorkPhoneVisible(false);
+            self.phoneHeader("Phones: " + self.faxphonetype);
         },
-        Cell: function() {
-            self.IsFaxPhoneVisible(false);
-            self.IsCellPhoneVisible(true);
-            self.IsHomePhoneVisible(false);
-            self.IsWorkPhoneVisible(false);
+        Cell: function () {
+            self.IsPlaceFaxPhoneVisible(false);
+            self.IsPlaceCellPhoneVisible(true);
+            self.IsPlaceHomePhoneVisible(false);
+            self.IsPlaceWorkPhoneVisible(false);
+            self.phoneHeader("Phones: " + self.cellphonetype);
         },
-        Home: function() {
-            self.IsFaxPhoneVisible(false);
-            self.IsCellPhoneVisible(false);
-            self.IsHomePhoneVisible(true);
-            self.IsWorkPhoneVisible(false);
+        Home: function () {
+            self.IsPlaceFaxPhoneVisible(false);
+            self.IsPlaceCellPhoneVisible(false);
+            self.IsPlaceHomePhoneVisible(true);
+            self.IsPlaceWorkPhoneVisible(false);
+            self.phoneHeader("Phones: " + self.homephonetype);
         },
-        Work: function() {
-            self.IsFaxPhoneVisible(false);
-            self.IsCellPhoneVisible(false);
-            self.IsHomePhoneVisible(false);
-            self.IsWorkPhoneVisible(true);
+        Work: function () {
+            self.IsPlaceFaxPhoneVisible(false);
+            self.IsPlaceCellPhoneVisible(false);
+            self.IsPlaceHomePhoneVisible(false);
+            self.IsPlaceWorkPhoneVisible(true);
+            self.phoneHeader("Phones: " + self.workphonetype);
         },
-        Default: function() {
-            self.IsFaxPhoneVisible(false);
-            self.IsCellPhoneVisible(false);
-            self.IsHomePhoneVisible(false);
-            self.IsWorkPhoneVisible(false);
+        Default: function () {
+            self.IsPlaceFaxPhoneVisible(false);
+            self.IsPlaceCellPhoneVisible(false);
+            self.IsPlaceHomePhoneVisible(false);
+            self.IsPlaceWorkPhoneVisible(false);
         },
         Primary: function() {
-            switch (self.PrimaryPhone.phoneprimaryid) {
+            switch (self.PlacePrimaryPhone.phoneprimaryid) {
             case 1:
-                self.PhoneView.Home();
+                self.PlacePhoneView.Home();
                 break;
             case 2:
-                self.PhoneView.Cell();
+                self.PlacePhoneView.Cell();
                 break;
             case 3:
-                self.PhoneView.Work();
+                self.PlacePhoneView.Work();
                 break;
             default:
-                self.PhoneView.Work();
+                self.PlacePhoneView.Work();
                 break;
             }
         }
     };
 
-    self.AddressView = {
+    self.PlaceAddressView = {
         Mailing: function() {
-            self.IsMailingAddressVisible(true);
-            self.IsShippingAddressVisible(false);
+            self.IsPlaceMailingAddressVisible(true);
+            self.IsPlaceShippingAddressVisible(false);
         },
         Shipping: function() {
-            self.IsMailingAddressVisible(false);
-            self.IsShippingAddressVisible(true);
+            self.IsPlaceMailingAddressVisible(false);
+            self.IsPlaceShippingAddressVisible(true);
         },
         Default: function() {
-            self.IsMailingAddressVisible(false);
-            self.IsShippingAddressVisible(false);
+            self.IsPlaceMailingAddressVisible(false);
+            self.IsPlaceShippingAddressVisible(false);
         }
     };
 
     self.DetailView = {
-        Primary: function () {
+        Primary: function() {
             self.IsPhoneDetailVisible(false);
             self.IsPrimaryDetailVisible(true);
-            self.IsAddressDetailVisible(false);
+            self.IsPlaceAddressDetailVisible(false);
             self.IsContactDetailVisible(false);
         },
-        Contacts: function () {
+        Contacts: function() {
             self.IsEditContact(false);
             self.IsPhoneDetailVisible(false);
             self.IsPrimaryDetailVisible(false);
-            self.IsAddressDetailVisible(false);
+            self.IsPlaceAddressDetailVisible(false);
             self.IsContactDetailVisible(true);
         },
-        Phones: function () {
+        Phones: function() {
             self.IsPhoneDetailVisible(true);
             self.IsPrimaryDetailVisible(false);
-            self.IsAddressDetailVisible(false);
+            self.IsPlaceAddressDetailVisible(false);
             self.IsContactDetailVisible(false);
 
-            self.PhoneView.Primary();
-            self.AddressView.Default();
+            self.PlacePhoneView.Primary();
+            self.PlaceAddressView.Default();
         },
-        Addresses: function () {
+        Addresses: function() {
             self.IsPhoneDetailVisible(false);
-            self.IsAddressDetailVisible(true);
+            self.IsPlaceAddressDetailVisible(true);
             self.IsPrimaryDetailVisible(false);
             self.IsContactDetailVisible(false);
 
-            self.PhoneView.Default();
-            self.AddressView.Mailing();
+            self.PlacePhoneView.Default();
+            self.PlaceAddressView.Mailing();
         }
     };
 
     self.DetailListEdit = {
-        Fax: function () {
+        Fax: function() {
             self.DetailView.Phones();
-            self.PhoneView.Fax();
+            self.PlacePhoneView.Fax();
         },
-        Cell: function () {
+        Cell: function() {
             self.DetailView.Phones();
-            self.PhoneView.Cell();
+            self.PlacePhoneView.Cell();
         },
-        Home: function () {
+        Home: function() {
             self.DetailView.Phones();
-            self.PhoneView.Home();
+            self.PlacePhoneView.Home();
         },
-        Work: function () {
+        Work: function() {
             self.DetailView.Phones();
-            self.PhoneView.Work();
+            self.PlacePhoneView.Work();
         },
-        Mailing: function () {
+        Mailing: function() {
             self.DetailView.Addresses();
-            self.AddressView.Mailing();
+            self.PlaceAddressView.Mailing();
         },
-        Shipping: function () {
+        Shipping: function() {
             self.DetailView.Addresses();
-            self.AddressView.Shipping();
+            self.PlaceAddressView.Shipping();
         }
     };
 
-    self.stateprovincename = function (id) {
+    self.stateprovincename = function(id) {
         if (parseInt(id) === 0) {
             return "";
         };
@@ -323,8 +331,8 @@ OrganizationViewModel = function(data) {
         return "";
     };
 
-    self.MailingAddress = {
-        Address: ko.computed(function () {
+    self.PlaceMailingAddress = {
+        Address: ko.computed(function() {
             if (self.mailingaddress1().length === 0) {
                 return "";
             };
@@ -333,19 +341,19 @@ OrganizationViewModel = function(data) {
             };
             return ko.unwrap(self.mailingaddress1()) + ", " + ko.unwrap(self.mailingaddress2());
         }),
-        CityStateZip: ko.computed(function () {
+        CityStateZip: ko.computed(function() {
             if (self.mailingcity().length === 0) {
                 return "";
             };
             return ko.unwrap(self.mailingcity()) + ", " + (self.stateprovincename(ko.unwrap(self.mailingstateprovince())) + " " + ko.unwrap(self.mailingpostalcode())).trim();
         }),
-        Value: function () {
-            return (ko.unwrap(self.MailingAddress.Address()) + ", " + ko.unwrap(self.MailingAddress.CityStateZip())).trim();
+        Value: function() {
+            return (ko.unwrap(self.PlaceMailingAddress.Address()) + ", " + ko.unwrap(self.PlaceMailingAddress.CityStateZip())).trim();
         }
     };
 
-    self.ShippingAddress = {
-        Address: ko.computed(function () {
+    self.PlaceShippingAddress = {
+        Address: ko.computed(function() {
             if (self.shippingaddress1().length === 0) {
                 return "";
             };
@@ -354,23 +362,23 @@ OrganizationViewModel = function(data) {
             };
             return ko.unwrap(self.shippingaddress1()) + ", " + ko.unwrap(self.shippingaddress2());
         }),
-        CityStateZip: ko.computed(function () {
+        CityStateZip: ko.computed(function() {
             if (self.shippingcity().length === 0) {
                 return "";
             };
             return ko.unwrap(self.shippingcity()) + ", " + (self.stateprovincename(ko.unwrap(self.shippingstateprovince())) + " " + ko.unwrap(self.shippingpostalcode())).trim();
         }),
-        Value: function () {
-            return ko.unwrap(self.ShippingAddress.Address()) + ", " + ko.unwrap(self.ShippingAddress.CityStateZip());
+        Value: function() {
+            return ko.unwrap(self.PlaceShippingAddress.Address()) + ", " + ko.unwrap(self.PlaceShippingAddress.CityStateZip());
         }
     };
 
-    self.cellcarriername = ko.computed(function () {
+    self.cellcarriername = ko.computed(function() {
         var id = parseInt(self.cellcarrier());
         if (id === 0) {
             return "";
         };
-        var match = ko.utils.arrayFirst(self.mobilecarriers(), function (item) {
+        var match = ko.utils.arrayFirst(self.mobilecarriers(), function(item) {
             return parseInt(item.Value()) === id;
         });
         if (match) {
@@ -379,7 +387,7 @@ OrganizationViewModel = function(data) {
         return "";
     });
 
-    self.ShowShipping = ko.computed(function () {
+    self.ShowPlaceShipping = ko.computed(function() {
         return !self.UseMailingforShipping();
     });
 
@@ -395,14 +403,14 @@ OrganizationViewModel = function(data) {
         self.IsMessageAreaVisible(self.errmsg().length);
     };
 
-    self.handlereturndata = function(returndata) {
+    self.handleplacereturndata = function(returndata) {
         self.placeid(returndata.Id);
         self.errmsg(returndata.ErrMsg);
 
         self.setmessageview();
     };
 
-    self.DefaultCountry = {
+    self.DefaultPlaceCountry = {
         Fax: function() {
             if (typeof self.faxcountry() !== "undefined") {
                 if (self.faxphonenumber().length !== 0) {
@@ -467,16 +475,16 @@ OrganizationViewModel = function(data) {
             if (typeof self.placecountry() === "undefined") {
                 return;
             }
-            self.DefaultCountry.Fax();
-            self.DefaultCountry.Cell();
-            self.DefaultCountry.Home();
-            self.DefaultCountry.Work();
-            self.DefaultCountry.Mailing();
-            self.DefaultCountry.Shipping();
+            self.DefaultPlaceCountry.Fax();
+            self.DefaultPlaceCountry.Cell();
+            self.DefaultPlaceCountry.Home();
+            self.DefaultPlaceCountry.Work();
+            self.DefaultPlaceCountry.Mailing();
+            self.DefaultPlaceCountry.Shipping();
         }
     };
 
-    self.DefaultShipping = {
+    self.DefaultPlaceShipping = {
         Address1: function() {
             switch (typeof self.mailingaddress1()) {
             case "undefined":
@@ -550,20 +558,38 @@ OrganizationViewModel = function(data) {
             };
         },
         Basic: function() {
-            self.DefaultShipping.City();
-            self.DefaultShipping.PostalCode();
-            self.DefaultShipping.StateProvince();
+            self.DefaultPlaceShipping.City();
+            self.DefaultPlaceShipping.PostalCode();
+            self.DefaultPlaceShipping.StateProvince();
         },
         Set: function() {
             if (self.UseMailingforShipping()) {
-                self.DefaultShipping.Address1();
-                self.DefaultShipping.Address2();
+                self.DefaultPlaceShipping.Address1();
+                self.DefaultPlaceShipping.Address2();
             };
-            self.DefaultShipping.Basic();
+            self.DefaultPlaceShipping.Basic();
         }
     };
 
     self.Contact = {
+        FullName: function () {
+            return ((ko.unwrap(self.personfirst()) + " " + ko.unwrap(self.personmiddle())).trim() + " " + ko.unwrap(self.personlast())).trim();
+        },
+        Build: function () {
+            return {
+                PersonType: 0,
+                FullName: self.Contact.FullName(),
+                PlaceId: ko.unwrap(self.placeid()),
+                PersonId: ko.unwrap(self.personid()),
+                Email: ko.unwrap(self.personemail()),
+                LastName: ko.unwrap(self.personlast()),
+                FirstName: ko.unwrap(self.personfirst()),
+                MiddleName: ko.unwrap(self.personmiddle()),
+                Country: ko.observable(self.personcountry()),
+                TimeZone: ko.observable(self.persontimezone()),
+                DisplayOrder: ko.observable(self.persondisplayorder())
+            };
+        },
         Clear: function () {
             self.personid(0);
             self.personlast("");
@@ -574,6 +600,8 @@ OrganizationViewModel = function(data) {
         Add: function () {
             self.Contact.Clear();
             self.IsEditContact(true);
+            self.personcountry(ko.unwrap(self.placecountry()));
+            self.persontimezone(ko.unwrap(self.placetimezone()));
         },
         Cancel: function () {
             self.Contact.Clear();
@@ -581,26 +609,38 @@ OrganizationViewModel = function(data) {
         },
         Edit: function (editdata) {
             self.IsEditContact(true);
-            self.placeid(editdata.PlaceId());
-            self.personid(editdata.PersonId());
-            self.personemail(editdata.Email());
-            self.personlast(editdata.LastName());
-            self.personfirst(editdata.FirstName());
-            self.personmiddle(editdata.MiddleName());
+            self.placeid(ko.unwrap(editdata.PlaceId()));
+            self.personid(ko.unwrap(editdata.PersonId()));
+            self.personemail(ko.unwrap(editdata.Email()));
+            self.personlast(ko.unwrap(editdata.LastName()));
+            self.personfirst(ko.unwrap(editdata.FirstName()));
+            self.personmiddle(ko.unwrap(editdata.MiddleName()));
+            self.personcountry(ko.unwrap(self.placecountry()));
+            self.persontimezone(ko.unwrap(self.placetimezone()));
         }
     };
 
     self.SaveContact = {
-        FullName: function () {
-            return ((ko.unwrap(self.personfirst()) + " " + ko.unwrap(self.personmiddle())).trim() + " " + ko.unwrap(self.personlast())).trim();
+        BuildPersonData: function () {
+            return {
+                Person: self.Contact.Build(),
+                FaxPhone: self.PlaceFax.Build(),
+                CellPhone: self.PlaceCell.Build(),
+                HomePhone: self.PlaceHome.Build(),
+                WorkPhone: self.PlaceWork.Build(),
+                MailingAddress: self.PlaceMailing.Build(),
+                ShippingAddress: self.PlaceShipping.Build(),
+                PhoneSetting: self.PlacePhoneSettings.Build(),
+                UseMailingForShipping: self.UseMailingforShipping()
+            };
         },
         Build: function () {
             return {
                 PersonType: 0,
                 PlaceId: ko.unwrap(self.placeid()),
+                FullName: self.Contact.FullName(),
                 PersonId: ko.unwrap(self.personid()),
                 Email: ko.unwrap(self.personemail()),
-                FullName: self.SaveContact.FullName(),
                 LastName: ko.unwrap(self.personlast()),
                 FirstName: ko.unwrap(self.personfirst()),
                 MiddleName: ko.unwrap(self.personmiddle())
@@ -635,7 +675,7 @@ OrganizationViewModel = function(data) {
             $.ajax({
                 url: baseUrl + "SaveContact",
                 type: "post",
-                data: self.SaveContact.Build()
+                data: self.SaveContact.BuildPersonData()
             }).then(function (returndata) {
 
                 self.SaveContact.HandleReturn(returndata);
@@ -648,62 +688,62 @@ OrganizationViewModel = function(data) {
         }
     };
 
-    self.Fax = {
+    self.PlaceFax = {
         Build: function() {
             if (self.faxphonenumber().length === 0) {
                 return null;
             };
             return {
                 PhoneType: 4,
-                PhoneId: self.faxid,
+                PhoneId: self.placefaxid,
                 Country: ko.unwrap(self.faxcountry()),
-                PhoneAssociationId: self.faxassociationid,
+                PhoneAssociationId: self.placefaxassociationid,
                 PhoneNumber: ko.unwrap(self.faxphonenumber())
             };
         },
         Clear: function() {
-            self.faxid = 0;
-            self.faxassociationid = 0;
+            self.placefaxid = 0;
+            self.placefaxassociationid = 0;
 
             self.faxcountry(0);
             self.faxphonenumber("");
         },
         Set: function() {
-            self.faxassociationid = ko.unwrap(self.placedata.PhoneAssociationId);
-            if (self.faxassociationid === 0) {
-                self.Fax.Clear();
+            self.placefaxassociationid = ko.unwrap(self.placedata.PhoneAssociationId);
+            if (self.placefaxassociationid === 0) {
+                self.PlaceFax.Clear();
                 return;
             };
-            self.faxid = ko.unwrap(self.placedata.PhoneId);
+            self.placefaxid = ko.unwrap(self.placedata.PhoneId);
             self.faxcountry(ko.unwrap(self.placedata.Country));
             self.faxphonenumber(ko.unwrap(self.placedata.PhoneNumber));
         },
         Populate: function() {
             if (typeof self.placedata === "undefined") {
-                self.Fax.Clear();
+                self.PlaceFax.Clear();
                 return;
             }
-            self.Fax.Set();
+            self.PlaceFax.Set();
             self.placedata = ko.observableArray([]);
         }
     };
 
-    self.Cell = {
+    self.PlaceCell = {
         Build: function() {
             if (self.cellphonenumber().length === 0) {
                 return null;
             };
             return {
                 PhoneType: 2,
-                PhoneId: self.cellid,
+                PhoneId: self.placecellid,
                 Country: ko.unwrap(self.cellcountry()),
-                PhoneAssociationId: self.cellassociationid,
+                PhoneAssociationId: self.placecellassociationid,
                 PhoneNumber: ko.unwrap(self.cellphonenumber())
             };
         },
         Clear: function() {
-            self.cellid = 0;
-            self.cellassociationid = 0;
+            self.placecellid = 0;
+            self.placecellassociationid = 0;
 
             self.cellcountry(0);
             self.cellcarrier(0);
@@ -711,126 +751,126 @@ OrganizationViewModel = function(data) {
             self.cellaccepttext(true);
         },
         Set: function() {
-            self.cellassociationid = ko.unwrap(self.placedata.PhoneAssociationId);
-            if (self.cellassociationid === 0) {
-                self.Cell.Clear();
+            self.placecellassociationid = ko.unwrap(self.placedata.PhoneAssociationId);
+            if (self.placecellassociationid === 0) {
+                self.PlaceCell.Clear();
                 return;
             };
-            self.cellid = ko.unwrap(self.placedata.PhoneId);
+            self.placecellid = ko.unwrap(self.placedata.PhoneId);
             self.cellcountry(ko.unwrap(self.placedata.Country));
             self.cellphonenumber(ko.unwrap(self.placedata.PhoneNumber));
         },
         Populate: function() {
             if (typeof self.placedata === "undefined") {
-                self.Cell.Clear();
+                self.PlaceCell.Clear();
                 return;
             }
-            self.Cell.Set();
+            self.PlaceCell.Set();
             self.placedata = ko.observableArray([]);
         }
     };
 
-    self.Home = {
+    self.PlaceHome = {
         Build: function() {
             if (self.homephonenumber().length === 0) {
                 return null;
             };
             return {
                 PhoneType: 1,
-                PhoneId: self.homeid,
+                PhoneId: self.placehomeid,
                 Country: ko.unwrap(self.homecountry()),
-                PhoneAssociationId: self.homeassociationid,
+                PhoneAssociationId: self.placehomeassociationid,
                 PhoneNumber: ko.unwrap(self.homephonenumber())
             };
         },
         Clear: function() {
-            self.homeid = 0;
-            self.homeassociationid = 0;
+            self.placehomeid = 0;
+            self.placehomeassociationid = 0;
 
             self.homecountry(0);
             self.homephonenumber("");
         },
         Set: function() {
-            self.homeassociationid = ko.unwrap(self.placedata.PhoneAssociationId);
-            if (self.homeassociationid === 0) {
-                self.Home.Clear();
+            self.placehomeassociationid = ko.unwrap(self.placedata.PhoneAssociationId);
+            if (self.placehomeassociationid === 0) {
+                self.PlaceHome.Clear();
                 return;
             };
-            self.homeid = ko.unwrap(self.placedata.PhoneId);
+            self.placehomeid = ko.unwrap(self.placedata.PhoneId);
             self.homecountry(ko.unwrap(self.placedata.Country));
             self.homephonenumber(ko.unwrap(self.placedata.PhoneNumber));
         },
         Populate: function() {
             if (typeof self.placedata === "undefined") {
-                self.Home.Clear();
+                self.PlaceHome.Clear();
                 return;
             }
-            self.Home.Set();
+            self.PlaceHome.Set();
             self.placedata = ko.observableArray([]);
         }
     };
 
-    self.Work = {
+    self.PlaceWork = {
         Build: function() {
             if (self.workphonenumber().length === 0) {
                 return null;
             };
             return {
                 PhoneType: 3,
-                PhoneId: self.workid,
+                PhoneId: self.placeworkid,
                 Country: ko.unwrap(self.workcountry()),
-                PhoneAssociationId: self.workassociationid,
+                PhoneAssociationId: self.placeworkassociationid,
                 PhoneNumber: ko.unwrap(self.workphonenumber())
             };
         },
         Clear: function() {
-            self.workid = 0;
-            self.workassociationid = 0;
+            self.placeworkid = 0;
+            self.placeworkassociationid = 0;
 
             self.workcountry(0);
             self.workextension("");
             self.workphonenumber("");
         },
         Set: function() {
-            self.workassociationid = ko.unwrap(self.placedata.PhoneAssociationId);
-            if (self.workassociationid === 0) {
-                self.Work.Clear();
+            self.placeworkassociationid = ko.unwrap(self.placedata.PhoneAssociationId);
+            if (self.placeworkassociationid === 0) {
+                self.PlaceWork.Clear();
                 return;
             };
-            self.workid = ko.unwrap(self.placedata.PhoneId);
+            self.placeworkid = ko.unwrap(self.placedata.PhoneId);
             self.workcountry(ko.unwrap(self.placedata.Country));
             self.workphonenumber(ko.unwrap(self.placedata.PhoneNumber));
         },
         Populate: function() {
             if (typeof self.placedata === "undefined") {
-                self.Work.Clear();
+                self.PlaceWork.Clear();
                 return;
             }
-            self.Work.Set();
+            self.PlaceWork.Set();
             self.placedata = ko.observableArray([]);
         }
     };
 
-    self.Shipping = {
+    self.PlaceShipping = {
         Build: function() {
             if (self.shippingaddress1().length === 0) {
                 return null;
             };
             return {
                 AddressType: 1,
-                AddressId: self.shippingid,
+                AddressId: self.placeshippingid,
                 City: ko.unwrap(self.shippingcity()),
                 Country: ko.unwrap(self.shippingcountry()),
                 Address1: ko.unwrap(self.shippingaddress1()),
                 Address2: ko.unwrap(self.shippingaddress2()),
                 ZipCode: ko.unwrap(self.shippingpostalcode()),
-                AddressAssociationId: self.shippingassociationid,
+                AddressAssociationId: self.placeshippingassociationid,
                 StateProvince: ko.unwrap(self.shippingstateprovince())
             };
         },
         Clear: function() {
-            self.shippingid = 0;
-            self.shippingassociationid = 0;
+            self.placeshippingid = 0;
+            self.placeshippingassociationid = 0;
 
             self.shippingcity("");
             self.shippingcountry(0);
@@ -841,9 +881,9 @@ OrganizationViewModel = function(data) {
             self.shippingstateprovince("");
         },
         Set: function() {
-            self.shippingassociationid = ko.unwrap(self.placedata.AddressAssociationId);
-            if (self.shippingassociationid === 0) {
-                self.Shipping.Clear();
+            self.placeshippingassociationid = ko.unwrap(self.placedata.AddressAssociationId);
+            if (self.placeshippingassociationid === 0) {
+                self.PlaceShipping.Clear();
                 return;
             };
             self.shippingcity(ko.unwrap(self.placedata.City));
@@ -851,39 +891,39 @@ OrganizationViewModel = function(data) {
             self.shippingaddress1(ko.unwrap(self.placedata.Address1));
             self.shippingaddress2(ko.unwrap(self.placedata.Address2));
             self.shippingpostalcode(ko.unwrap(self.placedata.ZipCode));
-            self.shippingid = ko.unwrap(ko.unwrap(self.placedata.AddressId));
+            self.placeshippingid = ko.unwrap(ko.unwrap(self.placedata.AddressId));
             self.shippingstateprovince(ko.unwrap(self.placedata.StateProvince));
         },
         Populate: function() {
             if (typeof self.placedata === "undefined") {
-                self.Shipping.Clear();
+                self.PlaceShipping.Clear();
                 return;
             }
-            self.Shipping.Set();
+            self.PlaceShipping.Set();
             self.placedata = ko.observableArray([]);
         }
     };
 
-    self.Mailing = {
+    self.PlaceMailing = {
         Build: function() {
             if (self.mailingaddress1().length === 0) {
                 return null;
             };
             return {
                 AddressType: 2,
-                AddressId: self.mailingid,
+                AddressId: self.placemailingid,
                 City: ko.unwrap(self.mailingcity()),
                 Country: ko.unwrap(self.mailingcountry()),
                 Address1: ko.unwrap(self.mailingaddress1()),
                 Address2: ko.unwrap(self.mailingaddress2()),
                 ZipCode: ko.unwrap(self.mailingpostalcode()),
-                AddressAssociationId: self.mailingassociationid,
+                AddressAssociationId: self.placemailingassociationid,
                 StateProvince: ko.unwrap(self.mailingstateprovince())
             };
         },
         Clear: function() {
-            self.mailingid = 0;
-            self.mailingassociationid = 0;
+            self.placemailingid = 0;
+            self.placemailingassociationid = 0;
 
             self.mailingcity("");
             self.mailingcountry(0);
@@ -893,9 +933,9 @@ OrganizationViewModel = function(data) {
             self.mailingstateprovince("");
         },
         Set: function() {
-            self.mailingassociationid = ko.unwrap(self.placedata.AddressAssociationId);
-            if (self.mailingassociationid === 0) {
-                self.Mailing.Clear();
+            self.placemailingassociationid = ko.unwrap(self.placedata.AddressAssociationId);
+            if (self.placemailingassociationid === 0) {
+                self.PlaceMailing.Clear();
                 return;
             };
             self.mailingcity(ko.unwrap(self.placedata.City));
@@ -903,15 +943,15 @@ OrganizationViewModel = function(data) {
             self.mailingaddress1(ko.unwrap(self.placedata.Address1));
             self.mailingaddress2(ko.unwrap(self.placedata.Address2));
             self.mailingpostalcode(ko.unwrap(self.placedata.ZipCode));
-            self.mailingid = ko.unwrap(ko.unwrap(self.placedata.AddressId));
+            self.placemailingid = ko.unwrap(ko.unwrap(self.placedata.AddressId));
             self.mailingstateprovince(ko.unwrap(self.placedata.StateProvince));
         },
         Populate: function() {
             if (typeof self.placedata === "undefined") {
-                self.Mailing.Clear();
+                self.PlaceMailing.Clear();
                 return;
             }
-            self.Mailing.Set();
+            self.PlaceMailing.Set();
             self.placedata = ko.observableArray([]);
         }
     };
@@ -953,7 +993,7 @@ OrganizationViewModel = function(data) {
             self.placedepartment(ko.unwrap(self.placedata.Department));
             self.placedisplayorder(ko.unwrap(self.placedata.DisplayOrder));
 
-            self.DefaultCountry.Set();
+            self.DefaultPlaceCountry.Set();
         },
         Populate: function() {
             if (typeof self.placedata === "undefined") {
@@ -965,49 +1005,49 @@ OrganizationViewModel = function(data) {
         }
     };
 
-    self.PhoneSettings = {
+    self.PlacePhoneSettings = {
         Build: function() {
             return {
-                RecordId: self.phonesettingid,
+                RecordId: self.placephonesettingid,
                 MobileCarrier: self.cellcarrier,
                 AllowText: self.cellaccepttext(),
-                PrimaryPhoneType: self.PrimaryPhone.phoneprimaryid
+                PrimaryPhoneType: self.PlacePrimaryPhone.phoneprimaryid
             };
         },
         Clear: function() {
-            self.phonesettingid = 0;
-            self.PrimaryPhone.phoneprimaryid = 0;
+            self.placephonesettingid = 0;
+            self.PlacePrimaryPhone.phoneprimaryid = 0;
         },
         Set: function() {
-            self.phonesettingid = ko.unwrap(self.placedata.RecordId);
-            if (self.phonesettingid === 0) {
-                self.PhoneSettings.Clear();
+            self.placephonesettingid = ko.unwrap(self.placedata.RecordId);
+            if (self.placephonesettingid === 0) {
+                self.PlacePhoneSettings.Clear();
                 return;
             };
             self.cellaccepttext(ko.unwrap(self.placedata.AllowText));
             self.cellcarrier(ko.unwrap(self.placedata.MobileCarrier));
-            self.PrimaryPhone.phoneprimaryid = ko.unwrap(self.placedata.PrimaryPhoneType);
+            self.PlacePrimaryPhone.phoneprimaryid = ko.unwrap(self.placedata.PrimaryPhoneType);
 
-            self.PrimaryPhone.Set();
+            self.PlacePrimaryPhone.Set();
         },
         Populate: function() {
             if (typeof self.placedata === "undefined") {
-                self.PhoneSettings.Clear();
+                self.PlacePhoneSettings.Clear();
                 return;
             }
-            self.PhoneSettings.Set();
+            self.PlacePhoneSettings.Set();
             self.placedata = ko.observableArray([]);
         }
     };
 
     self.Contacts = {
-        Clear: function () {
+        Clear: function() {
             self.personlist([]);
         },
-        Set: function () {
+        Set: function() {
             self.personlist = ko.mapping.fromJS(self.placedata);
         },
-        Populate: function () {
+        Populate: function() {
             if (typeof self.placedata === "undefined") {
                 self.Contacts.Clear();
                 return;
@@ -1017,32 +1057,32 @@ OrganizationViewModel = function(data) {
         }
     };
 
-    self.GetPlaceData = function () {
+    self.GetPlaceData = function() {
         $.ajax({
             url: baseUrl + "GetPlace/" + ko.unwrap(self.placeid()),
             type: "post"
         }).then(function(returndata) {
 
             self.placedata = ko.mapping.fromJS(returndata.Phones.PhoneSettings);
-            self.PhoneSettings.Populate();
+            self.PlacePhoneSettings.Populate();
 
             self.placedata = ko.mapping.fromJS(returndata.Phones.FaxPhone);
-            self.Fax.Populate();
+            self.PlaceFax.Populate();
 
             self.placedata = ko.mapping.fromJS(returndata.Phones.CellPhone);
-            self.Cell.Populate();
+            self.PlaceCell.Populate();
 
             self.placedata = ko.mapping.fromJS(returndata.Phones.HomePhone);
-            self.Home.Populate();
+            self.PlaceHome.Populate();
 
             self.placedata = ko.mapping.fromJS(returndata.Phones.WorkPhone);
-            self.Work.Populate();
+            self.PlaceWork.Populate();
 
             self.placedata = ko.mapping.fromJS(returndata.Addresses.ShippingAddress);
-            self.Shipping.Populate();
+            self.PlaceShipping.Populate();
 
             self.placedata = ko.mapping.fromJS(returndata.Addresses.MailingAddress);
-            self.Mailing.Populate();
+            self.PlaceMailing.Populate();
 
             self.placedata = ko.mapping.fromJS(returndata.Contacts);
             self.Contacts.Populate();
@@ -1222,21 +1262,21 @@ OrganizationViewModel = function(data) {
         }
     };
 
-    self.clear = function () {
+    self.clear = function() {
         self.errmsg("");
         self.IsEdit(false);
         self.IsEditContact(true);
 
-        self.Fax.Clear();
-        self.Cell.Clear();
-        self.Home.Clear();
-        self.Work.Clear();
+        self.PlaceFax.Clear();
+        self.PlaceCell.Clear();
+        self.PlaceHome.Clear();
+        self.PlaceWork.Clear();
         self.Place.Clear();
         self.Contact.Clear();
-        self.Mailing.Clear();
-        self.Shipping.Clear();
+        self.PlaceMailing.Clear();
+        self.PlaceShipping.Clear();
         self.Contacts.Clear();
-        self.PhoneSettings.Clear();
+        self.PlacePhoneSettings.Clear();
     };
 
     self.toggleview = function() {
@@ -1253,7 +1293,7 @@ OrganizationViewModel = function(data) {
 
     self.edit = function(editdata) {
         self.IsEdit(true);
-        self.placeid(editdata.PlaceId());
+        self.placeid(ko.unwrap(editdata.PlaceId()));
 
         self.GetPlaceData();
         self.DetailView.Primary();
@@ -1261,7 +1301,7 @@ OrganizationViewModel = function(data) {
         self.toggleview();
     };
 
-    self.add = function () {
+    self.add = function() {
         self.clearandtoggle();
         self.placename(self.searchvalue());
     };
@@ -1330,13 +1370,13 @@ OrganizationViewModel = function(data) {
         BuildPlaceData: function() {
             return {
                 Place: self.Place.Build(),
-                FaxPhone: self.Fax.Build(),
-                CellPhone: self.Cell.Build(),
-                HomePhone: self.Home.Build(),
-                WorkPhone: self.Work.Build(),
-                MailingAddress: self.Mailing.Build(),
-                ShippingAddress: self.Shipping.Build(),
-                PhoneSetting: self.PhoneSettings.Build(),
+                FaxPhone: self.PlaceFax.Build(),
+                CellPhone: self.PlaceCell.Build(),
+                HomePhone: self.PlaceHome.Build(),
+                WorkPhone: self.PlaceWork.Build(),
+                MailingAddress: self.PlaceMailing.Build(),
+                ShippingAddress: self.PlaceShipping.Build(),
+                PhoneSetting: self.PlacePhoneSettings.Build(),
                 UseMailingForShipping: self.UseMailingforShipping()
             };
         },
@@ -1347,7 +1387,7 @@ OrganizationViewModel = function(data) {
                 data: self.SavePlaceData.BuildPlaceData()
             }).then(function(returndata) {
 
-                self.handlereturndata(returndata);
+                self.handleplacereturndata(returndata);
                 if (self.IsMessageAreaVisible()) {
                     return;
                 }
@@ -1364,7 +1404,7 @@ OrganizationViewModel = function(data) {
                 type: "delete"
             }).then(function(returndata) {
 
-                self.handlereturndata(returndata);
+                self.handleplacereturndata(returndata);
                 if (self.IsMessageAreaVisible()) {
                     return;
                 }
@@ -1381,11 +1421,11 @@ OrganizationViewModel = function(data) {
     };
 
     self.RemoveContact = {
-        SetListItemInactive: function (item) {
+        SetListItemInactive: function(item) {
             $.ajax({
                 url: baseUrl + "DeleteContact/" + ko.unwrap(item.PersonId()),
                 type: "post"
-            }).then(function (returndata) {
+            }).then(function(returndata) {
 
                 self.errmsg(returndata);
                 self.setmessageview();
@@ -1397,7 +1437,7 @@ OrganizationViewModel = function(data) {
                 self.IsEditContact(false);
             });
         },
-        Validate: function (item) {
+        Validate: function(item) {
             if (!confirm("Delete Contact: '" + ko.unwrap(item.FullName) + "'?")) {
                 return;
             }
@@ -1405,7 +1445,7 @@ OrganizationViewModel = function(data) {
         }
     };
 
-    self.makelistsortable = function () {
+    self.makelistsortable = function() {
         var fixHelperModified = function(e, tr) {
             var $originals = tr.children();
             var $helper = tr.clone();

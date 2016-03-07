@@ -1,9 +1,10 @@
 using System;
 using ClaudeCommon.BaseModels.Returns;
 using ClaudeData.DataRepository.PersonRepository;
+using ClaudeData.Models.Addresses;
 using ClaudeData.Models.People;
+using ClaudeData.Models.Phones;
 using ClaudeViewManagement.ViewModels.People;
-using static ClaudeCommon.Enums.PersonEnums;
 
 namespace ClaudeViewManagement.Managers.People
 {
@@ -35,38 +36,49 @@ namespace ClaudeViewManagement.Managers.People
             }
         }
 
-        public ReturnBase SaveContact(ContactSaveModel c)
+        public ReturnBase SaveContact(ContactSaveModel data)
         {
-            ReturnBase rb = new ReturnBase();
-            Person p = new Person
+            PersonData p = new PersonData
             {
-                Email = c.Email,
-                PlaceId = c.PlaceId,
-                PersonId = c.PersonId,
-                LastName = c.LastName,
-                FirstName = c.FirstName,
-                MiddleName = c.MiddleName,
-                PersonType = c.PersonType
+                Person = data.Person,
+                PhoneData = new PhoneData(),
+                AddressData = new AddressData {UseMailingForShipping = data.UseMailingForShipping}
             };
-            using (DbPersonSave s = new DbPersonSave())
+
+            if (data.PhoneSetting != null)
             {
-                switch (p.PersonType)
-                {
-                    case PersonType.CustomerContact:
-                        rb.ErrMsg = s.SaveCustomerContact(ref p);
-                        break;
-                    case PersonType.OrganizationContact:
-                        break;
-                    case PersonType.StaffUser:
-                        rb.ErrMsg = s.SaveStaffUser(ref p);
-                        break;
-                    default:
-                        rb.ErrMsg = "Contact Type not defined";
-                        break;
-                }
+                p.PhoneData.PhoneSettings = data.PhoneSetting;
             }
-            rb.Id = p.PersonId;
-            return rb;
+            if (data.FaxPhone != null && data.FaxPhone.PhoneNumber != 0)
+            {
+                p.PhoneData.Phones.Add(data.FaxPhone);
+            }
+            if (data.CellPhone != null && data.CellPhone.PhoneNumber != 0)
+            {
+                p.PhoneData.Phones.Add(data.CellPhone);
+            }
+            if (data.HomePhone != null && data.HomePhone.PhoneNumber != 0)
+            {
+                p.PhoneData.Phones.Add(data.HomePhone);
+            }
+            if (data.WorkPhone != null && data.WorkPhone.PhoneNumber != 0)
+            {
+                p.PhoneData.Phones.Add(data.WorkPhone);
+            }
+            if (!string.IsNullOrEmpty(data.MailingAddress?.Address1))
+            {
+                p.AddressData.Addresses.Add(data.MailingAddress);
+            }
+            if (!string.IsNullOrEmpty(data.ShippingAddress?.Address1))
+            {
+                p.AddressData.Addresses.Add(data.ShippingAddress);
+            }
+
+            int id = p.Person.PersonId;
+            using (DbPersonSave mgr = new DbPersonSave())
+            {
+                return mgr.SavePerson(p, ref id);
+            }
         }
     }
 }

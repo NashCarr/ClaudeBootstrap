@@ -1,0 +1,36 @@
+﻿<!-- ** BEGIN Phones AREA -->
+<div class="panel panel-default" id="Phones">
+    <div class="panel-heading">
+        @Html.Label("phonesheader", new { data_bind = "text: phoneHeader" })
+        <a class="btn btn-sm btn-secondary pull-right" data-bind="click: PlacePhoneView.Primary" href="#" type="button">
+            Primary
+        </a>
+        <a class="btn btn-sm btn-secondary pull-right" data-bind="click: PlacePhoneView.Fax" href="#" type="button">
+            Fax
+        </a>
+        <a class="btn btn-sm btn-secondary pull-right" data-bind="click: PlacePhoneView.Work" href="#" type="button">
+            Work
+        </a>
+        <a class="btn btn-sm btn-secondary pull-right" data-bind="click: PlacePhoneView.Cell" href="#" type="button">
+            Cell
+        </a>
+        <a class="btn btn-sm btn-secondary pull-right" data-bind="click: PlacePhoneView.Home" href="#" type="button">
+            Home
+        </a>
+    </div>
+    <div class="panel-body">
+        <div data-bind="visible: IsPlaceHomePhoneVisible">
+            @{ Html.RenderPartial("Place/Phones/HomePhone"); }
+        </div>
+        <div data-bind="visible: IsPlaceCellPhoneVisible">
+            @{ Html.RenderPartial("Place/Phones/CellPhone"); }
+        </div>
+        <div data-bind="visible: IsPlaceWorkPhoneVisible">
+            @{ Html.RenderPartial("Place/Phones/WorkPhone"); }
+        </div>
+        <div data-bind="visible: IsPlaceFaxPhoneVisible">
+            @{ Html.RenderPartial("Place/Phones/FaxPhone"); }
+        </div>
+    </div>
+</div>
+<!-- ** END Phones AREA -->

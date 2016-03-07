@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Data;
+using ClaudeCommon.BaseModels.Returns;
 using ClaudeData.Models.Admin;
 
 namespace ClaudeData.DataRepository.AdminRepository
 {
     public class DbFacilityStaffSave : DbSaveBase
     {
-        public string AddUpdateRecord(ref FacilityStaff data)
+        public ReturnBase AddUpdateRecord(ref FacilityStaff data)
         {
             if (data.StaffUserId == 0)
             {
                 SetZeroNumberMessage("Staff User");
-                return ReturnValues.ErrMsg;
+                return ReturnValues;
             }
 
             try
@@ -37,7 +38,7 @@ namespace ClaudeData.DataRepository.AdminRepository
             {
                 ReturnValues.ErrMsg = ex.Message;
             }
-            return ReturnValues.ErrMsg;
+            return ReturnValues;
         }
 
         public string SetInactive(int facilityStaffId)

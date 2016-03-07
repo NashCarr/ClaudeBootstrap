@@ -86,13 +86,13 @@ namespace ClaudeData.DataRepository.PlaceRepository
         {
             Place p = data.Place;
 
+            ReturnBase rb = SaveFacility(ref p);
+            if (rb.ErrMsg.Length != 0) return rb;
+
             if (p.PlaceId != placeId)
             {
                 placeId = p.PlaceId;
             }
-
-            ReturnBase rb = SaveFacility(ref p);
-            if (rb.ErrMsg.Length != 0) return rb;
 
             string msg;
             if (data.AddressData?.Addresses != null)
@@ -136,21 +136,21 @@ namespace ClaudeData.DataRepository.PlaceRepository
                 msg = db.SaveFacilityPhoneSetting(placeId, data.PhoneData.PhoneSettings);
                 if (msg.Length == 0) return rb;
                 rb.ErrMsg = msg;
-                return rb;
             }
+            return rb;
         }
 
         protected internal ReturnBase SaveCustomerData(PlaceData data, ref int placeId)
         {
             Place p = data.Place;
 
+            ReturnBase rb = SaveCustomer(ref p);
+            if (rb.ErrMsg.Length != 0) return rb;
+
             if (p.PlaceId != placeId)
             {
                 placeId = p.PlaceId;
             }
-
-            ReturnBase rb = SaveCustomer(ref p);
-            if (rb.ErrMsg.Length != 0) return rb;
 
             string msg;
             if (data.AddressData?.Addresses != null)
@@ -194,21 +194,21 @@ namespace ClaudeData.DataRepository.PlaceRepository
                 msg = db.SaveCustomerPhoneSetting(placeId, data.PhoneData.PhoneSettings);
                 if (msg.Length == 0) return rb;
                 rb.ErrMsg = msg;
-                return rb;
             }
+            return rb;
         }
 
         protected internal ReturnBase SaveOrganizationData(PlaceData data, ref int placeId)
         {
             Place p = data.Place;
 
+            ReturnBase rb = SaveOrganization(ref p);
+            if (rb.ErrMsg.Length != 0) return rb;
+
             if (p.PlaceId != placeId)
             {
                 placeId = p.PlaceId;
             }
-
-            ReturnBase rb = SaveOrganization(ref p);
-            if (rb.ErrMsg.Length != 0) return rb;
 
             string msg;
             if (data.AddressData?.Addresses != null)
@@ -252,8 +252,8 @@ namespace ClaudeData.DataRepository.PlaceRepository
                 msg = db.SaveOrganizationPhoneSetting(placeId, data.PhoneData.PhoneSettings);
                 if (msg.Length == 0) return rb;
                 rb.ErrMsg = msg;
-                return rb;
             }
+            return rb;
         }
 
         public ReturnBase SavePlace(PlaceData data, int placeId)

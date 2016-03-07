@@ -7,11 +7,11 @@
         <!-- ** BEGIN INPUT AREA -->
 
         <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-3">
                 @{ Html.RenderPartial("Place/Place"); }
             </div>
 
-            <div class="col-sm-8">
+            <div class="col-sm-9">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         @Html.Label("detailheader", new { data_bind = "text: detailHeader" })
@@ -34,13 +34,13 @@
                             @{ Html.RenderPartial("Primary/PlacePrimary"); }
                         </div>
                         <div data-bind="visible: IsPhoneDetailVisible()">
-                            @{ Html.RenderPartial("Phones/Phones"); }
+                            @{ Html.RenderPartial("Place/Phones/Phones"); }
                         </div>
-                        <div data-bind="visible: IsAddressDetailVisible()">
-                            @{ Html.RenderPartial("Address/Addresses"); }
+                        <div data-bind="visible: IsPlaceAddressDetailVisible()">
+                            @{ Html.RenderPartial("Place/Addresses/Addresses"); }
                         </div>
                         <div data-bind="visible: IsContactDetailVisible()">
-                            @{ Html.RenderPartial("Contacts/Contacts"); }
+                            @{ Html.RenderPartial("Person/Contacts"); }
                         </div>
 
                     </div>

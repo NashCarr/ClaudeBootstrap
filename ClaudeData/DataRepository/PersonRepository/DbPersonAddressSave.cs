@@ -39,6 +39,14 @@ namespace ClaudeData.DataRepository.PersonRepository
             }
         }
 
+        protected internal string SaveOrganizationContactAddress(int personId, AddressAssociation data)
+        {
+            using (DbAddressAssociationSave db = new DbAddressAssociationSave())
+            {
+                return db.SavePersonAddress(personId, (byte)PersonType.OrganizationContact, data);
+            }
+        }
+
         protected internal string SaveAssessorAddresses(int personId, List<AddressAssociation> data)
         {
             string msg = string.Empty;
@@ -60,7 +68,6 @@ namespace ClaudeData.DataRepository.PersonRepository
                 if (msg.Length == 0) continue;
                 break;
             }
-
             return msg;
         }
 
@@ -70,6 +77,18 @@ namespace ClaudeData.DataRepository.PersonRepository
             foreach (AddressAssociation item in data)
             {
                 msg = SaveStaffUserAddress(personId, item);
+                if (msg.Length == 0) continue;
+                break;
+            }
+            return msg;
+        }
+
+        protected internal string SaveOrganizationContactAddresses(int personId, List<AddressAssociation> data)
+        {
+            string msg = string.Empty;
+            foreach (AddressAssociation item in data)
+            {
+                msg = SaveOrganizationContactAddress(personId, item);
                 if (msg.Length == 0) continue;
                 break;
             }
@@ -86,6 +105,8 @@ namespace ClaudeData.DataRepository.PersonRepository
                     return SaveStaffUserAddresses(data.Person.PersonId, data.AddressData.Addresses);
                 case PersonType.CustomerContact:
                     return SaveCustomerContactAddresses(data.Person.PersonId, data.AddressData.Addresses);
+                case PersonType.OrganizationContact:
+                    return SaveOrganizationContactAddresses(data.Person.PersonId, data.AddressData.Addresses);
                 default:
                     return "Person Type Undetermined";
             }

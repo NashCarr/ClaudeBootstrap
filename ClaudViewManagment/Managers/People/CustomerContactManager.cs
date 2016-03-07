@@ -118,7 +118,7 @@ namespace ClaudeViewManagement.Managers.People
         {
             using (DbCustomerContactSave data = new DbCustomerContactSave())
             {
-                return data.SaveCustomerContact(ref entity, ref personId);
+                return data.SaveCustomerContact(ref entity, ref personId).ErrMsg;
             }
         }
 

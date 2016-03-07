@@ -1,0 +1,21 @@
+﻿<!-- ** BEGIN Addresses AREA -->
+<div class="panel panel-default" id="Addresses">
+    <div class="panel-heading">
+        Addresses
+        <a class="btn btn-sm btn-secondary pull-right" data-bind="visible: !UseMailingforShipping(), click: PlaceAddressView.Shipping" href="#" type="button">
+            Shipping
+        </a>
+        <a class="btn btn-sm btn-secondary pull-right" data-bind="visible: !UseMailingforShipping(), click: PlaceAddressView.Mailing" href="#" type="button">
+            Mailing
+        </a>
+    </div>
+    <div class="panel-body">
+        <div data-bind="visible: IsPlaceMailingAddressVisible">
+            @{ Html.RenderPartial("Place/Addresses/MailingAddress"); }
+        </div>
+        <div data-bind="visible: IsPlaceShippingAddressVisible">
+            @{ Html.RenderPartial("Place/Addresses/ShippingAddress"); }
+        </div>
+    </div>
+</div>
+<!-- ** END Addresses AREA -->

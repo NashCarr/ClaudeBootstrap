@@ -61,7 +61,7 @@ namespace ClaudeBootstrap.Controllers.Settings.Places
         [HttpPost]
         public JsonResult SaveContact(ContactSaveModel c)
         {
-            if (c != null) c.PersonType = PersonType.StaffUser;
+            if (c != null) c.Person.PersonType = PersonType.StaffUser;
             using (ContactManager mgr = new ContactManager())
             {
                 return Json(mgr.SaveContact(c));

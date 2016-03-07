@@ -1,4 +1,5 @@
 ﻿using System;
+using ClaudeCommon.BaseModels.Returns;
 using ClaudeData.DataRepository.AdminRepository;
 using ClaudeData.DataRepository.PersonRepository;
 using ClaudeData.Models.Addresses;
@@ -19,9 +20,9 @@ namespace ClaudeData.DataRepository.SettingsRepository
             GC.SuppressFinalize(this);
         }
 
-        public string SaveStaffMember(ref StaffMemberView data, ref int personId, ref int facilityStaffId)
+        public ReturnBase SaveStaffMember(ref StaffMemberView data, ref int personId, ref int facilityStaffId)
         {
-            string msg;
+            ReturnBase rb;
 
             data.Phones.FaxPhone.PhoneType = PhoneType.Fax;
             data.Phones.CellPhone.PhoneType = PhoneType.Cell;
@@ -48,10 +49,10 @@ namespace ClaudeData.DataRepository.SettingsRepository
 
             using (DbPersonSave db = new DbPersonSave())
             {
-                msg = db.SaveStaffUserData(p, ref personId);
+                rb = db.SaveStaffUserData(p, ref personId);
             }
 
-            if (!string.IsNullOrEmpty(msg)) return msg;
+            if (!string.IsNullOrEmpty(rb.ErrMsg)) return rb;
 
             FacilityStaff s = new FacilityStaff
             {
@@ -63,11 +64,11 @@ namespace ClaudeData.DataRepository.SettingsRepository
 
             using (DbFacilityStaffSave db = new DbFacilityStaffSave())
             {
-                msg = db.AddUpdateRecord(ref s);
+                rb = db.AddUpdateRecord(ref s);
             }
             facilityStaffId = s.FacilityStaffId;
 
-            return msg;
+            return rb;
         }
 
         protected virtual void Dispose(bool iAmBeingCalledFromDisposeAndNotFinalize)

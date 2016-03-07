@@ -46,7 +46,7 @@ namespace ClaudeData.DataRepository.SettingsRepository
 
             using (DbPersonSave db = new DbPersonSave())
             {
-                msg = db.SaveAssessorData(p, ref personId);
+                msg = db.SavePerson(p, ref personId).ErrMsg;
             }
 
             return msg;

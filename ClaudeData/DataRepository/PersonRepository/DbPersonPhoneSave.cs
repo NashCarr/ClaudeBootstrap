@@ -39,6 +39,14 @@ namespace ClaudeData.DataRepository.PersonRepository
             }
         }
 
+        protected internal string SaveOrganizationContactPhone(int personId, PhoneAssociation data)
+        {
+            using (DbPhoneAssociationSave db = new DbPhoneAssociationSave())
+            {
+                return db.SavePersonPhone(personId, (byte)PersonType.OrganizationContact, data);
+            }
+        }
+
         protected internal string SaveAssessorPhones(int personId, List<PhoneAssociation> data)
         {
             string msg = string.Empty;
@@ -75,6 +83,18 @@ namespace ClaudeData.DataRepository.PersonRepository
             return msg;
         }
 
+        protected internal string SaveOrganizationContactPhones(int personId, List<PhoneAssociation> data)
+        {
+            string msg = string.Empty;
+            foreach (PhoneAssociation item in data)
+            {
+                msg = SaveOrganizationContactPhone(personId, item);
+                if (msg.Length == 0) continue;
+                break;
+            }
+            return msg;
+        }
+
         protected internal string SavePersonPhones(PersonData data)
         {
             switch (data.Person.PersonType)
@@ -85,6 +105,8 @@ namespace ClaudeData.DataRepository.PersonRepository
                     return SaveStaffUserPhones(data.Person.PersonId, data.PhoneData.Phones);
                 case PersonType.CustomerContact:
                     return SaveCustomerContactPhones(data.Person.PersonId, data.PhoneData.Phones);
+                case PersonType.OrganizationContact:
+                    return SaveOrganizationContactPhones(data.Person.PersonId, data.PhoneData.Phones);
                 default:
                     return "Person Type Undetermined";
             }

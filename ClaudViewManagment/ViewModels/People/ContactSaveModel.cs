@@ -1,15 +1,19 @@
-﻿using static ClaudeCommon.Enums.PersonEnums;
+﻿using ClaudeData.Models.Addresses;
+using ClaudeData.Models.People;
+using ClaudeData.Models.Phones;
 
 namespace ClaudeViewManagement.ViewModels.People
 {
     public class ContactSaveModel
     {
-        public int PlaceId { get; set; }
-        public int PersonId { get; set; }
-        public string Email { get; set; }
-        public string LastName { get; set; }
-        public string FirstName { get; set; }
-        public string MiddleName { get; set; }
-        public PersonType PersonType { get; set; }
+        public Person Person { get; set; }
+        public PhoneSetting PhoneSetting { get; set; }
+        public PhoneAssociation FaxPhone { get; set; }
+        public PhoneAssociation CellPhone { get; set; }
+        public PhoneAssociation HomePhone { get; set; }
+        public PhoneAssociation WorkPhone { get; set; }
+        public bool UseMailingForShipping { get; set; }
+        public AddressAssociation MailingAddress { get; set; }
+        public AddressAssociation ShippingAddress { get; set; }
     }
 }

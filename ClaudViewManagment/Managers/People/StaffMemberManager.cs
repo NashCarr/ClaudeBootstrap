@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using ClaudeCommon.BaseModels.Returns;
 using ClaudeData.DataRepository.PersonRepository;
 using ClaudeData.DataRepository.SettingsRepository;
 using ClaudeData.Models.Lists.Settings;
@@ -59,7 +60,7 @@ namespace ClaudeViewManagement.Managers.People
 
             if (ret)
             {
-                entity.StaffUser.ErrMsg = SaveRecord(entity, ref personId, ref facilityStaffId);
+                entity.StaffUser.ErrMsg = SaveRecord(entity, ref personId, ref facilityStaffId).ErrMsg;
             }
             return ret;
         }
@@ -93,7 +94,7 @@ namespace ClaudeViewManagement.Managers.People
 
             if (ret)
             {
-                entity.StaffUser.ErrMsg = SaveRecord(entity, ref personId, ref facilityStaffId);
+                entity.StaffUser.ErrMsg = SaveRecord(entity, ref personId, ref facilityStaffId).ErrMsg;
             }
             return ret;
         }
@@ -114,7 +115,7 @@ namespace ClaudeViewManagement.Managers.People
             }
         }
 
-        private static string SaveRecord(StaffMemberView entity, ref int personId, ref int facilityStaffId)
+        private static ReturnBase SaveRecord(StaffMemberView entity, ref int personId, ref int facilityStaffId)
         {
             using (DbStaffMemberSave data = new DbStaffMemberSave())
             {

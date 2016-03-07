@@ -1,4 +1,5 @@
 ﻿using System;
+using ClaudeCommon.BaseModels.Returns;
 using ClaudeData.DataRepository.PersonRepository;
 using ClaudeData.Models.Addresses;
 using ClaudeData.Models.People;
@@ -17,9 +18,9 @@ namespace ClaudeData.DataRepository.SettingsRepository
             GC.SuppressFinalize(this);
         }
 
-        public string SaveCustomerContact(ref CustomerContactView data, ref int personId)
+        public ReturnBase SaveCustomerContact(ref CustomerContactView data, ref int personId)
         {
-            string msg;
+            ReturnBase rb;
 
             data.Phones.FaxPhone.PhoneType = PhoneType.Fax;
             data.Phones.CellPhone.PhoneType = PhoneType.Cell;
@@ -46,10 +47,9 @@ namespace ClaudeData.DataRepository.SettingsRepository
 
             using (DbPersonSave db = new DbPersonSave())
             {
-                msg = db.SaveCustomerContactData(p, ref personId);
+                rb = db.SavePerson(p, ref personId);
             }
-
-            return msg;
+            return rb;
         }
 
         protected virtual void Dispose(bool iAmBeingCalledFromDisposeAndNotFinalize)
