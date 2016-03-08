@@ -2,10 +2,10 @@
 <div class="panel panel-default" id="Contacts">
     <div class="panel-heading">
         Contact
-        <a class="btn btn-sm btn-secondary pull-right" data-bind="click: Contact.Cancel" href="#" type="button">
+        <a class="btn btn-sm btn-secondary pull-right" data-bind="click: Person.Cancel" href="#" type="button">
             Cancel
         </a>
-        <a class="btn btn-sm btn-secondary pull-right" data-bind="click: SaveContact.Save" href="#" type="button">
+        <a class="btn btn-sm btn-secondary pull-right" data-bind="click: SavePerson.Save" href="#" type="button">
             Save
         </a>
     </div>
@@ -46,7 +46,7 @@
             <div class="col-sm-4">
                 <div class="form-group" id="TimeZone">
                     @Html.Label("TimeZone", "TimeZone")
-                    <select class="form-control" data-bind="value: placetimezone, options: timezones, optionsText: 'Text', optionsValue: 'Value', optionsCaption: 'Choose...'"></select>
+                    <select class="form-control" data-bind="value: persontimezone, options: timezones, optionsText: 'Text', optionsValue: 'Value', optionsCaption: 'Choose...'"></select>
                 </div>
             </div>
         </div>

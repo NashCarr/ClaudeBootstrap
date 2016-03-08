@@ -7,7 +7,7 @@
     </div>
     <div class="col-sm-6">
         <div class="form-group pull-right">
-            <input data-bind="checked: UseMailingforShipping, event: { change: DefaultPlaceShipping.Set }" name="issystem" type="checkbox">
+            <input data-bind="checked: personUseMailingforShipping, event: { change: DefaultPersonShipping.Set }" name="issystem" type="checkbox">
             @Html.Label("SameAddress", "Use For Shipping")
         </div>
     </div>
@@ -16,19 +16,19 @@
     <div class="col-sm-4">
         <div class="form-group">
             @Html.Label("Address1", "Address1")
-            @Html.TextBox("Address1", "", new {@class = "form-control", data_bind = "value:mailingaddress1"})
+            @Html.TextBox("Address1", "", new {@class = "form-control", data_bind = "value:personmailingaddress1"})
         </div>
     </div>
     <div class="col-sm-4">
         <div class="form-group">
             @Html.Label("Address2", "Address2")
-            @Html.TextBox("Address2", "", new {@class = "form-control", data_bind = "value:mailingaddress2"})
+            @Html.TextBox("Address2", "", new {@class = "form-control", data_bind = "value:personmailingaddress2"})
         </div>
     </div>
     <div class="col-sm-4">
         <div class="form-group">
             @Html.Label("Country", "Country")
-            <select class="form-control" data-bind="value: mailingcountry, options: countries, optionsText: 'Text', optionsValue: 'Value', optionsCaption: 'Choose...'"></select>
+            <select class="form-control" data-bind="value: personmailingcountry, options: countries, optionsText: 'Text', optionsValue: 'Value', optionsCaption: 'Choose...'"></select>
         </div>
     </div>
 </div>
@@ -39,19 +39,19 @@
             <a class="btn btn-sm btn-secondary pull-right" data-bind="click: cancel" href="#" type="button">
                 Verify
             </a>
-            @Html.TextBox("Postal", "", new {@class = "form-control", data_bind = "value:mailingpostalcode"})
+            @Html.TextBox("Postal", "", new {@class = "form-control", data_bind = "value:personmailingpostalcode"})
         </div>
     </div>
     <div class="col-sm-4">
         <div class="form-group">
             @Html.Label("City", "City")
-            @Html.TextBox("City", "", new {@class = "form-control", data_bind = "value:mailingcity"})
+            @Html.TextBox("City", "", new {@class = "form-control", data_bind = "value:personmailingcity"})
         </div>
     </div>
     <div class="col-sm-4">
         <div class="form-group">
             @Html.Label("State", "State")
-            <select class="form-control" data-bind="value: mailingstateprovince, options: statesprovinces, optionsText: 'Text', optionsValue: 'Value', optionsCaption: 'Choose...'"></select>
+            <select class="form-control" data-bind="value: personmailingstateprovince, options: statesprovinces, optionsText: 'Text', optionsValue: 'Value', optionsCaption: 'Choose...'"></select>
         </div>
     </div>
 </div>

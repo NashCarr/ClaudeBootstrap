@@ -4,22 +4,22 @@
         <div class="form-group">
             @Html.Label("CellPhoneNumber", "Cell Number")
             @Html.Label("PrimaryCell", "Is Primary", new { @class = "form-control, pull-right" })
-            <input class="pull-right" data-bind="checked: PlacePrimaryPhone.cellisprimary, event: { change: PlacePrimaryPhone.Cell }" name="CellIsPrimary" type="checkbox">
-            @Html.TextBox("Cell", "", new { @class = "form-control", data_bind = "value:cellphonenumber" })
+            <input class="pull-right" data-bind="checked: PersonPrimaryPhone.cellisprimary, event: { change: PersonPrimaryPhone.Cell }" name="CellIsPrimary" type="checkbox">
+            @Html.TextBox("Cell", "", new { @class = "form-control", data_bind = "value:personcellphonenumber" })
         </div>
     </div>
     <div class="col-sm-4">
         <div class="form-group">
             @Html.Label("Carrier", "Carrier")
             @Html.Label("AllowText", "Allow Text", new { @class = "form-control, pull-right" })
-            <input class="pull-right" data-bind="checked: cellaccepttext, " name="AllowText" type="checkbox">
-            <select class="form-control" data-bind="value: cellcarrier, options: mobilecarriers, optionsText: 'Text', optionsValue: 'Value', optionsCaption: 'Choose...'"></select>
+            <input class="pull-right" data-bind="checked: personcellaccepttext, " name="AllowText" type="checkbox">
+            <select class="form-control" data-bind="value: personcellcarrier, options: mobilecarriers, optionsText: 'Text', optionsValue: 'Value', optionsCaption: 'Choose...'"></select>
         </div>
     </div>
     <div class="col-sm-4">
         <div class="form-group">
             @Html.Label("CellCountry", "Country")
-            <select class="form-control" data-bind="value: cellcountry, options: countries, optionsText: 'Text', optionsValue: 'Value', optionsCaption: 'Choose...'"></select>
+            <select class="form-control" data-bind="value: personcellcountry, options: countries, optionsText: 'Text', optionsValue: 'Value', optionsCaption: 'Choose...'"></select>
         </div>
     </div>
 </div>

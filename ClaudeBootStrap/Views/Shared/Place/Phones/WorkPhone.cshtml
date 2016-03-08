@@ -5,19 +5,19 @@
             @Html.Label("WorkPhoneNumber", "Work Number")
             @Html.Label("PrimaryWork", "Is Primary", new { @class = "form-control, pull-right" })
             <input class="pull-right" data-bind="checked: PlacePrimaryPhone.workisprimary, event: { change: PlacePrimaryPhone.Work }" name="WorkIsPrimary" type="checkbox">
-            @Html.TextBox("Work", "", new {@class = "form-control", data_bind = "value:workphonenumber"})
+            @Html.TextBox("Work", "", new {@class = "form-control", data_bind = "value:placeworkphonenumber"})
         </div>
     </div>
     <div class="col-sm-4">
         <div class="form-group">
             @Html.Label("WorkExtension", "Extension")
-            @Html.TextBox("WorkExtension", "", new {@class = "form-control", data_bind = "value:workextension"})
+            @Html.TextBox("WorkExtension", "", new {@class = "form-control", data_bind = "value:placeworkextension"})
         </div>
     </div>
     <div class="col-sm-4">
         <div class="form-group">
             @Html.Label("WorkCountry", "Country")
-            <select class="form-control" data-bind="value: workcountry, options: countries, optionsText: 'Text', optionsValue: 'Value', optionsCaption: 'Choose...'"></select>
+            <select class="form-control" data-bind="value: placeworkcountry, options: countries, optionsText: 'Text', optionsValue: 'Value', optionsCaption: 'Choose...'"></select>
         </div>
     </div>
 </div>

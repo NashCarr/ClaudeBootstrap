@@ -4,14 +4,14 @@
         <div class="form-group">
             @Html.Label("HomePhoneNumber", "Home Number")
             @Html.Label("PrimaryHome", "Is Primary", new { @class = "form-control, pull-right" })
-            <input class="pull-right" data-bind="checked: PlacePrimaryPhone.homeisprimary, event: { change: PlacePrimaryPhone.Home }" name="HomeIsPrimary" type="checkbox">
-            @Html.TextBox("Home", "", new {@class = "form-control", data_bind = "value:homephonenumber"})
+            <input class="pull-right" data-bind="checked: PersonPrimaryPhone.homeisprimary, event: { change: PersonPrimaryPhone.Home }" name="HomeIsPrimary" type="checkbox">
+            @Html.TextBox("Home", "", new {@class = "form-control", data_bind = "value:personhomephonenumber"})
         </div>
     </div>
     <div class="col-sm-4">
         <div class="form-group">
             @Html.Label("HomeCountry", "Country")
-            <select class="form-control" data-bind="value: homecountry, options: countries, optionsText: 'Text', optionsValue: 'Value', optionsCaption: 'Choose...'"></select>
+            <select class="form-control" data-bind="value: personhomecountry, options: countries, optionsText: 'Text', optionsValue: 'Value', optionsCaption: 'Choose...'"></select>
         </div>
     </div>
 </div>

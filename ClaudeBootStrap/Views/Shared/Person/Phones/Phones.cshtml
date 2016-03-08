@@ -2,33 +2,33 @@
 <div class="panel panel-default" id="Phones">
     <div class="panel-heading">
         @Html.Label("phonesheader", new { data_bind = "text: phoneHeader" })
-        <a class="btn btn-sm btn-secondary pull-right" data-bind="click: PlacePhoneView.Primary" href="#" type="button">
+        <a class="btn btn-sm btn-secondary pull-right" data-bind="click: PersonPhoneView.Primary" href="#" type="button">
             Primary
         </a>
-        <a class="btn btn-sm btn-secondary pull-right" data-bind="click: PlacePhoneView.Fax" href="#" type="button">
+        <a class="btn btn-sm btn-secondary pull-right" data-bind="click: PersonPhoneView.Fax" href="#" type="button">
             Fax
         </a>
-        <a class="btn btn-sm btn-secondary pull-right" data-bind="click: PlacePhoneView.Work" href="#" type="button">
+        <a class="btn btn-sm btn-secondary pull-right" data-bind="click: PersonPhoneView.Work" href="#" type="button">
             Work
         </a>
-        <a class="btn btn-sm btn-secondary pull-right" data-bind="click: PlacePhoneView.Cell" href="#" type="button">
+        <a class="btn btn-sm btn-secondary pull-right" data-bind="click: PersonPhoneView.Cell" href="#" type="button">
             Cell
         </a>
-        <a class="btn btn-sm btn-secondary pull-right" data-bind="click: PlacePhoneView.Home" href="#" type="button">
+        <a class="btn btn-sm btn-secondary pull-right" data-bind="click: PersonPhoneView.Home" href="#" type="button">
             Home
         </a>
     </div>
     <div class="panel-body">
-        <div data-bind="visible: IsPlaceHomePhoneVisible">
+        <div data-bind="visible: IsPersonHomePhoneVisible">
             @{ Html.RenderPartial("Person/Phones/HomePhone"); }
         </div>
-        <div data-bind="visible: IsPlaceCellPhoneVisible">
+        <div data-bind="visible: IsPersonCellPhoneVisible">
             @{ Html.RenderPartial("Person/Phones/CellPhone"); }
         </div>
-        <div data-bind="visible: IsPlaceWorkPhoneVisible">
+        <div data-bind="visible: IsPersonWorkPhoneVisible">
             @{ Html.RenderPartial("Person/Phones/WorkPhone"); }
         </div>
-        <div data-bind="visible: IsPlaceFaxPhoneVisible">
+        <div data-bind="visible: IsPersonFaxPhoneVisible">
             @{ Html.RenderPartial("Person/Phones/FaxPhone"); }
         </div>
     </div>

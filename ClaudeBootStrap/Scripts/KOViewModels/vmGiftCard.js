@@ -1,5 +1,5 @@
 ﻿
-GiftCardViewModel = function (data) {
+GiftCardViewModel = function(data) {
     var self = this;
     var baseUrl = "/GiftCard/";
 
@@ -33,19 +33,19 @@ GiftCardViewModel = function (data) {
     self.listitems = ko.observableArray([]);
     self.listitems = ko.mapping.fromJS(data.ListEntity).extend({ deferred: true });
 
-    self.DragDropComplete = ko.computed(function () {
+    self.DragDropComplete = ko.computed(function() {
         return !self.IsDisplayOrderChanged();
     });
 
-    self.returnmessage = ko.pureComputed(function () {
+    self.returnmessage = ko.pureComputed(function() {
         return ko.unwrap(self.errmsg);
     });
 
-    self.setmessageview = function () {
+    self.setmessageview = function() {
         self.IsMessageAreaVisible(self.errmsg().length);
     };
 
-    self.handlereturndata = function (returndata) {
+    self.handlereturndata = function(returndata) {
         self.recordid(returndata.Id);
         self.errmsg(returndata.ErrMsg);
         self.stringcreatedate(returndata.StringCreateDate);
@@ -54,7 +54,7 @@ GiftCardViewModel = function (data) {
     };
 
     self.ManageSort = {
-        ManageType: function (type) {
+        ManageType: function(type) {
             if (type === 0) {
                 type = 1;
             };
@@ -67,11 +67,11 @@ GiftCardViewModel = function (data) {
             self.sortdirection(-1);
             self.pauseNotifications = false;
         },
-        ManageDirection: function (type) {
+        ManageDirection: function(type) {
             self.ManageSort.ManageType(type);
             self.sortdirection(self.sortdirection() * -1);
         },
-        Change: function (type) {
+        Change: function(type) {
             if (type === 0) {
                 self.IsSorting(!self.IsSorting());
             };
@@ -83,19 +83,19 @@ GiftCardViewModel = function (data) {
     };
 
     self.SortCreateDate = {
-        Filtered: function () {
-            return ko.utils.arrayFilter(self.listitems(), function (item) {
+        Filtered: function() {
+            return ko.utils.arrayFilter(self.listitems(), function(item) {
                 return ko.unwrap(item.Name).toLowerCase().indexOf(self.filter) !== -1;
-            }).sort(function (l, r) {
+            }).sort(function(l, r) {
                 return (l.StringCreateDate().toLowerCase() > r.StringCreateDate().toLowerCase()) ^ (self.direction === -1);
             });
         },
-        Unfiltered: function () {
-            return self.listitems().sort(function (l, r) {
+        Unfiltered: function() {
+            return self.listitems().sort(function(l, r) {
                 return (l.StringCreateDate().toLowerCase() > r.StringCreateDate().toLowerCase()) ^ (self.direction === -1);
             });
         },
-        Manage: function () {
+        Manage: function() {
             return (self.filter.length === 0)
                 ? self.SortCreateDate.Unfiltered(self.sortdirection())
                 : self.SortCreateDate.Filtered(self.sortdirection());
@@ -103,19 +103,19 @@ GiftCardViewModel = function (data) {
     };
 
     self.SortDisplayOrder = {
-        Filtered: function () {
-            return ko.utils.arrayFilter(self.listitems(), function (item) {
+        Filtered: function() {
+            return ko.utils.arrayFilter(self.listitems(), function(item) {
                 return ko.unwrap(item.Name).toLowerCase().indexOf(self.filter) !== -1;
-            }).sort(function (l, r) {
+            }).sort(function(l, r) {
                 return (parseInt(l.DisplayOrder()) > parseInt(r.DisplayOrder())) ^ (self.direction === -1);
             });
         },
-        Unfiltered: function () {
-            return self.listitems().sort(function (l, r) {
+        Unfiltered: function() {
+            return self.listitems().sort(function(l, r) {
                 return (parseInt(l.DisplayOrder()) > parseInt(r.DisplayOrder())) ^ (self.direction === -1);
             });
         },
-        Manage: function () {
+        Manage: function() {
             return (self.filter.length === 0)
                 ? self.SortDisplayOrder.Unfiltered()
                 : self.SortDisplayOrder.Filtered();
@@ -123,41 +123,41 @@ GiftCardViewModel = function (data) {
     };
 
     self.SortName = {
-        Filtered: function () {
-            return ko.utils.arrayFilter(self.listitems(), function (item) {
+        Filtered: function() {
+            return ko.utils.arrayFilter(self.listitems(), function(item) {
                 return ko.unwrap(item.Name).toLowerCase().indexOf(self.filter) !== -1;
-            }).sort(function (l, r) {
+            }).sort(function(l, r) {
                 return (l.Name().toLowerCase() > r.Name().toLowerCase()) ^ (self.direction === -1);
             });
         },
-        Unfiltered: function () {
-            return self.listitems().sort(function (l, r) {
+        Unfiltered: function() {
+            return self.listitems().sort(function(l, r) {
                 return (l.Name().toLowerCase() > r.Name().toLowerCase()) ^ (self.direction === -1);
             });
         },
-        Manage: function () {
+        Manage: function() {
             return (self.filter.length === 0)
                 ? self.SortName.Unfiltered(self.sortdirection())
                 : self.SortName.Filtered(self.sortdirection());
         }
     };
 
-    self.filteredItems = function () {
+    self.filteredItems = function() {
         self.direction = ko.unwrap(self.sortdirection);
         self.filter = ko.unwrap(self.searchvalue).toLowerCase();
         switch (self.sorttype) {
-            case 1:
-                return self.SortDisplayOrder.Manage();
-            case 2:
-                return self.SortName.Manage();
-            case 3:
-                return self.SortCreateDate.Manage();
-            default:
-                return self.SortDisplayOrder.Manage();
+        case 1:
+            return self.SortDisplayOrder.Manage();
+        case 2:
+            return self.SortName.Manage();
+        case 3:
+            return self.SortCreateDate.Manage();
+        default:
+            return self.SortDisplayOrder.Manage();
         }
     };
 
-    self.clear = function () {
+    self.clear = function() {
         self.name("");
         self.errmsg("");
         self.recordid(0);
@@ -165,20 +165,20 @@ GiftCardViewModel = function (data) {
 
         self.IsEdit(false);
     };
- 
-    self.toggleview = function () {
+
+    self.toggleview = function() {
         self.setmessageview();
         self.IsListAreaVisible(!self.IsListAreaVisible());
         self.IsSearchAreaVisible(!self.IsSearchAreaVisible());
         self.IsAddEditAreaVisible(!self.IsAddEditAreaVisible());
     };
 
-    self.clearandtoggle = function () {
+    self.clearandtoggle = function() {
         self.clear();
         self.toggleview();
     };
 
-    self.edit = function (editdata) {
+    self.edit = function(editdata) {
         self.name(editdata.Name());
         self.recordid(editdata.RecordId());
         self.displayorder(editdata.DisplayOrder());
@@ -188,21 +188,21 @@ GiftCardViewModel = function (data) {
         self.toggleview();
     };
 
-    self.add = function () {
+    self.add = function() {
         self.clearandtoggle();
         self.name(self.searchvalue());
     };
 
-    self.cancel = function () {
+    self.cancel = function() {
         self.clearandtoggle();
     };
 
-    self.reset = function () {
+    self.reset = function() {
         self.searchvalue("");
     };
 
     self.GiftCard = {
-        Build: function () {
+        Build: function() {
             return {
                 Name: ko.observable(self.name()),
                 RecordId: ko.observable(self.recordid()),
@@ -210,7 +210,7 @@ GiftCardViewModel = function (data) {
                 StringCreateDate: ko.observable(self.stringcreatedate())
             };
         },
-        Clear: function () {
+        Clear: function() {
             self.name("");
             self.recordid(0);
             self.displayorder(0);
@@ -218,20 +218,20 @@ GiftCardViewModel = function (data) {
     };
 
     self.ProcessSave = {
-        ProcessAdd: function () {
+        ProcessAdd: function() {
             self.ReorderList.ReorderDragDrop();
             self.listitems.push(self.GiftCard.Build());
         },
-        ItemExists: function () {
-            var match = ko.utils.arrayFirst(self.listitems(), function (item) {
+        ItemExists: function() {
+            var match = ko.utils.arrayFirst(self.listitems(), function(item) {
                 return item.RecordId() === self.recordid();
             });
             return match;
         },
-        ProcessEdit: function () {
+        ProcessEdit: function() {
             self.listitems.replace(self.ProcessSave.ItemExists(), self.GiftCard.Build());
         },
-        Manage: function () {
+        Manage: function() {
             if (self.IsEdit()) {
                 self.ProcessSave.ProcessEdit();
                 return;
@@ -243,12 +243,12 @@ GiftCardViewModel = function (data) {
         }
     };
 
-    self.save = function () {
+    self.save = function() {
         $.ajax({
             url: baseUrl + "Save",
             type: "post",
             data: self.GiftCard.Build()
-        }).then(function (returndata) {
+        }).then(function(returndata) {
 
             self.handlereturndata(returndata);
             if (self.IsMessageAreaVisible()) {
@@ -260,11 +260,11 @@ GiftCardViewModel = function (data) {
     };
 
     self.RemoveItem = {
-        SetListItemInactive: function (removedata) {
+        SetListItemInactive: function(removedata) {
             $.ajax({
                 url: baseUrl + removedata.RecordId(),
                 type: "delete"
-            }).then(function (returndata) {
+            }).then(function(returndata) {
 
                 self.handlereturndata(returndata);
                 if (self.IsMessageAreaVisible()) {
@@ -274,7 +274,7 @@ GiftCardViewModel = function (data) {
                 self.clear();
             });
         },
-        Validate: function (item) {
+        Validate: function(item) {
             if (!confirm("Delete Item: '" + ko.unwrap(item.Name) + "'?")) {
                 return;
             }
@@ -282,11 +282,11 @@ GiftCardViewModel = function (data) {
         }
     };
 
-    self.makelistsortable = function () {
-        var fixHelperModified = function (e, tr) {
+    self.makelistsortable = function() {
+        var fixHelperModified = function(e, tr) {
             var $originals = tr.children();
             var $helper = tr.clone();
-            $helper.children().each(function (index) {
+            $helper.children().each(function(index) {
                 $(this).width($originals.eq(index).width());
             });
             return $helper;
@@ -300,7 +300,7 @@ GiftCardViewModel = function (data) {
     self.ReorderList = {
         displayreorder: ko.observableArray(),
         Reorder: {
-            Save: function () {
+            Save: function() {
                 $.ajax({
                     type: "post",
                     url: baseUrl + "DisplayOrder",
@@ -309,8 +309,8 @@ GiftCardViewModel = function (data) {
                     contentType: "application/json; charset=utf-8"
                 });
             },
-            EditList: function (recordid, value) {
-                var match = ko.utils.arrayFirst(self.listitems(), function (item) {
+            EditList: function(recordid, value) {
+                var match = ko.utils.arrayFirst(self.listitems(), function(item) {
                     return parseInt(item.RecordId()) === recordid;
                 });
                 if (match) {
@@ -319,7 +319,7 @@ GiftCardViewModel = function (data) {
                     self.pauseNotifications = false;
                 }
             },
-            ManageList: function () {
+            ManageList: function() {
                 for (var i = 0; i < self.ReorderList.displayreorder().length; i++) {
                     self.ReorderList.Reorder.EditList(
                         ko.unwrap(self.ReorderList.displayreorder()[i].Id),
@@ -327,19 +327,19 @@ GiftCardViewModel = function (data) {
                     );
                 }
             },
-            RefreshHtml: function () {
+            RefreshHtml: function() {
                 self.IsDisplayOrderChanged(true);
                 self.IsDisplayOrderChanged(false);
                 self.makelistsortable();
             },
-            ManageSort: function () {
+            ManageSort: function() {
                 if (self.ReorderList.displayreorder().length === 0) {
                     return;
                 }
                 self.ReorderList.Reorder.Save();
                 self.ReorderList.displayreorder([]);
             },
-            ManageDragDrop: function () {
+            ManageDragDrop: function() {
                 if (self.ReorderList.displayreorder().length === 0) {
                     return;
                 }
@@ -349,21 +349,21 @@ GiftCardViewModel = function (data) {
                 self.ReorderList.displayreorder([]);
             }
         },
-        Capture: function (recordid, value) {
+        Capture: function(recordid, value) {
             self.ReorderList.displayreorder.push(
             {
                 Id: recordid,
                 DisplayOrder: value
             });
         },
-        ReorderInnerText: function () {
+        ReorderInnerText: function() {
             var newindex = 0;
             var rowindex = 0;
             var rowrecordid = 0;
             var rowdisplayorder = 0;
 
             self.ReorderList.displayreorder([]);
-            $("#datatable tbody").children().each(function () {
+            $("#datatable tbody").children().each(function() {
                 newindex = newindex + 1;
                 rowrecordid = parseInt($("#datatable tbody").children()[rowindex].children[1].innerText);
                 rowdisplayorder = parseInt($("#datatable tbody").children()[rowindex].children[2].innerText);
@@ -374,11 +374,11 @@ GiftCardViewModel = function (data) {
                 rowindex = rowindex + 1;
             });
         },
-        ReorderAfterSort: function () {
+        ReorderAfterSort: function() {
             self.ReorderList.ReorderInnerText();
             self.ReorderList.Reorder.ManageSort();
         },
-        ReorderDragDrop: function () {
+        ReorderDragDrop: function() {
             self.ReorderList.ReorderInnerText();
             self.ReorderList.Reorder.ManageDragDrop();
         }

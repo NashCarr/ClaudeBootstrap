@@ -3,13 +3,13 @@
     <div class="col-sm-4">
         <div class="form-group">
             @Html.Label("FaxPhone", "Fax Number")
-            @Html.TextBox("Fax", "", new {@class = "form-control", data_bind = "value:faxphonenumber"})
+            @Html.TextBox("Fax", "", new {@class = "form-control", data_bind = "value:placefaxphonenumber"})
         </div>
     </div>
     <div class="col-sm-4">
         <div class="form-group">
             @Html.Label("FaxCountry", "Country")
-            <select class="form-control" data-bind="value: faxcountry, options: countries, optionsText: 'Text', optionsValue: 'Value', optionsCaption: 'Choose...'"></select>
+            <select class="form-control" data-bind="value: placefaxcountry, options: countries, optionsText: 'Text', optionsValue: 'Value', optionsCaption: 'Choose...'"></select>
         </div>
     </div>
 </div>

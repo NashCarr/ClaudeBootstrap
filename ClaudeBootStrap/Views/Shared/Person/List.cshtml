@@ -2,7 +2,7 @@
 <div class="panel panel-default" id="Contacts">
     <div class="panel-heading">
         Contacts
-        <a class="btn btn-sm btn-secondary pull-right" data-bind="click: Contact.Add" href="#" type="button">
+        <a class="btn btn-sm btn-secondary pull-right" data-bind="click: Person.Add" href="#" type="button">
             Add
         </a>
     </div>
@@ -23,7 +23,7 @@
                 <tbody data-bind="foreach: personlist()" id="contactlist">
                 <tr id="itemrow">
                     <td class="listcentered" id="edit">
-                        <a class="btn btn-default btn-sm" data-bind="click: $parent.Contact.Edit" href="#" type="button">
+                        <a class="btn btn-default btn-sm" data-bind="click: $parent.Person.Edit" href="#" type="button">
                             <i class="glyphicon glyphicon-edit"></i>
                         </a>
                     </td>
@@ -32,7 +32,7 @@
                     <td class="ui-priority-secondary" data-bind="text: FullName" id="fullname"></td>
                     <td class="ui-priority-secondary" data-bind="text: Email" id="email"></td>
                     <td class="listcentered" id="delete">
-                        <a class="btn btn-default btn-sm" data-bind="click: $parent.RemoveContact.Validate.bind($data)" href="#" type="button">
+                        <a class="btn btn-default btn-sm" data-bind="click: $parent.RemovePerson.Validate.bind($data)" href="#" type="button">
                             <i class="glyphicon glyphicon-trash"></i>
                         </a>
                     </td>
