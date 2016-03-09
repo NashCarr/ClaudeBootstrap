@@ -21,11 +21,11 @@ namespace ClaudeViewManagement.Managers.Places
         {
         }
 
-        public CustomerView GetCustomer(int recordId)
+        public PlaceView GetCustomer(int recordId)
         {
-            using (DbCustomerInfoGet data = new DbCustomerInfoGet())
+            using (DbPlaceInfoGet data = new DbPlaceInfoGet())
             {
-                return data.GetRecord(recordId);
+                return data.GetCustomer(recordId);
             }
         }
 

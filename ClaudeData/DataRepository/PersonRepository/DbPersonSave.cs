@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using ClaudeCommon.BaseModels.Returns;
+using ClaudeData.DataRepository.AdminRepository;
 using ClaudeData.Models.People;
 using static ClaudeCommon.Enums.PersonEnums;
 
@@ -94,7 +95,7 @@ namespace ClaudeData.DataRepository.PersonRepository
 
             IdParameter = "@OrganizationContactId";
 
-            SetConnectToDatabase("[Admin].[usp_OrganizationContact_Upsert]");
+            SetConnectToDatabase("[FundRaising].[usp_OrganizationContact_Upsert]");
             return AddUpdatePerson(ref data);
         }
 
@@ -227,6 +228,15 @@ namespace ClaudeData.DataRepository.PersonRepository
             }
 
             string msg;
+            using (DbFacilityStaffSave db = new DbFacilityStaffSave())
+            {
+                rb = db.AddUpdateStaffUser(p.PlaceId, personId);
+                if (rb.ErrMsg.Length != 0)
+                {
+                    return rb;
+                }
+            }
+
             if (data.AddressData?.Addresses != null)
             {
                 if (data.AddressData.Addresses.Count != 0)

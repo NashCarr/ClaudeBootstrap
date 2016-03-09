@@ -2,9 +2,9 @@
 
 namespace ClaudeData.Models.Lists.Settings
 {
-    public class StaffMemberInfo
+    public class StaffUserInfo
     {
-        public StaffMemberInfo()
+        public StaffUserInfo()
         {
             PersonId = 0;
             Email = string.Empty;

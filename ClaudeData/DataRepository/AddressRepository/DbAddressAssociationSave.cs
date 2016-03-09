@@ -51,8 +51,7 @@ namespace ClaudeData.DataRepository.AddressRepository
                 CmdSql.Parameters.Add("@PostalCodeId", SqlDbType.Int).Value = data.PostalCodeId;
                 CmdSql.Parameters.Add("@ZipCode", SqlDbType.NVarChar, 10).Value = data.ZipCode?.Trim() ?? string.Empty;
                 CmdSql.Parameters.Add("@City", SqlDbType.NVarChar, 20).Value = data.City?.Trim() ?? string.Empty;
-                CmdSql.Parameters.Add("@StateProvince", SqlDbType.Char, 2).Value = data.StateProvince?.Trim() ??
-                                                                                   string.Empty;
+                CmdSql.Parameters.Add("@StateProvinceId", SqlDbType.Int).Value = data.StateProvinceId;
                 CmdSql.Parameters.Add("@Country", SqlDbType.SmallInt).Value =
                     EnumHelpers.GetShortFromEnum<Country>(data.Country.ToString());
                 CmdSql.Parameters.Add(CreateDecimalParameter("@PostalLatitude", data.PostalCoordinates.Latitude, 10, 4));

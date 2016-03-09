@@ -4,11 +4,11 @@ using ClaudeViewManagement.ViewModels.People;
 
 namespace ClaudeBootstrap.Controllers.Settings.People
 {
-    public class StaffMemberController : Controller
+    public class StaffUserController : Controller
     {
         public ActionResult Index()
         {
-            StaffMemberViewModel vm = new StaffMemberViewModel();
+            StaffUserViewModel vm = new StaffUserViewModel();
 
             vm.HandleRequest();
 
@@ -16,7 +16,7 @@ namespace ClaudeBootstrap.Controllers.Settings.People
         }
 
         [HttpPost]
-        public ActionResult Index(StaffMemberViewModel vm)
+        public ActionResult Index(StaffUserViewModel vm)
         {
             vm.IsValid = ModelState.IsValid;
             vm.HandleRequest();

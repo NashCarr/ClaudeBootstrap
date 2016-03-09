@@ -5,6 +5,8 @@
     <!--/ko-->
 </div>
 <div data-bind="visible: IsEditContact">
+    <!--ko if: IsEditContact-->
     @{ Html.RenderPartial("Person/Contact"); }
+    <!--/ko-->
 </div>
 <!-- ** END Contacts AREA -->

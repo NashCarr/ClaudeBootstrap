@@ -1,12 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using ClaudeCommon.Models;
 using ClaudeData.Models.Places;
 using ClaudeData.ViewModels.Shared;
 
 namespace ClaudeData.ViewModels.Settings
 {
-    public class OrganizationView : IDisposable
+    public class PlaceView : IDisposable
     {
-        public OrganizationView()
+        public PlaceView()
         {
             Place = new Place();
             Phones = new PhoneViewModel();
@@ -17,6 +19,7 @@ namespace ClaudeData.ViewModels.Settings
 
         public Place Place { get; set; }
         public PhoneViewModel Phones { get; set; }
+        public List<Contact> Contacts { get; set; }
         public AddressViewModel Addresses { get; set; }
 
         public void Dispose()

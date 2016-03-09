@@ -1,9 +1,7 @@
 ﻿using System;
 using ClaudeCommon.BaseModels.Returns;
-using ClaudeData.DataRepository.AdminRepository;
 using ClaudeData.DataRepository.PersonRepository;
 using ClaudeData.Models.Addresses;
-using ClaudeData.Models.Admin;
 using ClaudeData.Models.People;
 using ClaudeData.Models.Phones;
 using ClaudeData.ViewModels.Settings;
@@ -12,7 +10,7 @@ using static ClaudeCommon.Enums.PhoneEnums;
 
 namespace ClaudeData.DataRepository.SettingsRepository
 {
-    public class DbStaffMemberSave : IDisposable
+    public class DbPlaceContactSave : IDisposable
     {
         public void Dispose()
         {
@@ -20,7 +18,7 @@ namespace ClaudeData.DataRepository.SettingsRepository
             GC.SuppressFinalize(this);
         }
 
-        public ReturnBase SaveStaffMember(ref StaffMemberView data, ref int personId, ref int facilityStaffId)
+        public ReturnBase SavePlaceContact(ref PlaceContactView data, ref int personId)
         {
             ReturnBase rb;
 
@@ -34,7 +32,7 @@ namespace ClaudeData.DataRepository.SettingsRepository
 
             PersonData p = new PersonData
             {
-                Person = data.StaffUser,
+                Person = data.Person,
                 AddressData = new AddressData(),
                 PhoneData = new PhoneData {PhoneSettings = data.Phones.PhoneSettings}
             };
@@ -49,25 +47,8 @@ namespace ClaudeData.DataRepository.SettingsRepository
 
             using (DbPersonSave db = new DbPersonSave())
             {
-                rb = db.SaveStaffUserData(p, ref personId);
+                rb = db.SavePerson(p, ref personId);
             }
-
-            if (!string.IsNullOrEmpty(rb.ErrMsg)) return rb;
-
-            FacilityStaff s = new FacilityStaff
-            {
-                StaffUserId = personId,
-                FacilityStaffId = facilityStaffId,
-                IsActive = data.StaffUser.IsActive,
-                FacilityId = data.StaffUser.PlaceId
-            };
-
-            using (DbFacilityStaffSave db = new DbFacilityStaffSave())
-            {
-                rb = db.AddUpdateRecord(ref s);
-            }
-            facilityStaffId = s.FacilityStaffId;
-
             return rb;
         }
 

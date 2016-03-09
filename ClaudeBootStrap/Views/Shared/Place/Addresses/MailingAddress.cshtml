@@ -36,9 +36,6 @@
     <div class="col-sm-4">
         <div class="form-group">
             @Html.Label("Postal", "Postal")
-            <a class="btn btn-sm btn-secondary pull-right" data-bind="click: cancel" href="#" type="button">
-                Verify
-            </a>
             @Html.TextBox("Postal", "", new {@class = "form-control", data_bind = "value:placemailingpostalcode"})
         </div>
     </div>
@@ -51,7 +48,7 @@
     <div class="col-sm-4">
         <div class="form-group">
             @Html.Label("State", "State")
-            <select class="form-control" data-bind="value: placemailingstateprovince, options: statesprovinces, optionsText: 'Text', optionsValue: 'Value', optionsCaption: 'Choose...'"></select>
+            <select class="form-control" data-bind="value: placemailingstateprovinceid, options: statesprovinces, optionsText: 'Text', optionsValue: 'Value', optionsCaption: 'Choose...'"></select>
         </div>
     </div>
 </div>

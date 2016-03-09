@@ -21,11 +21,11 @@ namespace ClaudeViewManagement.Managers.Places
         {
         }
 
-        public FacilityView GetFacility(int recordId)
+        public PlaceView GetFacility(int recordId)
         {
-            using (DbFacilityInfoGet data = new DbFacilityInfoGet())
+            using (DbPlaceInfoGet data = new DbPlaceInfoGet())
             {
-                return data.GetRecord(recordId);
+                return data.GetFacility(recordId);
             }
         }
 

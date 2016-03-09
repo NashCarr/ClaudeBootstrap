@@ -13,6 +13,11 @@ namespace ClaudeData.DataRepository.PersonRepository
 {
     public class DbPersonDataGet : DbGetBase
     {
+        protected internal PersonData GetStaffUser(int personId)
+        {
+            return LoadRecords(personId, (byte)PersonType.StaffUser);
+        }
+
         protected internal PersonData GetAssessor(int personId)
         {
             return LoadRecords(personId, (byte) PersonType.Assessor);
@@ -23,9 +28,9 @@ namespace ClaudeData.DataRepository.PersonRepository
             return LoadRecords(personId, (byte) PersonType.CustomerContact);
         }
 
-        protected internal PersonData GetStaffUser(int personId)
+        protected internal PersonData GetOrganizationContact(int personId)
         {
-            return LoadRecords(personId, (byte) PersonType.StaffUser);
+            return LoadRecords(personId, (byte)PersonType.OrganizationContact);
         }
 
         private PersonData LoadRecords(int personId, byte personType)
@@ -96,7 +101,7 @@ namespace ClaudeData.DataRepository.PersonRepository
                                 int ordZipCode = dr.GetOrdinal("ZipCode");
                                 int ordAddress1 = dr.GetOrdinal("Address1");
                                 int ordAddress2 = dr.GetOrdinal("Address2");
-                                int ordStateProvince = dr.GetOrdinal("StateProvince");
+                                int ordStateProvinceId = dr.GetOrdinal("StateProvinceId");
 
                                 int ordAddressLatitude = dr.GetOrdinal("AddressLatitude");
                                 int ordAddressLongitude = dr.GetOrdinal("AddressLongitude");
@@ -121,7 +126,7 @@ namespace ClaudeData.DataRepository.PersonRepository
                                         AddressType = (AddressEnums.AddressType) Convert.ToInt16(dr[ordAddressType]),
                                         CreateDate = Convert.ToDateTime(dr[ordCreateDate]),
                                         PostalCodeId = Convert.ToInt32(dr[ordPostalCodeId]),
-                                        StateProvince = Convert.ToString(dr[ordStateProvince]),
+                                        StateProvinceId = Convert.ToInt32(dr[ordStateProvinceId]),
                                         AddressAssociationId = Convert.ToInt32(dr[ordAddressAssociationId]),
                                         AddressCoordinates = new Coordinates
                                         {

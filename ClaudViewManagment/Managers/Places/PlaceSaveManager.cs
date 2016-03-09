@@ -1,14 +1,14 @@
 using System;
 using ClaudeCommon.BaseModels.Returns;
-using ClaudeData.DataRepository.PersonRepository;
+using ClaudeData.DataRepository.PlaceRepository;
 using ClaudeData.Models.Addresses;
-using ClaudeData.Models.People;
 using ClaudeData.Models.Phones;
-using ClaudeViewManagement.ViewModels.People;
+using ClaudeData.Models.Places;
+using ClaudeViewManagement.ViewModels.Places;
 
-namespace ClaudeViewManagement.Managers.People
+namespace ClaudeViewManagement.Managers.Places
 {
-    public class ContactManager : IDisposable
+    public class PlaceSaveManager : IDisposable
     {
         public void Dispose()
         {
@@ -20,27 +20,11 @@ namespace ClaudeViewManagement.Managers.People
         {
         }
 
-        public string DeleteStaffUser(int id)
+        public ReturnBase SavePlace(PlaceSaveModel data)
         {
-            using (DbPersonSetInactive data = new DbPersonSetInactive())
+            PlaceData p = new PlaceData
             {
-                return data.SetStaffUserInactive(id);
-            }
-        }
-
-        public string DeleteCustomer(int id)
-        {
-            using (DbPersonSetInactive data = new DbPersonSetInactive())
-            {
-                return data.SetCustomerContactInactive(id);
-            }
-        }
-
-        public ReturnBase SaveContact(ContactSaveModel data)
-        {
-            PersonData p = new PersonData
-            {
-                Person = data.Person,
+                Place = data.Place,
                 PhoneData = new PhoneData(),
                 AddressData = new AddressData {UseMailingForShipping = data.UseMailingForShipping}
             };
@@ -74,10 +58,10 @@ namespace ClaudeViewManagement.Managers.People
                 p.AddressData.Addresses.Add(data.ShippingAddress);
             }
 
-            int id = p.Person.PersonId;
-            using (DbPersonSave mgr = new DbPersonSave())
+            int id = p.Place.PlaceId;
+            using (DbPlaceSave mgr = new DbPlaceSave())
             {
-                return mgr.SavePerson(p, ref id);
+                return mgr.SavePlace(p, id);
             }
         }
     }

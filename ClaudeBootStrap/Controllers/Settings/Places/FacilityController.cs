@@ -24,9 +24,19 @@ namespace ClaudeBootstrap.Controllers.Settings.Places
         public JsonResult SavePlace(PlaceSaveModel p)
         {
             if (p.Place != null) p.Place.PlaceType = PlaceType.Facility;
-            using (PlaceManager mgr = new PlaceManager())
+            using (PlaceSaveManager mgr = new PlaceSaveManager())
             {
                 return Json(mgr.SavePlace(p));
+            }
+        }
+
+        [HttpPost]
+        public JsonResult SaveContact(PlaceContactSaveModel c)
+        {
+            if (c != null) c.Person.PersonType = PersonType.StaffUser;
+            using (PlaceContactSaveManager mgr = new PlaceContactSaveManager())
+            {
+                return Json(mgr.SaveContact(c));
             }
         }
 
@@ -36,6 +46,15 @@ namespace ClaudeBootstrap.Controllers.Settings.Places
             using (FacilityManager mgr = new FacilityManager())
             {
                 return Json(id != null ? mgr.GetFacility(int.Parse(id)) : mgr.GetFacility(0));
+            }
+        }
+
+        [HttpPost]
+        public JsonResult GetPerson(string id)
+        {
+            using (PlaceContactGetManager mgr = new PlaceContactGetManager())
+            {
+                return Json(id != null ? mgr.GetStaffUser(int.Parse(id)) : mgr.GetStaffUser(0));
             }
         }
 
@@ -59,19 +78,9 @@ namespace ClaudeBootstrap.Controllers.Settings.Places
         }
 
         [HttpPost]
-        public JsonResult SaveContact(ContactSaveModel c)
-        {
-            if (c != null) c.Person.PersonType = PersonType.StaffUser;
-            using (ContactManager mgr = new ContactManager())
-            {
-                return Json(mgr.SaveContact(c));
-            }
-        }
-
-        [HttpPost]
         public JsonResult DeleteContact(int id)
         {
-            using (ContactManager mgr = new ContactManager())
+            using (PlaceContactDeleteManager mgr = new PlaceContactDeleteManager())
             {
                 return Json(mgr.DeleteStaffUser(id));
             }

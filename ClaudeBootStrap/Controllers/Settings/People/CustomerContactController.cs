@@ -8,7 +8,7 @@ namespace ClaudeBootstrap.Controllers.Settings.People
     {
         public ActionResult Index()
         {
-            CustomerContactViewModel vm = new CustomerContactViewModel();
+            PlaceContactViewModel vm = new PlaceContactViewModel();
 
             vm.HandleRequest();
 
@@ -16,7 +16,7 @@ namespace ClaudeBootstrap.Controllers.Settings.People
         }
 
         [HttpPost]
-        public ActionResult Index(CustomerContactViewModel vm)
+        public ActionResult Index(PlaceContactViewModel vm)
         {
             vm.IsValid = ModelState.IsValid;
             vm.HandleRequest();

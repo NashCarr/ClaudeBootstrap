@@ -24,9 +24,19 @@ namespace ClaudeBootstrap.Controllers.Settings.Places
         public JsonResult SavePlace(PlaceSaveModel p)
         {
             if (p.Place != null) p.Place.PlaceType = PlaceType.Organization;
-            using (PlaceManager mgr = new PlaceManager())
+            using (PlaceSaveManager mgr = new PlaceSaveManager())
             {
                 return Json(mgr.SavePlace(p));
+            }
+        }
+
+        [HttpPost]
+        public JsonResult SaveContact(PlaceContactSaveModel c)
+        {
+            if (c != null) c.Person.PersonType = PersonType.OrganizationContact;
+            using (PlaceContactSaveManager mgr = new PlaceContactSaveManager())
+            {
+                return Json(mgr.SaveContact(c));
             }
         }
 
@@ -36,6 +46,15 @@ namespace ClaudeBootstrap.Controllers.Settings.Places
             using (OrganizationManager mgr = new OrganizationManager())
             {
                 return Json(id != null ? mgr.GetOrganization(int.Parse(id)) : mgr.GetOrganization(0));
+            }
+        }
+
+        [HttpPost]
+        public JsonResult GetPerson(string id)
+        {
+            using (PlaceContactGetManager mgr = new PlaceContactGetManager())
+            {
+                return Json(id != null ? mgr.GetOrganizationContact(int.Parse(id)) : mgr.GetOrganizationContact(0));
             }
         }
 
@@ -59,21 +78,11 @@ namespace ClaudeBootstrap.Controllers.Settings.Places
         }
 
         [HttpPost]
-        public JsonResult SaveContact(ContactSaveModel c)
-        {
-            if (c != null) c.Person.PersonType = PersonType.OrganizationContact;
-            using (ContactManager mgr = new ContactManager())
-            {
-                return Json(mgr.SaveContact(c));
-            }
-        }
-
-        [HttpPost]
         public JsonResult DeleteContact(int id)
         {
-            using (ContactManager mgr = new ContactManager())
+            using (PlaceContactDeleteManager mgr = new PlaceContactDeleteManager())
             {
-                return Json(mgr.DeleteCustomer(id));
+                return Json(mgr.DeleteOrganizationContact(id));
             }
         }
     }

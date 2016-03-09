@@ -21,7 +21,7 @@
         @{ Html.RenderPartial("Place/List"); }
         <!--/ko-->
     </div>
-            }
+}
 
 @{ string data = new JavaScriptSerializer().Serialize(Model); }
 
@@ -32,7 +32,7 @@
     <script src="~/Scripts/knockout.mapping-latest.js"></script>
     <script src="~/Scripts/KOViewModels/vmOrganization.js"></script>
     <script>
-        var rawData = new OrganizationViewModel(@Html.Raw(data));
+        var rawData = new PlaceViewModel(@Html.Raw(data));
         ko.applyBindings(rawData);
     </script>
 }

@@ -8,9 +8,9 @@ namespace ClaudeData.Models.Addresses
         protected PostalCode()
         {
             PostalCodeId = 0;
+            StateProvinceId = 0;
             City = string.Empty;
             ZipCode = string.Empty;
-            StateProvince = string.Empty;
             Country = Country.UnitedStates;
             PostalCoordinates = new Coordinates();
         }
@@ -19,7 +19,7 @@ namespace ClaudeData.Models.Addresses
         public string ZipCode { get; set; }
         public Country Country { get; set; }
         public int PostalCodeId { get; set; }
-        public string StateProvince { get; set; }
+        public int StateProvinceId { get; set; }
         public Coordinates PostalCoordinates { get; set; }
     }
 }

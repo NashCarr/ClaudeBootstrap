@@ -24,17 +24,17 @@ namespace ClaudeBootstrap.Controllers.Settings.Places
         public JsonResult SavePlace(PlaceSaveModel p)
         {
             if (p.Place != null) p.Place.PlaceType = PlaceType.Customer;
-            using (PlaceManager mgr = new PlaceManager())
+            using (PlaceSaveManager mgr = new PlaceSaveManager())
             {
                 return Json(mgr.SavePlace(p));
             }
         }
 
         [HttpPost]
-        public JsonResult SaveContact(ContactSaveModel c)
+        public JsonResult SaveContact(PlaceContactSaveModel c)
         {
             if (c != null) c.Person.PersonType = PersonType.CustomerContact;
-            using (ContactManager mgr = new ContactManager())
+            using (PlaceContactSaveManager mgr = new PlaceContactSaveManager())
             {
                 return Json(mgr.SaveContact(c));
             }
@@ -46,6 +46,15 @@ namespace ClaudeBootstrap.Controllers.Settings.Places
             using (CustomerManager mgr = new CustomerManager())
             {
                 return Json(id != null ? mgr.GetCustomer(int.Parse(id)) : mgr.GetCustomer(0));
+            }
+        }
+
+        [HttpPost]
+        public JsonResult GetPerson(string id)
+        {
+            using (PlaceContactGetManager mgr = new PlaceContactGetManager())
+            {
+                return Json(id != null ? mgr.GetCustomerContact(int.Parse(id)) : mgr.GetCustomerContact(0));
             }
         }
 
@@ -71,9 +80,9 @@ namespace ClaudeBootstrap.Controllers.Settings.Places
         [HttpPost]
         public JsonResult DeleteContact(int id)
         {
-            using (ContactManager mgr = new ContactManager())
+            using (PlaceContactDeleteManager mgr = new PlaceContactDeleteManager())
             {
-                return Json(mgr.DeleteCustomer(id));
+                return Json(mgr.DeleteCustomerContact(id));
             }
         }
     }

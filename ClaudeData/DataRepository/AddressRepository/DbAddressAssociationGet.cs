@@ -61,7 +61,7 @@ namespace ClaudeData.DataRepository.AddressRepository
                             int ordZipCode = dr.GetOrdinal("ZipCode");
                             int ordAddress1 = dr.GetOrdinal("Address1");
                             int ordAddress2 = dr.GetOrdinal("Address2");
-                            int ordStateProvince = dr.GetOrdinal("StateProvince");
+                            int ordStateProvinceId = dr.GetOrdinal("StateProvinceId");
 
                             int ordAddressLatitude = dr.GetOrdinal("AddressLatitude");
                             int ordAddressLongitude = dr.GetOrdinal("AddressLongitude");
@@ -85,7 +85,7 @@ namespace ClaudeData.DataRepository.AddressRepository
                                 data.Address1 = Convert.ToString(dr[ordAddress1]);
                                 data.Address2 = Convert.ToString(dr[ordAddress2]);
                                 data.Country = (CountryEnums.Country) Convert.ToInt16(dr[ordCountry]);
-                                data.StateProvince = Convert.ToString(dr[ordStateProvince]);
+                                data.StateProvinceId = Convert.ToInt32(dr[ordStateProvinceId]);
 
                                 data.IsActive = Convert.ToBoolean(dr[ordIsActive]);
                                 data.CreateDate = Convert.ToDateTime(dr[ordCreateDate]);

@@ -1,23 +1,21 @@
-using System;
 using System.Collections.Generic;
 using ClaudeData.DataRepository.LookupRepository;
 using ClaudeData.Models.Lists.Settings;
-using ClaudeData.Models.LookupLists;
 using ClaudeData.ViewModels.Settings;
 using ClaudeViewManagement.Bases;
 using ClaudeViewManagement.Managers.People;
 
 namespace ClaudeViewManagement.ViewModels.People
 {
-    public class CustomerContactViewModel : ViewModelBase
+    public class PlaceContactViewModel : ViewModelBase
     {
-        public CustomerContactViewModel()
+        public PlaceContactViewModel()
         {
             SearchEntity = string.Empty;
         }
 
         public string SearchEntity { get; set; }
-        public CustomerContactView Entity { get; set; }
+        public PlaceContactView Entity { get; set; }
         public List<CustomerContactInfo> ListEntity { get; set; }
 
         public override void HandleRequest()
@@ -39,13 +37,13 @@ namespace ClaudeViewManagement.ViewModels.People
                 ListEntity = null;
             }
 
-            Entity.CountryList = new CountryLookupList();
-            Entity.PhoneTypeList = new PhoneTypeLookupList();
+            //Entity.CountryList = new CountryLookupList();
+            //Entity.PhoneTypeList = new PhoneTypeLookupList();
             //Entity.MobileCarrierList = new MobileCarrierLookupList();
 
             using (DbPlacesLookup db = new DbPlacesLookup())
             {
-                Entity.FacilityList = db.GetFacilityLookup();
+                //Entity.FacilityList = db.GetFacilityLookup();
             }
         }
 
@@ -54,7 +52,7 @@ namespace ClaudeViewManagement.ViewModels.People
             IsValid = true;
 
             // Initialize Entity Object
-            Entity = new CustomerContactView();
+            Entity = new PlaceContactView();
 
             AddEdit();
 
@@ -63,10 +61,10 @@ namespace ClaudeViewManagement.ViewModels.People
 
         protected override void Edit()
         {
-            using (CustomerContactManager mgr = new CustomerContactManager())
+            using (PlaceContactGetManager mgr = new PlaceContactGetManager())
             {
                 // Get Product Data
-                Entity = mgr.Get(Convert.ToInt32(EventArgument));
+                //Entity = mgr.Get(Convert.ToInt32(EventArgument));
             }
             AddEdit();
 
@@ -75,38 +73,38 @@ namespace ClaudeViewManagement.ViewModels.People
 
         protected override void Save()
         {
-            int personId = Entity.CustomerContact.PersonId;
-            int facilityStaffId = Entity.FacilityStaffId;
+            //int personId = Entity.CustomerContact.PersonId;
+            //int facilityStaffId = Entity.FacilityStaffId;
 
-            using (CustomerContactManager mgr = new CustomerContactManager())
+            using (PlaceContactGetManager mgr = new PlaceContactGetManager())
             {
-                if (Mode == "Add")
-                {
-                    mgr.Insert(Entity, ref personId);
-                }
-                else
-                {
-                    mgr.Update(Entity, ref personId);
-                }
+                //if (Mode == "Add")
+                //{
+                //    mgr.Insert(Entity, ref personId);
+                //}
+                //else
+                //{
+                //    mgr.Update(Entity, ref personId);
+                //}
 
-                // Set any validation errors
-                ValidationErrors = mgr.ValidationErrors;
+                //// Set any validation errors
+                //ValidationErrors = mgr.ValidationErrors;
 
                 // Set mode based on validation errors
             }
 
-            Entity.CustomerContact.PersonId = personId;
-            Entity.FacilityStaffId = facilityStaffId;
+            //Entity.CustomerContact.PersonId = personId;
+            //Entity.FacilityStaffId = facilityStaffId;
 
             base.Save();
         }
 
         protected override void Delete()
         {
-            using (CustomerContactManager mgr = new CustomerContactManager())
+            using (PlaceContactGetManager mgr = new PlaceContactGetManager())
             {
                 // Call data layer to delete record
-                mgr.Delete(Convert.ToInt32(EventArgument));
+                //mgr.Delete(Convert.ToInt32(EventArgument));
             }
 
             Get();
@@ -127,9 +125,9 @@ namespace ClaudeViewManagement.ViewModels.People
                 Entity = null;
             }
 
-            using (CustomerContactManager mgr = new CustomerContactManager())
+            using (PlaceContactGetManager mgr = new PlaceContactGetManager())
             {
-                ListEntity = mgr.Get(SearchEntity);
+                //ListEntity = mgr.Get(SearchEntity);
             }
             base.Get();
         }

@@ -1,7 +1,9 @@
 ﻿using System;
 using ClaudeCommon.BaseModels.Returns;
+using ClaudeData.DataRepository.AdminRepository;
 using ClaudeData.DataRepository.PersonRepository;
 using ClaudeData.Models.Addresses;
+using ClaudeData.Models.Admin;
 using ClaudeData.Models.People;
 using ClaudeData.Models.Phones;
 using ClaudeData.ViewModels.Settings;
@@ -10,7 +12,7 @@ using static ClaudeCommon.Enums.PhoneEnums;
 
 namespace ClaudeData.DataRepository.SettingsRepository
 {
-    public class DbCustomerContactSave : IDisposable
+    public class DbStaffUserSave : IDisposable
     {
         public void Dispose()
         {
@@ -18,7 +20,7 @@ namespace ClaudeData.DataRepository.SettingsRepository
             GC.SuppressFinalize(this);
         }
 
-        public ReturnBase SaveCustomerContact(ref CustomerContactView data, ref int personId)
+        public ReturnBase SaveStaffUser(ref PlaceContactView data, ref int personId, ref int facilityStaffId)
         {
             ReturnBase rb;
 
@@ -32,7 +34,7 @@ namespace ClaudeData.DataRepository.SettingsRepository
 
             PersonData p = new PersonData
             {
-                Person = data.CustomerContact,
+                Person = data.Person,
                 AddressData = new AddressData(),
                 PhoneData = new PhoneData {PhoneSettings = data.Phones.PhoneSettings}
             };
@@ -47,8 +49,25 @@ namespace ClaudeData.DataRepository.SettingsRepository
 
             using (DbPersonSave db = new DbPersonSave())
             {
-                rb = db.SavePerson(p, ref personId);
+                rb = db.SaveStaffUserData(p, ref personId);
             }
+
+            if (!string.IsNullOrEmpty(rb.ErrMsg)) return rb;
+
+            FacilityStaff s = new FacilityStaff
+            {
+                StaffUserId = personId,
+                FacilityStaffId = facilityStaffId,
+                IsActive = data.Person.IsActive,
+                FacilityId = data.Person.PlaceId
+            };
+
+            using (DbFacilityStaffSave db = new DbFacilityStaffSave())
+            {
+                rb = db.AddUpdateStaffUser(ref s);
+            }
+            facilityStaffId = s.FacilityStaffId;
+
             return rb;
         }
 

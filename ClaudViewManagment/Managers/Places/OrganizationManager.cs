@@ -21,11 +21,11 @@ namespace ClaudeViewManagement.Managers.Places
         {
         }
 
-        public OrganizationView GetOrganization(int recordId)
+        public PlaceView GetOrganization(int recordId)
         {
-            using (DbOrganizationInfoGet data = new DbOrganizationInfoGet())
+            using (DbPlaceInfoGet data = new DbPlaceInfoGet())
             {
-                return data.GetRecord(recordId);
+                return data.GetOrganization(recordId);
             }
         }
 

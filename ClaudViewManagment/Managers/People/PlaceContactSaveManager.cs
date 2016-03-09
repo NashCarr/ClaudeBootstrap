@@ -1,14 +1,14 @@
 using System;
 using ClaudeCommon.BaseModels.Returns;
-using ClaudeData.DataRepository.PlaceRepository;
+using ClaudeData.DataRepository.PersonRepository;
 using ClaudeData.Models.Addresses;
+using ClaudeData.Models.People;
 using ClaudeData.Models.Phones;
-using ClaudeData.Models.Places;
-using ClaudeViewManagement.ViewModels.Places;
+using ClaudeViewManagement.ViewModels.People;
 
-namespace ClaudeViewManagement.Managers.Places
+namespace ClaudeViewManagement.Managers.People
 {
-    public class PlaceManager : IDisposable
+    public class PlaceContactSaveManager : IDisposable
     {
         public void Dispose()
         {
@@ -20,11 +20,11 @@ namespace ClaudeViewManagement.Managers.Places
         {
         }
 
-        public ReturnBase SavePlace(PlaceSaveModel data)
+        public ReturnBase SaveContact(PlaceContactSaveModel data)
         {
-            PlaceData p = new PlaceData
+            PersonData p = new PersonData
             {
-                Place = data.Place,
+                Person = data.Person,
                 PhoneData = new PhoneData(),
                 AddressData = new AddressData {UseMailingForShipping = data.UseMailingForShipping}
             };
@@ -58,10 +58,10 @@ namespace ClaudeViewManagement.Managers.Places
                 p.AddressData.Addresses.Add(data.ShippingAddress);
             }
 
-            int id = p.Place.PlaceId;
-            using (DbPlaceSave mgr = new DbPlaceSave())
+            int id = p.Person.PersonId;
+            using (DbPersonSave mgr = new DbPersonSave())
             {
-                return mgr.SavePlace(p, id);
+                return mgr.SavePerson(p, ref id);
             }
         }
     }

@@ -4,7 +4,7 @@ using ClaudeData.Models.Phones;
 
 namespace ClaudeViewManagement.ViewModels.People
 {
-    public class ContactSaveModel
+    public class PlaceContactSaveModel
     {
         public Person Person { get; set; }
         public PhoneSetting PhoneSetting { get; set; }

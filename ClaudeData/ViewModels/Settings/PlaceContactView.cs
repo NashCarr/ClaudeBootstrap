@@ -1,24 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using ClaudeCommon.Models;
-using ClaudeData.Models.Places;
+using ClaudeData.Models.People;
 using ClaudeData.ViewModels.Shared;
 
 namespace ClaudeData.ViewModels.Settings
 {
-    public class CustomerView : IDisposable
+    public class PlaceContactView : IDisposable
     {
-        public CustomerView()
+        public PlaceContactView()
         {
-            Place = new Place();
+            Person = new Person();
             Phones = new PhoneViewModel();
-            Contacts = new List<Contact>();
             Addresses = new AddressViewModel();
         }
 
-        public Place Place { get; set; }
+        public Person Person { get; set; }
         public PhoneViewModel Phones { get; set; }
-        public List<Contact> Contacts { get; set; }
         public AddressViewModel Addresses { get; set; }
 
         public void Dispose()
@@ -30,12 +26,10 @@ namespace ClaudeData.ViewModels.Settings
         protected virtual void Dispose(bool iAmBeingCalledFromDisposeAndNotFinalize)
         {
             Phones?.Dispose();
-            Contacts?.Clear();
             Addresses?.Dispose();
 
-            Place = null;
+            Person = null;
             Phones = null;
-            Contacts = null;
             Addresses = null;
         }
     }
