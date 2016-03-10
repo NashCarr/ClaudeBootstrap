@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using ClaudeCommon.Models;
+using ClaudeData.DataRepository.AddressRepository;
 using ClaudeData.DataRepository.LookupRepository;
 using ClaudeData.DataRepository.PlacesRepository;
 using ClaudeData.Models.LookupLists;
@@ -34,6 +35,14 @@ namespace ClaudeViewManagement.Managers.Places
             using (DbMobileCarrierLookup db = new DbMobileCarrierLookup())
             {
                 return db.GetLookUpList();
+            }
+        }
+
+        public List<PostalCodeLookup> GetPostalCodes()
+        {
+            using (DbPostalCodeLookup db = new DbPostalCodeLookup())
+            {
+                return db.GetLookup();
             }
         }
 

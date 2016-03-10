@@ -5,7 +5,7 @@
         <a class="btn btn-sm btn-secondary pull-right" data-bind="click: Person.Cancel" href="#" type="button">
             Cancel
         </a>
-        <a class="btn btn-sm btn-secondary pull-right" data-bind="click: SavePerson.Save" href="#" type="button">
+        <a class="btn btn-sm btn-secondary pull-right" data-bind="click: SavePerson.ManageSave" href="#" type="button">
             Save
         </a>
     </div>
@@ -52,10 +52,7 @@
         </div>
         <div class="panel-group">
             <div>
-                @{ Html.RenderPartial("Person/Phones/Phones"); }
-            </div>
-            <div>
-                @{ Html.RenderPartial("Person/Addresses/Addresses"); }
+                @{ Html.RenderPartial("Person/ContactDetail"); }
             </div>
         </div>
     </div>

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using ClaudeCommon.Models;
+using ClaudeData.Models.LookupLists;
 using ClaudeViewManagement.Managers.Places;
 using static ClaudeCommon.Enums.PlaceEnums;
 
@@ -15,6 +16,7 @@ namespace ClaudeViewManagement.ViewModels.Places
                 ListEntity = mgr.GetList(pt);
                 Countries = mgr.GetCountries();
                 TimeZones = mgr.GetTimeZones();
+                PostalCodes = mgr.GetPostalCodes();
                 MobileCarriers = mgr.GetMobileCarriers();
                 StatesProvinces = mgr.GetStatesProvinces();
             }
@@ -23,6 +25,7 @@ namespace ClaudeViewManagement.ViewModels.Places
         public List<PlaceList> ListEntity { get; set; }
         public List<SelectListItem> TimeZones { get; set; }
         public List<SelectListItem> Countries { get; set; }
+        public List<PostalCodeLookup> PostalCodes { get; set; }
         public List<SelectListItem> MobileCarriers { get; set; }
         public List<SelectListItem> StatesProvinces { get; set; }
     }

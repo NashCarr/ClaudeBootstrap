@@ -1,0 +1,48 @@
+﻿<!-- ** BEGIN Phones AREA -->
+<div class="panel panel-default" id="Phones">
+    <div class="panel-heading">
+        @Html.Label("ContactDetail", "Contact Detail")
+        <a class="btn btn-sm btn-secondary pull-right" data-bind="click: PersonPhoneView.Primary" href="#" type="button">
+            Primary
+        </a>
+        <a class="btn btn-sm btn-secondary pull-right" data-bind="click: PersonPhoneView.Fax" href="#" type="button">
+            Fax
+        </a>
+        <a class="btn btn-sm btn-secondary pull-right" data-bind="click: PersonPhoneView.Work" href="#" type="button">
+            Work
+        </a>
+        <a class="btn btn-sm btn-secondary pull-right" data-bind="click: PersonPhoneView.Cell" href="#" type="button">
+            Cell
+        </a>
+        <a class="btn btn-sm btn-secondary pull-right" data-bind="click: PersonPhoneView.Home" href="#" type="button">
+            Home
+        </a>
+        <a class="btn btn-sm btn-secondary pull-right" data-bind="visible: !personUseMailingforShipping(), click: PersonAddressView.Shipping" href="#" type="button">
+            Shipping
+        </a>
+        <a class="btn btn-sm btn-secondary pull-right" data-bind="visible: !personUseMailingforShipping(), click: PersonAddressView.Mailing" href="#" type="button">
+            Mailing
+        </a>
+    </div>
+    <div class="panel-body">
+        <div data-bind="visible: IsPersonHomePhoneVisible">
+            @{ Html.RenderPartial("Person/Phones/HomePhone"); }
+        </div>
+        <div data-bind="visible: IsPersonCellPhoneVisible">
+            @{ Html.RenderPartial("Person/Phones/CellPhone"); }
+        </div>
+        <div data-bind="visible: IsPersonWorkPhoneVisible">
+            @{ Html.RenderPartial("Person/Phones/WorkPhone"); }
+        </div>
+        <div data-bind="visible: IsPersonFaxPhoneVisible">
+            @{ Html.RenderPartial("Person/Phones/FaxPhone"); }
+        </div>
+        <div data-bind="visible: IsPersonMailingAddressVisible">
+            @{ Html.RenderPartial("Person/Addresses/MailingAddress"); }
+        </div>
+        <div data-bind="visible: IsPersonShippingAddressVisible">
+            @{ Html.RenderPartial("Person/Addresses/ShippingAddress"); }
+        </div>
+    </div>
+</div>
+<!-- ** END Phones AREA -->

@@ -47,6 +47,7 @@
     <Compile Include="BaseModels\ModelBase.cs" />
     <Compile Include="DataRepository\AddressRepository\DbAddressAssociationGet.cs" />
     <Compile Include="DataRepository\AddressRepository\DbAddressAssociationSave.cs" />
+    <Compile Include="DataRepository\AddressRepository\DbPostalCodeLookup.cs" />
     <Compile Include="DataRepository\AddressRepository\DbStateProvinceGet.cs" />
     <Compile Include="DataRepository\AdminRepository\DbFacilityStaffGet.cs" />
     <Compile Include="DataRepository\AdminRepository\DbFacilityStaffSave.cs" />
@@ -63,7 +64,7 @@
     <Compile Include="DataRepository\DbGatewayGet.cs" />
     <Compile Include="DataRepository\DbGetBase.cs" />
     <Compile Include="DataRepository\DbSaveBase.cs" />
-    <Compile Include="DataRepository\LookupRepository\DbLookup.cs" />
+    <Compile Include="DataRepository\LookupRepository\DbGatewayLookup.cs" />
     <Compile Include="DataRepository\LookupRepository\DbPeopleLookup.cs" />
     <Compile Include="DataRepository\LookupRepository\DbPlacesLookup.cs" />
     <Compile Include="DataRepository\LookupRepository\DbMobileCarrierLookup.cs" />
@@ -137,6 +138,7 @@
     <Compile Include="Models\LookupLists\PersonLookupList.cs" />
     <Compile Include="Models\LookupLists\PhoneTypeLookupList.cs" />
     <Compile Include="Models\LookupLists\PlaceLookupList.cs" />
+    <Compile Include="Models\LookupLists\PostalCodeLookup.cs" />
     <Compile Include="Models\LookupLists\PostalZoneLookupList.cs" />
     <Compile Include="Models\LookupLists\ProgramOptionLookupList.cs" />
     <Compile Include="Models\LookupLists\StaffUserLookupList.cs" />

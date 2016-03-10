@@ -470,6 +470,7 @@
     <Content Include="Views\Shared\Person\Phones\HomePhone.cshtml" />
     <Content Include="Views\Shared\Person\Phones\Phones.cshtml" />
     <Content Include="Views\Shared\Person\Phones\WorkPhone.cshtml" />
+    <Content Include="Views\Shared\Person\ContactDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ClaudeCommon\ClaudeCommon.csproj">

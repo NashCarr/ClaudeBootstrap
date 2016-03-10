@@ -3,7 +3,7 @@ using System.Web.Mvc;
 
 namespace ClaudeData.DataRepository.LookupRepository
 {
-    public class DbMobileCarrierLookup : DbLookup
+    public class DbMobileCarrierLookup : DbGatewayLookup
     {
         public List<SelectListItem> GetLookUpList()
         {

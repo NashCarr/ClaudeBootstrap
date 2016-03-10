@@ -5,7 +5,7 @@ using static ClaudeCommon.Enums.CountryEnums;
 
 namespace ClaudeData.DataRepository.LookupRepository
 {
-    public class DbStateProvinceLookup : DbLookup
+    public class DbStateProvinceLookup : DbGatewayLookup
     {
         public List<SelectListItem> GetLookup()
         {

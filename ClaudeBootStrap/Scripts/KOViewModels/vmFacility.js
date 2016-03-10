@@ -22,7 +22,9 @@ PlaceViewModel = function(data) {
     self.sortdirection = ko.observable(1);
 
     self.IsEdit = ko.observable(false);
-    self.IsEditContact = ko.observable(true);
+    self.IsSaveClose = ko.observable(false);
+    self.IsEditContact = ko.observable(false);
+    self.IsSaveContact = ko.observable(false);
 
     self.IsPlaceFaxPhoneVisible = ko.observable(false);
     self.IsPlaceCellPhoneVisible = ko.observable(false);
@@ -63,6 +65,7 @@ PlaceViewModel = function(data) {
     self.placetimezone = ko.observable("");
     self.placedivision = ko.observable("");
     self.placedepartment = ko.observable("");
+    self.placepostalcode = ko.observable("");
     self.placedisplayorder = ko.observable(0);
 
     //person
@@ -182,8 +185,37 @@ PlaceViewModel = function(data) {
     //lookups
     self.timezones = ko.mapping.fromJS(data.TimeZones).extend({ deferred: true });
     self.countries = ko.mapping.fromJS(data.Countries).extend({ deferred: true });
+    self.postalcodes = ko.mapping.fromJS(data.PostalCodes).extend({ deferred: true });
     self.mobilecarriers = ko.mapping.fromJS(data.MobileCarriers).extend({ deferred: true });
     self.statesprovinces = ko.mapping.fromJS(data.StatesProvinces).extend({ deferred: true });
+
+    self.DefaultMailingValues = ko.computed(function () {
+        if (self.placemailingpostalcode().length === 0) {
+            return;
+        };
+        var match = ko.utils.arrayFirst(self.postalcodes(), function (item) {
+            return ko.unwrap(item.Text()) === ko.unwrap(self.placemailingpostalcode());
+        });
+        if (match) {
+            self.placemailingcity(ko.unwrap(match.City));
+            self.placemailingcountry(ko.unwrap(match.Country));
+            self.placemailingstateprovinceid(ko.unwrap(match.StateProvinceId));
+        };
+    });
+
+    self.DefaultShippingValues = ko.computed(function () {
+        if (self.placeshippingpostalcode().length === 0) {
+            return;
+        };
+        var match = ko.utils.arrayFirst(self.postalcodes(), function (item) {
+            return ko.unwrap(item.Text()) === ko.unwrap(self.placeshippingpostalcode());
+        });
+        if (match) {
+            self.placeshippingcity(ko.unwrap(match.City));
+            self.placeshippingcountry(ko.unwrap(match.Country));
+            self.placeshippingstateprovinceid(ko.unwrap(match.StateProvinceId));
+        };
+    });
 
     self.PlacePrimaryPhone = {
         phoneprimaryid: 0,
@@ -443,6 +475,7 @@ PlaceViewModel = function(data) {
             self.IsContactDetailVisible(false);
         },
         Contacts: function () {
+            self.IsEditContact(true);
             self.IsEditContact(false);
             self.IsPhoneDetailVisible(false);
             self.IsPrimaryDetailVisible(false);
@@ -509,7 +542,7 @@ PlaceViewModel = function(data) {
         });
         if (match) {
             return ko.unwrap(match.Text);
-        }
+        };
         return "";
     };
 
@@ -565,7 +598,7 @@ PlaceViewModel = function(data) {
         });
         if (match) {
             return ko.unwrap(match.Text);
-        }
+        };
         return "";
     });
 
@@ -717,7 +750,7 @@ PlaceViewModel = function(data) {
         Set: function() {
             if (typeof self.placecountry() === "undefined") {
                 return;
-            }
+            };
             self.DefaultPlaceCountry.Fax();
             self.DefaultPlaceCountry.Cell();
             self.DefaultPlaceCountry.Home();
@@ -801,7 +834,7 @@ PlaceViewModel = function(data) {
         Set: function () {
             if (typeof self.personcountry() === "undefined") {
                 return;
-            }
+            };
             self.DefaultPersonCountry.Person();
 
             self.DefaultPersonCountry.Fax();
@@ -1032,8 +1065,11 @@ PlaceViewModel = function(data) {
             self.PersonAddressView.Mailing();
         },
         Cancel: function () {
+            self.errmsg("");
             self.Person.Clear();
+            self.setmessageview();
             self.IsEditContact(false);
+            self.IsSaveContact(false);
         },
         Edit: function (editdata) {
             self.personid(ko.unwrap(editdata.PersonId()));
@@ -1055,7 +1091,7 @@ PlaceViewModel = function(data) {
             if (self.personid() === 0) {
                 self.Person.Clear();
                 return;
-            }
+            };
             self.personemail(ko.unwrap(self.itemdata.Email()));
             self.personcountry(ko.unwrap(self.itemdata.Country));
             self.personlast(ko.unwrap(self.itemdata.LastName()));
@@ -1070,7 +1106,7 @@ PlaceViewModel = function(data) {
             if (typeof self.itemdata === "undefined") {
                 self.Person.Clear();
                 return;
-            }
+            };
             self.Person.Set();
             self.itemdata = ko.observableArray([]);
         }
@@ -1127,19 +1163,34 @@ PlaceViewModel = function(data) {
 
             self.setmessageview();
         },
+        ManageSave: function () {
+            self.IsSaveClose(false);
+            self.IsSaveContact(true);
+            if (self.placeid() === 0) {
+                self.SavePlaceData.Save();
+            } else {
+                self.SavePerson.Save();
+            };
+        },
         Save: function () {
             $.ajax({
                 url: baseUrl + "SaveContact",
                 type: "post",
                 data: self.SavePerson.BuildPersonData()
             }).then(function (returndata) {
-
+                self.IsSaveContact(false);
                 self.SavePerson.HandleReturn(returndata);
                 if (self.IsMessageAreaVisible()) {
                     return;
-                }
+                };
                 self.SavePerson.Process();
                 self.DetailView.Contacts();
+
+                if (self.IsSaveClose()) {
+                    self.ProcessSave.Manage();
+                    self.IsSaveClose(false);
+                    self.clearandtoggle();
+                };
             });
         }
     };
@@ -1178,7 +1229,7 @@ PlaceViewModel = function(data) {
             if (typeof self.itemdata === "undefined") {
                 self.PlaceFax.Clear();
                 return;
-            }
+            };
             self.PlaceFax.Set();
             self.itemdata = ko.observableArray([]);
         }
@@ -1223,7 +1274,7 @@ PlaceViewModel = function(data) {
             if (typeof self.itemdata === "undefined") {
                 self.PersonFax.Default();
                 return;
-            }
+            };
             self.PersonFax.Set();
             self.itemdata = ko.observableArray([]);
         }
@@ -1265,7 +1316,7 @@ PlaceViewModel = function(data) {
             if (typeof self.itemdata === "undefined") {
                 self.PlaceCell.Clear();
                 return;
-            }
+            };
             self.PlaceCell.Set();
             self.itemdata = ko.observableArray([]);
         }
@@ -1314,7 +1365,7 @@ PlaceViewModel = function(data) {
             if (typeof self.itemdata === "undefined") {
                 self.PersonCell.Default();
                 return;
-            }
+            };
             self.PersonCell.Set();
             self.itemdata = ko.observableArray([]);
         }
@@ -1354,7 +1405,7 @@ PlaceViewModel = function(data) {
             if (typeof self.itemdata === "undefined") {
                 self.PlaceHome.Clear();
                 return;
-            }
+            };
             self.PlaceHome.Set();
             self.itemdata = ko.observableArray([]);
         }
@@ -1399,7 +1450,7 @@ PlaceViewModel = function(data) {
             if (typeof self.itemdata === "undefined") {
                 self.PersonHome.Default();
                 return;
-            }
+            };
             self.PersonHome.Set();
             self.itemdata = ko.observableArray([]);
         }
@@ -1440,7 +1491,7 @@ PlaceViewModel = function(data) {
             if (typeof self.itemdata === "undefined") {
                 self.PlaceWork.Clear();
                 return;
-            }
+            };
             self.PlaceWork.Set();
             self.itemdata = ko.observableArray([]);
         }
@@ -1487,7 +1538,7 @@ PlaceViewModel = function(data) {
             if (typeof self.itemdata === "undefined") {
                 self.PersonWork.Default();
                 return;
-            }
+            };
             self.PersonWork.Set();
             self.itemdata = ko.observableArray([]);
         }
@@ -1540,7 +1591,7 @@ PlaceViewModel = function(data) {
             if (typeof self.itemdata === "undefined") {
                 self.PlaceShipping.Clear();
                 return;
-            }
+            };
             self.PlaceShipping.Set();
             self.itemdata = ko.observableArray([]);
         }
@@ -1603,7 +1654,7 @@ PlaceViewModel = function(data) {
             if (typeof self.itemdata === "undefined") {
                 self.PersonShipping.Default();
                 return;
-            }
+            };
             self.PersonShipping.Set();
             self.itemdata = ko.observableArray([]);
         }
@@ -1655,7 +1706,7 @@ PlaceViewModel = function(data) {
             if (typeof self.itemdata === "undefined") {
                 self.PlaceMailing.Clear();
                 return;
-            }
+            };
             self.PlaceMailing.Set();
             self.itemdata = ko.observableArray([]);
         }
@@ -1717,7 +1768,7 @@ PlaceViewModel = function(data) {
             if (typeof self.itemdata === "undefined") {
                 self.PersonMailing.Default();
                 return;
-            }
+            };
             self.PersonMailing.Set();
             self.itemdata = ko.observableArray([]);
         }
@@ -1752,7 +1803,7 @@ PlaceViewModel = function(data) {
             if (self.placeid() === 0) {
                 self.Place.Clear();
                 return;
-            }
+            };
             self.placename(ko.unwrap(self.itemdata.Name));
             self.placecountry(ko.unwrap(self.itemdata.Country));
             self.placetimezone(ko.unwrap(self.itemdata.TimeZone));
@@ -1766,7 +1817,7 @@ PlaceViewModel = function(data) {
             if (typeof self.itemdata === "undefined") {
                 self.Place.Clear();
                 return;
-            }
+            };
             self.Place.Set();
             self.itemdata = ko.observableArray([]);
         }
@@ -1801,7 +1852,7 @@ PlaceViewModel = function(data) {
             if (typeof self.itemdata === "undefined") {
                 self.PlacePhoneSettings.Clear();
                 return;
-            }
+            };
             self.PlacePhoneSettings.Set();
             self.itemdata = ko.observableArray([]);
         }
@@ -1844,7 +1895,7 @@ PlaceViewModel = function(data) {
             if (typeof self.itemdata === "undefined") {
                 self.PersonPhoneSettings.Default();
                 return;
-            }
+            };
             self.PersonPhoneSettings.Set();
             self.itemdata = ko.observableArray([]);
         }
@@ -1861,15 +1912,15 @@ PlaceViewModel = function(data) {
             if (typeof self.itemdata === "undefined") {
                 self.Contacts.Clear();
                 return;
-            }
+            };
             if (typeof self.itemdata() === "undefined") {
                 self.Contacts.Clear();
                 return;
-            }
+            };
             if (self.itemdata().length === 0) {
                 self.Contacts.Clear();
                 return;
-            }
+            };
             self.Contacts.Set();
             self.itemdata = ko.observableArray([]);
         }
@@ -2115,7 +2166,9 @@ PlaceViewModel = function(data) {
     self.clear = function () {
         self.errmsg("");
         self.IsEdit(false);
-        self.IsEditContact(true);
+        self.IsSaveClose(false);
+        self.IsEditContact(false);
+        self.IsSaveContact(false);
 
         self.PlaceFax.Clear();
         self.PlaceCell.Clear();
@@ -2174,7 +2227,7 @@ PlaceViewModel = function(data) {
             });
             if (match) {
                 return ko.unwrap(match.Text);
-            }
+            };
             return "";
         },
         TimeZoneName: function() {
@@ -2187,7 +2240,7 @@ PlaceViewModel = function(data) {
             });
             if (match) {
                 return ko.unwrap(match.Text);
-            }
+            };
             return "";
         },
         ProcessAdd: function() {
@@ -2207,10 +2260,10 @@ PlaceViewModel = function(data) {
             if (self.IsEdit()) {
                 self.ProcessSave.ProcessEdit();
                 return;
-            }
+            };
             if (self.ProcessSave.ItemExists()) {
                 return;
-            }
+            };
             self.ProcessSave.ProcessAdd();
         }
     };
@@ -2235,17 +2288,24 @@ PlaceViewModel = function(data) {
                 type: "post",
                 data: self.SavePlaceData.BuildPlaceData()
             }).then(function (returndata) {
-
                 self.handleplacereturndata(returndata);
+                if (self.IsMessageAreaVisible()) {
+                    return;
+                };
+
+                if (self.IsEditContact()) {
+                    if (self.IsSaveContact()) {
+                        self.IsSaveClose(false);
+                        self.SavePerson.Save();
+                    } else {
+                        self.IsSaveClose(true);
+                        self.SavePerson.Save();
+                    };
+                } else {
+                    self.ProcessSave.Manage();
+                    self.clearandtoggle();
+                };
             });
-        },
-        SaveClose: function () {
-            self.SavePlaceData.Save();
-            if (self.IsMessageAreaVisible()) {
-                return;
-            }
-            self.ProcessSave.Manage();
-            self.clearandtoggle();
         }
     };
 
@@ -2283,7 +2343,7 @@ PlaceViewModel = function(data) {
                 self.setmessageview();
                 if (self.IsMessageAreaVisible()) {
                     return;
-                }
+                };
                 self.personlist.remove(item);
                 self.IsEditContact(true);
                 self.IsEditContact(false);
@@ -2292,7 +2352,7 @@ PlaceViewModel = function(data) {
         Validate: function(item) {
             if (!confirm("Delete Contact: '" + ko.unwrap(item.FullName) + "'?")) {
                 return;
-            }
+            };
             self.RemovePerson.SetListItemInactive(item);
         }
     };
@@ -2332,7 +2392,7 @@ PlaceViewModel = function(data) {
                     self.pauseNotifications = true;
                     match.DisplayOrder(value);
                     self.pauseNotifications = false;
-                }
+                };
             },
             ManageList: function() {
                 for (var i = 0; i < self.ReorderList.displayreorder().length; i++) {
@@ -2340,7 +2400,7 @@ PlaceViewModel = function(data) {
                         ko.unwrap(self.ReorderList.displayreorder()[i].Id),
                         ko.unwrap(self.ReorderList.displayreorder()[i].DisplayOrder)
                     );
-                }
+                };
             },
             RefreshHtml: function() {
                 self.IsDisplayOrderChanged(true);
@@ -2350,14 +2410,14 @@ PlaceViewModel = function(data) {
             ManageSort: function() {
                 if (self.ReorderList.displayreorder().length === 0) {
                     return;
-                }
+                };
                 self.ReorderList.Reorder.Save();
                 self.ReorderList.displayreorder([]);
             },
             ManageDragDrop: function() {
                 if (self.ReorderList.displayreorder().length === 0) {
                     return;
-                }
+                };
                 self.ReorderList.Reorder.Save();
                 self.ReorderList.Reorder.ManageList();
                 self.ReorderList.Reorder.RefreshHtml();
@@ -2385,7 +2445,7 @@ PlaceViewModel = function(data) {
                 if (rowdisplayorder !== newindex) {
                     self.ReorderList.Capture(rowplaceid, newindex);
                     $("#datatable tbody").children()[rowindex].children[2].innerText = newindex;
-                }
+                };
                 rowindex = rowindex + 1;
             });
         },

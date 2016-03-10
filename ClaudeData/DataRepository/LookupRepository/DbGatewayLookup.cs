@@ -5,7 +5,7 @@ using System.Web.Mvc;
 
 namespace ClaudeData.DataRepository.LookupRepository
 {
-    public abstract class DbLookup : DbGatewayGet
+    public abstract class DbGatewayLookup : DbGatewayGet
     {
         protected internal List<SelectListItem> LoadLookup()
         {
