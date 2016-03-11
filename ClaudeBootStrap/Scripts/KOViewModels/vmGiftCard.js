@@ -30,7 +30,6 @@ GiftCardViewModel = function(data) {
     self.stringcreatedate = ko.observable("");
 
     //list
-    self.listitems = ko.observableArray([]);
     self.listitems = ko.mapping.fromJS(data.ListEntity).extend({ deferred: true });
 
     self.DragDropComplete = ko.computed(function() {
@@ -235,10 +234,10 @@ GiftCardViewModel = function(data) {
             if (self.IsEdit()) {
                 self.ProcessSave.ProcessEdit();
                 return;
-            }
+            };
             if (self.ProcessSave.ItemExists()) {
                 return;
-            }
+            };
             self.ProcessSave.ProcessAdd();
         }
     };
@@ -253,7 +252,7 @@ GiftCardViewModel = function(data) {
             self.handlereturndata(returndata);
             if (self.IsMessageAreaVisible()) {
                 return;
-            }
+            };
             self.ProcessSave.Manage();
             self.clearandtoggle();
         });
@@ -277,7 +276,7 @@ GiftCardViewModel = function(data) {
         Validate: function(item) {
             if (!confirm("Delete Item: '" + ko.unwrap(item.Name) + "'?")) {
                 return;
-            }
+            };
             self.RemoveItem.SetListItemInactive(item);
         }
     };
@@ -317,7 +316,7 @@ GiftCardViewModel = function(data) {
                     self.pauseNotifications = true;
                     match.DisplayOrder(value);
                     self.pauseNotifications = false;
-                }
+                };
             },
             ManageList: function() {
                 for (var i = 0; i < self.ReorderList.displayreorder().length; i++) {
@@ -325,7 +324,7 @@ GiftCardViewModel = function(data) {
                         ko.unwrap(self.ReorderList.displayreorder()[i].Id),
                         ko.unwrap(self.ReorderList.displayreorder()[i].DisplayOrder)
                     );
-                }
+                };
             },
             RefreshHtml: function() {
                 self.IsDisplayOrderChanged(true);
@@ -335,14 +334,14 @@ GiftCardViewModel = function(data) {
             ManageSort: function() {
                 if (self.ReorderList.displayreorder().length === 0) {
                     return;
-                }
+                };
                 self.ReorderList.Reorder.Save();
                 self.ReorderList.displayreorder([]);
             },
             ManageDragDrop: function() {
                 if (self.ReorderList.displayreorder().length === 0) {
                     return;
-                }
+                };
                 self.ReorderList.Reorder.Save();
                 self.ReorderList.Reorder.ManageList();
                 self.ReorderList.Reorder.RefreshHtml();
@@ -370,7 +369,7 @@ GiftCardViewModel = function(data) {
                 if (rowdisplayorder !== newindex) {
                     self.ReorderList.Capture(rowrecordid, newindex);
                     $("#datatable tbody").children()[rowindex].children[2].innerText = newindex;
-                }
+                };
                 rowindex = rowindex + 1;
             });
         },

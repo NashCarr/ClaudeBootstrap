@@ -30,7 +30,6 @@
     self.stringcreatedate = ko.observable("");
 
     //list
-    self.listitems = ko.observableArray([]);
     self.listitems = ko.mapping.fromJS(data.ListEntity).extend({ deferred: true });
 
     self.DragDropComplete = ko.computed(function() {
