@@ -7,9 +7,10 @@ namespace ClaudeData.DataRepository.AdminRepository
 {
     public class DbFacilityStaffSave : DbSaveBase
     {
+
         public ReturnBase AddUpdateStaffUser(int placeId, int staffUserId)
         {
-            FacilityStaff d = new FacilityStaff {FacilityId = placeId, StaffUserId = staffUserId};
+            FacilityStaff d = new FacilityStaff { FacilityId = placeId, StaffUserId = staffUserId};
             return AddUpdateRecord(ref d);
         }
 

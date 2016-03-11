@@ -20,7 +20,7 @@
         <a class="btn btn-sm btn-secondary pull-right" data-bind="visible: !personUseMailingforShipping(), click: PersonAddressView.Shipping" href="#" type="button">
             Shipping
         </a>
-        <a class="btn btn-sm btn-secondary pull-right" data-bind="click: PersonAddressView.Mailing" href="#" type="button">
+        <a class="btn btn-sm btn-secondary pull-right" data-bind="visible: !personUseMailingforShipping(), click: PersonAddressView.Mailing" href="#" type="button">
             Mailing
         </a>
     </div>

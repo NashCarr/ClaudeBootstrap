@@ -82,6 +82,10 @@ namespace ClaudeViewManagement.ViewModels.People
                 {
                     //mgr.Insert(Entity, ref personId, ref facilityStaffId);
                 }
+                else
+                {
+                    //mgr.Update(Entity, ref personId, ref facilityStaffId);
+                }
 
                 // Set any validation errors
                 //ValidationErrors = mgr.ValidationErrors;

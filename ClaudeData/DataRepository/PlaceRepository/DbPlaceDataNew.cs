@@ -25,7 +25,7 @@ namespace ClaudeData.DataRepository.PlaceRepository
             {
                 data.Place = new Place
                 {
-                    PlaceType = placeType
+                    PlaceType = placeType,
                 };
 
                 data.AddressData = new AddressData {Addresses = new List<AddressAssociation>()};

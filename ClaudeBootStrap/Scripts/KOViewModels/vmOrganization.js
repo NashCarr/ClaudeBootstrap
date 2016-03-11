@@ -18,12 +18,33 @@ PlaceViewModel = function(data) {
 
     self.sorttype = 1;
     self.direction = 1;
+    self.IsSorting = ko.observable(false);
     self.sortdirection = ko.observable(1);
 
     self.IsEdit = ko.observable(false);
     self.IsSaveClose = ko.observable(false);
     self.IsEditContact = ko.observable(false);
     self.IsSaveContact = ko.observable(false);
+
+    self.IsPlaceFaxPhoneVisible = ko.observable(false);
+    self.IsPlaceCellPhoneVisible = ko.observable(false);
+    self.IsPlaceHomePhoneVisible = ko.observable(false);
+    self.IsPlaceWorkPhoneVisible = ko.observable(false);
+    self.IsPlaceAddressDetailVisible = ko.observable(false);
+    self.IsPlaceMailingAddressVisible = ko.observable(false);
+    self.IsPlaceShippingAddressVisible = ko.observable(false);
+
+    self.IsPersonFaxPhoneVisible = ko.observable(false);
+    self.IsPersonCellPhoneVisible = ko.observable(false);
+    self.IsPersonHomePhoneVisible = ko.observable(false);
+    self.IsPersonWorkPhoneVisible = ko.observable(false);
+    self.IsPersonAddressDetailVisible = ko.observable(false);
+    self.IsPersonMailingAddressVisible = ko.observable(false);
+    self.IsPersonShippingAddressVisible = ko.observable(false);
+
+    self.IsPhoneDetailVisible = ko.observable(false);
+    self.IsPrimaryDetailVisible = ko.observable(true);
+    self.IsContactDetailVisible = ko.observable(false);
 
     self.IsListAreaVisible = ko.observable(true);
     self.IsSearchAreaVisible = ko.observable(true);
@@ -168,11 +189,11 @@ PlaceViewModel = function(data) {
     self.mobilecarriers = ko.mapping.fromJS(data.MobileCarriers).extend({ deferred: true });
     self.statesprovinces = ko.mapping.fromJS(data.StatesProvinces).extend({ deferred: true });
 
-    self.DefaultMailingValues = ko.computed(function() {
+    self.DefaultMailingValues = ko.computed(function () {
         if (self.placemailingpostalcode().length === 0) {
             return;
         };
-        var match = ko.utils.arrayFirst(self.postalcodes(), function(item) {
+        var match = ko.utils.arrayFirst(self.postalcodes(), function (item) {
             return ko.unwrap(item.Text()) === ko.unwrap(self.placemailingpostalcode());
         });
         if (match) {
@@ -182,11 +203,11 @@ PlaceViewModel = function(data) {
         };
     });
 
-    self.DefaultShippingValues = ko.computed(function() {
+    self.DefaultShippingValues = ko.computed(function () {
         if (self.placeshippingpostalcode().length === 0) {
             return;
         };
-        var match = ko.utils.arrayFirst(self.postalcodes(), function(item) {
+        var match = ko.utils.arrayFirst(self.postalcodes(), function (item) {
             return ko.unwrap(item.Text()) === ko.unwrap(self.placeshippingpostalcode());
         });
         if (match) {
@@ -311,48 +332,41 @@ PlaceViewModel = function(data) {
     };
 
     self.PlacePhoneView = {
-        IsPlaceFaxPhoneVisible: ko.observable(false),
-        IsPlaceCellPhoneVisible: ko.observable(false),
-        IsPlaceHomePhoneVisible: ko.observable(false),
-        IsPlaceWorkPhoneVisible: ko.observable(false),
         Fax: function() {
-            self.PlacePhoneView.IsPlaceFaxPhoneVisible(true);
-            self.PlacePhoneView.IsPlaceCellPhoneVisible(false);
-            self.PlacePhoneView.IsPlaceHomePhoneVisible(false);
-            self.PlacePhoneView.IsPlaceWorkPhoneVisible(false);
+            self.IsPlaceFaxPhoneVisible(true);
+            self.IsPlaceCellPhoneVisible(false);
+            self.IsPlaceHomePhoneVisible(false);
+            self.IsPlaceWorkPhoneVisible(false);
             self.phoneHeader("Phones: " + self.faxphonetype);
         },
         Cell: function() {
-            self.PlacePhoneView.IsPlaceFaxPhoneVisible(false);
-            self.PlacePhoneView.IsPlaceCellPhoneVisible(true);
-            self.PlacePhoneView.IsPlaceHomePhoneVisible(false);
-            self.PlacePhoneView.IsPlaceWorkPhoneVisible(false);
+            self.IsPlaceFaxPhoneVisible(false);
+            self.IsPlaceCellPhoneVisible(true);
+            self.IsPlaceHomePhoneVisible(false);
+            self.IsPlaceWorkPhoneVisible(false);
             self.phoneHeader("Phones: " + self.cellphonetype);
         },
         Home: function() {
-            self.PlacePhoneView.IsPlaceFaxPhoneVisible(false);
-            self.PlacePhoneView.IsPlaceCellPhoneVisible(false);
-            self.PlacePhoneView.IsPlaceHomePhoneVisible(true);
-            self.PlacePhoneView.IsPlaceWorkPhoneVisible(false);
+            self.IsPlaceFaxPhoneVisible(false);
+            self.IsPlaceCellPhoneVisible(false);
+            self.IsPlaceHomePhoneVisible(true);
+            self.IsPlaceWorkPhoneVisible(false);
             self.phoneHeader("Phones: " + self.homephonetype);
         },
         Work: function() {
-            self.PlacePhoneView.IsPlaceFaxPhoneVisible(false);
-            self.PlacePhoneView.IsPlaceCellPhoneVisible(false);
-            self.PlacePhoneView.IsPlaceHomePhoneVisible(false);
-            self.PlacePhoneView.IsPlaceWorkPhoneVisible(true);
+            self.IsPlaceFaxPhoneVisible(false);
+            self.IsPlaceCellPhoneVisible(false);
+            self.IsPlaceHomePhoneVisible(false);
+            self.IsPlaceWorkPhoneVisible(true);
             self.phoneHeader("Phones: " + self.workphonetype);
         },
         Default: function() {
-            self.PlacePhoneView.IsPlaceFaxPhoneVisible(false);
-            self.PlacePhoneView.IsPlaceCellPhoneVisible(false);
-            self.PlacePhoneView.IsPlaceHomePhoneVisible(false);
-            self.PlacePhoneView.IsPlaceWorkPhoneVisible(false);
+            self.IsPlaceFaxPhoneVisible(false);
+            self.IsPlaceCellPhoneVisible(false);
+            self.IsPlaceHomePhoneVisible(false);
+            self.IsPlaceWorkPhoneVisible(false);
         },
         Primary: function() {
-            if (self.PersonPrimaryPhone.phoneprimaryid === 0) {
-                self.PersonPrimaryPhone.phoneprimaryid = self.PlacePrimaryPhone.phoneprimaryid;
-            };
             switch (self.PlacePrimaryPhone.phoneprimaryid) {
             case 1:
                 self.PlacePhoneView.Home();
@@ -371,47 +385,39 @@ PlaceViewModel = function(data) {
     };
 
     self.PersonPhoneView = {
-        IsPersonFaxPhoneVisible: ko.observable(false),
-        IsPersonCellPhoneVisible: ko.observable(false),
-        IsPersonHomePhoneVisible: ko.observable(false),
-        IsPersonWorkPhoneVisible: ko.observable(false),
         Fax: function() {
-            self.PersonAddressView.Default();
-            self.PersonPhoneView.IsPersonFaxPhoneVisible(true);
-            self.PersonPhoneView.IsPersonCellPhoneVisible(false);
-            self.PersonPhoneView.IsPersonHomePhoneVisible(false);
-            self.PersonPhoneView.IsPersonWorkPhoneVisible(false);
+            self.IsPersonFaxPhoneVisible(true);
+            self.IsPersonCellPhoneVisible(false);
+            self.IsPersonHomePhoneVisible(false);
+            self.IsPersonWorkPhoneVisible(false);
             self.phoneHeader("Contact: " + self.faxphonetype);
         },
         Cell: function() {
-            self.PersonAddressView.Default();
-            self.PersonPhoneView.IsPersonFaxPhoneVisible(false);
-            self.PersonPhoneView.IsPersonCellPhoneVisible(true);
-            self.PersonPhoneView.IsPersonHomePhoneVisible(false);
-            self.PersonPhoneView.IsPersonWorkPhoneVisible(false);
+            self.IsPersonFaxPhoneVisible(false);
+            self.IsPersonCellPhoneVisible(true);
+            self.IsPersonHomePhoneVisible(false);
+            self.IsPersonWorkPhoneVisible(false);
             self.phoneHeader("Contact: " + self.cellphonetype);
         },
         Home: function() {
-            self.PersonAddressView.Default();
-            self.PersonPhoneView.IsPersonFaxPhoneVisible(false);
-            self.PersonPhoneView.IsPersonCellPhoneVisible(false);
-            self.PersonPhoneView.IsPersonHomePhoneVisible(true);
-            self.PersonPhoneView.IsPersonWorkPhoneVisible(false);
+            self.IsPersonFaxPhoneVisible(false);
+            self.IsPersonCellPhoneVisible(false);
+            self.IsPersonHomePhoneVisible(true);
+            self.IsPersonWorkPhoneVisible(false);
             self.phoneHeader("Contact: " + self.homephonetype);
         },
         Work: function() {
-            self.PersonAddressView.Default();
-            self.PersonPhoneView.IsPersonFaxPhoneVisible(false);
-            self.PersonPhoneView.IsPersonCellPhoneVisible(false);
-            self.PersonPhoneView.IsPersonHomePhoneVisible(false);
-            self.PersonPhoneView.IsPersonWorkPhoneVisible(true);
+            self.IsPersonFaxPhoneVisible(false);
+            self.IsPersonCellPhoneVisible(false);
+            self.IsPersonHomePhoneVisible(false);
+            self.IsPersonWorkPhoneVisible(true);
             self.phoneHeader("Contact: " + self.workphonetype);
         },
         Default: function() {
-            self.PersonPhoneView.IsPersonFaxPhoneVisible(false);
-            self.PersonPhoneView.IsPersonCellPhoneVisible(false);
-            self.PersonPhoneView.IsPersonHomePhoneVisible(false);
-            self.PersonPhoneView.IsPersonWorkPhoneVisible(false);
+            self.IsPersonFaxPhoneVisible(false);
+            self.IsPersonCellPhoneVisible(false);
+            self.IsPersonHomePhoneVisible(false);
+            self.IsPersonWorkPhoneVisible(false);
         },
         Primary: function() {
             switch (self.PersonPrimaryPhone.phoneprimaryid) {
@@ -432,78 +438,68 @@ PlaceViewModel = function(data) {
     };
 
     self.PlaceAddressView = {
-        IsPlaceMailingAddressVisible: ko.observable(false),
-        IsPlaceShippingAddressVisible: ko.observable(false),
         Mailing: function() {
-            self.PlaceAddressView.IsPlaceMailingAddressVisible(true);
-            self.PlaceAddressView.IsPlaceShippingAddressVisible(false);
+            self.IsPlaceMailingAddressVisible(true);
+            self.IsPlaceShippingAddressVisible(false);
         },
         Shipping: function() {
-            self.PlaceAddressView.IsPlaceMailingAddressVisible(false);
-            self.PlaceAddressView.IsPlaceShippingAddressVisible(true);
+            self.IsPlaceMailingAddressVisible(false);
+            self.IsPlaceShippingAddressVisible(true);
         },
         Default: function() {
-            self.PlaceAddressView.IsPlaceMailingAddressVisible(false);
-            self.PlaceAddressView.IsPlaceShippingAddressVisible(false);
+            self.IsPlaceMailingAddressVisible(false);
+            self.IsPlaceShippingAddressVisible(false);
         }
     };
 
     self.PersonAddressView = {
-        IsPersonMailingAddressVisible: ko.observable(false),
-        IsPersonShippingAddressVisible: ko.observable(false),
         Mailing: function() {
-            self.PersonPhoneView.Default();
-            self.PersonAddressView.IsPersonMailingAddressVisible(true);
-            self.PersonAddressView.IsPersonShippingAddressVisible(false);
+            self.IsPersonMailingAddressVisible(true);
+            self.IsPersonShippingAddressVisible(false);
         },
         Shipping: function() {
-            self.PersonPhoneView.Default();
-            self.PersonAddressView.IsPersonMailingAddressVisible(false);
-            self.PersonAddressView.IsPersonShippingAddressVisible(true);
+            self.IsPersonMailingAddressVisible(false);
+            self.IsPersonShippingAddressVisible(true);
         },
         Default: function() {
-            self.PersonAddressView.IsPersonMailingAddressVisible(false);
-            self.PersonAddressView.IsPersonShippingAddressVisible(false);
+            self.IsPersonMailingAddressVisible(true);
+            self.IsPersonShippingAddressVisible(false);
         }
     };
 
     self.DetailView = {
-        IsPhoneDetailVisible: ko.observable(false),
-        IsPrimaryDetailVisible: ko.observable(true),
-        IsContactDetailVisible: ko.observable(false),
-        IsPlaceAddressDetailVisible: ko.observable(false),
         Primary: function() {
-            self.DetailView.IsPhoneDetailVisible(false);
-            self.DetailView.IsPrimaryDetailVisible(true);
-            self.DetailView.IsContactDetailVisible(false);
-            self.DetailView.IsPlaceAddressDetailVisible(false);
+            self.IsPhoneDetailVisible(false);
+            self.IsPrimaryDetailVisible(true);
+            self.IsPlaceAddressDetailVisible(false);
+            self.IsContactDetailVisible(false);
         },
         Contacts: function() {
             self.IsEditContact(true);
             self.IsEditContact(false);
-            self.DetailView.IsPhoneDetailVisible(false);
-            self.DetailView.IsContactDetailVisible(true);
-            self.DetailView.IsPrimaryDetailVisible(false);
-            self.DetailView.IsPlaceAddressDetailVisible(false);
+            self.IsPhoneDetailVisible(false);
+            self.IsPrimaryDetailVisible(false);
+            self.IsPlaceAddressDetailVisible(false);
+            self.IsContactDetailVisible(true);
 
             self.PersonPrimaryPhone.Set();
             self.PersonPhoneView.Primary();
-            self.PersonAddressView.Default();
+            self.PersonAddressView.Mailing();
         },
         Phones: function() {
-            self.DetailView.IsPhoneDetailVisible(true);
-            self.DetailView.IsPrimaryDetailVisible(false);
-            self.DetailView.IsContactDetailVisible(false);
-            self.DetailView.IsPlaceAddressDetailVisible(false);
+            self.IsPhoneDetailVisible(true);
+            self.IsPrimaryDetailVisible(false);
+            self.IsPlaceAddressDetailVisible(false);
+            self.IsContactDetailVisible(false);
 
             self.PlacePhoneView.Primary();
             self.PlaceAddressView.Default();
         },
         Addresses: function() {
-            self.DetailView.IsPhoneDetailVisible(false);
-            self.DetailView.IsPrimaryDetailVisible(false);
-            self.DetailView.IsContactDetailVisible(false);
-            self.DetailView.IsPlaceAddressDetailVisible(true);
+            self.IsPhoneDetailVisible(false);
+            self.IsPlaceAddressDetailVisible(true);
+            self.IsPrimaryDetailVisible(false);
+            self.IsContactDetailVisible(false);
 
             self.PlacePhoneView.Default();
             self.PlaceAddressView.Mailing();
@@ -1009,7 +1005,7 @@ PlaceViewModel = function(data) {
             self.PersonPhoneSettings.Default();
 
             self.PersonPhoneView.Primary();
-            self.PersonAddressView.Default();
+            self.PersonAddressView.Mailing();
         },
         Cancel: function() {
             self.errmsg("");
@@ -1031,7 +1027,7 @@ PlaceViewModel = function(data) {
 
             self.IsEditContact(true);
             self.PersonPhoneView.Primary();
-            self.PersonAddressView.Default();
+            self.PersonAddressView.Mailing();
         },
         Set: function() {
             self.personid(ko.unwrap(self.itemdata.PersonId()));
@@ -1060,7 +1056,7 @@ PlaceViewModel = function(data) {
     };
 
     self.SavePerson = {
-        BuildPersonData: function() {
+        BuildPersonData: function () {
             return {
                 Person: self.Person.Build(),
                 FaxPhone: self.PersonFax.Build(),
@@ -1073,7 +1069,7 @@ PlaceViewModel = function(data) {
                 UseMailingForShipping: self.personUseMailingforShipping()
             };
         },
-        Build: function() {
+        Build: function () {
             return {
                 PersonType: ko.observable(0),
                 PlaceId: ko.observable(ko.unwrap(self.placeid())),
@@ -1085,32 +1081,32 @@ PlaceViewModel = function(data) {
                 MiddleName: ko.observable(ko.unwrap(self.personmiddle()))
             };
         },
-        ProcessAdd: function() {
+        ProcessAdd: function () {
             self.personlist.push(self.SavePerson.Build());
         },
-        ItemExists: function() {
-            var match = ko.utils.arrayFirst(self.personlist(), function(item) {
+        ItemExists: function () {
+            var match = ko.utils.arrayFirst(self.personlist(), function (item) {
                 return item.PersonId() === self.personid();
             });
             return match;
         },
-        ProcessEdit: function() {
+        ProcessEdit: function () {
             self.personlist.replace(self.SavePerson.ItemExists(), self.SavePerson.Build());
         },
-        Process: function() {
+        Process: function () {
             if (self.SavePerson.ItemExists()) {
                 self.SavePerson.ProcessEdit();
                 return;
             };
             self.SavePerson.ProcessAdd();
         },
-        HandleReturn: function(returndata) {
+        HandleReturn: function (returndata) {
             self.personid(returndata.Id);
             self.errmsg(returndata.ErrMsg);
 
             self.setmessageview();
         },
-        ManageSave: function() {
+        ManageSave: function () {
             self.IsSaveClose(false);
             self.IsSaveContact(true);
             if (self.placeid() === 0) {
@@ -1119,12 +1115,12 @@ PlaceViewModel = function(data) {
                 self.SavePerson.Save();
             };
         },
-        Save: function() {
+        Save: function () {
             $.ajax({
                 url: baseUrl + "SaveContact",
                 type: "post",
                 data: self.SavePerson.BuildPersonData()
-            }).then(function(returndata) {
+            }).then(function (returndata) {
                 self.IsSaveContact(false);
                 self.SavePerson.HandleReturn(returndata);
                 if (self.IsMessageAreaVisible()) {
@@ -1940,7 +1936,6 @@ PlaceViewModel = function(data) {
     };
 
     self.ManageSort = {
-        IsSorting: ko.observable(false),
         ManageType: function(type) {
             if (type === 0) {
                 type = 1;
@@ -1960,9 +1955,9 @@ PlaceViewModel = function(data) {
         },
         Change: function(type) {
             if (type === 0) {
-                self.ManageSort.IsSorting(!self.ManageSort.IsSorting());
+                self.IsSorting(!self.IsSorting());
             };
-            if (!self.ManageSort.IsSorting() && (type !== 0)) {
+            if (!self.IsSorting() && (type !== 0)) {
                 self.ManageSort.ManageDirection(type);
                 self.ReorderList.ReorderAfterSort();
             };
@@ -2098,9 +2093,9 @@ PlaceViewModel = function(data) {
         case 2:
             return self.SortName.Manage();
         case 3:
-            return self.SortDivision.Manage();
-        case 4:
             return self.SortDepartment.Manage();
+        case 4:
+            return self.SortDivision.Manage();
         case 5:
             return self.SortTimeZone.Manage();
         case 6:
@@ -2110,7 +2105,7 @@ PlaceViewModel = function(data) {
         }
     };
 
-    self.clear = function() {
+    self.clear = function () {
         self.errmsg("");
         self.IsEdit(false);
         self.IsSaveClose(false);
@@ -2230,12 +2225,12 @@ PlaceViewModel = function(data) {
                 UseMailingForShipping: self.placeUseMailingforShipping()
             };
         },
-        Save: function() {
+        Save: function () {
             $.ajax({
                 url: baseUrl + "SavePlace",
                 type: "post",
                 data: self.SavePlaceData.BuildPlaceData()
-            }).then(function(returndata) {
+            }).then(function (returndata) {
                 self.handleplacereturndata(returndata);
                 if (self.IsMessageAreaVisible()) {
                     return;

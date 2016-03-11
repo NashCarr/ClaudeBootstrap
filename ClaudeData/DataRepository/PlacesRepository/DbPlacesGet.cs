@@ -44,12 +44,12 @@ namespace ClaudeData.DataRepository.PlacesRepository
                                     PlaceId = Convert.ToInt32(dr[ordPlaceId]),
                                     Division = Convert.ToString(dr[ordDivision]),
                                     Department = Convert.ToString(dr[ordDepartment]),
-                                    Country = (Country) Convert.ToInt16(dr[ordCountry]),
+                                    Country = (Country)Convert.ToInt16(dr[ordCountry]),
                                     DisplayOrder = Convert.ToInt16(dr[ordDisplayOrder]),
-                                    TimeZone = (ClaudeTimeZone) Convert.ToByte(dr[ordTimeZone])
+                                    TimeZone = (ClaudeTimeZone)Convert.ToByte(dr[ordTimeZone])
                                 };
                                 item.CountryName = Enum.GetName(typeof (Country), item.Country);
-                                item.TimeZoneName = Enum.GetName(typeof (ClaudeTimeZone), item.TimeZone);
+                                item.TimeZoneName = Enum.GetName(typeof(ClaudeTimeZone), item.TimeZone);
                                 data.Add(item);
                             }
                         }

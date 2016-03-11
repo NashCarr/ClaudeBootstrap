@@ -35,7 +35,8 @@ namespace ClaudeViewManagement.Managers.People
         {
             using (DbPersonSetInactive data = new DbPersonSetInactive())
             {
-                return data.SetOrganizationContactInactive(id);
+                return "";
+                //return data.SetOranizationContactInactive(id);
             }
         }
     }

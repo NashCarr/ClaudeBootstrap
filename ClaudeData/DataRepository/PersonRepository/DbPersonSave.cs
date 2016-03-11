@@ -353,7 +353,7 @@ namespace ClaudeData.DataRepository.PersonRepository
                 case PersonType.OrganizationContact:
                     return SaveOrganizationContactData(data, ref personId);
                 default:
-                    return new ReturnBase {ErrMsg = "Person Type Undetermined"};
+                    return new ReturnBase { ErrMsg = "Person Type Undetermined" };
             }
         }
     }

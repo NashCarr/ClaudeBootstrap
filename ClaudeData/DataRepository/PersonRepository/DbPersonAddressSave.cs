@@ -43,7 +43,7 @@ namespace ClaudeData.DataRepository.PersonRepository
         {
             using (DbAddressAssociationSave db = new DbAddressAssociationSave())
             {
-                return db.SavePersonAddress(personId, (byte) PersonType.OrganizationContact, data);
+                return db.SavePersonAddress(personId, (byte)PersonType.OrganizationContact, data);
             }
         }
 

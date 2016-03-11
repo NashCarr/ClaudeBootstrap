@@ -5,11 +5,11 @@ namespace ClaudeData.DataRepository.PersonRepository
 {
     public class DbPersonSetInactive : DbSaveBase
     {
-        private void SetInactive()
+        private void SetInactive(int personId)
         {
             try
             {
-                CmdSql.Parameters.Add("@PersonId", SqlDbType.Int).Value = ReturnValues.Id;
+                CmdSql.Parameters.Add("@PersonId", SqlDbType.Int).Value = personId;
 
                 SetErrMsgParameter();
 
@@ -25,10 +25,9 @@ namespace ClaudeData.DataRepository.PersonRepository
         {
             try
             {
-                ReturnValues.Id = personId;
                 SetConnectToDatabase("[Assessor].[usp_Assessor_SetInactive]");
 
-                SetInactive();
+                SetInactive(personId);
             }
             catch (Exception ex)
             {
@@ -41,10 +40,9 @@ namespace ClaudeData.DataRepository.PersonRepository
         {
             try
             {
-                ReturnValues.Id = personId;
                 SetConnectToDatabase("[Admin].[usp_CustomerContact_SetInactive]");
 
-                SetInactive();
+                SetInactive(personId);
             }
             catch (Exception ex)
             {
@@ -57,26 +55,9 @@ namespace ClaudeData.DataRepository.PersonRepository
         {
             try
             {
-                ReturnValues.Id = personId;
                 SetConnectToDatabase("[Admin].[usp_StaffUser_SetInactive]");
 
-                SetInactive();
-            }
-            catch (Exception ex)
-            {
-                ReturnValues.ErrMsg = ex.Message;
-            }
-            return ReturnValues.ErrMsg;
-        }
-
-        public string SetOrganizationContactInactive(int personId)
-        {
-            try
-            {
-                ReturnValues.Id = personId;
-                SetConnectToDatabase("[FundRaising].[usp_OrganizationContact_SetInactive]");
-
-                SetInactive();
+                SetInactive(personId);
             }
             catch (Exception ex)
             {
