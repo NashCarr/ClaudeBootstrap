@@ -189,11 +189,11 @@ PlaceViewModel = function(data) {
     self.mobilecarriers = ko.mapping.fromJS(data.MobileCarriers).extend({ deferred: true });
     self.statesprovinces = ko.mapping.fromJS(data.StatesProvinces).extend({ deferred: true });
 
-    self.DefaultMailingValues = ko.computed(function () {
+    self.DefaultMailingValues = ko.computed(function() {
         if (self.placemailingpostalcode().length === 0) {
             return;
         };
-        var match = ko.utils.arrayFirst(self.postalcodes(), function (item) {
+        var match = ko.utils.arrayFirst(self.postalcodes(), function(item) {
             return ko.unwrap(item.Text()) === ko.unwrap(self.placemailingpostalcode());
         });
         if (match) {
@@ -203,11 +203,11 @@ PlaceViewModel = function(data) {
         };
     });
 
-    self.DefaultShippingValues = ko.computed(function () {
+    self.DefaultShippingValues = ko.computed(function() {
         if (self.placeshippingpostalcode().length === 0) {
             return;
         };
-        var match = ko.utils.arrayFirst(self.postalcodes(), function (item) {
+        var match = ko.utils.arrayFirst(self.postalcodes(), function(item) {
             return ko.unwrap(item.Text()) === ko.unwrap(self.placeshippingpostalcode());
         });
         if (match) {
@@ -386,6 +386,7 @@ PlaceViewModel = function(data) {
 
     self.PersonPhoneView = {
         Fax: function() {
+            self.PersonAddressView.Default();
             self.IsPersonFaxPhoneVisible(true);
             self.IsPersonCellPhoneVisible(false);
             self.IsPersonHomePhoneVisible(false);
@@ -393,6 +394,7 @@ PlaceViewModel = function(data) {
             self.phoneHeader("Contact: " + self.faxphonetype);
         },
         Cell: function() {
+            self.PersonAddressView.Default();
             self.IsPersonFaxPhoneVisible(false);
             self.IsPersonCellPhoneVisible(true);
             self.IsPersonHomePhoneVisible(false);
@@ -400,6 +402,7 @@ PlaceViewModel = function(data) {
             self.phoneHeader("Contact: " + self.cellphonetype);
         },
         Home: function() {
+            self.PersonAddressView.Default();
             self.IsPersonFaxPhoneVisible(false);
             self.IsPersonCellPhoneVisible(false);
             self.IsPersonHomePhoneVisible(true);
@@ -407,6 +410,7 @@ PlaceViewModel = function(data) {
             self.phoneHeader("Contact: " + self.homephonetype);
         },
         Work: function() {
+            self.PersonAddressView.Default();
             self.IsPersonFaxPhoneVisible(false);
             self.IsPersonCellPhoneVisible(false);
             self.IsPersonHomePhoneVisible(false);
@@ -454,15 +458,17 @@ PlaceViewModel = function(data) {
 
     self.PersonAddressView = {
         Mailing: function() {
+            self.PersonPhoneView.Default();
             self.IsPersonMailingAddressVisible(true);
             self.IsPersonShippingAddressVisible(false);
         },
         Shipping: function() {
+            self.PersonPhoneView.Default();
             self.IsPersonMailingAddressVisible(false);
             self.IsPersonShippingAddressVisible(true);
         },
         Default: function() {
-            self.IsPersonMailingAddressVisible(true);
+            self.IsPersonMailingAddressVisible(false);
             self.IsPersonShippingAddressVisible(false);
         }
     };
@@ -484,7 +490,7 @@ PlaceViewModel = function(data) {
 
             self.PersonPrimaryPhone.Set();
             self.PersonPhoneView.Primary();
-            self.PersonAddressView.Mailing();
+            self.PersonAddressView.Default();
         },
         Phones: function() {
             self.IsPhoneDetailVisible(true);
@@ -1005,7 +1011,7 @@ PlaceViewModel = function(data) {
             self.PersonPhoneSettings.Default();
 
             self.PersonPhoneView.Primary();
-            self.PersonAddressView.Mailing();
+            self.PersonAddressView.Default();
         },
         Cancel: function() {
             self.errmsg("");
@@ -1027,7 +1033,7 @@ PlaceViewModel = function(data) {
 
             self.IsEditContact(true);
             self.PersonPhoneView.Primary();
-            self.PersonAddressView.Mailing();
+            self.PersonAddressView.Default();
         },
         Set: function() {
             self.personid(ko.unwrap(self.itemdata.PersonId()));
@@ -1056,7 +1062,7 @@ PlaceViewModel = function(data) {
     };
 
     self.SavePerson = {
-        BuildPersonData: function () {
+        BuildPersonData: function() {
             return {
                 Person: self.Person.Build(),
                 FaxPhone: self.PersonFax.Build(),
@@ -1069,7 +1075,7 @@ PlaceViewModel = function(data) {
                 UseMailingForShipping: self.personUseMailingforShipping()
             };
         },
-        Build: function () {
+        Build: function() {
             return {
                 PersonType: ko.observable(0),
                 PlaceId: ko.observable(ko.unwrap(self.placeid())),
@@ -1081,32 +1087,32 @@ PlaceViewModel = function(data) {
                 MiddleName: ko.observable(ko.unwrap(self.personmiddle()))
             };
         },
-        ProcessAdd: function () {
+        ProcessAdd: function() {
             self.personlist.push(self.SavePerson.Build());
         },
-        ItemExists: function () {
-            var match = ko.utils.arrayFirst(self.personlist(), function (item) {
+        ItemExists: function() {
+            var match = ko.utils.arrayFirst(self.personlist(), function(item) {
                 return item.PersonId() === self.personid();
             });
             return match;
         },
-        ProcessEdit: function () {
+        ProcessEdit: function() {
             self.personlist.replace(self.SavePerson.ItemExists(), self.SavePerson.Build());
         },
-        Process: function () {
+        Process: function() {
             if (self.SavePerson.ItemExists()) {
                 self.SavePerson.ProcessEdit();
                 return;
             };
             self.SavePerson.ProcessAdd();
         },
-        HandleReturn: function (returndata) {
+        HandleReturn: function(returndata) {
             self.personid(returndata.Id);
             self.errmsg(returndata.ErrMsg);
 
             self.setmessageview();
         },
-        ManageSave: function () {
+        ManageSave: function() {
             self.IsSaveClose(false);
             self.IsSaveContact(true);
             if (self.placeid() === 0) {
@@ -1115,12 +1121,12 @@ PlaceViewModel = function(data) {
                 self.SavePerson.Save();
             };
         },
-        Save: function () {
+        Save: function() {
             $.ajax({
                 url: baseUrl + "SaveContact",
                 type: "post",
                 data: self.SavePerson.BuildPersonData()
-            }).then(function (returndata) {
+            }).then(function(returndata) {
                 self.IsSaveContact(false);
                 self.SavePerson.HandleReturn(returndata);
                 if (self.IsMessageAreaVisible()) {
@@ -2105,7 +2111,7 @@ PlaceViewModel = function(data) {
         }
     };
 
-    self.clear = function () {
+    self.clear = function() {
         self.errmsg("");
         self.IsEdit(false);
         self.IsSaveClose(false);
@@ -2225,12 +2231,12 @@ PlaceViewModel = function(data) {
                 UseMailingForShipping: self.placeUseMailingforShipping()
             };
         },
-        Save: function () {
+        Save: function() {
             $.ajax({
                 url: baseUrl + "SavePlace",
                 type: "post",
                 data: self.SavePlaceData.BuildPlaceData()
-            }).then(function (returndata) {
+            }).then(function(returndata) {
                 self.handleplacereturndata(returndata);
                 if (self.IsMessageAreaVisible()) {
                     return;

@@ -3,36 +3,36 @@
     <table class="table table-condensed table-bordered table-striped table-hover" id="datatable">
 
         <thead>
-            <tr>
-                <th class="pdsa-action-button-area" data-bind="click: ManageSort.Change(0)">Edit</th>
-                <th data-bind="click: ManageSort.Change(1)" style="display: none">RecordId</th>
-                <th data-bind="click: ManageSort.Change(1)" style="display: none">Order</th>
-                <th data-bind="click: ManageSort.Change(2)">Product Group</th>
-                <th class="listcentered" data-bind="click: ManageSort.Change(3)">Create date</th>
-                <th class="listcentered" data-bind="click: ManageSort.Change(4)">IsSystem</th>
-                <th class="pdsa-action-button-area" data-bind="click: ManageSort.Change(0)">Delete</th>
-            </tr>
+        <tr>
+            <th class="pdsa-action-button-area" data-bind="click: ManageSort.Change(0)">Edit</th>
+            <th data-bind="click: ManageSort.Change(1)" style="display: none">RecordId</th>
+            <th data-bind="click: ManageSort.Change(1)" style="display: none">Order</th>
+            <th data-bind="click: ManageSort.Change(2)">Product Group</th>
+            <th class="listcentered" data-bind="click: ManageSort.Change(3)">Create date</th>
+            <th class="listcentered" data-bind="click: ManageSort.Change(4)">IsSystem</th>
+            <th class="pdsa-action-button-area" data-bind="click: ManageSort.Change(0)">Delete</th>
+        </tr>
         </thead>
         <tbody data-bind="foreach: filteredItems()" id="items">
-            <tr id="itemrow">
-                <td class="listcentered" id="edit">
-                    <a class="btn btn-default btn-sm" data-bind="click: $parent.edit" href="#" type="button">
-                        <i class="glyphicon glyphicon-edit"></i>
-                    </a>
-                </td>
-                <td class="listcentered" data-bind="text: RecordId" id="recordid" style="display: none"></td>
-                <td class="listcentered" data-bind="text: DisplayOrder" id="order" style="display: none"></td>
-                <td class="ui-priority-secondary" data-bind="text: Name" id="name"></td>
-                <td class="listcentered" data-bind="text: StringCreateDate" id="createdate"></td>
-                <td class="listcentered" id="issystem">
-                    <input data-bind="checked: IsSystem" disabled name="issystem" type="checkbox">
-                </td>
-                <td class="listcentered" id="delete">
-                    <a class="btn btn-default btn-sm" data-bind="click: $parent.RemoveItem.Validate.bind($data)" href="#" type="button">
-                        <i class="glyphicon glyphicon-trash"></i>
-                    </a>
-                </td>
-            </tr>
+        <tr id="itemrow">
+            <td class="listcentered" id="edit">
+                <a class="btn btn-default btn-sm" data-bind="click: $parent.edit" href="#" type="button">
+                    <i class="glyphicon glyphicon-edit"></i>
+                </a>
+            </td>
+            <td class="listcentered" data-bind="text: RecordId" id="recordid" style="display: none"></td>
+            <td class="listcentered" data-bind="text: DisplayOrder" id="order" style="display: none"></td>
+            <td class="ui-priority-secondary" data-bind="text: Name" id="name"></td>
+            <td class="listcentered" data-bind="text: StringCreateDate" id="createdate"></td>
+            <td class="listcentered" id="issystem">
+                <input data-bind="checked: IsSystem" disabled name="issystem" type="checkbox">
+            </td>
+            <td class="listcentered" id="delete">
+                <a class="btn btn-default btn-sm" data-bind="click: $parent.RemoveItem.Validate.bind($data)" href="#" type="button">
+                    <i class="glyphicon glyphicon-trash"></i>
+                </a>
+            </td>
+        </tr>
         </tbody>
 
     </table>

@@ -10,7 +10,7 @@
     <!-- BEGIN HIdDEN FIELDS AREA -->
     @Html.HiddenFor(m => m.EventCommand, new {data_val = "false"})
     @Html.HiddenFor(m => m.EventArgument, new {data_val = "false"})
-    @Html.HiddenFor(m => m.Entity.CustomerContact.PersonId, new {data_val = "false"})
+    @Html.HiddenFor(m => m.Entity.Person.PersonId, new {data_val = "false"})
     <!-- END HIdDEN FIELDS AREA -->
 
     if (Model.IsSearchAreaVisible)
@@ -155,22 +155,22 @@
             <div class="row">
                 <div class="col-sm-4">
                     <div class="form-group">
-                        @Html.LabelFor(m => m.Entity.CustomerContact.FirstName, "First Name")
-                        @Html.TextBoxFor(m => m.Entity.CustomerContact.FirstName,
+                        @Html.LabelFor(m => m.Entity.Person.FirstName, "First Name")
+                        @Html.TextBoxFor(m => m.Entity.Person.FirstName,
                             new {@class = "form-control"})
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">
-                        @Html.LabelFor(m => m.Entity.CustomerContact.MiddleName, "Middle Name")
-                        @Html.TextBoxFor(m => m.Entity.CustomerContact.MiddleName,
+                        @Html.LabelFor(m => m.Entity.Person.MiddleName, "Middle Name")
+                        @Html.TextBoxFor(m => m.Entity.Person.MiddleName,
                             new {@class = "form-control"})
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">
-                        @Html.LabelFor(m => m.Entity.CustomerContact.LastName, "Last Name")
-                        @Html.TextBoxFor(m => m.Entity.CustomerContact.LastName,
+                        @Html.LabelFor(m => m.Entity.Person.LastName, "Last Name")
+                        @Html.TextBoxFor(m => m.Entity.Person.LastName,
                             new {@class = "form-control"})
                     </div>
                 </div>
@@ -179,16 +179,16 @@
             <div class="row">
                 <div class="col-sm-4">
                     <div class="form-group">
-                        @Html.LabelFor(m => m.Entity.CustomerContact.Email, "Email")
-                        @Html.TextBoxFor(m => m.Entity.CustomerContact.Email,
+                        @Html.LabelFor(m => m.Entity.Person.Email, "Email")
+                        @Html.TextBoxFor(m => m.Entity.Person.Email,
                             new {@class = "form-control"})
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">
-                        @Html.LabelFor(m => m.Entity.CustomerContact.PlaceId, "Facility")
-                        @Html.DropDownListFor(m => m.Entity.CustomerContact.PlaceId, Model.Entity.FacilityList.LookupList,
-                            new {@class = "form-control"})
+                        @Html.LabelFor(m => m.Entity.Person.PlaceId, "Facility")
+                        @*@Html.DropDownListFor(m => m.Entity.Person.PlaceId, Model.Entity.FacilityList.LookupList,
+                            new {@class = "form-control"})*@
                     </div>
                 </div>
             </div>
@@ -217,8 +217,8 @@
                                 @Html.TextBoxFor(m => m.Entity.Addresses.ShippingAddress.City, new {@class = "form-control"})
                             </div>
                             <div class="form-group">
-                                @Html.LabelFor(m => m.Entity.Addresses.ShippingAddress.StateProvince, "State/Province")
-                                @Html.TextBoxFor(m => m.Entity.Addresses.ShippingAddress.StateProvince, new {@class = "form-control"})
+                                @Html.LabelFor(m => m.Entity.Addresses.ShippingAddress.StateProvinceId, "State/Province")
+                                @Html.TextBoxFor(m => m.Entity.Addresses.ShippingAddress.StateProvinceId, new {@class = "form-control"})
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(m => m.Entity.Addresses.ShippingAddress.ZipCode, "Postal Code")
@@ -226,8 +226,8 @@
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(m => m.Entity.Addresses.ShippingAddress.Country, "Country")
-                                @Html.DropDownListFor(m => m.Entity.Addresses.ShippingAddress.Country, Model.Entity.CountryList.LookupList,
-                                    new {@class = "form-control"})
+                                @*@Html.DropDownListFor(m => m.Entity.Addresses.ShippingAddress.Country, Model.Entity.CountryList.LookupList,
+                                    new {@class = "form-control"})*@
                             </div>
                         </div>
                     </div>
@@ -249,8 +249,8 @@
                                 @Html.TextBoxFor(m => m.Entity.Addresses.MailingAddress.City, new {@class = "form-control"})
                             </div>
                             <div class="form-group">
-                                @Html.LabelFor(m => m.Entity.Addresses.MailingAddress.StateProvince, "State/Province")
-                                @Html.TextBoxFor(m => m.Entity.Addresses.MailingAddress.StateProvince, new {@class = "form-control"})
+                                @Html.LabelFor(m => m.Entity.Addresses.MailingAddress.StateProvinceId, "State/Province")
+                                @Html.TextBoxFor(m => m.Entity.Addresses.MailingAddress.StateProvinceId, new {@class = "form-control"})
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(m => m.Entity.Addresses.MailingAddress.ZipCode, "Postal Code")
@@ -258,8 +258,8 @@
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(m => m.Entity.Addresses.MailingAddress.Country, "Country")
-                                @Html.DropDownListFor(m => m.Entity.Addresses.MailingAddress.Country, Model.Entity.CountryList.LookupList,
-                                    new {@class = "form-control"})
+                                @*@Html.DropDownListFor(m => m.Entity.Addresses.MailingAddress.Country, Model.Entity.CountryList.LookupList,
+                                    new {@class = "form-control"})*@
                             </div>
                         </div>
                     </div>
@@ -283,8 +283,8 @@
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(m => m.Entity.Phones.HomePhone.Country, "Country")
-                                @Html.DropDownListFor(m => m.Entity.Phones.HomePhone.Country, Model.Entity.CountryList.LookupList,
-                                    new {@class = "form-control"})
+                                @*@Html.DropDownListFor(m => m.Entity.Phones.HomePhone.Country, Model.Entity.CountryList.LookupList,
+                                    new {@class = "form-control"})*@
                             </div>
                         </div>
                     </div>
@@ -299,8 +299,8 @@
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(m => m.Entity.Phones.CellPhone.Country, "Country")
-                                @Html.DropDownListFor(m => m.Entity.Phones.CellPhone.Country, Model.Entity.CountryList.LookupList,
-                                    new {@class = "form-control"})
+                                @*@Html.DropDownListFor(m => m.Entity.Phones.CellPhone.Country, Model.Entity.CountryList.LookupList,
+                                    new {@class = "form-control"})*@
                             </div>
                         </div>
                     </div>
@@ -315,8 +315,8 @@
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(m => m.Entity.Phones.WorkPhone.Country, "Country")
-                                @Html.DropDownListFor(m => m.Entity.Phones.WorkPhone.Country, Model.Entity.CountryList.LookupList,
-                                    new {@class = "form-control"})
+                                @*@Html.DropDownListFor(m => m.Entity.Phones.WorkPhone.Country, Model.Entity.CountryList.LookupList,
+                                    new {@class = "form-control"})*@
                             </div>
                         </div>
                     </div>
@@ -331,8 +331,8 @@
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(m => m.Entity.Phones.FaxPhone.Country, "Country")
-                                @Html.DropDownListFor(m => m.Entity.Phones.FaxPhone.Country, Model.Entity.CountryList.LookupList,
-                                    new {@class = "form-control"})
+                                @*@Html.DropDownListFor(m => m.Entity.Phones.FaxPhone.Country, Model.Entity.CountryList.LookupList,
+                                    new {@class = "form-control"})*@
                             </div>
                         </div>
                     </div>
@@ -343,13 +343,13 @@
                         <div class="panel-body">
                             <div class="form-group">
                                 @Html.LabelFor(m => m.Entity.Phones.PhoneSettings.PrimaryPhoneType, "Primary Phone")
-                                @Html.DropDownListFor(m => m.Entity.Phones.PhoneSettings.PrimaryPhoneType, Model.Entity.PhoneTypeList.LookupList,
-                                    new {@class = "form-control"})
+                                @*@Html.DropDownListFor(m => m.Entity.Phones.PhoneSettings.PrimaryPhoneType, Model.Entity.PhoneTypeList.LookupList,
+                                    new {@class = "form-control"})*@
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(m => m.Entity.Phones.PhoneSettings.MobileCarrier, "Mobile Carrier")
-                                @Html.DropDownListFor(m => m.Entity.Phones.PhoneSettings.MobileCarrier, Model.Entity.MobileCarrierList.LookupList,
-                                    new {@class = "form-control"})
+                                @*@Html.DropDownListFor(m => m.Entity.Phones.PhoneSettings.MobileCarrier, Model.Entity.MobileCarrierList.LookupList,
+                                    new {@class = "form-control"})*@
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(m => m.Entity.Phones.PhoneSettings.AllowText, "Allow Text?")

@@ -73,7 +73,7 @@ namespace ClaudeViewManagement.ViewModels.People
 
         protected override void Save()
         {
-            //int personId = Entity.CustomerContact.PersonId;
+            //int personId = Entity.Person.PersonId;
             //int facilityStaffId = Entity.FacilityStaffId;
 
             using (PlaceContactGetManager mgr = new PlaceContactGetManager())
@@ -93,7 +93,7 @@ namespace ClaudeViewManagement.ViewModels.People
                 // Set mode based on validation errors
             }
 
-            //Entity.CustomerContact.PersonId = personId;
+            //Entity.Person.PersonId = personId;
             //Entity.FacilityStaffId = facilityStaffId;
 
             base.Save();

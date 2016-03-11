@@ -220,8 +220,8 @@
                                 @Html.TextBoxFor(m => m.Entity.Addresses.ShippingAddress.City, new {@class = "form-control"})
                             </div>
                             <div class="form-group">
-                                @Html.LabelFor(m => m.Entity.Addresses.ShippingAddress.StateProvince, "State/Province")
-                                @Html.TextBoxFor(m => m.Entity.Addresses.ShippingAddress.StateProvince, new {@class = "form-control"})
+                                @Html.LabelFor(m => m.Entity.Addresses.ShippingAddress.StateProvinceId, "State/Province")
+                                @Html.TextBoxFor(m => m.Entity.Addresses.ShippingAddress.StateProvinceId, new {@class = "form-control"})
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(m => m.Entity.Addresses.ShippingAddress.ZipCode, "Postal Code")
@@ -252,8 +252,8 @@
                                 @Html.TextBoxFor(m => m.Entity.Addresses.MailingAddress.City, new {@class = "form-control"})
                             </div>
                             <div class="form-group">
-                                @Html.LabelFor(m => m.Entity.Addresses.MailingAddress.StateProvince, "State/Province")
-                                @Html.TextBoxFor(m => m.Entity.Addresses.MailingAddress.StateProvince, new {@class = "form-control"})
+                                @Html.LabelFor(m => m.Entity.Addresses.MailingAddress.StateProvinceId, "State/Province")
+                                @Html.TextBoxFor(m => m.Entity.Addresses.MailingAddress.StateProvinceId, new {@class = "form-control"})
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(m => m.Entity.Addresses.MailingAddress.ZipCode, "Postal Code")
@@ -351,8 +351,8 @@
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(m => m.Entity.Phones.PhoneSettings.MobileCarrier, "Mobile Carrier")
-                                @Html.DropDownListFor(m => m.Entity.Phones.PhoneSettings.MobileCarrier, Model.Entity.MobileCarrierList.LookupList,
-                                    new {@class = "form-control"})
+                                @*@Html.DropDownListFor(m => m.Entity.Phones.PhoneSettings.MobileCarrier, Model.Entity.MobileCarrierList.LookupList,
+                                    new {@class = "form-control"})*@
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(m => m.Entity.Phones.PhoneSettings.AllowText, "Allow Text?")

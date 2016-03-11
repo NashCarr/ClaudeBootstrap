@@ -3,7 +3,7 @@
     <div class="col-sm-4">
         <div class="form-group">
             @Html.Label("HomePhoneNumber", "Home Number")
-            @Html.Label("PrimaryHome", "Is Primary", new { @class = "form-control, pull-right" })
+            @Html.Label("PrimaryHome", "Is Primary", new {@class = "form-control, pull-right"})
             <input class="pull-right" data-bind="checked: PersonPrimaryPhone.homeisprimary, event: { change: PersonPrimaryPhone.Home }" name="HomeIsPrimary" type="checkbox">
             @Html.TextBox("Home", "", new {@class = "form-control", data_bind = "value:personhomephonenumber"})
         </div>

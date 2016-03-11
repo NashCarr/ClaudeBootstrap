@@ -189,11 +189,11 @@ PlaceViewModel = function(data) {
     self.mobilecarriers = ko.mapping.fromJS(data.MobileCarriers).extend({ deferred: true });
     self.statesprovinces = ko.mapping.fromJS(data.StatesProvinces).extend({ deferred: true });
 
-    self.DefaultMailingValues = ko.computed(function () {
+    self.DefaultMailingValues = ko.computed(function() {
         if (self.placemailingpostalcode().length === 0) {
             return;
         };
-        var match = ko.utils.arrayFirst(self.postalcodes(), function (item) {
+        var match = ko.utils.arrayFirst(self.postalcodes(), function(item) {
             return ko.unwrap(item.Text()) === ko.unwrap(self.placemailingpostalcode());
         });
         if (match) {
@@ -203,11 +203,11 @@ PlaceViewModel = function(data) {
         };
     });
 
-    self.DefaultShippingValues = ko.computed(function () {
+    self.DefaultShippingValues = ko.computed(function() {
         if (self.placeshippingpostalcode().length === 0) {
             return;
         };
-        var match = ko.utils.arrayFirst(self.postalcodes(), function (item) {
+        var match = ko.utils.arrayFirst(self.postalcodes(), function(item) {
             return ko.unwrap(item.Text()) === ko.unwrap(self.placeshippingpostalcode());
         });
         if (match) {
@@ -391,6 +391,7 @@ PlaceViewModel = function(data) {
 
     self.PersonPhoneView = {
         Fax: function() {
+            self.PersonAddressView.Default();
             self.IsPersonFaxPhoneVisible(true);
             self.IsPersonCellPhoneVisible(false);
             self.IsPersonHomePhoneVisible(false);
@@ -398,6 +399,7 @@ PlaceViewModel = function(data) {
             self.phoneHeader("Contact: " + self.faxphonetype);
         },
         Cell: function() {
+            self.PersonAddressView.Default();
             self.IsPersonFaxPhoneVisible(false);
             self.IsPersonCellPhoneVisible(true);
             self.IsPersonHomePhoneVisible(false);
@@ -405,6 +407,7 @@ PlaceViewModel = function(data) {
             self.phoneHeader("Contact: " + self.cellphonetype);
         },
         Home: function() {
+            self.PersonAddressView.Default();
             self.IsPersonFaxPhoneVisible(false);
             self.IsPersonCellPhoneVisible(false);
             self.IsPersonHomePhoneVisible(true);
@@ -412,6 +415,7 @@ PlaceViewModel = function(data) {
             self.phoneHeader("Contact: " + self.homephonetype);
         },
         Work: function() {
+            self.PersonAddressView.Default();
             self.IsPersonFaxPhoneVisible(false);
             self.IsPersonCellPhoneVisible(false);
             self.IsPersonHomePhoneVisible(false);
@@ -459,15 +463,17 @@ PlaceViewModel = function(data) {
 
     self.PersonAddressView = {
         Mailing: function() {
+            self.PersonPhoneView.Default();
             self.IsPersonMailingAddressVisible(true);
             self.IsPersonShippingAddressVisible(false);
         },
         Shipping: function() {
+            self.PersonPhoneView.Default();
             self.IsPersonMailingAddressVisible(false);
             self.IsPersonShippingAddressVisible(true);
         },
         Default: function() {
-            self.IsPersonMailingAddressVisible(true);
+            self.IsPersonMailingAddressVisible(false);
             self.IsPersonShippingAddressVisible(false);
         }
     };
@@ -489,7 +495,7 @@ PlaceViewModel = function(data) {
 
             self.PersonPrimaryPhone.Set();
             self.PersonPhoneView.Primary();
-            self.PersonAddressView.Mailing();
+            self.PersonAddressView.Default();
         },
         Phones: function() {
             self.IsPhoneDetailVisible(true);
@@ -1010,7 +1016,7 @@ PlaceViewModel = function(data) {
             self.PersonPhoneSettings.Default();
 
             self.PersonPhoneView.Primary();
-            self.PersonAddressView.Mailing();
+            self.PersonAddressView.Default();
         },
         Cancel: function() {
             self.errmsg("");
@@ -1032,7 +1038,7 @@ PlaceViewModel = function(data) {
 
             self.IsEditContact(true);
             self.PersonPhoneView.Primary();
-            self.PersonAddressView.Mailing();
+            self.PersonAddressView.Default();
         },
         Set: function() {
             self.personid(ko.unwrap(self.itemdata.PersonId()));

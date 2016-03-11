@@ -1,20 +1,20 @@
 ﻿<!-- ** BEGIN Place Info AREA -->
 <div class="panel panel-default" id="Place">
     <div class="panel-heading">
-        @Html.Label("placeheader", new { data_bind = "text: placeHeader" })
+        @Html.Label("placeheader", new {data_bind = "text: placeHeader"})
     </div>
     <div class="panel-body">
         <div class="form-group" id="Name">
             @Html.Label("Name", "Name")
-            @Html.TextBox("Name", "", new { @class = "form-control", data_bind = "value: placename" })
+            @Html.TextBox("Name", "", new {@class = "form-control", data_bind = "value: placename"})
         </div>
         <div class="form-group" id="Division">
             @Html.Label("Division", "Division")
-            @Html.TextBox("Division", "", new { @class = "form-control", data_bind = "value: placedivision" })
+            @Html.TextBox("Division", "", new {@class = "form-control", data_bind = "value: placedivision"})
         </div>
         <div class="form-group" id="Department">
             @Html.Label("Department", "Department")
-            @Html.TextBox("Department", "", new { @class = "form-control", data_bind = "value: placedepartment" })
+            @Html.TextBox("Department", "", new {@class = "form-control", data_bind = "value: placedepartment"})
         </div>
         <div class="form-group" id="TimeZone">
             @Html.Label("TimeZone", "TimeZone")

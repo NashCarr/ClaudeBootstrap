@@ -46,7 +46,7 @@ namespace ClaudeData.DataRepository.PersonRepository
             if (data == null) return string.Empty;
             using (DbPhoneSettingSave db = new DbPhoneSettingSave())
             {
-                return db.SavePersonPhoneSetting(personId, (byte)PersonType.OrganizationContact, data);
+                return db.SavePersonPhoneSetting(personId, (byte) PersonType.OrganizationContact, data);
             }
         }
 
