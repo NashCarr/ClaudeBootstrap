@@ -10,10 +10,10 @@
         </a>
     </div>
     <div class="panel-body">
-        <div data-bind="visible: IsPlaceMailingAddressVisible">
+        <div data-bind="visible: PlaceAddressView.IsPlaceMailingAddressVisible">
             @{ Html.RenderPartial("Place/Addresses/MailingAddress"); }
         </div>
-        <div data-bind="visible: IsPlaceShippingAddressVisible">
+        <div data-bind="visible: PlaceAddressView.IsPlaceShippingAddressVisible">
             @{ Html.RenderPartial("Place/Addresses/ShippingAddress"); }
         </div>
     </div>

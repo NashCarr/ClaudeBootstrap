@@ -30,16 +30,16 @@
                     </div>
                     <div class="panel-body">
 
-                        <div data-bind="visible: IsPrimaryDetailVisible()">
+                        <div data-bind="visible: DetailView.IsPrimaryDetailVisible()">
                             @{ Html.RenderPartial("Primary/PlacePrimary"); }
                         </div>
-                        <div data-bind="visible: IsPhoneDetailVisible()">
+                        <div data-bind="visible: DetailView.IsPhoneDetailVisible()">
                             @{ Html.RenderPartial("Place/Phones/Phones"); }
                         </div>
-                        <div data-bind="visible: IsPlaceAddressDetailVisible()">
+                        <div data-bind="visible: DetailView.IsPlaceAddressDetailVisible()">
                             @{ Html.RenderPartial("Place/Addresses/Addresses"); }
                         </div>
-                        <div data-bind="visible: IsContactDetailVisible()">
+                        <div data-bind="visible: DetailView.IsContactDetailVisible()">
                             @{ Html.RenderPartial("Person/Contacts"); }
                         </div>
 
