@@ -25,22 +25,22 @@
         </a>
     </div>
     <div class="panel-body">
-        <div data-bind="visible: PersonPhoneView.IsPersonHomePhoneVisible">
+        <div data-bind="visible: IsPersonHomePhoneVisible">
             @{ Html.RenderPartial("Person/Phones/HomePhone"); }
         </div>
-        <div data-bind="visible: PersonPhoneView.IsPersonCellPhoneVisible">
+        <div data-bind="visible: IsPersonCellPhoneVisible">
             @{ Html.RenderPartial("Person/Phones/CellPhone"); }
         </div>
-        <div data-bind="visible: PersonPhoneView.IsPersonWorkPhoneVisible">
+        <div data-bind="visible: IsPersonWorkPhoneVisible">
             @{ Html.RenderPartial("Person/Phones/WorkPhone"); }
         </div>
-        <div data-bind="visible: PersonPhoneView.IsPersonFaxPhoneVisible">
+        <div data-bind="visible: IsPersonFaxPhoneVisible">
             @{ Html.RenderPartial("Person/Phones/FaxPhone"); }
         </div>
-        <div data-bind="visible: PersonAddressView.IsPersonMailingAddressVisible">
+        <div data-bind="visible: IsPersonMailingAddressVisible">
             @{ Html.RenderPartial("Person/Addresses/MailingAddress"); }
         </div>
-        <div data-bind="visible: PersonAddressView.IsPersonShippingAddressVisible">
+        <div data-bind="visible: IsPersonShippingAddressVisible">
             @{ Html.RenderPartial("Person/Addresses/ShippingAddress"); }
         </div>
     </div>

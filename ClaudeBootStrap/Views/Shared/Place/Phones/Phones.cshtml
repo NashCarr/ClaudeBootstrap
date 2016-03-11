@@ -19,16 +19,16 @@
         </a>
     </div>
     <div class="panel-body">
-        <div data-bind="visible: PlacePhoneView.IsPlaceHomePhoneVisible">
+        <div data-bind="visible: IsPlaceHomePhoneVisible">
             @{ Html.RenderPartial("Place/Phones/HomePhone"); }
         </div>
-        <div data-bind="visible: PlacePhoneView.IsPlaceCellPhoneVisible">
+        <div data-bind="visible: IsPlaceCellPhoneVisible">
             @{ Html.RenderPartial("Place/Phones/CellPhone"); }
         </div>
-        <div data-bind="visible: PlacePhoneView.IsPlaceWorkPhoneVisible">
+        <div data-bind="visible: IsPlaceWorkPhoneVisible">
             @{ Html.RenderPartial("Place/Phones/WorkPhone"); }
         </div>
-        <div data-bind="visible: PlacePhoneView.IsPlaceFaxPhoneVisible">
+        <div data-bind="visible: IsPlaceFaxPhoneVisible">
             @{ Html.RenderPartial("Place/Phones/FaxPhone"); }
         </div>
     </div>
