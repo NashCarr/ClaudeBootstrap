@@ -1943,7 +1943,7 @@ PlaceViewModel = function(data) {
 
     self.ManageSort = {
         IsSorting: ko.observable(false),
-        ManageType: function (type) {
+        ManageType: function(type) {
             if (type === 0) {
                 type = 1;
             };
@@ -1956,11 +1956,11 @@ PlaceViewModel = function(data) {
             self.sortdirection(-1);
             self.pauseNotifications = false;
         },
-        ManageDirection: function (type) {
+        ManageDirection: function(type) {
             self.ManageSort.ManageType(type);
             self.sortdirection(self.sortdirection() * -1);
         },
-        Change: function (type) {
+        Change: function(type) {
             if (type === 0) {
                 self.ManageSort.IsSorting(!self.ManageSort.IsSorting());
             };
