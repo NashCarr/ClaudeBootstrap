@@ -9,7 +9,7 @@ PlaceViewModel = function(data) {
     self.phoneHeader = ko.observable("Phones");
     self.addressHeader = ko.observable("Mailing");
 
-    self.faxphonetype = "Fax";
+    self.faxphonetype = "Faxs";
     self.cellphonetype = "Cell";
     self.homephonetype = "Home";
     self.workphonetype = "Work";
