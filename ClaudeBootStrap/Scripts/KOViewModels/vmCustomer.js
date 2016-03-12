@@ -18,9 +18,10 @@ PlaceViewModel = function(data) {
 
     self.sorttype = 1;
     self.direction = 1;
-    self.IsSorting = ko.observable(false);
     self.sortdirection = ko.observable(1);
-
+    self.IsSorting = ko.observable(false);
+    self.IsDragDrop = ko.observable(false);
+ 
     self.IsEdit = ko.observable(false);
     self.IsSaveClose = ko.observable(false);
     self.IsEditContact = ko.observable(false);
@@ -1958,6 +1959,10 @@ PlaceViewModel = function(data) {
             self.ManageSort.ManageType(type);
             self.sortdirection(self.sortdirection() * -1);
         },
+        DragDrop: function() {
+            self.sorttype = 1;
+            self.sortdirection(1);
+        },
         Change: function(type) {
             if (type === 0) {
                 self.IsSorting(!self.IsSorting());
@@ -2092,6 +2097,9 @@ PlaceViewModel = function(data) {
     self.filteredItems = function() {
         self.direction = ko.unwrap(self.sortdirection);
         self.filter = ko.unwrap(self.searchvalue).toLowerCase();
+        if (self.IsDragDrop()) {
+            return null;
+        };
         switch (self.sorttype) {
         case 1:
             return self.SortDisplayOrder.Manage();
@@ -2117,15 +2125,15 @@ PlaceViewModel = function(data) {
         self.IsEditContact(false);
         self.IsSaveContact(false);
 
+        self.Place.Clear();
+        self.Person.Clear();
+        self.Contacts.Clear();
         self.PlaceFax.Clear();
         self.PlaceCell.Clear();
         self.PlaceHome.Clear();
         self.PlaceWork.Clear();
-        self.Place.Clear();
-        self.Person.Clear();
         self.PlaceMailing.Clear();
         self.PlaceShipping.Clear();
-        self.Contacts.Clear();
         self.PlacePhoneSettings.Clear();
     };
 
@@ -2351,9 +2359,12 @@ PlaceViewModel = function(data) {
                 };
             },
             RefreshHtml: function() {
+                self.IsDragDrop(true);
+                self.ManageSort.DragDrop();
                 self.IsDisplayOrderChanged(true);
                 self.IsDisplayOrderChanged(false);
                 self.makelistsortable();
+                self.IsDragDrop(false);
             },
             ManageSort: function() {
                 if (self.ReorderList.displayreorder().length === 0) {
