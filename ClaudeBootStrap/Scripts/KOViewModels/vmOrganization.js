@@ -189,11 +189,11 @@ PlaceViewModel = function(data) {
     self.mobilecarriers = ko.mapping.fromJS(data.MobileCarriers).extend({ deferred: true });
     self.statesprovinces = ko.mapping.fromJS(data.StatesProvinces).extend({ deferred: true });
 
-    self.DefaultMailingValues = ko.computed(function () {
+    self.DefaultMailingValues = ko.computed(function() {
         if (self.placemailingpostalcode().length === 0) {
             return;
         };
-        var match = ko.utils.arrayFirst(self.postalcodes(), function (item) {
+        var match = ko.utils.arrayFirst(self.postalcodes(), function(item) {
             return ko.unwrap(item.Text()) === ko.unwrap(self.placemailingpostalcode());
         });
         if (match) {
@@ -203,11 +203,11 @@ PlaceViewModel = function(data) {
         };
     });
 
-    self.DefaultShippingValues = ko.computed(function () {
+    self.DefaultShippingValues = ko.computed(function() {
         if (self.placeshippingpostalcode().length === 0) {
             return;
         };
-        var match = ko.utils.arrayFirst(self.postalcodes(), function (item) {
+        var match = ko.utils.arrayFirst(self.postalcodes(), function(item) {
             return ko.unwrap(item.Text()) === ko.unwrap(self.placeshippingpostalcode());
         });
         if (match) {
@@ -1056,7 +1056,7 @@ PlaceViewModel = function(data) {
     };
 
     self.SavePerson = {
-        BuildPersonData: function () {
+        BuildPersonData: function() {
             return {
                 Person: self.Person.Build(),
                 FaxPhone: self.PersonFax.Build(),
@@ -1069,7 +1069,7 @@ PlaceViewModel = function(data) {
                 UseMailingForShipping: self.personUseMailingforShipping()
             };
         },
-        Build: function () {
+        Build: function() {
             return {
                 PersonType: ko.observable(0),
                 PlaceId: ko.observable(ko.unwrap(self.placeid())),
@@ -1081,32 +1081,32 @@ PlaceViewModel = function(data) {
                 MiddleName: ko.observable(ko.unwrap(self.personmiddle()))
             };
         },
-        ProcessAdd: function () {
+        ProcessAdd: function() {
             self.personlist.push(self.SavePerson.Build());
         },
-        ItemExists: function () {
-            var match = ko.utils.arrayFirst(self.personlist(), function (item) {
+        ItemExists: function() {
+            var match = ko.utils.arrayFirst(self.personlist(), function(item) {
                 return item.PersonId() === self.personid();
             });
             return match;
         },
-        ProcessEdit: function () {
+        ProcessEdit: function() {
             self.personlist.replace(self.SavePerson.ItemExists(), self.SavePerson.Build());
         },
-        Process: function () {
+        Process: function() {
             if (self.SavePerson.ItemExists()) {
                 self.SavePerson.ProcessEdit();
                 return;
             };
             self.SavePerson.ProcessAdd();
         },
-        HandleReturn: function (returndata) {
+        HandleReturn: function(returndata) {
             self.personid(returndata.Id);
             self.errmsg(returndata.ErrMsg);
 
             self.setmessageview();
         },
-        ManageSave: function () {
+        ManageSave: function() {
             self.IsSaveClose(false);
             self.IsSaveContact(true);
             if (self.placeid() === 0) {
@@ -1115,12 +1115,12 @@ PlaceViewModel = function(data) {
                 self.SavePerson.Save();
             };
         },
-        Save: function () {
+        Save: function() {
             $.ajax({
                 url: baseUrl + "SaveContact",
                 type: "post",
                 data: self.SavePerson.BuildPersonData()
-            }).then(function (returndata) {
+            }).then(function(returndata) {
                 self.IsSaveContact(false);
                 self.SavePerson.HandleReturn(returndata);
                 if (self.IsMessageAreaVisible()) {
@@ -2093,9 +2093,9 @@ PlaceViewModel = function(data) {
         case 2:
             return self.SortName.Manage();
         case 3:
-            return self.SortDepartment.Manage();
-        case 4:
             return self.SortDivision.Manage();
+        case 4:
+            return self.SortDepartment.Manage();
         case 5:
             return self.SortTimeZone.Manage();
         case 6:
@@ -2105,7 +2105,7 @@ PlaceViewModel = function(data) {
         }
     };
 
-    self.clear = function () {
+    self.clear = function() {
         self.errmsg("");
         self.IsEdit(false);
         self.IsSaveClose(false);
@@ -2225,12 +2225,12 @@ PlaceViewModel = function(data) {
                 UseMailingForShipping: self.placeUseMailingforShipping()
             };
         },
-        Save: function () {
+        Save: function() {
             $.ajax({
                 url: baseUrl + "SavePlace",
                 type: "post",
                 data: self.SavePlaceData.BuildPlaceData()
-            }).then(function (returndata) {
+            }).then(function(returndata) {
                 self.handleplacereturndata(returndata);
                 if (self.IsMessageAreaVisible()) {
                     return;

@@ -189,11 +189,11 @@ PlaceViewModel = function(data) {
     self.mobilecarriers = ko.mapping.fromJS(data.MobileCarriers).extend({ deferred: true });
     self.statesprovinces = ko.mapping.fromJS(data.StatesProvinces).extend({ deferred: true });
 
-    self.DefaultMailingValues = ko.computed(function () {
+    self.DefaultMailingValues = ko.computed(function() {
         if (self.placemailingpostalcode().length === 0) {
             return;
         };
-        var match = ko.utils.arrayFirst(self.postalcodes(), function (item) {
+        var match = ko.utils.arrayFirst(self.postalcodes(), function(item) {
             return ko.unwrap(item.Text()) === ko.unwrap(self.placemailingpostalcode());
         });
         if (match) {
@@ -203,11 +203,11 @@ PlaceViewModel = function(data) {
         };
     });
 
-    self.DefaultShippingValues = ko.computed(function () {
+    self.DefaultShippingValues = ko.computed(function() {
         if (self.placeshippingpostalcode().length === 0) {
             return;
         };
-        var match = ko.utils.arrayFirst(self.postalcodes(), function (item) {
+        var match = ko.utils.arrayFirst(self.postalcodes(), function(item) {
             return ko.unwrap(item.Text()) === ko.unwrap(self.placeshippingpostalcode());
         });
         if (match) {
@@ -2098,9 +2098,9 @@ PlaceViewModel = function(data) {
         case 2:
             return self.SortName.Manage();
         case 3:
-            return self.SortDepartment.Manage();
-        case 4:
             return self.SortDivision.Manage();
+        case 4:
+            return self.SortDepartment.Manage();
         case 5:
             return self.SortTimeZone.Manage();
         case 6:

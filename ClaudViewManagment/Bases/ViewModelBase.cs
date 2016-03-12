@@ -2,7 +2,7 @@
 
 namespace ClaudeViewManagement.Bases
 {
-    public abstract class ViewModelBase
+    public class ViewModelBase
     {
         protected ViewModelBase()
         {
