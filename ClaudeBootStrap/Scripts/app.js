@@ -1,11 +1,12 @@
 (function($) {
-    var _dashboard = {
+    var vm;
+    var dashboard = {
       viewModel: function() {
         return this;
       },
 
       toggleSubNav: function() {
-        $('aside .menu li.parent > a').click(function(e) {
+        $("aside .menu li.parent > a").click(function(e) {
           e.preventDefault();
           $(this)
             .parent('li')
@@ -15,13 +16,13 @@
       },
 
       toggleAvatarDropdown: function() {
-        $('.avatar-dropdown .toggle').click(function() {
+        $(".avatar-dropdown .toggle").click(function() {
           $(this).parent().find('ul').fadeToggle();
         });
       },
 
       initDatepicker: function() {
-        $('input.datepicker').pickadate();
+        $("input.datepicker").pickadate();
       },
 
       init: function() {
@@ -30,8 +31,7 @@
         vm.initDatepicker();
       }
     };
-
-    var vm = _dashboard.viewModel();
-    _dashboard.init();
+    vm = dashboard.viewModel();
+    dashboard.init();
 
 })(jQuery);
