@@ -53,7 +53,6 @@
     <Compile Include="Managers\Settings\HearAboutUsManager.cs" />
     <Compile Include="Managers\Settings\ProductGroupManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\Class1.cs" />
     <Compile Include="ViewModels\People\AssessorViewModel.cs" />
     <Compile Include="ViewModels\People\PlaceContactSaveModel.cs" />
     <Compile Include="ViewModels\People\CustomerContactViewModel.cs" />
