@@ -5,8 +5,8 @@ PlaceViewModel = function(data) {
 
     self.placeHeader = "Organization";
     self.detailHeader = "Organization Details";
-    self.detailSubHeader = ko.observable("List");
     self.phoneHeader = ko.observable("Phones");
+    self.detailSubHeader = ko.observable("List");
     self.addressHeader = ko.observable("Mailing");
 
     self.faxphonetype = "Fax";
@@ -19,7 +19,6 @@ PlaceViewModel = function(data) {
     self.sorttype = 1;
     self.direction = 1;
     self.sortdirection = ko.observable(1);
-    self.IsSorting = ko.observable(false);
     self.IsDragDrop = ko.observable(false);
 
     self.IsEdit = ko.observable(false);
@@ -386,7 +385,8 @@ PlaceViewModel = function(data) {
     };
 
     self.PersonPhoneView = {
-        Fax: function() {
+        Fax: function () {
+            self.PersonAddressView.Default();
             self.IsPersonFaxPhoneVisible(true);
             self.IsPersonCellPhoneVisible(false);
             self.IsPersonHomePhoneVisible(false);
@@ -394,6 +394,7 @@ PlaceViewModel = function(data) {
             self.phoneHeader("Contact: " + self.faxphonetype);
         },
         Cell: function() {
+            self.PersonAddressView.Default();
             self.IsPersonFaxPhoneVisible(false);
             self.IsPersonCellPhoneVisible(true);
             self.IsPersonHomePhoneVisible(false);
@@ -401,6 +402,7 @@ PlaceViewModel = function(data) {
             self.phoneHeader("Contact: " + self.cellphonetype);
         },
         Home: function() {
+            self.PersonAddressView.Default();
             self.IsPersonFaxPhoneVisible(false);
             self.IsPersonCellPhoneVisible(false);
             self.IsPersonHomePhoneVisible(true);
@@ -408,6 +410,7 @@ PlaceViewModel = function(data) {
             self.phoneHeader("Contact: " + self.homephonetype);
         },
         Work: function() {
+            self.PersonAddressView.Default();
             self.IsPersonFaxPhoneVisible(false);
             self.IsPersonCellPhoneVisible(false);
             self.IsPersonHomePhoneVisible(false);
@@ -455,15 +458,17 @@ PlaceViewModel = function(data) {
 
     self.PersonAddressView = {
         Mailing: function() {
+            self.PersonPhoneView.Default();
             self.IsPersonMailingAddressVisible(true);
             self.IsPersonShippingAddressVisible(false);
         },
         Shipping: function() {
+            self.PersonPhoneView.Default();
             self.IsPersonMailingAddressVisible(false);
             self.IsPersonShippingAddressVisible(true);
         },
         Default: function() {
-            self.IsPersonMailingAddressVisible(true);
+            self.IsPersonMailingAddressVisible(false);
             self.IsPersonShippingAddressVisible(false);
         }
     };
@@ -485,7 +490,7 @@ PlaceViewModel = function(data) {
 
             self.PersonPrimaryPhone.Set();
             self.PersonPhoneView.Primary();
-            self.PersonAddressView.Mailing();
+            self.PersonAddressView.Deafult();
         },
         Phones: function() {
             self.IsPhoneDetailVisible(true);
@@ -1006,7 +1011,7 @@ PlaceViewModel = function(data) {
             self.PersonPhoneSettings.Default();
 
             self.PersonPhoneView.Primary();
-            self.PersonAddressView.Mailing();
+            self.PersonAddressView.Default();
         },
         Cancel: function() {
             self.errmsg("");
@@ -1028,7 +1033,7 @@ PlaceViewModel = function(data) {
 
             self.IsEditContact(true);
             self.PersonPhoneView.Primary();
-            self.PersonAddressView.Mailing();
+            self.PersonAddressView.Default();
         },
         Set: function() {
             self.personid(ko.unwrap(self.itemdata.PersonId()));
@@ -1937,6 +1942,7 @@ PlaceViewModel = function(data) {
     };
 
     self.ManageSort = {
+        IsSorting: ko.observable(false),
         ManageType: function (type) {
             if (type === 0) {
                 type = 1;
@@ -1960,9 +1966,9 @@ PlaceViewModel = function(data) {
         },
         Change: function (type) {
             if (type === 0) {
-                self.IsSorting(!self.IsSorting());
+                self.ManageSort.IsSorting(!self.ManageSort.IsSorting());
             };
-            if (!self.IsSorting() && (type !== 0)) {
+            if (!self.ManageSort.IsSorting() && (type !== 0)) {
                 self.ManageSort.ManageDirection(type);
                 self.ReorderList.ReorderAfterSort();
             };

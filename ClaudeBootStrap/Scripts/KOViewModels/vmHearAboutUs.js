@@ -6,8 +6,8 @@ HearAboutUsViewModel = function(data) {
     //sorting
     self.sorttype = 1;
     self.direction = 1;
-    self.IsSorting = ko.observable(false);
     self.sortdirection = ko.observable(1);
+    self.IsDragDrop = ko.observable(false);
 
     self.IsEdit = ko.observable(false);
 
@@ -54,7 +54,8 @@ HearAboutUsViewModel = function(data) {
     };
 
     self.ManageSort = {
-        ManageType: function(type) {
+        IsSorting: ko.observable(false),
+        ManageType: function (type) {
             if (type === 0) {
                 type = 1;
             };
@@ -67,16 +68,20 @@ HearAboutUsViewModel = function(data) {
             self.sortdirection(-1);
             self.pauseNotifications = false;
         },
-        ManageDirection: function(type) {
+        ManageDirection: function (type) {
             self.ManageSort.ManageType(type);
             self.sortdirection(self.sortdirection() * -1);
         },
-        Change: function(type) {
+        DragDrop: function () {
+            self.sorttype = 1;
+            self.sortdirection(1);
+        },
+        Change: function (type) {
             if (type === 0) {
-                self.IsSorting(!self.IsSorting());
+                self.ManageSort.IsSorting(!self.ManageSort.IsSorting());
             };
             if (!self.IsSorting() && (type !== 0)) {
-                self.ManageSort.ManageDirection(type);
+                self.ManageSort.ManageSort.ManageDirection(type);
                 self.ReorderList.ReorderAfterSort();
             };
         }
@@ -165,6 +170,9 @@ HearAboutUsViewModel = function(data) {
     self.filteredItems = function() {
         self.direction = ko.unwrap(self.sortdirection);
         self.filter = ko.unwrap(self.searchvalue).toLowerCase();
+        if (self.IsDragDrop()) {
+            return null;
+        };
         switch (self.sorttype) {
         case 1:
             return self.SortDisplayOrder.Manage();
@@ -353,29 +361,32 @@ HearAboutUsViewModel = function(data) {
                     );
                 }
             },
-            RefreshHtml: function() {
+            RefreshHtml: function () {
+                self.IsDragDrop(true);
+                self.ManageSort.DragDrop();
                 self.IsDisplayOrderChanged(true);
                 self.IsDisplayOrderChanged(false);
                 self.makelistsortable();
+                self.IsDragDrop(false);
             },
-            ManageSort: function() {
+            ManageSort: function () {
                 if (self.ReorderList.displayreorder().length === 0) {
                     return;
-                }
+                };
                 self.ReorderList.Reorder.Save();
                 self.ReorderList.displayreorder([]);
             },
-            ManageDragDrop: function() {
+            ManageDragDrop: function () {
                 if (self.ReorderList.displayreorder().length === 0) {
                     return;
-                }
+                };
                 self.ReorderList.Reorder.Save();
                 self.ReorderList.Reorder.ManageList();
                 self.ReorderList.Reorder.RefreshHtml();
                 self.ReorderList.displayreorder([]);
             }
         },
-        Capture: function(recordid, value) {
+        Capture: function (recordid, value) {
             self.ReorderList.displayreorder.push(
             {
                 Id: recordid,
