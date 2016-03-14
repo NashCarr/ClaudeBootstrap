@@ -490,7 +490,7 @@ PlaceViewModel = function(data) {
 
             self.PersonPrimaryPhone.Set();
             self.PersonPhoneView.Primary();
-            self.PersonAddressView.Deafult();
+            self.PersonAddressView.Default();
         },
         Phones: function() {
             self.IsPhoneDetailVisible(true);

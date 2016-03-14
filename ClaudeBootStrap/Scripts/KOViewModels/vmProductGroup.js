@@ -79,7 +79,7 @@
             if (type === 0) {
                 self.ManageSort.IsSorting(!self.ManageSort.IsSorting());
             };
-            if (!self.IsSorting() && (type !== 0)) {
+            if (!self.ManageSort.IsSorting() && (type !== 0)) {
                 self.ManageSort.ManageSort.ManageDirection(type);
                 self.ReorderList.ReorderAfterSort();
             };
