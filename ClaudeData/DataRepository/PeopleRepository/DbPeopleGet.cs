@@ -48,7 +48,7 @@ namespace ClaudeData.DataRepository.PeopleRepository
                                     PersonId = Convert.ToInt32(dr[ordPersonId]),
                                     PlaceId = Convert.ToInt32(dr[ordPlaceId]),
                                     Email = Convert.ToString(dr[ordEmail]),
-                                    PersonType = (PersonType) IdValue,
+                                    PersonType = (PersonType) IdValue
                                 };
                                 data.Add(item);
                             }

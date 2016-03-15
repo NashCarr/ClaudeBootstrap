@@ -6,12 +6,12 @@ using static ClaudeCommon.Enums.CountryEnums;
 
 namespace ClaudeData.DataRepository.AddressRepository
 {
-    public class DbPostalCodeLookup: DbGetBase
+    public class DbPostalCodeLookup : DbGetBase
     {
         public List<PostalCodeLookup> GetLookup()
         {
             SetConnectToDatabase("[Address].[usp_PostalCode_Lookup]");
- 
+
             return LoadRecords();
         }
 
@@ -46,7 +46,7 @@ namespace ClaudeData.DataRepository.AddressRepository
                                     Text = Convert.ToString(dr[ordText]),
                                     Value = Convert.ToString(dr[ordValue]),
                                     Country = (Country) Convert.ToInt16(dr[ordCountry]),
-                                    StateProvinceId = Convert.ToInt32(dr[ordStateProvinceId]),
+                                    StateProvinceId = Convert.ToInt32(dr[ordStateProvinceId])
                                 };
                                 data.Add(item);
                             }
