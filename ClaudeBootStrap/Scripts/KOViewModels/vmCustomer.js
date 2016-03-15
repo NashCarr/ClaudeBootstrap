@@ -1985,12 +1985,12 @@ PlaceViewModel = function(data) {
             return ko.utils.arrayFilter(self.listitems(), function(item) {
                 return ko.unwrap(item.Name).toLowerCase().indexOf(self.filter) !== -1;
             }).sort(function(l, r) {
-                return (l.Country() > r.Country()) ^ (self.direction === -1);
+                return (self.direction * (l.Country().toString().localeCompare(r.Country().toString())));
             });
         },
         Unfiltered: function() {
             return self.listitems().sort(function(l, r) {
-                return (l.Country() > r.Country()) ^ (self.direction === -1);
+                return (self.direction * (l.Country().toString().localeCompare(r.Country().toString())));
             });
         },
         Manage: function() {
