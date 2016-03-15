@@ -91,12 +91,12 @@ GiftCardViewModel = function(data) {
             return ko.utils.arrayFilter(self.listitems(), function(item) {
                 return ko.unwrap(item.Name).toLowerCase().indexOf(self.filter) !== -1;
             }).sort(function(l, r) {
-                return (l.StringCreateDate().toLowerCase() > r.StringCreateDate().toLowerCase()) ^ (self.direction === -1);
+                return (self.direction * (l.StringCreateDate().toLowerCase().localeCompare(r.StringCreateDate().toLowerCase())));
             });
         },
         Unfiltered: function() {
             return self.listitems().sort(function(l, r) {
-                return (l.StringCreateDate().toLowerCase() > r.StringCreateDate().toLowerCase()) ^ (self.direction === -1);
+                return (self.direction * (l.StringCreateDate().toLowerCase().localeCompare(r.StringCreateDate().toLowerCase())));
             });
         },
         Manage: function() {
@@ -111,12 +111,12 @@ GiftCardViewModel = function(data) {
             return ko.utils.arrayFilter(self.listitems(), function(item) {
                 return ko.unwrap(item.Name).toLowerCase().indexOf(self.filter) !== -1;
             }).sort(function(l, r) {
-                return (parseInt(l.DisplayOrder()) > parseInt(r.DisplayOrder())) ^ (self.direction === -1);
+                return (self.direction * (parseInt(l.DisplayOrder()).localeCompare(parseInt(r.DisplayOrder()))));
             });
         },
         Unfiltered: function() {
             return self.listitems().sort(function(l, r) {
-                return (parseInt(l.DisplayOrder()) > parseInt(r.DisplayOrder())) ^ (self.direction === -1);
+                return (self.direction * (parseInt(l.DisplayOrder()).localeCompare(parseInt(r.DisplayOrder()))));
             });
         },
         Manage: function() {
@@ -127,19 +127,19 @@ GiftCardViewModel = function(data) {
     };
 
     self.SortName = {
-        Filtered: function() {
-            return ko.utils.arrayFilter(self.listitems(), function(item) {
+        Filtered: function () {
+            return ko.utils.arrayFilter(self.listitems(), function (item) {
                 return ko.unwrap(item.Name).toLowerCase().indexOf(self.filter) !== -1;
-            }).sort(function(l, r) {
-                return (l.Name().toLowerCase() > r.Name().toLowerCase()) ^ (self.direction === -1);
+            }).sort(function (l, r) {
+                return (self.direction * (l.Name().toLowerCase().localeCompare(r.Name().toLowerCase())));
             });
         },
-        Unfiltered: function() {
-            return self.listitems().sort(function(l, r) {
-                return (l.Name().toLowerCase() > r.Name().toLowerCase()) ^ (self.direction === -1);
+        Unfiltered: function () {
+            return self.listitems().sort(function (l, r) {
+                return (self.direction * (l.Name().toLowerCase().localeCompare(r.Name().toLowerCase())));
             });
         },
-        Manage: function() {
+        Manage: function () {
             return (self.filter.length === 0)
                 ? self.SortName.Unfiltered(self.sortdirection())
                 : self.SortName.Filtered(self.sortdirection());

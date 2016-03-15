@@ -106,20 +106,40 @@
         }
     };
 
-    self.SortCreateDate = {
-        Filtered: function() {
-            return ko.utils.arrayFilter(self.listitems(), function(item) {
+    self.SortIsSystem = {
+        Filtered: function () {
+            return ko.utils.arrayFilter(self.listitems(), function (item) {
                 return ko.unwrap(item.Name).toLowerCase().indexOf(self.filter) !== -1;
-            }).sort(function(l, r) {
-                return (l.StringCreateDate().toLowerCase() > r.StringCreateDate().toLowerCase()) ^ (self.direction === -1);
+            }).sort(function (l, r) {
+                return (self.direction * (l.IsSystem().localeCompare(r.IsSystem())));
             });
         },
-        Unfiltered: function() {
-            return self.listitems().sort(function(l, r) {
-                return (l.StringCreateDate().toLowerCase() > r.StringCreateDate().toLowerCase()) ^ (self.direction === -1);
+        Unfiltered: function () {
+            return self.listitems().sort(function (l, r) {
+                return (self.direction * (l.IsSystem().localeCompare(r.IsSystem())));
             });
         },
-        Manage: function() {
+        Manage: function () {
+            return (self.filter.length === 0)
+                ? self.SortIsSystem.Unfiltered(self.sortdirection())
+                : self.SortIsSystem.Filtered(self.sortdirection());
+        }
+    };
+
+    self.SortCreateDate = {
+        Filtered: function () {
+            return ko.utils.arrayFilter(self.listitems(), function (item) {
+                return ko.unwrap(item.Name).toLowerCase().indexOf(self.filter) !== -1;
+            }).sort(function (l, r) {
+                return (self.direction * (l.StringCreateDate().toLowerCase().localeCompare(r.StringCreateDate().toLowerCase())));
+            });
+        },
+        Unfiltered: function () {
+            return self.listitems().sort(function (l, r) {
+                return (self.direction * (l.StringCreateDate().toLowerCase().localeCompare(r.StringCreateDate().toLowerCase())));
+            });
+        },
+        Manage: function () {
             return (self.filter.length === 0)
                 ? self.SortCreateDate.Unfiltered(self.sortdirection())
                 : self.SortCreateDate.Filtered(self.sortdirection());
@@ -127,19 +147,19 @@
     };
 
     self.SortDisplayOrder = {
-        Filtered: function() {
-            return ko.utils.arrayFilter(self.listitems(), function(item) {
+        Filtered: function () {
+            return ko.utils.arrayFilter(self.listitems(), function (item) {
                 return ko.unwrap(item.Name).toLowerCase().indexOf(self.filter) !== -1;
-            }).sort(function(l, r) {
-                return (parseInt(l.DisplayOrder()) > parseInt(r.DisplayOrder())) ^ (self.direction === -1);
+            }).sort(function (l, r) {
+                return (self.direction * (parseInt(l.DisplayOrder()).localeCompare(parseInt(r.DisplayOrder()))));
             });
         },
-        Unfiltered: function() {
-            return self.listitems().sort(function(l, r) {
-                return (parseInt(l.DisplayOrder()) > parseInt(r.DisplayOrder())) ^ (self.direction === -1);
+        Unfiltered: function () {
+            return self.listitems().sort(function (l, r) {
+                return (self.direction * (parseInt(l.DisplayOrder()).localeCompare(parseInt(r.DisplayOrder()))));
             });
         },
-        Manage: function() {
+        Manage: function () {
             return (self.filter.length === 0)
                 ? self.SortDisplayOrder.Unfiltered()
                 : self.SortDisplayOrder.Filtered();
@@ -147,19 +167,19 @@
     };
 
     self.SortName = {
-        Filtered: function() {
-            return ko.utils.arrayFilter(self.listitems(), function(item) {
+        Filtered: function () {
+            return ko.utils.arrayFilter(self.listitems(), function (item) {
                 return ko.unwrap(item.Name).toLowerCase().indexOf(self.filter) !== -1;
-            }).sort(function(l, r) {
-                return (l.Name().toLowerCase() > r.Name().toLowerCase()) ^ (self.direction === -1);
+            }).sort(function (l, r) {
+                return (self.direction * (l.Name().toLowerCase().localeCompare(r.Name().toLowerCase())));
             });
         },
-        Unfiltered: function() {
-            return self.listitems().sort(function(l, r) {
-                return (l.Name().toLowerCase() > r.Name().toLowerCase()) ^ (self.direction === -1);
+        Unfiltered: function () {
+            return self.listitems().sort(function (l, r) {
+                return (self.direction * (l.Name().toLowerCase().localeCompare(r.Name().toLowerCase())));
             });
         },
-        Manage: function() {
+        Manage: function () {
             return (self.filter.length === 0)
                 ? self.SortName.Unfiltered(self.sortdirection())
                 : self.SortName.Filtered(self.sortdirection());
