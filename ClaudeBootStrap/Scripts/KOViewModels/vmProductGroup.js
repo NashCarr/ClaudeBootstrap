@@ -146,26 +146,6 @@
         }
     };
 
-    self.SortDisplayOrder = {
-        Filtered: function () {
-            return ko.utils.arrayFilter(self.listitems(), function (item) {
-                return ko.unwrap(item.Name).toLowerCase().indexOf(self.filter) !== -1;
-            }).sort(function (l, r) {
-                return (self.direction * (parseInt(l.DisplayOrder()).localeCompare(parseInt(r.DisplayOrder()))));
-            });
-        },
-        Unfiltered: function () {
-            return self.listitems().sort(function (l, r) {
-                return (self.direction * (parseInt(l.DisplayOrder()).localeCompare(parseInt(r.DisplayOrder()))));
-            });
-        },
-        Manage: function () {
-            return (self.filter.length === 0)
-                ? self.SortDisplayOrder.Unfiltered()
-                : self.SortDisplayOrder.Filtered();
-        }
-    };
-
     self.SortName = {
         Filtered: function () {
             return ko.utils.arrayFilter(self.listitems(), function (item) {
@@ -186,7 +166,27 @@
         }
     };
 
-    self.filteredItems = function() {
+    self.SortDisplayOrder = {
+        Filtered: function () {
+            return ko.utils.arrayFilter(self.listitems(), function (item) {
+                return ko.unwrap(item.Name).toLowerCase().indexOf(self.filter) !== -1;
+            }).sort(function (l, r) {
+                return (l.DisplayOrder() > r.DisplayOrder()) ^ (self.direction === -1);
+            });
+        },
+        Unfiltered: function () {
+            return self.listitems().sort(function (l, r) {
+                return (l.DisplayOrder() > r.DisplayOrder()) ^ (self.direction === -1);
+            });
+        },
+        Manage: function () {
+            return (self.filter.length === 0)
+                ? self.SortDisplayOrder.Unfiltered()
+                : self.SortDisplayOrder.Filtered();
+        }
+    };
+
+    self.filteredItems = function () {
         self.direction = ko.unwrap(self.sortdirection);
         self.filter = ko.unwrap(self.searchvalue).toLowerCase();
         if (self.IsDragDrop()) {

@@ -2038,12 +2038,12 @@ PlaceViewModel = function(data) {
             return ko.utils.arrayFilter(self.listitems(), function (item) {
                 return ko.unwrap(item.Name).toLowerCase().indexOf(self.filter) !== -1;
             }).sort(function (l, r) {
-                return (self.direction * (parseInt(l.Country()).localeCompare(parseInt(r.Country()))));
+                return (l.Country() > r.Country()) ^ (self.direction === -1);
             });
         },
         Unfiltered: function () {
             return self.listitems().sort(function (l, r) {
-                return (self.direction * (parseInt(l.Country()).localeCompare(parseInt(r.Country()))));
+                return (l.Country() > r.Country()) ^ (self.direction === -1);
             });
         },
         Manage: function () {
@@ -2138,12 +2138,12 @@ PlaceViewModel = function(data) {
             return ko.utils.arrayFilter(self.listitems(), function (item) {
                 return ko.unwrap(item.Name).toLowerCase().indexOf(self.filter) !== -1;
             }).sort(function (l, r) {
-                return (self.direction * (parseInt(l.DisplayOrder()).localeCompare(parseInt(r.DisplayOrder()))));
+                return (l.DisplayOrder() > r.DisplayOrder()) ^ (self.direction === -1);
             });
         },
         Unfiltered: function () {
             return self.listitems().sort(function (l, r) {
-                return (self.direction * (parseInt(l.DisplayOrder()).localeCompare(parseInt(r.DisplayOrder()))));
+                return (l.DisplayOrder() > r.DisplayOrder()) ^ (self.direction === -1);
             });
         },
         Manage: function () {
