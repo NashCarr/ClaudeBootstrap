@@ -66,6 +66,7 @@ PlaceViewModel = function(data) {
     self.placedivision = ko.observable("");
     self.placedepartment = ko.observable("");
     self.placepostalcode = ko.observable("");
+    self.placedisplaysort = ko.observable("");
     self.placedisplayorder = ko.observable(0);
 
     //person
@@ -1751,6 +1752,7 @@ PlaceViewModel = function(data) {
             self.placedivision("");
             self.placedepartment("");
             self.placedisplayorder(0);
+            self.placeddisplaysort("");
         },
         Set: function() {
             self.placeid(ko.unwrap(self.itemdata.PlaceId));
@@ -1985,12 +1987,12 @@ PlaceViewModel = function(data) {
             return ko.utils.arrayFilter(self.listitems(), function(item) {
                 return ko.unwrap(item.Name).toLowerCase().indexOf(self.filter) !== -1;
             }).sort(function(l, r) {
-                return (self.direction * (l.Country().toString().localeCompare(r.Country().toString())));
+                return (self.direction * (l.CountryName().toLowerCase().localeCompare(r.CountryName().toLowerCase())));
             });
         },
         Unfiltered: function() {
             return self.listitems().sort(function(l, r) {
-                return (self.direction * (l.Country().toString().localeCompare(r.Country().toString())));
+                return (self.direction * (l.CountryName().toLowerCase().localeCompare(r.CountryName().toLowerCase())));
             });
         },
         Manage: function() {
@@ -2085,12 +2087,12 @@ PlaceViewModel = function(data) {
             return ko.utils.arrayFilter(self.listitems(), function (item) {
                 return ko.unwrap(item.Name).toLowerCase().indexOf(self.filter) !== -1;
             }).sort(function (l, r) {
-                return (l.DisplayOrder() > r.DisplayOrder()) ^ (self.direction === -1);
+                return (self.direction * (l.DisplaySort().toLowerCase().localeCompare(r.DisplaySort().toLowerCase())));
             });
         },
         Unfiltered: function () {
             return self.listitems().sort(function (l, r) {
-                return (l.DisplayOrder() > r.DisplayOrder()) ^ (self.direction === -1);
+                return (self.direction * (l.DisplaySort().toLowerCase().localeCompare(r.DisplaySort().toLowerCase())));
             });
         },
         Manage: function () {
@@ -2101,6 +2103,12 @@ PlaceViewModel = function(data) {
     };
 
     self.filteredItems = function () {
+        if (typeof self.listitems === "undefined") {
+            return null;
+        };
+        if (self.listitems().length === 0) {
+            return null;
+        };
         self.direction = ko.unwrap(self.sortdirection);
         self.filter = ko.unwrap(self.searchvalue).toLowerCase();
         if (self.IsDragDrop()) {
@@ -2346,13 +2354,23 @@ PlaceViewModel = function(data) {
                     contentType: "application/json; charset=utf-8"
                 });
             },
-            EditList: function(placeid, value) {
+            DisplaySortValue: function (value) {
+                if (value < 10) {
+                    return "00" + value;
+                };
+                if (value < 100) {
+                    return "0" + value;
+                };
+                return value.toString();
+            },
+            EditList: function (placeid, value) {
                 var match = ko.utils.arrayFirst(self.listitems(), function(item) {
                     return parseInt(item.PlaceId()) === placeid;
                 });
                 if (match) {
                     self.pauseNotifications = true;
                     match.DisplayOrder(value);
+                    match.DisplaySort(self.ReorderList.Reorder.DisplaySortValue(value));
                     self.pauseNotifications = false;
                 };
             },

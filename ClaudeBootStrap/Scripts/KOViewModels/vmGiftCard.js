@@ -26,6 +26,7 @@ GiftCardViewModel = function(data) {
     //listvalues
     self.name = ko.observable("");
     self.recordid = ko.observable(0);
+    self.displaysort = ko.observable("");
     self.displayorder = ko.observable(0);
     self.stringcreatedate = ko.observable("");
 
@@ -131,12 +132,12 @@ GiftCardViewModel = function(data) {
             return ko.utils.arrayFilter(self.listitems(), function (item) {
                 return ko.unwrap(item.Name).toLowerCase().indexOf(self.filter) !== -1;
             }).sort(function (l, r) {
-                return (l.DisplayOrder() > r.DisplayOrder()) ^ (self.direction === -1);
+                return (self.direction * (l.DisplaySort().toLowerCase().localeCompare(r.DisplaySort().toLowerCase())));
             });
         },
         Unfiltered: function () {
             return self.listitems().sort(function (l, r) {
-                return (l.DisplayOrder() > r.DisplayOrder()) ^ (self.direction === -1);
+                return (self.direction * (l.DisplaySort().toLowerCase().localeCompare(r.DisplaySort().toLowerCase())));
             });
         },
         Manage: function () {
@@ -168,6 +169,7 @@ GiftCardViewModel = function(data) {
         self.name("");
         self.errmsg("");
         self.recordid(0);
+        self.displaysort("");
         self.displayorder(0);
 
         self.IsEdit(false);
@@ -196,11 +198,24 @@ GiftCardViewModel = function(data) {
     };
 
     self.add = function() {
+        if (self.searchvalue().length === 0) {
+            self.addscreen();
+            return;
+        };
+        self.quickadd();
+    };
+
+    self.addscreen = function () {
         self.clearandtoggle();
         self.name(self.searchvalue());
     };
 
-    self.cancel = function() {
+    self.quickadd = function () {
+        self.name(self.searchvalue());
+        self.save();
+    };
+
+    self.cancel = function () {
         self.clearandtoggle();
     };
 
@@ -213,6 +228,7 @@ GiftCardViewModel = function(data) {
             return {
                 Name: ko.observable(self.name()),
                 RecordId: ko.observable(self.recordid()),
+                DisplaySort: ko.observable(self.displaysort()),
                 DisplayOrder: ko.observable(self.displayorder()),
                 StringCreateDate: ko.observable(self.stringcreatedate())
             };
@@ -220,6 +236,7 @@ GiftCardViewModel = function(data) {
         Clear: function() {
             self.name("");
             self.recordid(0);
+            self.displaysort("");
             self.displayorder(0);
         }
     };
@@ -262,7 +279,9 @@ GiftCardViewModel = function(data) {
                 return;
             };
             self.ProcessSave.Manage();
-            self.clearandtoggle();
+            if (self.IsAddEditAreaVisible()) {
+                self.clearandtoggle();
+            };
         });
     };
 
@@ -307,7 +326,7 @@ GiftCardViewModel = function(data) {
     self.ReorderList = {
         displayreorder: ko.observableArray(),
         Reorder: {
-            Save: function() {
+            Save: function () {
                 $.ajax({
                     type: "post",
                     url: baseUrl + "DisplayOrder",
@@ -316,13 +335,23 @@ GiftCardViewModel = function(data) {
                     contentType: "application/json; charset=utf-8"
                 });
             },
-            EditList: function(recordid, value) {
+            DisplaySortValue: function (value) {
+                if (value < 10) {
+                    return "00" + value;
+                };
+                if (value < 100) {
+                    return "0" + value;
+                };
+                return value;
+            },
+            EditList: function (recordid, value) {
                 var match = ko.utils.arrayFirst(self.listitems(), function(item) {
                     return parseInt(item.RecordId()) === recordid;
                 });
                 if (match) {
                     self.pauseNotifications = true;
                     match.DisplayOrder(value);
+                    match.DisplaySort(self.ReorderList.Reorder.DisplaySortValue(value));
                     self.pauseNotifications = false;
                 };
             },

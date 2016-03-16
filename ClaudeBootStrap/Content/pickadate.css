@@ -46,8 +46,6 @@
     -ms-transform: translateY(-1em)perspective(600px)rotateX(10deg);
     -o-transform: translateY(-1em)perspective(600px)rotateX(10deg);
     transform: translateY(-1em)perspective(600px)rotateX(10deg);
-    -moz-transition: -webkit-transform .15s ease-out,opacity .15s ease-out,max-height 0 .15s,border-width 0 .15s;
-    -o-transition: -webkit-transform .15s ease-out,opacity .15s ease-out,max-height 0 .15s,border-width 0 .15s;
     -webkit-transition: -webkit-transform .15s ease-out,opacity .15s ease-out,max-height 0 .15s,border-width 0 .15s;
     -moz-transition: -webkit-transform .15s ease-out,opacity .15s ease-out,max-height 0 .15s,border-width 0 .15s;
     -o-transition: -webkit-transform .15s ease-out,opacity .15s ease-out,max-height 0 .15s,border-width 0 .15s;

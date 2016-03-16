@@ -8,7 +8,11 @@ namespace ClaudeBootstrap
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                "~/Scripts/jquery-{version}.js"));
+                "~/Scripts/jquery-{version}.js",
+                "~/Scripts/foundation.min.js",
+                "~/Scripts/picker.js",
+                "~/Scripts/picker.date.js",
+                "~/Scripts/app.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                 "~/Scripts/jquery.validate*"));
@@ -23,8 +27,11 @@ namespace ClaudeBootstrap
                 "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                "~/Content/bootstrap.css",
-                "~/Content/site.css"));
+                "~/Content/glyphicons.css",
+                "~/Content/pickadate.css",
+                "~/Content/pickadate.classic.css",
+                "~/Content/style.css",
+                "~/Content/Site.css"));
         }
     }
 }

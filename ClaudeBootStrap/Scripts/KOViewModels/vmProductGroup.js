@@ -26,6 +26,7 @@
     self.name = ko.observable("");
     self.recordid = ko.observable(0);
     self.issystem = ko.observable(false);
+    self.displaysort = ko.observable("");
     self.displayorder = ko.observable(0);
     self.stringcreatedate = ko.observable("");
 
@@ -171,12 +172,12 @@
             return ko.utils.arrayFilter(self.listitems(), function (item) {
                 return ko.unwrap(item.Name).toLowerCase().indexOf(self.filter) !== -1;
             }).sort(function (l, r) {
-                return (l.DisplayOrder() > r.DisplayOrder()) ^ (self.direction === -1);
+                return (self.direction * (l.DisplaySort().toLowerCase().localeCompare(r.DisplaySort().toLowerCase())));
             });
         },
         Unfiltered: function () {
             return self.listitems().sort(function (l, r) {
-                return (l.DisplayOrder() > r.DisplayOrder()) ^ (self.direction === -1);
+                return (self.direction * (l.DisplaySort().toLowerCase().localeCompare(r.DisplaySort().toLowerCase())));
             });
         },
         Manage: function () {
@@ -210,6 +211,7 @@
         self.name("");
         self.errmsg("");
         self.recordid(0);
+        self.displaysort("");
         self.displayorder(0);
         self.issystem(false);
 
@@ -239,12 +241,25 @@
         self.toggleview();
     };
 
-    self.add = function() {
+    self.add = function () {
+        if (self.searchvalue().length === 0) {
+            self.addscreen();
+            return;
+        };
+        self.quickadd();
+    };
+
+    self.addscreen = function () {
         self.clearandtoggle();
         self.name(self.searchvalue());
     };
 
-    self.cancel = function() {
+    self.quickadd = function () {
+        self.name(self.searchvalue());
+        self.save();
+    };
+
+    self.cancel = function () {
         self.clearandtoggle();
     };
 
@@ -258,6 +273,7 @@
                 Name: ko.observable(self.name()),
                 RecordId: ko.observable(self.recordid()),
                 IsSystem: ko.observable(self.issystem()),
+                DisplaySort: ko.observable(self.displaysort()),
                 DisplayOrder: ko.observable(self.displayorder()),
                 StringCreateDate: ko.observable(self.stringcreatedate())
             };
@@ -266,6 +282,7 @@
             self.name("");
             self.recordid(0);
             self.issystem(false);
+            self.displaysort("");
             self.displayorder(0);
         }
     };
@@ -296,19 +313,21 @@
         }
     };
 
-    self.save = function() {
+    self.save = function () {
         $.ajax({
             url: baseUrl + "Save",
             type: "post",
-            data: self.ProductGroup.Build()
-        }).then(function(returndata) {
+            data: self.GiftCard.Build()
+        }).then(function (returndata) {
 
             self.handlereturndata(returndata);
             if (self.IsMessageAreaVisible()) {
                 return;
-            }
+            };
             self.ProcessSave.Manage();
-            self.clearandtoggle();
+            if (self.IsAddEditAreaVisible()) {
+                self.clearandtoggle();
+            };
         });
     };
 
@@ -350,7 +369,6 @@
         }).disableSelection();
     };
 
-
     self.ReorderList = {
         displayreorder: ko.observableArray(),
         Reorder: {
@@ -363,17 +381,27 @@
                     contentType: "application/json; charset=utf-8"
                 });
             },
-            EditList: function(recordid, value) {
-                var match = ko.utils.arrayFirst(self.listitems(), function(item) {
+            DisplaySortValue: function (value) {
+                if (value < 10) {
+                    return "00" + value;
+                };
+                if (value < 100) {
+                    return "0" + value;
+                };
+                return value;
+            },
+            EditList: function (recordid, value) {
+                var match = ko.utils.arrayFirst(self.listitems(), function (item) {
                     return parseInt(item.RecordId()) === recordid;
                 });
                 if (match) {
                     self.pauseNotifications = true;
                     match.DisplayOrder(value);
+                    match.DisplaySort(self.ReorderList.Reorder.DisplaySortValue(value));
                     self.pauseNotifications = false;
-                }
+                };
             },
-            ManageList: function() {
+            ManageList: function () {
                 for (var i = 0; i < self.ReorderList.displayreorder().length; i++) {
                     self.ReorderList.Reorder.EditList(
                         ko.unwrap(self.ReorderList.displayreorder()[i].Id),

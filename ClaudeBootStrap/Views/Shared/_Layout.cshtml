@@ -1,40 +1,99 @@
 ﻿<!DOCTYPE html>
 
-<html>
+<html class="no-js" lang="en">
 <head>
     <meta charset="utf-8"/>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>@ViewBag.Title</title>
+    <meta name="description" content="Monochromatic Dashboard User Interface Style Guide">
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- CSS -->
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-    <meta name="description" content="The description of my page"/>
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:700,600,600italic,400,400italic,300" rel="stylesheet" type="text/css">
+
+    @*@Scripts.Render("~/bundles/modernizr")*@
 </head>
+
 <body>
-<div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            @Html.ActionLink("Claude's Tests", "Index", "Home", new {area = ""}, new {@class = "navbar-brand"})
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                <li>@Html.ActionLink("Gift Card", "Index", "GiftCard")</li>
-            </ul>
+
+    <div class="top-bar">
+        <div class="row">
+            <div class="top-bar-left">
+                <ul class="menu">
+                    <li class="title-label">
+                        <a class="title-label" href="../Home/">Claude Tests</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="top-bar-right">
+                <ul class="menu">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Gift Card", "Index", "GiftCard")</li>
+                </ul>
+            </div>
         </div>
     </div>
-</div>
-<div class="container body-content">
-    @RenderBody()
-</div>
+    <aside class="vertical-menu left">
+        <ul class="nav">
+            <li>
+                <a href=""><span class="glyphicons glyphicons-dashboard"></span> Research Dashboard</a>
+            </li>
+            <li class="parent active">
+                <a href=""><span class="glyphicons glyphicons-group"></span> Assessors</a>
+                <ul class="visible">
+                    <li>
+                        <a href="">Reports &amp; Statistics</a>
+                    </li>
+                    <li>
+                        <a href="">Assessor Lookup</a>
+                    </li>
+                    <li>
+                        <a href="">Deduplicate</a>
+                    </li>
+                    <li>
+                        <a href="">Process New Reg &amp; Referrals</a>
+                    </li>
+                    <li>
+                        <a href="">Points Processing</a>
+                    </li>
+                    <li>
+                        <a href="">Bad Email/Disengaged</a>
+                    </li>
+                    <li>
+                        <a href="">Trained Panels</a>
+                    </li>
+                    <li>
+                        <a href="">Fundraising</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href=""><span class="glyphicons glyphicons-folder-open"></span> Archives</a>
+            </li>
+            <li class="parent">
+                <a href=""><span class="glyphicons glyphicons-settings"></span> Settings</a>
+            </li>
+            <li>
+                <a href=""><span class="glyphicons glyphicons-chat"></span> Messages</a>
+            </li>
+            <li>
+                <a href=""><span class="glyphicons glyphicons-question-sign"></span> Help</a>
+            </li>
+        </ul>
+    </aside>
 
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/bootstrap")
-@RenderSection("scripts", false)
+    <div class="main-content">
+        @RenderBody()
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/modernizr")
+    @*@Scripts.Render("~/bundles/bootstrap")*@
+    @RenderSection("scripts", false)
+
 </body>
+
 </html>

@@ -1,23 +1,23 @@
 ﻿<!-- BEGIN GRID AREA -->
-<div class="table-responsive" id="itemslist">
-    <table class="table table-condensed table-bordered table-striped table-hover" id="datatable">
+<div class="table-row small-12 columns" id="itemslist">
+    <table class="tabled" id="datatable">
 
-        <thead>
+        <thead class="light">
             <tr>
-                <th class="pdsa-action-button-area" data-bind="click: ManageSort.Change(0)">Edit</th>
+                <th class="pdsa-action-button-area" data-bind="click: ManageSort.Change(0), disable: IsListAreaVisible">Edit</th>
                 <th data-bind="click: ManageSort.Change(1)" style="display: none">RecordId</th>
                 <th data-bind="click: ManageSort.Change(1)" style="display: none">Order</th>
                 <th data-bind="click: ManageSort.Change(2)">Product Group</th>
                 <th class="listcentered" data-bind="click: ManageSort.Change(3)">Create date</th>
                 <th class="listcentered" data-bind="click: ManageSort.Change(4)">IsSystem</th>
-                <th class="pdsa-action-button-area" data-bind="click: ManageSort.Change(0)">Delete</th>
+                <th class="pdsa-action-button-area" data-bind="click: ManageSort.Change(0), disable: IsListAreaVisible">Delete</th>
             </tr>
         </thead>
         <tbody data-bind="foreach: filteredItems()" id="items">
             <tr id="itemrow">
                 <td class="listcentered" id="edit">
-                    <a class="btn btn-default btn-sm" data-bind="click: $parent.edit" href="#" type="button">
-                        <i class="glyphicon glyphicon-edit"></i>
+                    <a class="button small blue-2" data-bind="click: $parent.edit" href="#">
+                        Select
                     </a>
                 </td>
                 <td class="listcentered" data-bind="text: RecordId" id="recordid" style="display: none"></td>
@@ -28,8 +28,8 @@
                     <input data-bind="checked: IsSystem" disabled name="issystem" type="checkbox">
                 </td>
                 <td class="listcentered" id="delete">
-                    <a class="btn btn-default btn-sm" data-bind="click: $parent.RemoveItem.Validate.bind($data)" href="#" type="button">
-                        <i class="glyphicon glyphicon-trash"></i>
+                    <a class="button small blue-2" data-bind="click: $parent.RemoveItem.Validate.bind($data)" href="#" type="button">
+                        Delete
                     </a>
                 </td>
             </tr>

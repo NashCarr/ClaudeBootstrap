@@ -1,23 +1,18 @@
-﻿<!-- ** BEGIN SEARCH AREA ** -->
-<div class="panel panel-primary">
-    <div class="panel-heading">
-        <h1 class="panel-title">Search for Items in List</h1>
-    </div>
-    <div class="panel-body">
-        <div class="form-group">
-            @Html.Label("Search", "Enter Search Value")
-            @Html.TextBox("Value", "", new {@class = "form-control", data_bind = "value:searchvalue, valueUpdate: 'keyup'"})
-        </div>
-    </div>
-    <div class="panel-footer">
-        <a class="btn btn-sm btn-primary" type="button"
-           data-bind="click: reset" href="#">
-            <i class="glyphicon glyphicon-share-alt"></i>Reset
-        </a>
-        <a class="btn btn-sm btn-primary" type="button"
-           data-bind="click: add" href="#">
-            <i class="glyphicon glyphicon-plus"></i>Add
-        </a>
-    </div>
+﻿ <!-- ** BEGIN SEARCH AREA ** -->
+<div class="table-row small-12 columns">
+    <ul class="menu">
+        <li class="form-group">
+            @Html.Label("Search", "Enter Search or Add Value")
+            @Html.TextBox("Value", "", new { @class = "form-control", data_bind = "value:searchvalue, valueUpdate: 'keyup'" })
+        </li>
+    </ul>
+    <ul class="menu action">
+        <li>
+            <a data-bind="click: reset" href="">Reset</a>
+        </li>
+        <li>
+            <a data-bind="click: add" href="">Add</a>
+        </li>
+    </ul>
 </div>
 <!-- ** END SEARCH AREA ** -->

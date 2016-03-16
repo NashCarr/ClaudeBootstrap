@@ -382,7 +382,6 @@
     <Content Include="Content\style.scss" />
     <None Include=".bin\node.cmd" />
     <None Include=".bin\npm.cmd" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\foundation.min.js" />
     <Content Include="Scripts\jquery-2.2.1.js" />
     <Content Include="Scripts\jquery-2.2.1.min.js" />
@@ -403,7 +402,7 @@
     <Content Include="Scripts\KoViewModels\vmProductGroup.js" />
     <Content Include="Scripts\KoViewModels\vmHearAboutUs.js" />
     <Content Include="Scripts\KoViewModels\vmGiftCard.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\picker.date.js" />
     <Content Include="Scripts\picker.js" />
     <Content Include="Scripts\r.js" />
@@ -421,7 +420,6 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\ProductGroup\Index.cshtml" />

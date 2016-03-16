@@ -16,6 +16,7 @@ namespace ClaudeCommon.Models
             Department = string.Empty;
             CountryName = string.Empty;
             PlaceType = PlaceType.None;
+            DisplaySort = string.Empty;
             TimeZone = ClaudeTimeZone.None;
         }
 
@@ -25,6 +26,7 @@ namespace ClaudeCommon.Models
         public string Division { get; set; }
         public string Department { get; set; }
         public string CountryName { get; set; }
+        public string DisplaySort { get; set; }
         public short DisplayOrder { get; set; }
         public string TimeZoneName { get; set; }
         public PlaceType PlaceType { get; set; }

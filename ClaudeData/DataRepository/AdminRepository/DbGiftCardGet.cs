@@ -46,7 +46,7 @@ namespace ClaudeData.DataRepository.AdminRepository
                                     StringCreateDate =
                                         Convert.ToDateTime(dr[ordCreateDate]).ToString("MM/dd/yyyy hh:mm:ss tt")
                                 };
-
+                                item.DisplaySort = item.DisplayOrder.ToString("D3");
                                 data.Add(item);
                             }
                         }

@@ -1,31 +1,18 @@
-﻿<!-- ** BEGIN DETAIL AREA ** -->
-<div class="panel panel-primary">
-    <div class="panel-heading">
-        <h1 class="panel-title">Add or Edit Item</h1>
-    </div>
-    <div class="panel-body">
-        <!-- ** BEGIN INPUT AREA -->
-
-        <div class="form-group">
+﻿<!-- ** BEGIN Add Edit Name AREA ** -->
+<div class="table-row small-12 columns">
+    <ul class="menu">
+        <li class="form-group">
             @Html.Label("Item", "Enter or Edit Item")
-            @Html.TextBox("Name", "", new {@class = "form-control", data_bind = "value:name"})
-        </div>
-
-        <!-- ** END INPUT AREA -->
-    </div>
-    <div class="panel-footer">
-        <div class="row">
-            <div class="col-sm-12">
-                <a class="btn btn-sm btn-primary" type="button"
-                   data-bind="click: save" href="#">
-                    <i class="glyphicon glyphicon-floppy-disk"></i>Save
-                </a>
-                <a class="btn btn-sm btn-primary" type="button"
-                   data-bind="click: cancel" href="#">
-                    <i class="glyphicon glyphicon-remove-circle"></i>Cancel
-                </a>
-            </div>
-        </div>
-    </div>
+            @Html.TextBox("Name", "", new { @class = "form-control", data_bind = "value:name" })
+        </li>
+    </ul>
+    <ul class="menu action">
+        <li>
+            <a data-bind="click: save" href="">Save</a>
+        </li>
+        <li>
+            <a data-bind="click: cancel" href="">Cancel</a>
+        </li>
+    </ul>
 </div>
-<!-- ** END DETAIL AREA ** -->
+<!-- ** END Add Edit Name AREA ** -->

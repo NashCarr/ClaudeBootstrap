@@ -1,12 +1,18 @@
 ﻿<!-- ** BEGIN MESSAGE AREA -->
-<div class="panel panel-primary">
-    <div class="panel-heading">
-        <h1 class="panel-title">Message</h1>
-    </div>
-    <div class="panel-body alert alert-danger">
-        <div class="col-xs-10">
-            <span data-bind="text: returnmessage"></span>
-        </div>
-    </div>
+<div class="table-row small-12 columns error" id="message">
+    <table class="tabled" id="messagetable">
+        <thead class="error">
+            <tr>
+                <th>Message</th>
+            </tr>
+        </thead>
+        <tbody class="error">
+            <tr class="form-group">
+                <td class="col-xs-10">
+                    <span data-bind="text: returnmessage"></span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 <!-- ** END MESSAGE AREA -->
