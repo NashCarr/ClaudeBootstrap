@@ -1746,7 +1746,7 @@ PlaceViewModel = function(data) {
             self.placedivision("");
             self.placedepartment("");
             self.placedisplayorder(0);
-            self.placeddisplaysort("");
+            self.placedisplaysort("");
         },
         Set: function() {
             self.placeid(ko.unwrap(self.itemdata.PlaceId));

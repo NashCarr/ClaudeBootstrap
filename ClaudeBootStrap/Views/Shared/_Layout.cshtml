@@ -12,87 +12,85 @@
 
     <!-- CSS -->
     @Styles.Render("~/Content/css")
-
-    @*@Scripts.Render("~/bundles/modernizr")*@
+    @Scripts.Render("~/bundles/modernizr")
 </head>
 
 <body>
 
-    <div class="top-bar">
-        <div class="row">
-            <div class="top-bar-left">
-                <ul class="menu">
-                    <li class="title-label">
-                        <a class="title-label" href="../Home/">Claude Tests</a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="top-bar-right">
-                <ul class="menu">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Gift Card", "Index", "GiftCard")</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <aside class="vertical-menu left">
-        <ul class="nav">
+<div class="top-bar">
+    <div class="top-bar-title">
+        <ul class="menu">
             <li>
-                <a href=""><span class="glyphicons glyphicons-dashboard"></span> Research Dashboard</a>
-            </li>
-            <li class="parent active">
-                <a href=""><span class="glyphicons glyphicons-group"></span> Assessors</a>
-                <ul class="visible">
-                    <li>
-                        <a href="">Reports &amp; Statistics</a>
-                    </li>
-                    <li>
-                        <a href="">Assessor Lookup</a>
-                    </li>
-                    <li>
-                        <a href="">Deduplicate</a>
-                    </li>
-                    <li>
-                        <a href="">Process New Reg &amp; Referrals</a>
-                    </li>
-                    <li>
-                        <a href="">Points Processing</a>
-                    </li>
-                    <li>
-                        <a href="">Bad Email/Disengaged</a>
-                    </li>
-                    <li>
-                        <a href="">Trained Panels</a>
-                    </li>
-                    <li>
-                        <a href="">Fundraising</a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a href=""><span class="glyphicons glyphicons-folder-open"></span> Archives</a>
-            </li>
-            <li class="parent">
-                <a href=""><span class="glyphicons glyphicons-settings"></span> Settings</a>
-            </li>
-            <li>
-                <a href=""><span class="glyphicons glyphicons-chat"></span> Messages</a>
-            </li>
-            <li>
-                <a href=""><span class="glyphicons glyphicons-question-sign"></span> Help</a>
+                <a class="small-text-label columns" href="../Home/">Claude Tests</a>
             </li>
         </ul>
-    </aside>
-
-    <div class="main-content">
-        @RenderBody()
     </div>
+    <div class="top-bar-right">
+        <ul class="menu">
+            <li>
+                <a class="small-text-label columns" href="../Home/">Home</a>
+            </li>
+            <li>
+                <a class="small-text-label columns" href="../GiftCard/">Gift Card</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<aside class="vertical-menu left">
+    <ul class="nav">
+        <li>
+            <a href=""><span class="glyphicons glyphicons-dashboard"></span> Research Dashboard</a>
+        </li>
+        <li class="parent active">
+            <a href=""><span class="glyphicons glyphicons-group"></span> Assessors</a>
+            <ul class="visible">
+                <li>
+                    <a href="">Reports &amp; Statistics</a>
+                </li>
+                <li>
+                    <a href="">Assessor Lookup</a>
+                </li>
+                <li>
+                    <a href="">Deduplicate</a>
+                </li>
+                <li>
+                    <a href="">Process New Reg &amp; Referrals</a>
+                </li>
+                <li>
+                    <a href="">Points Processing</a>
+                </li>
+                <li>
+                    <a href="">Bad Email/Disengaged</a>
+                </li>
+                <li>
+                    <a href="">Trained Panels</a>
+                </li>
+                <li>
+                    <a href="">Fundraising</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href=""><span class="glyphicons glyphicons-folder-open"></span> Archives</a>
+        </li>
+        <li class="parent">
+            <a href=""><span class="glyphicons glyphicons-settings"></span> Settings</a>
+        </li>
+        <li>
+            <a href=""><span class="glyphicons glyphicons-chat"></span> Messages</a>
+        </li>
+        <li>
+            <a href=""><span class="glyphicons glyphicons-question-sign"></span> Help</a>
+        </li>
+    </ul>
+</aside>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/modernizr")
-    @*@Scripts.Render("~/bundles/bootstrap")*@
-    @RenderSection("scripts", false)
+<div class="main-content">
+    @RenderBody()
+</div>
+
+@Scripts.Render("~/bundles/jquery")
+@RenderSection("scripts", false)
 
 </body>
 

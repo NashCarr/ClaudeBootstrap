@@ -213,6 +213,7 @@
     <Content Include="img\avatar-large.svg" />
     <Content Include="img\avatar-small.svg" />
     <Content Include="img\error.svg" />
+    <Content Include="img\logo.svg" />
     <Content Include="img\search.svg" />
     <Content Include="img\select.svg" />
     <Content Include="img\success.svg" />
@@ -461,6 +462,7 @@
     <Content Include="Views\Shared\Person\Phones\Phones.cshtml" />
     <Content Include="Views\Shared\Person\Phones\WorkPhone.cshtml" />
     <Content Include="Views\Shared\Person\ContactDetail.cshtml" />
+    <Content Include="Views\Shared\Place\PlaceDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ClaudeCommon\ClaudeCommon.csproj">

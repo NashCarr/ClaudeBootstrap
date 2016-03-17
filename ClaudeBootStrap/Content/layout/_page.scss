@@ -1,3 +1,48 @@
 .dashboard-panel {
   margin-bottom: 2rem;
 }
+
+aside.left {
+  display: block;
+  float: left;
+  height: 100%;
+  width: 20%;
+  position: relative;
+
+  @include mq(s) {
+    position: absolute;
+    left: -500px;
+    width: 100%;
+    z-index: 1000;
+  }
+
+  &::after {
+    @include linear-gradient(to right, rgba($black, 0), rgba($black, 0.1));
+    content: '';
+    display: table;
+    width: rem(5);
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+
+    @include mq(s) {
+      display: none;
+    }
+  }
+}
+
+.main-content {
+  float: left;
+  height: 100%;
+  width: 80%;
+
+  @include mq(m) {
+    overflow-y: scroll;
+  }
+
+  @include mq(s) {
+    width: 100%;
+  }
+}

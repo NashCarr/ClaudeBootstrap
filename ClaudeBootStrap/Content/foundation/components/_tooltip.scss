@@ -47,7 +47,7 @@ $tooltip-pip-offset: 1.25rem !default;
 $tooltip-radius: $global-radius !default;
 
 @mixin has-tip {
-  border-bottom: $has-tip-border-bottom;
+  // border-bottom: $has-tip-border-bottom;
   font-weight: $has-tip-font-weight;
   position: relative;
   display: inline-block;

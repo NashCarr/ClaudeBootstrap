@@ -7,19 +7,24 @@
 
 @using (Html.BeginForm())
 {
-    <div data-bind="visible: IsSearchAreaVisible">
-        @{ Html.RenderPartial("Search"); }
-    </div>
-    <div data-bind="visible: IsMessageAreaVisible">
-        @{ Html.RenderPartial("Message"); }
-    </div>
-    <div data-bind="visible: IsAddEditAreaVisible">
-        @{ Html.RenderPartial("Place/AddEdit"); }
-    </div>
-    <div data-bind="visible: IsListAreaVisible">
-        <!--ko if: DragDropComplete-->
-        @{ Html.RenderPartial("Place/List"); }
-        <!--/ko-->
+    <div class="table-descriptor small-12 columns">
+        <p>
+            <span>Facilities</span>
+        </p>
+        <div data-bind="visible: IsSearchAreaVisible">
+            @{ Html.RenderPartial("Search"); }
+        </div>
+        <div data-bind="visible: IsMessageAreaVisible">
+            @{ Html.RenderPartial("Message"); }
+        </div>
+        <div data-bind="visible: IsAddEditAreaVisible">
+            @{ Html.RenderPartial("Place/AddEdit"); }
+        </div>
+        <div data-bind="visible: IsListAreaVisible">
+            <!--ko if: DragDropComplete-->
+            @{ Html.RenderPartial("Place/List"); }
+            <!--/ko-->
+        </div>
     </div>
 }
 

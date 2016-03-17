@@ -7,21 +7,26 @@
 
 @using (Html.BeginForm())
 {
-    <div data-bind="visible: IsSearchAreaVisible">
-        @{ Html.RenderPartial("Search"); }
+    <div class="table-descriptor small-12 columns">
+        <p>
+            <span>Product Groups</span>
+        </p>
+        <div data-bind="visible: IsSearchAreaVisible">
+            @{ Html.RenderPartial("Search"); }
+        </div>
+        <div data-bind="visible: IsMessageAreaVisible">
+            @{ Html.RenderPartial("Message"); }
+        </div>
+        <div data-bind="visible: IsAddEditAreaVisible">
+            @{ Html.RenderPartial("AddEditName"); }
+        </div>
+        <div data-bind="visible: IsListAreaVisible">
+            <!--ko if: DragDropComplete-->
+            @{ Html.RenderPartial("List"); }
+            <!--/ko-->
+        </div>
     </div>
-    <div data-bind="visible: IsMessageAreaVisible">
-        @{ Html.RenderPartial("Message"); }
-    </div>
-    <div data-bind="visible: IsAddEditAreaVisible">
-        @{ Html.RenderPartial("AddEditName"); }
-    </div>
-    <div data-bind="visible: IsListAreaVisible">
-        <!--ko if: DragDropComplete-->
-        @{ Html.RenderPartial("List"); }
-        <!--/ko-->
-    </div>
-            }
+}
 
 @{ string data = new JavaScriptSerializer().Serialize(Model); }
 

@@ -1,29 +1,33 @@
 ﻿<!-- ** BEGIN Place Info AREA -->
-<div class="panel panel-default" id="Place">
-    <div class="panel-heading">
-        @Html.Label("placeheader", new { data_bind = "text: placeHeader" })
-    </div>
-    <div class="panel-body">
-        <div class="form-group" id="Name">
-            @Html.Label("Name", "Name")
-            @Html.TextBox("Name", "", new { @class = "form-control", data_bind = "value: placename" })
-        </div>
-        <div class="form-group" id="Division">
-            @Html.Label("Division", "Division")
-            @Html.TextBox("Division", "", new { @class = "form-control", data_bind = "value: placedivision" })
-        </div>
-        <div class="form-group" id="Department">
-            @Html.Label("Department", "Department")
-            @Html.TextBox("Department", "", new { @class = "form-control", data_bind = "value: placedepartment" })
-        </div>
-        <div class="form-group" id="TimeZone">
-            @Html.Label("TimeZone", "TimeZone")
-            <select class="form-control" data-bind="value: placetimezone, options: timezones, optionsText: 'Text', optionsValue: 'Value', optionsCaption: 'Choose...'"></select>
-        </div>
-        <div class="form-group">
-            @Html.Label("Country", "Country")
-            <select class="form-control" data-bind="value: placecountry, options: countries, optionsText: 'Text', optionsValue: 'Value', event: { change: DefaultPlaceCountry.Set }, optionsCaption: 'Choose...'"></select>
+<div class="callout" id="Place">
+    <div class="top-bar">
+        <div class="top-bar-title">
+            <ul class="menu">
+                <li>
+                    @Html.Label("placeheader", new {data_bind = "text: placeHeader"})
+                </li>
+            </ul>
         </div>
     </div>
+    <p id="Name">
+        @Html.Label("Name", "Name")
+        @Html.TextBox("Name", "", new {@class = "form-control", data_bind = "value: placename"})
+    </p>
+    <p id="Division">
+        @Html.Label("Division", "Division")
+        @Html.TextBox("Division", "", new {@class = "form-control", data_bind = "value: placedivision"})
+    </p>
+    <p id="Department">
+        @Html.Label("Department", "Department")
+        @Html.TextBox("Department", "", new {@class = "form-control", data_bind = "value: placedepartment"})
+    </p>
+    <p id="TimeZone">
+        @Html.Label("TimeZone", "TimeZone")
+        <select class="form-control" data-bind="value: placetimezone, options: timezones, optionsText: 'Text', optionsValue: 'Value', optionsCaption: 'Choose...'"></select>
+    </p>
+    <p id="Country">
+        @Html.Label("Country", "Country")
+        <select class="form-control" data-bind="value: placecountry, options: countries, optionsText: 'Text', optionsValue: 'Value', event: { change: DefaultPlaceCountry.Set }, optionsCaption: 'Choose...'"></select>
+    </p>
 </div>
 <!-- ** END Place Info AREA -->

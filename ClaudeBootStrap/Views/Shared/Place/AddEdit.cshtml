@@ -1,65 +1,27 @@
 ﻿<!-- ** BEGIN DETAIL AREA ** -->
-<div class="row">
-    <div class="top-bar">
+<div class="top-bar">
+    <div class="top-bar-title">
         <ul class="menu">
-            <li class="title-label">
-                <a class="title-label">Add or Edit Place</a>
+            <li>
+                <span class="small-text-label columns">Add or Edit Place</span>
             </li>
         </ul>
     </div>
-
-    <div class="row">
-        <!-- ** BEGIN INPUT AREA -->
-        <div class="small-3 columns end">
-            @{ Html.RenderPartial("Place/Place"); }
-        </div>
-
-        <div class="small-9 columns end">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    @Html.Label("detailheader", new {data_bind = "text: detailHeader"})
-                    <a class="btn btn-sm btn-secondary pull-right" data-bind="click: DetailView.Primary" href="#" type="button">
-                        List
-                    </a>
-                    <a class="btn btn-sm btn-secondary pull-right" data-bind="click: DetailView.Phones" href="#" type="button">
-                        Phones
-                    </a>
-                    <a class="btn btn-sm btn-secondary pull-right" data-bind="click: DetailView.Addresses" href="#" type="button">
-                        Addresses
-                    </a>
-                    <a class="btn btn-sm btn-secondary pull-right" data-bind="click: DetailView.Contacts" href="#" type="button">
-                        Contacts
-                    </a>
-                </div>
-                <div class="panel-body">
-
-                    <div data-bind="visible: IsPrimaryDetailVisible()">
-                        @{ Html.RenderPartial("Primary/PlacePrimary"); }
-                    </div>
-                    <div data-bind="visible: IsPhoneDetailVisible()">
-                        @{ Html.RenderPartial("Place/Phones/Phones"); }
-                    </div>
-                    <div data-bind="visible: IsPlaceAddressDetailVisible()">
-                        @{ Html.RenderPartial("Place/Addresses/Addresses"); }
-                    </div>
-                    <div data-bind="visible: IsContactDetailVisible()">
-                        @{ Html.RenderPartial("Person/Contacts"); }
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <!-- ** END INPUT AREA -->
-    </div>
-    <div class="top-bar">
+    <div class="top-bar-right">
         <ul class="menu">
-            <li class="title-label">
-                <a class="info label" data-bind="click: SavePlaceData.Save" href="">Save</a>
+            <li>
+                <a class="small-text-label columns" data-bind="click: SavePlaceData.Save" href="">Save</a>
             </li>
-            <li class="title-label">
-                <a class="info label" data-bind="click: cancel" href="">Cancel</a>
+            <li>
+                <a class="small-text-label columns" data-bind="click: cancel" href="">Cancel</a>
             </li>
         </ul>
     </div>
+</div>
+<div class="small-3 columns end">
+    @{ Html.RenderPartial("Place/Place"); }
+</div>
+<div class="small-9 columns end">
+    @{ Html.RenderPartial("Place/PlaceDetail"); }
 </div>
 <!-- ** END DETAIL AREA ** -->
