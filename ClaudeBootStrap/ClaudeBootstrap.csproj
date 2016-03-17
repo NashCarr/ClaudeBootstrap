@@ -163,10 +163,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bourbon-neat\readme.txt" />
     <Content Include="Content\glyphicons.css" />
     <Content Include="Content\pickadate.classic.css" />
@@ -206,7 +203,6 @@
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -218,15 +214,6 @@
     <Content Include="img\select.svg" />
     <Content Include="img\success.svg" />
     <Content Include="Scripts\app.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap-theme.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bourbon\_bourbon.scss" />
     <Content Include="Content\bourbon\_bourbon-deprecated-upcoming.scss" />
     <Content Include="Content\bourbon\LICENSE" />
@@ -300,7 +287,6 @@
     <Content Include="Content\bourbon-neat\functions\_new-breakpoint.scss" />
     <None Include=".bin\git.cmd" />
     <None Include=".bin\grunt.cmd" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-regular.eot" />
     <Content Include="fonts\glyphicons-regular.ttf" />
     <Content Include="fonts\glyphicons-regular.woff" />
@@ -408,7 +394,6 @@
     <Content Include="Scripts\picker.js" />
     <Content Include="Scripts\r.js" />
     <Content Include="Scripts\require.js" />
-    <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\text.js" />
     <Content Include="Scripts\_references.js" />
