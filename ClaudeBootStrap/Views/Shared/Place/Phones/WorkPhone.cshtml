@@ -1,24 +1,30 @@
 ﻿<!-- ** BEGIN Work Phone AREA -->
-<div class="row">
-    <div class="col-sm-4">
-        <div class="form-group">
-            @Html.Label("WorkPhoneNumber", "Work Number")
-            @Html.Label("PrimaryWork", "Is Primary", new {@class = "form-control, pull-right"})
-            <input class="pull-right" data-bind="checked: PlacePrimaryPhone.workisprimary, event: { change: PlacePrimaryPhone.Work }" name="WorkIsPrimary" type="checkbox">
-            @Html.TextBox("Work", "", new {@class = "form-control", data_bind = "value:placeworkphonenumber"})
+<form>
+    <div class="row">
+        <div class="small-3 columns">
+            <label>
+                Work Number
+                @Html.TextBox("WorkNumber", "", new { @class = "form-control", data_bind = "value:placeworkphonenumber" })
+            </label>
+        </div>
+        <div class="small-3 columns">
+            <label>
+                Extension
+                @Html.TextBox("WorkExtension", "", new { @class = "form-control", data_bind = "value:placeworkextension" })
+            </label>
+        </div>
+        <div class="small-3 columns">
+            <label>
+                Country
+                <select class="form-control" data-bind="value: placeworkcountry, options: countries, optionsText: 'Text', optionsValue: 'Value', optionsCaption: 'Choose...'"></select>
+            </label>
+        </div>
+        <div class="small-3 columns">
+            <label class="center">
+                Is Primary<br/>
+                <input data_bind="checked: PlacePrimaryPhone.workisprimary, event: { change: PlacePrimaryPhone.Work }" type="checkbox">
+            </label>
         </div>
     </div>
-    <div class="col-sm-4">
-        <div class="form-group">
-            @Html.Label("WorkExtension", "Extension")
-            @Html.TextBox("WorkExtension", "", new {@class = "form-control", data_bind = "value:placeworkextension"})
-        </div>
-    </div>
-    <div class="col-sm-4">
-        <div class="form-group">
-            @Html.Label("WorkCountry", "Country")
-            <select class="form-control" data-bind="value: placeworkcountry, options: countries, optionsText: 'Text', optionsValue: 'Value', optionsCaption: 'Choose...'"></select>
-        </div>
-    </div>
-</div>
+</form>
 <!-- ** END Work Phone AREA -->

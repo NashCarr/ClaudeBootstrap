@@ -1,16 +1,18 @@
 ﻿<!-- ** BEGIN Fax Phone AREA -->
-<div class="row">
-    <div class="col-sm-4">
-        <div class="form-group">
-            @Html.Label("FaxPhone", "Fax Number")
-            @Html.TextBox("Fax", "", new {@class = "form-control", data_bind = "value:personfaxphonenumber"})
+<form>
+    <div class="row">
+        <div class="small-4 columns">
+            <label>
+                Fax Number
+                @Html.TextBox("FaxNumber", "", new { @class = "form-control", data_bind = "value:personfaxphonenumber" })
+            </label>
+        </div>
+        <div class="small-4 columns end">
+            <label>
+                Country
+                <select class="form-control" data-bind="value: personfaxcountry, options: countries, optionsText: 'Text', optionsValue: 'Value', optionsCaption: 'Choose...'"></select>
+            </label>
         </div>
     </div>
-    <div class="col-sm-4">
-        <div class="form-group">
-            @Html.Label("FaxCountry", "Country")
-            <select class="form-control" data-bind="value: personfaxcountry, options: countries, optionsText: 'Text', optionsValue: 'Value', optionsCaption: 'Choose...'"></select>
-        </div>
-    </div>
-</div>
+</form>
 <!-- ** END Fax Phone AREA -->

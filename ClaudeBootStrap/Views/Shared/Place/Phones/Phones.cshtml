@@ -1,24 +1,34 @@
 ﻿<!-- ** BEGIN Phones AREA -->
-<div class="panel panel-default" id="Phones">
-    <div class="panel-heading">
-        @Html.Label("phonesheader", new {data_bind = "text: phoneHeader"})
-        <a class="btn btn-sm btn-secondary pull-right" data-bind="click: PlacePhoneView.Primary" href="#" type="button">
-            Primary
-        </a>
-        <a class="btn btn-sm btn-secondary pull-right" data-bind="click: PlacePhoneView.Fax" href="#" type="button">
-            Fax
-        </a>
-        <a class="btn btn-sm btn-secondary pull-right" data-bind="click: PlacePhoneView.Work" href="#" type="button">
-            Work
-        </a>
-        <a class="btn btn-sm btn-secondary pull-right" data-bind="click: PlacePhoneView.Cell" href="#" type="button">
-            Cell
-        </a>
-        <a class="btn btn-sm btn-secondary pull-right" data-bind="click: PlacePhoneView.Home" href="#" type="button">
-            Home
-        </a>
+<div class="callout" id="PlacePhones">
+    <div class="top-bar">
+        <div class="top-bar-title">
+            <ul class="menu">
+                <li>
+                    @Html.Label("phonesheader", new { data_bind = "text: phoneHeader" })
+                </li>
+            </ul>
+        </div>
+        <div class="top-bar-right">
+            <ul class="menu">
+                <li>
+                    <a class="small-text-label columns" data-bind="click: PlacePhoneView.Home" href="">Home</a>
+                </li>
+                <li>
+                    <a class="small-text-label columns" data-bind="click: PlacePhoneView.Cell" href="">Cell</a>
+                </li>
+                <li>
+                    <a class="small-text-label columns" data-bind="click: PlacePhoneView.Work" href="">Work</a>
+                </li>
+                <li>
+                    <a class="small-text-label columns" data-bind="click: PlacePhoneView.Fax" href="">Fax</a>
+                </li>
+                <li>
+                    <a class="small-text-label columns" data-bind="click: PlacePhoneView.Primary" href="">Primary</a>
+                </li>
+            </ul>
+        </div>
     </div>
-    <div class="panel-body">
+    <div>
         <div data-bind="visible: IsPlaceHomePhoneVisible">
             @{ Html.RenderPartial("Place/Phones/HomePhone"); }
         </div>

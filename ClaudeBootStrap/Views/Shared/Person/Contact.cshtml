@@ -1,60 +1,67 @@
 ﻿<!-- ** BEGIN Edit Contact AREA -->
-<div class="panel panel-default" id="Contacts">
-    <div class="panel-heading">
-        Contact
-        <a class="btn btn-sm btn-secondary pull-right" data-bind="click: Person.Cancel" href="#" type="button">
-            Cancel
-        </a>
-        <a class="btn btn-sm btn-secondary pull-right" data-bind="click: SavePerson.ManageSave" href="#" type="button">
-            Save
-        </a>
+<div class="callout" id="Contact">
+    <div class="top-bar">
+        <div class="top-bar-title">
+            <ul class="menu">
+                <li>
+                    @Html.Label("Contact", "Contact")
+                </li>
+            </ul>
+        </div>
+        <div class="top-bar-right">
+            <ul class="menu">
+                <li>
+                    <a class="small-text-label columns" data-bind="click: Person.Cancel" href="">Cancel</a>
+                </li>
+                <li>
+                    <a class="small-text-label columns" data-bind="click: SavePerson.ManageSave" href="">Save</a>
+                </li>
+            </ul>
+        </div>
     </div>
-    <div class="panel-body">
-        <div class="row">
-            <div class="col-sm-3">
-                <div class="form-group">
-                    @Html.Label("FirstName", "First")
-                    @Html.TextBox("First", "", new {@class = "form-control", data_bind = "value:personfirst"})
-                </div>
-            </div>
-            <div class="col-sm-2">
-                <div class="form-group">
-                    @Html.Label("MiddleName", "Middle")
-                    @Html.TextBox("Middle", "", new {@class = "form-control", data_bind = "value:personmiddle"})
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="form-group">
-                    @Html.Label("LastName", "Last")
-                    @Html.TextBox("Last", "", new {@class = "form-control", data_bind = "value:personlast"})
-                </div>
-            </div>
+    <div class="row">
+        <div class="small-4 columns">
+            <label>
+                First Name
+                @Html.TextBox("First", "", new { @class = "form-control", data_bind = "value:personfirst" })
+            </label>
         </div>
-        <div class="row">
-            <div class="col-sm-5">
-                <div class="form-group">
-                    @Html.Label("Email", "Email")
-                    @Html.TextBox("Email", "", new {@class = "form-control", data_bind = "value:personemail"})
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="form-group">
-                    @Html.Label("WorkCountry", "Country")
-                    <select class="form-control" data-bind="value: personcountry, options: countries, optionsText: 'Text', optionsValue: 'Value', optionsCaption: 'Choose...'"></select>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="form-group" id="TimeZone">
-                    @Html.Label("TimeZone", "TimeZone")
-                    <select class="form-control" data-bind="value: persontimezone, options: timezones, optionsText: 'Text', optionsValue: 'Value', optionsCaption: 'Choose...'"></select>
-                </div>
-            </div>
+        <div class="small-4 columns">
+            <label>
+                Middle Name
+                @Html.TextBox("Middle", "", new { @class = "form-control", data_bind = "value:personmiddle" })
+            </label>
         </div>
-        <div class="panel-group">
-            <div>
-                @{ Html.RenderPartial("Person/ContactDetail"); }
-            </div>
+        <div class="small-4 columns">
+            <label>
+                Last Name
+                @Html.TextBox("Last", "", new { @class = "form-control", data_bind = "value:personlast" })
+            </label>
         </div>
+    </div>
+    <div class="row">
+        <div class="small-4 columns">
+            <label>
+                Email
+                @Html.TextBox("Email", "", new { @class = "form-control", data_bind = "value:personemail" })
+            </label>
+        </div>
+        <div class="small-4 columns">
+            <label>
+                Country
+                <select class="form-control" data-bind="value: personcountry, options: countries, optionsText: 'Text', optionsValue: 'Value', optionsCaption: 'Choose...'"></select>
+            </label>
+        </div>
+        <div class="small-4 columns">
+            <label>
+                Time Zone
+                <select class="form-control" data-bind="value: persontimezone, options: timezones, optionsText: 'Text', optionsValue: 'Value', optionsCaption: 'Choose...'"></select>
+            </label>
+        </div>
+    </div>
+    <div>
+        @{ Html.RenderPartial("Person/ContactDetail"); }
     </div>
 </div>
+
 <!-- ** END Edit Contact AREA -->

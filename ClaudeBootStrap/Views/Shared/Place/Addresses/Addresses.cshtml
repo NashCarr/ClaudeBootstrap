@@ -1,15 +1,25 @@
 ﻿<!-- ** BEGIN Addresses AREA -->
-<div class="panel panel-default" id="Addresses">
-    <div class="panel-heading">
-        Addresses
-        <a class="btn btn-sm btn-secondary pull-right" data-bind="visible: !placeUseMailingforShipping(), click: PlaceAddressView.Shipping" href="#" type="button">
-            Shipping
-        </a>
-        <a class="btn btn-sm btn-secondary pull-right" data-bind="visible: !placeUseMailingforShipping(), click: PlaceAddressView.Mailing" href="#" type="button">
-            Mailing
-        </a>
+<div class="callout" id="PlacePhones">
+    <div class="top-bar">
+        <div class="top-bar-title">
+            <ul class="menu">
+                <li>
+                    @Html.Label("Addresses", "Addresses")
+               </li>
+            </ul>
+        </div>
+        <div class="top-bar-right">
+            <ul class="menu">
+                <li>
+                    <a class="small-text-label columns" data-bind="visible: !placeUseMailingforShipping(), click: PlaceAddressView.Shipping" href="">Shipping</a>
+                </li>
+                <li>
+                    <a class="small-text-label columns" data-bind="visible: !placeUseMailingforShipping(), click: PlaceAddressView.Mailing" href="">Mailing</a>
+                </li>
+            </ul>
+        </div>
     </div>
-    <div class="panel-body">
+    <div>
         <div data-bind="visible: IsPlaceMailingAddressVisible">
             @{ Html.RenderPartial("Place/Addresses/MailingAddress"); }
         </div>

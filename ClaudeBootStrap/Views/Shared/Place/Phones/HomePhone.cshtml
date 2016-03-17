@@ -1,18 +1,24 @@
 ﻿<!-- ** BEGIN Home Phone AREA -->
-<div class="row">
-    <div class="col-sm-4">
-        <div class="form-group">
-            @Html.Label("HomePhoneNumber", "Home Number")
-            @Html.Label("PrimaryHome", "Is Primary", new {@class = "form-control, pull-right"})
-            <input class="pull-right" data-bind="checked: PlacePrimaryPhone.homeisprimary, event: { change: PlacePrimaryPhone.Home }" name="HomeIsPrimary" type="checkbox">
-            @Html.TextBox("Home", "", new {@class = "form-control", data_bind = "value:placehomephonenumber"})
+<form>
+    <div class="row">
+        <div class="small-4 columns">
+            <label>
+                Home Number
+                @Html.TextBox("HomeNumber", "", new { @class = "form-control", data_bind = "value:placehomephonenumber" })
+            </label>
+        </div>
+        <div class="small-4 columns">
+            <label>
+                Country
+                <select class="form-control" data-bind="value: placehomecountry, options: countries, optionsText: 'Text', optionsValue: 'Value', optionsCaption: 'Choose...'"></select>
+            </label>
+        </div>
+        <div class="small-4 columns">
+            <label class="center">
+                Is Primary<br/>
+                <input data_bind="checked: PlacePrimaryPhone.homeisprimary, event: { change: PlacePrimaryPhone.Home }" type="checkbox">
+            </label>
         </div>
     </div>
-    <div class="col-sm-4">
-        <div class="form-group">
-            @Html.Label("HomeCountry", "Country")
-            <select class="form-control" data-bind="value: placehomecountry, options: countries, optionsText: 'Text', optionsValue: 'Value', optionsCaption: 'Choose...'"></select>
-        </div>
-    </div>
-</div>
+</form>
 <!-- ** END Home Phone AREA -->

@@ -1,30 +1,40 @@
 ﻿<!-- BEGIN Contact List AREA -->
-<div class="panel panel-default" id="Contacts">
-    <div class="panel-heading">
-        Contacts
-        <a class="btn btn-sm btn-secondary pull-right" data-bind="click: Person.Add" href="#" type="button">
-            Add
-        </a>
+<div class="callout" id="Contacts">
+    <div class="top-bar">
+        <div class="top-bar-title">
+            <ul class="menu">
+                <li>
+                    @Html.Label("Contacts", "Contacts")
+                </li>
+            </ul>
+        </div>
+        <div class="top-bar-right">
+            <ul class="menu">
+                <li>
+                    <a class="small-text-label columns" data-bind="click: Person.Add" href="">Add</a>
+                </li>
+            </ul>
+        </div>
     </div>
-    <div class="panel-body">
-        <div class="table-responsive" id="contacts">
-            <table class="table table-condensed table-bordered table-striped table-hover" id="datatable">
+    <div class="row">
+        <div class="table-row small-12 columns" id="itemslist">
+            <table class="tabled" id="datatable">
 
-                <thead>
+                <thead class="light">
                 <tr>
-                    <th class="pdsa-action-button-area" data-bind="click: ManageSort.Change(0)">Edit</th>
+                    <th class="pdsa-action-button-area">Edit</th>
                     <th data-bind="click: ManageSort.Change(2)" style="display: none">PersonId</th>
                     <th data-bind="click: ManageSort.Change(2)" style="display: none">PlaceId</th>
                     <th data-bind="click: ManageSort.Change(2)">Name</th>
                     <th data-bind="click: ManageSort.Change(3)">Email</th>
-                    <th class="pdsa-action-button-area" data-bind="click: ManageSort.Change(0)">Delete</th>
+                    <th class="pdsa-action-button-area">Delete</th>
                 </tr>
                 </thead>
                 <tbody data-bind="foreach: personlist()" id="contactlist">
                 <tr id="itemrow">
                     <td class="listcentered" id="edit">
-                        <a class="btn btn-default btn-sm" data-bind="click: $parent.Person.Edit" href="#" type="button">
-                            <i class="glyphicon glyphicon-edit"></i>
+                        <a class="button small blue-2" data-bind="click: $parent.Person.Edit" href="#">
+                            Select
                         </a>
                     </td>
                     <td class="listcentered" data-bind="text: PersonId" id="PersonId" style="display: none"></td>
@@ -32,8 +42,8 @@
                     <td class="ui-priority-secondary" data-bind="text: FullName" id="fullname"></td>
                     <td class="ui-priority-secondary" data-bind="text: Email" id="email"></td>
                     <td class="listcentered" id="delete">
-                        <a class="btn btn-default btn-sm" data-bind="click: $parent.RemovePerson.Validate.bind($data)" href="#" type="button">
-                            <i class="glyphicon glyphicon-trash"></i>
+                        <a class="button small blue-2" data-bind="click: $parent.RemovePerson.Validate.bind($data)" href="#" type="button">
+                            Delete
                         </a>
                     </td>
                 </tr>
