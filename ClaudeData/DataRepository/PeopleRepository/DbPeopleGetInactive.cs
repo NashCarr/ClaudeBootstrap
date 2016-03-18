@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using ClaudeCommon.Models;
 using ClaudeData.Models.People;
 using static ClaudeCommon.Enums.PersonEnums;
 
@@ -8,28 +9,28 @@ namespace ClaudeData.DataRepository.PeopleRepository
 {
     public class DbPeopleGetInactive : DbPeopleGet
     {
-        protected internal List<Person> GetInactiveAssessors()
+        protected internal List<PersonList> GetInactiveAssessors()
         {
             IdValue = (byte) PersonType.Assessor;
             TypeName = Enum.GetName(typeof (PersonType), IdValue);
             return GetInactive();
         }
 
-        protected internal List<Person> GetInactiveCustomerContacts()
+        protected internal List<PersonList> GetInactiveCustomerContacts()
         {
             IdValue = (byte) PersonType.Assessor;
             TypeName = Enum.GetName(typeof (PersonType), IdValue);
             return GetInactive();
         }
 
-        protected internal List<Person> GetInactiveStaffUsers()
+        protected internal List<PersonList> GetInactiveStaffUsers()
         {
             IdValue = (byte) PersonType.Assessor;
             TypeName = Enum.GetName(typeof (PersonType), IdValue);
             return GetInactive();
         }
 
-        private List<Person> GetInactive()
+        private List<PersonList> GetInactive()
         {
             try
             {
@@ -44,7 +45,7 @@ namespace ClaudeData.DataRepository.PeopleRepository
             catch (Exception ex)
             {
                 DocumentErrorMessage(ex.ToString());
-                return new List<Person>();
+                return new List<PersonList>();
             }
         }
     }

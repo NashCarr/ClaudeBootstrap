@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using ClaudeCommon.BaseModels;
 using ClaudeCommon.BaseModels.Returns;
 using ClaudeData.DataRepository.PlaceRepository;
+using ClaudeData.DataRepository.PlacesRepository;
 using ClaudeData.DataRepository.ReorderRepository;
-using ClaudeData.DataRepository.SettingsRepository;
 using ClaudeData.ViewModels.Settings;
 
 namespace ClaudeViewManagement.Managers.Places

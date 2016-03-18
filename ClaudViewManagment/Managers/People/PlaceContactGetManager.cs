@@ -1,5 +1,5 @@
 using System;
-using ClaudeData.DataRepository.SettingsRepository;
+using ClaudeData.DataRepository.PeopleRepository;
 using ClaudeData.ViewModels.Settings;
 
 namespace ClaudeViewManagement.Managers.People

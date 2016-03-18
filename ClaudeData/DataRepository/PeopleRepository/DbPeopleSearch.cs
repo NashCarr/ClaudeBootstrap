@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using ClaudeCommon.Models;
 using ClaudeData.Models.People;
 using static ClaudeCommon.Enums.PersonEnums;
 
@@ -8,28 +9,28 @@ namespace ClaudeData.DataRepository.PeopleRepository
 {
     public class DbPeopleSearch : DbPeopleGet
     {
-        protected internal List<Person> GetAssessors(string first, string last, string email)
+        protected internal List<PersonList> GetAssessors(string first, string last, string email)
         {
             IdValue = (byte) PersonType.Assessor;
             TypeName = Enum.GetName(typeof (PersonType), IdValue);
             return GetRecords(first, last, email);
         }
 
-        protected internal List<Person> GetCustomerContacts(string first, string last, string email)
+        protected internal List<PersonList> GetCustomerContacts(string first, string last, string email)
         {
             IdValue = (byte) PersonType.CustomerContact;
             TypeName = Enum.GetName(typeof (PersonType), IdValue);
             return GetRecords(first, last, email);
         }
 
-        protected internal List<Person> GetStaffUsers(string first, string last, string email)
+        protected internal List<PersonList> GetStaffUsers(string first, string last, string email)
         {
             IdValue = (byte) PersonType.StaffUser;
             TypeName = Enum.GetName(typeof (PersonType), IdValue);
             return GetRecords(first, last, email);
         }
 
-        private List<Person> GetRecords(string first, string last, string email)
+        private List<PersonList> GetRecords(string first, string last, string email)
         {
             try
             {
@@ -47,7 +48,7 @@ namespace ClaudeData.DataRepository.PeopleRepository
             catch (Exception ex)
             {
                 DocumentErrorMessage(ex.ToString());
-                return new List<Person>();
+                return new List<PersonList>();
             }
         }
     }

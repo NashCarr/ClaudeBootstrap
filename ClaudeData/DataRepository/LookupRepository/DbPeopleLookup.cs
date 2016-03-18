@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using ClaudeCommon.Models;
 using ClaudeData.DataRepository.PeopleRepository;
 using ClaudeData.Models.LookupLists;
-using ClaudeData.Models.People;
 using static ClaudeCommon.Enums.PersonEnums;
 
 namespace ClaudeData.DataRepository.LookupRepository
@@ -26,27 +26,27 @@ namespace ClaudeData.DataRepository.LookupRepository
             return (CustomerContactLookupList) GetLookUpList(PersonType.CustomerContact);
         }
 
-        private static List<Person> GetAssessors()
+        private static List<PersonList> GetAssessors()
         {
             using (DbPeopleGetActive db = new DbPeopleGetActive())
             {
-                return db.GetActiveAssessors();
+                return db.GetActive(PersonType.Assessor);
             }
         }
 
-        private static List<Person> GetCustomerContacts()
+        private static List<PersonList> GetCustomerContacts()
         {
             using (DbPeopleGetActive db = new DbPeopleGetActive())
             {
-                return db.GetActiveCustomerContacts();
+                return db.GetActive(PersonType.CustomerContact);
             }
         }
 
-        private static List<Person> GetStaffUsers()
+        private static List<PersonList> GetStaffUsers()
         {
             using (DbPeopleGetActive db = new DbPeopleGetActive())
             {
-                return db.GetActiveStaffUsers();
+                return db.GetActive(PersonType.StaffUser);
             }
         }
 
@@ -55,7 +55,7 @@ namespace ClaudeData.DataRepository.LookupRepository
             PersonLookupList lu = new PersonLookupList();
             lu.LookupList.Add(new SelectListItem {Value = "0", Text = "None"});
 
-            List<Person> data;
+            List<PersonList> data;
 
             switch (personType)
             {
@@ -79,7 +79,7 @@ namespace ClaudeData.DataRepository.LookupRepository
                 return lu;
             }
 
-            foreach (Person t in data)
+            foreach (PersonList t in data)
             {
                 lu.LookupList.Add(new SelectListItem {Value = t.PersonId.ToString(), Text = t.FullName});
             }

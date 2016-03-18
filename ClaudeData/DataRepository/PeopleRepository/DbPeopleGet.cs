@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using ClaudeData.Models.People;
-using static ClaudeCommon.Enums.PersonEnums;
+using ClaudeCommon.Models;
 
 namespace ClaudeData.DataRepository.PeopleRepository
 {
@@ -10,9 +9,9 @@ namespace ClaudeData.DataRepository.PeopleRepository
     {
         protected internal string TypeName;
 
-        protected internal List<Person> GetRecords()
+        protected internal List<PersonList> GetRecords()
         {
-            List<Person> data = new List<Person>();
+            List<PersonList> data = new List<PersonList>();
             try
             {
                 using (ConnSql)
@@ -28,28 +27,26 @@ namespace ClaudeData.DataRepository.PeopleRepository
                             }
 
                             int ordEmail = dr.GetOrdinal("Email");
-                            int ordPlaceId = dr.GetOrdinal("PlaceId");
-                            int ordIsActive = dr.GetOrdinal("IsActive");
                             int ordPersonId = dr.GetOrdinal("PersonId");
                             int ordLastName = dr.GetOrdinal("LastName");
                             int ordFirstName = dr.GetOrdinal("FirstName");
                             int ordMiddleName = dr.GetOrdinal("MiddleName");
-                            int ordCreateDate = dr.GetOrdinal("CreateDate");
+                            int ordPrimaryPhone = dr.GetOrdinal("PrimaryPhone");
+                            int ordDisplayOrder = dr.GetOrdinal("DisplayOrder");
 
                             while (dr.Read())
                             {
-                                Person item = new Person
+                                PersonList item = new PersonList
                                 {
-                                    CreateDate = Convert.ToDateTime(dr[ordCreateDate]),
-                                    MiddleName = Convert.ToString(dr[ordMiddleName]),
-                                    FirstName = Convert.ToString(dr[ordFirstName]),
-                                    IsActive = Convert.ToBoolean(dr[ordIsActive]),
-                                    LastName = Convert.ToString(dr[ordLastName]),
-                                    PersonId = Convert.ToInt32(dr[ordPersonId]),
-                                    PlaceId = Convert.ToInt32(dr[ordPlaceId]),
                                     Email = Convert.ToString(dr[ordEmail]),
-                                    PersonType = (PersonType) IdValue
+                                    PersonId = Convert.ToInt32(dr[ordPersonId]),
+                                    DisplayOrder = Convert.ToInt16(dr[ordDisplayOrder]),
+                                    PrimaryPhone = Convert.ToString(dr[ordPrimaryPhone]),
+                                    FullName =
+                                        ((Convert.ToString(dr[ordFirstName]) + ' ' + Convert.ToString(dr[ordMiddleName]))
+                                            .Trim() + ' ' + Convert.ToString(dr[ordLastName])).Trim()
                                 };
+                                item.DisplaySort = item.DisplayOrder.ToString("D4");
                                 data.Add(item);
                             }
                         }

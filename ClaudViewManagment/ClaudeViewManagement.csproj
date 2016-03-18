@@ -44,8 +44,10 @@
     <Compile Include="Managers\People\PlaceContactGetManager.cs" />
     <Compile Include="Managers\People\PlaceContactDeleteManager.cs" />
     <Compile Include="Managers\People\PlaceContactSaveManager.cs" />
+    <Compile Include="Managers\People\PersonListManager.cs" />
     <Compile Include="Managers\Places\FacilityManager.cs" />
     <Compile Include="Managers\Places\CustomerManager.cs" />
+    <Compile Include="Managers\Places\SiteConfigurationManager.cs" />
     <Compile Include="Managers\Places\PlaceSaveManager.cs" />
     <Compile Include="Managers\Places\PlaceListManager.cs" />
     <Compile Include="Managers\Places\OrganizationManager.cs" />
@@ -56,7 +58,9 @@
     <Compile Include="ViewModels\People\AssessorViewModel.cs" />
     <Compile Include="ViewModels\People\PlaceContactSaveModel.cs" />
     <Compile Include="ViewModels\People\CustomerContactViewModel.cs" />
+    <Compile Include="ViewModels\People\PersonListViewModel.cs" />
     <Compile Include="ViewModels\People\StaffUserViewModel.cs" />
+    <Compile Include="ViewModels\Places\SiteConfigurationViewModel.cs" />
     <Compile Include="ViewModels\Places\PlaceSaveModel.cs" />
     <Compile Include="ViewModels\Places\PlaceListViewModel.cs" />
     <Compile Include="ViewModels\Settings\HearAboutUsViewModel.cs" />

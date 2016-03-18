@@ -55,6 +55,7 @@
     <Compile Include="Models\GiftCard.cs" />
     <Compile Include="Models\HearAboutUs.cs" />
     <Compile Include="Models\Contact.cs" />
+    <Compile Include="Models\PersonList.cs" />
     <Compile Include="Models\PlaceList.cs" />
     <Compile Include="Models\ProductGroup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

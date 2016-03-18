@@ -1,9 +1,9 @@
-﻿using ClaudeData.DataRepository.PlaceRepository;
+﻿using ClaudeCommon.Enums;
+using ClaudeData.DataRepository.PlaceRepository;
 using ClaudeData.Models.Places;
 using ClaudeData.ViewModels.Settings;
-using static ClaudeCommon.Enums.PlaceEnums;
 
-namespace ClaudeData.DataRepository.SettingsRepository
+namespace ClaudeData.DataRepository.PlacesRepository
 {
     public class DbPlaceInfoGet : DbGetBase
     {
@@ -18,7 +18,7 @@ namespace ClaudeData.DataRepository.SettingsRepository
 
             using (DbPlaceDataStub a = new DbPlaceDataStub())
             {
-                _data = a.Prefill(PlaceType.Customer, _data);
+                _data = a.Prefill(PlaceEnums.PlaceType.Customer, _data);
             }
 
             return SetPlaceView();
@@ -33,7 +33,7 @@ namespace ClaudeData.DataRepository.SettingsRepository
 
             using (DbPlaceDataStub a = new DbPlaceDataStub())
             {
-                _data = a.Prefill(PlaceType.Organization, _data);
+                _data = a.Prefill(PlaceEnums.PlaceType.Organization, _data);
             }
 
             return SetPlaceView();
@@ -48,7 +48,7 @@ namespace ClaudeData.DataRepository.SettingsRepository
 
             using (DbPlaceDataStub a = new DbPlaceDataStub())
             {
-                _data = a.Prefill(PlaceType.Facility, _data);
+                _data = a.Prefill(PlaceEnums.PlaceType.Facility, _data);
             }
 
             return SetPlaceView();

@@ -1,13 +1,12 @@
 ﻿using System;
+using ClaudeCommon.Enums;
 using ClaudeData.DataRepository.PersonRepository;
 using ClaudeData.Models.Addresses;
 using ClaudeData.Models.People;
 using ClaudeData.Models.Phones;
 using ClaudeData.ViewModels.Settings;
-using static ClaudeCommon.Enums.AddressEnums;
-using static ClaudeCommon.Enums.PhoneEnums;
 
-namespace ClaudeData.DataRepository.SettingsRepository
+namespace ClaudeData.DataRepository.PeopleRepository
 {
     public class DbAssessorSave : IDisposable
     {
@@ -21,13 +20,13 @@ namespace ClaudeData.DataRepository.SettingsRepository
         {
             string msg;
 
-            data.Phones.FaxPhone.PhoneType = PhoneType.Fax;
-            data.Phones.CellPhone.PhoneType = PhoneType.Cell;
-            data.Phones.HomePhone.PhoneType = PhoneType.Home;
-            data.Phones.WorkPhone.PhoneType = PhoneType.Work;
+            data.Phones.FaxPhone.PhoneType = PhoneEnums.PhoneType.Fax;
+            data.Phones.CellPhone.PhoneType = PhoneEnums.PhoneType.Cell;
+            data.Phones.HomePhone.PhoneType = PhoneEnums.PhoneType.Home;
+            data.Phones.WorkPhone.PhoneType = PhoneEnums.PhoneType.Work;
 
-            data.Addresses.MailingAddress.AddressType = AddressType.Mailing;
-            data.Addresses.ShippingAddress.AddressType = AddressType.Physical;
+            data.Addresses.MailingAddress.AddressType = AddressEnums.AddressType.Mailing;
+            data.Addresses.ShippingAddress.AddressType = AddressEnums.AddressType.Physical;
 
             PersonData p = new PersonData
             {

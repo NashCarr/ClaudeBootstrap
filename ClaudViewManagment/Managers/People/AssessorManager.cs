@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
+using ClaudeData.DataRepository.PeopleRepository;
 using ClaudeData.DataRepository.PersonRepository;
-using ClaudeData.DataRepository.SettingsRepository;
 using ClaudeData.Models.Lists.Settings;
 using ClaudeData.ViewModels.Settings;
 

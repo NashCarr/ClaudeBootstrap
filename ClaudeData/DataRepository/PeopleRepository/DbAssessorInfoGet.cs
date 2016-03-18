@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using ClaudeCommon.Enums;
 using ClaudeData.DataRepository.PersonRepository;
 using ClaudeData.Models.Lists.Settings;
 using ClaudeData.Models.People;
 using ClaudeData.ViewModels.Settings;
-using static ClaudeCommon.Enums.PersonEnums;
 
-namespace ClaudeData.DataRepository.SettingsRepository
+namespace ClaudeData.DataRepository.PeopleRepository
 {
     public class DbAssessorInfoGet : DbGetBase
     {
@@ -37,7 +37,7 @@ namespace ClaudeData.DataRepository.SettingsRepository
 
             using (DbPersonDataStub a = new DbPersonDataStub())
             {
-                p = a.Prefill(PersonType.StaffUser, p);
+                p = a.Prefill(PersonEnums.PersonType.StaffUser, p);
             }
 
             AssessorView m = new AssessorView

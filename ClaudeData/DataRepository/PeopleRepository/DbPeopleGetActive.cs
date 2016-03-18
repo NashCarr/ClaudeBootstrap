@@ -1,41 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using ClaudeData.Models.People;
+using ClaudeCommon.Models;
 using static ClaudeCommon.Enums.PersonEnums;
 
 namespace ClaudeData.DataRepository.PeopleRepository
 {
     public class DbPeopleGetActive : DbPeopleGet
     {
-        protected internal List<Person> GetActiveAssessors()
-        {
-            IdValue = (byte) PersonType.Assessor;
-            TypeName = Enum.GetName(typeof (PersonType), IdValue);
-            return GetActive();
-        }
-
-        protected internal List<Person> GetActiveCustomerContacts()
-        {
-            IdValue = (byte) PersonType.CustomerContact;
-            TypeName = Enum.GetName(typeof (PersonType), IdValue);
-            return GetActive();
-        }
-
-        protected internal List<Person> GetActiveStaffUsers()
-        {
-            IdValue = (byte) PersonType.StaffUser;
-            TypeName = Enum.GetName(typeof (PersonType), IdValue);
-            return GetActive();
-        }
-
-        private List<Person> GetActive()
+        public List<PersonList> GetActive(PersonType pt)
         {
             try
             {
-                IdParameter = "@PersonType";
+                IdValue = (byte)pt;
+                IdParameter = "@PlaceType";
 
-                SetConnectToDatabase("[Admin].[usp_People_GetActive]");
+                SetConnectToDatabase("[ViewModel].[usp_People_List]");
 
                 CmdSql.Parameters.Add(IdParameter, SqlDbType.Int).Value = IdValue;
 
@@ -44,7 +24,7 @@ namespace ClaudeData.DataRepository.PeopleRepository
             catch (Exception ex)
             {
                 DocumentErrorMessage(ex.ToString());
-                return new List<Person>();
+                return new List<PersonList>();
             }
         }
     }

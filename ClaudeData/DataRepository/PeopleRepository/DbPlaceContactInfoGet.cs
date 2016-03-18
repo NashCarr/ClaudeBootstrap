@@ -1,9 +1,9 @@
-﻿using ClaudeData.DataRepository.PersonRepository;
+﻿using ClaudeCommon.Enums;
+using ClaudeData.DataRepository.PersonRepository;
 using ClaudeData.Models.People;
 using ClaudeData.ViewModels.Settings;
-using static ClaudeCommon.Enums.PersonEnums;
 
-namespace ClaudeData.DataRepository.SettingsRepository
+namespace ClaudeData.DataRepository.PeopleRepository
 {
     public class DbPlaceContactInfoGet : DbGetBase
     {
@@ -18,7 +18,7 @@ namespace ClaudeData.DataRepository.SettingsRepository
 
             using (DbPersonDataStub a = new DbPersonDataStub())
             {
-                _data = a.Prefill(PersonType.CustomerContact, _data);
+                _data = a.Prefill(PersonEnums.PersonType.CustomerContact, _data);
             }
 
             return SetPlaceContactView();
@@ -33,7 +33,7 @@ namespace ClaudeData.DataRepository.SettingsRepository
 
             using (DbPersonDataStub a = new DbPersonDataStub())
             {
-                _data = a.Prefill(PersonType.OrganizationContact, _data);
+                _data = a.Prefill(PersonEnums.PersonType.OrganizationContact, _data);
             }
 
             return SetPlaceContactView();
@@ -48,7 +48,7 @@ namespace ClaudeData.DataRepository.SettingsRepository
 
             using (DbPersonDataStub a = new DbPersonDataStub())
             {
-                _data = a.Prefill(PersonType.StaffUser, _data);
+                _data = a.Prefill(PersonEnums.PersonType.StaffUser, _data);
             }
 
             return SetPlaceContactView();
