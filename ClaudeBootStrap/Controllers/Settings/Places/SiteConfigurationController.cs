@@ -10,14 +10,14 @@ using static ClaudeCommon.Enums.PlaceEnums;
 
 namespace ClaudeBootstrap.Controllers.Settings.Places
 {
-    [RoutePrefix("Facility")]
-    public class FacilityController : Controller
+    [RoutePrefix("SiteConfiguration")]
+    public class SiteConfigurationController : Controller
     {
         [Route("")]
         [HttpGet]
         public ActionResult Index()
         {
-            return View(new PlaceListViewModel(PlaceType.Facility));
+            return View(new SiteConfigurationViewModel());
         }
 
         [HttpPost]

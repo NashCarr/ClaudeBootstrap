@@ -1,4 +1,5 @@
 using System;
+using ClaudeData.DataRepository.SettingsRepository;
 using ClaudeData.Models.SiteConfiguration;
 
 namespace ClaudeViewManagement.Managers.Places
@@ -17,11 +18,10 @@ namespace ClaudeViewManagement.Managers.Places
 
         public SiteConfiguration GetSiteConfiguration()
         {
-            //using (DbPlacesGetActive data = new DbPlacesGetActive())
-            //{
-            //    return data.GetActive();
-            //}
-            return null;
+            using (DbSiteConfigurationGet data = new DbSiteConfigurationGet())
+            {
+                return data.GetSiteConfiguration();
+            }
         }
     }
 }

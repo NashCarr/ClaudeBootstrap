@@ -1,7 +1,7 @@
 ﻿
 PlaceViewModel = function(data) {
     var self = this;
-    var baseUrl = "/Facility/";
+    var baseUrl = "/SiteConfiguration/";
 
     self.placeHeader = "Facility";
     self.detailHeader = "Facility Details";
@@ -181,14 +181,14 @@ PlaceViewModel = function(data) {
     self.personlist = ko.observableArray([]);
 
     //list
-    self.listitems = ko.mapping.fromJS(data.ListEntity).extend({ deferred: true });
+    self.listitems = ko.mapping.fromJS(data.Facilities.ListEntity).extend({ deferred: true });
 
     //lookups
-    self.timezones = ko.mapping.fromJS(data.TimeZones).extend({ deferred: true });
-    self.countries = ko.mapping.fromJS(data.Countries).extend({ deferred: true });
-    self.postalcodes = ko.mapping.fromJS(data.PostalCodes).extend({ deferred: true });
-    self.mobilecarriers = ko.mapping.fromJS(data.MobileCarriers).extend({ deferred: true });
-    self.statesprovinces = ko.mapping.fromJS(data.StatesProvinces).extend({ deferred: true });
+    self.timezones = ko.mapping.fromJS(data.Facilities.TimeZones).extend({ deferred: true });
+    self.countries = ko.mapping.fromJS(data.Facilities.Countries).extend({ deferred: true });
+    self.postalcodes = ko.mapping.fromJS(data.Facilities.PostalCodes).extend({ deferred: true });
+    self.mobilecarriers = ko.mapping.fromJS(data.Facilities.MobileCarriers).extend({ deferred: true });
+    self.statesprovinces = ko.mapping.fromJS(data.Facilities.StatesProvinces).extend({ deferred: true });
 
     self.DefaultMailingValues = ko.computed(function() {
         if (self.placemailingpostalcode().length === 0) {

@@ -1,15 +1,15 @@
 ﻿@using System.Web.Script.Serialization
-@model ClaudeViewManagement.ViewModels.Places.PlaceListViewModel
+@model ClaudeViewManagement.ViewModels.Places.SiteConfigurationViewModel
 
 @{
-    ViewBag.Title = "Facility Management";
+    ViewBag.Title = "Site Configuration";
 }
 
 @using (Html.BeginForm())
 {
     <div class="table-descriptor small-12 columns">
         <p>
-            <span>Facilities</span>
+            <span>Site Configuration</span>
         </p>
         <div data-bind="visible: IsSearchAreaVisible">
             @{ Html.RenderPartial("Search"); }
@@ -34,7 +34,7 @@
     <script src="~/Scripts/jquery-ui-1.11.4.min.js"></script>
     <script src="~/Scripts/knockout-3.4.0.js"></script>
     <script src="~/Scripts/knockout.mapping-latest.js"></script>
-    <script src="~/Scripts/KOViewModels/vmFacility.js"></script>
+    <script src="~/Scripts/KOViewModels/vmSiteConfiguration.js"></script>
     <script>
         var rawData = new PlaceViewModel(@Html.Raw(data));
         ko.applyBindings(rawData);

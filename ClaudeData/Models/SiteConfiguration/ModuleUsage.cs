@@ -7,8 +7,8 @@
             ModulesId = 0;
             UseFundRaising = false;
             UseStudyCosting = false;
+            AllowCustomEmail = false;
             UseSensoryStudies = false;
-            AllowCustomerEmail = false;
             UseProjectRequestForms = false;
             UseFacilitiesUtilization = false;
         }
@@ -17,8 +17,8 @@
 
         public bool UseFundRaising { get; set; }
         public bool UseStudyCosting { get; set; }
+        public bool AllowCustomEmail { get; set; }
         public bool UseSensoryStudies { get; set; }
-        public bool AllowCustomerEmail { get; set; }
         public bool UseProjectRequestForms { get; set; }
         public bool UseFacilitiesUtilization { get; set; }
     }

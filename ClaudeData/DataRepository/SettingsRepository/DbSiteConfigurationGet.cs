@@ -1,49 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
-using ClaudeCommon.Enums;
-using ClaudeCommon.Models;
-using ClaudeData.Models.Addresses;
-using ClaudeData.Models.Phones;
-using ClaudeData.Models.Places;
+using ClaudeData.Models.SiteConfiguration;
 
 namespace ClaudeData.DataRepository.SettingsRepository
 {
     public class DbSiteConfigurationGet : DbGetBase
     {
-        protected internal PlaceData GetFacilityData(int placeId)
+        public SiteConfiguration GetSiteConfiguration()
         {
-            return LoadRecords(placeId, PlaceEnums.PlaceType.Facility);
+            return LoadRecords();
         }
 
-        protected internal PlaceData GetCustomerData(int placeId)
+        private SiteConfiguration LoadRecords()
         {
-            return LoadRecords(placeId, PlaceEnums.PlaceType.Customer);
-        }
-
-        protected internal PlaceData GetOrganizationData(int placeId)
-        {
-            return LoadRecords(placeId, PlaceEnums.PlaceType.Organization);
-        }
-
-        private PlaceData LoadRecords(int placeId, PlaceEnums.PlaceType placeType)
-        {
-            PlaceData data = new PlaceData();
+            SiteConfiguration data = new SiteConfiguration();
             try
             {
-                data.Place = new Place();
-                data.Contacts = new List<Contact>();
-                data.PhoneData = new PhoneData {Phones = new List<PhoneAssociation>()};
-                data.AddressData = new AddressData {Addresses = new List<AddressAssociation>()};
-
-                IdValue = placeId;
-                IdParameter = "@PlaceId";
-
-                SetConnectToDatabase("[Admin].[usp_Place_GetPlaceData]");
-
-                CmdSql.Parameters.Add(IdParameter, SqlDbType.Int).Value = IdValue;
-                CmdSql.Parameters.Add("@PlaceType", SqlDbType.TinyInt).Value = placeType;
+                SetConnectToDatabase("[Settings].[usp_SiteConfiguration_GetData]");
 
                 using (ConnSql)
                 {
@@ -57,172 +30,204 @@ namespace ClaudeData.DataRepository.SettingsRepository
                                 return data;
                             }
 
-                            int ordName = dr.GetOrdinal("Name");
-                            int ordPlaceId = dr.GetOrdinal("PlaceId");
-                            int ordDivision = dr.GetOrdinal("Division");
-                            int ordDepartment = dr.GetOrdinal("Department");
+                            //General
 
-                            int ordCountry = dr.GetOrdinal("Country");
-                            int ordIsActive = dr.GetOrdinal("IsActive");
-                            int ordTimeZone = dr.GetOrdinal("TimeZone");
-                            int ordCreateDate = dr.GetOrdinal("CreateDate");
-                            int ordDisplayOrder = dr.GetOrdinal("DisplayOrder");
+                            int ordOneStudy = dr.GetOrdinal("OneStudy");
+                            int ordGeneralId = dr.GetOrdinal("GeneralId");
+                            int ordLimitIrs1099 = dr.GetOrdinal("LimitIRS1099");
+                            int ordIrs1099MaxAmount = dr.GetOrdinal("IRS1099MaxAmount");
+                            int ordNoShowSuspendDays = dr.GetOrdinal("NoShowSuspendDay");
+                            int ordNoShowSuspendCount = dr.GetOrdinal("NoShowSuspendCount");
+                            int ordOneStudyPerHousehold = dr.GetOrdinal("OneStudyPerHousehold");
+                            int ordUsePregnancyQuestion = dr.GetOrdinal("UsePregnancyQuestion");
+                            int ordNewFundOrgStaffEmail = dr.GetOrdinal("NewFundOrgStaffEmail");
+                            int ordPastParticipationDays = dr.GetOrdinal("PastParticipationDays");
+                            int ordUnmarkedClosingStatus = dr.GetOrdinal("UnmarkedClosingStatus");
+                            int ordTrainedPanelStaffEmail = dr.GetOrdinal("TrainedPanelStaffEmail");
+                            int ordClaudeUnmarkedClosingStatus = dr.GetOrdinal("ClaudeUnmarkedClosingStatus");
+                            int ordDaysBetweenEmailsToAssessor = dr.GetOrdinal("DaysBetweenEmailsToAssessor");
 
-                            //Place
                             while (dr.Read())
                             {
-                                data.Place.Name = Convert.ToString(dr[ordName]);
-                                data.Place.PlaceId = Convert.ToInt32(dr[ordPlaceId]);
-                                data.Place.Division = Convert.ToString(dr[ordDivision]);
-                                data.Place.Department = Convert.ToString(dr[ordDepartment]);
-
-                                data.Place.IsActive = Convert.ToBoolean(dr[ordIsActive]);
-                                data.Place.CreateDate = Convert.ToDateTime(dr[ordCreateDate]);
-                                data.Place.DisplayOrder = Convert.ToByte(dr[ordDisplayOrder]);
-                                data.Place.Country = (CountryEnums.Country) Convert.ToInt16(dr[ordCountry]);
-                                data.Place.TimeZone = (TimeZoneEnums.ClaudeTimeZone) Convert.ToByte(dr[ordTimeZone]);
+                                data.General.GeneralId = Convert.ToInt32(dr[ordGeneralId]);
+                                data.General.OneStudy = Convert.ToBoolean(dr[ordOneStudy]);
+                                data.General.LimitIrs1099 = Convert.ToBoolean(dr[ordLimitIrs1099]);
+                                data.General.Irs1099MaxAmount = Convert.ToDecimal(dr[ordIrs1099MaxAmount]);
+                                data.General.NoShowSuspendDays = Convert.ToInt16(dr[ordNoShowSuspendDays]);
+                                data.General.NoShowSuspendCount = Convert.ToInt16(dr[ordNoShowSuspendCount]);
+                                data.General.NewFundOrgStaffEmail = Convert.ToString(dr[ordNewFundOrgStaffEmail]);
+                                data.General.PastParticipationDays = Convert.ToInt16(dr[ordPastParticipationDays]);
+                                data.General.UsePregnancyQuestion = Convert.ToBoolean(dr[ordUsePregnancyQuestion]);
+                                data.General.UnmarkedClosingStatus = Convert.ToInt16(dr[ordUnmarkedClosingStatus]);
+                                data.General.OneStudyPerHousehold = Convert.ToBoolean(dr[ordOneStudyPerHousehold]);
+                                data.General.TrainedPanelStaffEmail = Convert.ToString(dr[ordTrainedPanelStaffEmail]);
+                                data.General.DaysBetweenEmailsToAssessor =
+                                    Convert.ToInt16(dr[ordDaysBetweenEmailsToAssessor]);
+                                data.General.ClaudeUnmarkedClosingStatus =
+                                    Convert.ToInt16(dr[ordClaudeUnmarkedClosingStatus]);
                             }
 
-                            //Addresses
+                            //Modules
                             dr.NextResult();
 
                             if (dr.HasRows)
                             {
-                                int ordAddressAssociationId = dr.GetOrdinal("AddressAssociationId");
-
-                                int ordAddressId = dr.GetOrdinal("AddressId");
-                                int ordAddressType = dr.GetOrdinal("AddressType");
-                                int ordPostalCodeId = dr.GetOrdinal("PostalCodeId");
-
-                                int ordCity = dr.GetOrdinal("City");
-                                int ordZipCode = dr.GetOrdinal("ZipCode");
-                                int ordAddress1 = dr.GetOrdinal("Address1");
-                                int ordAddress2 = dr.GetOrdinal("Address2");
-                                int ordStateProvinceId = dr.GetOrdinal("StateProvinceId");
-
-                                int ordAddressLatitude = dr.GetOrdinal("AddressLatitude");
-                                int ordAddressLongitude = dr.GetOrdinal("AddressLongitude");
-
-                                int ordPostalLatitude = dr.GetOrdinal("PostalLatitude");
-                                int ordPostalLongitude = dr.GetOrdinal("PostalLongitude");
-
-                                ordCountry = dr.GetOrdinal("Country");
-                                ordIsActive = dr.GetOrdinal("IsActive");
-                                ordCreateDate = dr.GetOrdinal("CreateDate");
+                                int ordModulesId = dr.GetOrdinal("ModulesId");
+                                int ordUseFundraising = dr.GetOrdinal("UseFundraising");
+                                int ordUseStudyCosting = dr.GetOrdinal("UseStudyCosting");
+                                int ordAllowCustomEmail = dr.GetOrdinal("AllowCustomEmail");
+                                int ordUseSensoryStudies = dr.GetOrdinal("UseSensoryStudies");
+                                int ordUseProjectRequestForms = dr.GetOrdinal("UseProjectRequestForms");
+                                int ordUseFacilitiesUtilization = dr.GetOrdinal("UseFacilitiesUtilization");
 
                                 while (dr.Read())
                                 {
-                                    AddressAssociation item = new AddressAssociation
-                                    {
-                                        AddressAssociationId = Convert.ToInt32(dr[ordAddressAssociationId]),
-                                        AddressId = Convert.ToInt32(dr[ordAddressId]),
-                                        AddressType = (AddressEnums.AddressType) Convert.ToInt16(dr[ordAddressType]),
-                                        PostalCodeId = Convert.ToInt32(dr[ordPostalCodeId]),
-                                        City = Convert.ToString(dr[ordCity]),
-                                        Country = (CountryEnums.Country) Convert.ToInt16(dr[ordCountry]),
-                                        ZipCode = Convert.ToString(dr[ordZipCode]),
-                                        Address1 = Convert.ToString(dr[ordAddress1]),
-                                        Address2 = Convert.ToString(dr[ordAddress2]),
-                                        StateProvinceId = Convert.ToInt32(dr[ordStateProvinceId]),
-                                        IsActive = Convert.ToBoolean(dr[ordIsActive]),
-                                        CreateDate = Convert.ToDateTime(dr[ordCreateDate]),
-                                        AddressCoordinates = new Coordinates
-                                        {
-                                            Latitude = Convert.ToDecimal(dr[ordAddressLatitude]),
-                                            Longitude = Convert.ToDecimal(dr[ordAddressLongitude])
-                                        },
-                                        PostalCoordinates = new Coordinates
-                                        {
-                                            Latitude = Convert.ToDecimal(dr[ordPostalLatitude]),
-                                            Longitude = Convert.ToDecimal(dr[ordPostalLongitude])
-                                        }
-                                    };
-                                    data.AddressData.Addresses.Add(item);
+                                    data.Modules.ModulesId = Convert.ToInt32(dr[ordModulesId]);
+                                    data.Modules.UseFundRaising = Convert.ToBoolean(dr[ordUseFundraising]);
+                                    data.Modules.UseStudyCosting = Convert.ToBoolean(dr[ordUseStudyCosting]);
+                                    data.Modules.AllowCustomEmail = Convert.ToBoolean(dr[ordAllowCustomEmail]);
+                                    data.Modules.UseSensoryStudies = Convert.ToBoolean(dr[ordUseSensoryStudies]);
+                                    data.Modules.UseProjectRequestForms =
+                                        Convert.ToBoolean(dr[ordUseProjectRequestForms]);
+                                    data.Modules.UseFacilitiesUtilization =
+                                        Convert.ToBoolean(dr[ordUseFacilitiesUtilization]);
                                 }
                             }
 
-                            //Phones
+                            //AssessorCompensation
                             dr.NextResult();
 
                             if (dr.HasRows)
                             {
-                                int ordPhoneId = dr.GetOrdinal("PhoneId");
-                                int ordPhoneType = dr.GetOrdinal("PhoneType");
-                                int ordPhoneNumber = dr.GetOrdinal("PhoneNumber");
-                                int ordPhoneAssociationId = dr.GetOrdinal("PhoneAssociationId");
+                                int ordCompType = dr.GetOrdinal("CompType");
+                                int ordStudyAmount = dr.GetOrdinal("StudyAmount");
+                                int ordStudyCompType = dr.GetOrdinal("StudyCompType");
+                                int ordAssessorCompId = dr.GetOrdinal("AssessorCompId");
+                                int ordUseCompensation = dr.GetOrdinal("UseCompensation");
+                                int ordDollarsPerPoint = dr.GetOrdinal("DollarsPerPoint");
+                                int ordRedeemPointsMultiples = dr.GetOrdinal("RedeemPointsMultiples");
 
-                                ordCountry = dr.GetOrdinal("Country");
-                                ordIsActive = dr.GetOrdinal("IsActive");
-                                ordCreateDate = dr.GetOrdinal("CreateDate");
+                                int ordReferralAmount = dr.GetOrdinal("ReferralAmount");
+                                int ordReferralCompType = dr.GetOrdinal("ReferralCompType");
+                                int ordRegistrationAmount = dr.GetOrdinal("RegistrationAmount");
+                                int ordOrganizationAmount = dr.GetOrdinal("OrganizationAmount");
+                                int ordRegistrationCompType = dr.GetOrdinal("RegistrationCompType");
+                                int ordOrganizationCompType = dr.GetOrdinal("OrganizationCompType");
 
                                 while (dr.Read())
                                 {
-                                    PhoneAssociation item = new PhoneAssociation
-                                    {
-                                        PhoneId = Convert.ToInt32(dr[ordPhoneId]),
-                                        IsActive = Convert.ToBoolean(dr[ordIsActive]),
-                                        PhoneNumber = Convert.ToInt64(dr[ordPhoneNumber]),
-                                        CreateDate = Convert.ToDateTime(dr[ordCreateDate]),
-                                        Country = (CountryEnums.Country) Convert.ToInt16(dr[ordCountry]),
-                                        PhoneType = (PhoneEnums.PhoneType) Convert.ToInt16(dr[ordPhoneType]),
-                                        PhoneAssociationId = Convert.ToInt32(dr[ordPhoneAssociationId])
-                                    };
-                                    data.PhoneData.Phones.Add(item);
+                                    data.AssessorComp.CompensationType = Convert.ToInt16(dr[ordCompType]);
+                                    data.AssessorComp.StudyAmount = Convert.ToDecimal(dr[ordStudyAmount]);
+                                    data.AssessorComp.UseCompensation = Convert.ToBoolean(dr[ordUseCompensation]);
+                                    data.AssessorComp.DollarsPerPoint = Convert.ToDecimal(dr[ordDollarsPerPoint]);
+                                    data.AssessorComp.StudyCompensationType = Convert.ToInt16(dr[ordStudyCompType]);
+                                    data.AssessorComp.AssessorCompensationId = Convert.ToInt32(dr[ordAssessorCompId]);
+                                    data.AssessorComp.RedeemPointsMultiples =
+                                        Convert.ToInt16(dr[ordRedeemPointsMultiples]);
+
+                                    data.AssessorComp.ReferralAmount = Convert.ToDecimal(dr[ordReferralAmount]);
+                                    data.AssessorComp.RegistrationAmount = Convert.ToDecimal(dr[ordRegistrationAmount]);
+                                    data.AssessorComp.OrganizationAmount = Convert.ToDecimal(dr[ordOrganizationAmount]);
+                                    data.AssessorComp.ReferralCompensationType = Convert.ToInt16(dr[ordReferralCompType]);
+                                    data.AssessorComp.ReferralCompensationType =
+                                        Convert.ToInt16(dr[ordRegistrationCompType]);
+                                    data.AssessorComp.OrganizationCompensationType =
+                                        Convert.ToInt16(dr[ordOrganizationCompType]);
                                 }
                             }
 
-                            //PhoneSetting
+                            //EmployeeCompensation
                             dr.NextResult();
 
                             if (dr.HasRows)
                             {
-                                int ordAllowText = dr.GetOrdinal("AllowText");
-                                int ordPhoneSettingId = dr.GetOrdinal("PhoneSettingId");
-                                int ordMobileCarrierId = dr.GetOrdinal("MobileCarrierId");
-                                int ordPrimaryPhoneType = dr.GetOrdinal("PrimaryPhoneType");
+                                int ordCompType = dr.GetOrdinal("CompType");
+                                int ordStudyAmount = dr.GetOrdinal("StudyAmount");
+                                int ordStudyCompType = dr.GetOrdinal("StudyCompType");
+                                int ordEmployeeCompId = dr.GetOrdinal("EmployeeCompId");
+                                int ordUseCompensation = dr.GetOrdinal("UseCompensation");
+                                int ordDollarsPerPoint = dr.GetOrdinal("DollarsPerPoint");
+                                int ordRedeemPointsMultiples = dr.GetOrdinal("RedeemPointsMultiples");
 
                                 while (dr.Read())
                                 {
-                                    data.PhoneData.PhoneSettings.AllowText = Convert.ToBoolean(dr[ordAllowText]);
-                                    data.PhoneData.PhoneSettings.RecordId = Convert.ToInt32(dr[ordPhoneSettingId]);
-                                    data.PhoneData.PhoneSettings.MobileCarrier = Convert.ToInt16(dr[ordMobileCarrierId]);
-                                    data.PhoneData.PhoneSettings.PrimaryPhoneType =
-                                        (PhoneEnums.PhoneType) Convert.ToInt16(dr[ordPrimaryPhoneType]);
+                                    data.EmployeeComp.CompensationType = Convert.ToInt16(dr[ordCompType]);
+                                    data.EmployeeComp.StudyAmount = Convert.ToDecimal(dr[ordStudyAmount]);
+                                    data.EmployeeComp.UseCompensation = Convert.ToBoolean(dr[ordUseCompensation]);
+                                    data.EmployeeComp.DollarsPerPoint = Convert.ToDecimal(dr[ordDollarsPerPoint]);
+                                    data.EmployeeComp.StudyCompensationType = Convert.ToInt16(dr[ordStudyCompType]);
+                                    data.EmployeeComp.EmployeeCompensationId = Convert.ToInt32(dr[ordEmployeeCompId]);
+                                    data.EmployeeComp.RedeemPointsMultiples =
+                                        Convert.ToInt16(dr[ordRedeemPointsMultiples]);
                                 }
                             }
 
-                            //Contacts
+                            //Study Definition
                             dr.NextResult();
 
                             if (dr.HasRows)
                             {
-                                ordPlaceId = dr.GetOrdinal("PlaceId");
-                                int ordEmail = dr.GetOrdinal("Email");
-                                int ordPersonId = dr.GetOrdinal("PersonId");
-                                int ordLastName = dr.GetOrdinal("LastName");
-                                int ordFirstName = dr.GetOrdinal("FirstName");
-                                int ordMiddleName = dr.GetOrdinal("MiddleName");
+                                int ordBudget = dr.GetOrdinal("Budget");
+                                int ordOverview = dr.GetOrdinal("Overview");
+                                int ordFoodRequirements = dr.GetOrdinal("FoodReqs");
+                                int ordOtherRequirements = dr.GetOrdinal("OtherReqs");
+                                int ordCustomerBrands = dr.GetOrdinal("CustomerBrands");
+                                int ordExternalSpending = dr.GetOrdinal("ExternalSpending");
+                                int ordCustomerContacts = dr.GetOrdinal("CustomerContacts");
+                                int ordResearchObjective = dr.GetOrdinal("ResearchObjective");
+                                int ordScreeningCriteria = dr.GetOrdinal("ScreeningCriteria");
+                                int ordStudyDefinitionId = dr.GetOrdinal("StudyDefinitionId");
+                                int ordContractorRequirements = dr.GetOrdinal("ContractorReqs");
+                                int ordAudioVisualRequirements = dr.GetOrdinal("AudioVisualReqs");
 
                                 while (dr.Read())
                                 {
-                                    Contact item = new Contact
-                                    {
-                                        PersonType = 0,
-                                        Email = Convert.ToString(dr[ordEmail]),
-                                        PlaceId = Convert.ToInt32(dr[ordPlaceId]),
-                                        PersonId = Convert.ToInt32(dr[ordPersonId]),
-                                        LastName = Convert.ToString(dr[ordLastName]),
-                                        FirstName = Convert.ToString(dr[ordFirstName]),
-                                        MiddleName = Convert.ToString(dr[ordMiddleName])
-                                    };
-                                    data.Contacts.Add(item);
+                                    data.StudyDefinitions.Budget = Convert.ToBoolean(dr[ordBudget]);
+                                    data.StudyDefinitions.Overview = Convert.ToBoolean(dr[ordOverview]);
+                                    data.StudyDefinitions.CustomerBrands = Convert.ToBoolean(dr[ordCustomerBrands]);
+                                    data.StudyDefinitions.StudyDefinitionId = Convert.ToInt32(dr[ordStudyDefinitionId]);
+                                    data.StudyDefinitions.CustomerContacts = Convert.ToBoolean(dr[ordCustomerContacts]);
+                                    data.StudyDefinitions.ExternalSpending = Convert.ToBoolean(dr[ordExternalSpending]);
+                                    data.StudyDefinitions.FoodRequirements = Convert.ToBoolean(dr[ordFoodRequirements]);
+                                    data.StudyDefinitions.OtherRequirements = Convert.ToBoolean(dr[ordOtherRequirements]);
+                                    data.StudyDefinitions.ResearchObjective = Convert.ToBoolean(dr[ordResearchObjective]);
+                                    data.StudyDefinitions.ScreeningCriteria = Convert.ToBoolean(dr[ordScreeningCriteria]);
+                                    data.StudyDefinitions.ContractorRequirements =
+                                        Convert.ToBoolean(dr[ordContractorRequirements]);
+                                    data.StudyDefinitions.AudioVisualRequirements =
+                                        Convert.ToBoolean(dr[ordAudioVisualRequirements]);
+                                }
+                            }
+
+                            //PasswordRequirements
+                            dr.NextResult();
+
+                            if (dr.HasRows)
+                            {
+                                int ordRequireNumber = dr.GetOrdinal("RequireNumber");
+                                int ordMinimumLength = dr.GetOrdinal("MinimumLength");
+                                int ordExpirationDays = dr.GetOrdinal("ExpirationDays");
+                                int ordRequireMinimumLength = dr.GetOrdinal("RequireMinimumLength");
+                                int ordRequireCapitalLetter = dr.GetOrdinal("RequireCapitalLetter");
+                                int ordPasswordRequirementId = dr.GetOrdinal("PasswordRequirementId");
+                                int ordRequireSpecialCharacter = dr.GetOrdinal("RequireSpecialCharacter");
+
+                                while (dr.Read())
+                                {
+                                    data.Passwords.MinimumLength = Convert.ToInt32(dr[ordMinimumLength]);
+                                    data.Passwords.RequireNumber = Convert.ToBoolean(dr[ordRequireNumber]);
+                                    data.Passwords.ExpirationDays = Convert.ToInt32(dr[ordExpirationDays]);
+                                    data.Passwords.RequireMinimumLength = Convert.ToBoolean(dr[ordRequireMinimumLength]);
+                                    data.Passwords.RequireCapitalLetter = Convert.ToBoolean(dr[ordRequireCapitalLetter]);
+                                    data.Passwords.PasswordRequirementId = Convert.ToInt32(dr[ordPasswordRequirementId]);
+                                    data.Passwords.RequireSpecialCharacter =
+                                        Convert.ToBoolean(dr[ordRequireSpecialCharacter]);
                                 }
                             }
                         }
                     }
                     ConnSql.Close();
                 }
-                data.Place.PlaceType = placeType;
             }
             catch (Exception ex)
             {
