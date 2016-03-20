@@ -105,7 +105,13 @@
     <Compile Include="DataRepository\PlacesRepository\DbPlacesGetActive.cs" />
     <Compile Include="DataRepository\ReorderRepository\DBReorder.cs" />
     <Compile Include="DataRepository\ReorderRepository\DbReorderSave.cs" />
+    <Compile Include="DataRepository\SettingsRepository\DbAssessorCompensationSave.cs" />
+    <Compile Include="DataRepository\SettingsRepository\DbEmployeeCompensationSave.cs" />
+    <Compile Include="DataRepository\SettingsRepository\DbGeneralConfigurationSave.cs" />
+    <Compile Include="DataRepository\SettingsRepository\DbModuleUsageSave.cs" />
+    <Compile Include="DataRepository\SettingsRepository\DbPasswordRequirementSave.cs" />
     <Compile Include="DataRepository\SettingsRepository\DbSiteConfigurationGet.cs" />
+    <Compile Include="DataRepository\SettingsRepository\DbStudyDefinitionSettingsSave.cs" />
     <Compile Include="Models\Addresses\StateProvince.cs" />
     <Compile Include="Models\Addresses\Address.cs" />
     <Compile Include="Models\Addresses\AddressAssociation.cs" />

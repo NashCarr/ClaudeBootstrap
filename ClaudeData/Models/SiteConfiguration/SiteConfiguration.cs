@@ -4,18 +4,19 @@
     {
         public SiteConfiguration()
         {
-            Modules = new ModuleUsage();
-            General = new GeneralConfiguration();
-            Passwords = new PasswordRequirement();
-            AssessorComp = new AssessorCompensation();
-            EmployeeComp = new EmployeeCompensation();
+            ModuleUsage = new ModuleUsage();
+            StudyDefinitions = new StudyDefinition();
+            PasswordRequirements = new PasswordRequirement();
+            GeneralConfiguration = new GeneralConfiguration();
+            AssessorCompensation = new AssessorCompensation();
+            EmployeeCompensation = new EmployeeCompensation();
         }
 
-        public ModuleUsage Modules { get; set; }
-        public GeneralConfiguration General { get; set; }
-        public PasswordRequirement Passwords { get; set; }
+        public ModuleUsage ModuleUsage { get; set; }
+        public PasswordRequirement PasswordRequirements { get; set; }
         public StudyDefinition StudyDefinitions { get; set; }
-        public AssessorCompensation AssessorComp { get; set; }
-        public EmployeeCompensation EmployeeComp { get; set; }
+        public GeneralConfiguration GeneralConfiguration { get; set; }
+        public AssessorCompensation AssessorCompensation { get; set; }
+        public EmployeeCompensation EmployeeCompensation { get; set; }
     }
 }

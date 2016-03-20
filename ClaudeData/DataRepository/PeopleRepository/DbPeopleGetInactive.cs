@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using ClaudeCommon.Models;
-using ClaudeData.Models.People;
 using static ClaudeCommon.Enums.PersonEnums;
 
 namespace ClaudeData.DataRepository.PeopleRepository

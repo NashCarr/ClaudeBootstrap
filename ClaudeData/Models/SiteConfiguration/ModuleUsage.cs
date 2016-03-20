@@ -4,7 +4,7 @@
     {
         public ModuleUsage()
         {
-            ModulesId = 0;
+            ModuleUsageId = 0;
             UseFundRaising = false;
             UseStudyCosting = false;
             AllowCustomEmail = false;
@@ -13,7 +13,7 @@
             UseFacilitiesUtilization = false;
         }
 
-        public int ModulesId { get; set; }
+        public int ModuleUsageId { get; set; }
 
         public bool UseFundRaising { get; set; }
         public bool UseStudyCosting { get; set; }

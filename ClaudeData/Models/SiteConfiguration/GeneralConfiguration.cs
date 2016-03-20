@@ -4,15 +4,14 @@
     {
         public GeneralConfiguration()
         {
-            GeneralId = 0;
             OneStudy = false;
             LimitIrs1099 = false;
             Irs1099MaxAmount = 0;
             NoShowSuspendDays = 0;
             NoShowSuspendCount = 0;
             UnmarkedClosingStatus = 0;
-            UnmarkedClosingStatus = 0;
             PastParticipationDays = 0;
+            GeneralConfigurationId = 0;
             OneStudyPerHousehold = false;
             UsePregnancyQuestion = false;
             DaysBetweenEmailsToAssessor = 0;
@@ -21,7 +20,7 @@
             TrainedPanelStaffEmail = string.Empty;
         }
 
-        public int GeneralId { get; set; }
+        public int GeneralConfigurationId { get; set; }
 
         public bool OneStudy { get; set; }
         public bool LimitIrs1099 { get; set; }

@@ -12,7 +12,7 @@ namespace ClaudeData.DataRepository.PeopleRepository
         {
             try
             {
-                IdValue = (byte)pt;
+                IdValue = (byte) pt;
                 IdParameter = "@PlaceType";
 
                 SetConnectToDatabase("[ViewModel].[usp_People_List]");

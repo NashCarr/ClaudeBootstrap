@@ -1,4 +1,6 @@
-﻿using ClaudeData.Models.SiteConfiguration;
+﻿using ClaudeCommon.BaseModels.Returns;
+using ClaudeData.DataRepository.SettingsRepository;
+using ClaudeData.Models.SiteConfiguration;
 using ClaudeViewManagement.Managers.Places;
 using static ClaudeCommon.Enums.PlaceEnums;
 
@@ -13,8 +15,7 @@ namespace ClaudeViewManagement.ViewModels.Places
             {
                 SiteConfiguration = mgr.GetSiteConfiguration();
             }
-
-        }
+                   }
 
         public PlaceListViewModel Facilities { get; set; }
         public SiteConfiguration SiteConfiguration { get; set; }

@@ -30,13 +30,18 @@ namespace ClaudeData.DataRepository.SettingsRepository
                                 return data;
                             }
 
-                            //General
+                            int ordStudyAmount;
+                            int ordUseCompensation;
+                            int ordDollarsPerPoint;
+                            int ordCompensationType;
+                            int ordRedeemPointsMultiples;
+                            int ordStudyCompensationType;
 
+                            //GeneralConfiguration
                             int ordOneStudy = dr.GetOrdinal("OneStudy");
-                            int ordGeneralId = dr.GetOrdinal("GeneralId");
                             int ordLimitIrs1099 = dr.GetOrdinal("LimitIRS1099");
                             int ordIrs1099MaxAmount = dr.GetOrdinal("IRS1099MaxAmount");
-                            int ordNoShowSuspendDays = dr.GetOrdinal("NoShowSuspendDay");
+                            int ordNoShowSuspendDays = dr.GetOrdinal("NoShowSuspendDays");
                             int ordNoShowSuspendCount = dr.GetOrdinal("NoShowSuspendCount");
                             int ordOneStudyPerHousehold = dr.GetOrdinal("OneStudyPerHousehold");
                             int ordUsePregnancyQuestion = dr.GetOrdinal("UsePregnancyQuestion");
@@ -49,30 +54,36 @@ namespace ClaudeData.DataRepository.SettingsRepository
 
                             while (dr.Read())
                             {
-                                data.General.GeneralId = Convert.ToInt32(dr[ordGeneralId]);
-                                data.General.OneStudy = Convert.ToBoolean(dr[ordOneStudy]);
-                                data.General.LimitIrs1099 = Convert.ToBoolean(dr[ordLimitIrs1099]);
-                                data.General.Irs1099MaxAmount = Convert.ToDecimal(dr[ordIrs1099MaxAmount]);
-                                data.General.NoShowSuspendDays = Convert.ToInt16(dr[ordNoShowSuspendDays]);
-                                data.General.NoShowSuspendCount = Convert.ToInt16(dr[ordNoShowSuspendCount]);
-                                data.General.NewFundOrgStaffEmail = Convert.ToString(dr[ordNewFundOrgStaffEmail]);
-                                data.General.PastParticipationDays = Convert.ToInt16(dr[ordPastParticipationDays]);
-                                data.General.UsePregnancyQuestion = Convert.ToBoolean(dr[ordUsePregnancyQuestion]);
-                                data.General.UnmarkedClosingStatus = Convert.ToInt16(dr[ordUnmarkedClosingStatus]);
-                                data.General.OneStudyPerHousehold = Convert.ToBoolean(dr[ordOneStudyPerHousehold]);
-                                data.General.TrainedPanelStaffEmail = Convert.ToString(dr[ordTrainedPanelStaffEmail]);
-                                data.General.DaysBetweenEmailsToAssessor =
+                                data.GeneralConfiguration.GeneralConfigurationId = 1;
+                                data.GeneralConfiguration.OneStudy = Convert.ToBoolean(dr[ordOneStudy]);
+                                data.GeneralConfiguration.LimitIrs1099 = Convert.ToBoolean(dr[ordLimitIrs1099]);
+                                data.GeneralConfiguration.Irs1099MaxAmount = Convert.ToDecimal(dr[ordIrs1099MaxAmount]);
+                                data.GeneralConfiguration.NoShowSuspendDays = Convert.ToInt16(dr[ordNoShowSuspendDays]);
+                                data.GeneralConfiguration.NoShowSuspendCount = Convert.ToInt16(dr[ordNoShowSuspendCount]);
+                                data.GeneralConfiguration.NewFundOrgStaffEmail =
+                                    Convert.ToString(dr[ordNewFundOrgStaffEmail]);
+                                data.GeneralConfiguration.PastParticipationDays =
+                                    Convert.ToInt16(dr[ordPastParticipationDays]);
+                                data.GeneralConfiguration.UsePregnancyQuestion =
+                                    Convert.ToBoolean(dr[ordUsePregnancyQuestion]);
+                                data.GeneralConfiguration.UnmarkedClosingStatus =
+                                    Convert.ToInt16(dr[ordUnmarkedClosingStatus]);
+                                data.GeneralConfiguration.OneStudyPerHousehold =
+                                    Convert.ToBoolean(dr[ordOneStudyPerHousehold]);
+                                data.GeneralConfiguration.TrainedPanelStaffEmail =
+                                    Convert.ToString(dr[ordTrainedPanelStaffEmail]);
+                                data.GeneralConfiguration.DaysBetweenEmailsToAssessor =
                                     Convert.ToInt16(dr[ordDaysBetweenEmailsToAssessor]);
-                                data.General.ClaudeUnmarkedClosingStatus =
+                                data.GeneralConfiguration.ClaudeUnmarkedClosingStatus =
                                     Convert.ToInt16(dr[ordClaudeUnmarkedClosingStatus]);
                             }
 
-                            //Modules
+                            //ModuleUsage
                             dr.NextResult();
 
                             if (dr.HasRows)
                             {
-                                int ordModulesId = dr.GetOrdinal("ModulesId");
+                                int ordModuleUsageId = dr.GetOrdinal("ModuleUsageId");
                                 int ordUseFundraising = dr.GetOrdinal("UseFundraising");
                                 int ordUseStudyCosting = dr.GetOrdinal("UseStudyCosting");
                                 int ordAllowCustomEmail = dr.GetOrdinal("AllowCustomEmail");
@@ -82,14 +93,14 @@ namespace ClaudeData.DataRepository.SettingsRepository
 
                                 while (dr.Read())
                                 {
-                                    data.Modules.ModulesId = Convert.ToInt32(dr[ordModulesId]);
-                                    data.Modules.UseFundRaising = Convert.ToBoolean(dr[ordUseFundraising]);
-                                    data.Modules.UseStudyCosting = Convert.ToBoolean(dr[ordUseStudyCosting]);
-                                    data.Modules.AllowCustomEmail = Convert.ToBoolean(dr[ordAllowCustomEmail]);
-                                    data.Modules.UseSensoryStudies = Convert.ToBoolean(dr[ordUseSensoryStudies]);
-                                    data.Modules.UseProjectRequestForms =
+                                    data.ModuleUsage.ModuleUsageId = Convert.ToInt32(dr[ordModuleUsageId]);
+                                    data.ModuleUsage.UseFundRaising = Convert.ToBoolean(dr[ordUseFundraising]);
+                                    data.ModuleUsage.UseStudyCosting = Convert.ToBoolean(dr[ordUseStudyCosting]);
+                                    data.ModuleUsage.AllowCustomEmail = Convert.ToBoolean(dr[ordAllowCustomEmail]);
+                                    data.ModuleUsage.UseSensoryStudies = Convert.ToBoolean(dr[ordUseSensoryStudies]);
+                                    data.ModuleUsage.UseProjectRequestForms =
                                         Convert.ToBoolean(dr[ordUseProjectRequestForms]);
-                                    data.Modules.UseFacilitiesUtilization =
+                                    data.ModuleUsage.UseFacilitiesUtilization =
                                         Convert.ToBoolean(dr[ordUseFacilitiesUtilization]);
                                 }
                             }
@@ -99,40 +110,45 @@ namespace ClaudeData.DataRepository.SettingsRepository
 
                             if (dr.HasRows)
                             {
-                                int ordCompType = dr.GetOrdinal("CompType");
-                                int ordStudyAmount = dr.GetOrdinal("StudyAmount");
-                                int ordStudyCompType = dr.GetOrdinal("StudyCompType");
-                                int ordAssessorCompId = dr.GetOrdinal("AssessorCompId");
-                                int ordUseCompensation = dr.GetOrdinal("UseCompensation");
-                                int ordDollarsPerPoint = dr.GetOrdinal("DollarsPerPoint");
-                                int ordRedeemPointsMultiples = dr.GetOrdinal("RedeemPointsMultiples");
+                                ordStudyAmount = dr.GetOrdinal("StudyAmount");
+                                ordUseCompensation = dr.GetOrdinal("UseCompensation");
+                                ordDollarsPerPoint = dr.GetOrdinal("DollarsPerPoint");
+                                ordCompensationType = dr.GetOrdinal("CompensationType");
+                                ordRedeemPointsMultiples = dr.GetOrdinal("RedeemPointsMultiples");
+                                ordStudyCompensationType = dr.GetOrdinal("StudyCompensationType");
 
                                 int ordReferralAmount = dr.GetOrdinal("ReferralAmount");
-                                int ordReferralCompType = dr.GetOrdinal("ReferralCompType");
                                 int ordRegistrationAmount = dr.GetOrdinal("RegistrationAmount");
                                 int ordOrganizationAmount = dr.GetOrdinal("OrganizationAmount");
-                                int ordRegistrationCompType = dr.GetOrdinal("RegistrationCompType");
-                                int ordOrganizationCompType = dr.GetOrdinal("OrganizationCompType");
+                                int ordAssessorCompensationId = dr.GetOrdinal("AssessorCompensationId");
+                                int ordReferralCompensationType = dr.GetOrdinal("ReferralCompensationType");
+                                int ordRegistrationCompensationType = dr.GetOrdinal("RegistrationCompensationType");
+                                int ordOrganizationCompensationType = dr.GetOrdinal("OrganizationCompensationType");
 
                                 while (dr.Read())
                                 {
-                                    data.AssessorComp.CompensationType = Convert.ToInt16(dr[ordCompType]);
-                                    data.AssessorComp.StudyAmount = Convert.ToDecimal(dr[ordStudyAmount]);
-                                    data.AssessorComp.UseCompensation = Convert.ToBoolean(dr[ordUseCompensation]);
-                                    data.AssessorComp.DollarsPerPoint = Convert.ToDecimal(dr[ordDollarsPerPoint]);
-                                    data.AssessorComp.StudyCompensationType = Convert.ToInt16(dr[ordStudyCompType]);
-                                    data.AssessorComp.AssessorCompensationId = Convert.ToInt32(dr[ordAssessorCompId]);
-                                    data.AssessorComp.RedeemPointsMultiples =
+                                    data.AssessorCompensation.StudyAmount = Convert.ToDecimal(dr[ordStudyAmount]);
+                                    data.AssessorCompensation.CompensationType = Convert.ToInt16(dr[ordCompensationType]);
+                                    data.AssessorCompensation.UseCompensation = Convert.ToBoolean(dr[ordUseCompensation]);
+                                    data.AssessorCompensation.DollarsPerPoint = Convert.ToDecimal(dr[ordDollarsPerPoint]);
+                                    data.AssessorCompensation.AssessorCompensationId =
+                                        Convert.ToInt32(dr[ordAssessorCompensationId]);
+                                    data.AssessorCompensation.StudyCompensationType =
+                                        Convert.ToInt16(dr[ordStudyCompensationType]);
+                                    data.AssessorCompensation.RedeemPointsMultiples =
                                         Convert.ToInt16(dr[ordRedeemPointsMultiples]);
 
-                                    data.AssessorComp.ReferralAmount = Convert.ToDecimal(dr[ordReferralAmount]);
-                                    data.AssessorComp.RegistrationAmount = Convert.ToDecimal(dr[ordRegistrationAmount]);
-                                    data.AssessorComp.OrganizationAmount = Convert.ToDecimal(dr[ordOrganizationAmount]);
-                                    data.AssessorComp.ReferralCompensationType = Convert.ToInt16(dr[ordReferralCompType]);
-                                    data.AssessorComp.ReferralCompensationType =
-                                        Convert.ToInt16(dr[ordRegistrationCompType]);
-                                    data.AssessorComp.OrganizationCompensationType =
-                                        Convert.ToInt16(dr[ordOrganizationCompType]);
+                                    data.AssessorCompensation.ReferralAmount = Convert.ToDecimal(dr[ordReferralAmount]);
+                                    data.AssessorCompensation.RegistrationAmount =
+                                        Convert.ToDecimal(dr[ordRegistrationAmount]);
+                                    data.AssessorCompensation.OrganizationAmount =
+                                        Convert.ToDecimal(dr[ordOrganizationAmount]);
+                                    data.AssessorCompensation.ReferralCompensationType =
+                                        Convert.ToInt16(dr[ordReferralCompensationType]);
+                                    data.AssessorCompensation.ReferralCompensationType =
+                                        Convert.ToInt16(dr[ordRegistrationCompensationType]);
+                                    data.AssessorCompensation.OrganizationCompensationType =
+                                        Convert.ToInt16(dr[ordOrganizationCompensationType]);
                                 }
                             }
 
@@ -141,23 +157,26 @@ namespace ClaudeData.DataRepository.SettingsRepository
 
                             if (dr.HasRows)
                             {
-                                int ordCompType = dr.GetOrdinal("CompType");
-                                int ordStudyAmount = dr.GetOrdinal("StudyAmount");
-                                int ordStudyCompType = dr.GetOrdinal("StudyCompType");
-                                int ordEmployeeCompId = dr.GetOrdinal("EmployeeCompId");
-                                int ordUseCompensation = dr.GetOrdinal("UseCompensation");
-                                int ordDollarsPerPoint = dr.GetOrdinal("DollarsPerPoint");
-                                int ordRedeemPointsMultiples = dr.GetOrdinal("RedeemPointsMultiples");
+                                ordStudyAmount = dr.GetOrdinal("StudyAmount");
+                                ordUseCompensation = dr.GetOrdinal("UseCompensation");
+                                ordDollarsPerPoint = dr.GetOrdinal("DollarsPerPoint");
+                                ordCompensationType = dr.GetOrdinal("CompensationType");
+                                ordStudyCompensationType = dr.GetOrdinal("StudyCompensationType");
+                                ordRedeemPointsMultiples = dr.GetOrdinal("RedeemPointsMultiples");
+
+                                int ordEmployeeCompensationId = dr.GetOrdinal("EmployeeCompensationId");
 
                                 while (dr.Read())
                                 {
-                                    data.EmployeeComp.CompensationType = Convert.ToInt16(dr[ordCompType]);
-                                    data.EmployeeComp.StudyAmount = Convert.ToDecimal(dr[ordStudyAmount]);
-                                    data.EmployeeComp.UseCompensation = Convert.ToBoolean(dr[ordUseCompensation]);
-                                    data.EmployeeComp.DollarsPerPoint = Convert.ToDecimal(dr[ordDollarsPerPoint]);
-                                    data.EmployeeComp.StudyCompensationType = Convert.ToInt16(dr[ordStudyCompType]);
-                                    data.EmployeeComp.EmployeeCompensationId = Convert.ToInt32(dr[ordEmployeeCompId]);
-                                    data.EmployeeComp.RedeemPointsMultiples =
+                                    data.EmployeeCompensation.StudyAmount = Convert.ToDecimal(dr[ordStudyAmount]);
+                                    data.EmployeeCompensation.CompensationType = Convert.ToInt16(dr[ordCompensationType]);
+                                    data.EmployeeCompensation.UseCompensation = Convert.ToBoolean(dr[ordUseCompensation]);
+                                    data.EmployeeCompensation.DollarsPerPoint = Convert.ToDecimal(dr[ordDollarsPerPoint]);
+                                    data.EmployeeCompensation.EmployeeCompensationId =
+                                        Convert.ToInt32(dr[ordEmployeeCompensationId]);
+                                    data.EmployeeCompensation.StudyCompensationType =
+                                        Convert.ToInt16(dr[ordStudyCompensationType]);
+                                    data.EmployeeCompensation.RedeemPointsMultiples =
                                         Convert.ToInt16(dr[ordRedeemPointsMultiples]);
                                 }
                             }
@@ -169,16 +188,16 @@ namespace ClaudeData.DataRepository.SettingsRepository
                             {
                                 int ordBudget = dr.GetOrdinal("Budget");
                                 int ordOverview = dr.GetOrdinal("Overview");
-                                int ordFoodRequirements = dr.GetOrdinal("FoodReqs");
-                                int ordOtherRequirements = dr.GetOrdinal("OtherReqs");
                                 int ordCustomerBrands = dr.GetOrdinal("CustomerBrands");
                                 int ordExternalSpending = dr.GetOrdinal("ExternalSpending");
                                 int ordCustomerContacts = dr.GetOrdinal("CustomerContacts");
+                                int ordFoodRequirements = dr.GetOrdinal("FoodRequirements");
+                                int ordOtherRequirements = dr.GetOrdinal("OtherRequirements");
                                 int ordResearchObjective = dr.GetOrdinal("ResearchObjective");
                                 int ordScreeningCriteria = dr.GetOrdinal("ScreeningCriteria");
                                 int ordStudyDefinitionId = dr.GetOrdinal("StudyDefinitionId");
-                                int ordContractorRequirements = dr.GetOrdinal("ContractorReqs");
-                                int ordAudioVisualRequirements = dr.GetOrdinal("AudioVisualReqs");
+                                int ordContractorRequirements = dr.GetOrdinal("ContractorRequirements");
+                                int ordAudioVisualRequirements = dr.GetOrdinal("AudioVisualRequirements");
 
                                 while (dr.Read())
                                 {
@@ -214,13 +233,13 @@ namespace ClaudeData.DataRepository.SettingsRepository
 
                                 while (dr.Read())
                                 {
-                                    data.Passwords.MinimumLength = Convert.ToInt32(dr[ordMinimumLength]);
-                                    data.Passwords.RequireNumber = Convert.ToBoolean(dr[ordRequireNumber]);
-                                    data.Passwords.ExpirationDays = Convert.ToInt32(dr[ordExpirationDays]);
-                                    data.Passwords.RequireMinimumLength = Convert.ToBoolean(dr[ordRequireMinimumLength]);
-                                    data.Passwords.RequireCapitalLetter = Convert.ToBoolean(dr[ordRequireCapitalLetter]);
-                                    data.Passwords.PasswordRequirementId = Convert.ToInt32(dr[ordPasswordRequirementId]);
-                                    data.Passwords.RequireSpecialCharacter =
+                                    data.PasswordRequirements.MinimumLength = Convert.ToInt32(dr[ordMinimumLength]);
+                                    data.PasswordRequirements.RequireNumber = Convert.ToBoolean(dr[ordRequireNumber]);
+                                    data.PasswordRequirements.ExpirationDays = Convert.ToInt32(dr[ordExpirationDays]);
+                                    data.PasswordRequirements.RequireMinimumLength = Convert.ToBoolean(dr[ordRequireMinimumLength]);
+                                    data.PasswordRequirements.RequireCapitalLetter = Convert.ToBoolean(dr[ordRequireCapitalLetter]);
+                                    data.PasswordRequirements.PasswordRequirementId = Convert.ToInt32(dr[ordPasswordRequirementId]);
+                                    data.PasswordRequirements.RequireSpecialCharacter =
                                         Convert.ToBoolean(dr[ordRequireSpecialCharacter]);
                                 }
                             }

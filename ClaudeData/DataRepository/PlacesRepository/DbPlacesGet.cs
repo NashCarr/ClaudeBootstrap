@@ -46,7 +46,7 @@ namespace ClaudeData.DataRepository.PlacesRepository
                                     Department = Convert.ToString(dr[ordDepartment]),
                                     DisplayOrder = Convert.ToInt16(dr[ordDisplayOrder]),
                                     Country = (Country) Convert.ToInt16(dr[ordCountry]),
-                                    TimeZone = (ClaudeTimeZone) Convert.ToByte(dr[ordTimeZone]),
+                                    TimeZone = (ClaudeTimeZone) Convert.ToByte(dr[ordTimeZone])
                                 };
                                 item.DisplaySort = item.DisplayOrder.ToString("D3");
                                 item.CountryName = Enum.GetName(typeof (Country), item.Country);

@@ -2,7 +2,7 @@
 {
     public class StudyDefinition
     {
-        protected StudyDefinition()
+        public StudyDefinition()
         {
             Budget = false;
             Overview = false;
