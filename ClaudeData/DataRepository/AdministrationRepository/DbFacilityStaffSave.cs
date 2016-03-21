@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 using ClaudeCommon.BaseModels.Returns;
-using ClaudeData.Models.Admin;
+using ClaudeData.Models.Administration;
 
 namespace ClaudeData.DataRepository.AdministrationRepository
 {

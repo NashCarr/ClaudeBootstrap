@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Web.Mvc;
 using ClaudeData.DataRepository.AdministrationRepository;
-using ClaudeData.Models.Admin;
+using ClaudeData.Models.Administration;
 using ClaudeData.Models.LookupLists;
 
 namespace ClaudeData.DataRepository.LookupRepository

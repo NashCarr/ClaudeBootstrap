@@ -1,5 +1,5 @@
 ﻿using System;
-using ClaudeData.Models.Admin;
+using ClaudeData.Models.Administration;
 using ClaudeData.Models.LookupLists;
 using ClaudeData.Models.People;
 using ClaudeData.ViewModels.Shared;

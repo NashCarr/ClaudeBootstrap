@@ -1,6 +1,6 @@
 ﻿using ClaudeData.BaseModels;
 
-namespace ClaudeData.Models.Admin
+namespace ClaudeData.Models.Administration
 {
     public class UserLogin : ModelBase
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ClaudeData.Models.Admin
+namespace ClaudeData.Models.Administration
 {
     public class StaffUserActivity
     {
