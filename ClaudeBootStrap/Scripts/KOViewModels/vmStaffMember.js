@@ -645,11 +645,7 @@ PersonViewModel = function(data) {
         Edit: function(editdata) {
             self.personid(ko.unwrap(editdata.PersonId()));
             self.personemail(ko.unwrap(editdata.Email()));
-            self.personlast(ko.unwrap(editdata.LastName()));
-            self.personfirst(ko.unwrap(editdata.FirstName()));
-            self.personmiddle(ko.unwrap(editdata.MiddleName()));
-            self.personcountry(ko.unwrap(self.personcountry()));
-            self.persontimezone(ko.unwrap(self.persontimezone()));
+            self.persondisplayorder(ko.unwrap(editdata.DisplayOrder()));
 
             self.GetPersonData();
 
@@ -950,56 +946,6 @@ PersonViewModel = function(data) {
             self.itemdata = ko.observableArray([]);
         }
     };
-
-    //self.Place = {
-    //    Build: function() {
-    //        return {
-    //            PlaceType: ko.observable(2),
-    //            Name: ko.observable(self.placename()),
-    //            PlaceId: ko.observable(self.placeid()),
-    //            Country: ko.observable(self.placecountry()),
-    //            TimeZone: ko.observable(self.placetimezone()),
-    //            Division: ko.observable(self.placedivision()),
-    //            Department: ko.observable(self.placedepartment()),
-    //            DisplayOrder: ko.observable(self.placedisplayorder()),
-    //            CountryName: ko.observable(self.ProcessSave.CountryName()),
-    //            TimeZoneName: ko.observable(self.ProcessSave.TimeZoneName())
-    //        };
-    //    },
-    //    Clear: function() {
-    //        self.placeid(0);
-    //        self.placename("");
-    //        self.placecountry(0);
-    //        self.placetimezone(0);
-    //        self.placedivision("");
-    //        self.placedepartment("");
-    //        self.placedisplayorder(0);
-    //        self.placedisplaysort("");
-    //    },
-    //    Set: function() {
-    //        self.placeid(ko.unwrap(self.itemdata.PlaceId));
-    //        if (self.placeid() === 0) {
-    //            self.Place.Clear();
-    //            return;
-    //        };
-    //        self.placename(ko.unwrap(self.itemdata.Name));
-    //        self.placecountry(ko.unwrap(self.itemdata.Country));
-    //        self.placetimezone(ko.unwrap(self.itemdata.TimeZone));
-    //        self.placedivision(ko.unwrap(self.itemdata.Division));
-    //        self.placedepartment(ko.unwrap(self.itemdata.Department));
-    //        self.placedisplayorder(ko.unwrap(self.itemdata.DisplayOrder));
-
-    //        self.DefaultPlaceCountry.Set();
-    //    },
-    //    Populate: function() {
-    //        if (typeof self.itemdata === "undefined") {
-    //            self.Place.Clear();
-    //            return;
-    //        };
-    //        self.Place.Set();
-    //        self.itemdata = ko.observableArray([]);
-    //    }
-    //};
 
     self.PersonPhoneSettings = {
         Build: function() {
@@ -1353,47 +1299,6 @@ PersonViewModel = function(data) {
         }
     };
 
-    //self.SavePlaceData = {
-    //    BuildPlaceData: function() {
-    //        return {
-    //            Place: self.Place.Build(),
-    //            FaxPhone: self.PlaceFax.Build(),
-    //            CellPhone: self.PlaceCell.Build(),
-    //            HomePhone: self.PlaceHome.Build(),
-    //            WorkPhone: self.PlaceWork.Build(),
-    //            MailingAddress: self.PlaceMailing.Build(),
-    //            ShippingAddress: self.PlaceShipping.Build(),
-    //            PhoneSetting: self.PlacePhoneSettings.Build(),
-    //            UseMailingForShipping: self.placeUseMailingforShipping()
-    //        };
-    //    },
-    //    Save: function() {
-    //        $.ajax({
-    //            url: baseUrl + "SavePlace",
-    //            type: "post",
-    //            data: self.SavePlaceData.BuildPlaceData()
-    //        }).then(function(returndata) {
-    //            self.handleplacereturndata(returndata);
-    //            if (self.IsMessageAreaVisible()) {
-    //                return;
-    //            };
-
-    //            if (self.IsEditContact()) {
-    //                if (self.IsSaveContact()) {
-    //                    self.IsSaveClose(false);
-    //                    self.SavePerson.Save();
-    //                } else {
-    //                    self.IsSaveClose(true);
-    //                    self.SavePerson.Save();
-    //                };
-    //            } else {
-    //                self.ProcessSave.Manage();
-    //                self.clearandtoggle();
-    //            };
-    //        });
-    //    }
-    //};
-
     self.SavePerson = {
         BuildPersonData: function () {
             return {
@@ -1452,19 +1357,13 @@ PersonViewModel = function(data) {
             };
             self.SavePerson.ProcessAdd();
         },
-        HandleReturn: function (returndata) {
-            self.personid(returndata.Id);
-            self.errmsg(returndata.ErrMsg);
-
-            self.setmessageview();
-        },
         Save: function () {
             $.ajax({
                 url: baseUrl + "SavePerson",
                 type: "post",
                 data: self.SavePerson.BuildPersonData()
             }).then(function (returndata) {
-                self.SavePerson.HandleReturn(returndata);
+                self.handlepersonreturndata(returndata);
                 if (self.IsMessageAreaVisible()) {
                     return;
                 };

@@ -228,16 +228,21 @@ namespace ClaudeData.DataRepository.PersonRepository
                 personId = p.PersonId;
             }
 
-            string msg;
-            using (DbFacilityStaffSave db = new DbFacilityStaffSave())
+            if (p.PlaceId != 0)
             {
-                rb = db.AddUpdateStaffUser(p.PlaceId, personId);
-                if (rb.ErrMsg.Length != 0)
+                using (DbFacilityStaffSave db = new DbFacilityStaffSave())
                 {
-                    return rb;
+                    rb = db.AddUpdateStaffUser(p.PlaceId, personId);
+                    rb.Id = personId;
+
+                    if (rb.ErrMsg.Length != 0)
+                    {
+                        return rb;
+                    }
                 }
             }
 
+            string msg;
             if (data.AddressData?.Addresses != null)
             {
                 if (data.AddressData.Addresses.Count != 0)
