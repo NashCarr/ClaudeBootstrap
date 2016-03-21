@@ -1,10 +1,10 @@
 ﻿using System;
 
-namespace ClaudeCommon.Models
+namespace ClaudeCommon.Models.Administration
 {
-    public class HearAboutUs
+    public class ProductGroup
     {
-        public HearAboutUs()
+        public ProductGroup()
         {
             RecordId = 0;
             DisplayOrder = 0;

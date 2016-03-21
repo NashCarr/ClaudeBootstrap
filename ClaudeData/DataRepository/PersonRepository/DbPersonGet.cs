@@ -20,7 +20,7 @@ namespace ClaudeData.DataRepository.PersonRepository
 
         protected internal Person GetStaffUser(int personId)
         {
-            return LoadRecord(personId, (byte) PersonType.StaffUser);
+            return LoadRecord(personId, (byte) PersonType.StaffMember);
         }
 
         private Person LoadRecord(int personId, byte personType)

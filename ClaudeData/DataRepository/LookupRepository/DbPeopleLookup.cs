@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Web.Mvc;
 using ClaudeCommon.Models;
+using ClaudeCommon.Models.People;
 using ClaudeData.DataRepository.PeopleRepository;
 using ClaudeData.Models.LookupLists;
 using static ClaudeCommon.Enums.PersonEnums;
@@ -18,7 +19,7 @@ namespace ClaudeData.DataRepository.LookupRepository
 
         public StaffUserLookupList GetStaffUserLookup()
         {
-            return (StaffUserLookupList) GetLookUpList(PersonType.StaffUser);
+            return (StaffUserLookupList) GetLookUpList(PersonType.StaffMember);
         }
 
         public CustomerContactLookupList GetCustomerContactLookup()
@@ -46,7 +47,7 @@ namespace ClaudeData.DataRepository.LookupRepository
         {
             using (DbPeopleGetActive db = new DbPeopleGetActive())
             {
-                return db.GetActive(PersonType.StaffUser);
+                return db.GetActive(PersonType.StaffMember);
             }
         }
 
@@ -59,7 +60,7 @@ namespace ClaudeData.DataRepository.LookupRepository
 
             switch (personType)
             {
-                case PersonType.StaffUser:
+                case PersonType.StaffMember:
                     data = GetStaffUsers();
                     break;
                 case PersonType.Assessor:

@@ -348,7 +348,7 @@ namespace ClaudeData.DataRepository.PersonRepository
                     return SaveAssessorData(data, ref personId);
                 case PersonType.CustomerContact:
                     return SaveCustomerContactData(data, ref personId);
-                case PersonType.StaffUser:
+                case PersonType.StaffMember:
                     return SaveStaffUserData(data, ref personId);
                 case PersonType.OrganizationContact:
                     return SaveOrganizationContactData(data, ref personId);

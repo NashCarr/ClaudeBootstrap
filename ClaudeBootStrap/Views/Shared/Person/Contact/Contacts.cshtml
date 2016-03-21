@@ -1,12 +1,12 @@
 ﻿<!-- ** BEGIN Contacts AREA -->
 <div data-bind="visible: !IsEditContact()">
     <!--ko if: !IsEditContact()-->
-    @{ Html.RenderPartial("Person/List"); }
+    @{ Html.RenderPartial("Person/Contact/ContactList"); }
     <!--/ko-->
 </div>
 <div data-bind="visible: IsEditContact">
     <!--ko if: IsEditContact-->
-    @{ Html.RenderPartial("Person/Contact"); }
+    @{ Html.RenderPartial("Person/Contact/Contact"); }
     <!--/ko-->
 </div>
 <!-- ** END Contacts AREA -->

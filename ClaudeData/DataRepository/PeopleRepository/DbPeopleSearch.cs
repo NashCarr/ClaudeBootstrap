@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using ClaudeCommon.Models;
+using ClaudeCommon.Models.People;
 using static ClaudeCommon.Enums.PersonEnums;
 
 namespace ClaudeData.DataRepository.PeopleRepository
@@ -24,7 +25,7 @@ namespace ClaudeData.DataRepository.PeopleRepository
 
         protected internal List<PersonList> GetStaffUsers(string first, string last, string email)
         {
-            IdValue = (byte) PersonType.StaffUser;
+            IdValue = (byte) PersonType.StaffMember;
             TypeName = Enum.GetName(typeof (PersonType), IdValue);
             return GetRecords(first, last, email);
         }

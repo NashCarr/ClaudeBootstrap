@@ -1,6 +1,6 @@
 ﻿using static ClaudeCommon.Enums.PersonEnums;
 
-namespace ClaudeCommon.Models
+namespace ClaudeCommon.Models.People
 {
     public class Contact
     {

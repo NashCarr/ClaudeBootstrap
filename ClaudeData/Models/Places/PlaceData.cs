@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using ClaudeCommon.Models;
+using ClaudeCommon.Models.People;
 using ClaudeData.Models.Addresses;
 using ClaudeData.Models.Phones;
 

@@ -2,13 +2,13 @@
 using System.Web.Mvc;
 using ClaudeViewManagement.ViewModels.People;
 
-namespace ClaudeBootstrap.Controllers.Settings.People
+namespace ClaudeBootstrap.Controllers.People
 {
-    public class StaffUserController : Controller
+    public class CustomerContactController : Controller
     {
         public ActionResult Index()
         {
-            StaffUserViewModel vm = new StaffUserViewModel();
+            PlaceContactViewModel vm = new PlaceContactViewModel();
 
             vm.HandleRequest();
 
@@ -16,15 +16,13 @@ namespace ClaudeBootstrap.Controllers.Settings.People
         }
 
         [HttpPost]
-        public ActionResult Index(StaffUserViewModel vm)
+        public ActionResult Index(PlaceContactViewModel vm)
         {
             vm.IsValid = ModelState.IsValid;
             vm.HandleRequest();
 
             if (vm.IsValid)
             {
-                // NOTE: Must clear the model state in order to bind
-                //       the @Html helpers to the new model values
                 ModelState.Clear();
             }
             else

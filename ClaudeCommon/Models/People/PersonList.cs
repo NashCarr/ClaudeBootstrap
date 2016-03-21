@@ -1,4 +1,4 @@
-﻿namespace ClaudeCommon.Models
+﻿namespace ClaudeCommon.Models.People
 {
     public class PersonList
     {

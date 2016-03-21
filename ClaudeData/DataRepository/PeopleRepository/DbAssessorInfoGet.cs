@@ -37,7 +37,7 @@ namespace ClaudeData.DataRepository.PeopleRepository
 
             using (DbPersonDataStub a = new DbPersonDataStub())
             {
-                p = a.Prefill(PersonEnums.PersonType.StaffUser, p);
+                p = a.Prefill(PersonEnums.PersonType.StaffMember, p);
             }
 
             AssessorView m = new AssessorView

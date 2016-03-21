@@ -19,7 +19,7 @@ namespace ClaudeData.DataRepository.PersonRepository
             if (data == null) return string.Empty;
             using (DbPhoneSettingSave db = new DbPhoneSettingSave())
             {
-                return db.SavePersonPhoneSetting(personId, (byte) PersonType.StaffUser, data);
+                return db.SavePersonPhoneSetting(personId, (byte) PersonType.StaffMember, data);
             }
         }
 
@@ -55,7 +55,7 @@ namespace ClaudeData.DataRepository.PersonRepository
             if (data.PhoneData == null) return string.Empty;
             switch (data.Person.PersonType)
             {
-                case PersonType.StaffUser:
+                case PersonType.StaffMember:
                     return SaveStaffUserPhoneSetting(data.Person.PersonId, data.PhoneData.PhoneSettings);
                 case PersonType.Assessor:
                     return SaveAssessorPhoneSetting(data.Person.PersonId, data.PhoneData.PhoneSettings);

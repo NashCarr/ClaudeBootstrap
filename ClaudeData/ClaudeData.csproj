@@ -74,6 +74,7 @@
     <Compile Include="DataRepository\PeopleRepository\DbAssessorInfoGet.cs" />
     <Compile Include="DataRepository\PeopleRepository\DbAssessorSave.cs" />
     <Compile Include="DataRepository\PeopleRepository\DbPeopleGet.cs" />
+    <Compile Include="DataRepository\PeopleRepository\DbStaffMemberListGet.cs" />
     <Compile Include="DataRepository\PeopleRepository\DbPeopleGetActive.cs" />
     <Compile Include="DataRepository\PeopleRepository\DbPeopleGetInactive.cs" />
     <Compile Include="DataRepository\PeopleRepository\DbPeopleSearch.cs" />

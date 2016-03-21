@@ -4,17 +4,16 @@ using ClaudeCommon.Models.People;
 using ClaudeData.Models.LookupLists;
 using ClaudeViewManagement.Managers.People;
 using ClaudeViewManagement.Managers.Shared;
-using static ClaudeCommon.Enums.PersonEnums;
 
 namespace ClaudeViewManagement.ViewModels.People
 {
-    public class PersonListViewModel
+    public class StaffMemberListViewModel
     {
-        public PersonListViewModel(PersonType pt)
+        public StaffMemberListViewModel()
         {
-            using (PersonListManager mgr = new PersonListManager())
+            using (StaffMemberListManager mgr = new StaffMemberListManager())
             {
-                ListEntity = mgr.GetList(pt);
+                ListEntity = mgr.GetList();
                 Facilities = mgr.GetFacilities();
             }
             using (LookupManager mgr = new LookupManager())
@@ -27,10 +26,10 @@ namespace ClaudeViewManagement.ViewModels.People
             }
         }
 
-        public List<PersonList> ListEntity { get; set; }
         public List<SelectListItem> TimeZones { get; set; }
         public List<SelectListItem> Countries { get; set; }
         public List<SelectListItem> Facilities { get; set; }
+        public List<StaffMemberList> ListEntity { get; set; }
         public List<PostalCodeLookup> PostalCodes { get; set; }
         public List<SelectListItem> MobileCarriers { get; set; }
         public List<SelectListItem> StatesProvinces { get; set; }

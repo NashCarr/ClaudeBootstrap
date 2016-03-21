@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using ClaudeCommon.Models;
+using ClaudeCommon.Models.Places;
 using ClaudeData.DataRepository.AddressRepository;
 using ClaudeData.DataRepository.LookupRepository;
 using ClaudeData.DataRepository.PlacesRepository;
@@ -27,46 +28,6 @@ namespace ClaudeViewManagement.Managers.Places
             using (DbPlacesGetActive data = new DbPlacesGetActive())
             {
                 return data.GetActive(pt);
-            }
-        }
-
-        public List<SelectListItem> GetMobileCarriers()
-        {
-            using (DbMobileCarrierLookup db = new DbMobileCarrierLookup())
-            {
-                return db.GetLookUpList();
-            }
-        }
-
-        public List<PostalCodeLookup> GetPostalCodes()
-        {
-            using (DbPostalCodeLookup db = new DbPostalCodeLookup())
-            {
-                return db.GetLookup();
-            }
-        }
-
-        public List<SelectListItem> GetStatesProvinces()
-        {
-            using (DbStateProvinceLookup db = new DbStateProvinceLookup())
-            {
-                return db.GetLookup();
-            }
-        }
-
-        public List<SelectListItem> GetCountries()
-        {
-            using (CountryLookupList db = new CountryLookupList())
-            {
-                return db.LookupList;
-            }
-        }
-
-        public List<SelectListItem> GetTimeZones()
-        {
-            using (TimeZoneLookupList db = new TimeZoneLookupList())
-            {
-                return db.LookupList;
             }
         }
     }

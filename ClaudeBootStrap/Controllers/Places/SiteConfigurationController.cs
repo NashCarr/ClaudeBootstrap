@@ -1,15 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using ClaudeCommon.BaseModels;
+using ClaudeCommon.Enums;
 using ClaudeCommon.Models.SiteConfiguration;
 using ClaudeViewManagement.Managers.People;
 using ClaudeViewManagement.Managers.Places;
 using ClaudeViewManagement.ViewModels.People;
 using ClaudeViewManagement.ViewModels.Places;
-using static ClaudeCommon.Enums.PersonEnums;
-using static ClaudeCommon.Enums.PlaceEnums;
 
-namespace ClaudeBootstrap.Controllers.Settings.Places
+namespace ClaudeBootstrap.Controllers.Places
 {
     [RoutePrefix("SiteConfiguration")]
     public class SiteConfigurationController : Controller
@@ -34,7 +33,7 @@ namespace ClaudeBootstrap.Controllers.Settings.Places
         [HttpPost]
         public JsonResult SavePlace(PlaceSaveModel p)
         {
-            if (p.Place != null) p.Place.PlaceType = PlaceType.Facility;
+            if (p.Place != null) p.Place.PlaceType = PlaceEnums.PlaceType.Facility;
             using (PlaceSaveManager mgr = new PlaceSaveManager())
             {
                 return Json(mgr.SavePlace(p));
@@ -44,7 +43,7 @@ namespace ClaudeBootstrap.Controllers.Settings.Places
         [HttpPost]
         public JsonResult SaveContact(PlaceContactSaveModel c)
         {
-            if (c != null) c.Person.PersonType = PersonType.StaffUser;
+            if (c != null) c.Person.PersonType = PersonEnums.PersonType.StaffMember;
             using (PlaceContactSaveManager mgr = new PlaceContactSaveManager())
             {
                 return Json(mgr.SaveContact(c));

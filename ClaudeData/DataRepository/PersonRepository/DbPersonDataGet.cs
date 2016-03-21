@@ -15,7 +15,7 @@ namespace ClaudeData.DataRepository.PersonRepository
     {
         protected internal PersonData GetStaffUser(int personId)
         {
-            return LoadRecords(personId, (byte) PersonType.StaffUser);
+            return LoadRecords(personId, (byte) PersonType.StaffMember);
         }
 
         protected internal PersonData GetAssessor(int personId)

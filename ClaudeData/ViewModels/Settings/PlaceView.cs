@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using ClaudeCommon.Models;
+using ClaudeCommon.Models.People;
 using ClaudeData.Models.Places;
 using ClaudeData.ViewModels.Shared;
 

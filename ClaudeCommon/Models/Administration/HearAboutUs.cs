@@ -1,10 +1,10 @@
 ﻿using System;
 
-namespace ClaudeCommon.Models
+namespace ClaudeCommon.Models.Administration
 {
-    public class GiftCard
+    public class HearAboutUs
     {
-        public GiftCard()
+        public HearAboutUs()
         {
             RecordId = 0;
             DisplayOrder = 0;
@@ -15,6 +15,7 @@ namespace ClaudeCommon.Models
 
         public string Name { get; set; }
         public int RecordId { get; set; }
+        public bool IsSystem { get; set; }
         public string DisplaySort { get; set; }
         public short DisplayOrder { get; set; }
         public string StringCreateDate { get; set; }

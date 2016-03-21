@@ -48,7 +48,7 @@ namespace ClaudeData.DataRepository.PeopleRepository
 
             using (DbPersonDataStub a = new DbPersonDataStub())
             {
-                _data = a.Prefill(PersonEnums.PersonType.StaffUser, _data);
+                _data = a.Prefill(PersonEnums.PersonType.StaffMember, _data);
             }
 
             return SetPlaceContactView();

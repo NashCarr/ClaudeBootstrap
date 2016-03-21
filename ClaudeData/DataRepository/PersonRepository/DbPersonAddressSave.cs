@@ -35,7 +35,7 @@ namespace ClaudeData.DataRepository.PersonRepository
         {
             using (DbAddressAssociationSave db = new DbAddressAssociationSave())
             {
-                return db.SavePersonAddress(personId, (byte) PersonType.StaffUser, data);
+                return db.SavePersonAddress(personId, (byte) PersonType.StaffMember, data);
             }
         }
 
@@ -101,7 +101,7 @@ namespace ClaudeData.DataRepository.PersonRepository
             {
                 case PersonType.Assessor:
                     return SaveAssessorAddresses(data.Person.PersonId, data.AddressData.Addresses);
-                case PersonType.StaffUser:
+                case PersonType.StaffMember:
                     return SaveStaffUserAddresses(data.Person.PersonId, data.AddressData.Addresses);
                 case PersonType.CustomerContact:
                     return SaveCustomerContactAddresses(data.Person.PersonId, data.AddressData.Addresses);

@@ -11,7 +11,7 @@ using static ClaudeCommon.Enums.PersonEnums;
 
 namespace ClaudeViewManagement.Managers.People
 {
-    public class PersonListManager : IDisposable
+    public class StaffMemberListManager : IDisposable
     {
         public void Dispose()
         {
@@ -23,11 +23,11 @@ namespace ClaudeViewManagement.Managers.People
         {
         }
 
-        public List<PersonList> GetList(PersonType pt)
+        public List<StaffMemberList> GetList()
         {
-            using (DbPeopleGetActive data = new DbPeopleGetActive())
+            using (DbStaffMemberListGet data = new DbStaffMemberListGet())
             {
-                return data.GetActive(pt);
+                return data.GetList();
             }
         }
 

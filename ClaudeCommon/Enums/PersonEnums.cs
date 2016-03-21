@@ -6,7 +6,7 @@
         {
             None,
             Assessor,
-            StaffUser,
+            StaffMember,
             CustomerContact,
             OrganizationContact
         }

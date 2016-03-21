@@ -148,15 +148,15 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\Settings\GiftCardController.cs" />
-    <Compile Include="Controllers\Settings\People\CustomerContactController.cs" />
-    <Compile Include="Controllers\Settings\People\AssessorController.cs" />
-    <Compile Include="Controllers\Settings\People\StaffMemberController.cs" />
-    <Compile Include="Controllers\Settings\HearAboutUsController.cs" />
-    <Compile Include="Controllers\Settings\Places\CustomerController.cs" />
-    <Compile Include="Controllers\Settings\Places\OrganizationController.cs" />
-    <Compile Include="Controllers\Settings\Places\SiteConfigurationController.cs" />
-    <Compile Include="Controllers\Settings\ProductGroupController.cs" />
+    <Compile Include="Controllers\People\AssessorController.cs" />
+    <Compile Include="Controllers\People\CustomerContactController.cs" />
+    <Compile Include="Controllers\People\StaffMemberController.cs" />
+    <Compile Include="Controllers\Places\CustomerController.cs" />
+    <Compile Include="Controllers\Places\OrganizationController.cs" />
+    <Compile Include="Controllers\Places\SiteConfigurationController.cs" />
+    <Compile Include="Controllers\Administration\GiftCardController.cs" />
+    <Compile Include="Controllers\Administration\HearAboutUsController.cs" />
+    <Compile Include="Controllers\Administration\ProductGroupController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -382,6 +382,7 @@
     <Content Include="Scripts\knockout-sortable.min.js" />
     <Content Include="Scripts\knockout.mapping-latest.debug.js" />
     <Content Include="Scripts\knockout.mapping-latest.js" />
+    <Content Include="Scripts\KoViewModels\vmStaffMember.js" />
     <Content Include="Scripts\KoViewModels\vmSiteConfiguration.js" />
     <Content Include="Scripts\KoViewModels\vmOrganization.js" />
     <Content Include="Scripts\KoViewModels\vmCustomer.js" />
@@ -421,13 +422,10 @@
     <Content Include="Views\HearAboutUs\List.cshtml" />
     <Content Include="Views\ProductGroup\List.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
-    <Content Include="Views\Shared\Place\AddEdit.cshtml" />
+    <Content Include="Views\Shared\Place\PlaceAddEdit.cshtml" />
     <Content Include="Views\Shared\Primary\PlacePrimary.cshtml" />
     <Content Include="Views\Shared\Place\Place.cshtml" />
-    <Content Include="Views\Shared\Place\List.cshtml" />
-    <Content Include="Views\Shared\Person\List.cshtml" />
-    <Content Include="Views\Shared\Person\Contacts.cshtml" />
-    <Content Include="Views\Shared\Person\Contact.cshtml" />
+    <Content Include="Views\Shared\Place\PlaceList.cshtml" />
     <Content Include="Views\Shared\Place\Addresses\Addresses.cshtml" />
     <Content Include="Views\Shared\Place\Addresses\MailingAddress.cshtml" />
     <Content Include="Views\Shared\Place\Addresses\ShippingAddress.cshtml" />
@@ -444,9 +442,14 @@
     <Content Include="Views\Shared\Person\Phones\HomePhone.cshtml" />
     <Content Include="Views\Shared\Person\Phones\Phones.cshtml" />
     <Content Include="Views\Shared\Person\Phones\WorkPhone.cshtml" />
-    <Content Include="Views\Shared\Person\ContactDetail.cshtml" />
     <Content Include="Views\Shared\Place\PlaceDetail.cshtml" />
     <Content Include="Views\SiteConfiguration\Index.cshtml" />
+    <Content Include="Views\Shared\Person\Contact\Contact.cshtml" />
+    <Content Include="Views\Shared\Person\Contact\ContactDetail.cshtml" />
+    <Content Include="Views\Shared\Person\Contact\ContactList.cshtml" />
+    <Content Include="Views\Shared\Person\Contact\Contacts.cshtml" />
+    <Content Include="Views\Shared\Person\StaffMemberList.cshtml" />
+    <Content Include="Views\Shared\Person\PersonAddEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ClaudeCommon\ClaudeCommon.csproj">

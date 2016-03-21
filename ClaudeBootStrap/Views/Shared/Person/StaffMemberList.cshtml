@@ -1,0 +1,42 @@
+﻿<!-- BEGIN GRID AREA -->
+<div class="table-row small-12 columns" id="itemslist">
+    <table class="tabled" id="datatable">
+
+        <thead class="light">
+        <tr>
+            <th class="pdsa-action-button-area" data-bind="click: ManageSort.Change(0), disable: IsListAreaVisible">Edit</th>
+            <th data-bind="click: ManageSort.Change(1)" style="display: none">PersonId</th>
+            <th data-bind="click: ManageSort.Change(1)" style="display: none">Order</th>
+            <th data-bind="click: ManageSort.Change(2)">UserName</th>
+            <th data-bind="click: ManageSort.Change(3)">Name</th>
+            <th data-bind="click: ManageSort.Change(4)">Email</th>
+            <th data-bind="click: ManageSort.Change(5)">Access Right</th>
+            <th class="listcentered" data-bind="click: ManageSort.Change(6)">Last Login</th>
+            <th class="pdsa-action-button-area" data-bind="click: ManageSort.Change(0), disable: IsListAreaVisible">Delete</th>
+        </tr>
+        </thead>
+        <tbody data-bind="foreach: filteredItems()" id="items">
+        <tr id="itemrow">
+            <td class="listcentered" id="edit">
+                <a class="button small blue-2" data-bind="click: $parent.PersonEdit" href="#">
+                    Select
+                </a>
+            </td>
+            <td class="listcentered" data-bind="text: PersonId" id="personid" style="display: none"></td>
+            <td class="listcentered" data-bind="text: DisplayOrder" id="order" style="display: none"></td>
+            <td class="ui-priority-secondary" data-bind="text: UserName" id="username"></td>
+            <td class="ui-priority-secondary" data-bind="text: FullName" id="fullname"></td>
+            <td class="ui-priority-secondary" data-bind="text: Email" id="email"></td>
+            <td class="listcentered" data-bind="text: AccessRightName" id="accessrightname"></td>
+            <td class="listcentered" data-bind="text: LastLoginDate" id="lastlogindate"></td>
+            <td class="listcentered" id="delete">
+                <a class="button small blue-2" data-bind="click: $parent.RemoveItem.Validate.bind($data)" href="#" type="button">
+                    Delete
+                </a>
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+</div>
+<!-- END GRId AREA -->

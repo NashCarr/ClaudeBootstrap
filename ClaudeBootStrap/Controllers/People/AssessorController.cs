@@ -2,7 +2,7 @@
 using System.Web.Mvc;
 using ClaudeViewManagement.ViewModels.People;
 
-namespace ClaudeBootstrap.Controllers.Settings.People
+namespace ClaudeBootstrap.Controllers.People
 {
     public class AssessorController : Controller
     {
