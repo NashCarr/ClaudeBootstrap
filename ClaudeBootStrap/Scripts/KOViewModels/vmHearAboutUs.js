@@ -81,8 +81,8 @@ HearAboutUsViewModel = function(data) {
             if (type === 0) {
                 self.ManageSort.IsSorting(!self.ManageSort.IsSorting());
             };
-            if (!self.IsSorting() && (type !== 0)) {
-                self.ManageSort.ManageSort.ManageDirection(type);
+            if (!self.ManageSort.IsSorting() && (type !== 0)) {
+                self.ManageSort.ManageDirection(type);
                 self.ReorderList.ReorderAfterSort();
             };
         }
