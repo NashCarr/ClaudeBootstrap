@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Data.SqlClient;
-using ClaudeData.Models.SiteConfiguration;
+using ClaudeCommon.Models.SiteConfiguration;
 
 namespace ClaudeData.DataRepository.SettingsRepository
 {

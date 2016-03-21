@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 using ClaudeCommon.BaseModels.Returns;
-using ClaudeData.Models.SiteConfiguration;
+using ClaudeCommon.Models.SiteConfiguration;
 
 namespace ClaudeData.DataRepository.SettingsRepository
 {

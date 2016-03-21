@@ -1,4 +1,4 @@
-﻿namespace ClaudeData.Models.SiteConfiguration
+﻿namespace ClaudeCommon.Models.SiteConfiguration
 {
     public class SiteConfiguration
     {

@@ -109,6 +109,7 @@
     <Compile Include="DataRepository\SettingsRepository\DbEmployeeCompensationSave.cs" />
     <Compile Include="DataRepository\SettingsRepository\DbGeneralConfigurationSave.cs" />
     <Compile Include="DataRepository\SettingsRepository\DbModuleUsageSave.cs" />
+    <Compile Include="DataRepository\SettingsRepository\DbSiteConfigurationSave.cs" />
     <Compile Include="DataRepository\SettingsRepository\DbPasswordRequirementSave.cs" />
     <Compile Include="DataRepository\SettingsRepository\DbSiteConfigurationGet.cs" />
     <Compile Include="DataRepository\SettingsRepository\DbStudyDefinitionSettingsSave.cs" />
@@ -156,14 +157,6 @@
     <Compile Include="Models\Phones\PhoneData.cs" />
     <Compile Include="Models\Places\Place.cs" />
     <Compile Include="Models\Places\PlaceData.cs" />
-    <Compile Include="Models\SiteConfiguration\AssessorCompensation.cs" />
-    <Compile Include="Models\SiteConfiguration\SiteConfiguration.cs" />
-    <Compile Include="Models\SiteConfiguration\EmployeeCompensation.cs" />
-    <Compile Include="Models\SiteConfiguration\Compensation.cs" />
-    <Compile Include="Models\SiteConfiguration\GeneralConfiguration.cs" />
-    <Compile Include="Models\SiteConfiguration\ModuleUsage.cs" />
-    <Compile Include="Models\SiteConfiguration\StudyDefinition.cs" />
-    <Compile Include="Models\SiteConfiguration\PasswordRequirement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\Settings\PlaceView.cs" />
     <Compile Include="ViewModels\Settings\AssessorView.cs" />

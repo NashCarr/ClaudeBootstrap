@@ -58,6 +58,14 @@
     <Compile Include="Models\PersonList.cs" />
     <Compile Include="Models\PlaceList.cs" />
     <Compile Include="Models\ProductGroup.cs" />
+    <Compile Include="Models\SiteConfiguration\AssessorCompensation.cs" />
+    <Compile Include="Models\SiteConfiguration\Compensation.cs" />
+    <Compile Include="Models\SiteConfiguration\EmployeeCompensation.cs" />
+    <Compile Include="Models\SiteConfiguration\GeneralConfiguration.cs" />
+    <Compile Include="Models\SiteConfiguration\ModuleUsage.cs" />
+    <Compile Include="Models\SiteConfiguration\PasswordRequirement.cs" />
+    <Compile Include="Models\SiteConfiguration\SiteConfiguration.cs" />
+    <Compile Include="Models\SiteConfiguration\StudyDefinition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

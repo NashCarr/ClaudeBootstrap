@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using ClaudeCommon.BaseModels;
+using ClaudeCommon.Models.SiteConfiguration;
 using ClaudeViewManagement.Managers.People;
 using ClaudeViewManagement.Managers.Places;
 using ClaudeViewManagement.ViewModels.People;
@@ -18,6 +19,16 @@ namespace ClaudeBootstrap.Controllers.Settings.Places
         public ActionResult Index()
         {
             return View(new SiteConfigurationViewModel());
+        }
+
+        [HttpPost]
+        public JsonResult SaveSiteConfiguration(SiteConfiguration c)
+        {
+            //using (PlaceSaveManager mgr = new PlaceSaveManager())
+            //{
+            //    return Json(mgr.SavePlace(p));
+            //}
+            return null;
         }
 
         [HttpPost]

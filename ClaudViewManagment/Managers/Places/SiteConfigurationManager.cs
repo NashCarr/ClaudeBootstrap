@@ -1,6 +1,6 @@
 using System;
+using ClaudeCommon.Models.SiteConfiguration;
 using ClaudeData.DataRepository.SettingsRepository;
-using ClaudeData.Models.SiteConfiguration;
 
 namespace ClaudeViewManagement.Managers.Places
 {
