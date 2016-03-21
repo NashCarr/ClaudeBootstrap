@@ -4,7 +4,7 @@ using ClaudeData.DataRepository.PersonRepository;
 using ClaudeData.Models.Addresses;
 using ClaudeData.Models.People;
 using ClaudeData.Models.Phones;
-using ClaudeData.ViewModels.Settings;
+using ClaudeData.ViewModels;
 
 namespace ClaudeData.DataRepository.PeopleRepository
 {

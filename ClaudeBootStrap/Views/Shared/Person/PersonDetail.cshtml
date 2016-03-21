@@ -1,10 +1,10 @@
 ﻿<!-- ** BEGIN Place Detail AREA -->
-<div class="callout" id="PlaceDetail">
+<div class="callout" id="PersonDetail">
     <div class="top-bar">
         <div class="top-bar-title">
             <ul class="menu">
                 <li>
-                    @Html.Label("placeheader", new {data_bind = "text: detailHeader" })
+                    @Html.Label("detailheader", new {data_bind = "text: detailHeader" })
                 </li>
             </ul>
         </div>
@@ -19,23 +19,17 @@
                 <li>
                     <a class="small-text-label columns" data-bind="click: DetailView.Addresses" href="">Addresses</a>
                 </li>
-                <li>
-                    <a class="small-text-label columns" data-bind="click: DetailView.Contacts" href="">Contacts</a>
-                </li>
             </ul>
         </div>
     </div>
     <div data-bind="visible: IsPrimaryDetailVisible()">
-        @{ Html.RenderPartial("Place/PlacePrimary"); }
+        @{ Html.RenderPartial("Person/PersonPrimary"); }
     </div>
     <div data-bind="visible: IsPhoneDetailVisible()">
-        @{ Html.RenderPartial("Place/Phones/Phones"); }
+        @{ Html.RenderPartial("Person/Phones/Phones"); }
     </div>
-    <div data-bind="visible: IsPlaceAddressDetailVisible()">
-        @{ Html.RenderPartial("Place/Addresses/Addresses"); }
-    </div>
-    <div data-bind="visible: IsContactDetailVisible()">
-        @{ Html.RenderPartial("Person/Contact/Contacts"); }
+    <div data-bind="visible: IsPersonAddressDetailVisible()">
+        @{ Html.RenderPartial("Person/Addresses/Addresses"); }
     </div>
 </div>
 <!-- ** END Place Detail AREA -->

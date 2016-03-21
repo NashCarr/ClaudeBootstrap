@@ -1,21 +1,20 @@
 ﻿using System;
 using System.Data;
 using ClaudeCommon.BaseModels.Returns;
-using ClaudeCommon.Models;
 using ClaudeCommon.Models.Administration;
 
-namespace ClaudeData.DataRepository.AdminRepository
+namespace ClaudeData.DataRepository.AdministrationRepository
 {
-    public class DbHearAboutUsSave : DbSaveBase
+    public class DbGiftCardSave : DbSaveBase
     {
         public ReturnBase SetInactive(int recordId)
         {
             ReturnValues.Id = recordId;
             try
             {
-                SetConnectToDatabase("[Admin].[usp_HearAboutUs_SetInactive]");
+                SetConnectToDatabase("[Admin].[usp_GiftCard_SetInactive]");
 
-                CmdSql.Parameters.Add("@HearAboutUsId", SqlDbType.Int).Value = ReturnValues.Id;
+                CmdSql.Parameters.Add("@GiftCardId", SqlDbType.Int).Value = ReturnValues.Id;
 
                 SetErrMsgParameter();
 
@@ -29,29 +28,28 @@ namespace ClaudeData.DataRepository.AdminRepository
             return ReturnValues;
         }
 
-        public ReturnBase AddUpdateRecord(HearAboutUs data)
+        public ReturnBase AddUpdateRecord(GiftCard data)
         {
             ReturnValues.Id = data.RecordId;
 
             if (!string.IsNullOrEmpty(data.Name)) return SaveRecord(data);
 
-            SetEmptyStringMessage("Hear About Us");
+            SetEmptyStringMessage("Gift Card");
             return ReturnValues;
         }
 
-        private ReturnBase SaveRecord(HearAboutUs data)
+        private ReturnBase SaveRecord(GiftCard data)
         {
             try
             {
-                IdParameter = "@HearAboutUsId";
+                IdParameter = "@GiftCardId";
 
-                SetConnectToDatabase("[Admin].[usp_HearAboutUs_Upsert]");
+                SetConnectToDatabase("[Admin].[usp_GiftCard_Upsert]");
 
                 SetIdInputOutputParameter();
 
                 CmdSql.Parameters.Add("@Name", SqlDbType.NVarChar, 50).Value = data.Name.Trim();
                 CmdSql.Parameters.Add("@DisplayOrder", SqlDbType.Int).Value = data.DisplayOrder;
-                CmdSql.Parameters.Add("@IsSystem", SqlDbType.Bit).Value = data.IsSystem;
 
                 SetErrMsgParameter();
 

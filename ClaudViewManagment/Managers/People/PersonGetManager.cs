@@ -4,7 +4,7 @@ using ClaudeData.ViewModels;
 
 namespace ClaudeViewManagement.Managers.People
 {
-    public class PlaceContactGetManager : IDisposable
+    public class PersonGetManager : IDisposable
     {
         public void Dispose()
         {
@@ -32,7 +32,7 @@ namespace ClaudeViewManagement.Managers.People
             }
         }
 
-        public PersonView GetStaffUser(int recordId)
+        public PersonView GetStaffMember(int recordId)
         {
             using (DbPersonViewGet data = new DbPersonViewGet())
             {

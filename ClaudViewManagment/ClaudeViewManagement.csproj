@@ -41,10 +41,12 @@
   <ItemGroup>
     <Compile Include="Bases\ViewModelBase.cs" />
     <Compile Include="Managers\People\AssessorManager.cs" />
+    <Compile Include="Managers\People\PersonSaveManager.cs" />
+    <Compile Include="Managers\People\StaffMemberManager.cs" />
+    <Compile Include="Managers\People\PersonGetManager.cs" />
     <Compile Include="Managers\People\StaffMemberListManager.cs" />
     <Compile Include="Managers\People\PlaceContactGetManager.cs" />
     <Compile Include="Managers\People\PlaceContactDeleteManager.cs" />
-    <Compile Include="Managers\People\PlaceContactSaveManager.cs" />
     <Compile Include="Managers\People\PersonListManager.cs" />
     <Compile Include="Managers\Places\FacilityManager.cs" />
     <Compile Include="Managers\Places\CustomerManager.cs" />
@@ -52,22 +54,23 @@
     <Compile Include="Managers\Places\PlaceSaveManager.cs" />
     <Compile Include="Managers\Places\PlaceListManager.cs" />
     <Compile Include="Managers\Places\OrganizationManager.cs" />
-    <Compile Include="Managers\Settings\GiftCardManager.cs" />
-    <Compile Include="Managers\Settings\HearAboutUsManager.cs" />
-    <Compile Include="Managers\Settings\ProductGroupManager.cs" />
+    <Compile Include="Managers\Administration\GiftCardManager.cs" />
+    <Compile Include="Managers\Administration\HearAboutUsManager.cs" />
+    <Compile Include="Managers\Administration\ProductGroupManager.cs" />
     <Compile Include="Managers\Shared\LookupManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\People\AssessorViewModel.cs" />
-    <Compile Include="ViewModels\People\PlaceContactSaveModel.cs" />
     <Compile Include="ViewModels\People\CustomerContactViewModel.cs" />
     <Compile Include="ViewModels\People\PersonListViewModel.cs" />
+    <Compile Include="ViewModels\People\PersonSaveModel.cs" />
     <Compile Include="ViewModels\People\StaffMemberListViewModel.cs" />
     <Compile Include="ViewModels\Places\SiteConfigurationViewModel.cs" />
     <Compile Include="ViewModels\Places\PlaceSaveModel.cs" />
     <Compile Include="ViewModels\Places\PlaceListViewModel.cs" />
-    <Compile Include="ViewModels\Settings\HearAboutUsViewModel.cs" />
-    <Compile Include="ViewModels\Settings\GiftCardViewModel.cs" />
-    <Compile Include="ViewModels\Settings\ProductGroupViewModel.cs" />
+    <Compile Include="ViewModels\Administration\HearAboutUsViewModel.cs" />
+    <Compile Include="ViewModels\Administration\GiftCardViewModel.cs" />
+    <Compile Include="ViewModels\Administration\ProductGroupViewModel.cs" />
+    <Compile Include="ViewModels\Shared\AddressPhoneSaveModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ClaudeCommon\ClaudeCommon.csproj">

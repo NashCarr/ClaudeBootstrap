@@ -9,7 +9,7 @@
 {
     <div class="table-descriptor small-12 columns">
         <p>
-            <span>Customers</span>
+            <span>Staff Member</span>
         </p>
         <div data-bind="visible: IsSearchAreaVisible">
             @{ Html.RenderPartial("Search"); }
@@ -17,9 +17,9 @@
         <div data-bind="visible: IsMessageAreaVisible">
             @{ Html.RenderPartial("Message"); }
         </div>
-        @*<div data-bind="visible: IsAddEditAreaVisible">
+        <div data-bind="visible: IsAddEditAreaVisible">
             @{ Html.RenderPartial("Person/PersonAddEdit"); }
-        </div>*@
+        </div>
         <div data-bind="visible: IsListAreaVisible">
             <!--ko if: DragDropComplete-->
             @{ Html.RenderPartial("Person/StaffMemberList"); }
@@ -36,7 +36,7 @@
     <script src="~/Scripts/knockout.mapping-latest.js"></script>
     <script src="~/Scripts/KOViewModels/vmStaffMember.js"></script>
     <script>
-        var rawData = new PlaceViewModel(@Html.Raw(data));
+        var rawData = new PersonViewModel(@Html.Raw(data));
         ko.applyBindings(rawData);
     </script>
 }

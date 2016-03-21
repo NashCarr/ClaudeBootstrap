@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-using ClaudeCommon.Models;
 using ClaudeCommon.Models.Administration;
-using ClaudeViewManagement.Managers.Settings;
+using ClaudeViewManagement.Managers.Administration;
 
-namespace ClaudeViewManagement.ViewModels.Settings
+namespace ClaudeViewManagement.ViewModels.Administration
 {
     public class ProductGroupViewModel
     {

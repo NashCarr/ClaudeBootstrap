@@ -6,7 +6,7 @@ using ClaudeCommon.Enums;
 using ClaudeData.DataRepository.PersonRepository;
 using ClaudeData.Models.Lists.Settings;
 using ClaudeData.Models.People;
-using ClaudeData.ViewModels.Settings;
+using ClaudeData.ViewModels;
 
 namespace ClaudeData.DataRepository.PeopleRepository
 {
@@ -32,7 +32,7 @@ namespace ClaudeData.DataRepository.PeopleRepository
 
             using (DbPersonDataGet a = new DbPersonDataGet())
             {
-                p = a.GetStaffUser(recordId);
+                p = a.GetStaffMember(recordId);
             }
 
             using (DbPersonDataStub a = new DbPersonDataStub())

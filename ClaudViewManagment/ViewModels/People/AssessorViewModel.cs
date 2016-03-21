@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using ClaudeData.DataRepository.LookupRepository;
 using ClaudeData.Models.Lists.Settings;
 using ClaudeData.Models.LookupLists;
-using ClaudeData.ViewModels.Settings;
+using ClaudeData.ViewModels;
 using ClaudeViewManagement.Bases;
 using ClaudeViewManagement.Managers.People;
 

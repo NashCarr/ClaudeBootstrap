@@ -30,12 +30,12 @@ namespace ClaudeBootstrap.Controllers.Places
         }
 
         [HttpPost]
-        public JsonResult SaveContact(PlaceContactSaveModel c)
+        public JsonResult SaveContact(PersonSaveModel c)
         {
             if (c != null) c.Person.PersonType = PersonEnums.PersonType.OrganizationContact;
-            using (PlaceContactSaveManager mgr = new PlaceContactSaveManager())
+            using (PersonSaveManager mgr = new PersonSaveManager())
             {
-                return Json(mgr.SaveContact(c));
+                return Json(mgr.SavePerson(c));
             }
         }
 

@@ -1,15 +1,14 @@
 ﻿using ClaudeCommon.Enums;
-using ClaudeData.DataRepository.PersonRepository;
 using ClaudeData.Models.People;
-using ClaudeData.ViewModels.Settings;
+using ClaudeData.ViewModels;
 
-namespace ClaudeData.DataRepository.PeopleRepository
+namespace ClaudeData.DataRepository.PersonRepository
 {
-    public class DbPlaceContactInfoGet : DbGetBase
+    public class DbPersonViewGet : DbGetBase
     {
         private PersonData _data;
 
-        public PlaceContactView GetCustomerContact(int recordId)
+        public PersonView GetCustomerContact(int recordId)
         {
             using (DbPersonDataGet a = new DbPersonDataGet())
             {
@@ -21,10 +20,10 @@ namespace ClaudeData.DataRepository.PeopleRepository
                 _data = a.Prefill(PersonEnums.PersonType.CustomerContact, _data);
             }
 
-            return SetPlaceContactView();
+            return SetPersonView();
         }
 
-        public PlaceContactView GetOrganizationContact(int recordId)
+        public PersonView GetOrganizationContact(int recordId)
         {
             using (DbPersonDataGet a = new DbPersonDataGet())
             {
@@ -36,14 +35,14 @@ namespace ClaudeData.DataRepository.PeopleRepository
                 _data = a.Prefill(PersonEnums.PersonType.OrganizationContact, _data);
             }
 
-            return SetPlaceContactView();
+            return SetPersonView();
         }
 
-        public PlaceContactView GetStaffUser(int recordId)
+        public PersonView GetStaffMember(int recordId)
         {
             using (DbPersonDataGet a = new DbPersonDataGet())
             {
-                _data = a.GetStaffUser(recordId);
+                _data = a.GetStaffMember(recordId);
             }
 
             using (DbPersonDataStub a = new DbPersonDataStub())
@@ -51,12 +50,12 @@ namespace ClaudeData.DataRepository.PeopleRepository
                 _data = a.Prefill(PersonEnums.PersonType.StaffMember, _data);
             }
 
-            return SetPlaceContactView();
+            return SetPersonView();
         }
 
-        private PlaceContactView SetPlaceContactView()
+        private PersonView SetPersonView()
         {
-            PlaceContactView m = new PlaceContactView
+            PersonView m = new PersonView
             {
                 Person = _data.Person,
                 Addresses =

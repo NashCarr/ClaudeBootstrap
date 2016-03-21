@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using ClaudeData.Models.Admin;
 
-namespace ClaudeData.DataRepository.AdminRepository
+namespace ClaudeData.DataRepository.AdministrationRepository
 {
     public class DbFacilityStaffGet : DbGetBase
     {

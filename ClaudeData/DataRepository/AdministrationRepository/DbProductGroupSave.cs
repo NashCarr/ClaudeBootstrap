@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Data;
 using ClaudeCommon.BaseModels.Returns;
-using ClaudeCommon.Models;
 using ClaudeCommon.Models.Administration;
 
-namespace ClaudeData.DataRepository.AdminRepository
+namespace ClaudeData.DataRepository.AdministrationRepository
 {
     public class DbProductGroupSave : DbSaveBase
     {

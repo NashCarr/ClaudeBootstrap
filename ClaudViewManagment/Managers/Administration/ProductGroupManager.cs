@@ -2,14 +2,13 @@ using System;
 using System.Collections.Generic;
 using ClaudeCommon.BaseModels;
 using ClaudeCommon.BaseModels.Returns;
-using ClaudeCommon.Models;
 using ClaudeCommon.Models.Administration;
-using ClaudeData.DataRepository.AdminRepository;
+using ClaudeData.DataRepository.AdministrationRepository;
 using ClaudeData.DataRepository.ReorderRepository;
 
-namespace ClaudeViewManagement.Managers.Settings
+namespace ClaudeViewManagement.Managers.Administration
 {
-    public class GiftCardManager : IDisposable
+    public class ProductGroupManager : IDisposable
     {
         public void Dispose()
         {
@@ -21,17 +20,17 @@ namespace ClaudeViewManagement.Managers.Settings
         {
         }
 
-        public List<GiftCard> GetList()
+        public List<ProductGroup> GetList()
         {
-            using (DbGiftCardGet data = new DbGiftCardGet())
+            using (DbProductGroupGet data = new DbProductGroupGet())
             {
                 return data.GetViewModel();
             }
         }
 
-        public ReturnBase SaveRecord(GiftCard entity)
+        public ReturnBase SaveRecord(ProductGroup entity)
         {
-            using (DbGiftCardSave data = new DbGiftCardSave())
+            using (DbProductGroupSave data = new DbProductGroupSave())
             {
                 return data.AddUpdateRecord(entity);
             }
@@ -41,13 +40,13 @@ namespace ClaudeViewManagement.Managers.Settings
         {
             using (DbReorderSave db = new DbReorderSave())
             {
-                db.GiftCardReorderSave(data);
+                db.ProductGroupReorderSave(data);
             }
         }
 
         public ReturnBase DeleteRecord(int recordId)
         {
-            using (DbGiftCardSave data = new DbGiftCardSave())
+            using (DbProductGroupSave data = new DbProductGroupSave())
             {
                 return data.SetInactive(recordId);
             }

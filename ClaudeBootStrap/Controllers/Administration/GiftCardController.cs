@@ -2,8 +2,8 @@
 using System.Web.Mvc;
 using ClaudeCommon.BaseModels;
 using ClaudeCommon.Models.Administration;
-using ClaudeViewManagement.Managers.Settings;
-using ClaudeViewManagement.ViewModels.Settings;
+using ClaudeViewManagement.Managers.Administration;
+using ClaudeViewManagement.ViewModels.Administration;
 
 namespace ClaudeBootstrap.Controllers.Administration
 {

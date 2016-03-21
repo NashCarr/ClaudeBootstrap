@@ -13,7 +13,7 @@ namespace ClaudeData.DataRepository.PersonRepository
 {
     public class DbPersonDataGet : DbGetBase
     {
-        protected internal PersonData GetStaffUser(int personId)
+        protected internal PersonData GetStaffMember(int personId)
         {
             return LoadRecords(personId, (byte) PersonType.StaffMember);
         }

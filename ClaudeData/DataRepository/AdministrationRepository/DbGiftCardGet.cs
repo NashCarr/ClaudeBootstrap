@@ -1,23 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using ClaudeCommon.Models;
 using ClaudeCommon.Models.Administration;
 
-namespace ClaudeData.DataRepository.AdminRepository
+namespace ClaudeData.DataRepository.AdministrationRepository
 {
-    public class DbHearAboutUsGet : DbGetBase
+    public class DbGiftCardGet : DbGetBase
     {
-        public List<HearAboutUs> GetViewModel()
+        public List<GiftCard> GetViewModel()
         {
-            SetConnectToDatabase("[ViewModel].[usp_HearAboutUs_GetActive]");
+            SetConnectToDatabase("[ViewModel].[usp_GiftCard_GetActive]");
 
             return LoadRecords();
         }
 
-        private List<HearAboutUs> LoadRecords()
+        private List<GiftCard> LoadRecords()
         {
-            List<HearAboutUs> data = new List<HearAboutUs>();
+            List<GiftCard> data = new List<GiftCard>();
             try
             {
                 using (ConnSql)
@@ -33,18 +32,16 @@ namespace ClaudeData.DataRepository.AdminRepository
                             }
 
                             int ordName = dr.GetOrdinal("Name");
-                            int ordIsSystem = dr.GetOrdinal("IsSystem");
                             int ordCreateDate = dr.GetOrdinal("CreateDate");
+                            int ordGiftCardId = dr.GetOrdinal("GiftCardId");
                             int ordDisplayOrder = dr.GetOrdinal("DisplayOrder");
-                            int ordHearAboutUsId = dr.GetOrdinal("HearAboutUsId");
 
                             while (dr.Read())
                             {
-                                HearAboutUs item = new HearAboutUs
+                                GiftCard item = new GiftCard
                                 {
                                     Name = Convert.ToString(dr[ordName]),
-                                    IsSystem = Convert.ToBoolean(dr[ordIsSystem]),
-                                    RecordId = Convert.ToInt32(dr[ordHearAboutUsId]),
+                                    RecordId = Convert.ToInt32(dr[ordGiftCardId]),
                                     DisplayOrder = Convert.ToInt16(dr[ordDisplayOrder]),
                                     StringCreateDate =
                                         Convert.ToDateTime(dr[ordCreateDate]).ToString("MM/dd/yyyy hh:mm:ss tt")

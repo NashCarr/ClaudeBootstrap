@@ -1,9 +1,8 @@
 ﻿using ClaudeCommon.Enums;
-using ClaudeData.DataRepository.PlaceRepository;
 using ClaudeData.Models.Places;
-using ClaudeData.ViewModels.Settings;
+using ClaudeData.ViewModels;
 
-namespace ClaudeData.DataRepository.PlacesRepository
+namespace ClaudeData.DataRepository.PlaceRepository
 {
     public class DbPlaceInfoGet : DbGetBase
     {

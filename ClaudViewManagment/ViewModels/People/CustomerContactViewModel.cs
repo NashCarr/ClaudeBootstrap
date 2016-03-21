@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using ClaudeData.DataRepository.LookupRepository;
 using ClaudeData.Models.Lists.Settings;
-using ClaudeData.ViewModels.Settings;
+using ClaudeData.ViewModels;
 using ClaudeViewManagement.Bases;
 using ClaudeViewManagement.Managers.People;
 
@@ -15,7 +15,7 @@ namespace ClaudeViewManagement.ViewModels.People
         }
 
         public string SearchEntity { get; set; }
-        public PlaceContactView Entity { get; set; }
+        public PersonView Entity { get; set; }
         public List<CustomerContactInfo> ListEntity { get; set; }
 
         public override void HandleRequest()
@@ -52,7 +52,7 @@ namespace ClaudeViewManagement.ViewModels.People
             IsValid = true;
 
             // Initialize Entity Object
-            Entity = new PlaceContactView();
+            Entity = new PersonView();
 
             AddEdit();
 

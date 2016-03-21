@@ -1,12 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Web.Mvc;
-using ClaudeCommon.Models;
 using ClaudeCommon.Models.Places;
-using ClaudeData.DataRepository.AddressRepository;
-using ClaudeData.DataRepository.LookupRepository;
 using ClaudeData.DataRepository.PlacesRepository;
-using ClaudeData.Models.LookupLists;
 using static ClaudeCommon.Enums.PlaceEnums;
 
 namespace ClaudeViewManagement.Managers.Places

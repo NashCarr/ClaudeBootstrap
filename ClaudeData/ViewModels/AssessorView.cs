@@ -4,7 +4,7 @@ using ClaudeData.Models.LookupLists;
 using ClaudeData.Models.People;
 using ClaudeData.ViewModels.Shared;
 
-namespace ClaudeData.ViewModels.Settings
+namespace ClaudeData.ViewModels
 {
     public class AssessorView : IDisposable
     {

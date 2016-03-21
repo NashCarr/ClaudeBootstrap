@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using ClaudeData.DataRepository.PeopleRepository;
 using ClaudeData.DataRepository.PersonRepository;
 using ClaudeData.Models.Lists.Settings;
-using ClaudeData.ViewModels.Settings;
+using ClaudeData.ViewModels;
 
 namespace ClaudeViewManagement.Managers.People
 {

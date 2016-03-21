@@ -2,14 +2,13 @@ using System;
 using System.Collections.Generic;
 using ClaudeCommon.BaseModels;
 using ClaudeCommon.BaseModels.Returns;
-using ClaudeCommon.Models;
 using ClaudeCommon.Models.Administration;
-using ClaudeData.DataRepository.AdminRepository;
+using ClaudeData.DataRepository.AdministrationRepository;
 using ClaudeData.DataRepository.ReorderRepository;
 
-namespace ClaudeViewManagement.Managers.Settings
+namespace ClaudeViewManagement.Managers.Administration
 {
-    public class ProductGroupManager : IDisposable
+    public class HearAboutUsManager : IDisposable
     {
         public void Dispose()
         {
@@ -21,17 +20,17 @@ namespace ClaudeViewManagement.Managers.Settings
         {
         }
 
-        public List<ProductGroup> GetList()
+        public List<HearAboutUs> GetList()
         {
-            using (DbProductGroupGet data = new DbProductGroupGet())
+            using (DbHearAboutUsGet data = new DbHearAboutUsGet())
             {
                 return data.GetViewModel();
             }
         }
 
-        public ReturnBase SaveRecord(ProductGroup entity)
+        public ReturnBase SaveRecord(HearAboutUs entity)
         {
-            using (DbProductGroupSave data = new DbProductGroupSave())
+            using (DbHearAboutUsSave data = new DbHearAboutUsSave())
             {
                 return data.AddUpdateRecord(entity);
             }
@@ -41,13 +40,13 @@ namespace ClaudeViewManagement.Managers.Settings
         {
             using (DbReorderSave db = new DbReorderSave())
             {
-                db.ProductGroupReorderSave(data);
+                db.HearAboutUsReorderSave(data);
             }
         }
 
         public ReturnBase DeleteRecord(int recordId)
         {
-            using (DbProductGroupSave data = new DbProductGroupSave())
+            using (DbHearAboutUsSave data = new DbHearAboutUsSave())
             {
                 return data.SetInactive(recordId);
             }

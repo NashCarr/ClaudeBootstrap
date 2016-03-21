@@ -423,7 +423,6 @@
     <Content Include="Views\ProductGroup\List.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\Shared\Place\PlaceAddEdit.cshtml" />
-    <Content Include="Views\Shared\Primary\PlacePrimary.cshtml" />
     <Content Include="Views\Shared\Place\Place.cshtml" />
     <Content Include="Views\Shared\Place\PlaceList.cshtml" />
     <Content Include="Views\Shared\Place\Addresses\Addresses.cshtml" />
@@ -450,6 +449,10 @@
     <Content Include="Views\Shared\Person\Contact\Contacts.cshtml" />
     <Content Include="Views\Shared\Person\StaffMemberList.cshtml" />
     <Content Include="Views\Shared\Person\PersonAddEdit.cshtml" />
+    <Content Include="Views\Shared\Person\Person.cshtml" />
+    <Content Include="Views\Shared\Person\PersonDetail.cshtml" />
+    <Content Include="Views\Shared\Place\PlacePrimary.cshtml" />
+    <Content Include="Views\Shared\Person\PersonPrimary.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ClaudeCommon\ClaudeCommon.csproj">

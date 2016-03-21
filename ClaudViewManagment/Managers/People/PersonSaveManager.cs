@@ -8,7 +8,7 @@ using ClaudeViewManagement.ViewModels.People;
 
 namespace ClaudeViewManagement.Managers.People
 {
-    public class PlaceContactSaveManager : IDisposable
+    public class PersonSaveManager : IDisposable
     {
         public void Dispose()
         {
@@ -20,7 +20,7 @@ namespace ClaudeViewManagement.Managers.People
         {
         }
 
-        public ReturnBase SaveContact(PlaceContactSaveModel data)
+        public ReturnBase SavePerson(PersonSaveModel data)
         {
             PersonData p = new PersonData
             {

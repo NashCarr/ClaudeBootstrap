@@ -1,12 +1,10 @@
 ﻿using ClaudeData.Models.Addresses;
-using ClaudeData.Models.People;
 using ClaudeData.Models.Phones;
 
-namespace ClaudeViewManagement.ViewModels.People
+namespace ClaudeViewManagement.ViewModels.Shared
 {
-    public class PlaceContactSaveModel
+    public class AddressPhoneSaveModel
     {
-        public Person Person { get; set; }
         public PhoneSetting PhoneSetting { get; set; }
         public PhoneAssociation FaxPhone { get; set; }
         public PhoneAssociation CellPhone { get; set; }

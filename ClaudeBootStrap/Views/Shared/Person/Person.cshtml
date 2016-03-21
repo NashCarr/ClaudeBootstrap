@@ -1,0 +1,37 @@
+﻿<!-- ** BEGIN Person Info AREA -->
+<div class="callout" id="Person">
+    <div class="top-bar">
+        <div class="top-bar-title">
+            <ul class="menu">
+                <li>
+                    @Html.Label("placeheader", new {data_bind = "text: personHeader"})
+                </li>
+            </ul>
+        </div>
+    </div>
+    <p id="FirstName">
+        @Html.Label("FirstName", "First Name")
+        @Html.TextBox("FirstName", "", new {@class = "form-control", data_bind = "value: personfirst" })
+    </p>
+    <p id="MiddleName">
+        @Html.Label("MiddleName", "Middle Name")
+        @Html.TextBox("MiddleName", "", new { @class = "form-control", data_bind = "value: personmiddle" })
+    </p>
+    <p id="LastName">
+        @Html.Label("LastName", "Last Name")
+        @Html.TextBox("LastName", "", new { @class = "form-control", data_bind = "value: personlast" })
+    </p>
+    <p id="Email">
+        @Html.Label("Email", "Email")
+        @Html.TextBox("Email", "", new { @class = "form-control", data_bind = "value: personemail" })
+    </p>
+    <p id="TimeZone">
+        @Html.Label("TimeZone", "TimeZone")
+        <select class="form-control" data-bind="value: persontimezone, options: timezones, optionsText: 'Text', optionsValue: 'Value', optionsCaption: 'Choose...'"></select>
+    </p>
+    <p id="Country">
+        @Html.Label("Country", "Country")
+        <select class="form-control" data-bind="value: personcountry, options: countries, optionsText: 'Text', optionsValue: 'Value', event: { change: DefaultPersonCountry.Set }, optionsCaption: 'Choose...'"></select>
+    </p>
+</div>
+<!-- ** END Person Info AREA -->

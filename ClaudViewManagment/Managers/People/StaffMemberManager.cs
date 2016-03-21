@@ -2,13 +2,14 @@ using System;
 using System.Collections.Generic;
 using ClaudeCommon.BaseModels;
 using ClaudeCommon.BaseModels.Returns;
+using ClaudeData.DataRepository.PersonRepository;
 using ClaudeData.DataRepository.PlaceRepository;
 using ClaudeData.DataRepository.ReorderRepository;
 using ClaudeData.ViewModels;
 
-namespace ClaudeViewManagement.Managers.Places
+namespace ClaudeViewManagement.Managers.People
 {
-    public class FacilityManager : IDisposable
+    public class StaffMemberManager : IDisposable
     {
         public void Dispose()
         {
@@ -20,27 +21,27 @@ namespace ClaudeViewManagement.Managers.Places
         {
         }
 
-        public PlaceView GetFacility(int recordId)
+        public PersonView GetStaffMember(int recordId)
         {
-            using (DbPlaceInfoGet data = new DbPlaceInfoGet())
+            using (DbPersonViewGet data = new DbPersonViewGet())
             {
-                return data.GetFacility(recordId);
+                return data.GetStaffMember(recordId);
             }
         }
 
-        public void SaveFacilityOrder(List<DisplayReorder> data)
+        public void SaveStaffMemberOrder(List<DisplayReorder> data)
         {
             using (DbReorderSave db = new DbReorderSave())
             {
-                db.FacilityReorderSave(data);
+                db.CustomerReorderSave(data);
             }
         }
 
-        public ReturnBase DeleteFacility(int id)
+        public ReturnBase DeleteStaffMember(int id)
         {
             using (DbPlaceSetInactive data = new DbPlaceSetInactive())
             {
-                return data.SetFacilityInactive(id);
+                return data.SetCustomerInactive(id);
             }
         }
     }

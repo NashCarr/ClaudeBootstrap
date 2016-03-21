@@ -49,16 +49,16 @@
     <Compile Include="DataRepository\AddressRepository\DbAddressAssociationSave.cs" />
     <Compile Include="DataRepository\AddressRepository\DbPostalCodeLookup.cs" />
     <Compile Include="DataRepository\AddressRepository\DbStateProvinceGet.cs" />
-    <Compile Include="DataRepository\AdminRepository\DbFacilityStaffGet.cs" />
-    <Compile Include="DataRepository\AdminRepository\DbFacilityStaffSave.cs" />
-    <Compile Include="DataRepository\AdminRepository\DbGiftCardGet.cs" />
-    <Compile Include="DataRepository\AdminRepository\DbHearAboutUsSave.cs" />
-    <Compile Include="DataRepository\AdminRepository\DbGiftCardSave.cs" />
-    <Compile Include="DataRepository\AdminRepository\DbHearAboutUsGet.cs" />
-    <Compile Include="DataRepository\AdminRepository\DbProductGroupGet.cs" />
-    <Compile Include="DataRepository\AdminRepository\DbProductGroupSave.cs" />
-    <Compile Include="DataRepository\AdminRepository\DbProgramOptionGet.cs" />
-    <Compile Include="DataRepository\AdminRepository\DbUserRoleGet.cs" />
+    <Compile Include="DataRepository\AdministrationRepository\DbFacilityStaffGet.cs" />
+    <Compile Include="DataRepository\AdministrationRepository\DbFacilityStaffSave.cs" />
+    <Compile Include="DataRepository\AdministrationRepository\DbGiftCardGet.cs" />
+    <Compile Include="DataRepository\AdministrationRepository\DbHearAboutUsSave.cs" />
+    <Compile Include="DataRepository\AdministrationRepository\DbGiftCardSave.cs" />
+    <Compile Include="DataRepository\AdministrationRepository\DbHearAboutUsGet.cs" />
+    <Compile Include="DataRepository\AdministrationRepository\DbProductGroupGet.cs" />
+    <Compile Include="DataRepository\AdministrationRepository\DbProductGroupSave.cs" />
+    <Compile Include="DataRepository\AdministrationRepository\DbProgramOptionGet.cs" />
+    <Compile Include="DataRepository\AdministrationRepository\DbUserRoleGet.cs" />
     <Compile Include="DataRepository\DbBase.cs" />
     <Compile Include="DataRepository\DbConnect.cs" />
     <Compile Include="DataRepository\DbGatewayGet.cs" />
@@ -78,7 +78,6 @@
     <Compile Include="DataRepository\PeopleRepository\DbPeopleGetActive.cs" />
     <Compile Include="DataRepository\PeopleRepository\DbPeopleGetInactive.cs" />
     <Compile Include="DataRepository\PeopleRepository\DbPeopleSearch.cs" />
-    <Compile Include="DataRepository\PeopleRepository\DbPlaceContactInfoGet.cs" />
     <Compile Include="DataRepository\PersonRepository\DbPersonAddressSave.cs" />
     <Compile Include="DataRepository\PersonRepository\DbPersonDataGet.cs" />
     <Compile Include="DataRepository\PersonRepository\DbPersonGet.cs" />
@@ -88,6 +87,7 @@
     <Compile Include="DataRepository\PersonRepository\DbPersonDataNew.cs" />
     <Compile Include="DataRepository\PersonRepository\DbPersonDataStub.cs" />
     <Compile Include="DataRepository\PersonRepository\DbPersonPhoneSettingSave.cs" />
+    <Compile Include="DataRepository\PersonRepository\DbPersonViewGet.cs" />
     <Compile Include="DataRepository\PhoneRepository\DbPhoneAssociationGet.cs" />
     <Compile Include="DataRepository\PhoneRepository\DbPhoneSettingSave.cs" />
     <Compile Include="DataRepository\PhoneRepository\DbPhoneAssociationSave.cs" />
@@ -96,12 +96,12 @@
     <Compile Include="DataRepository\PlaceRepository\DbPlaceDataNew.cs" />
     <Compile Include="DataRepository\PlaceRepository\DbPlaceDataStub.cs" />
     <Compile Include="DataRepository\PlaceRepository\DbPlaceGet.cs" />
+    <Compile Include="DataRepository\PlaceRepository\DbPlaceInfoGet.cs" />
     <Compile Include="DataRepository\PlaceRepository\DbPlacePhoneSettingSave.cs" />
     <Compile Include="DataRepository\PlaceRepository\DbPlacePhoneSave.cs" />
     <Compile Include="DataRepository\PlaceRepository\DbPlaceSave.cs" />
     <Compile Include="DataRepository\PlaceRepository\DbPlaceSetInactive.cs" />
     <Compile Include="BaseModels\AdminBase.cs" />
-    <Compile Include="DataRepository\PlacesRepository\DbPlaceInfoGet.cs" />
     <Compile Include="DataRepository\PlacesRepository\DbPlacesGet.cs" />
     <Compile Include="DataRepository\PlacesRepository\DbPlacesGetActive.cs" />
     <Compile Include="DataRepository\ReorderRepository\DBReorder.cs" />
@@ -127,7 +127,6 @@
     <Compile Include="Models\Admin\CustomerBrand.cs" />
     <Compile Include="Models\Admin\FacilityResource.cs" />
     <Compile Include="Models\Admin\FacilityStaff.cs" />
-    <Compile Include="Models\Admin\HearAboutUs.cs" />
     <Compile Include="Models\Admin\ProgramOption.cs" />
     <Compile Include="Models\Admin\RoleRight.cs" />
     <Compile Include="Models\Admin\StaffUserActivity.cs" />
@@ -136,7 +135,6 @@
     <Compile Include="Models\Admin\UserRole.cs" />
     <Compile Include="Models\Lists\Settings\CustomerContactInfo.cs" />
     <Compile Include="Models\Lists\Settings\AssessorInfo.cs" />
-    <Compile Include="Models\Lists\Settings\StaffUserInfo.cs" />
     <Compile Include="Models\LookupLists\CompensationTypeLookupList.cs" />
     <Compile Include="Models\LookupLists\AddressTypeLookupList.cs" />
     <Compile Include="Models\LookupLists\CountryLookupList.cs" />
@@ -160,9 +158,9 @@
     <Compile Include="Models\Places\Place.cs" />
     <Compile Include="Models\Places\PlaceData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\Settings\PlaceView.cs" />
-    <Compile Include="ViewModels\Settings\AssessorView.cs" />
-    <Compile Include="ViewModels\Settings\PlaceContactView.cs" />
+    <Compile Include="ViewModels\AssessorView.cs" />
+    <Compile Include="ViewModels\PersonView.cs" />
+    <Compile Include="ViewModels\PlaceView.cs" />
     <Compile Include="ViewModels\Shared\AddressViewModel.cs" />
     <Compile Include="ViewModels\Shared\PhoneViewModel.cs" />
   </ItemGroup>

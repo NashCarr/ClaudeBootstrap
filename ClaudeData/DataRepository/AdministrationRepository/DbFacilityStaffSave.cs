@@ -3,7 +3,7 @@ using System.Data;
 using ClaudeCommon.BaseModels.Returns;
 using ClaudeData.Models.Admin;
 
-namespace ClaudeData.DataRepository.AdminRepository
+namespace ClaudeData.DataRepository.AdministrationRepository
 {
     public class DbFacilityStaffSave : DbSaveBase
     {

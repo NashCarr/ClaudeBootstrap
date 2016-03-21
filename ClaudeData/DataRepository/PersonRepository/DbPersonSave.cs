@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 using ClaudeCommon.BaseModels.Returns;
-using ClaudeData.DataRepository.AdminRepository;
+using ClaudeData.DataRepository.AdministrationRepository;
 using ClaudeData.Models.People;
 using static ClaudeCommon.Enums.PersonEnums;
 
@@ -19,11 +19,12 @@ namespace ClaudeData.DataRepository.PersonRepository
                 SetIdInputOutputParameter();
 
                 CmdSql.Parameters.Add("@PlaceId", SqlDbType.Int).Value = data.PlaceId;
-                CmdSql.Parameters.Add("@FirstName", SqlDbType.NVarChar, 35).Value = data.FirstName?.Trim() ??
-                                                                                    string.Empty;
-                CmdSql.Parameters.Add("@MiddleName", SqlDbType.NVarChar, 35).Value = data.MiddleName?.Trim() ??
-                                                                                     string.Empty;
-                CmdSql.Parameters.Add("@LastName", SqlDbType.NVarChar, 35).Value = data.LastName?.Trim() ?? string.Empty;
+                CmdSql.Parameters.Add("@FirstName", SqlDbType.NVarChar, 35).Value =
+                    data.FirstName?.Trim() ?? string.Empty;
+                CmdSql.Parameters.Add("@MiddleName", SqlDbType.NVarChar, 35).Value =
+                    data.MiddleName?.Trim() ?? string.Empty;
+                CmdSql.Parameters.Add("@LastName", SqlDbType.NVarChar, 35).Value =
+                    data.LastName?.Trim() ?? string.Empty;
                 CmdSql.Parameters.Add("@Email", SqlDbType.NVarChar, 50).Value = data.Email?.Trim() ?? string.Empty;
                 CmdSql.Parameters.Add("@TimeZone", SqlDbType.TinyInt).Value = data.TimeZone;
                 CmdSql.Parameters.Add("@Country", SqlDbType.SmallInt).Value = data.Country;
