@@ -136,6 +136,7 @@
     <Compile Include="Models\Lists\Settings\CustomerContactInfo.cs" />
     <Compile Include="Models\Lists\Settings\AssessorInfo.cs" />
     <Compile Include="Models\Lists\Settings\StaffUserInfo.cs" />
+    <Compile Include="Models\LookupLists\CompensationTypeLookupList.cs" />
     <Compile Include="Models\LookupLists\AddressTypeLookupList.cs" />
     <Compile Include="Models\LookupLists\CountryLookupList.cs" />
     <Compile Include="Models\LookupLists\CustomerContactLookupList.cs" />

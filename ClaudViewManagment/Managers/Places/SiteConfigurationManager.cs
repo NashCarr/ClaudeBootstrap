@@ -1,6 +1,9 @@
 using System;
+using System.Collections.Generic;
+using System.Web.Mvc;
 using ClaudeCommon.Models.SiteConfiguration;
 using ClaudeData.DataRepository.SettingsRepository;
+using ClaudeData.Models.LookupLists;
 
 namespace ClaudeViewManagement.Managers.Places
 {
@@ -21,6 +24,14 @@ namespace ClaudeViewManagement.Managers.Places
             using (DbSiteConfigurationGet data = new DbSiteConfigurationGet())
             {
                 return data.GetSiteConfiguration();
+            }
+        }
+
+        public List<SelectListItem> GetCompensationTypes()
+        {
+            using (CompensationTypeLookupList db = new CompensationTypeLookupList())
+            {
+                return db.LookupList;
             }
         }
     }
