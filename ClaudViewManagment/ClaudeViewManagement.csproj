@@ -42,6 +42,8 @@
     <Compile Include="Bases\ViewModelBase.cs" />
     <Compile Include="Managers\Administration\BudgetCategoryManager.cs" />
     <Compile Include="Managers\Administration\StudyDesignManager.cs" />
+    <Compile Include="Managers\Customer\CustomerBrandManager.cs" />
+    <Compile Include="Managers\Customer\CustomerManager.cs" />
     <Compile Include="Managers\People\AssessorManager.cs" />
     <Compile Include="Managers\People\PersonSaveManager.cs" />
     <Compile Include="Managers\People\StaffMemberManager.cs" />
@@ -51,7 +53,6 @@
     <Compile Include="Managers\People\PlaceContactDeleteManager.cs" />
     <Compile Include="Managers\People\PersonListManager.cs" />
     <Compile Include="Managers\Places\FacilityManager.cs" />
-    <Compile Include="Managers\Places\CustomerManager.cs" />
     <Compile Include="Managers\Places\SiteConfigurationManager.cs" />
     <Compile Include="Managers\Places\PlaceSaveManager.cs" />
     <Compile Include="Managers\Places\PlaceListManager.cs" />
@@ -64,7 +65,6 @@
     <Compile Include="ViewModels\Administration\BudgetCategoryViewModel.cs" />
     <Compile Include="ViewModels\Administration\StudyDesignViewModel.cs" />
     <Compile Include="ViewModels\People\AssessorViewModel.cs" />
-    <Compile Include="ViewModels\People\CustomerContactViewModel.cs" />
     <Compile Include="ViewModels\People\PersonListViewModel.cs" />
     <Compile Include="ViewModels\People\PersonSaveModel.cs" />
     <Compile Include="ViewModels\People\StaffMemberListViewModel.cs" />

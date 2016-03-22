@@ -1,0 +1,33 @@
+﻿<!-- ** BEGIN DETAIL AREA ** -->
+<div class="callout" id="Brands">
+    <div class="top-bar">
+        <div class="top-bar-title">
+            <ul class="menu">
+                <li>
+                    <span class="small-text-label columns">Add or Edit Customer Brand</span>
+                </li>
+            </ul>
+        </div>
+        <div class="top-bar-right">
+            <ul class="menu">
+                <li>
+                    <a class="small-text-label columns" data-bind="click: Brand.Cancel" href="">Cancel</a>
+                </li>
+                <li>
+                    <a class="small-text-label columns" data-bind="click: SaveBrand.ManageSave" href="">Save</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <form>
+        <div class="row">
+            <div class="small-3 columns">
+                <label>
+                    Brand Name
+                    @Html.TextBox("BrandName", "", new { @class = "form-control", data_bind = "value:brandname" })
+                </label>
+            </div>
+        </div>
+    </form>
+</div>
+    <!-- ** END DETAIL AREA ** -->

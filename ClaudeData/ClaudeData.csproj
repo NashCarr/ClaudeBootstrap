@@ -63,6 +63,9 @@
     <Compile Include="DataRepository\AdministrationRepository\DbProductGroupSave.cs" />
     <Compile Include="DataRepository\AdministrationRepository\DbProgramOptionGet.cs" />
     <Compile Include="DataRepository\AdministrationRepository\DbUserRoleGet.cs" />
+    <Compile Include="DataRepository\CustomerRepository\DbCustomerViewGet.cs" />
+    <Compile Include="DataRepository\CustomerRepository\DbCustomerBrandGet.cs" />
+    <Compile Include="DataRepository\CustomerRepository\DbCustomerBrandSave.cs" />
     <Compile Include="DataRepository\DbBase.cs" />
     <Compile Include="DataRepository\DbConnect.cs" />
     <Compile Include="DataRepository\DbGatewayGet.cs" />
@@ -100,7 +103,7 @@
     <Compile Include="DataRepository\PlaceRepository\DbPlaceDataNew.cs" />
     <Compile Include="DataRepository\PlaceRepository\DbPlaceDataStub.cs" />
     <Compile Include="DataRepository\PlaceRepository\DbPlaceGet.cs" />
-    <Compile Include="DataRepository\PlaceRepository\DbPlaceInfoGet.cs" />
+    <Compile Include="DataRepository\PlaceRepository\DbPlaceViewGet.cs" />
     <Compile Include="DataRepository\PlaceRepository\DbPlacePhoneSettingSave.cs" />
     <Compile Include="DataRepository\PlaceRepository\DbPlacePhoneSave.cs" />
     <Compile Include="DataRepository\PlaceRepository\DbPlaceSave.cs" />
@@ -127,7 +130,6 @@
     <Compile Include="Models\Addresses\PostalCode.cs" />
     <Compile Include="Models\Addresses\PostalZone.cs" />
     <Compile Include="Models\Administration\AccessRight.cs" />
-    <Compile Include="Models\Administration\CustomerBrand.cs" />
     <Compile Include="Models\Administration\FacilityResource.cs" />
     <Compile Include="Models\Administration\FacilityStaff.cs" />
     <Compile Include="Models\Administration\ProgramOption.cs" />
@@ -162,6 +164,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\AssessorView.cs" />
     <Compile Include="ViewModels\PersonView.cs" />
+    <Compile Include="ViewModels\CustomerView.cs" />
     <Compile Include="ViewModels\PlaceView.cs" />
     <Compile Include="ViewModels\Shared\AddressViewModel.cs" />
     <Compile Include="ViewModels\Shared\PhoneViewModel.cs" />

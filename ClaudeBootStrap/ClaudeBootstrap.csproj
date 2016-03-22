@@ -151,7 +151,6 @@
     <Compile Include="Controllers\Administration\StudyDesignController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\People\AssessorController.cs" />
-    <Compile Include="Controllers\People\CustomerContactController.cs" />
     <Compile Include="Controllers\People\StaffMemberController.cs" />
     <Compile Include="Controllers\Places\CustomerController.cs" />
     <Compile Include="Controllers\Places\OrganizationController.cs" />
@@ -462,6 +461,11 @@
     <Content Include="Views\StudyDesign\Index.cshtml" />
     <Content Include="Views\StudyDesign\List.cshtml" />
     <Content Include="Views\StudyDesign\AddEditStudyDesign.cshtml" />
+    <Content Include="Views\Customer\CustomerBrandList.cshtml" />
+    <Content Include="Views\Customer\CustomerDetail.cshtml" />
+    <Content Include="Views\Customer\CustomerAddEdit.cshtml" />
+    <Content Include="Views\Customer\CustomerBrandAddEdit.cshtml" />
+    <Content Include="Views\Customer\CustomerBrand.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ClaudeCommon\ClaudeCommon.csproj">

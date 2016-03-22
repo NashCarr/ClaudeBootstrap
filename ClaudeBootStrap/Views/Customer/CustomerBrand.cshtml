@@ -1,0 +1,12 @@
+﻿<!-- ** BEGIN Brands AREA -->
+<div data-bind="visible: !IsEditBrand()">
+    <!--ko if: !IsEditBrand()-->
+    @{ Html.RenderPartial("CustomerBrandList"); }
+    <!--/ko-->
+</div>
+<div data-bind="visible: IsEditBrand">
+    <!--ko if: IsEditBrand-->
+    @{ Html.RenderPartial("CustomerBrandAddEdit"); }
+    <!--/ko-->
+</div>
+<!-- ** END Brands AREA -->

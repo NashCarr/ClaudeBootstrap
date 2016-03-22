@@ -17,14 +17,10 @@ namespace ClaudeData.DataRepository.ReorderRepository
             DisplayReorder("[Admin].[usp_BudgetCategory_DisplayReorder]", data);
         }
 
-        //public void CustomerBrandReorderSave(IEnumerable<CustomerBrand> data)
-        //{
-        //    DataOrder dOrder = new DataOrder();
-        //    dOrder.AddRange(
-        //        data.Select(item => new DisplayOrder {Id = item.CustomerBrandId, Order = item.DisplayOrder}));
-
-        //    DisplayReorder("[Admin].[usp_CustomerBrand_DisplayReorder]", dOrder);
-        //}
+        public void CustomerBrandReorderSave(List<DisplayReorder> data)
+        {
+            DisplayReorder("[Admin].[usp_CustomerBrand_DisplayReorder]", data);
+        }
 
         //public void FacilityResourceReorderSave(IEnumerable<FacilityResource> data)
         //{

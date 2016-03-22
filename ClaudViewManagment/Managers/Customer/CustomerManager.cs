@@ -2,11 +2,12 @@ using System;
 using System.Collections.Generic;
 using ClaudeCommon.BaseModels;
 using ClaudeCommon.BaseModels.Returns;
+using ClaudeData.DataRepository.CustomerRepository;
 using ClaudeData.DataRepository.PlaceRepository;
 using ClaudeData.DataRepository.ReorderRepository;
 using ClaudeData.ViewModels;
 
-namespace ClaudeViewManagement.Managers.Places
+namespace ClaudeViewManagement.Managers.Customer
 {
     public class CustomerManager : IDisposable
     {
@@ -20,9 +21,9 @@ namespace ClaudeViewManagement.Managers.Places
         {
         }
 
-        public PlaceView GetCustomer(int recordId)
+        public CustomerView GetCustomer(int recordId)
         {
-            using (DbPlaceInfoGet data = new DbPlaceInfoGet())
+            using (DbCustomerViewGet data = new DbCustomerViewGet())
             {
                 return data.GetCustomer(recordId);
             }

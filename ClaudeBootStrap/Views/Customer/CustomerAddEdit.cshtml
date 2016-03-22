@@ -1,0 +1,27 @@
+﻿<!-- ** BEGIN DETAIL AREA ** -->
+<div class="top-bar">
+    <div class="top-bar-title">
+        <ul class="menu">
+            <li>
+                <span class="small-text-label columns">Add or Edit Customer</span>
+            </li>
+        </ul>
+    </div>
+    <div class="top-bar-right">
+        <ul class="menu">
+            <li>
+                <a class="small-text-label columns" data-bind="click: cancel" href="">Cancel</a>
+            </li>
+            <li>
+                <a class="small-text-label columns" data-bind="click: SavePlaceData.Save" href="">Save</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="small-3 columns end">
+    @{ Html.RenderPartial("Place/Place"); }
+</div>
+<div class="small-9 columns end">
+    @{ Html.RenderPartial("CustomerDetail"); }
+</div>
+<!-- ** END DETAIL AREA ** -->

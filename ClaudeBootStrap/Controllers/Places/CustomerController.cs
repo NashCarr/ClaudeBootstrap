@@ -2,6 +2,8 @@
 using System.Web.Mvc;
 using ClaudeCommon.BaseModels;
 using ClaudeCommon.Enums;
+using ClaudeCommon.Models.Customer;
+using ClaudeViewManagement.Managers.Customer;
 using ClaudeViewManagement.Managers.People;
 using ClaudeViewManagement.Managers.Places;
 using ClaudeViewManagement.ViewModels.People;
@@ -40,6 +42,15 @@ namespace ClaudeBootstrap.Controllers.Places
         }
 
         [HttpPost]
+        public JsonResult SaveBrand(CustomerBrand c)
+        {
+            using (CustomerBrandManager mgr = new CustomerBrandManager())
+            {
+                return Json(mgr.SaveRecord(c));
+            }
+        }
+
+        [HttpPost]
         public JsonResult GetPlace(string id)
         {
             using (CustomerManager mgr = new CustomerManager())
@@ -50,6 +61,15 @@ namespace ClaudeBootstrap.Controllers.Places
 
         [HttpPost]
         public JsonResult GetPerson(string id)
+        {
+            using (PlaceContactGetManager mgr = new PlaceContactGetManager())
+            {
+                return Json(id != null ? mgr.GetCustomerContact(int.Parse(id)) : mgr.GetCustomerContact(0));
+            }
+        }
+
+        [HttpPost]
+        public JsonResult GetCustomerBrand(string id)
         {
             using (PlaceContactGetManager mgr = new PlaceContactGetManager())
             {
@@ -82,6 +102,15 @@ namespace ClaudeBootstrap.Controllers.Places
             using (PlaceContactDeleteManager mgr = new PlaceContactDeleteManager())
             {
                 return Json(mgr.DeleteCustomerContact(id));
+            }
+        }
+
+        [HttpPost]
+        public JsonResult DeleteBrand(int id)
+        {
+            using (CustomerBrandManager mgr = new CustomerBrandManager())
+            {
+                return Json(mgr.DeleteRecord(id));
             }
         }
     }

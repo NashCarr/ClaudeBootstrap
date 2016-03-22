@@ -1,14 +1,13 @@
-﻿using ClaudeData.BaseModels;
+﻿using ClaudeCommon.Models.Administration;
 
-namespace ClaudeData.Models.Administration
+namespace ClaudeCommon.Models.Customer
 {
-    public class CustomerBrand : AdminBase
+    public class CustomerBrand : AdministrationBase
     {
         public CustomerBrand()
         {
             CustomerId = 0;
         }
-
         public int CustomerId { get; set; }
     }
 }

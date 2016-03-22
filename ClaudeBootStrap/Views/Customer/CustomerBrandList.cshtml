@@ -1,0 +1,56 @@
+﻿<!-- BEGIN Contact List AREA -->
+<div class="callout" id="Brands">
+    <div class="top-bar">
+        <div class="top-bar-title">
+            <ul class="menu">
+                <li>
+                    @Html.Label("Brands", "Brands")
+                </li>
+            </ul>
+        </div>
+        <div class="top-bar-right">
+            <ul class="menu">
+                <li>
+                    <a class="small-text-label columns" data-bind="click: Brand.Add" href="">Add</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="table-row small-12 columns" id="brandlist">
+            <table class="tabled" id="datatable">
+
+                <thead class="light">
+                <tr>
+                    <th class="pdsa-action-button-area">Edit</th>
+                    <th style="display: none">CustomerBrandId</th>
+                    <th style="display: none">CustomerId</th>
+                    <th>Name</th>
+                    <th class="listcentered">Last Update</th>
+                    <th class="pdsa-action-button-area">Delete</th>
+                </tr>
+                </thead>
+                <tbody data-bind="foreach: brandlist()" id="brands">
+                <tr id="itemrow">
+                    <td class="listcentered" id="edit">
+                        <a class="button small blue-2" data-bind="click: $parent.Brand.Edit" href="#">
+                            Select
+                        </a>
+                    </td>
+                    <td class="listcentered" data-bind="text: RecordId" id="recordid" style="display: none"></td>
+                    <td class="listcentered" data-bind="text: CustomerId" id="customerid" style="display: none"></td>
+                    <td class="ui-priority-secondary" data-bind="text: Name" id="brandname"></td>
+                    <td class="listcentered" data-bind="text: StringLastUpdate" id="lastupdate"></td>
+                    <td class="listcentered" id="delete">
+                        <a class="button small blue-2" data-bind="click: $parent.RemoveBrand.Validate.bind($data)" href="#" type="button">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+<!-- END Contact List AREA -->

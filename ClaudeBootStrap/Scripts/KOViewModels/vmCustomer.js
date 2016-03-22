@@ -23,6 +23,8 @@ PlaceViewModel = function(data) {
  
     self.IsEdit = ko.observable(false);
     self.IsSaveClose = ko.observable(false);
+    self.IsEditBrand = ko.observable(false);
+    self.IsSaveBrand = ko.observable(false);
     self.IsEditContact = ko.observable(false);
     self.IsSaveContact = ko.observable(false);
 
@@ -42,6 +44,7 @@ PlaceViewModel = function(data) {
     self.IsPersonMailingAddressVisible = ko.observable(false);
     self.IsPersonShippingAddressVisible = ko.observable(false);
 
+    self.IsBrandDetailVisible = ko.observable(false);
     self.IsPhoneDetailVisible = ko.observable(false);
     self.IsPrimaryDetailVisible = ko.observable(true);
     self.IsContactDetailVisible = ko.observable(false);
@@ -57,6 +60,13 @@ PlaceViewModel = function(data) {
 
     self.filter = "";
     self.searchvalue = ko.observable("");
+
+    //brand
+    self.brandname = ko.observable("");
+    self.brandid = ko.observable(0);
+    self.branddisplaysort = ko.observable("");
+    self.branddisplayorder = ko.observable(0);
+    self.brandstringlastupdate = ko.observable("");
 
     //place
     self.placeid = ko.observable(0);
@@ -178,6 +188,7 @@ PlaceViewModel = function(data) {
     self.personshippingstateprovinceid = ko.observable("");
 
     self.itemdata = ko.observableArray([]);
+    self.brandlist = ko.observableArray([]);
     self.personlist = ko.observableArray([]);
 
     //list
@@ -482,13 +493,24 @@ PlaceViewModel = function(data) {
     self.DetailView = {
         Primary: function() {
             self.IsPhoneDetailVisible(false);
+            self.IsBrandDetailVisible(false);
             self.IsPrimaryDetailVisible(true);
-            self.IsPlaceAddressDetailVisible(false);
             self.IsContactDetailVisible(false);
+            self.IsPlaceAddressDetailVisible(false);
         },
-        Contacts: function() {
+        Brands: function () {
+            self.IsEditBrand(true);
+            self.IsEditBrand(false);
+            self.IsPhoneDetailVisible(false);
+            self.IsContactDetailVisible(false);
+            self.IsPrimaryDetailVisible(false);
+            self.IsPlaceAddressDetailVisible(false);
+            self.IsBrandDetailVisible(true);
+        },
+        Contacts: function () {
             self.IsEditContact(true);
             self.IsEditContact(false);
+            self.IsBrandDetailVisible(false);
             self.IsPhoneDetailVisible(false);
             self.IsPrimaryDetailVisible(false);
             self.IsPlaceAddressDetailVisible(false);
@@ -500,18 +522,20 @@ PlaceViewModel = function(data) {
         },
         Phones: function() {
             self.IsPhoneDetailVisible(true);
+            self.IsBrandDetailVisible(false);
+            self.IsContactDetailVisible(false);
             self.IsPrimaryDetailVisible(false);
             self.IsPlaceAddressDetailVisible(false);
-            self.IsContactDetailVisible(false);
 
             self.PlacePhoneView.Primary();
             self.PlaceAddressView.Default();
         },
         Addresses: function() {
             self.IsPhoneDetailVisible(false);
-            self.IsPlaceAddressDetailVisible(true);
+            self.IsBrandDetailVisible(false);
             self.IsPrimaryDetailVisible(false);
             self.IsContactDetailVisible(false);
+            self.IsPlaceAddressDetailVisible(true);
 
             self.PlacePhoneView.Default();
             self.PlaceAddressView.Mailing();
@@ -1140,6 +1164,103 @@ PlaceViewModel = function(data) {
                 };
                 self.SavePerson.Process();
                 self.DetailView.Contacts();
+
+                if (self.IsSaveClose()) {
+                    self.ProcessSave.Manage();
+                    self.IsSaveClose(false);
+                    self.clearandtoggle();
+                };
+            });
+        }
+    };
+
+    self.Brand = {
+        Clear: function () {
+            self.brandid(0);
+            self.brandname("");
+            self.branddisplaysort("");
+            self.branddisplayorder(0);
+        },
+        Add: function () {
+            self.Brand.Clear();
+            self.IsEditBrand(true);
+        },
+        Cancel: function () {
+            self.errmsg("");
+            self.Brand.Clear();
+            self.setmessageview();
+            self.IsEditBrand(false);
+            self.IsSaveBrand(false);
+        },
+        Edit: function (editdata) {
+            self.brandname(ko.unwrap(editdata.Name()));
+            self.brandid(ko.unwrap(editdata.RecordId()));
+            self.branddisplaysort(ko.unwrap(editdata.DisplaySort()));
+            self.branddisplayorder(ko.unwrap(editdata.DisplayOrder()));
+
+            self.IsEditBrand(true);
+        }
+    };
+
+    self.SaveBrand = {
+        Build: function () {
+            return {
+                Name: ko.observable(self.brandname()),
+                RecordId: ko.observable(self.brandid()),
+                CustomerId: ko.observable(self.placeid()),
+                DisplaySort: ko.observable(self.branddisplaysort()),
+                DisplayOrder: ko.observable(self.branddisplayorder()),
+                StringLastUpdate: ko.observable(self.brandstringlastupdate())
+            };
+        },
+        ProcessAdd: function () {
+            self.brandlist.push(self.SaveBrand.Build());
+        },
+        ItemExists: function () {
+            var match = ko.utils.arrayFirst(self.brandlist(), function (item) {
+                return item.RecordId() === self.brandid();
+            });
+            return match;
+        },
+        ProcessEdit: function () {
+            self.brandlist.replace(self.SaveBrand.ItemExists(), self.SaveBrand.Build());
+        },
+        Process: function () {
+            if (self.SaveBrand.ItemExists()) {
+                self.SaveBrand.ProcessEdit();
+                return;
+            };
+            self.SaveBrand.ProcessAdd();
+        },
+        HandleReturn: function (returndata) {
+            self.brandid(returndata.Id);
+            self.errmsg(returndata.ErrMsg);
+            self.brandstringlastupdate(returndata.StringLastUpdate);
+
+            self.setmessageview();
+        },
+        ManageSave: function () {
+            self.IsSaveClose(false);
+            self.IsSaveBrand(true);
+            if (self.placeid() === 0) {
+                self.SavePlaceData.Save();
+            } else {
+                self.SaveBrand.Save();
+            };
+        },
+        Save: function () {
+            $.ajax({
+                url: baseUrl + "SaveBrand",
+                type: "post",
+                data: self.SaveBrand.Build()
+            }).then(function (returndata) {
+                self.IsSaveBrand(false);
+                self.SaveBrand.HandleReturn(returndata);
+                if (self.IsMessageAreaVisible()) {
+                    return;
+                };
+                self.SaveBrand.Process();
+                self.DetailView.Brands();
 
                 if (self.IsSaveClose()) {
                     self.ProcessSave.Manage();
@@ -1881,7 +2002,32 @@ PlaceViewModel = function(data) {
         }
     };
 
-    self.GetPlaceData = function() {
+    self.Brands = {
+        Clear: function () {
+            self.brandlist([]);
+        },
+        Set: function () {
+            self.brandlist = ko.mapping.fromJS(self.itemdata);
+        },
+        Populate: function () {
+            if (typeof self.itemdata === "undefined") {
+                self.Brands.Clear();
+                return;
+            };
+            if (typeof self.itemdata() === "undefined") {
+                self.Brands.Clear();
+                return;
+            };
+            if (self.itemdata().length === 0) {
+                self.Brands.Clear();
+                return;
+            };
+            self.Brands.Set();
+            self.itemdata = ko.observableArray([]);
+        }
+    };
+
+    self.GetPlaceData = function () {
         $.ajax({
             url: baseUrl + "GetPlace/" + ko.unwrap(self.placeid()),
             type: "post"
@@ -1910,6 +2056,9 @@ PlaceViewModel = function(data) {
 
             self.itemdata = ko.mapping.fromJS(returndata.Contacts);
             self.Contacts.Populate();
+
+            self.itemdata = ko.mapping.fromJS(returndata.CustomerBrands);
+            self.Brands.Populate();
 
             self.itemdata = ko.mapping.fromJS(returndata.Place);
             self.Place.Populate();
@@ -2136,10 +2285,14 @@ PlaceViewModel = function(data) {
         self.errmsg("");
         self.IsEdit(false);
         self.IsSaveClose(false);
+        self.IsEditBrand(false);
+        self.IsSaveBrand(false);
         self.IsEditContact(false);
         self.IsSaveContact(false);
 
         self.Place.Clear();
+        self.Brand.Clear();
+        self.Brands.Clear();
         self.Person.Clear();
         self.Contacts.Clear();
         self.PlaceFax.Clear();
@@ -2272,8 +2425,18 @@ PlaceViewModel = function(data) {
                         self.SavePerson.Save();
                     };
                 } else {
-                    self.ProcessSave.Manage();
-                    self.clearandtoggle();
+                    if (self.IsEditBrand()) {
+                        if (self.IsSaveBrand()) {
+                            self.IsSaveClose(false);
+                            self.SaveBrand.Save();
+                        } else {
+                            self.IsSaveClose(true);
+                            self.SaveBrand.Save();
+                        };
+                    } else {
+                        self.ProcessSave.Manage();
+                        self.clearandtoggle();
+                    }
                 };
             });
         }
@@ -2327,7 +2490,32 @@ PlaceViewModel = function(data) {
         }
     };
 
-    self.makelistsortable = function() {
+    self.RemoveBrand = {
+        SetListItemInactive: function (item) {
+            $.ajax({
+                url: baseUrl + "DeleteBrand/" + ko.unwrap(item.RecordId()),
+                type: "post"
+            }).then(function (returndata) {
+
+                self.errmsg(returndata);
+                self.setmessageview();
+                if (self.IsMessageAreaVisible()) {
+                    return;
+                }
+                self.brandlist.remove(item);
+                self.IsEditBrand(true);
+                self.IsEditBrand(false);
+            });
+        },
+        Validate: function (item) {
+            if (!confirm("Delete Brand: '" + ko.unwrap(item.Name) + "'?")) {
+                return;
+            };
+            self.RemoveBrand.SetListItemInactive(item);
+        }
+    };
+
+    self.makelistsortable = function () {
         var fixHelperModified = function(e, tr) {
             var $originals = tr.children();
             var $helper = tr.clone();

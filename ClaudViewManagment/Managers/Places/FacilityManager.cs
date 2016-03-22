@@ -22,7 +22,7 @@ namespace ClaudeViewManagement.Managers.Places
 
         public PlaceView GetFacility(int recordId)
         {
-            using (DbPlaceInfoGet data = new DbPlaceInfoGet())
+            using (DbPlaceViewGet data = new DbPlaceViewGet())
             {
                 return data.GetFacility(recordId);
             }
