@@ -1,6 +1,7 @@
-﻿ProductGroupViewModel = function(data) {
+﻿
+BudgetCategoryViewModel = function(data) {
     var self = this;
-    var baseUrl = "/ProductGroup/";
+    var baseUrl = "/BudgetCategory/";
 
     //sorting
     self.sorttype = 1;
@@ -25,7 +26,6 @@
     //listvalues
     self.name = ko.observable("");
     self.recordid = ko.observable(0);
-    self.issystem = ko.observable(false);
     self.displaysort = ko.observable("");
     self.displayorder = ko.observable(0);
     self.stringlastupdate = ko.observable("");
@@ -87,41 +87,20 @@
         }
     };
 
-    self.SortIsSystem = {
-        Filtered: function () {
-            return ko.utils.arrayFilter(self.listitems(), function (item) {
-                return ko.unwrap(item.Name).toLowerCase().indexOf(self.filter) !== -1;
-            }).sort(function (l, r) {
-                return (self.direction * (l.IsSystemSort().localeCompare(r.IsSystemSort())));
-            });
-        },
-        Unfiltered: function () {
-            return self.listitems().sort(function (l, r) {
-                return (self.direction * (l.IsSystemSort().localeCompare(r.IsSystemSort())));
-            });
-        },
-        Manage: function () {
-            return (self.filter.length === 0)
-                ? self.SortIsSystem.Unfiltered(self.sortdirection())
-                : self.SortIsSystem.Filtered(self.sortdirection());
-        }
-    };
-
-
     self.SortCreateDate = {
-        Filtered: function () {
-            return ko.utils.arrayFilter(self.listitems(), function (item) {
+        Filtered: function() {
+            return ko.utils.arrayFilter(self.listitems(), function(item) {
                 return ko.unwrap(item.Name).toLowerCase().indexOf(self.filter) !== -1;
-            }).sort(function (l, r) {
+            }).sort(function(l, r) {
                 return (self.direction * (l.StringLastUpdate().toLowerCase().localeCompare(r.StringLastUpdate().toLowerCase())));
             });
         },
-        Unfiltered: function () {
-            return self.listitems().sort(function (l, r) {
+        Unfiltered: function() {
+            return self.listitems().sort(function(l, r) {
                 return (self.direction * (l.StringLastUpdate().toLowerCase().localeCompare(r.StringLastUpdate().toLowerCase())));
             });
         },
-        Manage: function () {
+        Manage: function() {
             return (self.filter.length === 0)
                 ? self.SortCreateDate.Unfiltered(self.sortdirection())
                 : self.SortCreateDate.Filtered(self.sortdirection());
@@ -181,8 +160,6 @@
             return self.SortName.Manage();
         case 3:
             return self.SortCreateDate.Manage();
-        case 4:
-            return self.SortIsSystem.Manage();
         default:
             return self.SortDisplayOrder.Manage();
         }
@@ -194,7 +171,6 @@
         self.recordid(0);
         self.displaysort("");
         self.displayorder(0);
-        self.issystem(false);
 
         self.IsEdit(false);
     };
@@ -214,7 +190,6 @@
     self.edit = function(editdata) {
         self.name(editdata.Name());
         self.recordid(editdata.RecordId());
-        self.issystem(editdata.IsSystem());
         self.displayorder(editdata.DisplayOrder());
         self.stringlastupdate(editdata.StringLastUpdate());
 
@@ -222,7 +197,7 @@
         self.toggleview();
     };
 
-    self.add = function () {
+    self.add = function() {
         if (self.searchvalue().length === 0) {
             self.addscreen();
             return;
@@ -248,22 +223,19 @@
         self.searchvalue("");
     };
 
-    self.ProductGroup = {
+    self.BudgetCategory = {
         Build: function() {
             return {
                 Name: ko.observable(self.name()),
                 RecordId: ko.observable(self.recordid()),
-                IsSystem: ko.observable(self.issystem()),
                 DisplaySort: ko.observable(self.displaysort()),
                 DisplayOrder: ko.observable(self.displayorder()),
-                IsSystemSort: ko.observable(self.issystem().toString()),
                 StringLastUpdate: ko.observable(self.stringlastupdate())
             };
         },
         Clear: function() {
             self.name("");
             self.recordid(0);
-            self.issystem(false);
             self.displaysort("");
             self.displayorder(0);
         }
@@ -272,7 +244,7 @@
     self.ProcessSave = {
         ProcessAdd: function() {
             self.ReorderList.ReorderDragDrop();
-            self.listitems.push(self.ProductGroup.Build());
+            self.listitems.push(self.BudgetCategory.Build());
         },
         ItemExists: function() {
             var match = ko.utils.arrayFirst(self.listitems(), function(item) {
@@ -281,26 +253,26 @@
             return match;
         },
         ProcessEdit: function() {
-            self.listitems.replace(self.ProcessSave.ItemExists(), self.ProductGroup.Build());
+            self.listitems.replace(self.ProcessSave.ItemExists(), self.BudgetCategory.Build());
         },
         Manage: function() {
             if (self.IsEdit()) {
                 self.ProcessSave.ProcessEdit();
                 return;
-            }
+            };
             if (self.ProcessSave.ItemExists()) {
                 return;
-            }
+            };
             self.ProcessSave.ProcessAdd();
         }
     };
 
-    self.save = function () {
+    self.save = function() {
         $.ajax({
             url: baseUrl + "Save",
             type: "post",
-            data: self.ProductGroup.Build()
-        }).then(function (returndata) {
+            data: self.BudgetCategory.Build()
+        }).then(function(returndata) {
 
             self.handlereturndata(returndata);
             if (self.IsMessageAreaVisible()) {
@@ -323,7 +295,7 @@
                 self.handlereturndata(returndata);
                 if (self.IsMessageAreaVisible()) {
                     return;
-                }
+                };
                 self.listitems.remove(removedata);
                 self.clear();
             });
@@ -331,7 +303,7 @@
         Validate: function(item) {
             if (!confirm("Delete Item: '" + ko.unwrap(item.Name) + "'?")) {
                 return;
-            }
+            };
             self.RemoveItem.SetListItemInactive(item);
         }
     };
@@ -354,7 +326,7 @@
     self.ReorderList = {
         displayreorder: ko.observableArray(),
         Reorder: {
-            Save: function() {
+            Save: function () {
                 $.ajax({
                     type: "post",
                     url: baseUrl + "DisplayOrder",
@@ -373,7 +345,7 @@
                 return value;
             },
             EditList: function (recordid, value) {
-                var match = ko.utils.arrayFirst(self.listitems(), function (item) {
+                var match = ko.utils.arrayFirst(self.listitems(), function(item) {
                     return parseInt(item.RecordId()) === recordid;
                 });
                 if (match) {
@@ -383,13 +355,13 @@
                     self.pauseNotifications = false;
                 };
             },
-            ManageList: function () {
+            ManageList: function() {
                 for (var i = 0; i < self.ReorderList.displayreorder().length; i++) {
                     self.ReorderList.Reorder.EditList(
                         ko.unwrap(self.ReorderList.displayreorder()[i].Id),
                         ko.unwrap(self.ReorderList.displayreorder()[i].DisplayOrder)
                     );
-                }
+                };
             },
             RefreshHtml: function () {
                 self.IsDragDrop(true);
@@ -437,7 +409,7 @@
                 if (rowdisplayorder !== newindex) {
                     self.ReorderList.Capture(rowrecordid, newindex);
                     $("#datatable tbody").children()[rowindex].children[2].innerText = newindex;
-                }
+                };
                 rowindex = rowindex + 1;
             });
         },

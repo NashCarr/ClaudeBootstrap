@@ -8,11 +8,11 @@ namespace ClaudeCommon.BaseModels.Returns
         {
             Id = 0;
             ErrMsg = string.Empty;
-            StringCreateDate = DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss tt");
+            StringLastUpdate = DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss tt");
         }
 
         public int Id { get; set; }
         public string ErrMsg { get; set; }
-        public string StringCreateDate { get; set; }
+        public string StringLastUpdate { get; set; }
     }
 }

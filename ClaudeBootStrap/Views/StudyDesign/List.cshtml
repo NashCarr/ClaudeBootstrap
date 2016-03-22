@@ -7,8 +7,10 @@
             <th class="pdsa-action-button-area" data-bind="click: ManageSort.Change(0), disable: IsListAreaVisible">Edit</th>
             <th data-bind="click: ManageSort.Change(1)" style="display: none">RecordId</th>
             <th data-bind="click: ManageSort.Change(1)" style="display: none">Order</th>
-            <th data-bind="click: ManageSort.Change(2)">Gift Card</th>
-            <th class="listcentered" data-bind="click: ManageSort.Change(3)">Create date</th>
+            <th data-bind="click: ManageSort.Change(2)">Study Design</th>
+            <th class="listcentered" data-bind="click: ManageSort.Change(3)">Radius (miles)</th>
+            <th class="listcentered" data-bind="click: ManageSort.Change(4)">Last Update</th>
+            <th class="listcentered" data-bind="click: ManageSort.Change(5)">IsSystem</th>
             <th class="pdsa-action-button-area" data-bind="click: ManageSort.Change(0), disable: IsListAreaVisible">Delete</th>
         </tr>
         </thead>
@@ -22,7 +24,11 @@
             <td class="listcentered" data-bind="text: RecordId" id="recordid" style="display: none"></td>
             <td class="listcentered" data-bind="text: DisplayOrder" id="order" style="display: none"></td>
             <td class="ui-priority-secondary" data-bind="text: Name" id="name"></td>
-            <td class="listcentered" data-bind="text: StringLastUpdate" id="createdate"></td>
+            <td class="listcentered" data-bind="text: Radius" id="radius"></td>
+            <td class="listcentered" data-bind="text: StringLastUpdate" id="lastupdate"></td>
+            <td class="listcentered" id="issystem">
+                <input data-bind="checked: IsSystem" disabled name="issystem" type="checkbox">
+            </td>
             <td class="listcentered" id="delete">
                 <a class="button small blue-2" data-bind="click: $parent.RemoveItem.Validate.bind($data)" href="#" type="button">
                     Delete

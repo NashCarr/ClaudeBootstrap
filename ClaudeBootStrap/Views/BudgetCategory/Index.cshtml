@@ -1,15 +1,15 @@
 ﻿@using System.Web.Script.Serialization
-@model ClaudeViewManagement.ViewModels.Administration.GiftCardViewModel
+@model ClaudeViewManagement.ViewModels.Administration.BudgetCategoryViewModel
 
 @{
-    ViewBag.Title = "Gift Card Management";
+    ViewBag.Title = "Budget Category Management";
 }
 
 @using (Html.BeginForm())
 {
     <div class="table-descriptor small-12 columns">
         <p>
-            <span>Gift Cards</span>
+            <span>Budget Categories</span>
         </p>
         <div data-bind="visible: IsSearchAreaVisible">
             @{ Html.RenderPartial("Search"); }
@@ -26,7 +26,7 @@
             <!--/ko-->
         </div>
     </div>
-}
+                }
 
 @{ string data = new JavaScriptSerializer().Serialize(Model); }
 
@@ -34,9 +34,9 @@
     <script src="~/Scripts/jquery-ui-1.11.4.min.js"></script>
     <script src="~/Scripts/knockout-3.4.0.js"></script>
     <script src="~/Scripts/knockout.mapping-latest.js"></script>
-    <script src="~/Scripts/KOViewModels/vmGiftCard.js"></script>
+    <script src="~/Scripts/KOViewModels/vmBudgetCategory.js"></script>
     <script>
-        var rawData = new GiftCardViewModel(@Html.Raw(data));
+        var rawData = new BudgetCategoryViewModel(@Html.Raw(data));
         ko.applyBindings(rawData);
     </script>
 }

@@ -43,9 +43,10 @@ namespace ClaudeData.DataRepository.AdministrationRepository
                                 {
                                     Name = Convert.ToString(dr[ordName]),
                                     IsSystem = Convert.ToBoolean(dr[ordIsSystem]),
+                                    IsSystemSort = Convert.ToString(dr[ordIsSystem]),
                                     RecordId = Convert.ToInt32(dr[ordProductGroupId]),
                                     DisplayOrder = Convert.ToInt16(dr[ordDisplayOrder]),
-                                    StringCreateDate =
+                                    StringLastUpdate =
                                         Convert.ToDateTime(dr[ordCreateDate]).ToString("MM/dd/yyyy hh:mm:ss tt")
                                 };
                                 item.DisplaySort = item.DisplayOrder.ToString("D3");

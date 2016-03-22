@@ -29,7 +29,7 @@ HearAboutUsViewModel = function(data) {
     self.issystem = ko.observable(false);
     self.displaysort = ko.observable("");
     self.displayorder = ko.observable(0);
-    self.stringcreatedate = ko.observable("");
+    self.stringlastupdate = ko.observable("");
 
     //list
     self.listitems = ko.mapping.fromJS(data.ListEntity).extend({ deferred: true });
@@ -49,7 +49,7 @@ HearAboutUsViewModel = function(data) {
     self.handlereturndata = function(returndata) {
         self.recordid(returndata.Id);
         self.errmsg(returndata.ErrMsg);
-        self.stringcreatedate(returndata.StringCreateDate);
+        self.stringlastupdate(returndata.StringLastUpdate);
 
         self.setmessageview();
     };
@@ -93,12 +93,12 @@ HearAboutUsViewModel = function(data) {
             return ko.utils.arrayFilter(self.listitems(), function(item) {
                 return ko.unwrap(item.Name).toLowerCase().indexOf(self.filter) !== -1;
             }).sort(function(l, r) {
-                return (self.direction * (l.IsSystem().localeCompare(r.IsSystem())));
+                return (self.direction * (l.IsSystemSort().localeCompare(r.IsSystemSort())));
             });
         },
         Unfiltered: function() {
             return self.listitems().sort(function(l, r) {
-                return (self.direction * (l.IsSystem().localeCompare(r.IsSystem())));
+                return (self.direction * (l.IsSystemSort().localeCompare(r.IsSystemSort())));
             });
         },
         Manage: function() {
@@ -113,12 +113,12 @@ HearAboutUsViewModel = function(data) {
             return ko.utils.arrayFilter(self.listitems(), function (item) {
                 return ko.unwrap(item.Name).toLowerCase().indexOf(self.filter) !== -1;
             }).sort(function (l, r) {
-                return (self.direction * (l.StringCreateDate().toLowerCase().localeCompare(r.StringCreateDate().toLowerCase())));
+                return (self.direction * (l.StringLastUpdate().toLowerCase().localeCompare(r.StringLastUpdate().toLowerCase())));
             });
         },
         Unfiltered: function () {
             return self.listitems().sort(function (l, r) {
-                return (self.direction * (l.StringCreateDate().toLowerCase().localeCompare(r.StringCreateDate().toLowerCase())));
+                return (self.direction * (l.StringLastUpdate().toLowerCase().localeCompare(r.StringLastUpdate().toLowerCase())));
             });
         },
         Manage: function () {
@@ -216,7 +216,7 @@ HearAboutUsViewModel = function(data) {
         self.recordid(editdata.RecordId());
         self.issystem(editdata.IsSystem());
         self.displayorder(editdata.DisplayOrder());
-        self.stringcreatedate(editdata.StringCreateDate());
+        self.stringlastupdate(editdata.StringLastUpdate());
 
         self.IsEdit(true);
         self.toggleview();
@@ -256,7 +256,8 @@ HearAboutUsViewModel = function(data) {
                 IsSystem: ko.observable(self.issystem()),
                 DisplaySort: ko.observable(self.displaysort()),
                 DisplayOrder: ko.observable(self.displayorder()),
-                StringCreateDate: ko.observable(self.stringcreatedate())
+                IsSystemSort: ko.observable(self.issystem().toString()),
+                StringLastUpdate: ko.observable(self.stringlastupdate())
             };
         },
         Clear: function() {
@@ -298,7 +299,7 @@ HearAboutUsViewModel = function(data) {
         $.ajax({
             url: baseUrl + "Save",
             type: "post",
-            data: self.GiftCard.Build()
+            data: self.HearAboutUs.Build()
         }).then(function (returndata) {
 
             self.handlereturndata(returndata);

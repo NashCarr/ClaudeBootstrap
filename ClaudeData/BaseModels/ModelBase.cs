@@ -10,12 +10,12 @@ namespace ClaudeData.BaseModels
             IsActive = true;
             CreateDate = Now;
             ErrMsg = string.Empty;
-            StringCreateDate = Now.ToString("MM/dd/yyyy hh:mm:ss tt");
+            StringLastUpdate = Now.ToString("MM/dd/yyyy hh:mm:ss tt");
         }
 
         public bool IsActive { get; set; }
         public string ErrMsg { get; set; }
-        public string StringCreateDate { get; set; }
+        public string StringLastUpdate { get; set; }
         public DateTime? CreateDate { get; set; }
     }
 }

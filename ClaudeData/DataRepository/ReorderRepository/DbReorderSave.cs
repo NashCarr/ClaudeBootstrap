@@ -7,23 +7,15 @@ namespace ClaudeData.DataRepository.ReorderRepository
 {
     public class DbReorderSave : DbReorder
     {
-        //public void StudyDesignReorderSave(IEnumerable<StudyDesign> data)
-        //{
-        //    DataOrder dOrder = new DataOrder();
-        //    dOrder.AddRange(
-        //        data.Select(item => new DisplayOrder {Id = item.StudyDesignId, Order = item.DisplayOrder}));
+        public void StudyDesignReorderSave(List<DisplayReorder> data)
+        {
+            DisplayReorder("[Admin].[usp_StudyDesign_DisplayReorder]", data);
+        }
 
-        //    DisplayReorder("[Admin].[usp_StudyDesign_DisplayReorder]", dOrder);
-        //}
-
-        //public void BudgetCategoryReorderSave(IEnumerable<BudgetCategory> data)
-        //{
-        //    DataOrder dOrder = new DataOrder();
-        //    dOrder.AddRange(
-        //        data.Select(item => new DisplayOrder {Id = item.BudgetCategoryId, Order = item.DisplayOrder}));
-
-        //    DisplayReorder("[Admin].[usp_BudgetCategory_DisplayReorder]", dOrder);
-        //}
+        public void BudgetCategoryReorderSave(List<DisplayReorder> data)
+        {
+            DisplayReorder("[Admin].[usp_BudgetCategory_DisplayReorder]", data);
+        }
 
         //public void CustomerBrandReorderSave(IEnumerable<CustomerBrand> data)
         //{

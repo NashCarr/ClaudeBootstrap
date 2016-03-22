@@ -28,7 +28,7 @@ GiftCardViewModel = function(data) {
     self.recordid = ko.observable(0);
     self.displaysort = ko.observable("");
     self.displayorder = ko.observable(0);
-    self.stringcreatedate = ko.observable("");
+    self.stringlastupdate = ko.observable("");
 
     //list
     self.listitems = ko.mapping.fromJS(data.ListEntity).extend({ deferred: true });
@@ -48,7 +48,7 @@ GiftCardViewModel = function(data) {
     self.handlereturndata = function(returndata) {
         self.recordid(returndata.Id);
         self.errmsg(returndata.ErrMsg);
-        self.stringcreatedate(returndata.StringCreateDate);
+        self.stringlastupdate(returndata.StringLastUpdate);
 
         self.setmessageview();
     };
@@ -92,12 +92,12 @@ GiftCardViewModel = function(data) {
             return ko.utils.arrayFilter(self.listitems(), function(item) {
                 return ko.unwrap(item.Name).toLowerCase().indexOf(self.filter) !== -1;
             }).sort(function(l, r) {
-                return (self.direction * (l.StringCreateDate().toLowerCase().localeCompare(r.StringCreateDate().toLowerCase())));
+                return (self.direction * (l.StringLastUpdate().toLowerCase().localeCompare(r.StringLastUpdate().toLowerCase())));
             });
         },
         Unfiltered: function() {
             return self.listitems().sort(function(l, r) {
-                return (self.direction * (l.StringCreateDate().toLowerCase().localeCompare(r.StringCreateDate().toLowerCase())));
+                return (self.direction * (l.StringLastUpdate().toLowerCase().localeCompare(r.StringLastUpdate().toLowerCase())));
             });
         },
         Manage: function() {
@@ -191,7 +191,7 @@ GiftCardViewModel = function(data) {
         self.name(editdata.Name());
         self.recordid(editdata.RecordId());
         self.displayorder(editdata.DisplayOrder());
-        self.stringcreatedate(editdata.StringCreateDate());
+        self.stringlastupdate(editdata.StringLastUpdate());
 
         self.IsEdit(true);
         self.toggleview();
@@ -230,7 +230,7 @@ GiftCardViewModel = function(data) {
                 RecordId: ko.observable(self.recordid()),
                 DisplaySort: ko.observable(self.displaysort()),
                 DisplayOrder: ko.observable(self.displayorder()),
-                StringCreateDate: ko.observable(self.stringcreatedate())
+                StringLastUpdate: ko.observable(self.stringlastupdate())
             };
         },
         Clear: function() {

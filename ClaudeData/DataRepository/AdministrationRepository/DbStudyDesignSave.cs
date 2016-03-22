@@ -5,16 +5,16 @@ using ClaudeCommon.Models.Administration;
 
 namespace ClaudeData.DataRepository.AdministrationRepository
 {
-    public class DbProductGroupSave : DbSaveBase
+    public class DbStudyDesignSave : DbSaveBase
     {
         public ReturnBase SetInactive(int recordId)
         {
             ReturnValues.Id = recordId;
             try
             {
-                SetConnectToDatabase("[Admin].[usp_ProductGroup_SetInactive]");
+                SetConnectToDatabase("[Admin].[usp_StudyDesign_SetInactive]");
 
-                CmdSql.Parameters.Add("@ProductGroupId", SqlDbType.Int).Value = ReturnValues.Id;
+                CmdSql.Parameters.Add("@StudyDesignId", SqlDbType.Int).Value = ReturnValues.Id;
 
                 SetErrMsgParameter();
 
@@ -28,27 +28,28 @@ namespace ClaudeData.DataRepository.AdministrationRepository
             return ReturnValues;
         }
 
-        public ReturnBase AddUpdateRecord(ProductGroup data)
+        public ReturnBase AddUpdateRecord(StudyDesign data)
         {
             ReturnValues.Id = data.RecordId;
 
             if (!string.IsNullOrEmpty(data.Name)) return SaveRecord(data);
 
-            SetEmptyStringMessage("Product Group");
+            SetEmptyStringMessage("Study Design");
             return ReturnValues;
         }
 
-        private ReturnBase SaveRecord(ProductGroup data)
+        private ReturnBase SaveRecord(StudyDesign data)
         {
             try
             {
-                IdParameter = "@ProductGroupId";
+                IdParameter = "@StudyDesignId";
 
-                SetConnectToDatabase("[Admin].[usp_ProductGroup_Upsert]");
+                SetConnectToDatabase("[Admin].[usp_StudyDesign_Upsert]");
 
                 SetIdInputOutputParameter();
 
                 CmdSql.Parameters.Add("@Name", SqlDbType.NVarChar, 50).Value = data.Name.Trim();
+                CmdSql.Parameters.Add("@Radius", SqlDbType.Int).Value = data.Radius;
                 CmdSql.Parameters.Add("@DisplayOrder", SqlDbType.Int).Value = data.DisplayOrder;
                 CmdSql.Parameters.Add("@IsSystem", SqlDbType.Bit).Value = data.IsSystem;
 

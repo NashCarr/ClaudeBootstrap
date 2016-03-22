@@ -52,7 +52,11 @@
     <Compile Include="Enums\StudyEnums.cs" />
     <Compile Include="Enums\TimeZoneEnums.cs" />
     <Compile Include="Helpers\EnumHelpers.cs" />
+    <Compile Include="Models\Administration\AdministrationBase.cs" />
+    <Compile Include="Models\Administration\BudgetCategory.cs" />
     <Compile Include="Models\Administration\GiftCard.cs" />
+    <Compile Include="Models\Administration\IsSystemBase.cs" />
+    <Compile Include="Models\Administration\StudyDesign.cs" />
     <Compile Include="Models\Administration\HearAboutUs.cs" />
     <Compile Include="Models\Administration\ProductGroup.cs" />
     <Compile Include="Models\People\Contact.cs" />

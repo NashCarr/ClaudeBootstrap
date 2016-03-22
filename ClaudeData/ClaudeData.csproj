@@ -51,7 +51,11 @@
     <Compile Include="DataRepository\AddressRepository\DbStateProvinceGet.cs" />
     <Compile Include="DataRepository\AdministrationRepository\DbFacilityStaffGet.cs" />
     <Compile Include="DataRepository\AdministrationRepository\DbFacilityStaffSave.cs" />
+    <Compile Include="DataRepository\AdministrationRepository\DbBudgetCategoryGet.cs" />
     <Compile Include="DataRepository\AdministrationRepository\DbGiftCardGet.cs" />
+    <Compile Include="DataRepository\AdministrationRepository\DbBudgetCategorySave.cs" />
+    <Compile Include="DataRepository\AdministrationRepository\DbStudyDesignSave.cs" />
+    <Compile Include="DataRepository\AdministrationRepository\DbStudyDesignGet.cs" />
     <Compile Include="DataRepository\AdministrationRepository\DbHearAboutUsSave.cs" />
     <Compile Include="DataRepository\AdministrationRepository\DbGiftCardSave.cs" />
     <Compile Include="DataRepository\AdministrationRepository\DbHearAboutUsGet.cs" />
@@ -123,14 +127,12 @@
     <Compile Include="Models\Addresses\PostalCode.cs" />
     <Compile Include="Models\Addresses\PostalZone.cs" />
     <Compile Include="Models\Administration\AccessRight.cs" />
-    <Compile Include="Models\Administration\BudgetCategory.cs" />
     <Compile Include="Models\Administration\CustomerBrand.cs" />
     <Compile Include="Models\Administration\FacilityResource.cs" />
     <Compile Include="Models\Administration\FacilityStaff.cs" />
     <Compile Include="Models\Administration\ProgramOption.cs" />
     <Compile Include="Models\Administration\RoleRight.cs" />
     <Compile Include="Models\Administration\StaffUserActivity.cs" />
-    <Compile Include="Models\Administration\StudyDesign.cs" />
     <Compile Include="Models\Administration\UserLogin.cs" />
     <Compile Include="Models\Administration\UserRole.cs" />
     <Compile Include="Models\Lists\Settings\CustomerContactInfo.cs" />

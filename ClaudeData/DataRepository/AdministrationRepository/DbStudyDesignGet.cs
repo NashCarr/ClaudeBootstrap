@@ -5,18 +5,18 @@ using ClaudeCommon.Models.Administration;
 
 namespace ClaudeData.DataRepository.AdministrationRepository
 {
-    public class DbGiftCardGet : DbGetBase
+    public class DbStudyDesignGet : DbGetBase
     {
-        public List<GiftCard> GetViewModel()
+        public List<StudyDesign> GetViewModel()
         {
-            SetConnectToDatabase("[ViewModel].[usp_GiftCard_GetActive]");
+            SetConnectToDatabase("[ViewModel].[usp_StudyDesign_GetActive]");
 
             return LoadRecords();
         }
 
-        private List<GiftCard> LoadRecords()
+        private List<StudyDesign> LoadRecords()
         {
-            List<GiftCard> data = new List<GiftCard>();
+            List<StudyDesign> data = new List<StudyDesign>();
             try
             {
                 using (ConnSql)
@@ -32,20 +32,26 @@ namespace ClaudeData.DataRepository.AdministrationRepository
                             }
 
                             int ordName = dr.GetOrdinal("Name");
-                            int ordCreateDate = dr.GetOrdinal("CreateDate");
-                            int ordGiftCardId = dr.GetOrdinal("GiftCardId");
+                            int ordRadius = dr.GetOrdinal("Radius");
+                            int ordIsSystem = dr.GetOrdinal("IsSystem");
+                            int ordLastUpdate = dr.GetOrdinal("LastUpdate");
                             int ordDisplayOrder = dr.GetOrdinal("DisplayOrder");
+                            int ordStudyDesignId = dr.GetOrdinal("StudyDesignId");
 
                             while (dr.Read())
                             {
-                                GiftCard item = new GiftCard
+                                StudyDesign item = new StudyDesign
                                 {
                                     Name = Convert.ToString(dr[ordName]),
-                                    RecordId = Convert.ToInt32(dr[ordGiftCardId]),
+                                    Radius = Convert.ToInt32(dr[ordRadius]),
+                                    IsSystem = Convert.ToBoolean(dr[ordIsSystem]),
+                                    IsSystemSort = Convert.ToString(dr[ordIsSystem]),
+                                    RecordId = Convert.ToInt32(dr[ordStudyDesignId]),
                                     DisplayOrder = Convert.ToInt16(dr[ordDisplayOrder]),
                                     StringLastUpdate =
-                                        Convert.ToDateTime(dr[ordCreateDate]).ToString("MM/dd/yyyy hh:mm:ss tt")
+                                        Convert.ToDateTime(dr[ordLastUpdate]).ToString("MM/dd/yyyy hh:mm:ss tt")
                                 };
+                                item.RadiusSort = item.Radius.ToString("D5");
                                 item.DisplaySort = item.DisplayOrder.ToString("D3");
                                 data.Add(item);
                             }

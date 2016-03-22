@@ -1,0 +1,20 @@
+﻿<!-- ** BEGIN Add Edit Name AREA ** -->
+<div class="table-row small-12 columns">
+    <ul class="menu">
+        <li class="form-group">
+            @Html.Label("Item", "Enter or Edit Item")
+            @Html.TextBox("Name", "", new {@class = "form-control", data_bind = "value:name"})
+            @Html.Label("Radius", "Enter or Edit Radius")
+            @Html.TextBox("Radius", "", new { @class = "form-control", data_bind = "value:radius" })
+        </li>
+    </ul>
+    <ul class="menu action">
+        <li>
+            <a data-bind="click: save" href="">Save</a>
+        </li>
+        <li>
+            <a data-bind="click: cancel" href="">Cancel</a>
+        </li>
+    </ul>
+</div>
+<!-- ** END Add Edit Name AREA ** -->

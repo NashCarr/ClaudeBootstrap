@@ -147,6 +147,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\Administration\BudgetCategoryController.cs" />
+    <Compile Include="Controllers\Administration\StudyDesignController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\People\AssessorController.cs" />
     <Compile Include="Controllers\People\CustomerContactController.cs" />
@@ -382,6 +384,8 @@
     <Content Include="Scripts\knockout-sortable.min.js" />
     <Content Include="Scripts\knockout.mapping-latest.debug.js" />
     <Content Include="Scripts\knockout.mapping-latest.js" />
+    <Content Include="Scripts\KoViewModels\vmBudgetCategory.js" />
+    <Content Include="Scripts\KoViewModels\vmStudyDesign.js" />
     <Content Include="Scripts\KoViewModels\vmStaffMember.js" />
     <Content Include="Scripts\KoViewModels\vmSiteConfiguration.js" />
     <Content Include="Scripts\KoViewModels\vmOrganization.js" />
@@ -453,6 +457,11 @@
     <Content Include="Views\Shared\Person\PersonDetail.cshtml" />
     <Content Include="Views\Shared\Place\PlacePrimary.cshtml" />
     <Content Include="Views\Shared\Person\PersonPrimary.cshtml" />
+    <Content Include="Views\BudgetCategory\Index.cshtml" />
+    <Content Include="Views\BudgetCategory\List.cshtml" />
+    <Content Include="Views\StudyDesign\Index.cshtml" />
+    <Content Include="Views\StudyDesign\List.cshtml" />
+    <Content Include="Views\StudyDesign\AddEditStudyDesign.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ClaudeCommon\ClaudeCommon.csproj">

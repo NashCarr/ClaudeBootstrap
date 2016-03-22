@@ -5,18 +5,18 @@ using ClaudeCommon.Models.Administration;
 
 namespace ClaudeData.DataRepository.AdministrationRepository
 {
-    public class DbGiftCardGet : DbGetBase
+    public class DbBudgetCategoryGet : DbGetBase
     {
-        public List<GiftCard> GetViewModel()
+        public List<BudgetCategory> GetViewModel()
         {
-            SetConnectToDatabase("[ViewModel].[usp_GiftCard_GetActive]");
+            SetConnectToDatabase("[ViewModel].[usp_BudgetCategory_GetActive]");
 
             return LoadRecords();
         }
 
-        private List<GiftCard> LoadRecords()
+        private List<BudgetCategory> LoadRecords()
         {
-            List<GiftCard> data = new List<GiftCard>();
+            List<BudgetCategory> data = new List<BudgetCategory>();
             try
             {
                 using (ConnSql)
@@ -33,15 +33,15 @@ namespace ClaudeData.DataRepository.AdministrationRepository
 
                             int ordName = dr.GetOrdinal("Name");
                             int ordCreateDate = dr.GetOrdinal("CreateDate");
-                            int ordGiftCardId = dr.GetOrdinal("GiftCardId");
+                            int ordBudgetCategoryId = dr.GetOrdinal("BudgetCategoryId");
                             int ordDisplayOrder = dr.GetOrdinal("DisplayOrder");
 
                             while (dr.Read())
                             {
-                                GiftCard item = new GiftCard
+                                BudgetCategory item = new BudgetCategory
                                 {
                                     Name = Convert.ToString(dr[ordName]),
-                                    RecordId = Convert.ToInt32(dr[ordGiftCardId]),
+                                    RecordId = Convert.ToInt32(dr[ordBudgetCategoryId]),
                                     DisplayOrder = Convert.ToInt16(dr[ordDisplayOrder]),
                                     StringLastUpdate =
                                         Convert.ToDateTime(dr[ordCreateDate]).ToString("MM/dd/yyyy hh:mm:ss tt")
