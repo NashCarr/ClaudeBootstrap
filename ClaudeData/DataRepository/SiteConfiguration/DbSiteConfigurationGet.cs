@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Data.SqlClient;
-using ClaudeCommon.Models.SiteConfiguration;
 
-namespace ClaudeData.DataRepository.SettingsRepository
+namespace ClaudeData.DataRepository.SiteConfiguration
 {
     public class DbSiteConfigurationGet : DbGetBase
     {
-        public SiteConfiguration GetSiteConfiguration()
+        public ClaudeCommon.Models.SiteConfiguration.SiteConfiguration GetSiteConfiguration()
         {
             return LoadRecords();
         }
 
-        private SiteConfiguration LoadRecords()
+        private ClaudeCommon.Models.SiteConfiguration.SiteConfiguration LoadRecords()
         {
-            SiteConfiguration data = new SiteConfiguration();
+            ClaudeCommon.Models.SiteConfiguration.SiteConfiguration data =
+                new ClaudeCommon.Models.SiteConfiguration.SiteConfiguration();
             try
             {
                 SetConnectToDatabase("[Settings].[usp_SiteConfiguration_GetData]");
@@ -236,9 +236,12 @@ namespace ClaudeData.DataRepository.SettingsRepository
                                     data.PasswordRequirements.MinimumLength = Convert.ToInt32(dr[ordMinimumLength]);
                                     data.PasswordRequirements.RequireNumber = Convert.ToBoolean(dr[ordRequireNumber]);
                                     data.PasswordRequirements.ExpirationDays = Convert.ToInt32(dr[ordExpirationDays]);
-                                    data.PasswordRequirements.RequireMinimumLength = Convert.ToBoolean(dr[ordRequireMinimumLength]);
-                                    data.PasswordRequirements.RequireCapitalLetter = Convert.ToBoolean(dr[ordRequireCapitalLetter]);
-                                    data.PasswordRequirements.PasswordRequirementId = Convert.ToInt32(dr[ordPasswordRequirementId]);
+                                    data.PasswordRequirements.RequireMinimumLength =
+                                        Convert.ToBoolean(dr[ordRequireMinimumLength]);
+                                    data.PasswordRequirements.RequireCapitalLetter =
+                                        Convert.ToBoolean(dr[ordRequireCapitalLetter]);
+                                    data.PasswordRequirements.PasswordRequirementId =
+                                        Convert.ToInt32(dr[ordPasswordRequirementId]);
                                     data.PasswordRequirements.RequireSpecialCharacter =
                                         Convert.ToBoolean(dr[ordRequireSpecialCharacter]);
                                 }

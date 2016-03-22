@@ -3,9 +3,9 @@ using System.Data;
 using ClaudeCommon.BaseModels.Returns;
 using ClaudeCommon.Models.SiteConfiguration;
 
-namespace ClaudeData.DataRepository.SettingsRepository
+namespace ClaudeData.DataRepository.SiteConfiguration
 {
-    public class DbStudyDefinitionSettingsSave : DbSaveBase
+    public class DbStudyDefinitionsSave : DbSaveBase
     {
         public ReturnBase AddUpdateRecord(StudyDefinition data)
         {

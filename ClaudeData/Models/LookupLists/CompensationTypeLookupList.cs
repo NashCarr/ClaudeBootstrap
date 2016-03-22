@@ -13,7 +13,8 @@ namespace ClaudeData.Models.LookupLists
         {
             LookupList =
                 new List<SelectListItem>(
-                    EnumHelpers.SelectListFor<CompensationType>().Where(e => e.Value != CompensationType.None.ToString()));
+                    EnumHelpers.SelectListFor<CompensationType>()
+                        .Where(e => e.Value != CompensationType.None.ToString()));
             foreach (SelectListItem item in LookupList)
             {
                 item.Value = EnumHelpers.GetByteFromEnum<CompensationType>(item.Value).ToString();

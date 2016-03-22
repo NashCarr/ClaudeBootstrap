@@ -1,12 +1,11 @@
 ﻿using System;
 using ClaudeCommon.BaseModels.Returns;
-using ClaudeCommon.Models.SiteConfiguration;
 
-namespace ClaudeData.DataRepository.SettingsRepository
+namespace ClaudeData.DataRepository.SiteConfiguration
 {
     public class DbSiteConfigurationSave
     {
-        public ReturnBase SaveSiteConfiguration(SiteConfiguration data)
+        public ReturnBase SaveSiteConfiguration(ClaudeCommon.Models.SiteConfiguration.SiteConfiguration data)
         {
             ReturnBase rb = new ReturnBase();
             try
@@ -56,7 +55,7 @@ namespace ClaudeData.DataRepository.SettingsRepository
                     return rb;
                 }
 
-                using (DbStudyDefinitionSettingsSave s = new DbStudyDefinitionSettingsSave())
+                using (DbStudyDefinitionsSave s = new DbStudyDefinitionsSave())
                 {
                     rb = s.AddUpdateRecord(data.StudyDefinitions);
                 }

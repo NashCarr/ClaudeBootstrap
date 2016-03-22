@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using ClaudeCommon.Models.SiteConfiguration;
-using ClaudeData.DataRepository.SettingsRepository;
+using ClaudeData.DataRepository.SiteConfiguration;
 using ClaudeData.Models.LookupLists;
 
 namespace ClaudeViewManagement.Managers.Places

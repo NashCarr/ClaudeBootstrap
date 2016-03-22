@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
-using ClaudeCommon.Models;
 using ClaudeCommon.Models.People;
 using ClaudeData.DataRepository.PeopleRepository;
 using ClaudeData.Models.LookupLists;
