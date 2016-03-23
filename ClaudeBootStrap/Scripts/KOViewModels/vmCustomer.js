@@ -1860,6 +1860,7 @@ PlaceViewModel = function(data) {
                 TimeZone: ko.observable(self.placetimezone()),
                 Division: ko.observable(self.placedivision()),
                 Department: ko.observable(self.placedepartment()),
+                DisplaySort: ko.observable(self.placedisplaysort()),
                 DisplayOrder: ko.observable(self.placedisplayorder()),
                 CountryName: ko.observable(self.ProcessSave.CountryName()),
                 TimeZoneName: ko.observable(self.ProcessSave.TimeZoneName())
