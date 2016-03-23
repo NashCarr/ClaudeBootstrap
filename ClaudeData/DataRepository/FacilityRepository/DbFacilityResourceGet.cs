@@ -2,25 +2,30 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using ClaudeCommon.Models.Customer;
+using ClaudeCommon.Models.Facility;
 
-namespace ClaudeData.DataRepository.CustomerRepository
+namespace ClaudeData.DataRepository.FacilityRepository
 {
-    public class DbCustomerBrandGet : DbGetBase
+    public class DbFacilityResourceGet : DbGetBase
     {
-        public List<CustomerBrand> GetViewModel(int customerId)
+        public List<FacilityResource> GetViewModel()
         {
-            return LoadRecords(customerId);
+            return LoadRecords(0);
         }
 
-        private List<CustomerBrand> LoadRecords(int customerId)
+        public List<FacilityResource> GetFacilityViewModel(int facilityId)
         {
-            List<CustomerBrand> data = new List<CustomerBrand>();
+            return LoadRecords(facilityId);
+        }
+
+        private List<FacilityResource> LoadRecords(int facilityId)
+        {
+            List<FacilityResource> data = new List<FacilityResource>();
             try
             {
-                IdValue = customerId;
-                IdParameter = "@CustomerId";
-                SetConnectToDatabase("[Customer].[usp_CustomerBrand_GetActive]");
+                IdValue = facilityId;
+                IdParameter = "@FacilityId";
+                SetConnectToDatabase("[Facility].[usp_FacilityResource_GetActive]");
                 CmdSql.Parameters.Add(IdParameter, SqlDbType.Int).Value = IdValue;
 
                 using (ConnSql)
@@ -36,19 +41,19 @@ namespace ClaudeData.DataRepository.CustomerRepository
                             }
 
                             int ordName = dr.GetOrdinal("Name");
-                            int ordCustomerId = dr.GetOrdinal("CustomerId");
+                            int ordFacilityId = dr.GetOrdinal("FacilityId");
                             int ordLastUpdate = dr.GetOrdinal("LastUpdate");
                             int ordDisplayOrder = dr.GetOrdinal("DisplayOrder");
-                            int ordCustomerBrandId = dr.GetOrdinal("CustomerBrandId");
+                            int ordFacilityResourceId = dr.GetOrdinal("FacilityResourceId");
 
                             while (dr.Read())
                             {
-                                CustomerBrand item = new CustomerBrand
+                                FacilityResource item = new FacilityResource
                                 {
                                     Name = Convert.ToString(dr[ordName]),
-                                    CustomerId =  Convert.ToInt32(dr[ordCustomerId]),
-                                    RecordId = Convert.ToInt32(dr[ordCustomerBrandId]),
+                                    FacilityId = Convert.ToInt32(dr[ordFacilityId]),
                                     DisplayOrder = Convert.ToInt16(dr[ordDisplayOrder]),
+                                    RecordId = Convert.ToInt32(dr[ordFacilityResourceId]),
                                     StringLastUpdate =
                                         Convert.ToDateTime(dr[ordLastUpdate]).ToString("MM/dd/yyyy hh:mm:ss tt")
                                 };

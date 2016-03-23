@@ -69,20 +69,11 @@ namespace ClaudeBootstrap.Controllers.Places
         }
 
         [HttpPost]
-        public JsonResult GetCustomerBrand(string id)
-        {
-            using (PlaceContactGetManager mgr = new PlaceContactGetManager())
-            {
-                return Json(id != null ? mgr.GetCustomerContact(int.Parse(id)) : mgr.GetCustomerContact(0));
-            }
-        }
-
-        [HttpPost]
         public void DisplayOrder(List<DisplayReorder> list)
         {
             using (CustomerManager mgr = new CustomerManager())
             {
-                mgr.SaveCustomerOrder(list);
+                mgr.SaveDisplayOrder(list);
             }
         }
 

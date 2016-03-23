@@ -62,7 +62,7 @@ namespace ClaudeBootstrap.Controllers.Places
         {
             using (OrganizationManager mgr = new OrganizationManager())
             {
-                mgr.SaveOrganizationOrder(list);
+                mgr.SaveDisplayOrder(list);
             }
         }
 

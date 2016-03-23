@@ -28,7 +28,7 @@ namespace ClaudeViewManagement.Managers.Places
             }
         }
 
-        public void SaveOrganizationOrder(List<DisplayReorder> data)
+        public void SaveDisplayOrder(List<DisplayReorder> data)
         {
             using (DbReorderSave db = new DbReorderSave())
             {

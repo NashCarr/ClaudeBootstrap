@@ -44,6 +44,8 @@
     <Compile Include="Managers\Administration\StudyDesignManager.cs" />
     <Compile Include="Managers\Customer\CustomerBrandManager.cs" />
     <Compile Include="Managers\Customer\CustomerManager.cs" />
+    <Compile Include="Managers\Facility\FacilityResourceManager.cs" />
+    <Compile Include="Managers\Facility\FacilityManager.cs" />
     <Compile Include="Managers\People\AssessorManager.cs" />
     <Compile Include="Managers\People\PersonSaveManager.cs" />
     <Compile Include="Managers\People\StaffMemberManager.cs" />
@@ -52,7 +54,6 @@
     <Compile Include="Managers\People\PlaceContactGetManager.cs" />
     <Compile Include="Managers\People\PlaceContactDeleteManager.cs" />
     <Compile Include="Managers\People\PersonListManager.cs" />
-    <Compile Include="Managers\Places\FacilityManager.cs" />
     <Compile Include="Managers\Places\SiteConfigurationManager.cs" />
     <Compile Include="Managers\Places\PlaceSaveManager.cs" />
     <Compile Include="Managers\Places\PlaceListManager.cs" />

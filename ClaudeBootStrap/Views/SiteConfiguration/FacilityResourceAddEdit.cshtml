@@ -1,0 +1,39 @@
+﻿<!-- ** BEGIN Resource DETAIL AREA ** -->
+<div class="callout" id="Resources">
+    <div class="top-bar">
+        <div class="top-bar-title">
+            <ul class="menu">
+                <li>
+                    <span class="small-text-label columns">Add or Edit Facility Resource</span>
+                </li>
+            </ul>
+        </div>
+        <div class="top-bar-right">
+            <ul class="menu">
+                <li>
+                    <a class="small-text-label columns" data-bind="click: Resource.Cancel" href="">Cancel</a>
+                </li>
+                <li>
+                    <a class="small-text-label columns" data-bind="click: SaveResource.ManageSave" href="">Save</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <form>
+        <div class="row">
+            <div class="small-3 columns">
+                <label>
+                    Resource Name
+                    @Html.TextBox("ResourceName", "", new { @class = "form-control", data_bind = "value:resourcename" })
+                </label>
+            </div>
+            <div class="small-3 columns end">
+                <label>
+                    Facility
+                    <select class="form-control" data-bind="value: placeid, options: listitems, optionsText: 'Name', optionsValue: 'PlaceId', optionsCaption: 'Choose...'"></select>
+                </label>
+            </div>
+        </div>
+</form>
+</div>
+    <!-- ** END Resource DETAIL AREA ** -->

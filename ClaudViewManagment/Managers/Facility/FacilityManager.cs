@@ -6,7 +6,7 @@ using ClaudeData.DataRepository.PlaceRepository;
 using ClaudeData.DataRepository.ReorderRepository;
 using ClaudeData.ViewModels;
 
-namespace ClaudeViewManagement.Managers.Places
+namespace ClaudeViewManagement.Managers.Facility
 {
     public class FacilityManager : IDisposable
     {
@@ -28,7 +28,7 @@ namespace ClaudeViewManagement.Managers.Places
             }
         }
 
-        public void SaveFacilityOrder(List<DisplayReorder> data)
+        public void SaveDisplayOrder(List<DisplayReorder> data)
         {
             using (DbReorderSave db = new DbReorderSave())
             {

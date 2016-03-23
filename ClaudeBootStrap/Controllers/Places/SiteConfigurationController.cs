@@ -2,7 +2,9 @@
 using System.Web.Mvc;
 using ClaudeCommon.BaseModels;
 using ClaudeCommon.Enums;
+using ClaudeCommon.Models.Facility;
 using ClaudeCommon.Models.SiteConfiguration;
+using ClaudeViewManagement.Managers.Facility;
 using ClaudeViewManagement.Managers.People;
 using ClaudeViewManagement.Managers.Places;
 using ClaudeViewManagement.ViewModels.People;
@@ -51,6 +53,15 @@ namespace ClaudeBootstrap.Controllers.Places
         }
 
         [HttpPost]
+        public JsonResult SaveResource(FacilityResource r)
+        {
+            using (FacilityResourceManager mgr = new FacilityResourceManager())
+            {
+                return Json(mgr.SaveRecord(r));
+            }
+        }
+
+        [HttpPost]
         public JsonResult GetPlace(string id)
         {
             using (FacilityManager mgr = new FacilityManager())
@@ -73,7 +84,7 @@ namespace ClaudeBootstrap.Controllers.Places
         {
             using (FacilityManager mgr = new FacilityManager())
             {
-                mgr.SaveFacilityOrder(list);
+                mgr.SaveDisplayOrder(list);
             }
         }
 
@@ -92,7 +103,16 @@ namespace ClaudeBootstrap.Controllers.Places
         {
             using (PlaceContactDeleteManager mgr = new PlaceContactDeleteManager())
             {
-                return Json(mgr.DeleteStaffUser(id));
+                return Json(mgr.DeleteStaffMember(id));
+            }
+        }
+
+        [HttpPost]
+        public JsonResult DeleteResource(int id)
+        {
+            using (FacilityResourceManager mgr = new FacilityResourceManager())
+            {
+                return Json(mgr.DeleteRecord(id));
             }
         }
     }

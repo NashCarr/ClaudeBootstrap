@@ -24,6 +24,11 @@
             <!--ko if: DragDropComplete-->
             @{ Html.RenderPartial("Place/PlaceList"); }
             <!--/ko-->
+            <div class="row">
+                <div class="table-descriptor small-12 columns">
+                    @{ Html.RenderPartial("FacilityResource"); }
+                </div>
+            </div>
         </div>
     </div>
 }

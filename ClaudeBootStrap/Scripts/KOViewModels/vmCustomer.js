@@ -62,8 +62,8 @@ PlaceViewModel = function(data) {
     self.searchvalue = ko.observable("");
 
     //brand
-    self.brandname = ko.observable("");
     self.brandid = ko.observable(0);
+    self.brandname = ko.observable("");
     self.branddisplaysort = ko.observable("");
     self.branddisplayorder = ko.observable(0);
     self.brandstringlastupdate = ko.observable("");

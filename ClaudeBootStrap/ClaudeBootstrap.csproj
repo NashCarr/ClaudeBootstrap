@@ -466,6 +466,9 @@
     <Content Include="Views\Customer\CustomerAddEdit.cshtml" />
     <Content Include="Views\Customer\CustomerBrandAddEdit.cshtml" />
     <Content Include="Views\Customer\CustomerBrand.cshtml" />
+    <Content Include="Views\SiteConfiguration\FacilityResourceList.cshtml" />
+    <Content Include="Views\SiteConfiguration\FacilityResourceAddEdit.cshtml" />
+    <Content Include="Views\SiteConfiguration\FacilityResource.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ClaudeCommon\ClaudeCommon.csproj">

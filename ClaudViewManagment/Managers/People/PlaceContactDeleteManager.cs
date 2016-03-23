@@ -15,11 +15,11 @@ namespace ClaudeViewManagement.Managers.People
         {
         }
 
-        public string DeleteStaffUser(int id)
+        public string DeleteStaffMember(int id)
         {
             using (DbPersonSetInactive data = new DbPersonSetInactive())
             {
-                return data.SetStaffUserInactive(id);
+                return data.SetStaffMemberInactive(id);
             }
         }
 
@@ -35,8 +35,7 @@ namespace ClaudeViewManagement.Managers.People
         {
             using (DbPersonSetInactive data = new DbPersonSetInactive())
             {
-                return "";
-                //return data.SetOranizationContactInactive(id);
+                return data.SetOrganizationContactInactive(id);
             }
         }
     }

@@ -1,20 +1,20 @@
 ﻿using System;
 using System.Data;
 using ClaudeCommon.BaseModels.Returns;
-using ClaudeCommon.Models.Customer;
+using ClaudeCommon.Models.Facility;
 
-namespace ClaudeData.DataRepository.CustomerRepository
+namespace ClaudeData.DataRepository.FacilityRepository
 {
-    public class DbCustomerBrandSave : DbSaveBase
+    public class DbFacilityResourceSave : DbSaveBase
     {
         public ReturnBase SetInactive(int recordId)
         {
             ReturnValues.Id = recordId;
             try
             {
-                SetConnectToDatabase("[Admin].[usp_CustomerBrand_SetInactive]");
+                SetConnectToDatabase("[Admin].[usp_FacilityResource_SetInactive]");
 
-                CmdSql.Parameters.Add("@CustomerBrandId", SqlDbType.Int).Value = ReturnValues.Id;
+                CmdSql.Parameters.Add("@FacilityResourceId", SqlDbType.Int).Value = ReturnValues.Id;
 
                 SetErrMsgParameter();
 
@@ -28,28 +28,28 @@ namespace ClaudeData.DataRepository.CustomerRepository
             return ReturnValues;
         }
 
-        public ReturnBase AddUpdateRecord(CustomerBrand data)
+        public ReturnBase AddUpdateRecord(FacilityResource data)
         {
             ReturnValues.Id = data.RecordId;
 
             if (!string.IsNullOrEmpty(data.Name)) return SaveRecord(data);
 
-            SetEmptyStringMessage("Customer Brand");
+            SetEmptyStringMessage("Facility Resource");
             return ReturnValues;
         }
 
-        private ReturnBase SaveRecord(CustomerBrand data)
+        private ReturnBase SaveRecord(FacilityResource data)
         {
             try
             {
-                IdParameter = "@CustomerBrandId";
+                IdParameter = "@FacilityResourceId";
 
-                SetConnectToDatabase("[Admin].[usp_CustomerBrand_Upsert]");
+                SetConnectToDatabase("[Admin].[usp_FacilityResource_Upsert]");
 
                 SetIdInputOutputParameter();
 
                 CmdSql.Parameters.Add("@Name", SqlDbType.NVarChar, 50).Value = data.Name.Trim();
-                CmdSql.Parameters.Add("@CustomerId", SqlDbType.Int).Value = data.CustomerId;
+                CmdSql.Parameters.Add("@FacilityId", SqlDbType.Int).Value = data.FacilityId;
                 CmdSql.Parameters.Add("@DisplayOrder", SqlDbType.Int).Value = data.DisplayOrder;
 
                 SetErrMsgParameter();

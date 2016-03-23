@@ -29,7 +29,7 @@ namespace ClaudeViewManagement.Managers.Customer
             }
         }
 
-        public void SaveCustomerOrder(List<DisplayReorder> data)
+        public void SaveDisplayOrder(List<DisplayReorder> data)
         {
             using (DbReorderSave db = new DbReorderSave())
             {

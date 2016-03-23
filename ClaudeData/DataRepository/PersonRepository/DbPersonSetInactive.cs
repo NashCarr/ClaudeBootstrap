@@ -51,11 +51,26 @@ namespace ClaudeData.DataRepository.PersonRepository
             return ReturnValues.ErrMsg;
         }
 
-        public string SetStaffUserInactive(int personId)
+        public string SetStaffMemberInactive(int personId)
         {
             try
             {
                 SetConnectToDatabase("[Admin].[usp_StaffUser_SetInactive]");
+
+                SetInactive(personId);
+            }
+            catch (Exception ex)
+            {
+                ReturnValues.ErrMsg = ex.Message;
+            }
+            return ReturnValues.ErrMsg;
+        }
+
+        public string SetOrganizationContactInactive(int personId)
+        {
+            try
+            {
+                SetConnectToDatabase("[FundRaising].[usp_OrganizationContact_SetInactive]");
 
                 SetInactive(personId);
             }

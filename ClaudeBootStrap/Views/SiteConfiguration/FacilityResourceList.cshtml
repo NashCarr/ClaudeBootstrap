@@ -1,0 +1,56 @@
+﻿<!-- BEGIN Resource List AREA -->
+<div class="callout" id="Resources">
+    <div class="top-bar">
+        <div class="top-bar-title">
+            <ul class="menu">
+                <li>
+                    @Html.Label("Resources", "Resources")
+                </li>
+            </ul>
+        </div>
+        <div class="top-bar-right">
+            <ul class="menu">
+                <li>
+                    <a class="small-text-label columns" data-bind="click: Resource.Add" href="">Add</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="table-row small-12 columns" id="resourcelist">
+            <table class="tabled" id="datatable">
+
+                <thead class="light">
+                <tr>
+                    <th class="pdsa-action-button-area">Edit</th>
+                    <th style="display: none">FacilityResourceId</th>
+                    <th style="display: none">FacilityId</th>
+                    <th>Name</th>
+                    <th class="listcentered">Last Update</th>
+                    <th class="pdsa-action-button-area">Delete</th>
+                </tr>
+                </thead>
+                <tbody data-bind="foreach: resourcelist()" id="resources">
+                <tr id="itemrow">
+                    <td class="listcentered" id="edit">
+                        <a class="button small blue-2" data-bind="click: $parent.Resource.Edit" href="#">
+                            Select
+                        </a>
+                    </td>
+                    <td class="listcentered" data-bind="text: RecordId" id="recordid" style="display: none"></td>
+                    <td class="listcentered" data-bind="text: FacilityId" id="facilityid" style="display: none"></td>
+                    <td class="ui-priority-secondary" data-bind="text: Name" id="resourcename"></td>
+                    <td class="listcentered" data-bind="text: StringLastUpdate" id="lastupdate"></td>
+                    <td class="listcentered" id="delete">
+                        <a class="button small blue-2" data-bind="click: $parent.RemoveResource.Validate.bind($data)" href="#" type="button">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+<!-- END Resource List AREA -->

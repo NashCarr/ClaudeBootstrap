@@ -8,6 +8,7 @@ namespace ClaudeCommon.Models.Customer
         {
             CustomerId = 0;
         }
+
         public int CustomerId { get; set; }
     }
 }

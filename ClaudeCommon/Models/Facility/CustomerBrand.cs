@@ -1,8 +1,8 @@
-﻿using ClaudeData.BaseModels;
+﻿using ClaudeCommon.Models.Administration;
 
-namespace ClaudeData.Models.Administration
+namespace ClaudeCommon.Models.Facility
 {
-    public class FacilityResource : AdminBase
+    public class FacilityResource : AdministrationBase
     {
         public FacilityResource()
         {

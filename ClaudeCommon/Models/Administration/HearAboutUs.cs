@@ -1,6 +1,6 @@
 ﻿namespace ClaudeCommon.Models.Administration
 {
-    public class HearAboutUs: IsSystemBase
+    public class HearAboutUs : IsSystemBase
     {
     }
 }

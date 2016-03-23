@@ -25,6 +25,8 @@ PlaceViewModel = function(data) {
     self.IsSaveClose = ko.observable(false);
     self.IsEditContact = ko.observable(false);
     self.IsSaveContact = ko.observable(false);
+    self.IsEditResource = ko.observable(false);
+    self.IsSaveResource = ko.observable(false);
 
     self.IsPlaceFaxPhoneVisible = ko.observable(false);
     self.IsPlaceCellPhoneVisible = ko.observable(false);
@@ -45,11 +47,13 @@ PlaceViewModel = function(data) {
     self.IsPhoneDetailVisible = ko.observable(false);
     self.IsPrimaryDetailVisible = ko.observable(true);
     self.IsContactDetailVisible = ko.observable(false);
+    self.IsResourceDetailVisible = ko.observable(false);
 
     self.IsListAreaVisible = ko.observable(true);
     self.IsSearchAreaVisible = ko.observable(true);
     self.IsAddEditAreaVisible = ko.observable(false);
     self.IsMessageAreaVisible = ko.observable(false);
+    self.IsResourceAreaVisible = ko.observable(true);
 
     self.IsDisplayOrderChanged = ko.observable(false);
 
@@ -57,6 +61,13 @@ PlaceViewModel = function(data) {
 
     self.filter = "";
     self.searchvalue = ko.observable("");
+
+    //resource
+    self.resourceid = ko.observable(0);
+    self.resourcename = ko.observable("");
+    self.resourcedisplaysort = ko.observable("");
+    self.resourcedisplayorder = ko.observable(0);
+    self.resourcestringlastupdate = ko.observable("");
 
     //place
     self.placeid = ko.observable(0);
@@ -179,8 +190,10 @@ PlaceViewModel = function(data) {
 
     self.itemdata = ko.observableArray([]);
     self.personlist = ko.observableArray([]);
+    self.resourcelist = ko.observableArray([]);
 
     //list
+    self.resourcelist = ko.mapping.fromJS(data.FacilityResources).extend({ deferred: true });
     self.listitems = ko.mapping.fromJS(data.Facilities.ListEntity).extend({ deferred: true });
 
     //lookups
@@ -190,7 +203,127 @@ PlaceViewModel = function(data) {
     self.mobilecarriers = ko.mapping.fromJS(data.Facilities.MobileCarriers).extend({ deferred: true });
     self.statesprovinces = ko.mapping.fromJS(data.Facilities.StatesProvinces).extend({ deferred: true });
 
-    self.DefaultMailingValues = ko.computed(function() {
+    self.Resource = {
+        Clear: function () {
+            self.placeid(0);
+            self.resourceid(0);
+            self.resourcename("");
+            self.resourcedisplaysort("");
+            self.resourcedisplayorder(0);
+        },
+        Add: function () {
+            self.Resource.Clear();
+            self.IsEditResource(true);
+        },
+        Cancel: function () {
+            self.errmsg("");
+            self.Resource.Clear();
+            self.setmessageview();
+            self.IsEditResource(false);
+            self.IsSaveResource(false);
+        },
+        Edit: function (editdata) {
+            self.resourcename(ko.unwrap(editdata.Name()));
+            self.placeid(ko.unwrap(editdata.FacilityId()));
+            self.resourceid(ko.unwrap(editdata.RecordId()));
+            self.resourcedisplaysort(ko.unwrap(editdata.DisplaySort()));
+            self.resourcedisplayorder(ko.unwrap(editdata.DisplayOrder()));
+
+            self.IsEditResource(true);
+        }
+    };
+
+    self.SaveResource = {
+        Build: function () {
+            return {
+                Name: ko.observable(self.resourcename()),
+                RecordId: ko.observable(self.resourceid()),
+                FacilityId: ko.observable(self.placeid()),
+                DisplaySort: ko.observable(self.resourcedisplaysort()),
+                DisplayOrder: ko.observable(self.resourcedisplayorder()),
+                StringLastUpdate: ko.observable(self.resourcestringlastupdate())
+            };
+        },
+        ProcessAdd: function () {
+            self.resourcelist.push(self.SaveResource.Build());
+        },
+        ItemExists: function () {
+            var match = ko.utils.arrayFirst(self.resourcelist(), function (item) {
+                return item.RecordId() === self.resourceid();
+            });
+            return match;
+        },
+        ProcessEdit: function () {
+            self.resourcelist.replace(self.SaveResource.ItemExists(), self.SaveResource.Build());
+        },
+        Process: function () {
+            if (self.SaveResource.ItemExists()) {
+                self.SaveResource.ProcessEdit();
+                return;
+            };
+            self.SaveResource.ProcessAdd();
+        },
+        HandleReturn: function (returndata) {
+            self.resourceid(returndata.Id);
+            self.errmsg(returndata.ErrMsg);
+            self.resourcestringlastupdate(returndata.StringLastUpdate);
+
+            self.setmessageview();
+        },
+        ManageSave: function () {
+            self.IsSaveClose(false);
+            self.IsSaveResource(true);
+            self.SaveResource.Save();
+        },
+        Save: function () {
+            $.ajax({
+                url: baseUrl + "SaveResource",
+                type: "post",
+                data: self.SaveResource.Build()
+            }).then(function (returndata) {
+                self.IsSaveResource(false);
+                self.SaveResource.HandleReturn(returndata);
+                if (self.IsMessageAreaVisible()) {
+                    return;
+                };
+                self.SaveResource.Process();
+                self.IsEditResource(false);
+            });
+        }
+    };
+
+    self.RemoveResource = {
+        SetListItemInactive: function (item) {
+            $.ajax({
+                url: baseUrl + "DeleteResource/" + ko.unwrap(item.RecordId()),
+                type: "post"
+            }).then(function (returndata) {
+
+                self.errmsg(returndata);
+                self.setmessageview();
+                if (self.IsMessageAreaVisible()) {
+                    return;
+                }
+                self.resourcelist.remove(item);
+                self.IsEditResource(true);
+                self.IsEditResource(false);
+            });
+        },
+        Validate: function (item) {
+            if (!confirm("Delete Resource: '" + ko.unwrap(item.Name) + "'?")) {
+                return;
+            };
+            self.RemoveResource.SetListItemInactive(item);
+        }
+    };
+
+    self.Resources = {
+        Clear: function () {
+            self.resourcelist([]);
+        }
+    };
+
+    self.DefaultMailingValues = ko.computed(function () {
         if (self.placemailingpostalcode().length === 0) {
             return;
         };

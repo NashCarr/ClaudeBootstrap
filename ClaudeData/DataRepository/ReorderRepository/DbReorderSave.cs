@@ -22,14 +22,10 @@ namespace ClaudeData.DataRepository.ReorderRepository
             DisplayReorder("[Admin].[usp_CustomerBrand_DisplayReorder]", data);
         }
 
-        //public void FacilityResourceReorderSave(IEnumerable<FacilityResource> data)
-        //{
-        //    DataOrder dOrder = new DataOrder();
-        //    dOrder.AddRange(
-        //        data.Select(item => new DisplayOrder {Id = item.FacilityResourceId, Order = item.DisplayOrder}));
-
-        //    DisplayReorder("[Admin].[usp_FacilityResource_DisplayReorder]", dOrder);
-        //}
+        public void FacilityResourceReorderSave(List<DisplayReorder> data)
+        {
+            DisplayReorder("[Admin].[usp_FacilityResource_DisplayReorder]", data);
+        }
 
         public void FacilityReorderSave(List<DisplayReorder> data)
         {

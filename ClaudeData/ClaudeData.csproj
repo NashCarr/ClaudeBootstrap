@@ -71,6 +71,8 @@
     <Compile Include="DataRepository\DbGatewayGet.cs" />
     <Compile Include="DataRepository\DbGetBase.cs" />
     <Compile Include="DataRepository\DbSaveBase.cs" />
+    <Compile Include="DataRepository\FacilityRepository\DbFacilityResourceGet.cs" />
+    <Compile Include="DataRepository\FacilityRepository\DbFacilityResourceSave.cs" />
     <Compile Include="DataRepository\LookupRepository\DbGatewayLookup.cs" />
     <Compile Include="DataRepository\LookupRepository\DbPeopleLookup.cs" />
     <Compile Include="DataRepository\LookupRepository\DbPlacesLookup.cs" />
@@ -130,7 +132,6 @@
     <Compile Include="Models\Addresses\PostalCode.cs" />
     <Compile Include="Models\Addresses\PostalZone.cs" />
     <Compile Include="Models\Administration\AccessRight.cs" />
-    <Compile Include="Models\Administration\FacilityResource.cs" />
     <Compile Include="Models\Administration\FacilityStaff.cs" />
     <Compile Include="Models\Administration\ProgramOption.cs" />
     <Compile Include="Models\Administration\RoleRight.cs" />

@@ -60,6 +60,7 @@
     <Compile Include="Models\Administration\HearAboutUs.cs" />
     <Compile Include="Models\Administration\ProductGroup.cs" />
     <Compile Include="Models\Customer\CustomerBrand.cs" />
+    <Compile Include="Models\Facility\CustomerBrand.cs" />
     <Compile Include="Models\People\Contact.cs" />
     <Compile Include="Models\People\StaffMemberList.cs" />
     <Compile Include="Models\People\PersonList.cs" />
