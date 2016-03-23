@@ -119,7 +119,7 @@ PersonViewModel = function(data) {
     self.itemdata = ko.observableArray([]);
  
     //list
-    self.listitems = ko.mapping.fromJS(data.ListEntity).extend({ deferred: true });
+    self.itemlist = ko.mapping.fromJS(data.ListEntity).extend({ deferred: true });
 
     //lookups
     self.timezones = ko.mapping.fromJS(data.TimeZones).extend({ deferred: true });
@@ -1050,14 +1050,14 @@ PersonViewModel = function(data) {
 
     self.SortLastLoginDate = {
         Filtered: function() {
-            return ko.utils.arrayFilter(self.listitems(), function(item) {
+            return ko.utils.arrayFilter(self.itemlist(), function(item) {
                 return ko.unwrap(item.FullName).toLowerCase().indexOf(self.filter) !== -1;
             }).sort(function(l, r) {
                 return (self.direction * (l.LastLoginDate().toLowerCase().localeCompare(r.LastLoginDate().toLowerCase())));
             });
         },
         Unfiltered: function() {
-            return self.listitems().sort(function(l, r) {
+            return self.itemlist().sort(function(l, r) {
                 return (self.direction * (l.LastLoginDate().toLowerCase().localeCompare(r.LastLoginDate().toLowerCase())));
             });
         },
@@ -1070,14 +1070,14 @@ PersonViewModel = function(data) {
 
     self.SortAccessRightName = {
         Filtered: function() {
-            return ko.utils.arrayFilter(self.listitems(), function(item) {
+            return ko.utils.arrayFilter(self.itemlist(), function(item) {
                 return ko.unwrap(item.FullName).toLowerCase().indexOf(self.filter) !== -1;
             }).sort(function(l, r) {
                 return (self.direction * (l.AccessRightName().toLowerCase().localeCompare(r.AccessRightName().toLowerCase())));
             });
         },
         Unfiltered: function() {
-            return self.listitems().sort(function(l, r) {
+            return self.itemlist().sort(function(l, r) {
                 return (self.direction * (l.AccessRightName().toLowerCase().localeCompare(r.AccessRightName().toLowerCase())));
             });
         },
@@ -1090,14 +1090,14 @@ PersonViewModel = function(data) {
 
     self.SortEmail = {
         Filtered: function() {
-            return ko.utils.arrayFilter(self.listitems(), function(item) {
+            return ko.utils.arrayFilter(self.itemlist(), function(item) {
                 return ko.unwrap(item.FullName).toLowerCase().indexOf(self.filter) !== -1;
             }).sort(function(l, r) {
                 return (self.direction * (l.Email().toLowerCase().localeCompare(r.Email().toLowerCase())));
             });
         },
         Unfiltered: function() {
-            return self.listitems().sort(function(l, r) {
+            return self.itemlist().sort(function(l, r) {
                 return (self.direction * (l.Email().toLowerCase().localeCompare(r.Email().toLowerCase())));
             });
         },
@@ -1110,14 +1110,14 @@ PersonViewModel = function(data) {
 
     self.SortUserName = {
         Filtered: function() {
-            return ko.utils.arrayFilter(self.listitems(), function(item) {
+            return ko.utils.arrayFilter(self.itemlist(), function(item) {
                 return ko.unwrap(item.FullName).toLowerCase().indexOf(self.filter) !== -1;
             }).sort(function(l, r) {
                 return (self.direction * (l.UserName().toLowerCase().localeCompare(r.UserName().toLowerCase())));
             });
         },
         Unfiltered: function() {
-            return self.listitems().sort(function(l, r) {
+            return self.itemlist().sort(function(l, r) {
                 return (self.direction * (l.UserName().toLowerCase().localeCompare(r.UserName().toLowerCase())));
             });
         },
@@ -1130,14 +1130,14 @@ PersonViewModel = function(data) {
 
     self.SortFullName = {
         Filtered: function() {
-            return ko.utils.arrayFilter(self.listitems(), function(item) {
+            return ko.utils.arrayFilter(self.itemlist(), function(item) {
                 return ko.unwrap(item.FullName).toLowerCase().indexOf(self.filter) !== -1;
             }).sort(function(l, r) {
                 return (self.direction * (l.FullName().toLowerCase().localeCompare(r.FullName().toLowerCase())));
             });
         },
         Unfiltered: function() {
-            return self.listitems().sort(function(l, r) {
+            return self.itemlist().sort(function(l, r) {
                 return (self.direction * (l.FullName().toLowerCase().localeCompare(r.FullName().toLowerCase())));
             });
         },
@@ -1150,14 +1150,14 @@ PersonViewModel = function(data) {
 
     self.SortDisplayOrder = {
         Filtered: function() {
-            return ko.utils.arrayFilter(self.listitems(), function(item) {
+            return ko.utils.arrayFilter(self.itemlist(), function(item) {
                 return ko.unwrap(item.FullName).toLowerCase().indexOf(self.filter) !== -1;
             }).sort(function(l, r) {
                 return (self.direction * (l.DisplaySort().toLowerCase().localeCompare(r.DisplaySort().toLowerCase())));
             });
         },
         Unfiltered: function() {
-            return self.listitems().sort(function(l, r) {
+            return self.itemlist().sort(function(l, r) {
                 return (self.direction * (l.DisplaySort().toLowerCase().localeCompare(r.DisplaySort().toLowerCase())));
             });
         },
@@ -1169,10 +1169,10 @@ PersonViewModel = function(data) {
     };
 
     self.filteredItems = function() {
-        if (typeof self.listitems === "undefined") {
+        if (typeof self.itemlist === "undefined") {
             return null;
         };
-        if (self.listitems().length === 0) {
+        if (self.itemlist().length === 0) {
             return null;
         };
         self.direction = ko.unwrap(self.sortdirection);
@@ -1276,16 +1276,16 @@ PersonViewModel = function(data) {
         },
         ProcessAdd: function() {
             self.ReorderList.ReorderDragDrop();
-            self.listitems.push(self.Person.Build());
+            self.itemlist.push(self.Person.Build());
         },
         ItemExists: function() {
-            var match = ko.utils.arrayFirst(self.listitems(), function(item) {
+            var match = ko.utils.arrayFirst(self.itemlist(), function(item) {
                 return item.PersonId() === self.personid();
             });
             return match;
         },
         ProcessEdit: function() {
-            self.listitems.replace(self.ProcessSave.ItemExists(), self.Person.Build());
+            self.itemlist.replace(self.ProcessSave.ItemExists(), self.Person.Build());
         },
         Manage: function() {
             if (self.IsEdit()) {
@@ -1339,16 +1339,16 @@ PersonViewModel = function(data) {
             };
         },
         ProcessAdd: function () {
-            self.listitems.push(self.SavePerson.BuildListData());
+            self.itemlist.push(self.SavePerson.BuildListData());
         },
         ItemExists: function () {
-            var match = ko.utils.arrayFirst(self.listitems(), function (item) {
+            var match = ko.utils.arrayFirst(self.itemlist(), function (item) {
                 return item.PersonId() === self.personid();
             });
             return match;
         },
         ProcessEdit: function () {
-            self.listitems.replace(self.SavePerson.ItemExists(), self.SavePerson.BuildListData());
+            self.itemlist.replace(self.SavePerson.ItemExists(), self.SavePerson.BuildListData());
         },
         Process: function () {
             if (self.SavePerson.ItemExists()) {
@@ -1384,7 +1384,7 @@ PersonViewModel = function(data) {
                 if (self.IsMessageAreaVisible()) {
                     return;
                 };
-                self.listitems.remove(removedata);
+                self.itemlist.remove(removedata);
                 self.clear();
             });
         },
@@ -1436,7 +1436,7 @@ PersonViewModel = function(data) {
                 return value.toString();
             },
             EditList: function(personid, value) {
-                var match = ko.utils.arrayFirst(self.listitems(), function(item) {
+                var match = ko.utils.arrayFirst(self.itemlist(), function(item) {
                     return parseInt(item.PersonId()) === personid;
                 });
                 if (match) {

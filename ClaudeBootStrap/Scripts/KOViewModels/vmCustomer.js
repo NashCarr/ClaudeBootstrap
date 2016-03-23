@@ -192,7 +192,7 @@ PlaceViewModel = function(data) {
     self.personlist = ko.observableArray([]);
 
     //list
-    self.listitems = ko.mapping.fromJS(data.ListEntity).extend({ deferred: true });
+    self.itemlist = ko.mapping.fromJS(data.ListEntity).extend({ deferred: true });
 
     //lookups
     self.timezones = ko.mapping.fromJS(data.TimeZones).extend({ deferred: true });
@@ -2134,14 +2134,14 @@ PlaceViewModel = function(data) {
 
     self.SortCountry = {
         Filtered: function() {
-            return ko.utils.arrayFilter(self.listitems(), function(item) {
+            return ko.utils.arrayFilter(self.itemlist(), function(item) {
                 return ko.unwrap(item.Name).toLowerCase().indexOf(self.filter) !== -1;
             }).sort(function(l, r) {
                 return (self.direction * (l.CountryName().toLowerCase().localeCompare(r.CountryName().toLowerCase())));
             });
         },
         Unfiltered: function() {
-            return self.listitems().sort(function(l, r) {
+            return self.itemlist().sort(function(l, r) {
                 return (self.direction * (l.CountryName().toLowerCase().localeCompare(r.CountryName().toLowerCase())));
             });
         },
@@ -2154,14 +2154,14 @@ PlaceViewModel = function(data) {
 
     self.SortTimeZone = {
         Filtered: function() {
-            return ko.utils.arrayFilter(self.listitems(), function(item) {
+            return ko.utils.arrayFilter(self.itemlist(), function(item) {
                 return ko.unwrap(item.Name).toLowerCase().indexOf(self.filter) !== -1;
             }).sort(function(l, r) {
                 return (self.direction * (l.TimeZoneName().toLowerCase().localeCompare(r.TimeZoneName().toLowerCase())));
             });
         },
         Unfiltered: function() {
-            return self.listitems().sort(function(l, r) {
+            return self.itemlist().sort(function(l, r) {
                 return (self.direction * (l.TimeZoneName().toLowerCase().localeCompare(r.TimeZoneName().toLowerCase())));
             });
         },
@@ -2174,14 +2174,14 @@ PlaceViewModel = function(data) {
 
     self.SortDepartment = {
         Filtered: function() {
-            return ko.utils.arrayFilter(self.listitems(), function(item) {
+            return ko.utils.arrayFilter(self.itemlist(), function(item) {
                 return ko.unwrap(item.Name).toLowerCase().indexOf(self.filter) !== -1;
             }).sort(function(l, r) {
                 return (self.direction * (l.Department().toLowerCase().localeCompare(r.Department().toLowerCase())));
             });
         },
         Unfiltered: function() {
-            return self.listitems().sort(function(l, r) {
+            return self.itemlist().sort(function(l, r) {
                 return (self.direction * (l.Department().toLowerCase().localeCompare(r.Department().toLowerCase())));
             });
         },
@@ -2194,14 +2194,14 @@ PlaceViewModel = function(data) {
 
     self.SortDivision = {
         Filtered: function() {
-            return ko.utils.arrayFilter(self.listitems(), function(item) {
+            return ko.utils.arrayFilter(self.itemlist(), function(item) {
                 return ko.unwrap(item.Name).toLowerCase().indexOf(self.filter) !== -1;
             }).sort(function(l, r) {
                 return (self.direction * (l.Division().toLowerCase().localeCompare(r.Division().toLowerCase())));
             });
         },
         Unfiltered: function() {
-            return self.listitems().sort(function(l, r) {
+            return self.itemlist().sort(function(l, r) {
                 return (self.direction * (l.Division().toLowerCase().localeCompare(r.Division().toLowerCase())));
             });
         },
@@ -2214,14 +2214,14 @@ PlaceViewModel = function(data) {
 
     self.SortName = {
         Filtered: function () {
-            return ko.utils.arrayFilter(self.listitems(), function (item) {
+            return ko.utils.arrayFilter(self.itemlist(), function (item) {
                 return ko.unwrap(item.Name).toLowerCase().indexOf(self.filter) !== -1;
             }).sort(function (l, r) {
                 return (self.direction * (l.Name().toLowerCase().localeCompare(r.Name().toLowerCase())));
             });
         },
         Unfiltered: function () {
-            return self.listitems().sort(function (l, r) {
+            return self.itemlist().sort(function (l, r) {
                 return (self.direction * (l.Name().toLowerCase().localeCompare(r.Name().toLowerCase())));
             });
         },
@@ -2234,14 +2234,14 @@ PlaceViewModel = function(data) {
 
     self.SortDisplayOrder = {
         Filtered: function () {
-            return ko.utils.arrayFilter(self.listitems(), function (item) {
+            return ko.utils.arrayFilter(self.itemlist(), function (item) {
                 return ko.unwrap(item.Name).toLowerCase().indexOf(self.filter) !== -1;
             }).sort(function (l, r) {
                 return (self.direction * (l.DisplaySort().toLowerCase().localeCompare(r.DisplaySort().toLowerCase())));
             });
         },
         Unfiltered: function () {
-            return self.listitems().sort(function (l, r) {
+            return self.itemlist().sort(function (l, r) {
                 return (self.direction * (l.DisplaySort().toLowerCase().localeCompare(r.DisplaySort().toLowerCase())));
             });
         },
@@ -2253,10 +2253,10 @@ PlaceViewModel = function(data) {
     };
 
     self.filteredItems = function () {
-        if (typeof self.listitems === "undefined") {
+        if (typeof self.itemlist === "undefined") {
             return null;
         };
-        if (self.listitems().length === 0) {
+        if (self.itemlist().length === 0) {
             return null;
         };
         self.direction = ko.unwrap(self.sortdirection);
@@ -2369,16 +2369,16 @@ PlaceViewModel = function(data) {
         },
         ProcessAdd: function() {
             self.ReorderList.ReorderDragDrop();
-            self.listitems.push(self.Place.Build());
+            self.itemlist.push(self.Place.Build());
         },
         ItemExists: function() {
-            var match = ko.utils.arrayFirst(self.listitems(), function(item) {
+            var match = ko.utils.arrayFirst(self.itemlist(), function(item) {
                 return item.PlaceId() === self.placeid();
             });
             return match;
         },
         ProcessEdit: function() {
-            self.listitems.replace(self.ProcessSave.ItemExists(), self.Place.Build());
+            self.itemlist.replace(self.ProcessSave.ItemExists(), self.Place.Build());
         },
         Manage: function() {
             if (self.IsEdit()) {
@@ -2454,7 +2454,7 @@ PlaceViewModel = function(data) {
                 if (self.IsMessageAreaVisible()) {
                     return;
                 };
-                self.listitems.remove(removedata);
+                self.itemlist.remove(removedata);
                 self.clear();
             });
         },
@@ -2553,7 +2553,7 @@ PlaceViewModel = function(data) {
                 return value.toString();
             },
             EditList: function (placeid, value) {
-                var match = ko.utils.arrayFirst(self.listitems(), function(item) {
+                var match = ko.utils.arrayFirst(self.itemlist(), function(item) {
                     return parseInt(item.PlaceId()) === placeid;
                 });
                 if (match) {

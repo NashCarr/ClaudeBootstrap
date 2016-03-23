@@ -33,7 +33,7 @@ StudyDesignViewModel = function(data) {
     self.stringlastupdate = ko.observable("");
 
     //list
-    self.listitems = ko.mapping.fromJS(data.ListEntity).extend({ deferred: true });
+    self.itemlist = ko.mapping.fromJS(data.ListEntity).extend({ deferred: true });
 
     self.DragDropComplete = ko.computed(function() {
         return !self.IsDisplayOrderChanged();
@@ -91,14 +91,14 @@ StudyDesignViewModel = function(data) {
 
     self.SortIsSystem = {
         Filtered: function() {
-            return ko.utils.arrayFilter(self.listitems(), function(item) {
+            return ko.utils.arrayFilter(self.itemlist(), function(item) {
                 return ko.unwrap(item.Name).toLowerCase().indexOf(self.filter) !== -1;
             }).sort(function(l, r) {
                 return (self.direction * (l.IsSystemSort().localeCompare(r.IsSystemSort())));
             });
         },
         Unfiltered: function() {
-            return self.listitems().sort(function(l, r) {
+            return self.itemlist().sort(function(l, r) {
                 return (self.direction * (l.IsSystemSort().localeCompare(r.IsSystemSort())));
             });
         },
@@ -111,14 +111,14 @@ StudyDesignViewModel = function(data) {
 
     self.SortRadius = {
         Filtered: function() {
-            return ko.utils.arrayFilter(self.listitems(), function(item) {
+            return ko.utils.arrayFilter(self.itemlist(), function(item) {
                 return ko.unwrap(item.Name).toLowerCase().indexOf(self.filter) !== -1;
             }).sort(function(l, r) {
                 return (self.direction * (l.RadiusSort().localeCompare(r.RadiusSort())));
             });
         },
         Unfiltered: function() {
-            return self.listitems().sort(function(l, r) {
+            return self.itemlist().sort(function(l, r) {
                 return (self.direction * (l.RadiusSort().localeCompare(r.RadiusSort())));
             });
         },
@@ -131,14 +131,14 @@ StudyDesignViewModel = function(data) {
 
     self.SortCreateDate = {
         Filtered: function() {
-            return ko.utils.arrayFilter(self.listitems(), function(item) {
+            return ko.utils.arrayFilter(self.itemlist(), function(item) {
                 return ko.unwrap(item.Name).toLowerCase().indexOf(self.filter) !== -1;
             }).sort(function(l, r) {
                 return (self.direction * (l.StringLastUpdate().toLowerCase().localeCompare(r.StringLastUpdate().toLowerCase())));
             });
         },
         Unfiltered: function() {
-            return self.listitems().sort(function(l, r) {
+            return self.itemlist().sort(function(l, r) {
                 return (self.direction * (l.StringLastUpdate().toLowerCase().localeCompare(r.StringLastUpdate().toLowerCase())));
             });
         },
@@ -151,14 +151,14 @@ StudyDesignViewModel = function(data) {
 
     self.SortName = {
         Filtered: function() {
-            return ko.utils.arrayFilter(self.listitems(), function(item) {
+            return ko.utils.arrayFilter(self.itemlist(), function(item) {
                 return ko.unwrap(item.Name).toLowerCase().indexOf(self.filter) !== -1;
             }).sort(function(l, r) {
                 return (self.direction * (l.Name().toLowerCase().localeCompare(r.Name().toLowerCase())));
             });
         },
         Unfiltered: function() {
-            return self.listitems().sort(function(l, r) {
+            return self.itemlist().sort(function(l, r) {
                 return (self.direction * (l.Name().toLowerCase().localeCompare(r.Name().toLowerCase())));
             });
         },
@@ -171,14 +171,14 @@ StudyDesignViewModel = function(data) {
 
     self.SortDisplayOrder = {
         Filtered: function() {
-            return ko.utils.arrayFilter(self.listitems(), function(item) {
+            return ko.utils.arrayFilter(self.itemlist(), function(item) {
                 return ko.unwrap(item.Name).toLowerCase().indexOf(self.filter) !== -1;
             }).sort(function(l, r) {
                 return (self.direction * (l.DisplaySort().toLowerCase().localeCompare(r.DisplaySort().toLowerCase())));
             });
         },
         Unfiltered: function() {
-            return self.listitems().sort(function(l, r) {
+            return self.itemlist().sort(function(l, r) {
                 return (self.direction * (l.DisplaySort().toLowerCase().localeCompare(r.DisplaySort().toLowerCase())));
             });
         },
@@ -306,16 +306,16 @@ StudyDesignViewModel = function(data) {
     self.ProcessSave = {
         ProcessAdd: function() {
             self.ReorderList.ReorderDragDrop();
-            self.listitems.push(self.StudyDesign.Build());
+            self.itemlist.push(self.StudyDesign.Build());
         },
         ItemExists: function() {
-            var match = ko.utils.arrayFirst(self.listitems(), function(item) {
+            var match = ko.utils.arrayFirst(self.itemlist(), function(item) {
                 return item.RecordId() === self.recordid();
             });
             return match;
         },
         ProcessEdit: function() {
-            self.listitems.replace(self.ProcessSave.ItemExists(), self.StudyDesign.Build());
+            self.itemlist.replace(self.ProcessSave.ItemExists(), self.StudyDesign.Build());
         },
         Manage: function() {
             if (self.IsEdit()) {
@@ -358,7 +358,7 @@ StudyDesignViewModel = function(data) {
                 if (self.IsMessageAreaVisible()) {
                     return;
                 }
-                self.listitems.remove(removedata);
+                self.itemlist.remove(removedata);
                 self.clear();
             });
         },
@@ -422,7 +422,7 @@ StudyDesignViewModel = function(data) {
                 return value;
             },
             EditList: function (recordid, value) {
-                var match = ko.utils.arrayFirst(self.listitems(), function(item) {
+                var match = ko.utils.arrayFirst(self.itemlist(), function(item) {
                     return parseInt(item.RecordId()) === recordid;
                 });
                 if (match) {
