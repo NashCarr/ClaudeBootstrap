@@ -12,7 +12,7 @@ namespace ClaudeData.DataRepository.FacilityRepository
             ReturnValues.Id = recordId;
             try
             {
-                SetConnectToDatabase("[Admin].[usp_FacilityResource_SetInactive]");
+                SetConnectToDatabase("[FacilityResource].[usp_SetInactive]");
 
                 CmdSql.Parameters.Add("@FacilityResourceId", SqlDbType.Int).Value = ReturnValues.Id;
 
@@ -44,11 +44,12 @@ namespace ClaudeData.DataRepository.FacilityRepository
             {
                 IdParameter = "@FacilityResourceId";
 
-                SetConnectToDatabase("[Admin].[usp_FacilityResource_Upsert]");
+                SetConnectToDatabase("[FacilityResource].[usp_Upsert]");
 
                 SetIdInputOutputParameter();
 
                 CmdSql.Parameters.Add("@Name", SqlDbType.NVarChar, 50).Value = data.Name.Trim();
+                CmdSql.Parameters.Add("@ShortName", SqlDbType.NVarChar, 10).Value = data.ShortName.Trim();
                 CmdSql.Parameters.Add("@FacilityId", SqlDbType.Int).Value = data.FacilityId;
                 CmdSql.Parameters.Add("@DisplayOrder", SqlDbType.Int).Value = data.DisplayOrder;
 

@@ -23,8 +23,14 @@
         <div class="row">
             <div class="small-3 columns">
                 <label>
+                    Resource Code
+                    @Html.TextBox("CodeName", "", new {@class = "form-control", data_bind = "value:resourceshortname"})
+                </label>
+            </div>
+            <div class="small-3 columns">
+                <label>
                     Resource Name
-                    @Html.TextBox("ResourceName", "", new { @class = "form-control", data_bind = "value:resourcename" })
+                    @Html.TextBox("ResourceName", "", new {@class = "form-control", data_bind = "value:resourcename"})
                 </label>
             </div>
             <div class="small-3 columns end">
@@ -34,6 +40,6 @@
                 </label>
             </div>
         </div>
-</form>
+    </form>
 </div>
-    <!-- ** END Resource DETAIL AREA ** -->
+<!-- ** END Resource DETAIL AREA ** -->

@@ -25,7 +25,7 @@ namespace ClaudeData.DataRepository.FacilityRepository
             {
                 IdValue = facilityId;
                 IdParameter = "@FacilityId";
-                SetConnectToDatabase("[Facility].[usp_FacilityResource_GetActive]");
+                SetConnectToDatabase("[FacilityResource].[usp_GetActive]");
                 CmdSql.Parameters.Add(IdParameter, SqlDbType.Int).Value = IdValue;
 
                 using (ConnSql)
@@ -41,9 +41,11 @@ namespace ClaudeData.DataRepository.FacilityRepository
                             }
 
                             int ordName = dr.GetOrdinal("Name");
+                            int ordShortName = dr.GetOrdinal("ShortName");
                             int ordFacilityId = dr.GetOrdinal("FacilityId");
                             int ordLastUpdate = dr.GetOrdinal("LastUpdate");
                             int ordDisplayOrder = dr.GetOrdinal("DisplayOrder");
+                            int ordFacilityName = dr.GetOrdinal("FacilityName");
                             int ordFacilityResourceId = dr.GetOrdinal("FacilityResourceId");
 
                             while (dr.Read())
@@ -51,8 +53,10 @@ namespace ClaudeData.DataRepository.FacilityRepository
                                 FacilityResource item = new FacilityResource
                                 {
                                     Name = Convert.ToString(dr[ordName]),
+                                    ShortName = Convert.ToString(dr[ordShortName]),
                                     FacilityId = Convert.ToInt32(dr[ordFacilityId]),
                                     DisplayOrder = Convert.ToInt16(dr[ordDisplayOrder]),
+                                    FacilityName = Convert.ToString(dr[ordFacilityName]),
                                     RecordId = Convert.ToInt32(dr[ordFacilityResourceId]),
                                     StringLastUpdate =
                                         Convert.ToDateTime(dr[ordLastUpdate]).ToString("MM/dd/yyyy hh:mm:ss tt")

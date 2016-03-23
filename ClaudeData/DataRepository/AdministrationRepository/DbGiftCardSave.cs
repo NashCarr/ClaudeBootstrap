@@ -12,7 +12,7 @@ namespace ClaudeData.DataRepository.AdministrationRepository
             ReturnValues.Id = recordId;
             try
             {
-                SetConnectToDatabase("[Admin].[usp_GiftCard_SetInactive]");
+                SetConnectToDatabase("[GiftCard].[usp_SetInactive]");
 
                 CmdSql.Parameters.Add("@GiftCardId", SqlDbType.Int).Value = ReturnValues.Id;
 
@@ -44,7 +44,7 @@ namespace ClaudeData.DataRepository.AdministrationRepository
             {
                 IdParameter = "@GiftCardId";
 
-                SetConnectToDatabase("[Admin].[usp_GiftCard_Upsert]");
+                SetConnectToDatabase("[GiftCard].[usp_Upsert]");
 
                 SetIdInputOutputParameter();
 

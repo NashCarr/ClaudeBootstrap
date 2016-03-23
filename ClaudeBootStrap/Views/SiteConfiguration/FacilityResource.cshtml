@@ -1,14 +1,12 @@
 ﻿<!-- ** BEGIN Brands AREA -->
-<div data-bind="visible: IsResourceAreaVisible">
-    <div data-bind="visible: !IsEditResource()">
-        <!--ko if: !IsEditResource()-->
-        @{ Html.RenderPartial("FacilityResourceList"); }
-        <!--/ko-->
-    </div>
-    <div data-bind="visible: IsEditResource">
-        <!--ko if: IsEditResource-->
-        @{ Html.RenderPartial("FacilityResourceAddEdit"); }
-        <!--/ko-->
-    </div>
+<div data-bind="visible: !IsEditResource()">
+    <!--ko if: !IsEditResource()-->
+    @{ Html.RenderPartial("FacilityResourceList"); }
+    <!--/ko-->
 </div>
-    <!-- ** END Resources AREA -->
+<div data-bind="visible: IsEditResource">
+    <!--ko if: IsEditResource-->
+    @{ Html.RenderPartial("FacilityResourceAddEdit"); }
+    <!--/ko-->
+</div>
+<!-- ** END Resources AREA -->

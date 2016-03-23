@@ -31,7 +31,7 @@ namespace ClaudeData.DataRepository.AdministrationRepository
                 ReturnValues.Id = data.FacilityStaffId;
                 IdParameter = "@FacilityStaffId";
 
-                SetConnectToDatabase("[Admin].[usp_FacilityStaff_Upsert]");
+                SetConnectToDatabase("[FacilityStaff].[usp_Upsert]");
 
                 SetIdInputOutputParameter();
 
@@ -56,7 +56,7 @@ namespace ClaudeData.DataRepository.AdministrationRepository
         {
             try
             {
-                SetConnectToDatabase("[Admin].[usp_FacilityStaff_SetInactive]");
+                SetConnectToDatabase("[FacilityStaff].[usp_SetInactive]");
 
                 CmdSql.Parameters.Add("@FacilityStaffId", SqlDbType.Int).Value = facilityStaffId;
 

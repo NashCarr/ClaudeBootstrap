@@ -49,7 +49,6 @@
     <Compile Include="DataRepository\AddressRepository\DbAddressAssociationSave.cs" />
     <Compile Include="DataRepository\AddressRepository\DbPostalCodeLookup.cs" />
     <Compile Include="DataRepository\AddressRepository\DbStateProvinceGet.cs" />
-    <Compile Include="DataRepository\AdministrationRepository\DbFacilityStaffGet.cs" />
     <Compile Include="DataRepository\AdministrationRepository\DbFacilityStaffSave.cs" />
     <Compile Include="DataRepository\AdministrationRepository\DbBudgetCategoryGet.cs" />
     <Compile Include="DataRepository\AdministrationRepository\DbGiftCardGet.cs" />

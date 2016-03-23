@@ -25,7 +25,9 @@
                     <th class="pdsa-action-button-area">Edit</th>
                     <th style="display: none">FacilityResourceId</th>
                     <th style="display: none">FacilityId</th>
-                    <th>Name</th>
+                    <th>Code</th>
+                    <th>Facility</th>
+                    <th>Resource</th>
                     <th class="listcentered">Last Update</th>
                     <th class="pdsa-action-button-area">Delete</th>
                 </tr>
@@ -39,6 +41,8 @@
                     </td>
                     <td class="listcentered" data-bind="text: RecordId" id="recordid" style="display: none"></td>
                     <td class="listcentered" data-bind="text: FacilityId" id="facilityid" style="display: none"></td>
+                    <td class="ui-priority-secondary" data-bind="text: ShortName" id="resourceshortname"></td>
+                    <td class="ui-priority-secondary" data-bind="text: FacilityName" id="resourcefacilityname"></td>
                     <td class="ui-priority-secondary" data-bind="text: Name" id="resourcename"></td>
                     <td class="listcentered" data-bind="text: StringLastUpdate" id="lastupdate"></td>
                     <td class="listcentered" id="delete">

@@ -9,7 +9,7 @@ namespace ClaudeData.DataRepository.AdministrationRepository
     {
         public List<GiftCard> GetViewModel()
         {
-            SetConnectToDatabase("[ViewModel].[usp_GiftCard_GetActive]");
+            SetConnectToDatabase("[GiftCard].[usp_GetActive]");
 
             return LoadRecords();
         }

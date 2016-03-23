@@ -65,6 +65,7 @@ PlaceViewModel = function(data) {
     //resource
     self.resourceid = ko.observable(0);
     self.resourcename = ko.observable("");
+    self.resourceshortname = ko.observable("");
     self.resourcedisplaysort = ko.observable("");
     self.resourcedisplayorder = ko.observable(0);
     self.resourcestringlastupdate = ko.observable("");
@@ -208,6 +209,7 @@ PlaceViewModel = function(data) {
             self.placeid(0);
             self.resourceid(0);
             self.resourcename("");
+            self.resourceshortname("");
             self.resourcedisplaysort("");
             self.resourcedisplayorder(0);
         },
@@ -226,6 +228,7 @@ PlaceViewModel = function(data) {
             self.resourcename(ko.unwrap(editdata.Name()));
             self.placeid(ko.unwrap(editdata.FacilityId()));
             self.resourceid(ko.unwrap(editdata.RecordId()));
+            self.resourceshortname(ko.unwrap(editdata.ShortName()));
             self.resourcedisplaysort(ko.unwrap(editdata.DisplaySort()));
             self.resourcedisplayorder(ko.unwrap(editdata.DisplayOrder()));
 
@@ -234,13 +237,28 @@ PlaceViewModel = function(data) {
     };
 
     self.SaveResource = {
+        FacilityName: function () {
+            var id = parseInt(self.placeid());
+            if (id === 0) {
+                return "";
+            };
+            var match = ko.utils.arrayFirst(self.itemlist(), function (item) {
+                return parseInt(item.PlaceId()) === id;
+            });
+            if (match) {
+                return ko.unwrap(match.Name);
+            };
+            return "";
+        },
         Build: function () {
             return {
                 Name: ko.observable(self.resourcename()),
                 RecordId: ko.observable(self.resourceid()),
                 FacilityId: ko.observable(self.placeid()),
+                ShortName: ko.observable(self.resourceshortname()),
                 DisplaySort: ko.observable(self.resourcedisplaysort()),
                 DisplayOrder: ko.observable(self.resourcedisplayorder()),
+                FacilityName: ko.observable(self.SaveResource.FacilityName()),
                 StringLastUpdate: ko.observable(self.resourcestringlastupdate())
             };
         },

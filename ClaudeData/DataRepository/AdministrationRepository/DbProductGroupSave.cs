@@ -12,7 +12,7 @@ namespace ClaudeData.DataRepository.AdministrationRepository
             ReturnValues.Id = recordId;
             try
             {
-                SetConnectToDatabase("[Admin].[usp_ProductGroup_SetInactive]");
+                SetConnectToDatabase("[ProductGroup].[usp_SetInactive]");
 
                 CmdSql.Parameters.Add("@ProductGroupId", SqlDbType.Int).Value = ReturnValues.Id;
 
@@ -44,7 +44,7 @@ namespace ClaudeData.DataRepository.AdministrationRepository
             {
                 IdParameter = "@ProductGroupId";
 
-                SetConnectToDatabase("[Admin].[usp_ProductGroup_Upsert]");
+                SetConnectToDatabase("[ProductGroup].[usp_Upsert]");
 
                 SetIdInputOutputParameter();
 

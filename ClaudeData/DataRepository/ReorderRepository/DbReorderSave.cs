@@ -44,17 +44,17 @@ namespace ClaudeData.DataRepository.ReorderRepository
 
         public void GiftCardReorderSave(List<DisplayReorder> data)
         {
-            DisplayReorder("[Admin].[usp_GiftCard_DisplayReorder]", data);
+            DisplayReorder("[GiftCard].[usp_DisplayReorder]", data);
         }
 
         public void HearAboutUsReorderSave(List<DisplayReorder> data)
         {
-            DisplayReorder("[Admin].[usp_HearAboutUs_DisplayReorder]", data);
+            DisplayReorder("[HearAboutUs].[usp_DisplayReorder]", data);
         }
 
         public void ProductGroupReorderSave(List<DisplayReorder> data)
         {
-            DisplayReorder("[Admin].[usp_ProductGroup_DisplayReorder]", data);
+            DisplayReorder("[ProductGroup].[usp_DisplayReorder]", data);
         }
 
         private void DisplayReorder(string storedProcedure, List<DisplayReorder> data)

@@ -9,7 +9,7 @@ namespace ClaudeData.DataRepository.AdministrationRepository
     {
         public List<HearAboutUs> GetViewModel()
         {
-            SetConnectToDatabase("[ViewModel].[usp_HearAboutUs_GetActive]");
+            SetConnectToDatabase("[HearAboutUs].[usp_GetActive]");
 
             return LoadRecords();
         }
