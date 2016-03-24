@@ -9,12 +9,12 @@ namespace ClaudeData.DataRepository.ReorderRepository
     {
         public void StudyDesignReorderSave(List<DisplayReorder> data)
         {
-            DisplayReorder("[Admin].[usp_StudyDesign_DisplayReorder]", data);
+            DisplayReorder("[StudyDesign].[usp_DisplayReorder]", data);
         }
 
         public void BudgetCategoryReorderSave(List<DisplayReorder> data)
         {
-            DisplayReorder("[Admin].[usp_BudgetCategory_DisplayReorder]", data);
+            DisplayReorder("[BudgetCategory].[usp_DisplayReorder]", data);
         }
 
         public void CustomerBrandReorderSave(List<DisplayReorder> data)

@@ -9,7 +9,7 @@ namespace ClaudeData.DataRepository.AdministrationRepository
     {
         public List<BudgetCategory> GetViewModel()
         {
-            SetConnectToDatabase("[ViewModel].[usp_BudgetCategory_GetActive]");
+            SetConnectToDatabase("[BudgetCategory].[usp_GetActive]");
 
             return LoadRecords();
         }
@@ -33,8 +33,8 @@ namespace ClaudeData.DataRepository.AdministrationRepository
 
                             int ordName = dr.GetOrdinal("Name");
                             int ordCreateDate = dr.GetOrdinal("CreateDate");
-                            int ordBudgetCategoryId = dr.GetOrdinal("BudgetCategoryId");
                             int ordDisplayOrder = dr.GetOrdinal("DisplayOrder");
+                            int ordBudgetCategoryId = dr.GetOrdinal("BudgetCategoryId");
 
                             while (dr.Read())
                             {

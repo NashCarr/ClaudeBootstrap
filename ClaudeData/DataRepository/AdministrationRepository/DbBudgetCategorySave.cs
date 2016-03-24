@@ -12,7 +12,7 @@ namespace ClaudeData.DataRepository.AdministrationRepository
             ReturnValues.Id = recordId;
             try
             {
-                SetConnectToDatabase("[Admin].[usp_BudgetCategory_SetInactive]");
+                SetConnectToDatabase("[BudgetCategory].[usp_SetInactive]");
 
                 CmdSql.Parameters.Add("@BudgetCategoryId", SqlDbType.Int).Value = ReturnValues.Id;
 
@@ -44,7 +44,7 @@ namespace ClaudeData.DataRepository.AdministrationRepository
             {
                 IdParameter = "@BudgetCategoryId";
 
-                SetConnectToDatabase("[Admin].[usp_BudgetCategory_Upsert]");
+                SetConnectToDatabase("[BudgetCategory].[usp_Upsert]");
 
                 SetIdInputOutputParameter();
 
