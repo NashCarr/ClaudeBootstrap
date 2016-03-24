@@ -7,20 +7,20 @@ namespace ClaudeData.DataRepository.AdministrationRepository
 {
     public class DbFacilityStaffSave : DbSaveBase
     {
-        public ReturnBase AddUpdateStaffUser(int placeId, int staffUserId)
+        public ReturnBase AddUpdateStaffMember(int placeId, int staffMemberId)
         {
-            FacilityStaff d = new FacilityStaff {FacilityId = placeId, StaffUserId = staffUserId};
+            FacilityStaff d = new FacilityStaff {FacilityId = placeId, StaffMemberId = staffMemberId};
             return AddUpdateRecord(ref d);
         }
 
-        public ReturnBase AddUpdateStaffUser(ref FacilityStaff data)
+        public ReturnBase AddUpdateStaffMember(ref FacilityStaff data)
         {
             return AddUpdateRecord(ref data);
         }
 
         private ReturnBase AddUpdateRecord(ref FacilityStaff data)
         {
-            if (data.StaffUserId == 0)
+            if (data.StaffMemberId == 0)
             {
                 SetZeroNumberMessage("Staff User");
                 return ReturnValues;
@@ -36,7 +36,7 @@ namespace ClaudeData.DataRepository.AdministrationRepository
                 SetIdInputOutputParameter();
 
                 CmdSql.Parameters.Add("@FacilityId", SqlDbType.Int).Value = data.FacilityId;
-                CmdSql.Parameters.Add("@StaffUserId", SqlDbType.Int).Value = data.StaffUserId;
+                CmdSql.Parameters.Add("@StaffMemberId", SqlDbType.Int).Value = data.StaffMemberId;
                 CmdSql.Parameters.Add("@IsActive", SqlDbType.Bit).Value = data.IsActive;
 
                 SetErrMsgParameter();

@@ -47,7 +47,7 @@ namespace ClaudeData.DataRepository.PlaceRepository
 
             IdParameter = "@FacilityId";
 
-            SetConnectToDatabase("[Admin].[usp_Facility_Upsert]");
+            SetConnectToDatabase("[Facility].[usp_Upsert]");
 
             return AddUpdatePlace(ref data);
         }

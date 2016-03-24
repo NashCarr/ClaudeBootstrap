@@ -22,7 +22,7 @@ namespace ClaudeData.DataRepository.PeopleRepository
             return GetInactive();
         }
 
-        protected internal List<PersonList> GetInactiveStaffUsers()
+        protected internal List<PersonList> GetInactiveStaffMembers()
         {
             IdValue = (byte) PersonType.Assessor;
             TypeName = Enum.GetName(typeof (PersonType), IdValue);

@@ -55,7 +55,7 @@ namespace ClaudeData.DataRepository.PersonRepository
         {
             try
             {
-                SetConnectToDatabase("[Admin].[usp_StaffUser_SetInactive]");
+                SetConnectToDatabase("[StaffMember].[usp_SetInactive]");
 
                 SetInactive(personId);
             }

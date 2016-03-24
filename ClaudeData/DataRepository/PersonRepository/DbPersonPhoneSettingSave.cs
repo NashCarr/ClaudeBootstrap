@@ -14,7 +14,7 @@ namespace ClaudeData.DataRepository.PersonRepository
             GC.SuppressFinalize(this);
         }
 
-        protected internal string SaveStaffUserPhoneSetting(int personId, PhoneSetting data)
+        protected internal string SaveStaffMemberPhoneSetting(int personId, PhoneSetting data)
         {
             if (data == null) return string.Empty;
             using (DbPhoneSettingSave db = new DbPhoneSettingSave())
@@ -56,7 +56,7 @@ namespace ClaudeData.DataRepository.PersonRepository
             switch (data.Person.PersonType)
             {
                 case PersonType.StaffMember:
-                    return SaveStaffUserPhoneSetting(data.Person.PersonId, data.PhoneData.PhoneSettings);
+                    return SaveStaffMemberPhoneSetting(data.Person.PersonId, data.PhoneData.PhoneSettings);
                 case PersonType.Assessor:
                     return SaveAssessorPhoneSetting(data.Person.PersonId, data.PhoneData.PhoneSettings);
                 case PersonType.CustomerContact:

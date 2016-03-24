@@ -16,9 +16,9 @@ namespace ClaudeData.DataRepository.LookupRepository
             GC.SuppressFinalize(this);
         }
 
-        public StaffUserLookupList GetStaffUserLookup()
+        public StaffMemberLookupList GetStaffMemberLookup()
         {
-            return (StaffUserLookupList) GetLookUpList(PersonType.StaffMember);
+            return (StaffMemberLookupList) GetLookUpList(PersonType.StaffMember);
         }
 
         public CustomerContactLookupList GetCustomerContactLookup()
@@ -42,7 +42,7 @@ namespace ClaudeData.DataRepository.LookupRepository
             }
         }
 
-        private static List<PersonList> GetStaffUsers()
+        private static List<PersonList> GetStaffMembers()
         {
             using (DbPeopleGetActive db = new DbPeopleGetActive())
             {
@@ -60,7 +60,7 @@ namespace ClaudeData.DataRepository.LookupRepository
             switch (personType)
             {
                 case PersonType.StaffMember:
-                    data = GetStaffUsers();
+                    data = GetStaffMembers();
                     break;
                 case PersonType.Assessor:
                     data = GetAssessors();

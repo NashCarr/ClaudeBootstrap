@@ -31,7 +31,7 @@ namespace ClaudeData.DataRepository.PersonRepository
             }
         }
 
-        protected internal string SaveStaffUserAddress(int personId, AddressAssociation data)
+        protected internal string SaveStaffMemberAddress(int personId, AddressAssociation data)
         {
             using (DbAddressAssociationSave db = new DbAddressAssociationSave())
             {
@@ -71,12 +71,12 @@ namespace ClaudeData.DataRepository.PersonRepository
             return msg;
         }
 
-        protected internal string SaveStaffUserAddresses(int personId, List<AddressAssociation> data)
+        protected internal string SaveStaffMemberAddresses(int personId, List<AddressAssociation> data)
         {
             string msg = string.Empty;
             foreach (AddressAssociation item in data)
             {
-                msg = SaveStaffUserAddress(personId, item);
+                msg = SaveStaffMemberAddress(personId, item);
                 if (msg.Length == 0) continue;
                 break;
             }
@@ -102,7 +102,7 @@ namespace ClaudeData.DataRepository.PersonRepository
                 case PersonType.Assessor:
                     return SaveAssessorAddresses(data.Person.PersonId, data.AddressData.Addresses);
                 case PersonType.StaffMember:
-                    return SaveStaffUserAddresses(data.Person.PersonId, data.AddressData.Addresses);
+                    return SaveStaffMemberAddresses(data.Person.PersonId, data.AddressData.Addresses);
                 case PersonType.CustomerContact:
                     return SaveCustomerContactAddresses(data.Person.PersonId, data.AddressData.Addresses);
                 case PersonType.OrganizationContact:

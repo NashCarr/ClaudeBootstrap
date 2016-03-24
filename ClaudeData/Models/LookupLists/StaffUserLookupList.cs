@@ -1,6 +1,6 @@
 ﻿namespace ClaudeData.Models.LookupLists
 {
-    public class StaffUserLookupList : PersonLookupList
+    public class StaffMemberLookupList : PersonLookupList
     {
     }
 }

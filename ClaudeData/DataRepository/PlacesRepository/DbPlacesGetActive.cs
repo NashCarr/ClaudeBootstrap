@@ -15,7 +15,7 @@ namespace ClaudeData.DataRepository.PlacesRepository
                 IdValue = (byte) pt;
                 IdParameter = "@PlaceType";
 
-                SetConnectToDatabase("[ViewModel].[usp_Places_List]");
+                SetConnectToDatabase("[Places].[usp_GetList]");
 
                 CmdSql.Parameters.Add(IdParameter, SqlDbType.Int).Value = IdValue;
 

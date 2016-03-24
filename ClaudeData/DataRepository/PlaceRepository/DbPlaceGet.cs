@@ -32,7 +32,7 @@ namespace ClaudeData.DataRepository.PlaceRepository
                 IdValue = placeId;
                 IdParameter = "@PlaceId";
 
-                SetConnectToDatabase("[Admin].[usp_Place_GetPlace]");
+                SetConnectToDatabase("[Place].[usp_GetPlace]");
 
                 CmdSql.Parameters.Add(IdParameter, SqlDbType.Int).Value = IdValue;
                 CmdSql.Parameters.Add("@PlaceType", SqlDbType.TinyInt).Value = placeType;

@@ -24,12 +24,12 @@ namespace ClaudeData.DataRepository.ReorderRepository
 
         public void FacilityResourceReorderSave(List<DisplayReorder> data)
         {
-            DisplayReorder("[Admin].[usp_FacilityResource_DisplayReorder]", data);
+            DisplayReorder("[FacilityResource].[usp_DisplayReorder]", data);
         }
 
         public void FacilityReorderSave(List<DisplayReorder> data)
         {
-            DisplayReorder("[Admin].[usp_Facility_DisplayReorder]", data);
+            DisplayReorder("[Facility].[usp_DisplayReorder]", data);
         }
 
         public void CustomerReorderSave(List<DisplayReorder> data)

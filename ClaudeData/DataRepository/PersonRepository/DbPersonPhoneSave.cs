@@ -23,7 +23,7 @@ namespace ClaudeData.DataRepository.PersonRepository
             }
         }
 
-        protected internal string SaveStaffUserPhone(int personId, PhoneAssociation data)
+        protected internal string SaveStaffMemberPhone(int personId, PhoneAssociation data)
         {
             using (DbPhoneAssociationSave db = new DbPhoneAssociationSave())
             {
@@ -59,12 +59,12 @@ namespace ClaudeData.DataRepository.PersonRepository
             return msg;
         }
 
-        protected internal string SaveStaffUserPhones(int personId, List<PhoneAssociation> data)
+        protected internal string SaveStaffMemberPhones(int personId, List<PhoneAssociation> data)
         {
             string msg = string.Empty;
             foreach (PhoneAssociation item in data)
             {
-                msg = SaveStaffUserPhone(personId, item);
+                msg = SaveStaffMemberPhone(personId, item);
                 if (msg.Length == 0) continue;
                 break;
             }
@@ -102,7 +102,7 @@ namespace ClaudeData.DataRepository.PersonRepository
                 case PersonType.Assessor:
                     return SaveAssessorPhones(data.Person.PersonId, data.PhoneData.Phones);
                 case PersonType.StaffMember:
-                    return SaveStaffUserPhones(data.Person.PersonId, data.PhoneData.Phones);
+                    return SaveStaffMemberPhones(data.Person.PersonId, data.PhoneData.Phones);
                 case PersonType.CustomerContact:
                     return SaveCustomerContactPhones(data.Person.PersonId, data.PhoneData.Phones);
                 case PersonType.OrganizationContact:

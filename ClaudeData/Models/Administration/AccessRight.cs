@@ -6,11 +6,11 @@ namespace ClaudeData.Models.Administration
     {
         public AccessRight()
         {
-            StaffUserId = 0;
+            StaffMemberId = 0;
             ProgramOptionId = 0;
         }
 
-        public int StaffUserId { get; set; }
+        public int StaffMemberId { get; set; }
         public int ProgramOptionId { get; set; }
     }
 }

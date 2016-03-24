@@ -190,6 +190,7 @@ GiftCardViewModel = function(data) {
     self.edit = function(editdata) {
         self.name(editdata.Name());
         self.recordid(editdata.RecordId());
+        self.displaysort(editdata.DisplaySort());
         self.displayorder(editdata.DisplayOrder());
         self.stringlastupdate(editdata.StringLastUpdate());
 
@@ -226,11 +227,11 @@ GiftCardViewModel = function(data) {
     self.GiftCard = {
         Build: function() {
             return {
-                Name: ko.observable(self.name()),
-                RecordId: ko.observable(self.recordid()),
-                DisplaySort: ko.observable(self.displaysort()),
-                DisplayOrder: ko.observable(self.displayorder()),
-                StringLastUpdate: ko.observable(self.stringlastupdate())
+                Name: ko.observable(ko.unwrap(self.name())),
+                RecordId: ko.observable(ko.unwrap(self.recordid())),
+                DisplaySort: ko.observable(ko.unwrap(self.displaysort())),
+                DisplayOrder: ko.observable(ko.unwrap(self.displayorder())),
+                StringLastUpdate: ko.observable(ko.unwrap(self.stringlastupdate()))
             };
         },
         Clear: function() {
@@ -253,6 +254,7 @@ GiftCardViewModel = function(data) {
             return match;
         },
         ProcessEdit: function() {
+            var test = self.GiftCard.Build();
             self.itemlist.replace(self.ProcessSave.ItemExists(), self.GiftCard.Build());
         },
         Manage: function() {

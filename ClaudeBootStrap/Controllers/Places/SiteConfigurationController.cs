@@ -75,7 +75,7 @@ namespace ClaudeBootstrap.Controllers.Places
         {
             using (PlaceContactGetManager mgr = new PlaceContactGetManager())
             {
-                return Json(id != null ? mgr.GetStaffUser(int.Parse(id)) : mgr.GetStaffUser(0));
+                return Json(id != null ? mgr.GetStaffMember(int.Parse(id)) : mgr.GetStaffMember(0));
             }
         }
 

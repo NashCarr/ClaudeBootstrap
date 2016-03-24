@@ -22,7 +22,7 @@ namespace ClaudeData.DataRepository.PeopleRepository
             return GetRecords(first, last, email);
         }
 
-        protected internal List<PersonList> GetStaffUsers(string first, string last, string email)
+        protected internal List<PersonList> GetStaffMembers(string first, string last, string email)
         {
             IdValue = (byte) PersonType.StaffMember;
             TypeName = Enum.GetName(typeof (PersonType), IdValue);

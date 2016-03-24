@@ -52,8 +52,6 @@ namespace ClaudeData.DataRepository.PersonRepository
                 return ReturnValues;
             }
 
-            IdParameter = "@AssessorId";
-
             SetConnectToDatabase("[Admin].[usp_Assessor_Upsert]");
             return AddUpdatePerson(ref data);
         }
@@ -66,13 +64,11 @@ namespace ClaudeData.DataRepository.PersonRepository
                 return ReturnValues;
             }
 
-            IdParameter = "@CustomerContactId";
-
             SetConnectToDatabase("[Admin].[usp_CustomerContact_Upsert]");
             return AddUpdatePerson(ref data);
         }
 
-        protected internal ReturnBase SaveStaffUser(ref Person data)
+        protected internal ReturnBase SaveStaffMember(ref Person data)
         {
             if (string.IsNullOrEmpty(data.FullName))
             {
@@ -80,9 +76,7 @@ namespace ClaudeData.DataRepository.PersonRepository
                 return ReturnValues;
             }
 
-            IdParameter = "@StaffUserId";
-
-            SetConnectToDatabase("[Admin].[usp_StaffUser_Upsert]");
+            SetConnectToDatabase("[StaffMember].[usp_Upsert]");
             return AddUpdatePerson(ref data);
         }
 
@@ -93,8 +87,6 @@ namespace ClaudeData.DataRepository.PersonRepository
                 SetEmptyStringMessage("Name");
                 return ReturnValues;
             }
-
-            IdParameter = "@OrganizationContactId";
 
             SetConnectToDatabase("[FundRaising].[usp_OrganizationContact_Upsert]");
             return AddUpdatePerson(ref data);
@@ -216,11 +208,11 @@ namespace ClaudeData.DataRepository.PersonRepository
             return rb;
         }
 
-        protected internal ReturnBase SaveStaffUserData(PersonData data, ref int personId)
+        protected internal ReturnBase SaveStaffMemberData(PersonData data, ref int personId)
         {
             Person p = data.Person;
 
-            ReturnBase rb = SaveStaffUser(ref p);
+            ReturnBase rb = SaveStaffMember(ref p);
             if (rb.ErrMsg.Length != 0) return rb;
 
             if (p.PersonId != personId)
@@ -232,7 +224,7 @@ namespace ClaudeData.DataRepository.PersonRepository
             {
                 using (DbFacilityStaffSave db = new DbFacilityStaffSave())
                 {
-                    rb = db.AddUpdateStaffUser(p.PlaceId, personId);
+                    rb = db.AddUpdateStaffMember(p.PlaceId, personId);
                     rb.Id = personId;
 
                     if (rb.ErrMsg.Length != 0)
@@ -249,7 +241,7 @@ namespace ClaudeData.DataRepository.PersonRepository
                 {
                     using (DbPersonAddressSave db = new DbPersonAddressSave())
                     {
-                        msg = db.SaveStaffUserAddresses(personId, data.AddressData.Addresses);
+                        msg = db.SaveStaffMemberAddresses(personId, data.AddressData.Addresses);
                         if (msg.Length != 0)
                         {
                             rb.ErrMsg = msg;
@@ -267,7 +259,7 @@ namespace ClaudeData.DataRepository.PersonRepository
                 {
                     using (DbPersonPhoneSave db = new DbPersonPhoneSave())
                     {
-                        msg = db.SaveStaffUserPhones(personId, data.PhoneData.Phones);
+                        msg = db.SaveStaffMemberPhones(personId, data.PhoneData.Phones);
                         if (msg.Length != 0)
                         {
                             rb.ErrMsg = msg;
@@ -281,7 +273,7 @@ namespace ClaudeData.DataRepository.PersonRepository
 
             using (DbPersonPhoneSettingSave db = new DbPersonPhoneSettingSave())
             {
-                msg = db.SaveStaffUserPhoneSetting(p.PersonId, data.PhoneData.PhoneSettings);
+                msg = db.SaveStaffMemberPhoneSetting(p.PersonId, data.PhoneData.PhoneSettings);
                 if (msg.Length == 0) return rb;
                 rb.ErrMsg = msg;
             }
@@ -355,7 +347,7 @@ namespace ClaudeData.DataRepository.PersonRepository
                 case PersonType.CustomerContact:
                     return SaveCustomerContactData(data, ref personId);
                 case PersonType.StaffMember:
-                    return SaveStaffUserData(data, ref personId);
+                    return SaveStaffMemberData(data, ref personId);
                 case PersonType.OrganizationContact:
                     return SaveOrganizationContactData(data, ref personId);
                 default:

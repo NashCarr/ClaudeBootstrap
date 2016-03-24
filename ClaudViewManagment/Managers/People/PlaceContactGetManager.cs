@@ -32,7 +32,7 @@ namespace ClaudeViewManagement.Managers.People
             }
         }
 
-        public PersonView GetStaffUser(int recordId)
+        public PersonView GetStaffMember(int recordId)
         {
             using (DbPersonViewGet data = new DbPersonViewGet())
             {
