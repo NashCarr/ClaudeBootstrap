@@ -9,6 +9,7 @@ HearAboutUsViewModel = function(data) {
     self.sortdirection = ko.observable(1);
     self.IsDragDrop = ko.observable(false);
 
+    self.editid = ko.observable(0);
     self.IsEdit = ko.observable(false);
 
     self.IsListAreaVisible = ko.observable(true);
@@ -191,6 +192,7 @@ HearAboutUsViewModel = function(data) {
     self.clear = function() {
         self.name("");
         self.errmsg("");
+        self.editid(0);
         self.recordid(0);
         self.displaysort("");
         self.displayorder(0);
@@ -213,6 +215,7 @@ HearAboutUsViewModel = function(data) {
 
     self.edit = function(editdata) {
         self.name(editdata.Name());
+        self.editid(editdata.RecordId());
         self.recordid(editdata.RecordId());
         self.issystem(editdata.IsSystem());
         self.displayorder(editdata.DisplayOrder());
@@ -262,6 +265,7 @@ HearAboutUsViewModel = function(data) {
         },
         Clear: function() {
             self.name("");
+            self.editid(0);
             self.recordid(0);
             self.issystem(false);
             self.displaysort("");
@@ -270,27 +274,42 @@ HearAboutUsViewModel = function(data) {
     };
 
     self.ProcessSave = {
-        ProcessAdd: function() {
+        ProcessAdd: function () {
             self.ReorderList.ReorderDragDrop();
-            self.itemlist.push(self.HearAboutUs.Build());
+            self.itemlist.push(self.GiftCard.Build());
         },
-        ItemExists: function() {
-            var match = ko.utils.arrayFirst(self.itemlist(), function(item) {
+        ItemExists: function () {
+            var match = ko.utils.arrayFirst(self.itemlist(), function (item) {
                 return item.RecordId() === self.recordid();
             });
             return match;
         },
-        ProcessEdit: function() {
-            self.itemlist.replace(self.ProcessSave.ItemExists(), self.HearAboutUs.Build());
+        ItemToRemove: function () {
+            var match = ko.utils.arrayFirst(self.itemlist(), function (item) {
+                return item.RecordId() === self.editid();
+            });
+            return match;
         },
-        Manage: function() {
+        ProcessEdit: function () {
+            self.itemlist.replace(self.ProcessSave.ItemExists(), self.GiftCard.Build());
+        },
+        ValidateEdit: function () {
+            if (self.editid() === self.recordid()) {
+                return true;
+            };
+            self.itemlist.remove(self.ProcessSave.ItemToRemove());
+            return false;
+        },
+        Manage: function () {
+            if (self.IsEdit()) {
+                self.IsEdit(self.ProcessSave.ValidateEdit());
+            };
             if (self.IsEdit()) {
                 self.ProcessSave.ProcessEdit();
-                return;
-            }
+            };
             if (self.ProcessSave.ItemExists()) {
                 return;
-            }
+            };
             self.ProcessSave.ProcessAdd();
         }
     };
