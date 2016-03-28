@@ -64,7 +64,7 @@ namespace ClaudeData.DataRepository.PersonRepository
                 return ReturnValues;
             }
 
-            SetConnectToDatabase("[Admin].[usp_CustomerContact_Upsert]");
+            SetConnectToDatabase("[CustomerContact].[usp_Upsert]");
             return AddUpdatePerson(ref data);
         }
 

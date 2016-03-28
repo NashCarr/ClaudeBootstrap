@@ -56,7 +56,7 @@ namespace ClaudeData.DataRepository.PlaceRepository
         {
             try
             {
-                SetConnectToDatabase("[Admin].[usp_Customer_SetInactive]");
+                SetConnectToDatabase("[Customer].[usp_SetInactive]");
 
                 SetInactive(placeId);
             }

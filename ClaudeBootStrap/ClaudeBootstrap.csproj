@@ -384,6 +384,7 @@
     <Content Include="Scripts\knockout.mapping-latest.debug.js" />
     <Content Include="Scripts\knockout.mapping-latest.js" />
     <Content Include="Scripts\KoViewModels\vmBudgetCategory.js" />
+    <Content Include="Scripts\KoViewModels\vmTrainedPanel.js" />
     <Content Include="Scripts\KoViewModels\vmStudyDesign.js" />
     <Content Include="Scripts\KoViewModels\vmStaffMember.js" />
     <Content Include="Scripts\KoViewModels\vmSiteConfiguration.js" />

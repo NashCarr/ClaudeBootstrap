@@ -64,6 +64,8 @@ PlaceViewModel = function(data) {
     //brand
     self.brandid = ko.observable(0);
     self.brandname = ko.observable("");
+    self.editbrandid = ko.observable(0);
+    self.isbrandedit = ko.observable(false);
     self.branddisplaysort = ko.observable("");
     self.branddisplayorder = ko.observable(0);
     self.brandstringlastupdate = ko.observable("");
@@ -1178,6 +1180,7 @@ PlaceViewModel = function(data) {
         Clear: function () {
             self.brandid(0);
             self.brandname("");
+            self.editbrandid(0);
             self.branddisplaysort("");
             self.branddisplayorder(0);
         },
@@ -1195,6 +1198,7 @@ PlaceViewModel = function(data) {
         Edit: function (editdata) {
             self.brandname(ko.unwrap(editdata.Name()));
             self.brandid(ko.unwrap(editdata.RecordId()));
+            self.editbrandid(ko.unwrap(editdata.RecordId()));
             self.branddisplaysort(ko.unwrap(editdata.DisplaySort()));
             self.branddisplayorder(ko.unwrap(editdata.DisplayOrder()));
 
@@ -1222,12 +1226,30 @@ PlaceViewModel = function(data) {
             });
             return match;
         },
+        ItemToRemove: function () {
+            var match = ko.utils.arrayFirst(self.brandlist(), function (item) {
+                return item.RecordId() === self.editbrandid();
+            });
+            return match;
+        },
         ProcessEdit: function () {
             self.brandlist.replace(self.SaveBrand.ItemExists(), self.SaveBrand.Build());
         },
+        ValidateEdit: function () {
+            if (self.editbrandid() === self.brandid()) {
+                return true;
+            };
+            self.brandlist.remove(self.SaveBrand.ItemToRemove());
+            return false;
+        },
         Process: function () {
-            if (self.SaveBrand.ItemExists()) {
+            if (self.IsEditBrand()) {
+                self.IsEditBrand(self.SaveBrand.ValidateEdit());
+            };
+            if (self.IsEditBrand()) {
                 self.SaveBrand.ProcessEdit();
+            };
+            if (self.SaveBrand.ItemExists()) {
                 return;
             };
             self.SaveBrand.ProcessAdd();

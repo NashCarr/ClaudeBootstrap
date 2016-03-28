@@ -40,7 +40,7 @@ namespace ClaudeData.DataRepository.PersonRepository
         {
             try
             {
-                SetConnectToDatabase("[Admin].[usp_CustomerContact_SetInactive]");
+                SetConnectToDatabase("[CustomerContact].[usp_SetInactive]");
 
                 SetInactive(personId);
             }

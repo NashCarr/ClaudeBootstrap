@@ -20,7 +20,7 @@ namespace ClaudeData.DataRepository.CustomerRepository
             {
                 IdValue = customerId;
                 IdParameter = "@CustomerId";
-                SetConnectToDatabase("[Customer].[usp_CustomerBrand_GetActive]");
+                SetConnectToDatabase("[CustomerBrand].[usp_GetActive]");
                 CmdSql.Parameters.Add(IdParameter, SqlDbType.Int).Value = IdValue;
 
                 using (ConnSql)

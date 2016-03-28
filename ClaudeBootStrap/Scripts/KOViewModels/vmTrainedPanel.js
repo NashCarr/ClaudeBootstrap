@@ -1,6 +1,6 @@
-﻿HearAboutUsViewModel = function(data) {
+﻿TrainedPanelViewModel = function(data) {
     var self = this;
-    var baseUrl = "/HearAboutUs/";
+    var baseUrl = "/TrainedPanel/";
 
     //sorting
     self.sorttype = 1;
@@ -26,10 +26,11 @@
     //listvalues
     self.name = ko.observable("");
     self.recordid = ko.observable(0);
-    self.issystem = ko.observable(false);
+    self.facilityid = ko.observable(0);
     self.displaysort = ko.observable("");
     self.displayorder = ko.observable(0);
     self.stringlastupdate = ko.observable("");
+    self.excludefromconsumertesting = ko.observable(false);
 
     //list
     self.itemlist = ko.mapping.fromJS(data.ListEntity).extend({ deferred: true });
@@ -88,23 +89,23 @@
         }
     };
 
-    self.SortIsSystem = {
+    self.SortExcludeFromConsumerTesting = {
         Filtered: function() {
             return ko.utils.arrayFilter(self.itemlist(), function(item) {
                 return ko.unwrap(item.Name).toLowerCase().indexOf(self.filter) !== -1;
             }).sort(function(l, r) {
-                return (self.direction * (l.IsSystemSort().localeCompare(r.IsSystemSort())));
+                return (self.direction * (l.ExcludeFromConsumerTestingSort().localeCompare(r.ExcludeFromConsumerTestingSort())));
             });
         },
         Unfiltered: function() {
             return self.itemlist().sort(function(l, r) {
-                return (self.direction * (l.IsSystemSort().localeCompare(r.IsSystemSort())));
+                return (self.direction * (l.ExcludeFromConsumerTestingSort().localeCompare(r.ExcludeFromConsumerTestingSort())));
             });
         },
         Manage: function() {
             return (self.filter.length === 0)
-                ? self.SortIsSystem.Unfiltered(self.sortdirection())
-                : self.SortIsSystem.Filtered(self.sortdirection());
+                ? self.SortExcludeFromConsumerTesting.Unfiltered(self.sortdirection())
+                : self.SortExcludeFromConsumerTesting.Filtered(self.sortdirection());
         }
     };
 
@@ -182,7 +183,7 @@
         case 3:
             return self.SortCreateDate.Manage();
         case 4:
-            return self.SortIsSystem.Manage();
+            return self.SortExcludeFromConsumerTesting.Manage();
         default:
             return self.SortDisplayOrder.Manage();
         }
@@ -193,9 +194,10 @@
         self.errmsg("");
         self.editid(0);
         self.recordid(0);
+        self.facilityid(0);
         self.displaysort("");
         self.displayorder(0);
-        self.issystem(false);
+        self.excludefromconsumertesting(false);
 
         self.IsEdit(false);
     };
@@ -216,9 +218,10 @@
         self.name(editdata.Name());
         self.editid(editdata.RecordId());
         self.recordid(editdata.RecordId());
-        self.issystem(editdata.IsSystem());
+        self.facilityid(editdata.FacilityId());
         self.displayorder(editdata.DisplayOrder());
         self.stringlastupdate(editdata.StringLastUpdate());
+        self.excludefromconsumertesting(editdata.ExcludeFromConsumerTesting());
 
         self.IsEdit(true);
         self.toggleview();
@@ -250,25 +253,27 @@
         self.searchvalue("");
     };
 
-    self.HearAboutUs = {
+    self.TrainedPanel = {
         Build: function() {
             return {
                 Name: ko.observable(self.name()),
                 RecordId: ko.observable(self.recordid()),
-                IsSystem: ko.observable(self.issystem()),
+                FacilityId: ko.observable(self.facilityid()),
                 DisplaySort: ko.observable(self.displaysort()),
                 DisplayOrder: ko.observable(self.displayorder()),
-                IsSystemSort: ko.observable(self.issystem().toString()),
-                StringLastUpdate: ko.observable(self.stringlastupdate())
-            };
+                StringLastUpdate: ko.observable(self.stringlastupdate()),
+                ExcludeFromConsumerTesting: ko.observable(self.excludefromconsumertesting()),
+                ExcludeFromConsumerTestingSort: ko.observable(self.excludefromconsumertesting().toString())
+                };
         },
         Clear: function() {
             self.name("");
             self.editid(0);
             self.recordid(0);
-            self.issystem(false);
+            self.facilityid(0);
             self.displaysort("");
             self.displayorder(0);
+            self.excludefromconsumertesting(false);
         }
     };
 
@@ -317,7 +322,7 @@
         $.ajax({
             url: baseUrl + "Save",
             type: "post",
-            data: self.HearAboutUs.Build()
+            data: self.TrainedPanel.Build()
         }).then(function (returndata) {
 
             self.handlereturndata(returndata);

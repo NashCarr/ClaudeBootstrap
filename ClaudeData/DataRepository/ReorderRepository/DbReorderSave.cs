@@ -19,7 +19,7 @@ namespace ClaudeData.DataRepository.ReorderRepository
 
         public void CustomerBrandReorderSave(List<DisplayReorder> data)
         {
-            DisplayReorder("[Admin].[usp_CustomerBrand_DisplayReorder]", data);
+            DisplayReorder("[CustomerBrand].[usp_DisplayReorder]", data);
         }
 
         public void FacilityResourceReorderSave(List<DisplayReorder> data)
@@ -34,7 +34,7 @@ namespace ClaudeData.DataRepository.ReorderRepository
 
         public void CustomerReorderSave(List<DisplayReorder> data)
         {
-            DisplayReorder("[Admin].[usp_Customer_DisplayReorder]", data);
+            DisplayReorder("[Customer].[usp_DisplayReorder]", data);
         }
 
         public void OrganizationReorderSave(List<DisplayReorder> data)
