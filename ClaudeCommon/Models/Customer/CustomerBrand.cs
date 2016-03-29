@@ -1,4 +1,4 @@
-﻿using ClaudeCommon.Models.Administration;
+﻿using ClaudeCommon.BaseModels;
 
 namespace ClaudeCommon.Models.Customer
 {

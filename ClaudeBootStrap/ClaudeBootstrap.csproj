@@ -150,7 +150,6 @@
     <Compile Include="Controllers\Administration\BudgetCategoryController.cs" />
     <Compile Include="Controllers\Administration\StudyDesignController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\People\AssessorController.cs" />
     <Compile Include="Controllers\People\StaffMemberController.cs" />
     <Compile Include="Controllers\Places\CustomerController.cs" />
     <Compile Include="Controllers\Places\OrganizationController.cs" />
@@ -415,8 +414,6 @@
     <Content Include="Views\ProductGroup\Index.cshtml" />
     <Content Include="Views\HearAboutUs\Index.cshtml" />
     <Content Include="Views\StaffMember\Index.cshtml" />
-    <Content Include="Views\CustomerContact\Index.cshtml" />
-    <Content Include="Views\Assessor\Index.cshtml" />
     <Content Include="Views\Organization\Index.cshtml" />
     <Content Include="Views\GiftCard\Index.cshtml" />
     <Content Include="Views\GiftCard\List.cshtml" />

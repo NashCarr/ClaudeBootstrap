@@ -7,26 +7,6 @@ namespace ClaudeData.DataRepository.ReorderRepository
 {
     public class DbReorderSave : DbReorder
     {
-        public void StudyDesignReorderSave(List<DisplayReorder> data)
-        {
-            DisplayReorder("[StudyDesign].[usp_DisplayReorder]", data);
-        }
-
-        public void BudgetCategoryReorderSave(List<DisplayReorder> data)
-        {
-            DisplayReorder("[BudgetCategory].[usp_DisplayReorder]", data);
-        }
-
-        public void CustomerBrandReorderSave(List<DisplayReorder> data)
-        {
-            DisplayReorder("[CustomerBrand].[usp_DisplayReorder]", data);
-        }
-
-        public void FacilityResourceReorderSave(List<DisplayReorder> data)
-        {
-            DisplayReorder("[FacilityResource].[usp_DisplayReorder]", data);
-        }
-
         public void FacilityReorderSave(List<DisplayReorder> data)
         {
             DisplayReorder("[Facility].[usp_DisplayReorder]", data);
@@ -35,11 +15,6 @@ namespace ClaudeData.DataRepository.ReorderRepository
         public void CustomerReorderSave(List<DisplayReorder> data)
         {
             DisplayReorder("[Customer].[usp_DisplayReorder]", data);
-        }
-
-        public void OrganizationReorderSave(List<DisplayReorder> data)
-        {
-            DisplayReorder("[Admin].[usp_Organization_DisplayReorder]", data);
         }
 
         public void GiftCardReorderSave(List<DisplayReorder> data)
@@ -52,9 +27,39 @@ namespace ClaudeData.DataRepository.ReorderRepository
             DisplayReorder("[HearAboutUs].[usp_DisplayReorder]", data);
         }
 
+        public void StudyDesignReorderSave(List<DisplayReorder> data)
+        {
+            DisplayReorder("[StudyDesign].[usp_DisplayReorder]", data);
+        }
+
         public void ProductGroupReorderSave(List<DisplayReorder> data)
         {
             DisplayReorder("[ProductGroup].[usp_DisplayReorder]", data);
+        }
+
+        public void TrainedPanelReorderSave(List<DisplayReorder> data)
+        {
+            DisplayReorder("[TrainedPanel].[usp_DisplayReorder]", data);
+        }
+
+        public void OrganizationReorderSave(List<DisplayReorder> data)
+        {
+            DisplayReorder("[Organization].[usp_DisplayReorder]", data);
+        }
+
+        public void CustomerBrandReorderSave(List<DisplayReorder> data)
+        {
+            DisplayReorder("[CustomerBrand].[usp_DisplayReorder]", data);
+        }
+
+        public void BudgetCategoryReorderSave(List<DisplayReorder> data)
+        {
+            DisplayReorder("[BudgetCategory].[usp_DisplayReorder]", data);
+        }
+
+        public void FacilityResourceReorderSave(List<DisplayReorder> data)
+        {
+            DisplayReorder("[FacilityResource].[usp_DisplayReorder]", data);
         }
 
         private void DisplayReorder(string storedProcedure, List<DisplayReorder> data)

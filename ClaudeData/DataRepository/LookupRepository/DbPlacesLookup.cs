@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Web.Mvc;
 using ClaudeData.Models.LookupLists;
-using ClaudeData.Models.Places;
 using static ClaudeCommon.Enums.PlaceEnums;
 
 namespace ClaudeData.DataRepository.LookupRepository
@@ -54,7 +52,7 @@ namespace ClaudeData.DataRepository.LookupRepository
             PlaceLookupList lu = new PlaceLookupList();
             lu.LookupList.Add(new SelectListItem {Value = "0", Text = "None"});
 
-            List<Place> data;
+            //List<Place> data;
 
             switch (placeType)
             {
@@ -73,18 +71,18 @@ namespace ClaudeData.DataRepository.LookupRepository
                     return lu;
             }
 
-            if (data.Count == 0)
-            {
-                return lu;
-            }
+            //if (data.Count == 0)
+            //{
+            //    return lu;
+            //}
 
-            foreach (Place t in data)
-            {
-                lu.LookupList.Add(new SelectListItem {Value = t.PlaceId.ToString(), Text = t.Name});
-            }
-            data.Clear();
+            //foreach (Place t in data)
+            //{
+            //    lu.LookupList.Add(new SelectListItem {Value = t.PlaceId.ToString(), Text = t.Name});
+            //}
+            //data.Clear();
 
-            return lu;
+            //return lu;
         }
 
         protected virtual void Dispose(bool iAmBeingCalledFromDisposeAndNotFinalize)

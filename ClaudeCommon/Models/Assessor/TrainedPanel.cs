@@ -1,18 +1,18 @@
 ﻿using ClaudeCommon.BaseModels;
 
-namespace ClaudeCommon.Models.Facility
+namespace ClaudeCommon.Models.Assessor
 {
-    public class FacilityResource : AdministrationBase
+    public class TrainedPanel : AdministrationBase
     {
-        public FacilityResource()
+        public TrainedPanel()
         {
             FacilityId = 0;
-            ShortName = string.Empty;
             FacilityName = string.Empty;
+            ExcludeFromConsumerTesting = false;
         }
 
         public int FacilityId { get; set; }
-        public string ShortName { get; set; }
         public string FacilityName { get; set; }
+        public bool ExcludeFromConsumerTesting { get; set; }
     }
 }

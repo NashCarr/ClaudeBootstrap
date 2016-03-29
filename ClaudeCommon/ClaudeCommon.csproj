@@ -39,6 +39,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseModels\AdministrationBase.cs" />
     <Compile Include="BaseModels\DisplayOrder.cs" />
     <Compile Include="BaseModels\Returns\ReturnBase.cs" />
     <Compile Include="Enums\AddressEnums.cs" />
@@ -52,17 +53,17 @@
     <Compile Include="Enums\StudyEnums.cs" />
     <Compile Include="Enums\TimeZoneEnums.cs" />
     <Compile Include="Helpers\EnumHelpers.cs" />
-    <Compile Include="Models\Administration\AdministrationBase.cs" />
     <Compile Include="Models\Administration\BudgetCategory.cs" />
     <Compile Include="Models\Administration\GiftCard.cs" />
     <Compile Include="Models\Administration\IsSystemBase.cs" />
     <Compile Include="Models\Administration\StudyDesign.cs" />
     <Compile Include="Models\Administration\HearAboutUs.cs" />
     <Compile Include="Models\Administration\ProductGroup.cs" />
+    <Compile Include="Models\Assessor\TrainedPanel.cs" />
     <Compile Include="Models\Customer\CustomerBrand.cs" />
     <Compile Include="Models\Facility\FacilityResource.cs" />
+    <Compile Include="Models\Facility\StaffMemberList.cs" />
     <Compile Include="Models\People\Contact.cs" />
-    <Compile Include="Models\People\StaffMemberList.cs" />
     <Compile Include="Models\People\PersonList.cs" />
     <Compile Include="Models\Places\PlaceList.cs" />
     <Compile Include="Models\SiteConfiguration\AssessorCompensation.cs" />

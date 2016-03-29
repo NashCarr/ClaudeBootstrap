@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using ClaudeCommon.Models.People;
+using ClaudeCommon.Models.Facility;
 
 namespace ClaudeData.DataRepository.PeopleRepository
 {

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
-using ClaudeCommon.Models.People;
+using ClaudeCommon.Models.Facility;
 using ClaudeData.DataRepository.LookupRepository;
 using ClaudeData.DataRepository.PeopleRepository;
 

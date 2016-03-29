@@ -1,23 +1,25 @@
-﻿using System;
-
-namespace ClaudeData.Models.Lists.Settings
+﻿namespace ClaudeData.ViewModels.Assessor
 {
-    public class CustomerContactInfo
+    public class TrainedPanelAssessor
     {
-        public CustomerContactInfo()
+        public TrainedPanelAssessor()
         {
+            RecordId = 0;
             PersonId = 0;
+            YtdVisits = 0;
+            YtdIncome = 0;
+            PrimaryPhone = 0;
             Email = string.Empty;
             UserId = string.Empty;
             UserName = string.Empty;
             LastName = string.Empty;
             FirstName = string.Empty;
             MiddleName = string.Empty;
-            AccessRight = string.Empty;
+            StringLastParticipated = string.Empty;
         }
 
+        public int RecordId { get; set; }
         public int PersonId { get; set; }
-
         public string Email { get; set; }
         public string LastName { get; set; }
         public string FirstName { get; set; }
@@ -26,9 +28,12 @@ namespace ClaudeData.Models.Lists.Settings
         public string UserId { get; set; }
         public string UserName { get; set; }
 
-        public string AccessRight { get; set; }
+        public long PrimaryPhone { get; set; }
 
-        public DateTime? LastLogin { get; set; }
+        public int YtdVisits { get; set; }
+        public decimal YtdIncome { get; set; }
+
+        public string StringLastParticipated { get; set; }
 
         public string FullName => ((FirstName + ' ' + MiddleName).Trim() + ' ' + LastName).Trim();
     }

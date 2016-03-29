@@ -1,4 +1,6 @@
-﻿namespace ClaudeCommon.Models.People
+﻿using ClaudeCommon.Models.People;
+
+namespace ClaudeCommon.Models.Facility
 {
     public class StaffMemberList : PersonList
     {

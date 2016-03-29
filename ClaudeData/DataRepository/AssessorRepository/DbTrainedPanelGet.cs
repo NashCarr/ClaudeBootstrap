@@ -1,24 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
-using ClaudeCommon.Models.Administration;
+using ClaudeCommon.Models.Assessor;
 
-namespace ClaudeData.DataRepository.AdministrationRepository
+namespace ClaudeData.DataRepository.AssessorRepository
 {
-    public class DbBudgetCategoryGet : DbGetBase
+    public class DbTrainedPanelGet : DbGetBase
     {
-        public List<BudgetCategory> GetViewModel()
+        public List<TrainedPanel> GetViewModel()
         {
-            SetConnectToDatabase("[BudgetCategory].[usp_GetActive]");
-
-            return LoadRecords();
+            return LoadRecords(0);
         }
 
-        private List<BudgetCategory> LoadRecords()
+        public List<TrainedPanel> GetViewModel(int facilityId)
         {
-            List<BudgetCategory> data = new List<BudgetCategory>();
+            return LoadRecords(facilityId);
+        }
+
+        private List<TrainedPanel> LoadRecords(int facilityId)
+        {
+            List<TrainedPanel> data = new List<TrainedPanel>();
             try
             {
+                SetConnectToDatabase("[TrainedPanel].[usp_GetActive]");
+                CmdSql.Parameters.Add("@FacilityId", SqlDbType.Int).Value = facilityId;
                 using (ConnSql)
                 {
                     ConnSql.Open();
@@ -32,17 +38,23 @@ namespace ClaudeData.DataRepository.AdministrationRepository
                             }
 
                             int ordName = dr.GetOrdinal("Name");
+                            int ordFacilityId = dr.GetOrdinal("FacilityId");
                             int ordLastUpdate = dr.GetOrdinal("LastUpdate");
+                            int ordFacilityName = dr.GetOrdinal("FacilityName");
                             int ordDisplayOrder = dr.GetOrdinal("DisplayOrder");
-                            int ordBudgetCategoryId = dr.GetOrdinal("BudgetCategoryId");
+                            int ordTrainedPanelId = dr.GetOrdinal("TrainedPanelId");
+                            int ordExcludeFromConsumerTesting = dr.GetOrdinal("ExcludeFromConsumerTesting");
 
                             while (dr.Read())
                             {
-                                BudgetCategory item = new BudgetCategory
+                                TrainedPanel item = new TrainedPanel
                                 {
                                     Name = Convert.ToString(dr[ordName]),
-                                    RecordId = Convert.ToInt32(dr[ordBudgetCategoryId]),
+                                    FacilityId = Convert.ToInt32(dr[ordFacilityId]),
+                                    RecordId = Convert.ToInt32(dr[ordTrainedPanelId]),
                                     DisplayOrder = Convert.ToInt16(dr[ordDisplayOrder]),
+                                    FacilityName = Convert.ToString(dr[ordFacilityName]),
+                                    ExcludeFromConsumerTesting = Convert.ToBoolean(ordExcludeFromConsumerTesting),
                                     StringLastUpdate =
                                         Convert.ToDateTime(dr[ordLastUpdate]).ToString("MM/dd/yyyy hh:mm:ss tt")
                                 };

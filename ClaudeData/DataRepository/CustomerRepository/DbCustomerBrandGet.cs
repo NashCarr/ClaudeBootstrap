@@ -46,7 +46,7 @@ namespace ClaudeData.DataRepository.CustomerRepository
                                 CustomerBrand item = new CustomerBrand
                                 {
                                     Name = Convert.ToString(dr[ordName]),
-                                    CustomerId =  Convert.ToInt32(dr[ordCustomerId]),
+                                    CustomerId = Convert.ToInt32(dr[ordCustomerId]),
                                     RecordId = Convert.ToInt32(dr[ordCustomerBrandId]),
                                     DisplayOrder = Convert.ToInt16(dr[ordDisplayOrder]),
                                     StringLastUpdate =

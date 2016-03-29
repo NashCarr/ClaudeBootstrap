@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using ClaudeCommon.Models.People;
+using ClaudeCommon.Models.Facility;
 using ClaudeData.Models.LookupLists;
 using ClaudeViewManagement.Managers.People;
 using ClaudeViewManagement.Managers.Shared;
