@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewData", "ViewModels\View
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataRetrieval", "ClassLibrary1\DataRetrieval.csproj", "{B5F991B7-C327-4DA7-A417-365D5C7B8DAB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewCommon", "ClassLibrary2\ViewCommon.csproj", "{60E96CBF-EE02-4D31-88A0-4D19F75AEC1F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +46,10 @@ Global
 		{B5F991B7-C327-4DA7-A417-365D5C7B8DAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B5F991B7-C327-4DA7-A417-365D5C7B8DAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B5F991B7-C327-4DA7-A417-365D5C7B8DAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60E96CBF-EE02-4D31-88A0-4D19F75AEC1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60E96CBF-EE02-4D31-88A0-4D19F75AEC1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60E96CBF-EE02-4D31-88A0-4D19F75AEC1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60E96CBF-EE02-4D31-88A0-4D19F75AEC1F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
