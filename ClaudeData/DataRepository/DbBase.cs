@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 using System.Diagnostics.CodeAnalysis;
 using System.Web;
 
-namespace ClaudeData.DataRepository
+namespace DataManagement.DataRepository
 {
     public abstract class DbBase : IDisposable
     {

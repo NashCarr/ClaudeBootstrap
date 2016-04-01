@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Data;
-using ClaudeCommon.BaseModels.Returns;
-using ClaudeCommon.Models.SiteConfiguration;
+using CommonData.BaseModels.Returns;
+using CommonData.Models.SiteConfiguration;
 
-namespace ClaudeData.DataRepository.SiteConfiguration
+namespace DataManagement.DataRepository.SiteConfiguration
 {
     public class DbAssessorCompensationSave : DbSaveBase
     {

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using ClaudeCommon.Models.Facility;
+using CommonData.Models.Facility;
 
-namespace ClaudeData.DataRepository.FacilityRepository
+namespace DataManagement.DataRepository.FacilityRepository
 {
     public class DbFacilityResourceGet : DbGetBase
     {

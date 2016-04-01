@@ -1,22 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using ClaudeCommon.Models.Administration;
+using CommonData.Models.Administration;
 
-namespace ClaudeData.DataRepository.AdministrationRepository
+namespace DataRetrieval.Administration
 {
-    public class DbStudyDesignGet : DbGetBase
+    public class DbProductGroupGet : DbGetBase
     {
-        public List<StudyDesign> GetViewModel()
+        public List<ProductGroup> GetViewModel()
         {
-            SetConnectToDatabase("[StudyDesign].[usp_GetActive]");
+            SetConnectToDatabase("[ProductGroup].[usp_GetActive]");
 
             return LoadRecords();
         }
 
-        private List<StudyDesign> LoadRecords()
+        private List<ProductGroup> LoadRecords()
         {
-            List<StudyDesign> data = new List<StudyDesign>();
+            List<ProductGroup> data = new List<ProductGroup>();
             try
             {
                 using (ConnSql)
@@ -32,26 +32,23 @@ namespace ClaudeData.DataRepository.AdministrationRepository
                             }
 
                             int ordName = dr.GetOrdinal("Name");
-                            int ordRadius = dr.GetOrdinal("Radius");
                             int ordIsSystem = dr.GetOrdinal("IsSystem");
-                            int ordLastUpdate = dr.GetOrdinal("LastUpdate");
+                            int ordCreateDate = dr.GetOrdinal("CreateDate");
                             int ordDisplayOrder = dr.GetOrdinal("DisplayOrder");
-                            int ordStudyDesignId = dr.GetOrdinal("StudyDesignId");
+                            int ordProductGroupId = dr.GetOrdinal("ProductGroupId");
 
                             while (dr.Read())
                             {
-                                StudyDesign item = new StudyDesign
+                                ProductGroup item = new ProductGroup
                                 {
                                     Name = Convert.ToString(dr[ordName]),
-                                    Radius = Convert.ToInt32(dr[ordRadius]),
                                     IsSystem = Convert.ToBoolean(dr[ordIsSystem]),
                                     IsSystemSort = Convert.ToString(dr[ordIsSystem]),
-                                    RecordId = Convert.ToInt32(dr[ordStudyDesignId]),
+                                    RecordId = Convert.ToInt32(dr[ordProductGroupId]),
                                     DisplayOrder = Convert.ToInt16(dr[ordDisplayOrder]),
                                     StringLastUpdate =
-                                        Convert.ToDateTime(dr[ordLastUpdate]).ToString("MM/dd/yyyy hh:mm:ss tt")
+                                        Convert.ToDateTime(dr[ordCreateDate]).ToString("MM/dd/yyyy hh:mm:ss tt")
                                 };
-                                item.RadiusSort = item.Radius.ToString("D5");
                                 item.DisplaySort = item.DisplayOrder.ToString("D3");
                                 data.Add(item);
                             }

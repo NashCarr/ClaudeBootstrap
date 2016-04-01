@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using ClaudeData.Models.Addresses;
-using ClaudeData.Models.Phones;
-using ClaudeData.Models.Places;
-using static ClaudeCommon.Enums.AddressEnums;
-using static ClaudeCommon.Enums.PhoneEnums;
-using static ClaudeCommon.Enums.PlaceEnums;
+using CommonData.Enums;
+using DataManagement.Models.Addresses;
+using DataManagement.Models.Phones;
+using DataManagement.Models.Places;
 
-namespace ClaudeData.DataRepository.PlaceRepository
+namespace DataManagement.DataRepository.PlaceRepository
 {
     public class DbPlaceDataNew : IDisposable
     {
@@ -18,7 +16,7 @@ namespace ClaudeData.DataRepository.PlaceRepository
             GC.SuppressFinalize(this);
         }
 
-        protected internal PlaceData GetNew(PlaceType placeType)
+        protected internal PlaceData GetNew(PlaceEnums.PlaceType placeType)
         {
             PlaceData data = new PlaceData();
             try
@@ -32,7 +30,7 @@ namespace ClaudeData.DataRepository.PlaceRepository
 
                 foreach (
                     AddressAssociation aa in
-                        from AddressType val in Enum.GetValues(typeof (AddressType))
+                        from AddressEnums.AddressType val in Enum.GetValues(typeof (AddressEnums.AddressType))
                         where (short) val != 0
                         select new AddressAssociation {AddressType = val})
                 {
@@ -43,7 +41,7 @@ namespace ClaudeData.DataRepository.PlaceRepository
 
                 foreach (
                     PhoneAssociation pa in
-                        from PhoneType val in Enum.GetValues(typeof (PhoneType))
+                        from PhoneEnums.PhoneType val in Enum.GetValues(typeof (PhoneEnums.PhoneType))
                         where (short) val != 0
                         select new PhoneAssociation {PhoneType = val})
                 {

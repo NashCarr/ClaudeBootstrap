@@ -1,6 +1,6 @@
 ﻿using System.Web.Configuration;
 
-namespace ClaudeData.DataRepository
+namespace DataManagement.DataRepository
 {
     public abstract class DbConnect
     {

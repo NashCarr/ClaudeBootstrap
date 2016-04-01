@@ -1,6 +1,6 @@
-﻿using static ClaudeCommon.Enums.PersonEnums;
+﻿using CommonData.Enums;
 
-namespace ClaudeCommon.Models.People
+namespace CommonData.Models.People
 {
     public class Contact
     {
@@ -12,7 +12,7 @@ namespace ClaudeCommon.Models.People
             LastName = string.Empty;
             FirstName = string.Empty;
             MiddleName = string.Empty;
-            PersonType = PersonType.None;
+            PersonType = PersonEnums.PersonType.None;
         }
 
         public int PlaceId { get; set; }
@@ -21,7 +21,7 @@ namespace ClaudeCommon.Models.People
         public string LastName { get; set; }
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
-        public PersonType PersonType { get; set; }
+        public PersonEnums.PersonType PersonType { get; set; }
 
         public string FullName => ((FirstName + ' ' + MiddleName).Trim() + ' ' + LastName).Trim();
     }

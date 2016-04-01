@@ -1,9 +1,7 @@
-﻿using ClaudeData.BaseModels;
-using static ClaudeCommon.Enums.CountryEnums;
-using static ClaudeCommon.Enums.PlaceEnums;
-using static ClaudeCommon.Enums.TimeZoneEnums;
+﻿using CommonData.Enums;
+using DataManagement.BaseModels;
 
-namespace ClaudeData.Models.Places
+namespace DataManagement.Models.Places
 {
     public class Place : AdminBase
     {
@@ -12,16 +10,16 @@ namespace ClaudeData.Models.Places
             PlaceId = 0;
             Division = string.Empty;
             Department = string.Empty;
-            PlaceType = PlaceType.None;
-            Country = Country.None;
-            TimeZone = ClaudeTimeZone.None;
+            PlaceType = PlaceEnums.PlaceType.None;
+            Country = CountryEnums.Country.None;
+            TimeZone = TimeZoneEnums.ClaudeTimeZone.None;
         }
 
         public int PlaceId { get; set; }
-        public Country Country { get; set; }
+        public CountryEnums.Country Country { get; set; }
         public string Division { get; set; }
         public string Department { get; set; }
-        public PlaceType PlaceType { get; set; }
-        public ClaudeTimeZone TimeZone { get; set; }
+        public PlaceEnums.PlaceType PlaceType { get; set; }
+        public TimeZoneEnums.ClaudeTimeZone TimeZone { get; set; }
     }
 }

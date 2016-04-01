@@ -1,10 +1,10 @@
 ﻿using System;
-using ClaudeData.DataRepository.PhoneRepository;
-using ClaudeData.Models.People;
-using ClaudeData.Models.Phones;
-using static ClaudeCommon.Enums.PersonEnums;
+using CommonData.Enums;
+using DataManagement.DataRepository.PhoneRepository;
+using DataManagement.Models.People;
+using DataManagement.Models.Phones;
 
-namespace ClaudeData.DataRepository.PersonRepository
+namespace DataManagement.DataRepository.PersonRepository
 {
     public class DbPersonPhoneSettingSave : IDisposable
     {
@@ -19,7 +19,7 @@ namespace ClaudeData.DataRepository.PersonRepository
             if (data == null) return string.Empty;
             using (DbPhoneSettingSave db = new DbPhoneSettingSave())
             {
-                return db.SavePersonPhoneSetting(personId, (byte) PersonType.StaffMember, data);
+                return db.SavePersonPhoneSetting(personId, (byte) PersonEnums.PersonType.StaffMember, data);
             }
         }
 
@@ -28,7 +28,7 @@ namespace ClaudeData.DataRepository.PersonRepository
             if (data == null) return string.Empty;
             using (DbPhoneSettingSave db = new DbPhoneSettingSave())
             {
-                return db.SavePersonPhoneSetting(personId, (byte) PersonType.Assessor, data);
+                return db.SavePersonPhoneSetting(personId, (byte) PersonEnums.PersonType.Assessor, data);
             }
         }
 
@@ -37,7 +37,7 @@ namespace ClaudeData.DataRepository.PersonRepository
             if (data == null) return string.Empty;
             using (DbPhoneSettingSave db = new DbPhoneSettingSave())
             {
-                return db.SavePersonPhoneSetting(personId, (byte) PersonType.CustomerContact, data);
+                return db.SavePersonPhoneSetting(personId, (byte) PersonEnums.PersonType.CustomerContact, data);
             }
         }
 
@@ -46,7 +46,7 @@ namespace ClaudeData.DataRepository.PersonRepository
             if (data == null) return string.Empty;
             using (DbPhoneSettingSave db = new DbPhoneSettingSave())
             {
-                return db.SavePersonPhoneSetting(personId, (byte) PersonType.OrganizationContact, data);
+                return db.SavePersonPhoneSetting(personId, (byte) PersonEnums.PersonType.OrganizationContact, data);
             }
         }
 
@@ -55,15 +55,15 @@ namespace ClaudeData.DataRepository.PersonRepository
             if (data.PhoneData == null) return string.Empty;
             switch (data.Person.PersonType)
             {
-                case PersonType.StaffMember:
+                case PersonEnums.PersonType.StaffMember:
                     return SaveStaffMemberPhoneSetting(data.Person.PersonId, data.PhoneData.PhoneSettings);
-                case PersonType.Assessor:
+                case PersonEnums.PersonType.Assessor:
                     return SaveAssessorPhoneSetting(data.Person.PersonId, data.PhoneData.PhoneSettings);
-                case PersonType.CustomerContact:
+                case PersonEnums.PersonType.CustomerContact:
                     return SaveCustomerContactPhoneSetting(data.Person.PersonId, data.PhoneData.PhoneSettings);
-                case PersonType.OrganizationContact:
+                case PersonEnums.PersonType.OrganizationContact:
                     return SaveOrganizationContactPhoneSetting(data.Person.PersonId, data.PhoneData.PhoneSettings);
-                case PersonType.None:
+                case PersonEnums.PersonType.None:
                     return "Person Type Undetermined";
                 default:
                     return "Person Type Undetermined";

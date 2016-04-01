@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using ClaudeCommon.Models.Facility;
+using CommonData.Models.Facility;
 
-namespace ClaudeData.DataRepository.PeopleRepository
+namespace DataManagement.DataRepository.PeopleRepository
 {
     public class DbStaffMemberListGet : DbGetBase
     {

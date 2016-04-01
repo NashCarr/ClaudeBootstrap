@@ -1,6 +1,6 @@
-﻿using ClaudeCommon.Models.People;
+﻿using CommonData.Models.People;
 
-namespace ClaudeCommon.Models.Facility
+namespace CommonData.Models.Facility
 {
     public class StaffMemberList : PersonList
     {

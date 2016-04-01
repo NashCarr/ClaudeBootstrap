@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using ClaudeCommon.Enums;
-using ClaudeData.Models.Addresses;
+using CommonData.Enums;
+using DataManagement.Models.Addresses;
 
-namespace ClaudeData.DataRepository.AddressRepository
+namespace DataManagement.DataRepository.AddressRepository
 {
     public class DbAddressAssociationGet : DbGetBase
     {

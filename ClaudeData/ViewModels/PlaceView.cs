@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using ClaudeCommon.Models.People;
-using ClaudeData.Models.Places;
-using ClaudeData.ViewModels.Shared;
+using CommonData.Models.People;
+using DataManagement.Models.Places;
+using DataManagement.ViewModels.Shared;
 
-namespace ClaudeData.ViewModels
+namespace DataManagement.ViewModels
 {
     public class PlaceView : IDisposable
     {

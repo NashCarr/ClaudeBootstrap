@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
 
-namespace ClaudeData.DataRepository.LookupRepository
+namespace DataManagement.DataRepository.LookupRepository
 {
     public class DbMobileCarrierLookup : DbGatewayLookup
     {

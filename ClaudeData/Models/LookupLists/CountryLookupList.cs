@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using ClaudeCommon.Helpers;
-using static ClaudeCommon.Enums.CountryEnums;
+using CommonData.Enums;
+using CommonData.Helpers;
 
-namespace ClaudeData.Models.LookupLists
+namespace DataManagement.Models.LookupLists
 {
     public class CountryLookupList : IDisposable
     {
@@ -13,10 +13,10 @@ namespace ClaudeData.Models.LookupLists
         {
             LookupList =
                 new List<SelectListItem>(
-                    EnumHelpers.SelectListFor<Country>().Where(e => e.Value != Country.None.ToString()));
+                    EnumHelpers.SelectListFor<CountryEnums.Country>().Where(e => e.Value != CountryEnums.Country.None.ToString()));
             foreach (SelectListItem item in LookupList)
             {
-                item.Value = EnumHelpers.GetShortFromEnum<Country>(item.Value).ToString();
+                item.Value = EnumHelpers.GetShortFromEnum<CountryEnums.Country>(item.Value).ToString();
             }
         }
 

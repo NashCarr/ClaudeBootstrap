@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
-using ClaudeCommon.BaseModels;
-using ClaudeCommon.BaseModels.Returns;
-using ClaudeCommon.Models.Assessor;
-using ClaudeData.DataRepository.AssessorRepository;
-using ClaudeData.DataRepository.ReorderRepository;
+using CommonData.BaseModels;
+using CommonData.BaseModels.Returns;
+using CommonData.Models.Assessor;
+using DataManagement.DataRepository.AssessorRepository;
+using DataManagement.DataRepository.ReorderRepository;
 
-namespace ClaudeViewManagement.Managers.Assessor
+namespace ViewManagement.Managers.Assessor
 {
     public class TrainedPanelManager : IDisposable
     {

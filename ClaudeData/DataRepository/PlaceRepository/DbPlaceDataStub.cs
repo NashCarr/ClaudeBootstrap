@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using ClaudeData.Models.Addresses;
-using ClaudeData.Models.Phones;
-using ClaudeData.Models.Places;
-using static ClaudeCommon.Enums.AddressEnums;
-using static ClaudeCommon.Enums.PhoneEnums;
-using static ClaudeCommon.Enums.PlaceEnums;
+using CommonData.Enums;
+using DataManagement.Models.Addresses;
+using DataManagement.Models.Phones;
+using DataManagement.Models.Places;
 
-namespace ClaudeData.DataRepository.PlaceRepository
+namespace DataManagement.DataRepository.PlaceRepository
 {
     public class DbPlaceDataStub : IDisposable
     {
@@ -17,7 +15,7 @@ namespace ClaudeData.DataRepository.PlaceRepository
             GC.SuppressFinalize(this);
         }
 
-        protected internal PlaceData Prefill(PlaceType placeType, PlaceData data)
+        protected internal PlaceData Prefill(PlaceEnums.PlaceType placeType, PlaceData data)
         {
             try
             {
@@ -36,13 +34,13 @@ namespace ClaudeData.DataRepository.PlaceRepository
 
                 if (data.AddressData.PhysicalAddress == null)
                 {
-                    AddressAssociation a = new AddressAssociation {AddressType = AddressType.Physical};
+                    AddressAssociation a = new AddressAssociation {AddressType = AddressEnums.AddressType.Physical};
                     data.AddressData.Addresses.Add(a);
                 }
 
                 if (data.AddressData.MailingAddress == null)
                 {
-                    AddressAssociation a = new AddressAssociation {AddressType = AddressType.Mailing};
+                    AddressAssociation a = new AddressAssociation {AddressType = AddressEnums.AddressType.Mailing};
                     data.AddressData.Addresses.Add(a);
                 }
 
@@ -53,25 +51,25 @@ namespace ClaudeData.DataRepository.PlaceRepository
 
                 if (data.PhoneData.HomePhone == null)
                 {
-                    PhoneAssociation p = new PhoneAssociation {PhoneType = PhoneType.Home};
+                    PhoneAssociation p = new PhoneAssociation {PhoneType = PhoneEnums.PhoneType.Home};
                     data.PhoneData.Phones.Add(p);
                 }
 
                 if (data.PhoneData.CellPhone == null)
                 {
-                    PhoneAssociation p = new PhoneAssociation {PhoneType = PhoneType.Cell};
+                    PhoneAssociation p = new PhoneAssociation {PhoneType = PhoneEnums.PhoneType.Cell};
                     data.PhoneData.Phones.Add(p);
                 }
 
                 if (data.PhoneData.WorkPhone == null)
                 {
-                    PhoneAssociation p = new PhoneAssociation {PhoneType = PhoneType.Work};
+                    PhoneAssociation p = new PhoneAssociation {PhoneType = PhoneEnums.PhoneType.Work};
                     data.PhoneData.Phones.Add(p);
                 }
 
                 if (data.PhoneData.FaxPhone == null)
                 {
-                    PhoneAssociation p = new PhoneAssociation {PhoneType = PhoneType.Fax};
+                    PhoneAssociation p = new PhoneAssociation {PhoneType = PhoneEnums.PhoneType.Fax};
                     data.PhoneData.Phones.Add(p);
                 }
             }

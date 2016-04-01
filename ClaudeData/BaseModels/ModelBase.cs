@@ -1,16 +1,15 @@
 ﻿using System;
-using static System.DateTime;
 
-namespace ClaudeData.BaseModels
+namespace DataManagement.BaseModels
 {
     public abstract class ModelBase
     {
         protected ModelBase()
         {
             IsActive = true;
-            CreateDate = Now;
+            CreateDate = DateTime.Now;
             ErrMsg = string.Empty;
-            StringLastUpdate = Now.ToString("MM/dd/yyyy hh:mm:ss tt");
+            StringLastUpdate = DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss tt");
         }
 
         public bool IsActive { get; set; }

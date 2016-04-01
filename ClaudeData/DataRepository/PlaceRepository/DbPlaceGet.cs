@@ -1,30 +1,29 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using ClaudeData.Models.Places;
-using static ClaudeCommon.Enums.PlaceEnums;
-using static ClaudeCommon.Enums.TimeZoneEnums;
+using CommonData.Enums;
+using DataManagement.Models.Places;
 
-namespace ClaudeData.DataRepository.PlaceRepository
+namespace DataManagement.DataRepository.PlaceRepository
 {
     public class DbPlaceGet : DbGetBase
     {
         protected internal Place GetFacility(int placeId)
         {
-            return LoadRecord(placeId, PlaceType.Facility);
+            return LoadRecord(placeId, PlaceEnums.PlaceType.Facility);
         }
 
         protected internal Place GetCustomer(int placeId)
         {
-            return LoadRecord(placeId, PlaceType.Customer);
+            return LoadRecord(placeId, PlaceEnums.PlaceType.Customer);
         }
 
         protected internal Place GetOrganization(int placeId)
         {
-            return LoadRecord(placeId, PlaceType.Organization);
+            return LoadRecord(placeId, PlaceEnums.PlaceType.Organization);
         }
 
-        private Place LoadRecord(int placeId, PlaceType placeType)
+        private Place LoadRecord(int placeId, PlaceEnums.PlaceType placeType)
         {
             Place data = new Place();
             try
@@ -70,7 +69,7 @@ namespace ClaudeData.DataRepository.PlaceRepository
                                 data.IsActive = Convert.ToBoolean(dr[ordIsActive]);
                                 data.CreateDate = Convert.ToDateTime(dr[ordCreateDate]);
                                 data.DisplayOrder = Convert.ToByte(dr[ordDisplayOrder]);
-                                data.TimeZone = (ClaudeTimeZone) Convert.ToByte(dr[ordTimeZone]);
+                                data.TimeZone = (TimeZoneEnums.ClaudeTimeZone) Convert.ToByte(dr[ordTimeZone]);
                             }
                         }
                     }

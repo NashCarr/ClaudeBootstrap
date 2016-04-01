@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using ClaudeCommon.Helpers;
-using static ClaudeCommon.Enums.PhoneEnums;
+using CommonData.Enums;
+using CommonData.Helpers;
 
-namespace ClaudeData.Models.LookupLists
+namespace DataManagement.Models.LookupLists
 {
     public class PhoneTypeLookupList : IDisposable
     {
@@ -13,10 +13,10 @@ namespace ClaudeData.Models.LookupLists
         {
             LookupList =
                 new List<SelectListItem>(
-                    EnumHelpers.SelectListFor<PhoneType>().Where(e => e.Value != PhoneType.None.ToString()));
+                    EnumHelpers.SelectListFor<PhoneEnums.PhoneType>().Where(e => e.Value != PhoneEnums.PhoneType.None.ToString()));
             foreach (SelectListItem item in LookupList)
             {
-                item.Value = EnumHelpers.GetByteFromEnum<PhoneType>(item.Value).ToString();
+                item.Value = EnumHelpers.GetByteFromEnum<PhoneEnums.PhoneType>(item.Value).ToString();
             }
         }
 

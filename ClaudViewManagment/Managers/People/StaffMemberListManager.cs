@@ -1,11 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Web.Mvc;
-using ClaudeCommon.Models.Facility;
-using ClaudeData.DataRepository.LookupRepository;
-using ClaudeData.DataRepository.PeopleRepository;
+using CommonData.Models.Facility;
+using DataManagement.DataRepository.PeopleRepository;
 
-namespace ClaudeViewManagement.Managers.People
+namespace ViewManagement.Managers.People
 {
     public class StaffMemberListManager : IDisposable
     {

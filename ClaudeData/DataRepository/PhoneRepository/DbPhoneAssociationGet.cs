@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using ClaudeCommon.Enums;
-using ClaudeData.Models.Phones;
+using CommonData.Enums;
+using DataManagement.Models.Phones;
 
-namespace ClaudeData.DataRepository.PhoneRepository
+namespace DataManagement.DataRepository.PhoneRepository
 {
     public class DbPhoneAssociationGet : DbSaveBase
     {

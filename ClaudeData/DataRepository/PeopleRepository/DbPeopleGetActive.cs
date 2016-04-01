@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using ClaudeCommon.Models.People;
-using static ClaudeCommon.Enums.PersonEnums;
+using CommonData.Enums;
+using CommonData.Models.People;
 
-namespace ClaudeData.DataRepository.PeopleRepository
+namespace DataManagement.DataRepository.PeopleRepository
 {
     public class DbPeopleGetActive : DbPeopleGet
     {
-        public List<PersonList> GetActive(PersonType pt)
+        public List<PersonList> GetActive(PersonEnums.PersonType pt)
         {
             try
             {

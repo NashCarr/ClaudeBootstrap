@@ -1,6 +1,6 @@
-﻿using static ClaudeCommon.Enums.PhoneEnums;
+﻿using CommonData.Enums;
 
-namespace ClaudeData.Models.Phones
+namespace DataManagement.Models.Phones
 {
     public class PhoneSetting
     {
@@ -9,12 +9,12 @@ namespace ClaudeData.Models.Phones
             RecordId = 0;
             MobileCarrier = 0;
             AllowText = false;
-            PrimaryPhoneType = PhoneType.Cell;
+            PrimaryPhoneType = PhoneEnums.PhoneType.Cell;
         }
 
         public int RecordId { get; set; }
         public bool AllowText { get; set; }
         public short MobileCarrier { get; set; }
-        public PhoneType PrimaryPhoneType { get; set; }
+        public PhoneEnums.PhoneType PrimaryPhoneType { get; set; }
     }
 }

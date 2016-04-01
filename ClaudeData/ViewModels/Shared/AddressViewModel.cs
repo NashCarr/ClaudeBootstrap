@@ -1,7 +1,7 @@
 ﻿using System;
-using ClaudeData.Models.Addresses;
+using DataManagement.Models.Addresses;
 
-namespace ClaudeData.ViewModels.Shared
+namespace DataManagement.ViewModels.Shared
 {
     public class AddressViewModel : IDisposable
     {

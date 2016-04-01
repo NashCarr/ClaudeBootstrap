@@ -1,7 +1,7 @@
-﻿using ClaudeData.Models.Places;
-using ClaudeViewManagement.ViewModels.Shared;
+﻿using DataManagement.Models.Places;
+using ViewManagement.ViewModels.Shared;
 
-namespace ClaudeViewManagement.ViewModels.Places
+namespace ViewManagement.ViewModels.Places
 {
     public class PlaceSaveModel : AddressPhoneSaveModel
     {

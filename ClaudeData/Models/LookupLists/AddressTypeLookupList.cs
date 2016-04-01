@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using ClaudeCommon.Helpers;
-using static ClaudeCommon.Enums.AddressEnums;
+using CommonData.Enums;
+using CommonData.Helpers;
 
-namespace ClaudeData.Models.LookupLists
+namespace DataManagement.Models.LookupLists
 {
     public class AddressTypeLookupList : IDisposable
     {
@@ -13,10 +13,10 @@ namespace ClaudeData.Models.LookupLists
         {
             LookupList =
                 new List<SelectListItem>(
-                    EnumHelpers.SelectListFor<AddressType>().Where(e => e.Value != AddressType.None.ToString()));
+                    EnumHelpers.SelectListFor<AddressEnums.AddressType>().Where(e => e.Value != AddressEnums.AddressType.None.ToString()));
             foreach (SelectListItem item in LookupList)
             {
-                item.Value = EnumHelpers.GetByteFromEnum<AddressType>(item.Value).ToString();
+                item.Value = EnumHelpers.GetByteFromEnum<AddressEnums.AddressType>(item.Value).ToString();
             }
         }
 

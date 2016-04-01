@@ -157,7 +157,7 @@
     <Compile Include="Controllers\Places\SiteConfigurationController.cs" />
     <Compile Include="Controllers\Administration\GiftCardController.cs" />
     <Compile Include="Controllers\Administration\HearAboutUsController.cs" />
-    <Compile Include="Controllers\Administration\ProductGroupController.cs" />
+    <Compile Include="Controllers\Assessor\ProductGroupController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -472,17 +472,21 @@
     <Content Include="Views\TrainedPanel\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClaudeCommon\ClaudeCommon.csproj">
+    <ProjectReference Include="..\ClaudeCommon\CommonData.csproj">
       <Project>{fb0dec60-3ba3-4bd7-a268-5a78ab280f3a}</Project>
-      <Name>ClaudeCommon</Name>
+      <Name>CommonData</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ClaudeData\ClaudeData.csproj">
+    <ProjectReference Include="..\ClaudeData\DataManagement.csproj">
       <Project>{0D5B2F72-AEDC-40A6-A308-8647854EA70E}</Project>
-      <Name>ClaudeData</Name>
+      <Name>DataManagement</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ClaudViewManagment\ClaudeViewManagement.csproj">
+    <ProjectReference Include="..\ClaudViewManagment\ViewManagement.csproj">
       <Project>{ae8c6db1-6e44-4fa9-b6dc-396f9c61e0f8}</Project>
-      <Name>ClaudeViewManagement</Name>
+      <Name>ViewManagement</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ViewModels\ViewData.csproj">
+      <Project>{9F1858B5-9D5B-4870-A821-2CE80F5213A8}</Project>
+      <Name>ViewData</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

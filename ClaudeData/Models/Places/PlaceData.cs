@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using ClaudeCommon.Models.People;
-using ClaudeData.Models.Addresses;
-using ClaudeData.Models.Phones;
+using CommonData.Models.People;
+using DataManagement.Models.Addresses;
+using DataManagement.Models.Phones;
 
-namespace ClaudeData.Models.Places
+namespace DataManagement.Models.Places
 {
     public class PlaceData
     {

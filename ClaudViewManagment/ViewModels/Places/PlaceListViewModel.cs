@@ -1,16 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using ClaudeCommon.Models.Places;
-using ClaudeData.Models.LookupLists;
-using ClaudeViewManagement.Managers.Places;
-using ClaudeViewManagement.Managers.Shared;
-using static ClaudeCommon.Enums.PlaceEnums;
+using CommonData.Enums;
+using CommonData.Models.Places;
+using DataManagement.Models.LookupLists;
+using ViewManagement.Managers.Places;
+using ViewManagement.Managers.Shared;
 
-namespace ClaudeViewManagement.ViewModels.Places
+namespace ViewManagement.ViewModels.Places
 {
     public class PlaceListViewModel
     {
-        public PlaceListViewModel(PlaceType pt)
+        public PlaceListViewModel(PlaceEnums.PlaceType pt)
         {
             using (PlaceListManager mgr = new PlaceListManager())
             {

@@ -1,8 +1,8 @@
-﻿using ClaudeCommon.Enums;
-using ClaudeData.Models.People;
-using ClaudeData.ViewModels;
+﻿using CommonData.Enums;
+using DataManagement.Models.People;
+using DataManagement.ViewModels;
 
-namespace ClaudeData.DataRepository.PersonRepository
+namespace DataManagement.DataRepository.PersonRepository
 {
     public class DbPersonViewGet : DbGetBase
     {

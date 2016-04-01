@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using ClaudeCommon.Models.Facility;
-using ClaudeData.Models.LookupLists;
-using ClaudeViewManagement.Managers.People;
-using ClaudeViewManagement.Managers.Shared;
+using CommonData.Models.Facility;
+using DataManagement.Models.LookupLists;
+using ViewManagement.Managers.People;
+using ViewManagement.Managers.Shared;
 
-namespace ClaudeViewManagement.ViewModels.People
+namespace ViewManagement.ViewModels.People
 {
     public class StaffMemberListViewModel
     {

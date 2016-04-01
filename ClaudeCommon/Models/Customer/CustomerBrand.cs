@@ -1,6 +1,6 @@
-﻿using ClaudeCommon.BaseModels;
+﻿using CommonData.BaseModels;
 
-namespace ClaudeCommon.Models.Customer
+namespace CommonData.Models.Customer
 {
     public class CustomerBrand : AdministrationBase
     {

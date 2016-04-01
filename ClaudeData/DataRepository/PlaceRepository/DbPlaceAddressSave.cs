@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using ClaudeData.DataRepository.AddressRepository;
-using ClaudeData.Models.Addresses;
-using ClaudeData.Models.Places;
-using static ClaudeCommon.Enums.PlaceEnums;
+using CommonData.Enums;
+using DataManagement.DataRepository.AddressRepository;
+using DataManagement.Models.Addresses;
+using DataManagement.Models.Places;
 
-namespace ClaudeData.DataRepository.PlaceRepository
+namespace DataManagement.DataRepository.PlaceRepository
 {
     public class DbPlaceAddressSave : IDisposable
     {
@@ -21,7 +21,7 @@ namespace ClaudeData.DataRepository.PlaceRepository
             if (data == null) return string.Empty;
             using (DbAddressAssociationSave db = new DbAddressAssociationSave())
             {
-                return db.SavePlaceAddress(placeId, (byte) PlaceType.Facility, data);
+                return db.SavePlaceAddress(placeId, (byte) PlaceEnums.PlaceType.Facility, data);
             }
         }
 
@@ -30,7 +30,7 @@ namespace ClaudeData.DataRepository.PlaceRepository
             if (data == null) return string.Empty;
             using (DbAddressAssociationSave db = new DbAddressAssociationSave())
             {
-                return db.SavePlaceAddress(placeId, (byte) PlaceType.Customer, data);
+                return db.SavePlaceAddress(placeId, (byte) PlaceEnums.PlaceType.Customer, data);
             }
         }
 
@@ -39,7 +39,7 @@ namespace ClaudeData.DataRepository.PlaceRepository
             if (data == null) return string.Empty;
             using (DbAddressAssociationSave db = new DbAddressAssociationSave())
             {
-                return db.SavePlaceAddress(placeId, (byte) PlaceType.Organization, data);
+                return db.SavePlaceAddress(placeId, (byte) PlaceEnums.PlaceType.Organization, data);
             }
         }
 
@@ -87,11 +87,11 @@ namespace ClaudeData.DataRepository.PlaceRepository
             if (data.AddressData == null) return string.Empty;
             switch (data.Place.PlaceType)
             {
-                case PlaceType.Facility:
+                case PlaceEnums.PlaceType.Facility:
                     return SaveFacilityAddresses(data.Place.PlaceId, data.AddressData.Addresses);
-                case PlaceType.Customer:
+                case PlaceEnums.PlaceType.Customer:
                     return SaveCustomerAddresses(data.Place.PlaceId, data.AddressData.Addresses);
-                case PlaceType.Organization:
+                case PlaceEnums.PlaceType.Organization:
                     return SaveOrganizationAddresses(data.Place.PlaceId, data.AddressData.Addresses);
                 default:
                     return "Place Type Undetermined";

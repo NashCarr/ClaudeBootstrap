@@ -1,31 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using ClaudeCommon.Models.People;
-using static ClaudeCommon.Enums.PersonEnums;
+using CommonData.Enums;
+using CommonData.Models.People;
 
-namespace ClaudeData.DataRepository.PeopleRepository
+namespace DataManagement.DataRepository.PeopleRepository
 {
     public class DbPeopleSearch : DbPeopleGet
     {
         protected internal List<PersonList> GetAssessors(string first, string last, string email)
         {
-            IdValue = (byte) PersonType.Assessor;
-            TypeName = Enum.GetName(typeof (PersonType), IdValue);
+            IdValue = (byte) PersonEnums.PersonType.Assessor;
+            TypeName = Enum.GetName(typeof (PersonEnums.PersonType), IdValue);
             return GetRecords(first, last, email);
         }
 
         protected internal List<PersonList> GetCustomerContacts(string first, string last, string email)
         {
-            IdValue = (byte) PersonType.CustomerContact;
-            TypeName = Enum.GetName(typeof (PersonType), IdValue);
+            IdValue = (byte) PersonEnums.PersonType.CustomerContact;
+            TypeName = Enum.GetName(typeof (PersonEnums.PersonType), IdValue);
             return GetRecords(first, last, email);
         }
 
         protected internal List<PersonList> GetStaffMembers(string first, string last, string email)
         {
-            IdValue = (byte) PersonType.StaffMember;
-            TypeName = Enum.GetName(typeof (PersonType), IdValue);
+            IdValue = (byte) PersonEnums.PersonType.StaffMember;
+            TypeName = Enum.GetName(typeof (PersonEnums.PersonType), IdValue);
             return GetRecords(first, last, email);
         }
 

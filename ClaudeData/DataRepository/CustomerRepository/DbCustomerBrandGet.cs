@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using ClaudeCommon.Models.Customer;
+using CommonData.Models.Customer;
 
-namespace ClaudeData.DataRepository.CustomerRepository
+namespace DataManagement.DataRepository.CustomerRepository
 {
     public class DbCustomerBrandGet : DbGetBase
     {

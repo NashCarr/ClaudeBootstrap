@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 
-namespace ClaudeData.DataRepository.PersonRepository
+namespace DataManagement.DataRepository.PersonRepository
 {
     public class DbPersonSetInactive : DbSaveBase
     {

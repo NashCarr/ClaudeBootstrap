@@ -1,18 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using ClaudeCommon.Models.Facility;
-using ClaudeCommon.Models.SiteConfiguration;
-using ClaudeViewManagement.Managers.Facility;
-using ClaudeViewManagement.Managers.Places;
-using static ClaudeCommon.Enums.PlaceEnums;
+using CommonData.Enums;
+using CommonData.Models.Facility;
+using CommonData.Models.SiteConfiguration;
+using ViewManagement.Managers.Facility;
+using ViewManagement.Managers.Places;
 
-namespace ClaudeViewManagement.ViewModels.Places
+namespace ViewManagement.ViewModels.Places
 {
     public class SiteConfigurationViewModel
     {
         public SiteConfigurationViewModel()
         {
-            Facilities = new PlaceListViewModel(PlaceType.Facility);
+            Facilities = new PlaceListViewModel(PlaceEnums.PlaceType.Facility);
             using (SiteConfigurationManager mgr = new SiteConfigurationManager())
             {
                 SiteConfiguration = mgr.GetSiteConfiguration();

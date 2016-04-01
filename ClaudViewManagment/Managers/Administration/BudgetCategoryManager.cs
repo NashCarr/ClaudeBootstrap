@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
-using ClaudeCommon.BaseModels;
-using ClaudeCommon.BaseModels.Returns;
-using ClaudeCommon.Models.Administration;
-using ClaudeData.DataRepository.AdministrationRepository;
-using ClaudeData.DataRepository.ReorderRepository;
+using CommonData.BaseModels;
+using CommonData.BaseModels.Returns;
+using CommonData.Models.Administration;
+using DataManagement.DataRepository.AdministrationRepository;
+using DataManagement.DataRepository.ReorderRepository;
 
-namespace ClaudeViewManagement.Managers.Administration
+namespace ViewManagement.Managers.Administration
 {
     public class BudgetCategoryManager : IDisposable
     {
@@ -18,14 +18,6 @@ namespace ClaudeViewManagement.Managers.Administration
 
         protected virtual void Dispose(bool iAmBeingCalledFromDisposeAndNotFinalize)
         {
-        }
-
-        public List<BudgetCategory> GetList()
-        {
-            using (DbBudgetCategoryGet data = new DbBudgetCategoryGet())
-            {
-                return data.GetViewModel();
-            }
         }
 
         public ReturnBase SaveRecord(BudgetCategory entity)

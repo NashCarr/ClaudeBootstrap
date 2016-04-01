@@ -1,12 +1,12 @@
 using System;
-using ClaudeCommon.BaseModels.Returns;
-using ClaudeData.DataRepository.PlaceRepository;
-using ClaudeData.Models.Addresses;
-using ClaudeData.Models.Phones;
-using ClaudeData.Models.Places;
-using ClaudeViewManagement.ViewModels.Places;
+using CommonData.BaseModels.Returns;
+using DataManagement.DataRepository.PlaceRepository;
+using DataManagement.Models.Addresses;
+using DataManagement.Models.Phones;
+using DataManagement.Models.Places;
+using ViewManagement.ViewModels.Places;
 
-namespace ClaudeViewManagement.Managers.Places
+namespace ViewManagement.Managers.Places
 {
     public class PlaceSaveManager : IDisposable
     {

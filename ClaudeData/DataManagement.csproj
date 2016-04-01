@@ -7,8 +7,8 @@
     <ProjectGuid>{0D5B2F72-AEDC-40A6-A308-8647854EA70E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ClaudeData</RootNamespace>
-    <AssemblyName>ClaudeData</AssemblyName>
+    <RootNamespace>DataManagement</RootNamespace>
+    <AssemblyName>DataManagement</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -50,15 +50,10 @@
     <Compile Include="DataRepository\AddressRepository\DbPostalCodeLookup.cs" />
     <Compile Include="DataRepository\AddressRepository\DbStateProvinceGet.cs" />
     <Compile Include="DataRepository\AdministrationRepository\DbFacilityStaffSave.cs" />
-    <Compile Include="DataRepository\AdministrationRepository\DbBudgetCategoryGet.cs" />
-    <Compile Include="DataRepository\AdministrationRepository\DbGiftCardGet.cs" />
     <Compile Include="DataRepository\AdministrationRepository\DbBudgetCategorySave.cs" />
     <Compile Include="DataRepository\AdministrationRepository\DbStudyDesignSave.cs" />
-    <Compile Include="DataRepository\AdministrationRepository\DbStudyDesignGet.cs" />
     <Compile Include="DataRepository\AdministrationRepository\DbHearAboutUsSave.cs" />
     <Compile Include="DataRepository\AdministrationRepository\DbGiftCardSave.cs" />
-    <Compile Include="DataRepository\AdministrationRepository\DbHearAboutUsGet.cs" />
-    <Compile Include="DataRepository\AdministrationRepository\DbProductGroupGet.cs" />
     <Compile Include="DataRepository\AdministrationRepository\DbProductGroupSave.cs" />
     <Compile Include="DataRepository\AdministrationRepository\DbProgramOptionGet.cs" />
     <Compile Include="DataRepository\AdministrationRepository\DbUserRoleGet.cs" />
@@ -173,9 +168,9 @@
     <Compile Include="ViewModels\Shared\PhoneViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClaudeCommon\ClaudeCommon.csproj">
+    <ProjectReference Include="..\ClaudeCommon\CommonData.csproj">
       <Project>{fb0dec60-3ba3-4bd7-a268-5a78ab280f3a}</Project>
-      <Name>ClaudeCommon</Name>
+      <Name>CommonData</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

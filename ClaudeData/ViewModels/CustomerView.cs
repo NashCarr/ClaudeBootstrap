@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using ClaudeCommon.Models.Customer;
+using CommonData.Models.Customer;
 
-namespace ClaudeData.ViewModels
+namespace DataManagement.ViewModels
 {
     public class CustomerView : PlaceView
     {

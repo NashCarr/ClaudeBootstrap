@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using ClaudeCommon.Models.Places;
-using static ClaudeCommon.Enums.PlaceEnums;
+using CommonData.Enums;
+using CommonData.Models.Places;
 
-namespace ClaudeData.DataRepository.PlacesRepository
+namespace DataManagement.DataRepository.PlacesRepository
 {
     public class DbPlacesGetActive : DbPlacesGet
     {
-        public List<PlaceList> GetActive(PlaceType pt)
+        public List<PlaceList> GetActive(PlaceEnums.PlaceType pt)
         {
             try
             {

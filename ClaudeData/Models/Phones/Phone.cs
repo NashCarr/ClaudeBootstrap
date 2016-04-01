@@ -1,8 +1,7 @@
-﻿using ClaudeData.BaseModels;
-using static ClaudeCommon.Enums.CountryEnums;
-using static ClaudeCommon.Enums.PhoneEnums;
+﻿using CommonData.Enums;
+using DataManagement.BaseModels;
 
-namespace ClaudeData.Models.Phones
+namespace DataManagement.Models.Phones
 {
     public abstract class Phone : ModelBase
     {
@@ -10,13 +9,13 @@ namespace ClaudeData.Models.Phones
         {
             PhoneId = 0;
             PhoneNumber = 0;
-            PhoneType = PhoneType.None;
-            Country = Country.UnitedStates;
+            PhoneType = PhoneEnums.PhoneType.None;
+            Country = CountryEnums.Country.UnitedStates;
         }
 
         public int PhoneId { get; set; }
-        public Country Country { get; set; }
+        public CountryEnums.Country Country { get; set; }
         public long PhoneNumber { get; set; }
-        public PhoneType PhoneType { get; set; }
+        public PhoneEnums.PhoneType PhoneType { get; set; }
     }
 }

@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
-using ClaudeCommon.BaseModels;
-using ClaudeCommon.BaseModels.Returns;
-using ClaudeData.DataRepository.PlaceRepository;
-using ClaudeData.DataRepository.ReorderRepository;
-using ClaudeData.ViewModels;
+using CommonData.BaseModels;
+using CommonData.BaseModels.Returns;
+using DataManagement.DataRepository.PlaceRepository;
+using DataManagement.DataRepository.ReorderRepository;
+using DataManagement.ViewModels;
 
-namespace ClaudeViewManagement.Managers.Places
+namespace ViewManagement.Managers.Places
 {
     public class OrganizationManager : IDisposable
     {

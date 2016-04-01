@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Data;
-using ClaudeCommon.Helpers;
-using ClaudeData.Models.Addresses;
-using static ClaudeCommon.Enums.AddressEnums;
-using static ClaudeCommon.Enums.CountryEnums;
+using CommonData.Enums;
+using CommonData.Helpers;
+using DataManagement.Models.Addresses;
 
-namespace ClaudeData.DataRepository.AddressRepository
+namespace DataManagement.DataRepository.AddressRepository
 {
     public class DbAddressAssociationSave : DbSaveBase
     {
@@ -42,7 +41,7 @@ namespace ClaudeData.DataRepository.AddressRepository
                 CmdSql.Parameters.Add("@AddressAssociationId", SqlDbType.Int).Value = data.AddressAssociationId;
                 CmdSql.Parameters.Add("@AddressId", SqlDbType.Int).Value = data.AddressId;
                 CmdSql.Parameters.Add("@AddressType", SqlDbType.TinyInt).Value =
-                    EnumHelpers.GetByteFromEnum<AddressType>(data.AddressType.ToString());
+                    EnumHelpers.GetByteFromEnum<AddressEnums.AddressType>(data.AddressType.ToString());
                 CmdSql.Parameters.Add("@Address1", SqlDbType.NVarChar, 40).Value = data.Address1?.Trim() ?? string.Empty;
                 CmdSql.Parameters.Add("@Address2", SqlDbType.NVarChar, 40).Value = data.Address2?.Trim() ?? string.Empty;
                 CmdSql.Parameters.Add(CreateDecimalParameter("@AddressLatitude", data.AddressCoordinates.Latitude, 10, 4));
@@ -53,7 +52,7 @@ namespace ClaudeData.DataRepository.AddressRepository
                 CmdSql.Parameters.Add("@City", SqlDbType.NVarChar, 20).Value = data.City?.Trim() ?? string.Empty;
                 CmdSql.Parameters.Add("@StateProvinceId", SqlDbType.Int).Value = data.StateProvinceId;
                 CmdSql.Parameters.Add("@Country", SqlDbType.SmallInt).Value =
-                    EnumHelpers.GetShortFromEnum<Country>(data.Country.ToString());
+                    EnumHelpers.GetShortFromEnum<CountryEnums.Country>(data.Country.ToString());
                 CmdSql.Parameters.Add(CreateDecimalParameter("@PostalLatitude", data.PostalCoordinates.Latitude, 10, 4));
                 CmdSql.Parameters.Add(CreateDecimalParameter("@PostalLongitude", data.PostalCoordinates.Longitude, 10, 4));
                 CmdSql.Parameters.Add("@IsActive", SqlDbType.Bit).Value = data.IsActive;

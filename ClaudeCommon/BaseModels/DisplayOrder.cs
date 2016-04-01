@@ -1,4 +1,4 @@
-namespace ClaudeCommon.BaseModels
+namespace CommonData.BaseModels
 {
     public class DisplayReorder
     {

@@ -1,4 +1,4 @@
-﻿namespace ClaudeCommon.Models.SiteConfiguration
+﻿namespace CommonData.Models.SiteConfiguration
 {
     public class StudyDefinition
     {

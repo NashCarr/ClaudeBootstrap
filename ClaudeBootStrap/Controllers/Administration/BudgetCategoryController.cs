@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using ClaudeCommon.BaseModels;
-using ClaudeCommon.Models.Administration;
-using ClaudeViewManagement.Managers.Administration;
-using ClaudeViewManagement.ViewModels.Administration;
+using CommonData.BaseModels;
+using ViewData.Administration;
+using ViewManagement.Managers.Administration;
 
 namespace ClaudeBootstrap.Controllers.Administration
 {
@@ -18,7 +17,7 @@ namespace ClaudeBootstrap.Controllers.Administration
         }
 
         [HttpPost]
-        public JsonResult Save(BudgetCategory entity)
+        public JsonResult Save(CommonData.Models.Administration.BudgetCategory entity)
         {
             using (BudgetCategoryManager mgr = new BudgetCategoryManager())
             {

@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using ClaudeData.Models.Addresses;
-using ClaudeData.Models.People;
-using ClaudeData.Models.Phones;
-using static ClaudeCommon.Enums.AddressEnums;
-using static ClaudeCommon.Enums.PersonEnums;
-using static ClaudeCommon.Enums.PhoneEnums;
+using CommonData.Enums;
+using DataManagement.Models.Addresses;
+using DataManagement.Models.People;
+using DataManagement.Models.Phones;
 
-namespace ClaudeData.DataRepository.PersonRepository
+namespace DataManagement.DataRepository.PersonRepository
 {
     public class DbPersonDataStub : IDisposable
     {
@@ -17,7 +15,7 @@ namespace ClaudeData.DataRepository.PersonRepository
             GC.SuppressFinalize(this);
         }
 
-        protected internal PersonData Prefill(PersonType personType, PersonData data)
+        protected internal PersonData Prefill(PersonEnums.PersonType personType, PersonData data)
         {
             try
             {
@@ -36,13 +34,13 @@ namespace ClaudeData.DataRepository.PersonRepository
 
                 if (data.AddressData.PhysicalAddress == null)
                 {
-                    AddressAssociation a = new AddressAssociation {AddressType = AddressType.Physical};
+                    AddressAssociation a = new AddressAssociation {AddressType = AddressEnums.AddressType.Physical};
                     data.AddressData.Addresses.Add(a);
                 }
 
                 if (data.AddressData.MailingAddress == null)
                 {
-                    AddressAssociation a = new AddressAssociation {AddressType = AddressType.Mailing};
+                    AddressAssociation a = new AddressAssociation {AddressType = AddressEnums.AddressType.Mailing};
                     data.AddressData.Addresses.Add(a);
                 }
 
@@ -53,25 +51,25 @@ namespace ClaudeData.DataRepository.PersonRepository
 
                 if (data.PhoneData.HomePhone == null)
                 {
-                    PhoneAssociation p = new PhoneAssociation {PhoneType = PhoneType.Home};
+                    PhoneAssociation p = new PhoneAssociation {PhoneType = PhoneEnums.PhoneType.Home};
                     data.PhoneData.Phones.Add(p);
                 }
 
                 if (data.PhoneData.CellPhone == null)
                 {
-                    PhoneAssociation p = new PhoneAssociation {PhoneType = PhoneType.Cell};
+                    PhoneAssociation p = new PhoneAssociation {PhoneType = PhoneEnums.PhoneType.Cell};
                     data.PhoneData.Phones.Add(p);
                 }
 
                 if (data.PhoneData.WorkPhone == null)
                 {
-                    PhoneAssociation p = new PhoneAssociation {PhoneType = PhoneType.Work};
+                    PhoneAssociation p = new PhoneAssociation {PhoneType = PhoneEnums.PhoneType.Work};
                     data.PhoneData.Phones.Add(p);
                 }
 
                 if (data.PhoneData.FaxPhone == null)
                 {
-                    PhoneAssociation p = new PhoneAssociation {PhoneType = PhoneType.Fax};
+                    PhoneAssociation p = new PhoneAssociation {PhoneType = PhoneEnums.PhoneType.Fax};
                     data.PhoneData.Phones.Add(p);
                 }
             }

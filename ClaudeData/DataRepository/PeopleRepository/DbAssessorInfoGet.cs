@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using ClaudeCommon.Enums;
-using ClaudeData.DataRepository.PersonRepository;
-using ClaudeData.Models.Lists.Settings;
-using ClaudeData.Models.People;
-using ClaudeData.ViewModels;
+using CommonData.Enums;
+using DataManagement.DataRepository.PersonRepository;
+using DataManagement.Models.Lists.Settings;
+using DataManagement.Models.People;
+using DataManagement.ViewModels;
 
-namespace ClaudeData.DataRepository.PeopleRepository
+namespace DataManagement.DataRepository.PeopleRepository
 {
     public class DbAssessorInfoGet : DbGetBase
     {

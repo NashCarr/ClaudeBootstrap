@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using ClaudeCommon.Helpers;
-using static ClaudeCommon.Enums.StudyEnums;
+using CommonData.Enums;
+using CommonData.Helpers;
 
-namespace ClaudeData.Models.LookupLists
+namespace DataManagement.Models.LookupLists
 {
     public class CompensationTypeLookupList : IDisposable
     {
@@ -13,11 +13,11 @@ namespace ClaudeData.Models.LookupLists
         {
             LookupList =
                 new List<SelectListItem>(
-                    EnumHelpers.SelectListFor<CompensationType>()
-                        .Where(e => e.Value != CompensationType.None.ToString()));
+                    EnumHelpers.SelectListFor<StudyEnums.CompensationType>()
+                        .Where(e => e.Value != StudyEnums.CompensationType.None.ToString()));
             foreach (SelectListItem item in LookupList)
             {
-                item.Value = EnumHelpers.GetByteFromEnum<CompensationType>(item.Value).ToString();
+                item.Value = EnumHelpers.GetByteFromEnum<StudyEnums.CompensationType>(item.Value).ToString();
             }
         }
 

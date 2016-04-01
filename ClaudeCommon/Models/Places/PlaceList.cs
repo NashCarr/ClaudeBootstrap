@@ -1,6 +1,6 @@
-﻿using ClaudeCommon.Enums;
+﻿using CommonData.Enums;
 
-namespace ClaudeCommon.Models.Places
+namespace CommonData.Models.Places
 {
     public class PlaceList
     {

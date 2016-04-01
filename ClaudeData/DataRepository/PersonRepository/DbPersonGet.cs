@@ -1,26 +1,26 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using ClaudeData.Models.People;
-using static ClaudeCommon.Enums.PersonEnums;
+using CommonData.Enums;
+using DataManagement.Models.People;
 
-namespace ClaudeData.DataRepository.PersonRepository
+namespace DataManagement.DataRepository.PersonRepository
 {
     public class DbPersonGet : DbGetBase
     {
         protected internal Person GetAssessor(int personId)
         {
-            return LoadRecord(personId, (byte) PersonType.Assessor);
+            return LoadRecord(personId, (byte) PersonEnums.PersonType.Assessor);
         }
 
         protected internal Person GetCustomerContact(int personId)
         {
-            return LoadRecord(personId, (byte) PersonType.CustomerContact);
+            return LoadRecord(personId, (byte) PersonEnums.PersonType.CustomerContact);
         }
 
         protected internal Person GetStaffMember(int personId)
         {
-            return LoadRecord(personId, (byte) PersonType.StaffMember);
+            return LoadRecord(personId, (byte) PersonEnums.PersonType.StaffMember);
         }
 
         private Person LoadRecord(int personId, byte personType)
@@ -74,7 +74,7 @@ namespace ClaudeData.DataRepository.PersonRepository
                     }
                     ConnSql.Close();
                 }
-                data.PersonType = (PersonType) personType;
+                data.PersonType = (PersonEnums.PersonType) personType;
             }
             catch (Exception ex)
             {

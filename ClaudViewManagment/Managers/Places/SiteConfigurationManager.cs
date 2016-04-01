@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
-using ClaudeCommon.Models.SiteConfiguration;
-using ClaudeData.DataRepository.SiteConfiguration;
-using ClaudeData.Models.LookupLists;
+using CommonData.Models.SiteConfiguration;
+using DataManagement.DataRepository.SiteConfiguration;
+using DataManagement.Models.LookupLists;
 
-namespace ClaudeViewManagement.Managers.Places
+namespace ViewManagement.Managers.Places
 {
     public class SiteConfigurationManager : IDisposable
     {

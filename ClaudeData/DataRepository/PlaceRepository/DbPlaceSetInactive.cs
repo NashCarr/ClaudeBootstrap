@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Data;
-using ClaudeCommon.BaseModels.Returns;
+using CommonData.BaseModels.Returns;
 
-namespace ClaudeData.DataRepository.PlaceRepository
+namespace DataManagement.DataRepository.PlaceRepository
 {
     public class DbPlaceSetInactive : DbSaveBase
     {

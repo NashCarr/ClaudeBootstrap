@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
-using ClaudeData.DataRepository.AdministrationRepository;
-using ClaudeData.Models.Administration;
-using ClaudeData.Models.LookupLists;
+using DataManagement.DataRepository.AdministrationRepository;
+using DataManagement.Models.Administration;
+using DataManagement.Models.LookupLists;
 
-namespace ClaudeData.DataRepository.LookupRepository
+namespace DataManagement.DataRepository.LookupRepository
 {
     public class DbProgramOptionLookup : IDisposable
     {

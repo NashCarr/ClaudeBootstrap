@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Web.Mvc;
-using ClaudeData.Models.LookupLists;
-using static ClaudeCommon.Enums.PlaceEnums;
+using CommonData.Enums;
+using DataManagement.Models.LookupLists;
 
-namespace ClaudeData.DataRepository.LookupRepository
+namespace DataManagement.DataRepository.LookupRepository
 {
     public class DbPlacesLookup : IDisposable
     {
@@ -15,12 +15,12 @@ namespace ClaudeData.DataRepository.LookupRepository
 
         public PlaceLookupList GetFacilityLookup()
         {
-            return GetLookUpList(PlaceType.Facility);
+            return GetLookUpList(PlaceEnums.PlaceType.Facility);
         }
 
         public PlaceLookupList GetCustomerLookup()
         {
-            return GetLookUpList(PlaceType.Customer);
+            return GetLookUpList(PlaceEnums.PlaceType.Customer);
         }
 
         //private static List<Place> GetOrganizations()
@@ -47,7 +47,7 @@ namespace ClaudeData.DataRepository.LookupRepository
         //    }
         //}
 
-        private static PlaceLookupList GetLookUpList(PlaceType placeType)
+        private static PlaceLookupList GetLookUpList(PlaceEnums.PlaceType placeType)
         {
             PlaceLookupList lu = new PlaceLookupList();
             lu.LookupList.Add(new SelectListItem {Value = "0", Text = "None"});
@@ -65,7 +65,7 @@ namespace ClaudeData.DataRepository.LookupRepository
                 //case PlaceType.Customer:
                 //    data = GetCustomers();
                 //    break;
-                case PlaceType.None:
+                case PlaceEnums.PlaceType.None:
                     return lu;
                 default:
                     return lu;

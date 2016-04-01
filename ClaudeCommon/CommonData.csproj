@@ -7,8 +7,8 @@
     <ProjectGuid>{FB0DEC60-3BA3-4BD7-A268-5A78AB280F3A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ClaudeCommon</RootNamespace>
-    <AssemblyName>ClaudeCommon</AssemblyName>
+    <RootNamespace>CommonData</RootNamespace>
+    <AssemblyName>CommonData</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

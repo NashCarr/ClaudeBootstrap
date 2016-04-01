@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Data;
-using ClaudeCommon.BaseModels;
+using CommonData.BaseModels;
 using Microsoft.SqlServer.Server;
 
-namespace ClaudeData.DataRepository.ReorderRepository
+namespace DataManagement.DataRepository.ReorderRepository
 {
     public abstract class DbReorder : DbSaveBase
     {

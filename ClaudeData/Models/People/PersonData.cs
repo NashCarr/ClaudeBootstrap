@@ -1,7 +1,7 @@
-﻿using ClaudeData.Models.Addresses;
-using ClaudeData.Models.Phones;
+﻿using DataManagement.Models.Addresses;
+using DataManagement.Models.Phones;
 
-namespace ClaudeData.Models.People
+namespace DataManagement.Models.People
 {
     public class PersonData
     {

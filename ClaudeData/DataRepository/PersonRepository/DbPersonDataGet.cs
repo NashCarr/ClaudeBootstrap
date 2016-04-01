@@ -2,35 +2,33 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using ClaudeCommon.Enums;
-using ClaudeData.Models.Addresses;
-using ClaudeData.Models.People;
-using ClaudeData.Models.Phones;
-using static ClaudeCommon.Enums.PersonEnums;
-using static ClaudeCommon.Enums.PhoneEnums;
+using CommonData.Enums;
+using DataManagement.Models.Addresses;
+using DataManagement.Models.People;
+using DataManagement.Models.Phones;
 
-namespace ClaudeData.DataRepository.PersonRepository
+namespace DataManagement.DataRepository.PersonRepository
 {
     public class DbPersonDataGet : DbGetBase
     {
         protected internal PersonData GetStaffMember(int personId)
         {
-            return LoadRecords(personId, (byte) PersonType.StaffMember);
+            return LoadRecords(personId, (byte) PersonEnums.PersonType.StaffMember);
         }
 
         protected internal PersonData GetAssessor(int personId)
         {
-            return LoadRecords(personId, (byte) PersonType.Assessor);
+            return LoadRecords(personId, (byte) PersonEnums.PersonType.Assessor);
         }
 
         protected internal PersonData GetCustomerContact(int personId)
         {
-            return LoadRecords(personId, (byte) PersonType.CustomerContact);
+            return LoadRecords(personId, (byte) PersonEnums.PersonType.CustomerContact);
         }
 
         protected internal PersonData GetOrganizationContact(int personId)
         {
-            return LoadRecords(personId, (byte) PersonType.OrganizationContact);
+            return LoadRecords(personId, (byte) PersonEnums.PersonType.OrganizationContact);
         }
 
         private PersonData LoadRecords(int personId, byte personType)
@@ -163,7 +161,7 @@ namespace ClaudeData.DataRepository.PersonRepository
                                     {
                                         Country = (CountryEnums.Country) Convert.ToInt16(dr[ordCountry]),
                                         PhoneId = Convert.ToInt32(dr[ordPhoneId]),
-                                        PhoneType = (PhoneType) Convert.ToInt16(dr[ordPhoneType]),
+                                        PhoneType = (PhoneEnums.PhoneType) Convert.ToInt16(dr[ordPhoneType]),
                                         IsActive = Convert.ToBoolean(dr[ordIsActive]),
                                         PhoneNumber = Convert.ToInt64(dr[ordPhoneNumber]),
                                         CreateDate = Convert.ToDateTime(dr[ordCreateDate]),
@@ -189,14 +187,14 @@ namespace ClaudeData.DataRepository.PersonRepository
                                     data.PhoneData.PhoneSettings.RecordId = Convert.ToInt32(dr[ordPhoneSettingId]);
                                     data.PhoneData.PhoneSettings.MobileCarrier = Convert.ToInt16(dr[ordMobileCarrierId]);
                                     data.PhoneData.PhoneSettings.PrimaryPhoneType =
-                                        (PhoneType) Convert.ToInt16(dr[ordPrimaryPhoneType]);
+                                        (PhoneEnums.PhoneType) Convert.ToInt16(dr[ordPrimaryPhoneType]);
                                 }
                             }
                         }
                     }
                     ConnSql.Close();
                 }
-                data.Person.PersonType = (PersonType) personType;
+                data.Person.PersonType = (PersonEnums.PersonType) personType;
             }
             catch (Exception ex)
             {

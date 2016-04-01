@@ -1,12 +1,12 @@
 using System;
-using ClaudeCommon.BaseModels.Returns;
-using ClaudeData.DataRepository.PersonRepository;
-using ClaudeData.Models.Addresses;
-using ClaudeData.Models.People;
-using ClaudeData.Models.Phones;
-using ClaudeViewManagement.ViewModels.People;
+using CommonData.BaseModels.Returns;
+using DataManagement.DataRepository.PersonRepository;
+using DataManagement.Models.Addresses;
+using DataManagement.Models.People;
+using DataManagement.Models.Phones;
+using ViewManagement.ViewModels.People;
 
-namespace ClaudeViewManagement.Managers.People
+namespace ViewManagement.Managers.People
 {
     public class PersonSaveManager : IDisposable
     {

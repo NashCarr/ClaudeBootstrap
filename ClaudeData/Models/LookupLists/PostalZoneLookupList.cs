@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
 
-namespace ClaudeData.Models.LookupLists
+namespace DataManagement.Models.LookupLists
 {
     public class PostalZoneLookupList
     {

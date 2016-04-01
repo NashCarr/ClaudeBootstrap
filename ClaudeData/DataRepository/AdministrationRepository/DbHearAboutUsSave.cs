@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Data;
-using ClaudeCommon.BaseModels.Returns;
-using ClaudeCommon.Models.Administration;
+using CommonData.BaseModels.Returns;
+using CommonData.Models.Administration;
 
-namespace ClaudeData.DataRepository.AdministrationRepository
+namespace DataManagement.DataRepository.AdministrationRepository
 {
     public class DbHearAboutUsSave : DbSaveBase
     {

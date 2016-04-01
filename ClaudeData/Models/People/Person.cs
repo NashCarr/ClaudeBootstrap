@@ -1,10 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using ClaudeData.BaseModels;
-using static ClaudeCommon.Enums.CountryEnums;
-using static ClaudeCommon.Enums.PersonEnums;
-using static ClaudeCommon.Enums.TimeZoneEnums;
+using CommonData.Enums;
+using DataManagement.BaseModels;
 
-namespace ClaudeData.Models.People
+namespace DataManagement.Models.People
 {
     public class Person : ModelBase
     {
@@ -14,12 +12,12 @@ namespace ClaudeData.Models.People
             PersonId = 0;
             DisplayOrder = 0;
             Email = string.Empty;
-            Country = Country.None;
+            Country = CountryEnums.Country.None;
             LastName = string.Empty;
             FirstName = string.Empty;
             MiddleName = string.Empty;
-            PersonType = PersonType.None;
-            TimeZone = ClaudeTimeZone.None;
+            PersonType = PersonEnums.PersonType.None;
+            TimeZone = TimeZoneEnums.ClaudeTimeZone.None;
         }
 
         public int PlaceId { get; set; }
@@ -29,12 +27,12 @@ namespace ClaudeData.Models.People
         public short DisplayOrder { get; set; }
 
         public string Email { get; set; }
-        public Country Country { get; set; }
+        public CountryEnums.Country Country { get; set; }
         public string LastName { get; set; }
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
-        public PersonType PersonType { get; set; }
-        public ClaudeTimeZone TimeZone { get; set; }
+        public PersonEnums.PersonType PersonType { get; set; }
+        public TimeZoneEnums.ClaudeTimeZone TimeZone { get; set; }
 
         public string FullName => ((FirstName + ' ' + MiddleName).Trim() + ' ' + LastName).Trim();
     }

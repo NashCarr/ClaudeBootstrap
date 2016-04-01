@@ -1,4 +1,4 @@
-﻿namespace ClaudeData.ViewModels.Assessor
+﻿namespace DataManagement.ViewModels.Assessor
 {
     public class TrainedPanelAssessor
     {

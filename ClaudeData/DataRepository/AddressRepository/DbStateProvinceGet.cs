@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using ClaudeData.Models.Addresses;
-using static ClaudeCommon.Enums.CountryEnums;
+using CommonData.Enums;
+using DataManagement.Models.Addresses;
 
-namespace ClaudeData.DataRepository.AddressRepository
+namespace DataManagement.DataRepository.AddressRepository
 {
     public class DbStateProvinceGet : DbGatewayGet
     {
-        public List<StateProvince> GetActiveRecords(Country id)
+        public List<StateProvince> GetActiveRecords(CountryEnums.Country id)
         {
             SetConnectToDatabase("[Address].[usp_StateProvince_GetActive]");
             CmdSql.Parameters.Add("@CountryId", SqlDbType.Int).Value = (int) id;
@@ -44,7 +44,7 @@ namespace ClaudeData.DataRepository.AddressRepository
                                 StateProvince item = new StateProvince
                                 {
                                     StateProvinceId = Convert.ToInt16(dr[ordStateProvinceId]),
-                                    Country = (Country) Convert.ToInt16(dr[ordCountryId]),
+                                    Country = (CountryEnums.Country) Convert.ToInt16(dr[ordCountryId]),
                                     Abbreviation = Convert.ToString(dr[ordAbbreviation]),
                                     Name = Convert.ToString(dr[ordName])
                                 };

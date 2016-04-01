@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ClaudeCommon.BaseModels.Returns
+namespace CommonData.BaseModels.Returns
 {
     public class ReturnBase
     {

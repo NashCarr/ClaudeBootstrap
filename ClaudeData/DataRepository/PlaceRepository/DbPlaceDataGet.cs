@@ -2,36 +2,32 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using ClaudeCommon.Models.People;
-using ClaudeData.Models.Addresses;
-using ClaudeData.Models.Phones;
-using ClaudeData.Models.Places;
-using static ClaudeCommon.Enums.AddressEnums;
-using static ClaudeCommon.Enums.CountryEnums;
-using static ClaudeCommon.Enums.PhoneEnums;
-using static ClaudeCommon.Enums.PlaceEnums;
-using static ClaudeCommon.Enums.TimeZoneEnums;
+using CommonData.Enums;
+using CommonData.Models.People;
+using DataManagement.Models.Addresses;
+using DataManagement.Models.Phones;
+using DataManagement.Models.Places;
 
-namespace ClaudeData.DataRepository.PlaceRepository
+namespace DataManagement.DataRepository.PlaceRepository
 {
     public class DbPlaceDataGet : DbGetBase
     {
         protected internal PlaceData GetFacilityData(int placeId)
         {
-            return LoadRecords(placeId, PlaceType.Facility);
+            return LoadRecords(placeId, PlaceEnums.PlaceType.Facility);
         }
 
         protected internal PlaceData GetCustomerData(int placeId)
         {
-            return LoadRecords(placeId, PlaceType.Customer);
+            return LoadRecords(placeId, PlaceEnums.PlaceType.Customer);
         }
 
         protected internal PlaceData GetOrganizationData(int placeId)
         {
-            return LoadRecords(placeId, PlaceType.Organization);
+            return LoadRecords(placeId, PlaceEnums.PlaceType.Organization);
         }
 
-        private PlaceData LoadRecords(int placeId, PlaceType placeType)
+        private PlaceData LoadRecords(int placeId, PlaceEnums.PlaceType placeType)
         {
             PlaceData data = new PlaceData();
             try
@@ -83,8 +79,8 @@ namespace ClaudeData.DataRepository.PlaceRepository
                                 data.Place.IsActive = Convert.ToBoolean(dr[ordIsActive]);
                                 data.Place.CreateDate = Convert.ToDateTime(dr[ordCreateDate]);
                                 data.Place.DisplayOrder = Convert.ToByte(dr[ordDisplayOrder]);
-                                data.Place.Country = (Country) Convert.ToInt16(dr[ordCountry]);
-                                data.Place.TimeZone = (ClaudeTimeZone) Convert.ToByte(dr[ordTimeZone]);
+                                data.Place.Country = (CountryEnums.Country) Convert.ToInt16(dr[ordCountry]);
+                                data.Place.TimeZone = (TimeZoneEnums.ClaudeTimeZone) Convert.ToByte(dr[ordTimeZone]);
                             }
 
                             //Addresses
@@ -120,10 +116,10 @@ namespace ClaudeData.DataRepository.PlaceRepository
                                     {
                                         AddressAssociationId = Convert.ToInt32(dr[ordAddressAssociationId]),
                                         AddressId = Convert.ToInt32(dr[ordAddressId]),
-                                        AddressType = (AddressType) Convert.ToInt16(dr[ordAddressType]),
+                                        AddressType = (AddressEnums.AddressType) Convert.ToInt16(dr[ordAddressType]),
                                         PostalCodeId = Convert.ToInt32(dr[ordPostalCodeId]),
                                         City = Convert.ToString(dr[ordCity]),
-                                        Country = (Country) Convert.ToInt16(dr[ordCountry]),
+                                        Country = (CountryEnums.Country) Convert.ToInt16(dr[ordCountry]),
                                         ZipCode = Convert.ToString(dr[ordZipCode]),
                                         Address1 = Convert.ToString(dr[ordAddress1]),
                                         Address2 = Convert.ToString(dr[ordAddress2]),
@@ -167,8 +163,8 @@ namespace ClaudeData.DataRepository.PlaceRepository
                                         IsActive = Convert.ToBoolean(dr[ordIsActive]),
                                         PhoneNumber = Convert.ToInt64(dr[ordPhoneNumber]),
                                         CreateDate = Convert.ToDateTime(dr[ordCreateDate]),
-                                        Country = (Country) Convert.ToInt16(dr[ordCountry]),
-                                        PhoneType = (PhoneType) Convert.ToInt16(dr[ordPhoneType]),
+                                        Country = (CountryEnums.Country) Convert.ToInt16(dr[ordCountry]),
+                                        PhoneType = (PhoneEnums.PhoneType) Convert.ToInt16(dr[ordPhoneType]),
                                         PhoneAssociationId = Convert.ToInt32(dr[ordPhoneAssociationId])
                                     };
                                     data.PhoneData.Phones.Add(item);
@@ -191,7 +187,7 @@ namespace ClaudeData.DataRepository.PlaceRepository
                                     data.PhoneData.PhoneSettings.RecordId = Convert.ToInt32(dr[ordPhoneSettingId]);
                                     data.PhoneData.PhoneSettings.MobileCarrier = Convert.ToInt16(dr[ordMobileCarrierId]);
                                     data.PhoneData.PhoneSettings.PrimaryPhoneType =
-                                        (PhoneType) Convert.ToInt16(dr[ordPrimaryPhoneType]);
+                                        (PhoneEnums.PhoneType) Convert.ToInt16(dr[ordPrimaryPhoneType]);
                                 }
                             }
 

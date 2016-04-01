@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using ClaudeCommon.BaseModels;
-using ClaudeCommon.Models.Assessor;
-using ClaudeViewManagement.Managers.Assessor;
-using ClaudeViewManagement.ViewModels.Assessor;
+using CommonData.BaseModels;
+using CommonData.Models.Assessor;
+using ViewManagement.Managers.Assessor;
+using ViewManagement.ViewModels.Assessor;
 
 namespace ClaudeBootstrap.Controllers.Assessor
 {

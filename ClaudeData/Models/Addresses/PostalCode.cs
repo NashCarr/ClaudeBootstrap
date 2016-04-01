@@ -1,7 +1,7 @@
-﻿using ClaudeData.BaseModels;
-using static ClaudeCommon.Enums.CountryEnums;
+﻿using CommonData.Enums;
+using DataManagement.BaseModels;
 
-namespace ClaudeData.Models.Addresses
+namespace DataManagement.Models.Addresses
 {
     public abstract class PostalCode : ModelBase
     {
@@ -11,13 +11,13 @@ namespace ClaudeData.Models.Addresses
             StateProvinceId = 0;
             City = string.Empty;
             ZipCode = string.Empty;
-            Country = Country.UnitedStates;
+            Country = CountryEnums.Country.UnitedStates;
             PostalCoordinates = new Coordinates();
         }
 
         public string City { get; set; }
         public string ZipCode { get; set; }
-        public Country Country { get; set; }
+        public CountryEnums.Country Country { get; set; }
         public int PostalCodeId { get; set; }
         public int StateProvinceId { get; set; }
         public Coordinates PostalCoordinates { get; set; }

@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using ClaudeCommon.BaseModels;
-using ClaudeCommon.Models.Administration;
-using ClaudeViewManagement.Managers.Administration;
-using ClaudeViewManagement.ViewModels.Administration;
+using CommonData.BaseModels;
+using CommonData.Models.Administration;
+using ViewData.Administration;
+using ViewManagement.Managers.Administration;
 
 namespace ClaudeBootstrap.Controllers.Administration
 {

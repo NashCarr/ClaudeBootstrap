@@ -1,4 +1,4 @@
-﻿namespace ClaudeCommon.Enums
+﻿namespace CommonData.Enums
 {
     public class AddressEnums
     {

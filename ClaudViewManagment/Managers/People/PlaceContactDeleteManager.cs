@@ -1,7 +1,7 @@
 using System;
-using ClaudeData.DataRepository.PersonRepository;
+using DataManagement.DataRepository.PersonRepository;
 
-namespace ClaudeViewManagement.Managers.People
+namespace ViewManagement.Managers.People
 {
     public class PlaceContactDeleteManager : IDisposable
     {

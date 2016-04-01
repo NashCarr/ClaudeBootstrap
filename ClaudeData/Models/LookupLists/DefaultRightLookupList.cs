@@ -1,18 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using ClaudeCommon.Helpers;
-using static ClaudeCommon.Enums.AdministrationEnums;
+using CommonData.Enums;
+using CommonData.Helpers;
 
-namespace ClaudeData.Models.LookupLists
+namespace DataManagement.Models.LookupLists
 {
     public class DefaultRightLookupList
     {
         public DefaultRightLookupList()
         {
-            LookupList = new List<SelectListItem>(EnumHelpers.SelectListFor<DefaultRight>());
+            LookupList = new List<SelectListItem>(EnumHelpers.SelectListFor<AdministrationEnums.DefaultRight>());
             foreach (SelectListItem item in LookupList)
             {
-                item.Value = EnumHelpers.GetByteFromEnum<DefaultRight>(item.Value).ToString();
+                item.Value = EnumHelpers.GetByteFromEnum<AdministrationEnums.DefaultRight>(item.Value).ToString();
             }
         }
 

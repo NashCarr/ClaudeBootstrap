@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using ClaudeCommon.Models.Places;
-using ClaudeData.DataRepository.PlacesRepository;
-using static ClaudeCommon.Enums.PlaceEnums;
+using CommonData.Enums;
+using CommonData.Models.Places;
+using DataManagement.DataRepository.PlacesRepository;
 
-namespace ClaudeViewManagement.Managers.Places
+namespace ViewManagement.Managers.Places
 {
     public class PlaceListManager : IDisposable
     {
@@ -18,7 +18,7 @@ namespace ClaudeViewManagement.Managers.Places
         {
         }
 
-        public List<PlaceList> GetList(PlaceType pt)
+        public List<PlaceList> GetList(PlaceEnums.PlaceType pt)
         {
             using (DbPlacesGetActive data = new DbPlacesGetActive())
             {

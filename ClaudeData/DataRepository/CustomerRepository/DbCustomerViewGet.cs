@@ -1,9 +1,9 @@
-﻿using ClaudeData.DataRepository.PlaceRepository;
-using ClaudeData.Models.Places;
-using ClaudeData.ViewModels;
-using static ClaudeCommon.Enums.PlaceEnums;
+﻿using CommonData.Enums;
+using DataManagement.DataRepository.PlaceRepository;
+using DataManagement.Models.Places;
+using DataManagement.ViewModels;
 
-namespace ClaudeData.DataRepository.CustomerRepository
+namespace DataManagement.DataRepository.CustomerRepository
 {
     public class DbCustomerViewGet : DbGetBase
     {
@@ -23,7 +23,7 @@ namespace ClaudeData.DataRepository.CustomerRepository
 
             using (DbPlaceDataStub a = new DbPlaceDataStub())
             {
-                data = a.Prefill(PlaceType.Customer, data);
+                data = a.Prefill(PlaceEnums.PlaceType.Customer, data);
             }
 
             CustomerView m = new CustomerView

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ClaudeData.BaseModels
+namespace DataManagement.BaseModels
 {
     public abstract class AdminBase : ModelBase
     {

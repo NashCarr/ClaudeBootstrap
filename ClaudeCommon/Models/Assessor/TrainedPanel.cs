@@ -1,6 +1,6 @@
-﻿using ClaudeCommon.BaseModels;
+﻿using CommonData.BaseModels;
 
-namespace ClaudeCommon.Models.Assessor
+namespace CommonData.Models.Assessor
 {
     public class TrainedPanel : AdministrationBase
     {

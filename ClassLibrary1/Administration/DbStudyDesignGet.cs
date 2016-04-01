@@ -1,22 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using ClaudeCommon.Models.Administration;
+using CommonData.Models.Administration;
 
-namespace ClaudeData.DataRepository.AdministrationRepository
+namespace DataRetrieval.Administration
 {
-    public class DbBudgetCategoryGet : DbGetBase
+    public class DbStudyDesignGet : DbGetBase
     {
-        public List<BudgetCategory> GetViewModel()
+        public List<StudyDesign> GetViewModel()
         {
-            SetConnectToDatabase("[BudgetCategory].[usp_GetActive]");
+            SetConnectToDatabase("[StudyDesign].[usp_GetActive]");
 
             return LoadRecords();
         }
 
-        private List<BudgetCategory> LoadRecords()
+        private List<StudyDesign> LoadRecords()
         {
-            List<BudgetCategory> data = new List<BudgetCategory>();
+            List<StudyDesign> data = new List<StudyDesign>();
             try
             {
                 using (ConnSql)
@@ -32,20 +32,26 @@ namespace ClaudeData.DataRepository.AdministrationRepository
                             }
 
                             int ordName = dr.GetOrdinal("Name");
+                            int ordRadius = dr.GetOrdinal("Radius");
+                            int ordIsSystem = dr.GetOrdinal("IsSystem");
                             int ordLastUpdate = dr.GetOrdinal("LastUpdate");
                             int ordDisplayOrder = dr.GetOrdinal("DisplayOrder");
-                            int ordBudgetCategoryId = dr.GetOrdinal("BudgetCategoryId");
+                            int ordStudyDesignId = dr.GetOrdinal("StudyDesignId");
 
                             while (dr.Read())
                             {
-                                BudgetCategory item = new BudgetCategory
+                                StudyDesign item = new StudyDesign
                                 {
                                     Name = Convert.ToString(dr[ordName]),
-                                    RecordId = Convert.ToInt32(dr[ordBudgetCategoryId]),
+                                    Radius = Convert.ToInt32(dr[ordRadius]),
+                                    IsSystem = Convert.ToBoolean(dr[ordIsSystem]),
+                                    IsSystemSort = Convert.ToString(dr[ordIsSystem]),
+                                    RecordId = Convert.ToInt32(dr[ordStudyDesignId]),
                                     DisplayOrder = Convert.ToInt16(dr[ordDisplayOrder]),
                                     StringLastUpdate =
                                         Convert.ToDateTime(dr[ordLastUpdate]).ToString("MM/dd/yyyy hh:mm:ss tt")
                                 };
+                                item.RadiusSort = item.Radius.ToString("D5");
                                 item.DisplaySort = item.DisplayOrder.ToString("D3");
                                 data.Add(item);
                             }

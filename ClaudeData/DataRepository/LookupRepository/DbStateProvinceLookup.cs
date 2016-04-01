@@ -1,16 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using System.Web.Mvc;
-using static ClaudeCommon.Enums.CountryEnums;
+using CommonData.Enums;
 
-namespace ClaudeData.DataRepository.LookupRepository
+namespace DataManagement.DataRepository.LookupRepository
 {
     public class DbStateProvinceLookup : DbGatewayLookup
     {
         public List<SelectListItem> GetLookup()
         {
             SetConnectToDatabase("[SelectList].[usp_StateProvince_NameLookup]");
-            CmdSql.Parameters.Add("@CountryId", SqlDbType.Int).Value = (int) Country.None;
+            CmdSql.Parameters.Add("@CountryId", SqlDbType.Int).Value = (int) CountryEnums.Country.None;
             return LoadLookup();
         }
     }

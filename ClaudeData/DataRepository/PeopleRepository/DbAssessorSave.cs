@@ -1,12 +1,12 @@
 ﻿using System;
-using ClaudeCommon.Enums;
-using ClaudeData.DataRepository.PersonRepository;
-using ClaudeData.Models.Addresses;
-using ClaudeData.Models.People;
-using ClaudeData.Models.Phones;
-using ClaudeData.ViewModels;
+using CommonData.Enums;
+using DataManagement.DataRepository.PersonRepository;
+using DataManagement.Models.Addresses;
+using DataManagement.Models.People;
+using DataManagement.Models.Phones;
+using DataManagement.ViewModels;
 
-namespace ClaudeData.DataRepository.PeopleRepository
+namespace DataManagement.DataRepository.PeopleRepository
 {
     public class DbAssessorSave : IDisposable
     {

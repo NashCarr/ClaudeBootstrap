@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
-using ClaudeCommon.BaseModels;
-using ClaudeCommon.BaseModels.Returns;
-using ClaudeCommon.Models.Customer;
-using ClaudeData.DataRepository.CustomerRepository;
-using ClaudeData.DataRepository.ReorderRepository;
+using CommonData.BaseModels;
+using CommonData.BaseModels.Returns;
+using CommonData.Models.Customer;
+using DataManagement.DataRepository.CustomerRepository;
+using DataManagement.DataRepository.ReorderRepository;
 
-namespace ClaudeViewManagement.Managers.Customer
+namespace ViewManagement.Managers.Customer
 {
     public class CustomerBrandManager : IDisposable
     {

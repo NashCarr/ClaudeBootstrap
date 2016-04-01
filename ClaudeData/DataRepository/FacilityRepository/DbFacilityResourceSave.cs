@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Data;
-using ClaudeCommon.BaseModels.Returns;
-using ClaudeCommon.Models.Facility;
+using CommonData.BaseModels.Returns;
+using CommonData.Models.Facility;
 
-namespace ClaudeData.DataRepository.FacilityRepository
+namespace DataManagement.DataRepository.FacilityRepository
 {
     public class DbFacilityResourceSave : DbSaveBase
     {

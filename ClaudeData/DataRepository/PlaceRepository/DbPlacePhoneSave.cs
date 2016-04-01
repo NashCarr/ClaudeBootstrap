@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using ClaudeData.DataRepository.PhoneRepository;
-using ClaudeData.Models.Phones;
-using ClaudeData.Models.Places;
-using static ClaudeCommon.Enums.PlaceEnums;
+using CommonData.Enums;
+using DataManagement.DataRepository.PhoneRepository;
+using DataManagement.Models.Phones;
+using DataManagement.Models.Places;
 
-namespace ClaudeData.DataRepository.PlaceRepository
+namespace DataManagement.DataRepository.PlaceRepository
 {
     public class DbPlacePhoneSave : IDisposable
     {
@@ -22,7 +22,7 @@ namespace ClaudeData.DataRepository.PlaceRepository
             if (data.PhoneNumber == 0) return "Phone Number Cannot Be Zero";
             using (DbPhoneAssociationSave db = new DbPhoneAssociationSave())
             {
-                return db.SavePlacePhone(placeId, (byte) PlaceType.Facility, data);
+                return db.SavePlacePhone(placeId, (byte) PlaceEnums.PlaceType.Facility, data);
             }
         }
 
@@ -32,7 +32,7 @@ namespace ClaudeData.DataRepository.PlaceRepository
             if (data.PhoneNumber == 0) return "Phone Number Cannot Be Zero";
             using (DbPhoneAssociationSave db = new DbPhoneAssociationSave())
             {
-                return db.SavePlacePhone(placeId, (byte) PlaceType.Customer, data);
+                return db.SavePlacePhone(placeId, (byte) PlaceEnums.PlaceType.Customer, data);
             }
         }
 
@@ -42,7 +42,7 @@ namespace ClaudeData.DataRepository.PlaceRepository
             if (data.PhoneNumber == 0) return "Phone Number Cannot Be Zero";
             using (DbPhoneAssociationSave db = new DbPhoneAssociationSave())
             {
-                return db.SavePlacePhone(placeId, (byte) PlaceType.Organization, data);
+                return db.SavePlacePhone(placeId, (byte) PlaceEnums.PlaceType.Organization, data);
             }
         }
 
@@ -90,13 +90,13 @@ namespace ClaudeData.DataRepository.PlaceRepository
             if (data.PhoneData == null) return string.Empty;
             switch (data.Place.PlaceType)
             {
-                case PlaceType.Facility:
+                case PlaceEnums.PlaceType.Facility:
                     return SaveFacilityPhones(data.Place.PlaceId, data.PhoneData.Phones);
-                case PlaceType.Customer:
+                case PlaceEnums.PlaceType.Customer:
                     return SaveCustomerPhones(data.Place.PlaceId, data.PhoneData.Phones);
-                case PlaceType.Organization:
+                case PlaceEnums.PlaceType.Organization:
                     return SaveOrganizationPhones(data.Place.PlaceId, data.PhoneData.Phones);
-                case PlaceType.None:
+                case PlaceEnums.PlaceType.None:
                     return "Place Type Undetermined";
                 default:
                     return "Place Type Undetermined";

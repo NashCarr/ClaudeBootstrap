@@ -1,6 +1,6 @@
-﻿using static ClaudeCommon.Enums.CountryEnums;
+﻿using CommonData.Enums;
 
-namespace ClaudeData.Models.Addresses
+namespace DataManagement.Models.Addresses
 {
     public class StateProvince
     {
@@ -8,12 +8,12 @@ namespace ClaudeData.Models.Addresses
         {
             Name = string.Empty;
             StateProvinceId = 0;
-            Country = Country.None;
+            Country = CountryEnums.Country.None;
             Abbreviation = string.Empty;
         }
 
         public string Name { get; set; }
-        public Country Country { get; set; }
+        public CountryEnums.Country Country { get; set; }
         public string Abbreviation { get; set; }
         public short StateProvinceId { get; set; }
     }

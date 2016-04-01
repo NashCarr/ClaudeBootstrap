@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using ClaudeData.DataRepository.PhoneRepository;
-using ClaudeData.Models.People;
-using ClaudeData.Models.Phones;
-using static ClaudeCommon.Enums.PersonEnums;
+using CommonData.Enums;
+using DataManagement.DataRepository.PhoneRepository;
+using DataManagement.Models.People;
+using DataManagement.Models.Phones;
 
-namespace ClaudeData.DataRepository.PersonRepository
+namespace DataManagement.DataRepository.PersonRepository
 {
     public class DbPersonPhoneSave : IDisposable
     {
@@ -19,7 +19,7 @@ namespace ClaudeData.DataRepository.PersonRepository
         {
             using (DbPhoneAssociationSave db = new DbPhoneAssociationSave())
             {
-                return db.SavePersonPhone(personId, (byte) PersonType.Assessor, data);
+                return db.SavePersonPhone(personId, (byte) PersonEnums.PersonType.Assessor, data);
             }
         }
 
@@ -27,7 +27,7 @@ namespace ClaudeData.DataRepository.PersonRepository
         {
             using (DbPhoneAssociationSave db = new DbPhoneAssociationSave())
             {
-                return db.SavePersonPhone(personId, (byte) PersonType.StaffMember, data);
+                return db.SavePersonPhone(personId, (byte) PersonEnums.PersonType.StaffMember, data);
             }
         }
 
@@ -35,7 +35,7 @@ namespace ClaudeData.DataRepository.PersonRepository
         {
             using (DbPhoneAssociationSave db = new DbPhoneAssociationSave())
             {
-                return db.SavePersonPhone(personId, (byte) PersonType.CustomerContact, data);
+                return db.SavePersonPhone(personId, (byte) PersonEnums.PersonType.CustomerContact, data);
             }
         }
 
@@ -43,7 +43,7 @@ namespace ClaudeData.DataRepository.PersonRepository
         {
             using (DbPhoneAssociationSave db = new DbPhoneAssociationSave())
             {
-                return db.SavePersonPhone(personId, (byte) PersonType.OrganizationContact, data);
+                return db.SavePersonPhone(personId, (byte) PersonEnums.PersonType.OrganizationContact, data);
             }
         }
 
@@ -99,13 +99,13 @@ namespace ClaudeData.DataRepository.PersonRepository
         {
             switch (data.Person.PersonType)
             {
-                case PersonType.Assessor:
+                case PersonEnums.PersonType.Assessor:
                     return SaveAssessorPhones(data.Person.PersonId, data.PhoneData.Phones);
-                case PersonType.StaffMember:
+                case PersonEnums.PersonType.StaffMember:
                     return SaveStaffMemberPhones(data.Person.PersonId, data.PhoneData.Phones);
-                case PersonType.CustomerContact:
+                case PersonEnums.PersonType.CustomerContact:
                     return SaveCustomerContactPhones(data.Person.PersonId, data.PhoneData.Phones);
-                case PersonType.OrganizationContact:
+                case PersonEnums.PersonType.OrganizationContact:
                     return SaveOrganizationContactPhones(data.Person.PersonId, data.PhoneData.Phones);
                 default:
                     return "Person Type Undetermined";

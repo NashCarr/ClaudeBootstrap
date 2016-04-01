@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Data;
-using ClaudeCommon.BaseModels.Returns;
-using ClaudeData.Models.Places;
-using static ClaudeCommon.Enums.PlaceEnums;
+using CommonData.BaseModels.Returns;
+using CommonData.Enums;
+using DataManagement.Models.Places;
 
-namespace ClaudeData.DataRepository.PlaceRepository
+namespace DataManagement.DataRepository.PlaceRepository
 {
     public class DbPlaceSave : DbSaveBase
     {
@@ -260,11 +260,11 @@ namespace ClaudeData.DataRepository.PlaceRepository
         {
             switch (data.Place.PlaceType)
             {
-                case PlaceType.Facility:
+                case PlaceEnums.PlaceType.Facility:
                     return SaveFacilityData(data, ref placeId);
-                case PlaceType.Customer:
+                case PlaceEnums.PlaceType.Customer:
                     return SaveCustomerData(data, ref placeId);
-                case PlaceType.Organization:
+                case PlaceEnums.PlaceType.Organization:
                     return SaveOrganizationData(data, ref placeId);
                 default:
                     return new ReturnBase {ErrMsg = "Place Type Undetermined"};

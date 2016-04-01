@@ -1,10 +1,10 @@
 ﻿using System;
-using ClaudeData.Models.Administration;
-using ClaudeData.Models.LookupLists;
-using ClaudeData.Models.People;
-using ClaudeData.ViewModels.Shared;
+using DataManagement.Models.Administration;
+using DataManagement.Models.LookupLists;
+using DataManagement.Models.People;
+using DataManagement.ViewModels.Shared;
 
-namespace ClaudeData.ViewModels
+namespace DataManagement.ViewModels
 {
     public class AssessorView : IDisposable
     {

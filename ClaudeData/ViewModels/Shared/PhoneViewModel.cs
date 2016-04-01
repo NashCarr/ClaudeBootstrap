@@ -1,7 +1,7 @@
 ﻿using System;
-using ClaudeData.Models.Phones;
+using DataManagement.Models.Phones;
 
-namespace ClaudeData.ViewModels.Shared
+namespace DataManagement.ViewModels.Shared
 {
     public class PhoneViewModel : IDisposable
     {

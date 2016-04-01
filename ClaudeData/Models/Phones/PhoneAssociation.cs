@@ -1,4 +1,4 @@
-﻿namespace ClaudeData.Models.Phones
+﻿namespace DataManagement.Models.Phones
 {
     public class PhoneAssociation : Phone
     {

@@ -1,14 +1,18 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClaudeCommon", "ClaudeCommon\ClaudeCommon.csproj", "{FB0DEC60-3BA3-4BD7-A268-5A78AB280F3A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonData", "ClaudeCommon\CommonData.csproj", "{FB0DEC60-3BA3-4BD7-A268-5A78AB280F3A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClaudeData", "ClaudeData\ClaudeData.csproj", "{0D5B2F72-AEDC-40A6-A308-8647854EA70E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataManagement", "ClaudeData\DataManagement.csproj", "{0D5B2F72-AEDC-40A6-A308-8647854EA70E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClaudeBootstrap", "ClaudeBootStrap\ClaudeBootstrap.csproj", "{F0788A53-E034-4037-84AF-FF1EB9FACCC2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClaudeViewManagement", "ClaudViewManagment\ClaudeViewManagement.csproj", "{AE8C6DB1-6E44-4FA9-B6DC-396F9C61E0F8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewManagement", "ClaudViewManagment\ViewManagement.csproj", "{AE8C6DB1-6E44-4FA9-B6DC-396F9C61E0F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewData", "ViewModels\ViewData.csproj", "{9F1858B5-9D5B-4870-A821-2CE80F5213A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataRetrieval", "ClassLibrary1\DataRetrieval.csproj", "{B5F991B7-C327-4DA7-A417-365D5C7B8DAB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,6 +36,14 @@ Global
 		{AE8C6DB1-6E44-4FA9-B6DC-396F9C61E0F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE8C6DB1-6E44-4FA9-B6DC-396F9C61E0F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE8C6DB1-6E44-4FA9-B6DC-396F9C61E0F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F1858B5-9D5B-4870-A821-2CE80F5213A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F1858B5-9D5B-4870-A821-2CE80F5213A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F1858B5-9D5B-4870-A821-2CE80F5213A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F1858B5-9D5B-4870-A821-2CE80F5213A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5F991B7-C327-4DA7-A417-365D5C7B8DAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5F991B7-C327-4DA7-A417-365D5C7B8DAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5F991B7-C327-4DA7-A417-365D5C7B8DAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5F991B7-C327-4DA7-A417-365D5C7B8DAB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

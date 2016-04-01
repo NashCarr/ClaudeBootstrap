@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
-using ClaudeData.DataRepository.AddressRepository;
-using ClaudeData.DataRepository.LookupRepository;
-using ClaudeData.Models.LookupLists;
+using DataManagement.DataRepository.AddressRepository;
+using DataManagement.DataRepository.LookupRepository;
+using DataManagement.Models.LookupLists;
 
-namespace ClaudeViewManagement.Managers.Shared
+namespace ViewManagement.Managers.Shared
 {
     public class LookupManager : IDisposable
     {

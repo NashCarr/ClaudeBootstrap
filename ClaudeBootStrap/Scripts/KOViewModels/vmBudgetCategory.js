@@ -248,7 +248,7 @@ BudgetCategoryViewModel = function(data) {
     self.ProcessSave = {
         ProcessAdd: function () {
             self.ReorderList.ReorderDragDrop();
-            self.itemlist.push(self.GiftCard.Build());
+            self.itemlist.push(self.BudgetCategory.Build());
         },
         ItemExists: function () {
             var match = ko.utils.arrayFirst(self.itemlist(), function (item) {
@@ -263,7 +263,7 @@ BudgetCategoryViewModel = function(data) {
             return match;
         },
         ProcessEdit: function () {
-            self.itemlist.replace(self.ProcessSave.ItemExists(), self.GiftCard.Build());
+            self.itemlist.replace(self.ProcessSave.ItemExists(), self.BudgetCategory.Build());
         },
         ValidateEdit: function () {
             if (self.editid() === self.recordid()) {

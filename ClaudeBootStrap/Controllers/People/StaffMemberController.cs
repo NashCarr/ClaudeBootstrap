@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using ClaudeCommon.BaseModels;
-using ClaudeViewManagement.Managers.People;
-using ClaudeViewManagement.ViewModels.People;
-using static ClaudeCommon.Enums.PersonEnums;
+using CommonData.BaseModels;
+using ViewManagement.Managers.People;
+using ViewManagement.ViewModels.People;
+using static CommonData.Enums.PersonEnums;
 
 namespace ClaudeBootstrap.Controllers.People
 {

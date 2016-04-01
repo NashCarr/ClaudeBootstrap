@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Data;
-using ClaudeCommon.BaseModels.Returns;
-using ClaudeCommon.Models.Customer;
+using CommonData.BaseModels.Returns;
+using CommonData.Models.Customer;
 
-namespace ClaudeData.DataRepository.CustomerRepository
+namespace DataManagement.DataRepository.CustomerRepository
 {
     public class DbCustomerBrandSave : DbSaveBase
     {

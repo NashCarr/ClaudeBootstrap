@@ -1,22 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using ClaudeCommon.Models.Administration;
+using CommonData.Models.Administration;
 
-namespace ClaudeData.DataRepository.AdministrationRepository
+namespace DataRetrieval.Administration
 {
-    public class DbHearAboutUsGet : DbGetBase
+    public class DbBudgetCategoryGet : DbGetBase
     {
-        public List<HearAboutUs> GetViewModel()
+        public List<BudgetCategory> GetViewModel()
         {
-            SetConnectToDatabase("[HearAboutUs].[usp_GetActive]");
+            SetConnectToDatabase("[BudgetCategory].[usp_GetActive]");
 
             return LoadRecords();
         }
 
-        private List<HearAboutUs> LoadRecords()
+        private List<BudgetCategory> LoadRecords()
         {
-            List<HearAboutUs> data = new List<HearAboutUs>();
+            List<BudgetCategory> data = new List<BudgetCategory>();
             try
             {
                 using (ConnSql)
@@ -32,22 +32,19 @@ namespace ClaudeData.DataRepository.AdministrationRepository
                             }
 
                             int ordName = dr.GetOrdinal("Name");
-                            int ordIsSystem = dr.GetOrdinal("IsSystem");
-                            int ordCreateDate = dr.GetOrdinal("CreateDate");
+                            int ordLastUpdate = dr.GetOrdinal("LastUpdate");
                             int ordDisplayOrder = dr.GetOrdinal("DisplayOrder");
-                            int ordHearAboutUsId = dr.GetOrdinal("HearAboutUsId");
+                            int ordBudgetCategoryId = dr.GetOrdinal("BudgetCategoryId");
 
                             while (dr.Read())
                             {
-                                HearAboutUs item = new HearAboutUs
+                                BudgetCategory item = new BudgetCategory
                                 {
                                     Name = Convert.ToString(dr[ordName]),
-                                    IsSystem = Convert.ToBoolean(dr[ordIsSystem]),
-                                    IsSystemSort = Convert.ToString(dr[ordIsSystem]),
-                                    RecordId = Convert.ToInt32(dr[ordHearAboutUsId]),
+                                    RecordId = Convert.ToInt32(dr[ordBudgetCategoryId]),
                                     DisplayOrder = Convert.ToInt16(dr[ordDisplayOrder]),
                                     StringLastUpdate =
-                                        Convert.ToDateTime(dr[ordCreateDate]).ToString("MM/dd/yyyy hh:mm:ss tt")
+                                        Convert.ToDateTime(dr[ordLastUpdate]).ToString("MM/dd/yyyy hh:mm:ss tt")
                                 };
                                 item.DisplaySort = item.DisplayOrder.ToString("D3");
                                 data.Add(item);

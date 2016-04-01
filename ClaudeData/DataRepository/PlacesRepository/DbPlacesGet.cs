@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using ClaudeCommon.Models.Places;
-using static ClaudeCommon.Enums.CountryEnums;
-using static ClaudeCommon.Enums.TimeZoneEnums;
+using CommonData.Enums;
+using CommonData.Models.Places;
 
-namespace ClaudeData.DataRepository.PlacesRepository
+namespace DataManagement.DataRepository.PlacesRepository
 {
     public class DbPlacesGet : DbGetBase
     {
@@ -45,12 +44,12 @@ namespace ClaudeData.DataRepository.PlacesRepository
                                     Division = Convert.ToString(dr[ordDivision]),
                                     Department = Convert.ToString(dr[ordDepartment]),
                                     DisplayOrder = Convert.ToInt16(dr[ordDisplayOrder]),
-                                    Country = (Country) Convert.ToInt16(dr[ordCountry]),
-                                    TimeZone = (ClaudeTimeZone) Convert.ToByte(dr[ordTimeZone])
+                                    Country = (CountryEnums.Country) Convert.ToInt16(dr[ordCountry]),
+                                    TimeZone = (TimeZoneEnums.ClaudeTimeZone) Convert.ToByte(dr[ordTimeZone])
                                 };
                                 item.DisplaySort = item.DisplayOrder.ToString("D3");
-                                item.CountryName = Enum.GetName(typeof (Country), item.Country);
-                                item.TimeZoneName = Enum.GetName(typeof (ClaudeTimeZone), item.TimeZone);
+                                item.CountryName = Enum.GetName(typeof (CountryEnums.Country), item.Country);
+                                item.TimeZoneName = Enum.GetName(typeof (TimeZoneEnums.ClaudeTimeZone), item.TimeZone);
                                 data.Add(item);
                             }
                         }

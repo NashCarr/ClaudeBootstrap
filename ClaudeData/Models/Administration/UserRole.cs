@@ -1,6 +1,6 @@
-﻿using ClaudeData.BaseModels;
+﻿using DataManagement.BaseModels;
 
-namespace ClaudeData.Models.Administration
+namespace DataManagement.Models.Administration
 {
     public class UserRole : AdminBase
     {

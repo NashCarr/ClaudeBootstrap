@@ -1,11 +1,11 @@
 ﻿using System;
-using ClaudeCommon.BaseModels.Returns;
+using CommonData.BaseModels.Returns;
 
-namespace ClaudeData.DataRepository.SiteConfiguration
+namespace DataManagement.DataRepository.SiteConfiguration
 {
     public class DbSiteConfigurationSave
     {
-        public ReturnBase SaveSiteConfiguration(ClaudeCommon.Models.SiteConfiguration.SiteConfiguration data)
+        public ReturnBase SaveSiteConfiguration(CommonData.Models.SiteConfiguration.SiteConfiguration data)
         {
             ReturnBase rb = new ReturnBase();
             try

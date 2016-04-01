@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using ClaudeData.Models.Administration;
+using DataManagement.Models.Administration;
 
-namespace ClaudeData.DataRepository.AdministrationRepository
+namespace DataManagement.DataRepository.AdministrationRepository
 {
     public class DbUserRoleGet : DbGetBase
     {

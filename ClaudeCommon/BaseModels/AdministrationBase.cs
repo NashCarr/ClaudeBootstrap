@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ClaudeCommon.BaseModels
+namespace CommonData.BaseModels
 {
     public class AdministrationBase
     {

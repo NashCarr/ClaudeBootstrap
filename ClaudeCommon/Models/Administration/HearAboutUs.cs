@@ -1,4 +1,4 @@
-﻿namespace ClaudeCommon.Models.Administration
+﻿namespace CommonData.Models.Administration
 {
     public class HearAboutUs : IsSystemBase
     {

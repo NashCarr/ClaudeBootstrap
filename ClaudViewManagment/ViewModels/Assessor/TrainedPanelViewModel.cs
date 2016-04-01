@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using ClaudeCommon.Models.Assessor;
-using ClaudeViewManagement.Managers.Assessor;
-using ClaudeViewManagement.Managers.Shared;
+using CommonData.Models.Assessor;
+using ViewManagement.Managers.Assessor;
+using ViewManagement.Managers.Shared;
 
-namespace ClaudeViewManagement.ViewModels.Assessor
+namespace ViewManagement.ViewModels.Assessor
 {
     public class TrainedPanelViewModel
     {

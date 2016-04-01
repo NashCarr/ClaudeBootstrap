@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Data;
-using ClaudeData.Models.Phones;
+using DataManagement.Models.Phones;
 
-namespace ClaudeData.DataRepository.PhoneRepository
+namespace DataManagement.DataRepository.PhoneRepository
 {
     public class DbPhoneSettingSave : DbSaveBase
     {

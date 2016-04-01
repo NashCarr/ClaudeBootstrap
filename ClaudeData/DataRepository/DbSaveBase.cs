@@ -4,9 +4,9 @@ using System.Data.SqlClient;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Web;
-using ClaudeCommon.BaseModels.Returns;
+using CommonData.BaseModels.Returns;
 
-namespace ClaudeData.DataRepository
+namespace DataManagement.DataRepository
 {
     public abstract class DbSaveBase : IDisposable
     {

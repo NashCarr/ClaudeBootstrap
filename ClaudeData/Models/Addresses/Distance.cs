@@ -1,4 +1,4 @@
-﻿namespace ClaudeData.Models.Addresses
+﻿namespace DataManagement.Models.Addresses
 {
     public class Distance
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ClaudeData.Models.Lists.Settings
+namespace DataManagement.Models.Lists.Settings
 {
     public class AssessorInfo
     {

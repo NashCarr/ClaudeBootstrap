@@ -1,8 +1,8 @@
 ﻿using System;
-using ClaudeData.Models.People;
-using ClaudeData.ViewModels.Shared;
+using DataManagement.Models.People;
+using DataManagement.ViewModels.Shared;
 
-namespace ClaudeData.ViewModels
+namespace DataManagement.ViewModels
 {
     public class PersonView : IDisposable
     {

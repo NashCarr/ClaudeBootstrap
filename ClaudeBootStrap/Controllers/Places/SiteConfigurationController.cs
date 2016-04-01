@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using ClaudeCommon.BaseModels;
-using ClaudeCommon.Enums;
-using ClaudeCommon.Models.Facility;
-using ClaudeCommon.Models.SiteConfiguration;
-using ClaudeViewManagement.Managers.Facility;
-using ClaudeViewManagement.Managers.People;
-using ClaudeViewManagement.Managers.Places;
-using ClaudeViewManagement.ViewModels.People;
-using ClaudeViewManagement.ViewModels.Places;
+using CommonData.BaseModels;
+using CommonData.Enums;
+using CommonData.Models.Facility;
+using CommonData.Models.SiteConfiguration;
+using ViewManagement.Managers.Facility;
+using ViewManagement.Managers.People;
+using ViewManagement.Managers.Places;
+using ViewManagement.ViewModels.People;
+using ViewManagement.ViewModels.Places;
 
 namespace ClaudeBootstrap.Controllers.Places
 {

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Data;
-using ClaudeCommon.BaseModels.Returns;
-using ClaudeCommon.Models.Assessor;
+using CommonData.BaseModels.Returns;
+using CommonData.Models.Assessor;
 
-namespace ClaudeData.DataRepository.AssessorRepository
+namespace DataManagement.DataRepository.AssessorRepository
 {
     public class DbTrainedPanelSave : DbSaveBase
     {

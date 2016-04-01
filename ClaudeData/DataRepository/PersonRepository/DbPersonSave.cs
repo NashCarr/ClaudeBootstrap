@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Data;
-using ClaudeCommon.BaseModels.Returns;
-using ClaudeData.DataRepository.AdministrationRepository;
-using ClaudeData.Models.People;
-using static ClaudeCommon.Enums.PersonEnums;
+using CommonData.BaseModels.Returns;
+using CommonData.Enums;
+using DataManagement.DataRepository.AdministrationRepository;
+using DataManagement.Models.People;
 
-namespace ClaudeData.DataRepository.PersonRepository
+namespace DataManagement.DataRepository.PersonRepository
 {
     public class DbPersonSave : DbSaveBase
     {
@@ -342,13 +342,13 @@ namespace ClaudeData.DataRepository.PersonRepository
         {
             switch (data.Person.PersonType)
             {
-                case PersonType.Assessor:
+                case PersonEnums.PersonType.Assessor:
                     return SaveAssessorData(data, ref personId);
-                case PersonType.CustomerContact:
+                case PersonEnums.PersonType.CustomerContact:
                     return SaveCustomerContactData(data, ref personId);
-                case PersonType.StaffMember:
+                case PersonEnums.PersonType.StaffMember:
                     return SaveStaffMemberData(data, ref personId);
-                case PersonType.OrganizationContact:
+                case PersonEnums.PersonType.OrganizationContact:
                     return SaveOrganizationContactData(data, ref personId);
                 default:
                     return new ReturnBase {ErrMsg = "Person Type Undetermined"};

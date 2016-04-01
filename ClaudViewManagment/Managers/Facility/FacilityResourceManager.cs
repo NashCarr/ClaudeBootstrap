@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
-using ClaudeCommon.BaseModels;
-using ClaudeCommon.BaseModels.Returns;
-using ClaudeCommon.Models.Facility;
-using ClaudeData.DataRepository.FacilityRepository;
-using ClaudeData.DataRepository.ReorderRepository;
+using CommonData.BaseModels;
+using CommonData.BaseModels.Returns;
+using CommonData.Models.Facility;
+using DataManagement.DataRepository.FacilityRepository;
+using DataManagement.DataRepository.ReorderRepository;
 
-namespace ClaudeViewManagement.Managers.Facility
+namespace ViewManagement.Managers.Facility
 {
     public class FacilityResourceManager : IDisposable
     {

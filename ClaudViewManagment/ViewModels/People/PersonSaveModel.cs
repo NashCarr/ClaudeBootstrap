@@ -1,7 +1,7 @@
-﻿using ClaudeData.Models.People;
-using ClaudeViewManagement.ViewModels.Shared;
+﻿using DataManagement.Models.People;
+using ViewManagement.ViewModels.Shared;
 
-namespace ClaudeViewManagement.ViewModels.People
+namespace ViewManagement.ViewModels.People
 {
     public class PersonSaveModel : AddressPhoneSaveModel
     {

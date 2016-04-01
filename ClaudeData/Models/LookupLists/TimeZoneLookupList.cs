@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using ClaudeCommon.Helpers;
-using static ClaudeCommon.Enums.TimeZoneEnums;
+using CommonData.Enums;
+using CommonData.Helpers;
 
-namespace ClaudeData.Models.LookupLists
+namespace DataManagement.Models.LookupLists
 {
     public class TimeZoneLookupList : IDisposable
     {
@@ -13,10 +13,10 @@ namespace ClaudeData.Models.LookupLists
         {
             LookupList =
                 new List<SelectListItem>(
-                    EnumHelpers.SelectListFor<ClaudeTimeZone>().Where(e => e.Value != ClaudeTimeZone.None.ToString()));
+                    EnumHelpers.SelectListFor<TimeZoneEnums.ClaudeTimeZone>().Where(e => e.Value != TimeZoneEnums.ClaudeTimeZone.None.ToString()));
             foreach (SelectListItem item in LookupList)
             {
-                item.Value = EnumHelpers.GetByteFromEnum<ClaudeTimeZone>(item.Value).ToString();
+                item.Value = EnumHelpers.GetByteFromEnum<TimeZoneEnums.ClaudeTimeZone>(item.Value).ToString();
             }
         }
 

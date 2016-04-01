@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using static ClaudeCommon.Enums.AddressEnums;
+using CommonData.Enums;
 
-namespace ClaudeData.Models.Addresses
+namespace DataManagement.Models.Addresses
 {
     public class AddressData
     {
@@ -16,9 +16,9 @@ namespace ClaudeData.Models.Addresses
         public List<AddressAssociation> Addresses { get; set; }
 
         public AddressAssociation MailingAddress
-            => Addresses.SingleOrDefault(e => e.AddressType == AddressType.Mailing);
+            => Addresses.SingleOrDefault(e => e.AddressType == AddressEnums.AddressType.Mailing);
 
         public AddressAssociation PhysicalAddress
-            => Addresses.SingleOrDefault(e => e.AddressType == AddressType.Physical);
+            => Addresses.SingleOrDefault(e => e.AddressType == AddressEnums.AddressType.Physical);
     }
 }

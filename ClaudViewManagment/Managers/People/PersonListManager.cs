@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
-using ClaudeCommon.Models.People;
-using ClaudeData.DataRepository.LookupRepository;
-using ClaudeData.DataRepository.PeopleRepository;
-using static ClaudeCommon.Enums.PersonEnums;
+using CommonData.Enums;
+using CommonData.Models.People;
+using DataManagement.DataRepository.LookupRepository;
+using DataManagement.DataRepository.PeopleRepository;
 
-namespace ClaudeViewManagement.Managers.People
+namespace ViewManagement.Managers.People
 {
     public class PersonListManager : IDisposable
     {
@@ -20,7 +20,7 @@ namespace ClaudeViewManagement.Managers.People
         {
         }
 
-        public List<PersonList> GetList(PersonType pt)
+        public List<PersonList> GetList(PersonEnums.PersonType pt)
         {
             using (DbPeopleGetActive data = new DbPeopleGetActive())
             {

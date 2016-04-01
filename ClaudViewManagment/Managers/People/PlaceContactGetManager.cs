@@ -1,8 +1,8 @@
 using System;
-using ClaudeData.DataRepository.PersonRepository;
-using ClaudeData.ViewModels;
+using DataManagement.DataRepository.PersonRepository;
+using DataManagement.ViewModels;
 
-namespace ClaudeViewManagement.Managers.People
+namespace ViewManagement.Managers.People
 {
     public class PlaceContactGetManager : IDisposable
     {

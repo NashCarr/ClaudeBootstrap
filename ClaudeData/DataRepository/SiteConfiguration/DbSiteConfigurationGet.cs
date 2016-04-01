@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Data.SqlClient;
 
-namespace ClaudeData.DataRepository.SiteConfiguration
+namespace DataManagement.DataRepository.SiteConfiguration
 {
     public class DbSiteConfigurationGet : DbGetBase
     {
-        public ClaudeCommon.Models.SiteConfiguration.SiteConfiguration GetSiteConfiguration()
+        public CommonData.Models.SiteConfiguration.SiteConfiguration GetSiteConfiguration()
         {
             return LoadRecords();
         }
 
-        private ClaudeCommon.Models.SiteConfiguration.SiteConfiguration LoadRecords()
+        private CommonData.Models.SiteConfiguration.SiteConfiguration LoadRecords()
         {
-            ClaudeCommon.Models.SiteConfiguration.SiteConfiguration data =
-                new ClaudeCommon.Models.SiteConfiguration.SiteConfiguration();
+            CommonData.Models.SiteConfiguration.SiteConfiguration data =
+                new CommonData.Models.SiteConfiguration.SiteConfiguration();
             try
             {
                 SetConnectToDatabase("[Settings].[usp_SiteConfiguration_GetData]");

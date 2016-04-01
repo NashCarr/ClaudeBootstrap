@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using ClaudeCommon.Models.Assessor;
+using CommonData.Models.Assessor;
 
-namespace ClaudeData.DataRepository.AssessorRepository
+namespace DataManagement.DataRepository.AssessorRepository
 {
     public class DbTrainedPanelGet : DbGetBase
     {

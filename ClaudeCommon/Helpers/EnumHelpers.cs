@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Web.Mvc;
 
-namespace ClaudeCommon.Helpers
+namespace CommonData.Helpers
 {
     public static class EnumHelpers
     {

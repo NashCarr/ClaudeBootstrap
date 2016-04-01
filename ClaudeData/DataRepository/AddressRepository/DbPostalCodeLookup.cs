@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using ClaudeData.Models.LookupLists;
-using static ClaudeCommon.Enums.CountryEnums;
+using CommonData.Enums;
+using DataManagement.Models.LookupLists;
 
-namespace ClaudeData.DataRepository.AddressRepository
+namespace DataManagement.DataRepository.AddressRepository
 {
     public class DbPostalCodeLookup : DbGetBase
     {
@@ -45,7 +45,7 @@ namespace ClaudeData.DataRepository.AddressRepository
                                     City = Convert.ToString(dr[ordCity]),
                                     Text = Convert.ToString(dr[ordText]),
                                     Value = Convert.ToString(dr[ordValue]),
-                                    Country = (Country) Convert.ToInt16(dr[ordCountry]),
+                                    Country = (CountryEnums.Country) Convert.ToInt16(dr[ordCountry]),
                                     StateProvinceId = Convert.ToInt32(dr[ordStateProvinceId])
                                 };
                                 data.Add(item);

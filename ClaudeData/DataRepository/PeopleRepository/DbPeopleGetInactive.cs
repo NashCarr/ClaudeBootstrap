@@ -1,31 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using ClaudeCommon.Models.People;
-using static ClaudeCommon.Enums.PersonEnums;
+using CommonData.Enums;
+using CommonData.Models.People;
 
-namespace ClaudeData.DataRepository.PeopleRepository
+namespace DataManagement.DataRepository.PeopleRepository
 {
     public class DbPeopleGetInactive : DbPeopleGet
     {
         protected internal List<PersonList> GetInactiveAssessors()
         {
-            IdValue = (byte) PersonType.Assessor;
-            TypeName = Enum.GetName(typeof (PersonType), IdValue);
+            IdValue = (byte) PersonEnums.PersonType.Assessor;
+            TypeName = Enum.GetName(typeof (PersonEnums.PersonType), IdValue);
             return GetInactive();
         }
 
         protected internal List<PersonList> GetInactiveCustomerContacts()
         {
-            IdValue = (byte) PersonType.Assessor;
-            TypeName = Enum.GetName(typeof (PersonType), IdValue);
+            IdValue = (byte) PersonEnums.PersonType.Assessor;
+            TypeName = Enum.GetName(typeof (PersonEnums.PersonType), IdValue);
             return GetInactive();
         }
 
         protected internal List<PersonList> GetInactiveStaffMembers()
         {
-            IdValue = (byte) PersonType.Assessor;
-            TypeName = Enum.GetName(typeof (PersonType), IdValue);
+            IdValue = (byte) PersonEnums.PersonType.Assessor;
+            TypeName = Enum.GetName(typeof (PersonEnums.PersonType), IdValue);
             return GetInactive();
         }
 

@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using ClaudeCommon.BaseModels;
-using ClaudeCommon.Enums;
-using ClaudeViewManagement.Managers.People;
-using ClaudeViewManagement.Managers.Places;
-using ClaudeViewManagement.ViewModels.People;
-using ClaudeViewManagement.ViewModels.Places;
+using CommonData.BaseModels;
+using CommonData.Enums;
+using ViewManagement.Managers.People;
+using ViewManagement.Managers.Places;
+using ViewManagement.ViewModels.People;
+using ViewManagement.ViewModels.Places;
 
 namespace ClaudeBootstrap.Controllers.Places
 {

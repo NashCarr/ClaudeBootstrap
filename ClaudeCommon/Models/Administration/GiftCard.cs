@@ -1,6 +1,6 @@
-﻿using ClaudeCommon.BaseModels;
+﻿using CommonData.BaseModels;
 
-namespace ClaudeCommon.Models.Administration
+namespace CommonData.Models.Administration
 {
     public class GiftCard : AdministrationBase
     {

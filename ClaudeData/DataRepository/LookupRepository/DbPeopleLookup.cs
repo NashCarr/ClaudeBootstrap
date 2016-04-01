@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
-using ClaudeCommon.Models.People;
-using ClaudeData.DataRepository.PeopleRepository;
-using ClaudeData.Models.LookupLists;
-using static ClaudeCommon.Enums.PersonEnums;
+using CommonData.Enums;
+using CommonData.Models.People;
+using DataManagement.DataRepository.PeopleRepository;
+using DataManagement.Models.LookupLists;
 
-namespace ClaudeData.DataRepository.LookupRepository
+namespace DataManagement.DataRepository.LookupRepository
 {
     public class DbPeopleLookup : IDisposable
     {
@@ -18,19 +18,19 @@ namespace ClaudeData.DataRepository.LookupRepository
 
         public StaffMemberLookupList GetStaffMemberLookup()
         {
-            return (StaffMemberLookupList) GetLookUpList(PersonType.StaffMember);
+            return (StaffMemberLookupList) GetLookUpList(PersonEnums.PersonType.StaffMember);
         }
 
         public CustomerContactLookupList GetCustomerContactLookup()
         {
-            return (CustomerContactLookupList) GetLookUpList(PersonType.CustomerContact);
+            return (CustomerContactLookupList) GetLookUpList(PersonEnums.PersonType.CustomerContact);
         }
 
         private static List<PersonList> GetAssessors()
         {
             using (DbPeopleGetActive db = new DbPeopleGetActive())
             {
-                return db.GetActive(PersonType.Assessor);
+                return db.GetActive(PersonEnums.PersonType.Assessor);
             }
         }
 
@@ -38,7 +38,7 @@ namespace ClaudeData.DataRepository.LookupRepository
         {
             using (DbPeopleGetActive db = new DbPeopleGetActive())
             {
-                return db.GetActive(PersonType.CustomerContact);
+                return db.GetActive(PersonEnums.PersonType.CustomerContact);
             }
         }
 
@@ -46,11 +46,11 @@ namespace ClaudeData.DataRepository.LookupRepository
         {
             using (DbPeopleGetActive db = new DbPeopleGetActive())
             {
-                return db.GetActive(PersonType.StaffMember);
+                return db.GetActive(PersonEnums.PersonType.StaffMember);
             }
         }
 
-        private static PersonLookupList GetLookUpList(PersonType personType)
+        private static PersonLookupList GetLookUpList(PersonEnums.PersonType personType)
         {
             PersonLookupList lu = new PersonLookupList();
             lu.LookupList.Add(new SelectListItem {Value = "0", Text = "None"});
@@ -59,16 +59,16 @@ namespace ClaudeData.DataRepository.LookupRepository
 
             switch (personType)
             {
-                case PersonType.StaffMember:
+                case PersonEnums.PersonType.StaffMember:
                     data = GetStaffMembers();
                     break;
-                case PersonType.Assessor:
+                case PersonEnums.PersonType.Assessor:
                     data = GetAssessors();
                     break;
-                case PersonType.CustomerContact:
+                case PersonEnums.PersonType.CustomerContact:
                     data = GetCustomerContacts();
                     break;
-                case PersonType.None:
+                case PersonEnums.PersonType.None:
                     return lu;
                 default:
                     return lu;

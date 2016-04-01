@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Data;
-using ClaudeCommon.Helpers;
-using ClaudeData.Models.Phones;
-using static ClaudeCommon.Enums.CountryEnums;
-using static ClaudeCommon.Enums.PhoneEnums;
+using CommonData.Enums;
+using CommonData.Helpers;
+using DataManagement.Models.Phones;
 
-namespace ClaudeData.DataRepository.PhoneRepository
+namespace DataManagement.DataRepository.PhoneRepository
 {
     public class DbPhoneAssociationSave : DbSaveBase
     {
@@ -42,10 +41,10 @@ namespace ClaudeData.DataRepository.PhoneRepository
                 CmdSql.Parameters.Add("@PhoneAssociationId", SqlDbType.Int).Value = data.PhoneAssociationId;
                 CmdSql.Parameters.Add("@PhoneId", SqlDbType.Int).Value = data.PhoneId;
                 CmdSql.Parameters.Add("@PhoneType", SqlDbType.TinyInt).Value =
-                    EnumHelpers.GetShortFromEnum<PhoneType>(data.PhoneType.ToString());
+                    EnumHelpers.GetShortFromEnum<PhoneEnums.PhoneType>(data.PhoneType.ToString());
                 CmdSql.Parameters.Add("@PhoneNumber", SqlDbType.BigInt).Value = data.PhoneNumber;
                 CmdSql.Parameters.Add("@Country", SqlDbType.SmallInt).Value =
-                    EnumHelpers.GetShortFromEnum<Country>(data.Country.ToString());
+                    EnumHelpers.GetShortFromEnum<CountryEnums.Country>(data.Country.ToString());
                 CmdSql.Parameters.Add("@IsActive", SqlDbType.Bit).Value = data.IsActive;
 
                 SetErrMsgParameter();

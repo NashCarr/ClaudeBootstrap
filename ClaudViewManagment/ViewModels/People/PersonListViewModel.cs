@@ -1,16 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using ClaudeCommon.Models.People;
-using ClaudeData.Models.LookupLists;
-using ClaudeViewManagement.Managers.People;
-using ClaudeViewManagement.Managers.Shared;
-using static ClaudeCommon.Enums.PersonEnums;
+using CommonData.Enums;
+using CommonData.Models.People;
+using DataManagement.Models.LookupLists;
+using ViewManagement.Managers.People;
+using ViewManagement.Managers.Shared;
 
-namespace ClaudeViewManagement.ViewModels.People
+namespace ViewManagement.ViewModels.People
 {
     public class PersonListViewModel
     {
-        public PersonListViewModel(PersonType pt)
+        public PersonListViewModel(PersonEnums.PersonType pt)
         {
             using (PersonListManager mgr = new PersonListManager())
             {

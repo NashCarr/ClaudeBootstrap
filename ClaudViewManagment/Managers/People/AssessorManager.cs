@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
-using ClaudeData.DataRepository.PeopleRepository;
-using ClaudeData.DataRepository.PersonRepository;
-using ClaudeData.Models.Lists.Settings;
-using ClaudeData.ViewModels;
+using DataManagement.DataRepository.PeopleRepository;
+using DataManagement.DataRepository.PersonRepository;
+using DataManagement.Models.Lists.Settings;
+using DataManagement.ViewModels;
 
-namespace ClaudeViewManagement.Managers.People
+namespace ViewManagement.Managers.People
 {
     public class AssessorManager : IDisposable
     {
