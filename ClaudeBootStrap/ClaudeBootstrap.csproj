@@ -149,6 +149,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\Administration\BudgetCategoryController.cs" />
     <Compile Include="Controllers\Administration\StudyDesignController.cs" />
+    <Compile Include="Controllers\Assessor\TrainedPanelController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\People\StaffMemberController.cs" />
     <Compile Include="Controllers\Places\CustomerController.cs" />
@@ -468,6 +469,7 @@
     <Content Include="Views\SiteConfiguration\FacilityResourceAddEdit.cshtml" />
     <Content Include="Views\SiteConfiguration\FacilityResource.cshtml" />
     <Content Include="Scripts\jquery-2.2.2.min.map" />
+    <Content Include="Views\TrainedPanel\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ClaudeCommon\ClaudeCommon.csproj">

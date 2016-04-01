@@ -26,13 +26,5 @@ namespace ClaudeViewManagement.Managers.People
                 return data.GetList();
             }
         }
-
-        public List<SelectListItem> GetFacilities()
-        {
-            using (DbPlacesLookup db = new DbPlacesLookup())
-            {
-                return db.GetFacilityLookup().LookupList;
-            }
-        }
     }
 }

@@ -58,5 +58,13 @@ namespace ClaudeViewManagement.Managers.Shared
                 return db.LookupList;
             }
         }
+
+        public List<SelectListItem> GetFacilities()
+        {
+            using (DbPlacesLookup db = new DbPlacesLookup())
+            {
+                return db.GetFacilityLookup().LookupList;
+            }
+        }
     }
 }

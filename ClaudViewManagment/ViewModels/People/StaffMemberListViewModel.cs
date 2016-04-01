@@ -14,12 +14,12 @@ namespace ClaudeViewManagement.ViewModels.People
             using (StaffMemberListManager mgr = new StaffMemberListManager())
             {
                 ListEntity = mgr.GetList();
-                Facilities = mgr.GetFacilities();
             }
             using (LookupManager mgr = new LookupManager())
             {
                 Countries = mgr.GetCountries();
                 TimeZones = mgr.GetTimeZones();
+                Facilities = mgr.GetFacilities();
                 PostalCodes = mgr.GetPostalCodes();
                 MobileCarriers = mgr.GetMobileCarriers();
                 StatesProvinces = mgr.GetStatesProvinces();
