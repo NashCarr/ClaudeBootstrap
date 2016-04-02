@@ -42,13 +42,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClassLibrary1\DataRetrievalLayer.csproj">
-      <Project>{B5F991B7-C327-4DA7-A417-365D5C7B8DAB}</Project>
-      <Name>DataRetrievalLayer</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ClaudeCommon\CommonData.csproj">
       <Project>{FB0DEC60-3BA3-4BD7-A268-5A78AB280F3A}</Project>
       <Name>CommonData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataRetrievalLayer\DataRetrievalLayer.csproj">
+      <Project>{B5F991B7-C327-4DA7-A417-365D5C7B8DAB}</Project>
+      <Name>DataRetrievalLayer</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
