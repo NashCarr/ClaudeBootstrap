@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using CommonData.BaseModels;
 using CommonData.Models.Administration;
+using SaveDataCommon;
+using SaveManagement.Administration;
 using ViewData.Administration;
-using ViewManagement.Managers.Administration;
 
-namespace ClaudeBootstrap.Controllers.Administration
+namespace ClaudeBootstrap.Controllers.Assessor
 {
     [RoutePrefix("ProductGroup")]
     public class ProductGroupController : Controller

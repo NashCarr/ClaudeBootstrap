@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using CommonData.BaseModels;
 using CommonData.Models.Assessor;
+using SaveDataCommon;
 using ViewManagement.Managers.Assessor;
 using ViewManagement.ViewModels.Assessor;
 

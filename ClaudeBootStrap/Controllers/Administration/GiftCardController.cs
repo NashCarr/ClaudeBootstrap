@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using SaveDataCommon;
+using SaveManagement.Administration;
 using ViewData.Administration;
-using ViewManagement.Managers.Administration;
-using DisplayReorder = CommonData.BaseModels.DisplayReorder;
 
 namespace ClaudeBootstrap.Controllers.Administration
 {

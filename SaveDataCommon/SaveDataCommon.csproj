@@ -36,6 +36,7 @@
   <ItemGroup>
     <Compile Include="DisplayOrder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReturnBase.cs" />
     <Compile Include="SaveBase.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

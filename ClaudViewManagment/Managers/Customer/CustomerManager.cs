@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
-using CommonData.BaseModels;
-using CommonData.BaseModels.Returns;
 using DataManagement.DataRepository.CustomerRepository;
 using DataManagement.DataRepository.PlaceRepository;
 using DataManagement.DataRepository.ReorderRepository;
 using DataManagement.ViewModels;
+using SaveDataCommon;
 
 namespace ViewManagement.Managers.Customer
 {

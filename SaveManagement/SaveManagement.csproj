@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{AE8C6DB1-6E44-4FA9-B6DC-396F9C61E0F8}</ProjectGuid>
+    <ProjectGuid>{652684D2-1F4B-415E-8B1D-2EA5D187FEEC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ViewManagement</RootNamespace>
-    <AssemblyName>ViewManagement</AssemblyName>
+    <RootNamespace>SaveManagement</RootNamespace>
+    <AssemblyName>SaveManagement</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -33,39 +32,14 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Managers\Assessor\TrainedPanelManager.cs" />
-    <Compile Include="Managers\Customer\CustomerBrandManager.cs" />
-    <Compile Include="Managers\Customer\CustomerManager.cs" />
-    <Compile Include="Managers\Facility\FacilityResourceManager.cs" />
-    <Compile Include="Managers\Facility\FacilityManager.cs" />
-    <Compile Include="Managers\People\AssessorManager.cs" />
-    <Compile Include="Managers\People\PersonSaveManager.cs" />
-    <Compile Include="Managers\People\StaffMemberManager.cs" />
-    <Compile Include="Managers\People\PersonGetManager.cs" />
-    <Compile Include="Managers\People\StaffMemberListManager.cs" />
-    <Compile Include="Managers\People\PlaceContactGetManager.cs" />
-    <Compile Include="Managers\People\PlaceContactDeleteManager.cs" />
-    <Compile Include="Managers\People\PersonListManager.cs" />
-    <Compile Include="Managers\Places\SiteConfigurationManager.cs" />
-    <Compile Include="Managers\Places\PlaceSaveManager.cs" />
-    <Compile Include="Managers\Places\PlaceListManager.cs" />
-    <Compile Include="Managers\Places\OrganizationManager.cs" />
-    <Compile Include="Managers\Shared\LookupManager.cs" />
+    <Compile Include="Administration\BudgetCategoryManager.cs" />
+    <Compile Include="Administration\GiftCardManager.cs" />
+    <Compile Include="Administration\HearAboutUsManager.cs" />
+    <Compile Include="Administration\ProductGroupManager.cs" />
+    <Compile Include="Administration\StudyDesignManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\Assessor\TrainedPanelViewModel.cs" />
-    <Compile Include="ViewModels\People\PersonListViewModel.cs" />
-    <Compile Include="ViewModels\People\PersonSaveModel.cs" />
-    <Compile Include="ViewModels\People\StaffMemberListViewModel.cs" />
-    <Compile Include="ViewModels\Places\SiteConfigurationViewModel.cs" />
-    <Compile Include="ViewModels\Places\PlaceSaveModel.cs" />
-    <Compile Include="ViewModels\Places\PlaceListViewModel.cs" />
-    <Compile Include="ViewModels\Shared\AddressPhoneSaveModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ClaudeCommon\CommonData.csproj">
@@ -73,7 +47,7 @@
       <Name>CommonData</Name>
     </ProjectReference>
     <ProjectReference Include="..\ClaudeData\DataManagement.csproj">
-      <Project>{0d5b2f72-aedc-40a6-a308-8647854ea70e}</Project>
+      <Project>{0D5B2F72-AEDC-40A6-A308-8647854EA70E}</Project>
       <Name>DataManagement</Name>
     </ProjectReference>
     <ProjectReference Include="..\DataSaveLayer\DataSaveLayer.csproj">
@@ -85,7 +59,6 @@
       <Name>SaveDataCommon</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

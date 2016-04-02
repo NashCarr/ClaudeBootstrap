@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
-using CommonData.BaseModels.Returns;
 using DataManagement.Models.Administration;
+using SaveDataCommon;
 
 namespace DataManagement.DataRepository.AdministrationRepository
 {

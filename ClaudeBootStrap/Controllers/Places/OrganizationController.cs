@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using CommonData.BaseModels;
 using CommonData.Enums;
+using SaveDataCommon;
 using ViewManagement.Managers.People;
 using ViewManagement.Managers.Places;
 using ViewManagement.ViewModels.People;
 using ViewManagement.ViewModels.Places;
+using static CommonData.Enums.PlaceEnums;
 
 namespace ClaudeBootstrap.Controllers.Places
 {
@@ -16,13 +17,13 @@ namespace ClaudeBootstrap.Controllers.Places
         [HttpGet]
         public ActionResult Index()
         {
-            return View(new PlaceListViewModel(PlaceEnums.PlaceType.Organization));
+            return View(new PlaceListViewModel(PlaceType.Organization));
         }
 
         [HttpPost]
         public JsonResult SavePlace(PlaceSaveModel p)
         {
-            if (p.Place != null) p.Place.PlaceType = PlaceEnums.PlaceType.Organization;
+            if (p.Place != null) p.Place.PlaceType = PlaceType.Organization;
             using (PlaceSaveManager mgr = new PlaceSaveManager())
             {
                 return Json(mgr.SavePlace(p));

@@ -40,8 +40,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseModels\AdministrationBase.cs" />
-    <Compile Include="BaseModels\DisplayOrder.cs" />
-    <Compile Include="BaseModels\Returns\ReturnBase.cs" />
     <Compile Include="Enums\AddressEnums.cs" />
     <Compile Include="Enums\AdministrationEnums.cs" />
     <Compile Include="Enums\AssessorEnums.cs" />
@@ -76,7 +74,9 @@
     <Compile Include="Models\SiteConfiguration\StudyDefinition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="BaseModels\Returns\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

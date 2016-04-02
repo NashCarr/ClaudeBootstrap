@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using CommonData.BaseModels;
+using SaveDataCommon;
+using SaveManagement.Administration;
 using ViewData.Administration;
-using ViewManagement.Managers.Administration;
 
 namespace ClaudeBootstrap.Controllers.Administration
 {

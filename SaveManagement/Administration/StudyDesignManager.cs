@@ -1,14 +1,13 @@
 using System;
 using System.Collections.Generic;
-using CommonData.BaseModels;
-using CommonData.BaseModels.Returns;
 using CommonData.Models.Administration;
 using DataManagement.DataRepository.ReorderRepository;
 using DataSaveLayer.Administration;
+using SaveDataCommon;
 
-namespace ViewManagement.Managers.Administration
+namespace SaveManagement.Administration
 {
-    public class GiftCardManager : IDisposable
+    public class StudyDesignManager : IDisposable
     {
         public void Dispose()
         {
@@ -20,9 +19,9 @@ namespace ViewManagement.Managers.Administration
         {
         }
 
-        public ReturnBase SaveRecord(GiftCard entity)
+        public ReturnBase SaveRecord(StudyDesign entity)
         {
-            using (DbGiftCardSave data = new DbGiftCardSave())
+            using (DbStudyDesignSave data = new DbStudyDesignSave())
             {
                 return data.AddUpdateRecord(entity);
             }
@@ -32,13 +31,13 @@ namespace ViewManagement.Managers.Administration
         {
             using (DbReorderSave db = new DbReorderSave())
             {
-                db.GiftCardReorderSave(data);
+                db.StudyDesignReorderSave(data);
             }
         }
 
         public ReturnBase DeleteRecord(int recordId)
         {
-            using (DbGiftCardSave data = new DbGiftCardSave())
+            using (DbStudyDesignSave data = new DbStudyDesignSave())
             {
                 return data.SetInactive(recordId);
             }

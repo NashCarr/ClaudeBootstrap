@@ -51,6 +51,10 @@
       <Project>{FB0DEC60-3BA3-4BD7-A268-5A78AB280F3A}</Project>
       <Name>CommonData</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SaveDataCommon\SaveDataCommon.csproj">
+      <Project>{B5277E31-13BA-4A2D-8E39-BF88780119E8}</Project>
+      <Name>SaveDataCommon</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

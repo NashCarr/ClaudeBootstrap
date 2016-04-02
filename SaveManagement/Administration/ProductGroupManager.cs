@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
-using CommonData.BaseModels;
-using CommonData.BaseModels.Returns;
 using CommonData.Models.Administration;
 using DataManagement.DataRepository.ReorderRepository;
 using DataSaveLayer.Administration;
+using SaveDataCommon;
 
-namespace ViewManagement.Managers.Administration
+namespace SaveManagement.Administration
 {
     public class ProductGroupManager : IDisposable
     {

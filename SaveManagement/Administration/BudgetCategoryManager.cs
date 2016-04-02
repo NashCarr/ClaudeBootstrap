@@ -1,14 +1,13 @@
 using System;
 using System.Collections.Generic;
-using CommonData.BaseModels;
-using CommonData.BaseModels.Returns;
 using CommonData.Models.Administration;
 using DataManagement.DataRepository.ReorderRepository;
 using DataSaveLayer.Administration;
+using SaveDataCommon;
 
-namespace ViewManagement.Managers.Administration
+namespace SaveManagement.Administration
 {
-    public class StudyDesignManager : IDisposable
+    public class BudgetCategoryManager : IDisposable
     {
         public void Dispose()
         {
@@ -20,9 +19,9 @@ namespace ViewManagement.Managers.Administration
         {
         }
 
-        public ReturnBase SaveRecord(StudyDesign entity)
+        public ReturnBase SaveRecord(BudgetCategory entity)
         {
-            using (DbStudyDesignSave data = new DbStudyDesignSave())
+            using (DbBudgetCategorySave data = new DbBudgetCategorySave())
             {
                 return data.AddUpdateRecord(entity);
             }
@@ -32,13 +31,13 @@ namespace ViewManagement.Managers.Administration
         {
             using (DbReorderSave db = new DbReorderSave())
             {
-                db.StudyDesignReorderSave(data);
+                db.BudgetCategoryReorderSave(data);
             }
         }
 
         public ReturnBase DeleteRecord(int recordId)
         {
-            using (DbStudyDesignSave data = new DbStudyDesignSave())
+            using (DbBudgetCategorySave data = new DbBudgetCategorySave())
             {
                 return data.SetInactive(recordId);
             }

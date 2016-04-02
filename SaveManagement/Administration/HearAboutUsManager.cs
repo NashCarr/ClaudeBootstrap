@@ -1,14 +1,13 @@
 using System;
 using System.Collections.Generic;
-using CommonData.BaseModels;
-using CommonData.BaseModels.Returns;
 using CommonData.Models.Administration;
 using DataManagement.DataRepository.ReorderRepository;
 using DataSaveLayer.Administration;
+using SaveDataCommon;
 
-namespace ViewManagement.Managers.Administration
+namespace SaveManagement.Administration
 {
-    public class BudgetCategoryManager : IDisposable
+    public class HearAboutUsManager : IDisposable
     {
         public void Dispose()
         {
@@ -20,9 +19,9 @@ namespace ViewManagement.Managers.Administration
         {
         }
 
-        public ReturnBase SaveRecord(BudgetCategory entity)
+        public ReturnBase SaveRecord(HearAboutUs entity)
         {
-            using (DbBudgetCategorySave data = new DbBudgetCategorySave())
+            using (DbHearAboutUsSave data = new DbHearAboutUsSave())
             {
                 return data.AddUpdateRecord(entity);
             }
@@ -32,13 +31,13 @@ namespace ViewManagement.Managers.Administration
         {
             using (DbReorderSave db = new DbReorderSave())
             {
-                db.BudgetCategoryReorderSave(data);
+                db.HearAboutUsReorderSave(data);
             }
         }
 
         public ReturnBase DeleteRecord(int recordId)
         {
-            using (DbBudgetCategorySave data = new DbBudgetCategorySave())
+            using (DbHearAboutUsSave data = new DbHearAboutUsSave())
             {
                 return data.SetInactive(recordId);
             }

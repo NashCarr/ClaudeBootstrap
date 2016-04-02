@@ -1,14 +1,12 @@
 using System;
 using System.Collections.Generic;
-using CommonData.BaseModels;
-using CommonData.BaseModels.Returns;
-using CommonData.Models.Administration;
 using DataManagement.DataRepository.ReorderRepository;
 using DataSaveLayer.Administration;
+using SaveDataCommon;
 
-namespace ViewManagement.Managers.Administration
+namespace SaveManagement.Administration
 {
-    public class HearAboutUsManager : IDisposable
+    public class GiftCardManager : IDisposable
     {
         public void Dispose()
         {
@@ -20,11 +18,11 @@ namespace ViewManagement.Managers.Administration
         {
         }
 
-        public ReturnBase SaveRecord(HearAboutUs entity)
+        public ReturnBase SaveRecord(SaveBase data)
         {
-            using (DbHearAboutUsSave data = new DbHearAboutUsSave())
+            using (DbGiftCardSave db = new DbGiftCardSave())
             {
-                return data.AddUpdateRecord(entity);
+                return db.AddUpdateRecord(data);
             }
         }
 
@@ -32,13 +30,13 @@ namespace ViewManagement.Managers.Administration
         {
             using (DbReorderSave db = new DbReorderSave())
             {
-                db.HearAboutUsReorderSave(data);
+                db.GiftCardReorderSave(data);
             }
         }
 
         public ReturnBase DeleteRecord(int recordId)
         {
-            using (DbHearAboutUsSave data = new DbHearAboutUsSave())
+            using (DbGiftCardSave data = new DbGiftCardSave())
             {
                 return data.SetInactive(recordId);
             }

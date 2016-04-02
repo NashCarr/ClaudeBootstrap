@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CommonData.BaseModels.Returns
+namespace SaveDataCommon
 {
     public class ReturnBase
     {

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Data;
-using CommonData.BaseModels.Returns;
 using CommonData.Enums;
 using DataManagement.Models.Places;
+using SaveDataCommon;
 
 namespace DataManagement.DataRepository.PlaceRepository
 {

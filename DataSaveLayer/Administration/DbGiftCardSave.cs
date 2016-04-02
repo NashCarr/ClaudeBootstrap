@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
-using CommonData.BaseModels.Returns;
-using CommonData.Models.Administration;
+using SaveDataCommon;
+using ReturnBase = SaveDataCommon.ReturnBase;
 
 namespace DataSaveLayer.Administration
 {
@@ -28,9 +28,9 @@ namespace DataSaveLayer.Administration
             return ReturnValues;
         }
 
-        public ReturnBase AddUpdateRecord(GiftCard data)
+        public ReturnBase AddUpdateRecord(SaveBase data)
         {
-            ReturnValues.Id = data.RecordId;
+            ReturnValues.Id = data.Id;
 
             if (!string.IsNullOrEmpty(data.Name)) return SaveRecord(data);
 
@@ -38,7 +38,7 @@ namespace DataSaveLayer.Administration
             return ReturnValues;
         }
 
-        private ReturnBase SaveRecord(GiftCard data)
+        private ReturnBase SaveRecord(SaveBase data)
         {
             try
             {
@@ -49,7 +49,6 @@ namespace DataSaveLayer.Administration
                 SetIdInputOutputParameter();
 
                 CmdSql.Parameters.Add("@Name", SqlDbType.NVarChar, 50).Value = data.Name.Trim();
-                CmdSql.Parameters.Add("@DisplayOrder", SqlDbType.Int).Value = data.DisplayOrder;
 
                 SetErrMsgParameter();
 

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Data;
-using CommonData.BaseModels.Returns;
+using SaveDataCommon;
 
 namespace DataManagement.DataRepository.PlaceRepository
 {

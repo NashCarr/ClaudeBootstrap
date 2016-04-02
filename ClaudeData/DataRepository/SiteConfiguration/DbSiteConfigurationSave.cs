@@ -1,5 +1,5 @@
 ﻿using System;
-using CommonData.BaseModels.Returns;
+using SaveDataCommon;
 
 namespace DataManagement.DataRepository.SiteConfiguration
 {
