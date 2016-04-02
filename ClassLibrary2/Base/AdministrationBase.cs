@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ViewCommon.Base
+namespace ViewDataCommon.Base
 {
     public class AdministrationBase
     {

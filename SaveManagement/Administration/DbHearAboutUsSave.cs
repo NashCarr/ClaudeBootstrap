@@ -3,7 +3,7 @@ using System.Data;
 using CommonData.BaseModels.Returns;
 using CommonData.Models.Administration;
 
-namespace DataManagement.DataRepository.AdministrationRepository
+namespace DataSaveLayer.Administration
 {
     public class DbHearAboutUsSave : DbSaveBase
     {

@@ -12,9 +12,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewManagement", "ClaudView
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewData", "ViewModels\ViewData.csproj", "{9F1858B5-9D5B-4870-A821-2CE80F5213A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataRetrieval", "ClassLibrary1\DataRetrieval.csproj", "{B5F991B7-C327-4DA7-A417-365D5C7B8DAB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataRetrievalLayer", "ClassLibrary1\DataRetrievalLayer.csproj", "{B5F991B7-C327-4DA7-A417-365D5C7B8DAB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewCommon", "ClassLibrary2\ViewCommon.csproj", "{60E96CBF-EE02-4D31-88A0-4D19F75AEC1F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewDataCommon", "ClassLibrary2\ViewDataCommon.csproj", "{60E96CBF-EE02-4D31-88A0-4D19F75AEC1F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataSaveLayer", "SaveManagement\DataSaveLayer.csproj", "{E2CDF472-6531-4941-9816-B86E74D52A87}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaveDataCommon", "SaveCommon\SaveDataCommon.csproj", "{B5277E31-13BA-4A2D-8E39-BF88780119E8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,6 +54,14 @@ Global
 		{60E96CBF-EE02-4D31-88A0-4D19F75AEC1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60E96CBF-EE02-4D31-88A0-4D19F75AEC1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{60E96CBF-EE02-4D31-88A0-4D19F75AEC1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2CDF472-6531-4941-9816-B86E74D52A87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2CDF472-6531-4941-9816-B86E74D52A87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2CDF472-6531-4941-9816-B86E74D52A87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2CDF472-6531-4941-9816-B86E74D52A87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5277E31-13BA-4A2D-8E39-BF88780119E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5277E31-13BA-4A2D-8E39-BF88780119E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5277E31-13BA-4A2D-8E39-BF88780119E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5277E31-13BA-4A2D-8E39-BF88780119E8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

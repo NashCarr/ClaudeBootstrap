@@ -81,6 +81,10 @@
       <Project>{0d5b2f72-aedc-40a6-a308-8647854ea70e}</Project>
       <Name>DataManagement</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SaveManagement\DataSaveLayer.csproj">
+      <Project>{E2CDF472-6531-4941-9816-B86E74D52A87}</Project>
+      <Name>DataSaveLayer</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

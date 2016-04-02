@@ -3,7 +3,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics.CodeAnalysis;
 
-namespace DataRetrieval
+namespace DataRetrievalLayer
 {
     public abstract class DbGatewayGet : IDisposable
     {

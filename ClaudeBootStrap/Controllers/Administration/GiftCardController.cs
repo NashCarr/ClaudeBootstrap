@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using CommonData.BaseModels;
 using CommonData.Models.Administration;
+using SaveDataCommon;
 using ViewData.Administration;
 using ViewManagement.Managers.Administration;
+using DisplayReorder = CommonData.BaseModels.DisplayReorder;
 
 namespace ClaudeBootstrap.Controllers.Administration
 {
@@ -18,11 +19,11 @@ namespace ClaudeBootstrap.Controllers.Administration
         }
 
         [HttpPost]
-        public JsonResult Save(GiftCard entity)
+        public JsonResult Save(SaveBase data)
         {
             using (GiftCardManager mgr = new GiftCardManager())
             {
-                return Json(mgr.SaveRecord(entity));
+                return Json(mgr.SaveRecord(data));
             }
         }
 

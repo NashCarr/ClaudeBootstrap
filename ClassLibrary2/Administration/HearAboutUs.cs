@@ -1,4 +1,4 @@
-﻿namespace ViewCommon.Administration
+﻿namespace ViewDataCommon.Administration
 {
     public class HearAboutUs : IsSystemBase
     {

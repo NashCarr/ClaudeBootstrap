@@ -236,7 +236,13 @@ GiftCardViewModel = function(data) {
                 StringLastUpdate: ko.observable(ko.unwrap(self.stringlastupdate()))
             };
         },
-        Clear: function() {
+        BuildSave: function () {
+            return {
+                Name: ko.observable(ko.unwrap(self.name())),
+                Id: ko.observable(ko.unwrap(self.recordid())),
+            };
+        },
+        Clear: function () {
             self.name("");
             self.editid(0);
             self.recordid(0);
@@ -290,7 +296,7 @@ GiftCardViewModel = function(data) {
         $.ajax({
             url: baseUrl + "Save",
             type: "post",
-            data: self.GiftCard.Build()
+            data: self.GiftCard.BuildSave()
         }).then(function(returndata) {
 
             self.handlereturndata(returndata);

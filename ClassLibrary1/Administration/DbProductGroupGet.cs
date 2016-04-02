@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using CommonData.Models.Administration;
 
-namespace DataRetrieval.Administration
+namespace DataRetrievalLayer.Administration
 {
     public class DbProductGroupGet : DbGetBase
     {

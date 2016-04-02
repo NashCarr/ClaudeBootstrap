@@ -1,6 +1,6 @@
-﻿using ViewCommon.Base;
+﻿using ViewDataCommon.Base;
 
-namespace ViewCommon.Administration
+namespace ViewDataCommon.Administration
 {
     public class IsSystemBase : AdministrationBase
     {

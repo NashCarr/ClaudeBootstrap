@@ -1,6 +1,6 @@
 ﻿using System.Web.Configuration;
 
-namespace DataRetrievalLayer
+namespace DataSaveLayer
 {
     public abstract class DbConnect
     {

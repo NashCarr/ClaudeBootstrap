@@ -3,18 +3,18 @@ using System.Data;
 using CommonData.BaseModels.Returns;
 using CommonData.Models.Administration;
 
-namespace DataManagement.DataRepository.AdministrationRepository
+namespace DataSaveLayer.Administration
 {
-    public class DbProductGroupSave : DbSaveBase
+    public class DbGiftCardSave : DbSaveBase
     {
         public ReturnBase SetInactive(int recordId)
         {
             ReturnValues.Id = recordId;
             try
             {
-                SetConnectToDatabase("[ProductGroup].[usp_SetInactive]");
+                SetConnectToDatabase("[GiftCard].[usp_SetInactive]");
 
-                CmdSql.Parameters.Add("@ProductGroupId", SqlDbType.Int).Value = ReturnValues.Id;
+                CmdSql.Parameters.Add("@GiftCardId", SqlDbType.Int).Value = ReturnValues.Id;
 
                 SetErrMsgParameter();
 
@@ -28,29 +28,28 @@ namespace DataManagement.DataRepository.AdministrationRepository
             return ReturnValues;
         }
 
-        public ReturnBase AddUpdateRecord(ProductGroup data)
+        public ReturnBase AddUpdateRecord(GiftCard data)
         {
             ReturnValues.Id = data.RecordId;
 
             if (!string.IsNullOrEmpty(data.Name)) return SaveRecord(data);
 
-            SetEmptyStringMessage("Product Group");
+            SetEmptyStringMessage("Gift Card");
             return ReturnValues;
         }
 
-        private ReturnBase SaveRecord(ProductGroup data)
+        private ReturnBase SaveRecord(GiftCard data)
         {
             try
             {
-                IdParameter = "@ProductGroupId";
+                IdParameter = "@GiftCardId";
 
-                SetConnectToDatabase("[ProductGroup].[usp_Upsert]");
+                SetConnectToDatabase("[GiftCard].[usp_Upsert]");
 
                 SetIdInputOutputParameter();
 
                 CmdSql.Parameters.Add("@Name", SqlDbType.NVarChar, 50).Value = data.Name.Trim();
                 CmdSql.Parameters.Add("@DisplayOrder", SqlDbType.Int).Value = data.DisplayOrder;
-                CmdSql.Parameters.Add("@IsSystem", SqlDbType.Bit).Value = data.IsSystem;
 
                 SetErrMsgParameter();
 

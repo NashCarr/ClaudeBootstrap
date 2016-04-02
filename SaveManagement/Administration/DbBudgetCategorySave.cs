@@ -3,18 +3,18 @@ using System.Data;
 using CommonData.BaseModels.Returns;
 using CommonData.Models.Administration;
 
-namespace DataManagement.DataRepository.AdministrationRepository
+namespace DataSaveLayer.Administration
 {
-    public class DbStudyDesignSave : DbSaveBase
+    public class DbBudgetCategorySave : DbSaveBase
     {
         public ReturnBase SetInactive(int recordId)
         {
             ReturnValues.Id = recordId;
             try
             {
-                SetConnectToDatabase("[StudyDesign].[usp_SetInactive]");
+                SetConnectToDatabase("[BudgetCategory].[usp_SetInactive]");
 
-                CmdSql.Parameters.Add("@StudyDesignId", SqlDbType.Int).Value = ReturnValues.Id;
+                CmdSql.Parameters.Add("@BudgetCategoryId", SqlDbType.Int).Value = ReturnValues.Id;
 
                 SetErrMsgParameter();
 
@@ -28,30 +28,28 @@ namespace DataManagement.DataRepository.AdministrationRepository
             return ReturnValues;
         }
 
-        public ReturnBase AddUpdateRecord(StudyDesign data)
+        public ReturnBase AddUpdateRecord(BudgetCategory data)
         {
             ReturnValues.Id = data.RecordId;
 
             if (!string.IsNullOrEmpty(data.Name)) return SaveRecord(data);
 
-            SetEmptyStringMessage("Study Design");
+            SetEmptyStringMessage("Budget Category");
             return ReturnValues;
         }
 
-        private ReturnBase SaveRecord(StudyDesign data)
+        private ReturnBase SaveRecord(BudgetCategory data)
         {
             try
             {
-                IdParameter = "@StudyDesignId";
+                IdParameter = "@BudgetCategoryId";
 
-                SetConnectToDatabase("[StudyDesign].[usp_Upsert]");
+                SetConnectToDatabase("[BudgetCategory].[usp_Upsert]");
 
                 SetIdInputOutputParameter();
 
                 CmdSql.Parameters.Add("@Name", SqlDbType.NVarChar, 50).Value = data.Name.Trim();
-                CmdSql.Parameters.Add("@Radius", SqlDbType.Int).Value = data.Radius;
                 CmdSql.Parameters.Add("@DisplayOrder", SqlDbType.Int).Value = data.DisplayOrder;
-                CmdSql.Parameters.Add("@IsSystem", SqlDbType.Bit).Value = data.IsSystem;
 
                 SetErrMsgParameter();
 

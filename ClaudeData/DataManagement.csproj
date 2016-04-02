@@ -50,11 +50,6 @@
     <Compile Include="DataRepository\AddressRepository\DbPostalCodeLookup.cs" />
     <Compile Include="DataRepository\AddressRepository\DbStateProvinceGet.cs" />
     <Compile Include="DataRepository\AdministrationRepository\DbFacilityStaffSave.cs" />
-    <Compile Include="DataRepository\AdministrationRepository\DbBudgetCategorySave.cs" />
-    <Compile Include="DataRepository\AdministrationRepository\DbStudyDesignSave.cs" />
-    <Compile Include="DataRepository\AdministrationRepository\DbHearAboutUsSave.cs" />
-    <Compile Include="DataRepository\AdministrationRepository\DbGiftCardSave.cs" />
-    <Compile Include="DataRepository\AdministrationRepository\DbProductGroupSave.cs" />
     <Compile Include="DataRepository\AdministrationRepository\DbProgramOptionGet.cs" />
     <Compile Include="DataRepository\AdministrationRepository\DbUserRoleGet.cs" />
     <Compile Include="DataRepository\AssessorRepository\DbTrainedPanelAssessorListGet.cs" />

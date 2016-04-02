@@ -213,6 +213,7 @@
     <Content Include="img\search.svg" />
     <Content Include="img\select.svg" />
     <Content Include="img\success.svg" />
+    <Content Include="Scripts\Administration\vmGiftCard.js" />
     <Content Include="Scripts\app.js" />
     <Content Include="Content\bourbon\_bourbon.scss" />
     <Content Include="Content\bourbon\_bourbon-deprecated-upcoming.scss" />
@@ -392,7 +393,6 @@
     <Content Include="Scripts\KoViewModels\vmCustomer.js" />
     <Content Include="Scripts\KoViewModels\vmProductGroup.js" />
     <Content Include="Scripts\KoViewModels\vmHearAboutUs.js" />
-    <Content Include="Scripts\KoViewModels\vmGiftCard.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\picker.date.js" />
     <Content Include="Scripts\picker.js" />
@@ -483,6 +483,10 @@
     <ProjectReference Include="..\ClaudViewManagment\ViewManagement.csproj">
       <Project>{ae8c6db1-6e44-4fa9-b6dc-396f9c61e0f8}</Project>
       <Name>ViewManagement</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SaveCommon\SaveDataCommon.csproj">
+      <Project>{B5277E31-13BA-4A2D-8E39-BF88780119E8}</Project>
+      <Name>SaveDataCommon</Name>
     </ProjectReference>
     <ProjectReference Include="..\ViewModels\ViewData.csproj">
       <Project>{9F1858B5-9D5B-4870-A821-2CE80F5213A8}</Project>
