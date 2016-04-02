@@ -13,7 +13,8 @@ namespace DataManagement.Models.LookupLists
         {
             LookupList =
                 new List<SelectListItem>(
-                    EnumHelpers.SelectListFor<CountryEnums.Country>().Where(e => e.Value != CountryEnums.Country.None.ToString()));
+                    EnumHelpers.SelectListFor<CountryEnums.Country>()
+                        .Where(e => e.Value != CountryEnums.Country.None.ToString()));
             foreach (SelectListItem item in LookupList)
             {
                 item.Value = EnumHelpers.GetShortFromEnum<CountryEnums.Country>(item.Value).ToString();

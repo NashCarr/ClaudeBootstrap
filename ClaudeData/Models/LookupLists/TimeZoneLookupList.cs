@@ -13,7 +13,8 @@ namespace DataManagement.Models.LookupLists
         {
             LookupList =
                 new List<SelectListItem>(
-                    EnumHelpers.SelectListFor<TimeZoneEnums.ClaudeTimeZone>().Where(e => e.Value != TimeZoneEnums.ClaudeTimeZone.None.ToString()));
+                    EnumHelpers.SelectListFor<TimeZoneEnums.ClaudeTimeZone>()
+                        .Where(e => e.Value != TimeZoneEnums.ClaudeTimeZone.None.ToString()));
             foreach (SelectListItem item in LookupList)
             {
                 item.Value = EnumHelpers.GetByteFromEnum<TimeZoneEnums.ClaudeTimeZone>(item.Value).ToString();

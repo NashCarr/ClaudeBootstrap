@@ -13,7 +13,8 @@ namespace DataManagement.Models.LookupLists
         {
             LookupList =
                 new List<SelectListItem>(
-                    EnumHelpers.SelectListFor<PhoneEnums.PhoneType>().Where(e => e.Value != PhoneEnums.PhoneType.None.ToString()));
+                    EnumHelpers.SelectListFor<PhoneEnums.PhoneType>()
+                        .Where(e => e.Value != PhoneEnums.PhoneType.None.ToString()));
             foreach (SelectListItem item in LookupList)
             {
                 item.Value = EnumHelpers.GetByteFromEnum<PhoneEnums.PhoneType>(item.Value).ToString();

@@ -13,7 +13,8 @@ namespace DataManagement.Models.LookupLists
         {
             LookupList =
                 new List<SelectListItem>(
-                    EnumHelpers.SelectListFor<AddressEnums.AddressType>().Where(e => e.Value != AddressEnums.AddressType.None.ToString()));
+                    EnumHelpers.SelectListFor<AddressEnums.AddressType>()
+                        .Where(e => e.Value != AddressEnums.AddressType.None.ToString()));
             foreach (SelectListItem item in LookupList)
             {
                 item.Value = EnumHelpers.GetByteFromEnum<AddressEnums.AddressType>(item.Value).ToString();
