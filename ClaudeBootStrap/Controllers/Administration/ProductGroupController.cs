@@ -5,7 +5,7 @@ using SaveDataCommon;
 using SaveManagement.Administration;
 using ViewData.Administration;
 
-namespace ClaudeBootstrap.Controllers.Assessor
+namespace ClaudeBootstrap.Controllers.Administration
 {
     [RoutePrefix("ProductGroup")]
     public class ProductGroupController : Controller
@@ -18,11 +18,11 @@ namespace ClaudeBootstrap.Controllers.Assessor
         }
 
         [HttpPost]
-        public JsonResult Save(ProductGroup entity)
+        public JsonResult Save(SaveBase data)
         {
             using (ProductGroupManager mgr = new ProductGroupManager())
             {
-                return Json(mgr.SaveRecord(entity));
+                return Json(mgr.SaveRecord(data));
             }
         }
 

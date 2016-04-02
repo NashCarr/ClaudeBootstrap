@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using DataManagement.Models.Administration;
+using DataRetrievalLayer;
 
 namespace DataManagement.DataRepository.AdministrationRepository
 {

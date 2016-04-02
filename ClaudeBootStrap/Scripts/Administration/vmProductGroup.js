@@ -1,6 +1,6 @@
-﻿HearAboutUsViewModel = function(data) {
+﻿ProductGroupViewModel = function(data) {
     var self = this;
-    var baseUrl = "/HearAboutUs/";
+    var baseUrl = "/ProductGroup/";
 
     //sorting
     self.sorttype = 1;
@@ -89,24 +89,25 @@
     };
 
     self.SortIsSystem = {
-        Filtered: function() {
-            return ko.utils.arrayFilter(self.itemlist(), function(item) {
+        Filtered: function () {
+            return ko.utils.arrayFilter(self.itemlist(), function (item) {
                 return ko.unwrap(item.Name).toLowerCase().indexOf(self.filter) !== -1;
-            }).sort(function(l, r) {
+            }).sort(function (l, r) {
                 return (self.direction * (l.IsSystemSort().localeCompare(r.IsSystemSort())));
             });
         },
-        Unfiltered: function() {
-            return self.itemlist().sort(function(l, r) {
+        Unfiltered: function () {
+            return self.itemlist().sort(function (l, r) {
                 return (self.direction * (l.IsSystemSort().localeCompare(r.IsSystemSort())));
             });
         },
-        Manage: function() {
+        Manage: function () {
             return (self.filter.length === 0)
                 ? self.SortIsSystem.Unfiltered(self.sortdirection())
                 : self.SortIsSystem.Filtered(self.sortdirection());
         }
     };
+
 
     self.SortCreateDate = {
         Filtered: function () {
@@ -190,8 +191,8 @@
 
     self.clear = function() {
         self.name("");
-        self.errmsg("");
         self.editid(0);
+        self.errmsg("");
         self.recordid(0);
         self.displaysort("");
         self.displayorder(0);
@@ -214,7 +215,7 @@
 
     self.edit = function(editdata) {
         self.name(editdata.Name());
-        self.editid(editdata.RecordId());
+        self.edirid(editdata.RecordId());
         self.recordid(editdata.RecordId());
         self.issystem(editdata.IsSystem());
         self.displayorder(editdata.DisplayOrder());
@@ -250,7 +251,7 @@
         self.searchvalue("");
     };
 
-    self.HearAboutUs = {
+    self.ProductGroup = {
         Build: function() {
             return {
                 Name: ko.observable(self.name()),
@@ -262,7 +263,13 @@
                 StringLastUpdate: ko.observable(self.stringlastupdate())
             };
         },
-        Clear: function() {
+        BuildSave: function () {
+            return {
+                Name: ko.observable(ko.unwrap(self.name())),
+                Id: ko.observable(ko.unwrap(self.recordid()))
+            };
+        },
+        Clear: function () {
             self.name("");
             self.editid(0);
             self.recordid(0);
@@ -317,7 +324,7 @@
         $.ajax({
             url: baseUrl + "Save",
             type: "post",
-            data: self.HearAboutUs.Build()
+            data: self.ProductGroup.BuildSave()
         }).then(function (returndata) {
 
             self.handlereturndata(returndata);

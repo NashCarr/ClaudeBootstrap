@@ -4,9 +4,10 @@ using System.Data.SqlClient;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Web;
+using DataLayerCommon;
 using SaveDataCommon;
 
-namespace DataManagement.DataRepository
+namespace DataSaveLayerCommon
 {
     public abstract class DbSaveBase : IDisposable
     {

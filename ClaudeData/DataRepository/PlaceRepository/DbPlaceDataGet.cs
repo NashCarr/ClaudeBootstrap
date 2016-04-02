@@ -7,6 +7,7 @@ using CommonData.Models.People;
 using DataManagement.Models.Addresses;
 using DataManagement.Models.Phones;
 using DataManagement.Models.Places;
+using DataRetrievalLayer;
 
 namespace DataManagement.DataRepository.PlaceRepository
 {

@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using DataManagement.DataRepository.ReorderRepository;
+using DataReorderLayer;
 using DataSaveLayer.Administration;
 using SaveDataCommon;
 
@@ -26,19 +26,19 @@ namespace SaveManagement.Administration
             }
         }
 
+        public ReturnBase DeleteRecord(int id)
+        {
+            using (DbGiftCardSave db = new DbGiftCardSave())
+            {
+                return db.SetInactive(id);
+            }
+        }
+
         public void SaveDisplayReorder(List<DisplayReorder> data)
         {
             using (DbReorderSave db = new DbReorderSave())
             {
                 db.GiftCardReorderSave(data);
-            }
-        }
-
-        public ReturnBase DeleteRecord(int recordId)
-        {
-            using (DbGiftCardSave data = new DbGiftCardSave())
-            {
-                return data.SetInactive(recordId);
             }
         }
     }

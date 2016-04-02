@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using CommonData.Enums;
 using CommonData.Models.Places;
+using DataRetrievalLayer;
 
 namespace DataManagement.DataRepository.PlacesRepository
 {

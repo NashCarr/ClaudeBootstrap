@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using CommonData.Models.Administration;
-using DataManagement.DataRepository.ReorderRepository;
+using DataReorderLayer;
 using DataSaveLayer.Administration;
 using SaveDataCommon;
+using SaveDataCommon.Administration;
 
 namespace SaveManagement.Administration
 {
@@ -19,11 +19,11 @@ namespace SaveManagement.Administration
         {
         }
 
-        public ReturnBase SaveRecord(StudyDesign entity)
+        public ReturnBase SaveRecord(StudyDesignSave data)
         {
-            using (DbStudyDesignSave data = new DbStudyDesignSave())
+            using (DbStudyDesignSave db = new DbStudyDesignSave())
             {
-                return data.AddUpdateRecord(entity);
+                return db.AddUpdateRecord(data);
             }
         }
 
@@ -35,11 +35,11 @@ namespace SaveManagement.Administration
             }
         }
 
-        public ReturnBase DeleteRecord(int recordId)
+        public ReturnBase DeleteRecord(int id)
         {
-            using (DbStudyDesignSave data = new DbStudyDesignSave())
+            using (DbStudyDesignSave db = new DbStudyDesignSave())
             {
-                return data.SetInactive(recordId);
+                return db.SetInactive(id);
             }
         }
     }

@@ -1,5 +1,4 @@
-﻿
-GiftCardViewModel = function(data) {
+﻿GiftCardViewModel = function(data) {
     var self = this;
     var baseUrl = "/GiftCard/";
 
@@ -239,7 +238,7 @@ GiftCardViewModel = function(data) {
         BuildSave: function () {
             return {
                 Name: ko.observable(ko.unwrap(self.name())),
-                Id: ko.observable(ko.unwrap(self.recordid())),
+                Id: ko.observable(ko.unwrap(self.recordid()))
             };
         },
         Clear: function () {

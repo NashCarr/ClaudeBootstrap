@@ -7,6 +7,7 @@ using DataManagement.DataRepository.PersonRepository;
 using DataManagement.Models.Lists.Settings;
 using DataManagement.Models.People;
 using DataManagement.ViewModels;
+using DataRetrievalLayer;
 
 namespace DataManagement.DataRepository.PeopleRepository
 {

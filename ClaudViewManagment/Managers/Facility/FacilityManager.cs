@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using DataManagement.DataRepository.PlaceRepository;
-using DataManagement.DataRepository.ReorderRepository;
 using DataManagement.ViewModels;
+using DataReorderLayer;
 using SaveDataCommon;
 
 namespace ViewManagement.Managers.Facility

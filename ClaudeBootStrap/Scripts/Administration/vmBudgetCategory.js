@@ -236,7 +236,13 @@ BudgetCategoryViewModel = function(data) {
                 StringLastUpdate: ko.observable(self.stringlastupdate())
             };
         },
-        Clear: function() {
+        BuildSave: function () {
+            return {
+                Name: ko.observable(ko.unwrap(self.name())),
+                Id: ko.observable(ko.unwrap(self.recordid()))
+            };
+        },
+        Clear: function () {
             self.name("");
             self.editid(0);
             self.recordid(0);
@@ -290,7 +296,7 @@ BudgetCategoryViewModel = function(data) {
         $.ajax({
             url: baseUrl + "Save",
             type: "post",
-            data: self.BudgetCategory.Build()
+            data: self.BudgetCategory.BuildSave()
         }).then(function(returndata) {
 
             self.handlereturndata(returndata);

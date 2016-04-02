@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using CommonData.Models.Facility;
 using DataManagement.DataRepository.FacilityRepository;
-using DataManagement.DataRepository.ReorderRepository;
+using DataReorderLayer;
 using SaveDataCommon;
 
 namespace ViewManagement.Managers.Facility

@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics.CodeAnalysis;
+using DataLayerCommon;
 
 namespace DataRetrievalLayer
 {

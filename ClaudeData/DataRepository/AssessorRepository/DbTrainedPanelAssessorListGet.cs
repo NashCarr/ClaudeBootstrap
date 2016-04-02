@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using DataManagement.ViewModels.Assessor;
+using DataRetrievalLayer;
 
 namespace DataManagement.DataRepository.AssessorRepository
 {

@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Data;
 using SaveDataCommon;
-using ReturnBase = SaveDataCommon.ReturnBase;
 
 namespace DataSaveLayer.Administration
 {
     public class DbGiftCardSave : DbSaveBase
     {
-        public ReturnBase SetInactive(int recordId)
+        public ReturnBase SetInactive(int id)
         {
-            ReturnValues.Id = recordId;
+            ReturnValues.Id = id;
             try
             {
                 SetConnectToDatabase("[GiftCard].[usp_SetInactive]");

@@ -59,10 +59,6 @@
     <Compile Include="DataRepository\CustomerRepository\DbCustomerBrandGet.cs" />
     <Compile Include="DataRepository\CustomerRepository\DbCustomerBrandSave.cs" />
     <Compile Include="DataRepository\DbBase.cs" />
-    <Compile Include="DataRepository\DbConnect.cs" />
-    <Compile Include="DataRepository\DbGatewayGet.cs" />
-    <Compile Include="DataRepository\DbGetBase.cs" />
-    <Compile Include="DataRepository\DbSaveBase.cs" />
     <Compile Include="DataRepository\FacilityRepository\DbFacilityResourceGet.cs" />
     <Compile Include="DataRepository\FacilityRepository\DbFacilityResourceSave.cs" />
     <Compile Include="DataRepository\LookupRepository\DbGatewayLookup.cs" />
@@ -105,8 +101,6 @@
     <Compile Include="BaseModels\AdminBase.cs" />
     <Compile Include="DataRepository\PlacesRepository\DbPlacesGet.cs" />
     <Compile Include="DataRepository\PlacesRepository\DbPlacesGetActive.cs" />
-    <Compile Include="DataRepository\ReorderRepository\DBReorder.cs" />
-    <Compile Include="DataRepository\ReorderRepository\DbReorderSave.cs" />
     <Compile Include="DataRepository\SiteConfiguration\DbAssessorCompensationSave.cs" />
     <Compile Include="DataRepository\SiteConfiguration\DbEmployeeCompensationSave.cs" />
     <Compile Include="DataRepository\SiteConfiguration\DbGeneralConfigurationSave.cs" />
@@ -166,6 +160,18 @@
     <ProjectReference Include="..\ClaudeCommon\CommonData.csproj">
       <Project>{fb0dec60-3ba3-4bd7-a268-5a78ab280f3a}</Project>
       <Name>CommonData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataLayerCommon\DataLayerCommon.csproj">
+      <Project>{1ABF531D-949D-4DCC-B31C-53DF3225BBF8}</Project>
+      <Name>DataLayerCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataRetrievalLayer\DataRetrievalLayer.csproj">
+      <Project>{B5F991B7-C327-4DA7-A417-365D5C7B8DAB}</Project>
+      <Name>DataRetrievalLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataSaveLayer\DataSaveLayer.csproj">
+      <Project>{E2CDF472-6531-4941-9816-B86E74D52A87}</Project>
+      <Name>DataSaveLayer</Name>
     </ProjectReference>
     <ProjectReference Include="..\SaveDataCommon\SaveDataCommon.csproj">
       <Project>{B5277E31-13BA-4A2D-8E39-BF88780119E8}</Project>

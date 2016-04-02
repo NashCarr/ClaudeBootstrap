@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using CommonData.Models.Administration;
 using SaveDataCommon;
+using SaveDataCommon.Administration;
 using SaveManagement.Administration;
 using ViewData.Administration;
 
@@ -18,11 +18,11 @@ namespace ClaudeBootstrap.Controllers.Administration
         }
 
         [HttpPost]
-        public JsonResult Save(StudyDesign entity)
+        public JsonResult Save(StudyDesignSave data)
         {
             using (StudyDesignManager mgr = new StudyDesignManager())
             {
-                return Json(mgr.SaveRecord(entity));
+                return Json(mgr.SaveRecord(data));
             }
         }
 

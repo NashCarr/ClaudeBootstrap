@@ -17,11 +17,11 @@ namespace ClaudeBootstrap.Controllers.Administration
         }
 
         [HttpPost]
-        public JsonResult Save(CommonData.Models.Administration.BudgetCategory entity)
+        public JsonResult Save(SaveBase data)
         {
             using (BudgetCategoryManager mgr = new BudgetCategoryManager())
             {
-                return Json(mgr.SaveRecord(entity));
+                return Json(mgr.SaveRecord(data));
             }
         }
 

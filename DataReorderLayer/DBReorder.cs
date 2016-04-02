@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Data;
+using DataSaveLayer;
 using Microsoft.SqlServer.Server;
 using SaveDataCommon;
 
-namespace DataManagement.DataRepository.ReorderRepository
+namespace DataReorderLayer
 {
     public abstract class DbReorder : DbSaveBase
     {

@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Data;
-using CommonData.Models.Administration;
 using SaveDataCommon;
 
 namespace DataSaveLayer.Administration
 {
     public class DbHearAboutUsSave : DbSaveBase
     {
-        public ReturnBase SetInactive(int recordId)
+        public ReturnBase SetInactive(int id)
         {
-            ReturnValues.Id = recordId;
+            ReturnValues.Id = id;
             try
             {
                 SetConnectToDatabase("[HearAboutUs].[usp_SetInactive]");
@@ -28,9 +27,9 @@ namespace DataSaveLayer.Administration
             return ReturnValues;
         }
 
-        public ReturnBase AddUpdateRecord(HearAboutUs data)
+        public ReturnBase AddUpdateRecord(SaveBase data)
         {
-            ReturnValues.Id = data.RecordId;
+            ReturnValues.Id = data.Id;
 
             if (!string.IsNullOrEmpty(data.Name)) return SaveRecord(data);
 
@@ -38,7 +37,7 @@ namespace DataSaveLayer.Administration
             return ReturnValues;
         }
 
-        private ReturnBase SaveRecord(HearAboutUs data)
+        private ReturnBase SaveRecord(SaveBase data)
         {
             try
             {
@@ -49,8 +48,6 @@ namespace DataSaveLayer.Administration
                 SetIdInputOutputParameter();
 
                 CmdSql.Parameters.Add("@Name", SqlDbType.NVarChar, 50).Value = data.Name.Trim();
-                CmdSql.Parameters.Add("@DisplayOrder", SqlDbType.Int).Value = data.DisplayOrder;
-                CmdSql.Parameters.Add("@IsSystem", SqlDbType.Bit).Value = data.IsSystem;
 
                 SetErrMsgParameter();
 

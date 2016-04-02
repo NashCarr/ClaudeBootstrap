@@ -1,7 +1,6 @@
-﻿
-StudyDesignViewModel = function(data) {
+﻿HearAboutUsViewModel = function(data) {
     var self = this;
-    var baseUrl = "/StudyDesign/";
+    var baseUrl = "/HearAboutUs/";
 
     //sorting
     self.sorttype = 1;
@@ -26,7 +25,6 @@ StudyDesignViewModel = function(data) {
 
     //listvalues
     self.name = ko.observable("");
-    self.radius = ko.observable(0);
     self.recordid = ko.observable(0);
     self.issystem = ko.observable(false);
     self.displaysort = ko.observable("");
@@ -58,7 +56,7 @@ StudyDesignViewModel = function(data) {
 
     self.ManageSort = {
         IsSorting: ko.observable(false),
-        ManageType: function(type) {
+        ManageType: function (type) {
             if (type === 0) {
                 type = 1;
             };
@@ -71,15 +69,15 @@ StudyDesignViewModel = function(data) {
             self.sortdirection(-1);
             self.pauseNotifications = false;
         },
-        ManageDirection: function(type) {
+        ManageDirection: function (type) {
             self.ManageSort.ManageType(type);
             self.sortdirection(self.sortdirection() * -1);
         },
-        DragDrop: function() {
+        DragDrop: function () {
             self.sorttype = 1;
             self.sortdirection(1);
         },
-        Change: function(type) {
+        Change: function (type) {
             if (type === 0) {
                 self.ManageSort.IsSorting(!self.ManageSort.IsSorting());
             };
@@ -110,40 +108,20 @@ StudyDesignViewModel = function(data) {
         }
     };
 
-    self.SortRadius = {
-        Filtered: function() {
-            return ko.utils.arrayFilter(self.itemlist(), function(item) {
-                return ko.unwrap(item.Name).toLowerCase().indexOf(self.filter) !== -1;
-            }).sort(function(l, r) {
-                return (self.direction * (l.RadiusSort().localeCompare(r.RadiusSort())));
-            });
-        },
-        Unfiltered: function() {
-            return self.itemlist().sort(function(l, r) {
-                return (self.direction * (l.RadiusSort().localeCompare(r.RadiusSort())));
-            });
-        },
-        Manage: function() {
-            return (self.filter.length === 0)
-                ? self.SortRadius.Unfiltered(self.sortdirection())
-                : self.SortRadius.Filtered(self.sortdirection());
-        }
-    };
-
     self.SortCreateDate = {
-        Filtered: function() {
-            return ko.utils.arrayFilter(self.itemlist(), function(item) {
+        Filtered: function () {
+            return ko.utils.arrayFilter(self.itemlist(), function (item) {
                 return ko.unwrap(item.Name).toLowerCase().indexOf(self.filter) !== -1;
-            }).sort(function(l, r) {
+            }).sort(function (l, r) {
                 return (self.direction * (l.StringLastUpdate().toLowerCase().localeCompare(r.StringLastUpdate().toLowerCase())));
             });
         },
-        Unfiltered: function() {
-            return self.itemlist().sort(function(l, r) {
+        Unfiltered: function () {
+            return self.itemlist().sort(function (l, r) {
                 return (self.direction * (l.StringLastUpdate().toLowerCase().localeCompare(r.StringLastUpdate().toLowerCase())));
             });
         },
-        Manage: function() {
+        Manage: function () {
             return (self.filter.length === 0)
                 ? self.SortCreateDate.Unfiltered(self.sortdirection())
                 : self.SortCreateDate.Filtered(self.sortdirection());
@@ -151,19 +129,19 @@ StudyDesignViewModel = function(data) {
     };
 
     self.SortName = {
-        Filtered: function() {
-            return ko.utils.arrayFilter(self.itemlist(), function(item) {
+        Filtered: function () {
+            return ko.utils.arrayFilter(self.itemlist(), function (item) {
                 return ko.unwrap(item.Name).toLowerCase().indexOf(self.filter) !== -1;
-            }).sort(function(l, r) {
+            }).sort(function (l, r) {
                 return (self.direction * (l.Name().toLowerCase().localeCompare(r.Name().toLowerCase())));
             });
         },
-        Unfiltered: function() {
-            return self.itemlist().sort(function(l, r) {
+        Unfiltered: function () {
+            return self.itemlist().sort(function (l, r) {
                 return (self.direction * (l.Name().toLowerCase().localeCompare(r.Name().toLowerCase())));
             });
         },
-        Manage: function() {
+        Manage: function () {
             return (self.filter.length === 0)
                 ? self.SortName.Unfiltered(self.sortdirection())
                 : self.SortName.Filtered(self.sortdirection());
@@ -171,26 +149,26 @@ StudyDesignViewModel = function(data) {
     };
 
     self.SortDisplayOrder = {
-        Filtered: function() {
-            return ko.utils.arrayFilter(self.itemlist(), function(item) {
+        Filtered: function () {
+            return ko.utils.arrayFilter(self.itemlist(), function (item) {
                 return ko.unwrap(item.Name).toLowerCase().indexOf(self.filter) !== -1;
-            }).sort(function(l, r) {
+            }).sort(function (l, r) {
                 return (self.direction * (l.DisplaySort().toLowerCase().localeCompare(r.DisplaySort().toLowerCase())));
             });
         },
-        Unfiltered: function() {
-            return self.itemlist().sort(function(l, r) {
+        Unfiltered: function () {
+            return self.itemlist().sort(function (l, r) {
                 return (self.direction * (l.DisplaySort().toLowerCase().localeCompare(r.DisplaySort().toLowerCase())));
             });
         },
-        Manage: function() {
+        Manage: function () {
             return (self.filter.length === 0)
                 ? self.SortDisplayOrder.Unfiltered()
                 : self.SortDisplayOrder.Filtered();
         }
     };
 
-    self.filteredItems = function() {
+    self.filteredItems = function () {
         self.direction = ko.unwrap(self.sortdirection);
         self.filter = ko.unwrap(self.searchvalue).toLowerCase();
         if (self.IsDragDrop()) {
@@ -202,10 +180,8 @@ StudyDesignViewModel = function(data) {
         case 2:
             return self.SortName.Manage();
         case 3:
-            return self.SortRadius.Manage();
-        case 4:
             return self.SortCreateDate.Manage();
-        case 5:
+        case 4:
             return self.SortIsSystem.Manage();
         default:
             return self.SortDisplayOrder.Manage();
@@ -214,9 +190,8 @@ StudyDesignViewModel = function(data) {
 
     self.clear = function() {
         self.name("");
-        self.radius(0);
-        self.editid(0);
         self.errmsg("");
+        self.editid(0);
         self.recordid(0);
         self.displaysort("");
         self.displayorder(0);
@@ -239,7 +214,6 @@ StudyDesignViewModel = function(data) {
 
     self.edit = function(editdata) {
         self.name(editdata.Name());
-        self.radius(editdata.Radius());
         self.editid(editdata.RecordId());
         self.recordid(editdata.RecordId());
         self.issystem(editdata.IsSystem());
@@ -250,16 +224,25 @@ StudyDesignViewModel = function(data) {
         self.toggleview();
     };
 
-    self.add = function() {
-        self.addscreen();
+    self.add = function () {
+        if (self.searchvalue().length === 0) {
+            self.addscreen();
+            return;
+        };
+        self.quickadd();
     };
 
-    self.addscreen = function() {
+    self.addscreen = function () {
         self.clearandtoggle();
         self.name(self.searchvalue());
     };
 
-    self.cancel = function() {
+    self.quickadd = function () {
+        self.name(self.searchvalue());
+        self.save();
+    };
+
+    self.cancel = function () {
         self.clearandtoggle();
     };
 
@@ -267,38 +250,26 @@ StudyDesignViewModel = function(data) {
         self.searchvalue("");
     };
 
-    self.StudyDesign = {
-        RadiusSortValue: function (value) {
-            if (value < 10) {
-                return "0000" + value;
-            };
-            if (value < 100) {
-                return "000" + value;
-            };
-            if (value < 1000) {
-                return "00" + value;
-            };
-            if (value < 10000) {
-                return "0" + value;
-            };
-            return value;
-        },
-        Build: function () {
+    self.HearAboutUs = {
+        Build: function() {
             return {
                 Name: ko.observable(self.name()),
-                Radius: ko.observable(self.radius()),
                 RecordId: ko.observable(self.recordid()),
                 IsSystem: ko.observable(self.issystem()),
                 DisplaySort: ko.observable(self.displaysort()),
                 DisplayOrder: ko.observable(self.displayorder()),
                 IsSystemSort: ko.observable(self.issystem().toString()),
-                StringLastUpdate: ko.observable(self.stringlastupdate()),
-                RadiusSort: ko.observable(self.StudyDesign.RadiusSortValue(self.radius()))
+                StringLastUpdate: ko.observable(self.stringlastupdate())
             };
         },
-        Clear: function() {
+        BuildSave: function () {
+            return {
+                Name: ko.observable(ko.unwrap(self.name())),
+                Id: ko.observable(ko.unwrap(self.recordid()))
+            };
+        },
+        Clear: function () {
             self.name("");
-            self.radius(0);
             self.editid(0);
             self.recordid(0);
             self.issystem(false);
@@ -348,12 +319,12 @@ StudyDesignViewModel = function(data) {
         }
     };
 
-    self.save = function() {
+    self.save = function () {
         $.ajax({
             url: baseUrl + "Save",
             type: "post",
-            data: self.StudyDesign.Build()
-        }).then(function(returndata) {
+            data: self.HearAboutUs.BuildSave()
+        }).then(function (returndata) {
 
             self.handlereturndata(returndata);
             if (self.IsMessageAreaVisible()) {
@@ -416,32 +387,17 @@ StudyDesignViewModel = function(data) {
                     contentType: "application/json; charset=utf-8"
                 });
             },
-            DisplaySortValue: function(value) {
+            DisplaySortValue: function (value) {
                 if (value < 10) {
                     return "00" + value;
                 };
                 if (value < 100) {
-                    return "0" + value;
-                };
-                return value;
-            },
-            RadiusSortValue: function (value) {
-                if (value < 10) {
-                    return "0000" + value;
-                };
-                if (value < 100) {
-                    return "000" + value;
-                };
-                if (value < 1000) {
-                    return "00" + value;
-                };
-                if (value < 10000) {
                     return "0" + value;
                 };
                 return value;
             },
             EditList: function (recordid, value) {
-                var match = ko.utils.arrayFirst(self.itemlist(), function(item) {
+                var match = ko.utils.arrayFirst(self.itemlist(), function (item) {
                     return parseInt(item.RecordId()) === recordid;
                 });
                 if (match) {
@@ -451,7 +407,7 @@ StudyDesignViewModel = function(data) {
                     self.pauseNotifications = false;
                 };
             },
-            ManageList: function() {
+            ManageList: function () {
                 for (var i = 0; i < self.ReorderList.displayreorder().length; i++) {
                     self.ReorderList.Reorder.EditList(
                         ko.unwrap(self.ReorderList.displayreorder()[i].Id),
@@ -459,7 +415,7 @@ StudyDesignViewModel = function(data) {
                     );
                 }
             },
-            RefreshHtml: function() {
+            RefreshHtml: function () {
                 self.IsDragDrop(true);
                 self.ManageSort.DragDrop();
                 self.IsDisplayOrderChanged(true);
@@ -467,14 +423,14 @@ StudyDesignViewModel = function(data) {
                 self.makelistsortable();
                 self.IsDragDrop(false);
             },
-            ManageSort: function() {
+            ManageSort: function () {
                 if (self.ReorderList.displayreorder().length === 0) {
                     return;
                 };
                 self.ReorderList.Reorder.Save();
                 self.ReorderList.displayreorder([]);
             },
-            ManageDragDrop: function() {
+            ManageDragDrop: function () {
                 if (self.ReorderList.displayreorder().length === 0) {
                     return;
                 };
@@ -484,7 +440,7 @@ StudyDesignViewModel = function(data) {
                 self.ReorderList.displayreorder([]);
             }
         },
-        Capture: function(recordid, value) {
+        Capture: function (recordid, value) {
             self.ReorderList.displayreorder.push(
             {
                 Id: recordid,

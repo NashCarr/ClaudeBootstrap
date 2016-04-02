@@ -42,7 +42,6 @@
     <Compile Include="Administration\DbHearAboutUsSave.cs" />
     <Compile Include="Administration\DbProductGroupSave.cs" />
     <Compile Include="Administration\DbStudyDesignSave.cs" />
-    <Compile Include="DbConnect.cs" />
     <Compile Include="DbSaveBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -50,6 +49,10 @@
     <ProjectReference Include="..\ClaudeCommon\CommonData.csproj">
       <Project>{FB0DEC60-3BA3-4BD7-A268-5A78AB280F3A}</Project>
       <Name>CommonData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataLayerCommon\DataLayerCommon.csproj">
+      <Project>{1ABF531D-949D-4DCC-B31C-53DF3225BBF8}</Project>
+      <Name>DataLayerCommon</Name>
     </ProjectReference>
     <ProjectReference Include="..\SaveDataCommon\SaveDataCommon.csproj">
       <Project>{B5277E31-13BA-4A2D-8E39-BF88780119E8}</Project>

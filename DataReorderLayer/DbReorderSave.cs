@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using SaveDataCommon;
 
-namespace DataManagement.DataRepository.ReorderRepository
+namespace DataReorderLayer
 {
     public class DbReorderSave : DbReorder
     {

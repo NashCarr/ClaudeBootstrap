@@ -148,6 +148,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\Administration\BudgetCategoryController.cs" />
+    <Compile Include="Controllers\Administration\ProductGroupController.cs" />
     <Compile Include="Controllers\Administration\StudyDesignController.cs" />
     <Compile Include="Controllers\Assessor\TrainedPanelController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -157,7 +158,6 @@
     <Compile Include="Controllers\Places\SiteConfigurationController.cs" />
     <Compile Include="Controllers\Administration\GiftCardController.cs" />
     <Compile Include="Controllers\Administration\HearAboutUsController.cs" />
-    <Compile Include="Controllers\Assessor\ProductGroupController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -213,7 +213,11 @@
     <Content Include="img\search.svg" />
     <Content Include="img\select.svg" />
     <Content Include="img\success.svg" />
+    <Content Include="Scripts\Administration\vmBudgetCategory.js" />
     <Content Include="Scripts\Administration\vmGiftCard.js" />
+    <Content Include="Scripts\Administration\vmHearAboutUs.js" />
+    <Content Include="Scripts\Administration\vmProductGroup.js" />
+    <Content Include="Scripts\Administration\vmStudyDesign.js" />
     <Content Include="Scripts\app.js" />
     <Content Include="Content\bourbon\_bourbon.scss" />
     <Content Include="Content\bourbon\_bourbon-deprecated-upcoming.scss" />
@@ -384,15 +388,11 @@
     <Content Include="Scripts\knockout-sortable.min.js" />
     <Content Include="Scripts\knockout.mapping-latest.debug.js" />
     <Content Include="Scripts\knockout.mapping-latest.js" />
-    <Content Include="Scripts\KoViewModels\vmBudgetCategory.js" />
     <Content Include="Scripts\KoViewModels\vmTrainedPanel.js" />
-    <Content Include="Scripts\KoViewModels\vmStudyDesign.js" />
     <Content Include="Scripts\KoViewModels\vmStaffMember.js" />
     <Content Include="Scripts\KoViewModels\vmSiteConfiguration.js" />
     <Content Include="Scripts\KoViewModels\vmOrganization.js" />
     <Content Include="Scripts\KoViewModels\vmCustomer.js" />
-    <Content Include="Scripts\KoViewModels\vmProductGroup.js" />
-    <Content Include="Scripts\KoViewModels\vmHearAboutUs.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\picker.date.js" />
     <Content Include="Scripts\picker.js" />

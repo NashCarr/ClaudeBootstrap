@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
-using CommonData.Models.Administration;
-using DataManagement.DataRepository.ReorderRepository;
+using DataReorderLayer;
 using DataSaveLayer.Administration;
 using SaveDataCommon;
 
@@ -19,11 +18,11 @@ namespace SaveManagement.Administration
         {
         }
 
-        public ReturnBase SaveRecord(BudgetCategory entity)
+        public ReturnBase SaveRecord(SaveBase data)
         {
-            using (DbBudgetCategorySave data = new DbBudgetCategorySave())
+            using (DbBudgetCategorySave db = new DbBudgetCategorySave())
             {
-                return data.AddUpdateRecord(entity);
+                return db.AddUpdateRecord(data);
             }
         }
 
@@ -35,11 +34,11 @@ namespace SaveManagement.Administration
             }
         }
 
-        public ReturnBase DeleteRecord(int recordId)
+        public ReturnBase DeleteRecord(int id)
         {
-            using (DbBudgetCategorySave data = new DbBudgetCategorySave())
+            using (DbBudgetCategorySave db = new DbBudgetCategorySave())
             {
-                return data.SetInactive(recordId);
+                return db.SetInactive(id);
             }
         }
     }

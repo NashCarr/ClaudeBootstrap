@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using CommonData.Models.Administration;
 using SaveDataCommon;
 using SaveManagement.Administration;
 using ViewData.Administration;
@@ -18,11 +17,11 @@ namespace ClaudeBootstrap.Controllers.Administration
         }
 
         [HttpPost]
-        public JsonResult Save(HearAboutUs entity)
+        public JsonResult Save(SaveBase data)
         {
             using (HearAboutUsManager mgr = new HearAboutUsManager())
             {
-                return Json(mgr.SaveRecord(entity));
+                return Json(mgr.SaveRecord(data));
             }
         }
 

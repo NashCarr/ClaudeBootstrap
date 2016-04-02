@@ -42,7 +42,6 @@
     <Compile Include="Administration\DbHearAboutUsGet.cs" />
     <Compile Include="Administration\DbProductGroupGet.cs" />
     <Compile Include="Administration\DbStudyDesignGet.cs" />
-    <Compile Include="DbConnect.cs" />
     <Compile Include="DbGatewayGet.cs" />
     <Compile Include="DbGetBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -51,6 +50,10 @@
     <ProjectReference Include="..\ClaudeCommon\CommonData.csproj">
       <Project>{FB0DEC60-3BA3-4BD7-A268-5A78AB280F3A}</Project>
       <Name>CommonData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataLayerCommon\DataLayerCommon.csproj">
+      <Project>{1ABF531D-949D-4DCC-B31C-53DF3225BBF8}</Project>
+      <Name>DataLayerCommon</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -50,6 +50,10 @@
       <Project>{0D5B2F72-AEDC-40A6-A308-8647854EA70E}</Project>
       <Name>DataManagement</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DataReorderLayer\DataReorderLayer.csproj">
+      <Project>{7E0856C1-30BC-4F20-AD03-9955C26B5815}</Project>
+      <Name>DataReorderLayer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataSaveLayer\DataSaveLayer.csproj">
       <Project>{E2CDF472-6531-4941-9816-B86E74D52A87}</Project>
       <Name>DataSaveLayer</Name>

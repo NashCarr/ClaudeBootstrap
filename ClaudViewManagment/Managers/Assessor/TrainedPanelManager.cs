@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using CommonData.Models.Assessor;
 using DataManagement.DataRepository.AssessorRepository;
-using DataManagement.DataRepository.ReorderRepository;
+using DataReorderLayer;
 using SaveDataCommon;
 
 namespace ViewManagement.Managers.Assessor
