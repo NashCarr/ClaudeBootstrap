@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using CommonData.Models.People;
-using DataRetrievalLayer;
+using DataLayerRetrieval;
 
 namespace DataManagement.DataRepository.PeopleRepository
 {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
+using DataLayerSaveCommon;
 using DataManagement.Models.Administration;
-using DataSaveLayer;
 using SaveDataCommon;
 
 namespace DataManagement.DataRepository.AdministrationRepository

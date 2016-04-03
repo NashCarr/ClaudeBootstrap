@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 using CommonData.Models.Facility;
-using DataSaveLayer;
+using DataLayerSaveCommon;
 using SaveDataCommon;
 
 namespace DataManagement.DataRepository.FacilityRepository

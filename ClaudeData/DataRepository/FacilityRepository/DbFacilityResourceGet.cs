@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using CommonData.Models.Facility;
-using DataRetrievalLayer;
+using DataLayerRetrieval;
 
 namespace DataManagement.DataRepository.FacilityRepository
 {

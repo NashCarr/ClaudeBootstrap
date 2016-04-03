@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 using CommonData.Models.SiteConfiguration;
-using DataSaveLayer;
+using DataLayerSaveCommon;
 using SaveDataCommon;
 
 namespace DataManagement.DataRepository.SiteConfiguration

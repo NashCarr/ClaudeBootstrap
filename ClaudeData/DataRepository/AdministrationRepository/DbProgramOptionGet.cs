@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using DataLayerRetrieval;
 using DataManagement.Models.Administration;
-using DataRetrievalLayer;
 
 namespace DataManagement.DataRepository.AdministrationRepository
 {

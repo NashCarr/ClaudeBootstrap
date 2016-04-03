@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using CommonData.Enums;
+using DataLayerRetrieval;
 using DataManagement.DataRepository.PersonRepository;
 using DataManagement.Models.Lists.Settings;
 using DataManagement.Models.People;
 using DataManagement.ViewModels;
-using DataRetrievalLayer;
 
 namespace DataManagement.DataRepository.PeopleRepository
 {

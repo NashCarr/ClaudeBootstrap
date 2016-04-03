@@ -4,10 +4,10 @@ using System.Data;
 using System.Data.SqlClient;
 using CommonData.Enums;
 using CommonData.Models.People;
+using DataLayerRetrieval;
 using DataManagement.Models.Addresses;
 using DataManagement.Models.Phones;
 using DataManagement.Models.Places;
-using DataRetrievalLayer;
 
 namespace DataManagement.DataRepository.PlaceRepository
 {

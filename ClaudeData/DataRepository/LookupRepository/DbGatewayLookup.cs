@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Web.Mvc;
-using DataRetrievalLayer;
+using DataLayerRetrieval;
 
 namespace DataManagement.DataRepository.LookupRepository
 {

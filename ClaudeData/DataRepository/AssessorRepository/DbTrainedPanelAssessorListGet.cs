@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using DataLayerRetrieval;
 using DataManagement.ViewModels.Assessor;
-using DataRetrievalLayer;
 
 namespace DataManagement.DataRepository.AssessorRepository
 {

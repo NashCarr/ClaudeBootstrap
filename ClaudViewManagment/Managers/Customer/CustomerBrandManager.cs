@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using CommonData.Models.Customer;
+using DataLayerReorder;
 using DataManagement.DataRepository.CustomerRepository;
-using DataReorderLayer;
 using SaveDataCommon;
 
 namespace ViewManagement.Managers.Customer

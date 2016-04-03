@@ -1,7 +1,7 @@
 ﻿using CommonData.Enums;
+using DataLayerRetrieval;
 using DataManagement.Models.People;
 using DataManagement.ViewModels;
-using DataRetrievalLayer;
 
 namespace DataManagement.DataRepository.PersonRepository
 {

@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using CommonData.Enums;
+using DataLayerRetrieval;
 using DataManagement.Models.LookupLists;
-using DataRetrievalLayer;
 
 namespace DataManagement.DataRepository.AddressRepository
 {

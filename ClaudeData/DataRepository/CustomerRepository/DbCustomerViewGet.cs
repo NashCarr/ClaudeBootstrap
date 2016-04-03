@@ -1,8 +1,8 @@
 ﻿using CommonData.Enums;
+using DataLayerRetrieval;
 using DataManagement.DataRepository.PlaceRepository;
 using DataManagement.Models.Places;
 using DataManagement.ViewModels;
-using DataRetrievalLayer;
 
 namespace DataManagement.DataRepository.CustomerRepository
 {

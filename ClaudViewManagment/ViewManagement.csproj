@@ -76,17 +76,21 @@
       <Project>{0d5b2f72-aedc-40a6-a308-8647854ea70e}</Project>
       <Name>DataManagement</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DataReorderLayer\DataReorderLayer.csproj">
+    <ProjectReference Include="..\DataLayerReorder\DataLayerReorder.csproj">
       <Project>{7E0856C1-30BC-4F20-AD03-9955C26B5815}</Project>
-      <Name>DataReorderLayer</Name>
+      <Name>DataLayerReorder</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DataRetrievalLayer\DataRetrievalLayer.csproj">
+    <ProjectReference Include="..\DataLayerRetrieval\DataLayerRetrieval.csproj">
       <Project>{B5F991B7-C327-4DA7-A417-365D5C7B8DAB}</Project>
-      <Name>DataRetrievalLayer</Name>
+      <Name>DataLayerRetrieval</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DataSaveLayer\DataSaveLayer.csproj">
+    <ProjectReference Include="..\DataLayerSaveCommon\DataLayerSaveCommon.csproj">
+      <Project>{CFEDB533-1918-485B-B2FB-43A1AC166A30}</Project>
+      <Name>DataLayerSaveCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataLayerSave\DataLayerSave.csproj">
       <Project>{E2CDF472-6531-4941-9816-B86E74D52A87}</Project>
-      <Name>DataSaveLayer</Name>
+      <Name>DataLayerSave</Name>
     </ProjectReference>
     <ProjectReference Include="..\SaveDataCommon\SaveDataCommon.csproj">
       <Project>{B5277E31-13BA-4A2D-8E39-BF88780119E8}</Project>

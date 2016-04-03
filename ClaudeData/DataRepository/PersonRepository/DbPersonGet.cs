@@ -2,8 +2,8 @@
 using System.Data;
 using System.Data.SqlClient;
 using CommonData.Enums;
+using DataLayerRetrieval;
 using DataManagement.Models.People;
-using DataRetrievalLayer;
 
 namespace DataManagement.DataRepository.PersonRepository
 {
