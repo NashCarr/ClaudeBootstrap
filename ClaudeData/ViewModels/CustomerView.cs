@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using CommonData.Models.Customer;
+using ViewDataCommon.Customer;
 
 namespace DataManagement.ViewModels
 {

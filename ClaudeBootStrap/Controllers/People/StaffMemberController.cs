@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using CommonData.BaseModels;
 using SaveDataCommon;
 using ViewManagement.Managers.People;
 using ViewManagement.ViewModels.People;

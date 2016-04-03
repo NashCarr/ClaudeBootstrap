@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using CommonData.Models.SiteConfiguration;
 using DataManagement.DataRepository.SiteConfiguration;
 using DataManagement.Models.LookupLists;
+using ManagementLookup.LookupLists;
 
 namespace ViewManagement.Managers.Places
 {

@@ -4,8 +4,11 @@ using System.Web.Mvc;
 using DataManagement.DataRepository.AddressRepository;
 using DataManagement.DataRepository.LookupRepository;
 using DataManagement.Models.LookupLists;
+using ManagementLookup.LookupLists;
+using CountryLookupList = ManagementLookup.LookupData.CountryLookupList;
+using TimeZoneLookupList = ManagementLookup.LookupData.TimeZoneLookupList;
 
-namespace ViewManagement.Managers.Shared
+namespace ManagementLookup
 {
     public class LookupManager : IDisposable
     {

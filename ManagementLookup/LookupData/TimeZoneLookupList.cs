@@ -5,19 +5,19 @@ using System.Web.Mvc;
 using CommonData.Enums;
 using CommonData.Helpers;
 
-namespace DataManagement.Models.LookupLists
+namespace ManagementLookup.LookupData
 {
-    public class CountryLookupList : IDisposable
+    public class TimeZoneLookupList : IDisposable
     {
-        public CountryLookupList()
+        public TimeZoneLookupList()
         {
             LookupList =
                 new List<SelectListItem>(
-                    EnumHelpers.SelectListFor<CountryEnums.Country>()
-                        .Where(e => e.Value != CountryEnums.Country.None.ToString()));
+                    EnumHelpers.SelectListFor<TimeZoneEnums.ClaudeTimeZone>()
+                        .Where(e => e.Value != TimeZoneEnums.ClaudeTimeZone.None.ToString()));
             foreach (SelectListItem item in LookupList)
             {
-                item.Value = EnumHelpers.GetShortFromEnum<CountryEnums.Country>(item.Value).ToString();
+                item.Value = EnumHelpers.GetByteFromEnum<TimeZoneEnums.ClaudeTimeZone>(item.Value).ToString();
             }
         }
 

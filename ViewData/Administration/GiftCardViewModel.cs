@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using CommonData.Models.Administration;
 using DataLayerRetrieval.Administration;
+using ViewDataCommon.Administration;
 
 namespace ViewData.Administration
 {

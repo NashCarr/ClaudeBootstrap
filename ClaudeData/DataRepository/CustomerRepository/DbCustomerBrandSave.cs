@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Data;
-using CommonData.Models.Customer;
 using DataLayerSaveCommon;
 using SaveDataCommon;
+using ViewDataCommon.Customer;
 
 namespace DataManagement.DataRepository.CustomerRepository
 {

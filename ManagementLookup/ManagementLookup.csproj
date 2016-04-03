@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9F1858B5-9D5B-4870-A821-2CE80F5213A8}</ProjectGuid>
+    <ProjectGuid>{78C803F9-71E5-4FD6-8763-97F39CEC113B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ViewData</RootNamespace>
-    <AssemblyName>ViewData</AssemblyName>
+    <RootNamespace>ManagementLookup</RootNamespace>
+    <AssemblyName>ManagementLookup</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -36,14 +36,17 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Administration\BudgetCategoryViewModel.cs" />
-    <Compile Include="Administration\GiftCardViewModel.cs" />
-    <Compile Include="Administration\HearAboutUsViewModel.cs" />
-    <Compile Include="Administration\ProductGroupViewModel.cs" />
-    <Compile Include="Administration\StudyDesignViewModel.cs" />
-    <Compile Include="Assessor\TrainedPanelViewModel.cs" />
+    <Compile Include="LookupData\CountryLookupList.cs" />
+    <Compile Include="LookupData\TimeZoneLookupList.cs" />
+    <Compile Include="LookupManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -55,21 +58,9 @@
       <Project>{0D5B2F72-AEDC-40A6-A308-8647854EA70E}</Project>
       <Name>DataManagement</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ClaudViewManagment\ViewManagement.csproj">
-      <Project>{AE8C6DB1-6E44-4FA9-B6DC-396F9C61E0F8}</Project>
-      <Name>ViewManagement</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DataLayerRetrieval\DataLayerRetrieval.csproj">
       <Project>{B5F991B7-C327-4DA7-A417-365D5C7B8DAB}</Project>
       <Name>DataLayerRetrieval</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ManagementLookup\ManagementLookup.csproj">
-      <Project>{78C803F9-71E5-4FD6-8763-97F39CEC113B}</Project>
-      <Name>ManagementLookup</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ViewDataCommon\ViewDataCommon.csproj">
-      <Project>{60E96CBF-EE02-4D31-88A0-4D19F75AEC1F}</Project>
-      <Name>ViewDataCommon</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

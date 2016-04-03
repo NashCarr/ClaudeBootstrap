@@ -125,20 +125,18 @@
     <Compile Include="Models\Administration\UserLogin.cs" />
     <Compile Include="Models\Administration\UserRole.cs" />
     <Compile Include="Models\Lists\Settings\AssessorInfo.cs" />
-    <Compile Include="Models\LookupLists\CompensationTypeLookupList.cs" />
-    <Compile Include="Models\LookupLists\AddressTypeLookupList.cs" />
-    <Compile Include="Models\LookupLists\CountryLookupList.cs" />
-    <Compile Include="Models\LookupLists\CustomerContactLookupList.cs" />
-    <Compile Include="Models\LookupLists\DefaultRightLookupList.cs" />
-    <Compile Include="Models\LookupLists\PersonLookupList.cs" />
-    <Compile Include="Models\LookupLists\PhoneTypeLookupList.cs" />
-    <Compile Include="Models\LookupLists\PlaceLookupList.cs" />
-    <Compile Include="Models\LookupLists\PostalCodeLookup.cs" />
-    <Compile Include="Models\LookupLists\PostalZoneLookupList.cs" />
-    <Compile Include="Models\LookupLists\ProgramOptionLookupList.cs" />
-    <Compile Include="Models\LookupLists\StaffUserLookupList.cs" />
-    <Compile Include="Models\LookupLists\TimeZoneLookupList.cs" />
-    <Compile Include="Models\LookupLists\UserRoleLookupList.cs" />
+    <Compile Include="Models\Lookuplists\AddressTypeLookupList.cs" />
+    <Compile Include="Models\Lookuplists\CompensationTypeLookupList.cs" />
+    <Compile Include="Models\Lookuplists\CustomerContactLookupList.cs" />
+    <Compile Include="Models\Lookuplists\DefaultRightLookupList.cs" />
+    <Compile Include="Models\Lookuplists\PersonLookupList.cs" />
+    <Compile Include="Models\Lookuplists\PhoneTypeLookupList.cs" />
+    <Compile Include="Models\Lookuplists\PlaceLookupList.cs" />
+    <Compile Include="Models\Lookuplists\PostalCodeLookup.cs" />
+    <Compile Include="Models\Lookuplists\PostalZoneLookupList.cs" />
+    <Compile Include="Models\Lookuplists\ProgramOptionLookupList.cs" />
+    <Compile Include="Models\Lookuplists\StaffUserLookupList.cs" />
+    <Compile Include="Models\Lookuplists\UserRoleLookupList.cs" />
     <Compile Include="Models\People\Person.cs" />
     <Compile Include="Models\People\PersonData.cs" />
     <Compile Include="Models\Phones\PhoneSetting.cs" />
@@ -180,6 +178,10 @@
     <ProjectReference Include="..\SaveDataCommon\SaveDataCommon.csproj">
       <Project>{B5277E31-13BA-4A2D-8E39-BF88780119E8}</Project>
       <Name>SaveDataCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ViewDataCommon\ViewDataCommon.csproj">
+      <Project>{60E96CBF-EE02-4D31-88A0-4D19F75AEC1F}</Project>
+      <Name>ViewDataCommon</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

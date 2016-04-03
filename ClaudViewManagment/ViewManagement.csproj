@@ -56,9 +56,7 @@
     <Compile Include="Managers\Places\PlaceSaveManager.cs" />
     <Compile Include="Managers\Places\PlaceListManager.cs" />
     <Compile Include="Managers\Places\OrganizationManager.cs" />
-    <Compile Include="Managers\Shared\LookupManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\Assessor\TrainedPanelViewModel.cs" />
     <Compile Include="ViewModels\People\PersonListViewModel.cs" />
     <Compile Include="ViewModels\People\PersonSaveModel.cs" />
     <Compile Include="ViewModels\People\StaffMemberListViewModel.cs" />
@@ -92,12 +90,22 @@
       <Project>{E2CDF472-6531-4941-9816-B86E74D52A87}</Project>
       <Name>DataLayerSave</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ManagementLookup\ManagementLookup.csproj">
+      <Project>{78C803F9-71E5-4FD6-8763-97F39CEC113B}</Project>
+      <Name>ManagementLookup</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SaveDataCommon\SaveDataCommon.csproj">
       <Project>{B5277E31-13BA-4A2D-8E39-BF88780119E8}</Project>
       <Name>SaveDataCommon</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ViewDataCommon\ViewDataCommon.csproj">
+      <Project>{60E96CBF-EE02-4D31-88A0-4D19F75AEC1F}</Project>
+      <Name>ViewDataCommon</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Managers\Shared\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

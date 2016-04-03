@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using CommonData.Models.Customer;
 using DataLayerReorder;
 using DataManagement.DataRepository.CustomerRepository;
 using SaveDataCommon;
+using ViewDataCommon.Customer;
 
 namespace ViewManagement.Managers.Customer
 {

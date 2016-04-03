@@ -30,8 +30,8 @@ namespace DataManagement.ViewModels
         public AddressViewModel Addresses { get; set; }
 
         public PlaceLookupList FacilityList { get; set; }
-        public CountryLookupList CountryList { get; set; }
-        public TimeZoneLookupList TimeZoneList { get; set; }
+        //public CountryLookupList CountryList { get; set; }
+        //public TimeZoneLookupList TimeZoneList { get; set; }
         public PhoneTypeLookupList PhoneTypeList { get; set; }
         //public MobileCarrierLookupList MobileCarrierList { get; set; }
 
@@ -54,13 +54,13 @@ namespace DataManagement.ViewModels
             FacilityList = null;
             //LoginActivityData = null;
 
-            CountryList?.LookupList.Clear();
+            //CountryList?.LookupList.Clear();
             FacilityList?.LookupList.Clear();
-            TimeZoneList?.LookupList.Clear();
+            //TimeZoneList?.LookupList.Clear();
             PhoneTypeList?.LookupList.Clear();
             //MobileCarrierList?.LookupList.Clear();
 
-            CountryList = null;
+            //CountryList = null;
             FacilityList = null;
             PhoneTypeList = null;
             //MobileCarrierList = null;

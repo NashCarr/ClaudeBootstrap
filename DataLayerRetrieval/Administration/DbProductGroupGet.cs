@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using CommonData.Models.Administration;
+using ViewDataCommon.Administration;
 
 namespace DataLayerRetrieval.Administration
 {

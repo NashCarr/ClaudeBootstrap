@@ -39,7 +39,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseModels\AdministrationBase.cs" />
     <Compile Include="Enums\AddressEnums.cs" />
     <Compile Include="Enums\AdministrationEnums.cs" />
     <Compile Include="Enums\AssessorEnums.cs" />
@@ -51,14 +50,7 @@
     <Compile Include="Enums\StudyEnums.cs" />
     <Compile Include="Enums\TimeZoneEnums.cs" />
     <Compile Include="Helpers\EnumHelpers.cs" />
-    <Compile Include="Models\Administration\BudgetCategory.cs" />
-    <Compile Include="Models\Administration\GiftCard.cs" />
-    <Compile Include="Models\Administration\IsSystemBase.cs" />
-    <Compile Include="Models\Administration\StudyDesign.cs" />
-    <Compile Include="Models\Administration\HearAboutUs.cs" />
-    <Compile Include="Models\Administration\ProductGroup.cs" />
     <Compile Include="Models\Assessor\TrainedPanel.cs" />
-    <Compile Include="Models\Customer\CustomerBrand.cs" />
     <Compile Include="Models\Facility\FacilityResource.cs" />
     <Compile Include="Models\Facility\StaffMemberList.cs" />
     <Compile Include="Models\People\Contact.cs" />
@@ -76,6 +68,13 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="BaseModels\Returns\" />
+    <Folder Include="Models\Administration\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ViewDataCommon\ViewDataCommon.csproj">
+      <Project>{60E96CBF-EE02-4D31-88A0-4D19F75AEC1F}</Project>
+      <Name>ViewDataCommon</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

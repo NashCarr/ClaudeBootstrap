@@ -1,6 +1,6 @@
-﻿using CommonData.BaseModels;
+﻿using ViewDataCommon.Base;
 
-namespace CommonData.Models.Customer
+namespace ViewDataCommon.Customer
 {
     public class CustomerBrand : AdministrationBase
     {

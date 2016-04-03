@@ -5,7 +5,7 @@ using System.Web.Mvc;
 using CommonData.Enums;
 using CommonData.Helpers;
 
-namespace DataManagement.Models.LookupLists
+namespace ManagementLookup.LookupLists
 {
     public class AddressTypeLookupList : IDisposable
     {

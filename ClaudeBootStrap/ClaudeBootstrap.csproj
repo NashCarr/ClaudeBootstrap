@@ -492,6 +492,10 @@
       <Project>{B5277E31-13BA-4A2D-8E39-BF88780119E8}</Project>
       <Name>SaveDataCommon</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ViewDataCommon\ViewDataCommon.csproj">
+      <Project>{60E96CBF-EE02-4D31-88A0-4D19F75AEC1F}</Project>
+      <Name>ViewDataCommon</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ViewData\ViewData.csproj">
       <Project>{9F1858B5-9D5B-4870-A821-2CE80F5213A8}</Project>
       <Name>ViewData</Name>

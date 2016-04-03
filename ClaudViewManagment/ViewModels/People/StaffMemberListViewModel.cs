@@ -2,8 +2,8 @@
 using System.Web.Mvc;
 using CommonData.Models.Facility;
 using DataManagement.Models.LookupLists;
+using ManagementLookup;
 using ViewManagement.Managers.People;
-using ViewManagement.Managers.Shared;
 
 namespace ViewManagement.ViewModels.People
 {

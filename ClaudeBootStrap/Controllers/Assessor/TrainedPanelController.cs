@@ -2,8 +2,8 @@
 using System.Web.Mvc;
 using CommonData.Models.Assessor;
 using SaveDataCommon;
+using ViewData.Assessor;
 using ViewManagement.Managers.Assessor;
-using ViewManagement.ViewModels.Assessor;
 
 namespace ClaudeBootstrap.Controllers.Assessor
 {

@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using CommonData.Models.Customer;
 using DataLayerRetrieval;
+using ViewDataCommon.Customer;
 
 namespace DataManagement.DataRepository.CustomerRepository
 {

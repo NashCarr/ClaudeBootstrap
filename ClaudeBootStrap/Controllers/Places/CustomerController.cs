@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using CommonData.Enums;
-using CommonData.Models.Customer;
 using SaveDataCommon;
+using ViewDataCommon.Customer;
 using ViewManagement.Managers.Customer;
 using ViewManagement.Managers.People;
 using ViewManagement.Managers.Places;

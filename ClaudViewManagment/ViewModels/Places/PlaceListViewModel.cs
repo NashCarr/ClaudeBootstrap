@@ -3,8 +3,8 @@ using System.Web.Mvc;
 using CommonData.Enums;
 using CommonData.Models.Places;
 using DataManagement.Models.LookupLists;
+using ManagementLookup;
 using ViewManagement.Managers.Places;
-using ViewManagement.Managers.Shared;
 
 namespace ViewManagement.ViewModels.Places
 {

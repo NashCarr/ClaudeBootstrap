@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using CommonData.Models.Assessor;
+using ManagementLookup;
 using ViewManagement.Managers.Assessor;
-using ViewManagement.Managers.Shared;
 
-namespace ViewManagement.ViewModels.Assessor
+namespace ViewData.Assessor
 {
     public class TrainedPanelViewModel
     {

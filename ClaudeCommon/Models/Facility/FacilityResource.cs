@@ -1,4 +1,4 @@
-﻿using CommonData.BaseModels;
+﻿using ViewDataCommon.Base;
 
 namespace CommonData.Models.Facility
 {

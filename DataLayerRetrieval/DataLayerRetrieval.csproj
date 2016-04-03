@@ -55,6 +55,10 @@
       <Project>{1ABF531D-949D-4DCC-B31C-53DF3225BBF8}</Project>
       <Name>DataLayerCommon</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ViewDataCommon\ViewDataCommon.csproj">
+      <Project>{60E96CBF-EE02-4D31-88A0-4D19F75AEC1F}</Project>
+      <Name>ViewDataCommon</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
