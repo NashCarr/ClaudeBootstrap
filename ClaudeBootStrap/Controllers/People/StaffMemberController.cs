@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using CommonData.Enums;
-using SaveDataCommon;
-using ViewManagement.Managers.People;
-using ViewManagement.Models.People;
+using ManagementRetrieval.Places;
+using ManagementSave.Person;
+using SaveDataCommon.DisplayReorder;
+using SaveDataCommon.People;
+using ViewData.Facility;
+using static DataLayerCommon.Enums.PersonEnums;
 
 namespace ClaudeBootstrap.Controllers.People
 {
@@ -20,7 +22,7 @@ namespace ClaudeBootstrap.Controllers.People
         [HttpPost]
         public JsonResult SavePerson(PersonSaveModel p)
         {
-            if (p.Person != null) p.Person.PersonType = PersonEnums.PersonType.StaffMember;
+            if (p.Person != null) p.Person.PersonType = PersonType.StaffMember;
             using (PersonSaveManager mgr = new PersonSaveManager())
             {
                 return Json(mgr.SavePerson(p));

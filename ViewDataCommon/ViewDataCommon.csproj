@@ -40,8 +40,12 @@
     <Compile Include="Administration\IsSystemBase.cs" />
     <Compile Include="Administration\ProductGroup.cs" />
     <Compile Include="Administration\StudyDesign.cs" />
+    <Compile Include="Assessor\TrainedPanel.cs" />
     <Compile Include="Base\AdministrationBase.cs" />
     <Compile Include="Customer\CustomerBrand.cs" />
+    <Compile Include="Facility\FacilityResource.cs" />
+    <Compile Include="Facility\StaffMemberList.cs" />
+    <Compile Include="Person\PersonList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

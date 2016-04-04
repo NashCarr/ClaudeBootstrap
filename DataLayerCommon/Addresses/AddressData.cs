@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using CommonData.Enums;
+using static DataLayerCommon.Enums.AddressEnums;
 
 namespace DataLayerCommon.Addresses
 {
@@ -16,9 +16,9 @@ namespace DataLayerCommon.Addresses
         public List<AddressAssociation> Addresses { get; set; }
 
         public AddressAssociation MailingAddress
-            => Addresses.SingleOrDefault(e => e.AddressType == AddressEnums.AddressType.Mailing);
+            => Addresses.SingleOrDefault(e => e.AddressType == AddressType.Mailing);
 
         public AddressAssociation PhysicalAddress
-            => Addresses.SingleOrDefault(e => e.AddressType == AddressEnums.AddressType.Physical);
+            => Addresses.SingleOrDefault(e => e.AddressType == AddressType.Physical);
     }
 }

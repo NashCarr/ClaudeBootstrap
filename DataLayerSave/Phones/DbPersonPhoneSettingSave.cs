@@ -1,7 +1,7 @@
 ﻿using System;
-using CommonData.Enums;
 using DataLayerCommon.People;
 using DataLayerCommon.Phones;
+using static DataLayerCommon.Enums.PersonEnums;
 
 namespace DataLayerSave.Phones
 {
@@ -18,7 +18,7 @@ namespace DataLayerSave.Phones
             if (data == null) return string.Empty;
             using (DbPhoneSettingSave db = new DbPhoneSettingSave())
             {
-                return db.SavePersonPhoneSetting(personId, (byte) PersonEnums.PersonType.StaffMember, data);
+                return db.SavePersonPhoneSetting(personId, (byte) PersonType.StaffMember, data);
             }
         }
 
@@ -27,7 +27,7 @@ namespace DataLayerSave.Phones
             if (data == null) return string.Empty;
             using (DbPhoneSettingSave db = new DbPhoneSettingSave())
             {
-                return db.SavePersonPhoneSetting(personId, (byte) PersonEnums.PersonType.Assessor, data);
+                return db.SavePersonPhoneSetting(personId, (byte) PersonType.Assessor, data);
             }
         }
 
@@ -36,7 +36,7 @@ namespace DataLayerSave.Phones
             if (data == null) return string.Empty;
             using (DbPhoneSettingSave db = new DbPhoneSettingSave())
             {
-                return db.SavePersonPhoneSetting(personId, (byte) PersonEnums.PersonType.CustomerContact, data);
+                return db.SavePersonPhoneSetting(personId, (byte) PersonType.CustomerContact, data);
             }
         }
 
@@ -45,7 +45,7 @@ namespace DataLayerSave.Phones
             if (data == null) return string.Empty;
             using (DbPhoneSettingSave db = new DbPhoneSettingSave())
             {
-                return db.SavePersonPhoneSetting(personId, (byte) PersonEnums.PersonType.OrganizationContact, data);
+                return db.SavePersonPhoneSetting(personId, (byte) PersonType.OrganizationContact, data);
             }
         }
 
@@ -54,15 +54,15 @@ namespace DataLayerSave.Phones
             if (data.PhoneData == null) return string.Empty;
             switch (data.Person.PersonType)
             {
-                case PersonEnums.PersonType.StaffMember:
+                case PersonType.StaffMember:
                     return SaveStaffMemberPhoneSetting(data.Person.PersonId, data.PhoneData.PhoneSettings);
-                case PersonEnums.PersonType.Assessor:
+                case PersonType.Assessor:
                     return SaveAssessorPhoneSetting(data.Person.PersonId, data.PhoneData.PhoneSettings);
-                case PersonEnums.PersonType.CustomerContact:
+                case PersonType.CustomerContact:
                     return SaveCustomerContactPhoneSetting(data.Person.PersonId, data.PhoneData.PhoneSettings);
-                case PersonEnums.PersonType.OrganizationContact:
+                case PersonType.OrganizationContact:
                     return SaveOrganizationContactPhoneSetting(data.Person.PersonId, data.PhoneData.PhoneSettings);
-                case PersonEnums.PersonType.None:
+                case PersonType.None:
                     return "Person Type Undetermined";
                 default:
                     return "Person Type Undetermined";

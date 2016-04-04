@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using CommonData.Enums;
 using DataLayerCommon.Addresses;
 using DataLayerCommon.People;
+using static DataLayerCommon.Enums.PersonEnums;
 
 namespace DataLayerSave.Addresses
 {
@@ -18,7 +18,7 @@ namespace DataLayerSave.Addresses
         {
             using (DbAddressAssociationSave db = new DbAddressAssociationSave())
             {
-                return db.SavePersonAddress(personId, (byte) PersonEnums.PersonType.Assessor, data);
+                return db.SavePersonAddress(personId, (byte) PersonType.Assessor, data);
             }
         }
 
@@ -26,7 +26,7 @@ namespace DataLayerSave.Addresses
         {
             using (DbAddressAssociationSave db = new DbAddressAssociationSave())
             {
-                return db.SavePersonAddress(personId, (byte) PersonEnums.PersonType.CustomerContact, data);
+                return db.SavePersonAddress(personId, (byte) PersonType.CustomerContact, data);
             }
         }
 
@@ -34,7 +34,7 @@ namespace DataLayerSave.Addresses
         {
             using (DbAddressAssociationSave db = new DbAddressAssociationSave())
             {
-                return db.SavePersonAddress(personId, (byte) PersonEnums.PersonType.StaffMember, data);
+                return db.SavePersonAddress(personId, (byte) PersonType.StaffMember, data);
             }
         }
 
@@ -42,7 +42,7 @@ namespace DataLayerSave.Addresses
         {
             using (DbAddressAssociationSave db = new DbAddressAssociationSave())
             {
-                return db.SavePersonAddress(personId, (byte) PersonEnums.PersonType.OrganizationContact, data);
+                return db.SavePersonAddress(personId, (byte) PersonType.OrganizationContact, data);
             }
         }
 
@@ -98,13 +98,13 @@ namespace DataLayerSave.Addresses
         {
             switch (data.Person.PersonType)
             {
-                case PersonEnums.PersonType.Assessor:
+                case PersonType.Assessor:
                     return SaveAssessorAddresses(data.Person.PersonId, data.AddressData.Addresses);
-                case PersonEnums.PersonType.StaffMember:
+                case PersonType.StaffMember:
                     return SaveStaffMemberAddresses(data.Person.PersonId, data.AddressData.Addresses);
-                case PersonEnums.PersonType.CustomerContact:
+                case PersonType.CustomerContact:
                     return SaveCustomerContactAddresses(data.Person.PersonId, data.AddressData.Addresses);
-                case PersonEnums.PersonType.OrganizationContact:
+                case PersonType.OrganizationContact:
                     return SaveOrganizationContactAddresses(data.Person.PersonId, data.AddressData.Addresses);
                 default:
                     return "Person Type Undetermined";

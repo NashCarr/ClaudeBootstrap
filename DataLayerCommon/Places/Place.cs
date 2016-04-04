@@ -1,7 +1,7 @@
 ﻿using DataLayerCommon.BaseModels;
-using static CommonData.Enums.CountryEnums;
-using static CommonData.Enums.PlaceEnums;
-using static CommonData.Enums.TimeZoneEnums;
+using static DataLayerCommon.Enums.CountryEnums;
+using static DataLayerCommon.Enums.PlaceEnums;
+using static DataLayerCommon.Enums.TimeZoneEnums;
 
 namespace DataLayerCommon.Places
 {

@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using CommonData.Enums;
-using EnumHelpers = DataLayerCommon.Helpers.EnumHelpers;
+using DataLayerCommon.Helpers;
+using static DataLayerCommon.Enums.StudyEnums;
 
 namespace DataLayerCommon.LookupLists
 {
@@ -12,12 +12,11 @@ namespace DataLayerCommon.LookupLists
         public CompensationTypeLookupList()
         {
             LookupList =
-                new List<SelectListItem>(
-                    EnumHelpers.SelectListFor<StudyEnums.CompensationType>()
-                        .Where(e => e.Value != StudyEnums.CompensationType.None.ToString()));
+                new List<SelectListItem>(EnumHelpers.SelectListFor<CompensationType>()
+                    .Where(e => e.Value != CompensationType.None.ToString()));
             foreach (SelectListItem item in LookupList)
             {
-                item.Value = EnumHelpers.GetByteFromEnum<StudyEnums.CompensationType>(item.Value).ToString();
+                item.Value = EnumHelpers.GetByteFromEnum<CompensationType>(item.Value).ToString();
             }
         }
 

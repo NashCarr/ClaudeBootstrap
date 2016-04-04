@@ -35,10 +35,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Administration\StudyDesignSave.cs" />
-    <Compile Include="DisplayOrder.cs" />
+    <Compile Include="Assessor\TrainedPanel.cs" />
+    <Compile Include="Customer\CustomerBrandSave.cs" />
+    <Compile Include="DisplayReorder\DisplayOrder.cs" />
+    <Compile Include="Facility\FacilityResourceSave.cs" />
+    <Compile Include="People\PersonSaveModel.cs" />
+    <Compile Include="Places\PlaceSaveModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReturnBase.cs" />
+    <Compile Include="Return\ReturnBase.cs" />
     <Compile Include="SaveBase.cs" />
+    <Compile Include="Shared\AddressPhoneSaveModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataLayerCommon\DataLayerCommon.csproj">
+      <Project>{1ABF531D-949D-4DCC-B31C-53DF3225BBF8}</Project>
+      <Name>DataLayerCommon</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

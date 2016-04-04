@@ -1,13 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using CommonData.Enums;
-using SaveDataCommon;
-using ViewDataCommon.Customer;
-using ViewManagement.Managers.Customer;
-using ViewManagement.Managers.People;
-using ViewManagement.Managers.Places;
-using ViewManagement.Models.People;
-using ViewManagement.Models.Places;
+using ManagementRetrieval.Customer;
+using ManagementRetrieval.Places;
+using ManagementSave.Customer;
+using ManagementSave.Person;
+using ManagementSave.Places;
+using SaveDataCommon.Customer;
+using SaveDataCommon.DisplayReorder;
+using SaveDataCommon.People;
+using SaveDataCommon.Places;
+using ViewData.Places;
+using static DataLayerCommon.Enums.PersonEnums;
+using static DataLayerCommon.Enums.PlaceEnums;
 
 namespace ClaudeBootstrap.Controllers.Places
 {
@@ -18,13 +22,13 @@ namespace ClaudeBootstrap.Controllers.Places
         [HttpGet]
         public ActionResult Index()
         {
-            return View(new PlaceListViewModel(PlaceEnums.PlaceType.Customer));
+            return View(new PlaceListViewModel(PlaceType.Customer));
         }
 
         [HttpPost]
         public JsonResult SavePlace(PlaceSaveModel p)
         {
-            if (p.Place != null) p.Place.PlaceType = PlaceEnums.PlaceType.Customer;
+            if (p.Place != null) p.Place.PlaceType = PlaceType.Customer;
             using (PlaceSaveManager mgr = new PlaceSaveManager())
             {
                 return Json(mgr.SavePlace(p));
@@ -34,7 +38,7 @@ namespace ClaudeBootstrap.Controllers.Places
         [HttpPost]
         public JsonResult SaveContact(PersonSaveModel c)
         {
-            if (c != null) c.Person.PersonType = PersonEnums.PersonType.CustomerContact;
+            if (c != null) c.Person.PersonType = PersonType.CustomerContact;
             using (PersonSaveManager mgr = new PersonSaveManager())
             {
                 return Json(mgr.SavePerson(c));
@@ -42,9 +46,9 @@ namespace ClaudeBootstrap.Controllers.Places
         }
 
         [HttpPost]
-        public JsonResult SaveBrand(CustomerBrand c)
+        public JsonResult SaveBrand(CustomerBrandSave c)
         {
-            using (CustomerBrandManager mgr = new CustomerBrandManager())
+            using (CustomerBrandSaveManager mgr = new CustomerBrandSaveManager())
             {
                 return Json(mgr.SaveRecord(c));
             }
@@ -53,7 +57,7 @@ namespace ClaudeBootstrap.Controllers.Places
         [HttpPost]
         public JsonResult GetPlace(string id)
         {
-            using (CustomerManager mgr = new CustomerManager())
+            using (CustomerGetManager mgr = new CustomerGetManager())
             {
                 return Json(id != null ? mgr.GetCustomer(int.Parse(id)) : mgr.GetCustomer(0));
             }
@@ -71,7 +75,7 @@ namespace ClaudeBootstrap.Controllers.Places
         [HttpPost]
         public void DisplayOrder(List<DisplayReorder> list)
         {
-            using (CustomerManager mgr = new CustomerManager())
+            using (CustomerSaveManager mgr = new CustomerSaveManager())
             {
                 mgr.SaveDisplayOrder(list);
             }
@@ -81,7 +85,7 @@ namespace ClaudeBootstrap.Controllers.Places
         [HttpDelete]
         public JsonResult Delete(int id)
         {
-            using (CustomerManager mgr = new CustomerManager())
+            using (CustomerSaveManager mgr = new CustomerSaveManager())
             {
                 return Json(mgr.DeleteCustomer(id));
             }
@@ -99,7 +103,7 @@ namespace ClaudeBootstrap.Controllers.Places
         [HttpPost]
         public JsonResult DeleteBrand(int id)
         {
-            using (CustomerBrandManager mgr = new CustomerBrandManager())
+            using (CustomerBrandSaveManager mgr = new CustomerBrandSaveManager())
             {
                 return Json(mgr.DeleteRecord(id));
             }

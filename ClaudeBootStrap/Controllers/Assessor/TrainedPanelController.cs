@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using CommonData.Models.Assessor;
-using SaveDataCommon;
+using ManagementSave.Assessor;
+using SaveDataCommon.Assessor;
+using SaveDataCommon.DisplayReorder;
 using ViewData.Assessor;
-using ViewManagement.Managers.Assessor;
 
 namespace ClaudeBootstrap.Controllers.Assessor
 {
@@ -18,18 +18,18 @@ namespace ClaudeBootstrap.Controllers.Assessor
         }
 
         [HttpPost]
-        public JsonResult Save(TrainedPanel entity)
+        public JsonResult Save(TrainedPanelSave data)
         {
-            using (TrainedPanelManager mgr = new TrainedPanelManager())
+            using (TrainedPanelSaveManager mgr = new TrainedPanelSaveManager())
             {
-                return Json(mgr.SaveRecord(entity));
+                return Json(mgr.SaveRecord(data));
             }
         }
 
         [HttpPost]
         public void DisplayOrder(List<DisplayReorder> list)
         {
-            using (TrainedPanelManager mgr = new TrainedPanelManager())
+            using (TrainedPanelSaveManager mgr = new TrainedPanelSaveManager())
             {
                 mgr.SaveDisplayReorder(list);
             }
@@ -39,7 +39,7 @@ namespace ClaudeBootstrap.Controllers.Assessor
         [HttpDelete]
         public JsonResult Delete(int id)
         {
-            using (TrainedPanelManager mgr = new TrainedPanelManager())
+            using (TrainedPanelSaveManager mgr = new TrainedPanelSaveManager())
             {
                 return Json(mgr.DeleteRecord(id));
             }

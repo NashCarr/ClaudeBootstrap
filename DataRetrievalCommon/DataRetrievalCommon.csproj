@@ -32,27 +32,19 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Addresses\AddressViewModel.cs" />
     <Compile Include="Assessor\TrainedPanelAssessor.cs" />
     <Compile Include="Lookup\PostalCodeLookup.cs" />
-    <Compile Include="People\AssessorView.cs" />
     <Compile Include="People\PersonView.cs" />
     <Compile Include="Phones\PhoneViewModel.cs" />
     <Compile Include="Places\CustomerView.cs" />
+    <Compile Include="Places\PlaceList.cs" />
     <Compile Include="Places\PlaceView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClaudeCommon\CommonData.csproj">
-      <Project>{FB0DEC60-3BA3-4BD7-A268-5A78AB280F3A}</Project>
-      <Name>CommonData</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DataLayerCommon\DataLayerCommon.csproj">
       <Project>{1ABF531D-949D-4DCC-B31C-53DF3225BBF8}</Project>
       <Name>DataLayerCommon</Name>

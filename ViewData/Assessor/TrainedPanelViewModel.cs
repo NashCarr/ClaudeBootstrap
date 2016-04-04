@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using CommonData.Models.Assessor;
 using ManagementLookup;
-using ViewManagement.Managers.Assessor;
+using ManagementRetrieval.Assessor;
+using ViewDataCommon.Assessor;
 
 namespace ViewData.Assessor
 {
@@ -10,7 +10,7 @@ namespace ViewData.Assessor
     {
         public TrainedPanelViewModel()
         {
-            using (TrainedPanelManager mgr = new TrainedPanelManager())
+            using (TrainedPanelGetManager mgr = new TrainedPanelGetManager())
             {
                 //ListEntity = mgr.GetList();
             }

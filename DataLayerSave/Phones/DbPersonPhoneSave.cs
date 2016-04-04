@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using CommonData.Enums;
 using DataLayerCommon.People;
 using DataLayerCommon.Phones;
+using static DataLayerCommon.Enums.PersonEnums;
 
 namespace DataLayerSave.Phones
 {
@@ -18,7 +18,7 @@ namespace DataLayerSave.Phones
         {
             using (DbPhoneAssociationSave db = new DbPhoneAssociationSave())
             {
-                return db.SavePersonPhone(personId, (byte) PersonEnums.PersonType.Assessor, data);
+                return db.SavePersonPhone(personId, (byte) PersonType.Assessor, data);
             }
         }
 
@@ -26,7 +26,7 @@ namespace DataLayerSave.Phones
         {
             using (DbPhoneAssociationSave db = new DbPhoneAssociationSave())
             {
-                return db.SavePersonPhone(personId, (byte) PersonEnums.PersonType.StaffMember, data);
+                return db.SavePersonPhone(personId, (byte) PersonType.StaffMember, data);
             }
         }
 
@@ -34,7 +34,7 @@ namespace DataLayerSave.Phones
         {
             using (DbPhoneAssociationSave db = new DbPhoneAssociationSave())
             {
-                return db.SavePersonPhone(personId, (byte) PersonEnums.PersonType.CustomerContact, data);
+                return db.SavePersonPhone(personId, (byte) PersonType.CustomerContact, data);
             }
         }
 
@@ -42,7 +42,7 @@ namespace DataLayerSave.Phones
         {
             using (DbPhoneAssociationSave db = new DbPhoneAssociationSave())
             {
-                return db.SavePersonPhone(personId, (byte) PersonEnums.PersonType.OrganizationContact, data);
+                return db.SavePersonPhone(personId, (byte) PersonType.OrganizationContact, data);
             }
         }
 
@@ -98,13 +98,13 @@ namespace DataLayerSave.Phones
         {
             switch (data.Person.PersonType)
             {
-                case PersonEnums.PersonType.Assessor:
+                case PersonType.Assessor:
                     return SaveAssessorPhones(data.Person.PersonId, data.PhoneData.Phones);
-                case PersonEnums.PersonType.StaffMember:
+                case PersonType.StaffMember:
                     return SaveStaffMemberPhones(data.Person.PersonId, data.PhoneData.Phones);
-                case PersonEnums.PersonType.CustomerContact:
+                case PersonType.CustomerContact:
                     return SaveCustomerContactPhones(data.Person.PersonId, data.PhoneData.Phones);
-                case PersonEnums.PersonType.OrganizationContact:
+                case PersonType.OrganizationContact:
                     return SaveOrganizationContactPhones(data.Person.PersonId, data.PhoneData.Phones);
                 default:
                     return "Person Type Undetermined";

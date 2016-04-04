@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using CommonData.Enums;
 using DataLayerCommon.Helpers;
+using static DataLayerCommon.Enums.AddressEnums;
 
 namespace ManagementLookup.LookupData
 {
@@ -13,11 +13,11 @@ namespace ManagementLookup.LookupData
         {
             LookupList =
                 new List<SelectListItem>(
-                    EnumHelpers.SelectListFor<AddressEnums.AddressType>()
-                        .Where(e => e.Value != AddressEnums.AddressType.None.ToString()));
+                    EnumHelpers.SelectListFor<AddressType>()
+                        .Where(e => e.Value != AddressType.None.ToString()));
             foreach (SelectListItem item in LookupList)
             {
-                item.Value = EnumHelpers.GetByteFromEnum<AddressEnums.AddressType>(item.Value).ToString();
+                item.Value = EnumHelpers.GetByteFromEnum<AddressType>(item.Value).ToString();
             }
         }
 

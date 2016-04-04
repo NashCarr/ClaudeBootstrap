@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using SaveDataCommon;
+using SaveDataCommon.DisplayReorder;
 
 namespace DataLayerReorder
 {

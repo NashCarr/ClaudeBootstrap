@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using CommonData.Enums;
+using static DataLayerCommon.Enums.PhoneEnums;
 
 namespace DataLayerCommon.Phones
 {
@@ -15,9 +15,9 @@ namespace DataLayerCommon.Phones
         public PhoneSetting PhoneSettings { get; set; }
         public List<PhoneAssociation> Phones { get; set; }
 
-        public PhoneAssociation FaxPhone => Phones.SingleOrDefault(e => e.PhoneType == PhoneEnums.PhoneType.Fax);
-        public PhoneAssociation CellPhone => Phones.SingleOrDefault(e => e.PhoneType == PhoneEnums.PhoneType.Cell);
-        public PhoneAssociation HomePhone => Phones.SingleOrDefault(e => e.PhoneType == PhoneEnums.PhoneType.Home);
-        public PhoneAssociation WorkPhone => Phones.SingleOrDefault(e => e.PhoneType == PhoneEnums.PhoneType.Work);
+        public PhoneAssociation FaxPhone => Phones.SingleOrDefault(e => e.PhoneType == PhoneType.Fax);
+        public PhoneAssociation CellPhone => Phones.SingleOrDefault(e => e.PhoneType == PhoneType.Cell);
+        public PhoneAssociation HomePhone => Phones.SingleOrDefault(e => e.PhoneType == PhoneType.Home);
+        public PhoneAssociation WorkPhone => Phones.SingleOrDefault(e => e.PhoneType == PhoneType.Work);
     }
 }

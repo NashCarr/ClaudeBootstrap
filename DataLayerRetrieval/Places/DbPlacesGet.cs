@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using CommonData.Enums;
-using CommonData.Models.Places;
+using DataLayerCommon.Enums;
+using DataRetrievalCommon.Places;
 
 namespace DataLayerRetrieval.Places
 {

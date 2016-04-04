@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using CommonData.Enums;
 using DataRetrievalCommon.Lookup;
+using static DataLayerCommon.Enums.CountryEnums;
 
 namespace DataLayerRetrieval.Lookup
 {
@@ -45,7 +45,7 @@ namespace DataLayerRetrieval.Lookup
                                     City = Convert.ToString(dr[ordCity]),
                                     Text = Convert.ToString(dr[ordText]),
                                     Value = Convert.ToString(dr[ordValue]),
-                                    Country = (CountryEnums.Country) Convert.ToInt16(dr[ordCountry]),
+                                    Country = (Country) Convert.ToInt16(dr[ordCountry]),
                                     StateProvinceId = Convert.ToInt32(dr[ordStateProvinceId])
                                 };
                                 data.Add(item);

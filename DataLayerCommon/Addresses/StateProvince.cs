@@ -1,4 +1,4 @@
-﻿using CommonData.Enums;
+﻿using DataLayerCommon.Enums;
 
 namespace DataLayerCommon.Addresses
 {

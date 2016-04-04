@@ -34,13 +34,11 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Addresses\Address.cs" />
@@ -60,8 +58,17 @@
     <Compile Include="Administration\UserRole.cs" />
     <Compile Include="BaseModels\AdminBase.cs" />
     <Compile Include="BaseModels\ModelBase.cs" />
-    <Compile Include="DbBase.cs" />
     <Compile Include="DbConnect.cs" />
+    <Compile Include="Enums\AddressEnums.cs" />
+    <Compile Include="Enums\AdministrationEnums.cs" />
+    <Compile Include="Enums\AssessorEnums.cs" />
+    <Compile Include="Enums\CountryEnums.cs" />
+    <Compile Include="Enums\EmailEnums.cs" />
+    <Compile Include="Enums\PersonEnums.cs" />
+    <Compile Include="Enums\PhoneEnums.cs" />
+    <Compile Include="Enums\PlaceEnums.cs" />
+    <Compile Include="Enums\StudyEnums.cs" />
+    <Compile Include="Enums\TimeZoneEnums.cs" />
     <Compile Include="Helpers\EnumHelpers.cs" />
     <Compile Include="Lists\Settings\AssessorInfo.cs" />
     <Compile Include="LookupLists\CompensationTypeLookupList.cs" />
@@ -74,6 +81,7 @@
     <Compile Include="LookupLists\ProgramOptionLookupList.cs" />
     <Compile Include="LookupLists\StaffUserLookupList.cs" />
     <Compile Include="LookupLists\UserRoleLookupList.cs" />
+    <Compile Include="People\Contact.cs" />
     <Compile Include="People\Person.cs" />
     <Compile Include="People\PersonData.cs" />
     <Compile Include="Phones\Phone.cs" />
@@ -83,12 +91,13 @@
     <Compile Include="Places\Place.cs" />
     <Compile Include="Places\PlaceData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ClaudeCommon\CommonData.csproj">
-      <Project>{FB0DEC60-3BA3-4BD7-A268-5A78AB280F3A}</Project>
-      <Name>CommonData</Name>
-    </ProjectReference>
+    <Compile Include="SiteConfiguration\AssessorCompensation.cs" />
+    <Compile Include="SiteConfiguration\Compensation.cs" />
+    <Compile Include="SiteConfiguration\EmployeeCompensation.cs" />
+    <Compile Include="SiteConfiguration\GeneralConfiguration.cs" />
+    <Compile Include="SiteConfiguration\ModuleUsage.cs" />
+    <Compile Include="SiteConfiguration\PasswordRequirement.cs" />
+    <Compile Include="SiteConfiguration\StudyDefinition.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

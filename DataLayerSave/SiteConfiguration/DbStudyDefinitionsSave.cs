@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Data;
-using CommonData.Models.SiteConfiguration;
+using DataLayerCommon.SiteConfiguration;
 using DataLayerSaveCommon;
-using SaveDataCommon;
+using SaveDataCommon.Return;
 
 namespace DataLayerSave.SiteConfiguration
 {

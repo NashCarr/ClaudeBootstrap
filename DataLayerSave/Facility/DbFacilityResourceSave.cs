@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Data;
-using CommonData.Models.Facility;
 using DataLayerSaveCommon;
-using SaveDataCommon;
+using SaveDataCommon.Facility;
+using SaveDataCommon.Return;
 
 namespace DataLayerSave.Facility
 {
     public class DbFacilityResourceSave : DbSaveBase
     {
-        public ReturnBase SetInactive(int recordId)
+        public ReturnBase SetInactive(int id)
         {
-            ReturnValues.Id = recordId;
+            ReturnValues.Id = id;
             try
             {
                 SetConnectToDatabase("[FacilityResource].[usp_SetInactive]");
@@ -29,9 +29,9 @@ namespace DataLayerSave.Facility
             return ReturnValues;
         }
 
-        public ReturnBase AddUpdateRecord(FacilityResource data)
+        public ReturnBase AddUpdateRecord(FacilityResourceSave data)
         {
-            ReturnValues.Id = data.RecordId;
+            ReturnValues.Id = data.Id;
 
             if (!string.IsNullOrEmpty(data.Name)) return SaveRecord(data);
 
@@ -39,7 +39,7 @@ namespace DataLayerSave.Facility
             return ReturnValues;
         }
 
-        private ReturnBase SaveRecord(FacilityResource data)
+        private ReturnBase SaveRecord(FacilityResourceSave data)
         {
             try
             {
@@ -52,7 +52,6 @@ namespace DataLayerSave.Facility
                 CmdSql.Parameters.Add("@Name", SqlDbType.NVarChar, 50).Value = data.Name.Trim();
                 CmdSql.Parameters.Add("@ShortName", SqlDbType.NVarChar, 10).Value = data.ShortName.Trim();
                 CmdSql.Parameters.Add("@FacilityId", SqlDbType.Int).Value = data.FacilityId;
-                CmdSql.Parameters.Add("@DisplayOrder", SqlDbType.Int).Value = data.DisplayOrder;
 
                 SetErrMsgParameter();
 

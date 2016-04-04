@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
-using CommonData.Enums;
+using DataLayerCommon.Enums;
 using DataLayerCommon.LookupLists;
 
 namespace DataLayerRetrieval.Lookup

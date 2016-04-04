@@ -86,25 +86,17 @@
     <Compile Include="SiteConfiguration\DbSiteConfigurationGet.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClaudeCommon\CommonData.csproj">
+    <ProjectReference Include="..\DataCommon\DataCommon.csproj">
       <Project>{FB0DEC60-3BA3-4BD7-A268-5A78AB280F3A}</Project>
-      <Name>CommonData</Name>
+      <Name>DataCommon</Name>
     </ProjectReference>
     <ProjectReference Include="..\DataLayerCommon\DataLayerCommon.csproj">
       <Project>{1ABF531D-949D-4DCC-B31C-53DF3225BBF8}</Project>
       <Name>DataLayerCommon</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DataLayerSaveCommon\DataLayerSaveCommon.csproj">
-      <Project>{CFEDB533-1918-485B-B2FB-43A1AC166A30}</Project>
-      <Name>DataLayerSaveCommon</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DataRetrievalCommon\DataRetrievalCommon.csproj">
       <Project>{7F3C4322-E4EF-47A5-947C-9611673A58DE}</Project>
       <Name>DataRetrievalCommon</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SaveDataCommon\SaveDataCommon.csproj">
-      <Project>{B5277E31-13BA-4A2D-8E39-BF88780119E8}</Project>
-      <Name>SaveDataCommon</Name>
     </ProjectReference>
     <ProjectReference Include="..\ViewDataCommon\ViewDataCommon.csproj">
       <Project>{60E96CBF-EE02-4D31-88A0-4D19F75AEC1F}</Project>

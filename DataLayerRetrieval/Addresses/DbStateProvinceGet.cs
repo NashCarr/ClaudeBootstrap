@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using CommonData.Enums;
 using DataLayerCommon.Addresses;
+using static DataLayerCommon.Enums.CountryEnums;
 
 namespace DataLayerRetrieval.Addresses
 {
     public class DbStateProvinceGet : DbGatewayGet
     {
-        public List<StateProvince> GetActiveRecords(CountryEnums.Country id)
+        public List<StateProvince> GetActiveRecords(Country id)
         {
             SetConnectToDatabase("[Address].[usp_StateProvince_GetActive]");
             CmdSql.Parameters.Add("@CountryId", SqlDbType.Int).Value = (int) id;
@@ -44,7 +44,7 @@ namespace DataLayerRetrieval.Addresses
                                 StateProvince item = new StateProvince
                                 {
                                     StateProvinceId = Convert.ToInt16(dr[ordStateProvinceId]),
-                                    Country = (CountryEnums.Country) Convert.ToInt16(dr[ordCountryId]),
+                                    Country = (Country) Convert.ToInt16(dr[ordCountryId]),
                                     Abbreviation = Convert.ToString(dr[ordAbbreviation]),
                                     Name = Convert.ToString(dr[ordName])
                                 };

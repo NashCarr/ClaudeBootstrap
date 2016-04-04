@@ -1,14 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using CommonData.Enums;
-using CommonData.Models.Facility;
-using CommonData.Models.SiteConfiguration;
-using SaveDataCommon;
-using ViewManagement.Managers.Facility;
-using ViewManagement.Managers.People;
-using ViewManagement.Managers.Places;
-using ViewManagement.Models.People;
-using ViewManagement.Models.Places;
+using DataCommon.SiteConfiguration;
+using ManagementRetrieval.Facility;
+using ManagementRetrieval.Places;
+using ManagementSave.Facility;
+using ManagementSave.Person;
+using ManagementSave.Places;
+using SaveDataCommon.DisplayReorder;
+using SaveDataCommon.Facility;
+using SaveDataCommon.People;
+using SaveDataCommon.Places;
+using ViewData.Places;
+using static DataLayerCommon.Enums.PersonEnums;
+using static DataLayerCommon.Enums.PlaceEnums;
 
 namespace ClaudeBootstrap.Controllers.Places
 {
@@ -35,7 +39,7 @@ namespace ClaudeBootstrap.Controllers.Places
         [HttpPost]
         public JsonResult SavePlace(PlaceSaveModel p)
         {
-            if (p.Place != null) p.Place.PlaceType = PlaceEnums.PlaceType.Facility;
+            if (p.Place != null) p.Place.PlaceType = PlaceType.Facility;
             using (PlaceSaveManager mgr = new PlaceSaveManager())
             {
                 return Json(mgr.SavePlace(p));
@@ -45,7 +49,7 @@ namespace ClaudeBootstrap.Controllers.Places
         [HttpPost]
         public JsonResult SaveContact(PersonSaveModel c)
         {
-            if (c != null) c.Person.PersonType = PersonEnums.PersonType.StaffMember;
+            if (c != null) c.Person.PersonType = PersonType.StaffMember;
             using (PersonSaveManager mgr = new PersonSaveManager())
             {
                 return Json(mgr.SavePerson(c));
@@ -53,9 +57,9 @@ namespace ClaudeBootstrap.Controllers.Places
         }
 
         [HttpPost]
-        public JsonResult SaveResource(FacilityResource r)
+        public JsonResult SaveResource(FacilityResourceSave r)
         {
-            using (FacilityResourceManager mgr = new FacilityResourceManager())
+            using (FacilityResourceSaveManager mgr = new FacilityResourceSaveManager())
             {
                 return Json(mgr.SaveRecord(r));
             }
@@ -64,7 +68,7 @@ namespace ClaudeBootstrap.Controllers.Places
         [HttpPost]
         public JsonResult GetPlace(string id)
         {
-            using (FacilityManager mgr = new FacilityManager())
+            using (FacilityGetManager mgr = new FacilityGetManager())
             {
                 return Json(id != null ? mgr.GetFacility(int.Parse(id)) : mgr.GetFacility(0));
             }
@@ -82,7 +86,7 @@ namespace ClaudeBootstrap.Controllers.Places
         [HttpPost]
         public void DisplayOrder(List<DisplayReorder> list)
         {
-            using (FacilityManager mgr = new FacilityManager())
+            using (FacilitySaveManager mgr = new FacilitySaveManager())
             {
                 mgr.SaveDisplayOrder(list);
             }
@@ -92,7 +96,7 @@ namespace ClaudeBootstrap.Controllers.Places
         [HttpDelete]
         public JsonResult Delete(int id)
         {
-            using (FacilityManager mgr = new FacilityManager())
+            using (FacilitySaveManager mgr = new FacilitySaveManager())
             {
                 return Json(mgr.DeleteFacility(id));
             }
@@ -110,7 +114,7 @@ namespace ClaudeBootstrap.Controllers.Places
         [HttpPost]
         public JsonResult DeleteResource(int id)
         {
-            using (FacilityResourceManager mgr = new FacilityResourceManager())
+            using (FacilityResourceSaveManager mgr = new FacilityResourceSaveManager())
             {
                 return Json(mgr.DeleteRecord(id));
             }

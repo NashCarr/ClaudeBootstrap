@@ -5,15 +5,15 @@ namespace DataLayerRetrieval.SiteConfiguration
 {
     public class DbSiteConfigurationGet : DbGetBase
     {
-        public CommonData.Models.SiteConfiguration.SiteConfiguration GetSiteConfiguration()
+        public DataCommon.SiteConfiguration.SiteConfiguration GetSiteConfiguration()
         {
             return LoadRecords();
         }
 
-        private CommonData.Models.SiteConfiguration.SiteConfiguration LoadRecords()
+        private DataCommon.SiteConfiguration.SiteConfiguration LoadRecords()
         {
-            CommonData.Models.SiteConfiguration.SiteConfiguration data =
-                new CommonData.Models.SiteConfiguration.SiteConfiguration();
+            DataCommon.SiteConfiguration.SiteConfiguration data =
+                new DataCommon.SiteConfiguration.SiteConfiguration();
             try
             {
                 SetConnectToDatabase("[Settings].[usp_SiteConfiguration_GetData]");

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
-using CommonData.Enums;
-using CommonData.Models.People;
 using DataLayerCommon.LookupLists;
 using DataLayerRetrieval.People;
+using ViewDataCommon.Person;
+using static DataLayerCommon.Enums.PersonEnums;
 
 namespace DataLayerRetrieval.Lookup
 {
@@ -18,19 +18,19 @@ namespace DataLayerRetrieval.Lookup
 
         public StaffMemberLookupList GetStaffMemberLookup()
         {
-            return (StaffMemberLookupList) GetLookUpList(PersonEnums.PersonType.StaffMember);
+            return (StaffMemberLookupList) GetLookUpList(PersonType.StaffMember);
         }
 
         public CustomerContactLookupList GetCustomerContactLookup()
         {
-            return (CustomerContactLookupList) GetLookUpList(PersonEnums.PersonType.CustomerContact);
+            return (CustomerContactLookupList) GetLookUpList(PersonType.CustomerContact);
         }
 
         private static List<PersonList> GetAssessors()
         {
             using (DbPeopleGetActive db = new DbPeopleGetActive())
             {
-                return db.GetActive(PersonEnums.PersonType.Assessor);
+                return db.GetActive(PersonType.Assessor);
             }
         }
 
@@ -38,7 +38,7 @@ namespace DataLayerRetrieval.Lookup
         {
             using (DbPeopleGetActive db = new DbPeopleGetActive())
             {
-                return db.GetActive(PersonEnums.PersonType.CustomerContact);
+                return db.GetActive(PersonType.CustomerContact);
             }
         }
 
@@ -46,11 +46,11 @@ namespace DataLayerRetrieval.Lookup
         {
             using (DbPeopleGetActive db = new DbPeopleGetActive())
             {
-                return db.GetActive(PersonEnums.PersonType.StaffMember);
+                return db.GetActive(PersonType.StaffMember);
             }
         }
 
-        private static PersonLookupList GetLookUpList(PersonEnums.PersonType personType)
+        private static PersonLookupList GetLookUpList(PersonType personType)
         {
             PersonLookupList lu = new PersonLookupList();
             lu.LookupList.Add(new SelectListItem {Value = "0", Text = "None"});
@@ -59,16 +59,16 @@ namespace DataLayerRetrieval.Lookup
 
             switch (personType)
             {
-                case PersonEnums.PersonType.StaffMember:
+                case PersonType.StaffMember:
                     data = GetStaffMembers();
                     break;
-                case PersonEnums.PersonType.Assessor:
+                case PersonType.Assessor:
                     data = GetAssessors();
                     break;
-                case PersonEnums.PersonType.CustomerContact:
+                case PersonType.CustomerContact:
                     data = GetCustomerContacts();
                     break;
-                case PersonEnums.PersonType.None:
+                case PersonType.None:
                     return lu;
                 default:
                     return lu;

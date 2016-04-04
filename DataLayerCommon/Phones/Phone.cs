@@ -1,5 +1,6 @@
-﻿using CommonData.Enums;
-using DataLayerCommon.BaseModels;
+﻿using DataLayerCommon.BaseModels;
+using static DataLayerCommon.Enums.CountryEnums;
+using static DataLayerCommon.Enums.PhoneEnums;
 
 namespace DataLayerCommon.Phones
 {
@@ -9,13 +10,13 @@ namespace DataLayerCommon.Phones
         {
             PhoneId = 0;
             PhoneNumber = 0;
-            PhoneType = PhoneEnums.PhoneType.None;
-            Country = CountryEnums.Country.UnitedStates;
+            PhoneType = PhoneType.None;
+            Country = Country.UnitedStates;
         }
 
         public int PhoneId { get; set; }
-        public CountryEnums.Country Country { get; set; }
+        public Country Country { get; set; }
         public long PhoneNumber { get; set; }
-        public PhoneEnums.PhoneType PhoneType { get; set; }
+        public PhoneType PhoneType { get; set; }
     }
 }

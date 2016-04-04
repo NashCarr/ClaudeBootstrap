@@ -1,4 +1,4 @@
-﻿using CommonData.Enums;
+﻿using static DataLayerCommon.Enums.PhoneEnums;
 
 namespace DataLayerCommon.Phones
 {
@@ -9,12 +9,12 @@ namespace DataLayerCommon.Phones
             RecordId = 0;
             MobileCarrier = 0;
             AllowText = false;
-            PrimaryPhoneType = PhoneEnums.PhoneType.Cell;
+            PrimaryPhoneType = PhoneType.Cell;
         }
 
         public int RecordId { get; set; }
         public bool AllowText { get; set; }
         public short MobileCarrier { get; set; }
-        public PhoneEnums.PhoneType PrimaryPhoneType { get; set; }
+        public PhoneType PrimaryPhoneType { get; set; }
     }
 }

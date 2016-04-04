@@ -1,11 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using CommonData.Enums;
-using SaveDataCommon;
-using ViewManagement.Managers.People;
-using ViewManagement.Managers.Places;
-using ViewManagement.Models.People;
-using ViewManagement.Models.Places;
+using ManagementRetrieval.Places;
+using ManagementSave.Person;
+using ManagementSave.Places;
+using SaveDataCommon.DisplayReorder;
+using SaveDataCommon.People;
+using SaveDataCommon.Places;
+using ViewData.Places;
+using static DataLayerCommon.Enums.PersonEnums;
+using static DataLayerCommon.Enums.PlaceEnums;
 
 namespace ClaudeBootstrap.Controllers.Places
 {
@@ -16,13 +19,13 @@ namespace ClaudeBootstrap.Controllers.Places
         [HttpGet]
         public ActionResult Index()
         {
-            return View(new PlaceListViewModel(PlaceEnums.PlaceType.Organization));
+            return View(new PlaceListViewModel(PlaceType.Organization));
         }
 
         [HttpPost]
         public JsonResult SavePlace(PlaceSaveModel p)
         {
-            if (p.Place != null) p.Place.PlaceType = PlaceEnums.PlaceType.Organization;
+            if (p.Place != null) p.Place.PlaceType = PlaceType.Organization;
             using (PlaceSaveManager mgr = new PlaceSaveManager())
             {
                 return Json(mgr.SavePlace(p));
@@ -32,7 +35,7 @@ namespace ClaudeBootstrap.Controllers.Places
         [HttpPost]
         public JsonResult SaveContact(PersonSaveModel c)
         {
-            if (c != null) c.Person.PersonType = PersonEnums.PersonType.OrganizationContact;
+            if (c != null) c.Person.PersonType = PersonType.OrganizationContact;
             using (PersonSaveManager mgr = new PersonSaveManager())
             {
                 return Json(mgr.SavePerson(c));
@@ -42,7 +45,7 @@ namespace ClaudeBootstrap.Controllers.Places
         [HttpPost]
         public JsonResult GetPlace(string id)
         {
-            using (OrganizationManager mgr = new OrganizationManager())
+            using (OrganizationGetManager mgr = new OrganizationGetManager())
             {
                 return Json(id != null ? mgr.GetOrganization(int.Parse(id)) : mgr.GetOrganization(0));
             }
@@ -60,7 +63,7 @@ namespace ClaudeBootstrap.Controllers.Places
         [HttpPost]
         public void DisplayOrder(List<DisplayReorder> list)
         {
-            using (OrganizationManager mgr = new OrganizationManager())
+            using (OrganizationSaveManager mgr = new OrganizationSaveManager())
             {
                 mgr.SaveDisplayOrder(list);
             }
@@ -70,7 +73,7 @@ namespace ClaudeBootstrap.Controllers.Places
         [HttpDelete]
         public JsonResult Delete(int id)
         {
-            using (OrganizationManager mgr = new OrganizationManager())
+            using (OrganizationSaveManager mgr = new OrganizationSaveManager())
             {
                 return Json(mgr.DeleteOrganization(id));
             }

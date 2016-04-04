@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 using DataLayerSaveCommon;
-using SaveDataCommon;
+using SaveDataCommon.Return;
 
 namespace DataLayerSave.Place
 {

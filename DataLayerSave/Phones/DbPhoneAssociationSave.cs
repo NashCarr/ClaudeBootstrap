@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Data;
-using CommonData.Enums;
 using DataLayerCommon.Helpers;
 using DataLayerCommon.Phones;
 using DataLayerSaveCommon;
+using static DataLayerCommon.Enums.CountryEnums;
+using static DataLayerCommon.Enums.PhoneEnums;
 
 namespace DataLayerSave.Phones
 {
@@ -42,10 +43,10 @@ namespace DataLayerSave.Phones
                 CmdSql.Parameters.Add("@PhoneAssociationId", SqlDbType.Int).Value = data.PhoneAssociationId;
                 CmdSql.Parameters.Add("@PhoneId", SqlDbType.Int).Value = data.PhoneId;
                 CmdSql.Parameters.Add("@PhoneType", SqlDbType.TinyInt).Value =
-                    EnumHelpers.GetShortFromEnum<PhoneEnums.PhoneType>(data.PhoneType.ToString());
+                    EnumHelpers.GetShortFromEnum<PhoneType>(data.PhoneType.ToString());
                 CmdSql.Parameters.Add("@PhoneNumber", SqlDbType.BigInt).Value = data.PhoneNumber;
                 CmdSql.Parameters.Add("@Country", SqlDbType.SmallInt).Value =
-                    EnumHelpers.GetShortFromEnum<CountryEnums.Country>(data.Country.ToString());
+                    EnumHelpers.GetShortFromEnum<Country>(data.Country.ToString());
                 CmdSql.Parameters.Add("@IsActive", SqlDbType.Bit).Value = data.IsActive;
 
                 SetErrMsgParameter();

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Data;
 using DataLayerSaveCommon;
-using SaveDataCommon;
-using ViewDataCommon.Customer;
+using SaveDataCommon.Customer;
+using SaveDataCommon.Return;
 
 namespace DataLayerSave.Customer
 {
@@ -29,9 +29,9 @@ namespace DataLayerSave.Customer
             return ReturnValues;
         }
 
-        public ReturnBase AddUpdateRecord(CustomerBrand data)
+        public ReturnBase AddUpdateRecord(CustomerBrandSave data)
         {
-            ReturnValues.Id = data.RecordId;
+            ReturnValues.Id = data.Id;
 
             if (!string.IsNullOrEmpty(data.Name)) return SaveRecord(data);
 
@@ -39,7 +39,7 @@ namespace DataLayerSave.Customer
             return ReturnValues;
         }
 
-        private ReturnBase SaveRecord(CustomerBrand data)
+        private ReturnBase SaveRecord(CustomerBrandSave data)
         {
             try
             {
@@ -51,7 +51,6 @@ namespace DataLayerSave.Customer
 
                 CmdSql.Parameters.Add("@Name", SqlDbType.NVarChar, 50).Value = data.Name.Trim();
                 CmdSql.Parameters.Add("@CustomerId", SqlDbType.Int).Value = data.CustomerId;
-                CmdSql.Parameters.Add("@DisplayOrder", SqlDbType.Int).Value = data.DisplayOrder;
 
                 SetErrMsgParameter();
 

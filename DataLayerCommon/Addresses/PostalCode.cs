@@ -1,5 +1,5 @@
-﻿using CommonData.Enums;
-using DataLayerCommon.BaseModels;
+﻿using DataLayerCommon.BaseModels;
+using static DataLayerCommon.Enums.CountryEnums;
 
 namespace DataLayerCommon.Addresses
 {
@@ -11,13 +11,13 @@ namespace DataLayerCommon.Addresses
             StateProvinceId = 0;
             City = string.Empty;
             ZipCode = string.Empty;
-            Country = CountryEnums.Country.UnitedStates;
+            Country = Country.UnitedStates;
             PostalCoordinates = new Coordinates();
         }
 
         public string City { get; set; }
         public string ZipCode { get; set; }
-        public CountryEnums.Country Country { get; set; }
+        public Country Country { get; set; }
         public int PostalCodeId { get; set; }
         public int StateProvinceId { get; set; }
         public Coordinates PostalCoordinates { get; set; }

@@ -2,7 +2,7 @@
 using System.Data;
 using DataLayerSaveCommon;
 using Microsoft.SqlServer.Server;
-using SaveDataCommon;
+using SaveDataCommon.DisplayReorder;
 
 namespace DataLayerReorder
 {

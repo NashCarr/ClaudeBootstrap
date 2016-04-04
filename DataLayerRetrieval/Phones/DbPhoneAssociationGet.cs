@@ -1,29 +1,29 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using CommonData.Enums;
 using DataLayerCommon.Phones;
-using DataLayerSaveCommon;
+using static DataLayerCommon.Enums.CountryEnums;
+using static DataLayerCommon.Enums.PhoneEnums;
 
 namespace DataLayerRetrieval.Phones
 {
-    public class DbPhoneAssociationGet : DbSaveBase
+    public class DbPhoneAssociationGet : DbGetBase
     {
         protected internal PhoneAssociation GetPlacePhone(int phoneAssociationId)
         {
-            ReturnValues.Id = phoneAssociationId;
+            IdValue = phoneAssociationId;
             IdParameter = "@PlacePhoneId";
 
             SetConnectToDatabase("[Phone].[usp_PlacePhone_GetPhone]");
 
-            CmdSql.Parameters.Add(IdParameter, SqlDbType.Int).Value = ReturnValues.Id;
+            CmdSql.Parameters.Add(IdParameter, SqlDbType.Int).Value = IdValue;
 
             return GetRecord();
         }
 
         protected internal PhoneAssociation GetPersonPhone(int phoneAssociationId)
         {
-            ReturnValues.Id = phoneAssociationId;
+            IdValue = phoneAssociationId;
             IdParameter = "@PersonPhoneId";
 
             SetConnectToDatabase("[Phone].[usp_PersonPhone_GetPhone]");
@@ -36,7 +36,7 @@ namespace DataLayerRetrieval.Phones
             PhoneAssociation data = new PhoneAssociation();
             try
             {
-                CmdSql.Parameters.Add(IdParameter, SqlDbType.Int).Value = ReturnValues.Id;
+                CmdSql.Parameters.Add(IdParameter, SqlDbType.Int).Value = IdValue;
                 using (ConnSql)
                 {
                     ConnSql.Open();
@@ -63,8 +63,8 @@ namespace DataLayerRetrieval.Phones
                                 data.PhoneAssociationId = Convert.ToInt32(dr[ordPhoneAssociationId]);
                                 data.PhoneId = Convert.ToInt32(dr[ordPhoneId]);
                                 data.PhoneNumber = Convert.ToInt64(dr[ordPhoneNumber]);
-                                data.Country = (CountryEnums.Country) Convert.ToInt16(dr[ordCountry]);
-                                data.PhoneType = (PhoneEnums.PhoneType) Convert.ToInt16(dr[ordPhoneType]);
+                                data.Country = (Country) Convert.ToInt16(dr[ordCountry]);
+                                data.PhoneType = (PhoneType) Convert.ToInt16(dr[ordPhoneType]);
                                 data.IsActive = Convert.ToBoolean(dr[ordIsActive]);
                                 data.CreateDate = Convert.ToDateTime(dr[ordCreateDate]);
                             }

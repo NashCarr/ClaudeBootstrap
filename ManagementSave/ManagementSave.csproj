@@ -34,14 +34,27 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Administration\BudgetCategoryManager.cs" />
-    <Compile Include="Administration\GiftCardManager.cs" />
-    <Compile Include="Administration\HearAboutUsManager.cs" />
-    <Compile Include="Administration\ProductGroupManager.cs" />
-    <Compile Include="Administration\StudyDesignManager.cs" />
+    <Compile Include="Administration\BudgetCategorySaveManager.cs" />
+    <Compile Include="Administration\GiftCardSaveManager.cs" />
+    <Compile Include="Administration\HearAboutUsSaveManager.cs" />
+    <Compile Include="Administration\ProductGroupSaveManager.cs" />
+    <Compile Include="Administration\StudyDesignSaveManager.cs" />
+    <Compile Include="Assessor\TrainedPanelSaveManager.cs" />
+    <Compile Include="Customer\CustomerBrandSaveManager.cs" />
+    <Compile Include="Customer\CustomerSaveManager.cs" />
+    <Compile Include="Facility\FacilitySaveManager.cs" />
+    <Compile Include="Facility\FacilityResourceSaveManager.cs" />
+    <Compile Include="Person\PersonSaveManager.cs" />
+    <Compile Include="Person\PlaceContactDeleteManager.cs" />
+    <Compile Include="Places\OrganizationSaveManager.cs" />
+    <Compile Include="Places\PlaceSaveManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DataLayerCommon\DataLayerCommon.csproj">
+      <Project>{1ABF531D-949D-4DCC-B31C-53DF3225BBF8}</Project>
+      <Name>DataLayerCommon</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataLayerReorder\DataLayerReorder.csproj">
       <Project>{7E0856C1-30BC-4F20-AD03-9955C26B5815}</Project>
       <Name>DataLayerReorder</Name>

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using CommonData.Enums;
+using static DataLayerCommon.Enums.PersonEnums;
 
 namespace DataLayerRetrieval.Person
 {
@@ -9,17 +9,17 @@ namespace DataLayerRetrieval.Person
     {
         protected internal DataLayerCommon.People.Person GetAssessor(int personId)
         {
-            return LoadRecord(personId, (byte) PersonEnums.PersonType.Assessor);
+            return LoadRecord(personId, (byte) PersonType.Assessor);
         }
 
         protected internal DataLayerCommon.People.Person GetCustomerContact(int personId)
         {
-            return LoadRecord(personId, (byte) PersonEnums.PersonType.CustomerContact);
+            return LoadRecord(personId, (byte) PersonType.CustomerContact);
         }
 
         protected internal DataLayerCommon.People.Person GetStaffMember(int personId)
         {
-            return LoadRecord(personId, (byte) PersonEnums.PersonType.StaffMember);
+            return LoadRecord(personId, (byte) PersonType.StaffMember);
         }
 
         private DataLayerCommon.People.Person LoadRecord(int personId, byte personType)
@@ -73,7 +73,7 @@ namespace DataLayerRetrieval.Person
                     }
                     ConnSql.Close();
                 }
-                data.PersonType = (PersonEnums.PersonType) personType;
+                data.PersonType = (PersonType) personType;
             }
             catch (Exception ex)
             {

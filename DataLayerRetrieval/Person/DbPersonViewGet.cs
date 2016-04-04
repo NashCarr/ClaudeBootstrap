@@ -1,6 +1,6 @@
-﻿using CommonData.Enums;
-using DataLayerCommon.People;
+﻿using DataLayerCommon.People;
 using DataRetrievalCommon.People;
+using static DataLayerCommon.Enums.PersonEnums;
 
 namespace DataLayerRetrieval.Person
 {
@@ -17,7 +17,7 @@ namespace DataLayerRetrieval.Person
 
             using (DbPersonDataStub a = new DbPersonDataStub())
             {
-                _data = a.Prefill(PersonEnums.PersonType.CustomerContact, _data);
+                _data = a.Prefill(PersonType.CustomerContact, _data);
             }
 
             return SetPersonView();
@@ -32,7 +32,7 @@ namespace DataLayerRetrieval.Person
 
             using (DbPersonDataStub a = new DbPersonDataStub())
             {
-                _data = a.Prefill(PersonEnums.PersonType.OrganizationContact, _data);
+                _data = a.Prefill(PersonType.OrganizationContact, _data);
             }
 
             return SetPersonView();
@@ -47,7 +47,7 @@ namespace DataLayerRetrieval.Person
 
             using (DbPersonDataStub a = new DbPersonDataStub())
             {
-                _data = a.Prefill(PersonEnums.PersonType.StaffMember, _data);
+                _data = a.Prefill(PersonType.StaffMember, _data);
             }
 
             return SetPersonView();

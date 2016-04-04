@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using CommonData.Enums;
-using CommonData.Models.People;
+using ViewDataCommon.Person;
+using static DataLayerCommon.Enums.PersonEnums;
 
 namespace DataLayerRetrieval.People
 {
@@ -10,22 +10,22 @@ namespace DataLayerRetrieval.People
     {
         protected internal List<PersonList> GetInactiveAssessors()
         {
-            IdValue = (byte) PersonEnums.PersonType.Assessor;
-            TypeName = Enum.GetName(typeof (PersonEnums.PersonType), IdValue);
+            IdValue = (byte) PersonType.Assessor;
+            TypeName = Enum.GetName(typeof (PersonType), IdValue);
             return GetInactive();
         }
 
         protected internal List<PersonList> GetInactiveCustomerContacts()
         {
-            IdValue = (byte) PersonEnums.PersonType.Assessor;
-            TypeName = Enum.GetName(typeof (PersonEnums.PersonType), IdValue);
+            IdValue = (byte) PersonType.Assessor;
+            TypeName = Enum.GetName(typeof (PersonType), IdValue);
             return GetInactive();
         }
 
         protected internal List<PersonList> GetInactiveStaffMembers()
         {
-            IdValue = (byte) PersonEnums.PersonType.Assessor;
-            TypeName = Enum.GetName(typeof (PersonEnums.PersonType), IdValue);
+            IdValue = (byte) PersonType.Assessor;
+            TypeName = Enum.GetName(typeof (PersonType), IdValue);
             return GetInactive();
         }
 

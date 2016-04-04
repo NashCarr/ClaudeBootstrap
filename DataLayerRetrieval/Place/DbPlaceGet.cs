@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using CommonData.Enums;
+using DataLayerCommon.Enums;
 
 namespace DataLayerRetrieval.Place
 {

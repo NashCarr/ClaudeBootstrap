@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using CommonData.Enums;
 using DataLayerCommon.Addresses;
+using DataLayerCommon.Enums;
 using DataLayerCommon.Phones;
 using DataLayerCommon.Places;
 

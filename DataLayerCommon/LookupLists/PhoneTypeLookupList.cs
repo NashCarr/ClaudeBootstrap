@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using CommonData.Enums;
-using EnumHelpers = DataLayerCommon.Helpers.EnumHelpers;
+using static DataLayerCommon.Enums.PhoneEnums;
+using static DataLayerCommon.Helpers.EnumHelpers;
 
 namespace DataLayerCommon.LookupLists
 {
@@ -13,11 +13,11 @@ namespace DataLayerCommon.LookupLists
         {
             LookupList =
                 new List<SelectListItem>(
-                    EnumHelpers.SelectListFor<PhoneEnums.PhoneType>()
-                        .Where(e => e.Value != PhoneEnums.PhoneType.None.ToString()));
+                    SelectListFor<PhoneType>()
+                        .Where(e => e.Value != PhoneType.None.ToString()));
             foreach (SelectListItem item in LookupList)
             {
-                item.Value = EnumHelpers.GetByteFromEnum<PhoneEnums.PhoneType>(item.Value).ToString();
+                item.Value = GetByteFromEnum<PhoneType>(item.Value).ToString();
             }
         }
 

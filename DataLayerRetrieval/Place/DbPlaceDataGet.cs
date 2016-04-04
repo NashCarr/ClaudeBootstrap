@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using CommonData.Enums;
-using CommonData.Models.People;
 using DataLayerCommon.Addresses;
+using DataLayerCommon.Enums;
+using DataLayerCommon.People;
 using DataLayerCommon.Phones;
 using DataLayerCommon.Places;
 

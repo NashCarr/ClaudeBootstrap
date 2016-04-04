@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using ManagementSave.Administration;
-using SaveDataCommon;
 using SaveDataCommon.Administration;
+using SaveDataCommon.DisplayReorder;
 using ViewData.Administration;
 
 namespace ClaudeBootstrap.Controllers.Administration
@@ -20,7 +19,7 @@ namespace ClaudeBootstrap.Controllers.Administration
         [HttpPost]
         public JsonResult Save(StudyDesignSave data)
         {
-            using (StudyDesignManager mgr = new StudyDesignManager())
+            using (ManagementSave.Administration.StudyDesignSaveManager mgr = new ManagementSave.Administration.StudyDesignSaveManager())
             {
                 return Json(mgr.SaveRecord(data));
             }
@@ -29,7 +28,7 @@ namespace ClaudeBootstrap.Controllers.Administration
         [HttpPost]
         public void DisplayOrder(List<DisplayReorder> list)
         {
-            using (StudyDesignManager mgr = new StudyDesignManager())
+            using (ManagementSave.Administration.StudyDesignSaveManager mgr = new ManagementSave.Administration.StudyDesignSaveManager())
             {
                 mgr.SaveDisplayReorder(list);
             }
@@ -39,7 +38,7 @@ namespace ClaudeBootstrap.Controllers.Administration
         [HttpDelete]
         public JsonResult Delete(int id)
         {
-            using (StudyDesignManager mgr = new StudyDesignManager())
+            using (ManagementSave.Administration.StudyDesignSaveManager mgr = new ManagementSave.Administration.StudyDesignSaveManager())
             {
                 return Json(mgr.DeleteRecord(id));
             }

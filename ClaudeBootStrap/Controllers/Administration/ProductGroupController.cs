@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using ManagementSave.Administration;
 using SaveDataCommon;
+using SaveDataCommon.DisplayReorder;
 using ViewData.Administration;
 
 namespace ClaudeBootstrap.Controllers.Administration
@@ -19,7 +20,7 @@ namespace ClaudeBootstrap.Controllers.Administration
         [HttpPost]
         public JsonResult Save(SaveBase data)
         {
-            using (ProductGroupManager mgr = new ProductGroupManager())
+            using (ProductGroupSaveManager mgr = new ProductGroupSaveManager())
             {
                 return Json(mgr.SaveRecord(data));
             }
@@ -28,7 +29,7 @@ namespace ClaudeBootstrap.Controllers.Administration
         [HttpPost]
         public void DisplayOrder(List<DisplayReorder> list)
         {
-            using (ProductGroupManager mgr = new ProductGroupManager())
+            using (ProductGroupSaveManager mgr = new ProductGroupSaveManager())
             {
                 mgr.SaveDisplayReorder(list);
             }
@@ -38,7 +39,7 @@ namespace ClaudeBootstrap.Controllers.Administration
         [HttpDelete]
         public JsonResult Delete(int id)
         {
-            using (ProductGroupManager mgr = new ProductGroupManager())
+            using (ProductGroupSaveManager mgr = new ProductGroupSaveManager())
             {
                 return Json(mgr.DeleteRecord(id));
             }

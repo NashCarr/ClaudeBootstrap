@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using CommonData.Enums;
 using DataLayerCommon.Addresses;
+using static DataLayerCommon.Enums.AddressEnums;
+using static DataLayerCommon.Enums.CountryEnums;
 
 namespace DataLayerRetrieval.Addresses
 {
@@ -77,14 +78,14 @@ namespace DataLayerRetrieval.Addresses
                                 data.AddressAssociationId = Convert.ToInt32(dr[ordAddressAssociationId]);
 
                                 data.AddressId = Convert.ToInt32(dr[ordAddressId]);
-                                data.AddressType = (AddressEnums.AddressType) Convert.ToInt16(dr[ordAddressType]);
+                                data.AddressType = (AddressType) Convert.ToInt16(dr[ordAddressType]);
                                 data.PostalCodeId = Convert.ToInt32(dr[ordPostalCodeId]);
 
                                 data.City = Convert.ToString(dr[ordCity]);
                                 data.ZipCode = Convert.ToString(dr[ordZipCode]);
                                 data.Address1 = Convert.ToString(dr[ordAddress1]);
                                 data.Address2 = Convert.ToString(dr[ordAddress2]);
-                                data.Country = (CountryEnums.Country) Convert.ToInt16(dr[ordCountry]);
+                                data.Country = (Country) Convert.ToInt16(dr[ordCountry]);
                                 data.StateProvinceId = Convert.ToInt32(dr[ordStateProvinceId]);
 
                                 data.IsActive = Convert.ToBoolean(dr[ordIsActive]);

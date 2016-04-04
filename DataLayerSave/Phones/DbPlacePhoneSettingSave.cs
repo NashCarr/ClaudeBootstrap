@@ -1,7 +1,7 @@
 ﻿using System;
-using CommonData.Enums;
 using DataLayerCommon.Phones;
 using DataLayerCommon.Places;
+using static DataLayerCommon.Enums.PlaceEnums;
 
 namespace DataLayerSave.Phones
 {
@@ -18,7 +18,7 @@ namespace DataLayerSave.Phones
             if (data == null) return string.Empty;
             using (DbPhoneSettingSave db = new DbPhoneSettingSave())
             {
-                return db.SavePlacePhoneSetting(placeId, (byte) PlaceEnums.PlaceType.Facility, data);
+                return db.SavePlacePhoneSetting(placeId, (byte) PlaceType.Facility, data);
             }
         }
 
@@ -27,7 +27,7 @@ namespace DataLayerSave.Phones
             if (data == null) return string.Empty;
             using (DbPhoneSettingSave db = new DbPhoneSettingSave())
             {
-                return db.SavePlacePhoneSetting(placeId, (byte) PlaceEnums.PlaceType.Customer, data);
+                return db.SavePlacePhoneSetting(placeId, (byte) PlaceType.Customer, data);
             }
         }
 
@@ -36,7 +36,7 @@ namespace DataLayerSave.Phones
             if (data == null) return string.Empty;
             using (DbPhoneSettingSave db = new DbPhoneSettingSave())
             {
-                return db.SavePlacePhoneSetting(placeId, (byte) PlaceEnums.PlaceType.Organization, data);
+                return db.SavePlacePhoneSetting(placeId, (byte) PlaceType.Organization, data);
             }
         }
 
@@ -45,13 +45,13 @@ namespace DataLayerSave.Phones
             if (data.PhoneData == null) return string.Empty;
             switch (data.Place.PlaceType)
             {
-                case PlaceEnums.PlaceType.Facility:
+                case PlaceType.Facility:
                     return SaveFacilityPhoneSetting(data.Place.PlaceId, data.PhoneData.PhoneSettings);
-                case PlaceEnums.PlaceType.Customer:
+                case PlaceType.Customer:
                     return SaveCustomerPhoneSetting(data.Place.PlaceId, data.PhoneData.PhoneSettings);
-                case PlaceEnums.PlaceType.Organization:
+                case PlaceType.Organization:
                     return SaveOrganizationPhoneSetting(data.Place.PlaceId, data.PhoneData.PhoneSettings);
-                case PlaceEnums.PlaceType.None:
+                case PlaceType.None:
                     return "Place Type Undetermined";
                 default:
                     return "Place Type Undetermined";

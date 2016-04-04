@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using CommonData.Enums;
 using DataLayerCommon.Helpers;
+using static DataLayerCommon.Enums.CountryEnums;
 
 namespace ManagementLookup.LookupData
 {
@@ -13,11 +13,11 @@ namespace ManagementLookup.LookupData
         {
             LookupList =
                 new List<SelectListItem>(
-                    EnumHelpers.SelectListFor<CountryEnums.Country>()
-                        .Where(e => e.Value != CountryEnums.Country.None.ToString()));
+                    EnumHelpers.SelectListFor<Country>()
+                        .Where(e => e.Value != Country.None.ToString()));
             foreach (SelectListItem item in LookupList)
             {
-                item.Value = EnumHelpers.GetShortFromEnum<CountryEnums.Country>(item.Value).ToString();
+                item.Value = EnumHelpers.GetShortFromEnum<Country>(item.Value).ToString();
             }
         }
 

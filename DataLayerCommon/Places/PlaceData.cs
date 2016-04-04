@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using CommonData.Models.People;
 using DataLayerCommon.Addresses;
+using DataLayerCommon.People;
 using DataLayerCommon.Phones;
 
 namespace DataLayerCommon.Places

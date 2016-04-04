@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Data;
-using CommonData.Models.Assessor;
 using DataLayerSaveCommon;
-using SaveDataCommon;
+using SaveDataCommon.Assessor;
+using SaveDataCommon.Return;
 
 namespace DataLayerSave.Assessor
 {
@@ -29,20 +29,20 @@ namespace DataLayerSave.Assessor
             return ReturnValues;
         }
 
-        public ReturnBase AddUpdateRecord(TrainedPanel data)
+        public ReturnBase AddUpdateRecord(TrainedPanelSave data)
         {
             if (!string.IsNullOrEmpty(data.Name)) return SaveRecord(data);
 
-            SetEmptyStringMessage("Budget Category");
+            SetEmptyStringMessage("Trained Panel");
             return ReturnValues;
         }
 
-        private ReturnBase SaveRecord(TrainedPanel data)
+        private ReturnBase SaveRecord(TrainedPanelSave data)
         {
             try
             {
                 IdParameter = "@TrainedPanelId";
-                ReturnValues.Id = data.RecordId;
+                ReturnValues.Id = data.Id;
 
                 SetConnectToDatabase("[TrainedPanel].[usp_Upsert]");
 
@@ -52,7 +52,6 @@ namespace DataLayerSave.Assessor
                 CmdSql.Parameters.Add("@FacilityId", SqlDbType.Int).Value = data.FacilityId;
                 CmdSql.Parameters.Add("@ExcludeFromConsumerTesting", SqlDbType.Bit).Value =
                     data.ExcludeFromConsumerTesting;
-                CmdSql.Parameters.Add("@DisplayOrder", SqlDbType.Int).Value = data.DisplayOrder;
 
                 SetErrMsgParameter();
 

@@ -2,11 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using CommonData.Enums;
 using DataLayerCommon.Lists.Settings;
-using DataLayerCommon.People;
-using DataLayerRetrieval.Person;
-using DataRetrievalCommon.People;
 
 namespace DataLayerRetrieval.People
 {
@@ -24,41 +20,6 @@ namespace DataLayerRetrieval.People
             SetConnectToDatabase("[Admin].[usp_Assessor_GetInactive]");
 
             return LoadList();
-        }
-
-        public AssessorView GetRecord(int recordId)
-        {
-            PersonData p;
-
-            using (DbPersonDataGet a = new DbPersonDataGet())
-            {
-                p = a.GetStaffMember(recordId);
-            }
-
-            using (DbPersonDataStub a = new DbPersonDataStub())
-            {
-                p = a.Prefill(PersonEnums.PersonType.StaffMember, p);
-            }
-
-            AssessorView m = new AssessorView
-            {
-                Assessor = p.Person,
-                Addresses =
-                {
-                    MailingAddress = p.AddressData.MailingAddress,
-                    ShippingAddress = p.AddressData.PhysicalAddress
-                },
-                Phones =
-                {
-                    FaxPhone = p.PhoneData.FaxPhone,
-                    CellPhone = p.PhoneData.CellPhone,
-                    HomePhone = p.PhoneData.HomePhone,
-                    WorkPhone = p.PhoneData.WorkPhone,
-                    PhoneSettings = p.PhoneData.PhoneSettings
-                }
-            };
-
-            return m;
         }
 
         public List<AssessorInfo> GetRecords()

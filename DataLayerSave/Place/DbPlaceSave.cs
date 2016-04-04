@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Data;
-using CommonData.Enums;
 using DataLayerCommon.Places;
 using DataLayerSave.Addresses;
 using DataLayerSave.Phones;
 using DataLayerSaveCommon;
-using SaveDataCommon;
+using SaveDataCommon.Return;
+using static DataLayerCommon.Enums.PlaceEnums;
 
 namespace DataLayerSave.Place
 {
@@ -263,11 +263,11 @@ namespace DataLayerSave.Place
         {
             switch (data.Place.PlaceType)
             {
-                case PlaceEnums.PlaceType.Facility:
+                case PlaceType.Facility:
                     return SaveFacilityData(data, ref placeId);
-                case PlaceEnums.PlaceType.Customer:
+                case PlaceType.Customer:
                     return SaveCustomerData(data, ref placeId);
-                case PlaceEnums.PlaceType.Organization:
+                case PlaceType.Organization:
                     return SaveOrganizationData(data, ref placeId);
                 default:
                     return new ReturnBase {ErrMsg = "Place Type Undetermined"};

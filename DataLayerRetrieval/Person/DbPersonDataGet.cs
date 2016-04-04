@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using CommonData.Enums;
 using DataLayerCommon.Addresses;
+using DataLayerCommon.Enums;
 using DataLayerCommon.People;
 using DataLayerCommon.Phones;
+using static DataLayerCommon.Enums.CountryEnums;
+using static DataLayerCommon.Enums.PersonEnums;
+using static DataLayerCommon.Enums.PhoneEnums;
 
 namespace DataLayerRetrieval.Person
 {
@@ -13,22 +16,22 @@ namespace DataLayerRetrieval.Person
     {
         protected internal PersonData GetStaffMember(int personId)
         {
-            return LoadRecords(personId, (byte) PersonEnums.PersonType.StaffMember);
+            return LoadRecords(personId, (byte) PersonType.StaffMember);
         }
 
         protected internal PersonData GetAssessor(int personId)
         {
-            return LoadRecords(personId, (byte) PersonEnums.PersonType.Assessor);
+            return LoadRecords(personId, (byte) PersonType.Assessor);
         }
 
         protected internal PersonData GetCustomerContact(int personId)
         {
-            return LoadRecords(personId, (byte) PersonEnums.PersonType.CustomerContact);
+            return LoadRecords(personId, (byte) PersonType.CustomerContact);
         }
 
         protected internal PersonData GetOrganizationContact(int personId)
         {
-            return LoadRecords(personId, (byte) PersonEnums.PersonType.OrganizationContact);
+            return LoadRecords(personId, (byte) PersonType.OrganizationContact);
         }
 
         private PersonData LoadRecords(int personId, byte personType)
@@ -115,7 +118,7 @@ namespace DataLayerRetrieval.Person
                                     AddressAssociation item = new AddressAssociation
                                     {
                                         City = Convert.ToString(dr[ordCity]),
-                                        Country = (CountryEnums.Country) Convert.ToInt16(dr[ordCountry]),
+                                        Country = (Country) Convert.ToInt16(dr[ordCountry]),
                                         ZipCode = Convert.ToString(dr[ordZipCode]),
                                         Address1 = Convert.ToString(dr[ordAddress1]),
                                         Address2 = Convert.ToString(dr[ordAddress2]),
@@ -159,9 +162,9 @@ namespace DataLayerRetrieval.Person
                                 {
                                     PhoneAssociation item = new PhoneAssociation
                                     {
-                                        Country = (CountryEnums.Country) Convert.ToInt16(dr[ordCountry]),
+                                        Country = (Country) Convert.ToInt16(dr[ordCountry]),
                                         PhoneId = Convert.ToInt32(dr[ordPhoneId]),
-                                        PhoneType = (PhoneEnums.PhoneType) Convert.ToInt16(dr[ordPhoneType]),
+                                        PhoneType = (PhoneType) Convert.ToInt16(dr[ordPhoneType]),
                                         IsActive = Convert.ToBoolean(dr[ordIsActive]),
                                         PhoneNumber = Convert.ToInt64(dr[ordPhoneNumber]),
                                         CreateDate = Convert.ToDateTime(dr[ordCreateDate]),
@@ -187,14 +190,14 @@ namespace DataLayerRetrieval.Person
                                     data.PhoneData.PhoneSettings.RecordId = Convert.ToInt32(dr[ordPhoneSettingId]);
                                     data.PhoneData.PhoneSettings.MobileCarrier = Convert.ToInt16(dr[ordMobileCarrierId]);
                                     data.PhoneData.PhoneSettings.PrimaryPhoneType =
-                                        (PhoneEnums.PhoneType) Convert.ToInt16(dr[ordPrimaryPhoneType]);
+                                        (PhoneType) Convert.ToInt16(dr[ordPrimaryPhoneType]);
                                 }
                             }
                         }
                     }
                     ConnSql.Close();
                 }
-                data.Person.PersonType = (PersonEnums.PersonType) personType;
+                data.Person.PersonType = (PersonType) personType;
             }
             catch (Exception ex)
             {

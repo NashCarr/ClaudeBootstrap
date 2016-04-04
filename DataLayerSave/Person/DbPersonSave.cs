@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Data;
-using CommonData.Enums;
 using DataLayerCommon.People;
 using DataLayerSave.Addresses;
 using DataLayerSave.Administration;
 using DataLayerSave.Phones;
 using DataLayerSaveCommon;
-using SaveDataCommon;
+using SaveDataCommon.Return;
+using static DataLayerCommon.Enums.PersonEnums;
 
 namespace DataLayerSave.Person
 {
@@ -345,13 +345,13 @@ namespace DataLayerSave.Person
         {
             switch (data.Person.PersonType)
             {
-                case PersonEnums.PersonType.Assessor:
+                case PersonType.Assessor:
                     return SaveAssessorData(data, ref personId);
-                case PersonEnums.PersonType.CustomerContact:
+                case PersonType.CustomerContact:
                     return SaveCustomerContactData(data, ref personId);
-                case PersonEnums.PersonType.StaffMember:
+                case PersonType.StaffMember:
                     return SaveStaffMemberData(data, ref personId);
-                case PersonEnums.PersonType.OrganizationContact:
+                case PersonType.OrganizationContact:
                     return SaveOrganizationContactData(data, ref personId);
                 default:
                     return new ReturnBase {ErrMsg = "Person Type Undetermined"};

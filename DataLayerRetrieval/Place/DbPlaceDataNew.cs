@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using CommonData.Enums;
 using DataLayerCommon.Addresses;
+using DataLayerCommon.Enums;
 using DataLayerCommon.Phones;
 using DataLayerCommon.Places;
 

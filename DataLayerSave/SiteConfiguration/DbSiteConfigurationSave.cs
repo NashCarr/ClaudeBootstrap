@@ -1,11 +1,11 @@
 ﻿using System;
-using SaveDataCommon;
+using SaveDataCommon.Return;
 
 namespace DataLayerSave.SiteConfiguration
 {
     public class DbSiteConfigurationSave
     {
-        public ReturnBase SaveSiteConfiguration(CommonData.Models.SiteConfiguration.SiteConfiguration data)
+        public ReturnBase SaveSiteConfiguration(DataCommon.SiteConfiguration.SiteConfiguration data)
         {
             ReturnBase rb = new ReturnBase();
             try

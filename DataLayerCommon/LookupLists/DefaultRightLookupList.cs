@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using CommonData.Enums;
-using EnumHelpers = DataLayerCommon.Helpers.EnumHelpers;
+using static DataLayerCommon.Enums.AdministrationEnums;
+using static DataLayerCommon.Helpers.EnumHelpers;
 
 namespace DataLayerCommon.LookupLists
 {
@@ -9,10 +9,10 @@ namespace DataLayerCommon.LookupLists
     {
         public DefaultRightLookupList()
         {
-            LookupList = new List<SelectListItem>(EnumHelpers.SelectListFor<AdministrationEnums.DefaultRight>());
+            LookupList = new List<SelectListItem>(SelectListFor<DefaultRight>());
             foreach (SelectListItem item in LookupList)
             {
-                item.Value = EnumHelpers.GetByteFromEnum<AdministrationEnums.DefaultRight>(item.Value).ToString();
+                item.Value = GetByteFromEnum<DefaultRight>(item.Value).ToString();
             }
         }
 
