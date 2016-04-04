@@ -49,7 +49,6 @@
     <Compile Include="Enums\PlaceEnums.cs" />
     <Compile Include="Enums\StudyEnums.cs" />
     <Compile Include="Enums\TimeZoneEnums.cs" />
-    <Compile Include="Helpers\EnumHelpers.cs" />
     <Compile Include="Models\Assessor\TrainedPanel.cs" />
     <Compile Include="Models\Facility\FacilityResource.cs" />
     <Compile Include="Models\Facility\StaffMemberList.cs" />
@@ -66,10 +65,7 @@
     <Compile Include="Models\SiteConfiguration\StudyDefinition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BaseModels\Returns\" />
-    <Folder Include="Models\Administration\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\ViewDataCommon\ViewDataCommon.csproj">
       <Project>{60E96CBF-EE02-4D31-88A0-4D19F75AEC1F}</Project>

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using CommonData.Models.Facility;
-using DataManagement.DataRepository.PeopleRepository;
+using DataLayerRetrieval.People;
 
 namespace ViewManagement.Managers.People
 {

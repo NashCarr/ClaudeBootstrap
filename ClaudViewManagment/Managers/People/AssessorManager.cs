@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
-using DataManagement.DataRepository.PeopleRepository;
-using DataManagement.DataRepository.PersonRepository;
-using DataManagement.Models.Lists.Settings;
-using DataManagement.ViewModels;
+using DataLayerCommon.Lists.Settings;
+using DataLayerRetrieval.People;
+using DataLayerSave.Assessor;
+using DataLayerSave.Person;
+using DataRetrievalCommon.People;
 
 namespace ViewManagement.Managers.People
 {

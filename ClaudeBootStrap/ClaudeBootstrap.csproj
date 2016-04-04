@@ -476,13 +476,17 @@
       <Project>{fb0dec60-3ba3-4bd7-a268-5a78ab280f3a}</Project>
       <Name>CommonData</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ClaudeData\DataManagement.csproj">
-      <Project>{0D5B2F72-AEDC-40A6-A308-8647854EA70E}</Project>
-      <Name>DataManagement</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ClaudViewManagment\ViewManagement.csproj">
       <Project>{ae8c6db1-6e44-4fa9-b6dc-396f9c61e0f8}</Project>
       <Name>ViewManagement</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataLayerCommon\DataLayerCommon.csproj">
+      <Project>{1ABF531D-949D-4DCC-B31C-53DF3225BBF8}</Project>
+      <Name>DataLayerCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataRetrievalCommon\DataRetrievalCommon.csproj">
+      <Project>{7F3C4322-E4EF-47A5-947C-9611673A58DE}</Project>
+      <Name>DataRetrievalCommon</Name>
     </ProjectReference>
     <ProjectReference Include="..\ManagementSave\ManagementSave.csproj">
       <Project>{652684D2-1F4B-415E-8B1D-2EA5D187FEEC}</Project>

@@ -31,20 +31,59 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Addresses\DbAddressAssociationGet.cs" />
+    <Compile Include="Addresses\DbStateProvinceGet.cs" />
     <Compile Include="Administration\DbBudgetCategoryGet.cs" />
     <Compile Include="Administration\DbGiftCardGet.cs" />
     <Compile Include="Administration\DbHearAboutUsGet.cs" />
     <Compile Include="Administration\DbProductGroupGet.cs" />
+    <Compile Include="Administration\DbProgramOptionGet.cs" />
     <Compile Include="Administration\DbStudyDesignGet.cs" />
+    <Compile Include="Administration\DbUserRoleGet.cs" />
+    <Compile Include="Assessor\DbTrainedPanelAssessorListGet.cs" />
+    <Compile Include="Assessor\DbTrainedPanelGet.cs" />
+    <Compile Include="Customer\DbCustomerBrandGet.cs" />
+    <Compile Include="Customer\DbCustomerViewGet.cs" />
     <Compile Include="DbGatewayGet.cs" />
     <Compile Include="DbGetBase.cs" />
+    <Compile Include="Facility\DbFacilityResourceGet.cs" />
+    <Compile Include="Lookup\DbGatewayLookup.cs" />
+    <Compile Include="Lookup\DbMobileCarrierLookup.cs" />
+    <Compile Include="Lookup\DbPeopleLookup.cs" />
+    <Compile Include="Lookup\DbPlacesLookup.cs" />
+    <Compile Include="Lookup\DbPostalCodeLookup.cs" />
+    <Compile Include="Lookup\DbProgramOptionLookup.cs" />
+    <Compile Include="Lookup\DbStateProvinceLookup.cs" />
+    <Compile Include="Lookup\DbUserRoleLookup.cs" />
+    <Compile Include="People\DbAssessorInfoGet.cs" />
+    <Compile Include="People\DbPeopleGet.cs" />
+    <Compile Include="People\DbPeopleGetActive.cs" />
+    <Compile Include="People\DbPeopleGetInactive.cs" />
+    <Compile Include="People\DbPeopleSearch.cs" />
+    <Compile Include="People\DbStaffMemberListGet.cs" />
+    <Compile Include="Person\DbPersonDataGet.cs" />
+    <Compile Include="Person\DbPersonDataNew.cs" />
+    <Compile Include="Person\DbPersonDataStub.cs" />
+    <Compile Include="Person\DbPersonGet.cs" />
+    <Compile Include="Person\DbPersonViewGet.cs" />
+    <Compile Include="Phones\DbPhoneAssociationGet.cs" />
+    <Compile Include="Places\DbPlacesGet.cs" />
+    <Compile Include="Places\DbPlacesGetActive.cs" />
+    <Compile Include="Place\DbPlaceDataGet.cs" />
+    <Compile Include="Place\DbPlaceDataNew.cs" />
+    <Compile Include="Place\DbPlaceDataStub.cs" />
+    <Compile Include="Place\DbPlaceGet.cs" />
+    <Compile Include="Place\DbPlaceViewGet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SiteConfiguration\DbSiteConfigurationGet.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ClaudeCommon\CommonData.csproj">
@@ -55,11 +94,24 @@
       <Project>{1ABF531D-949D-4DCC-B31C-53DF3225BBF8}</Project>
       <Name>DataLayerCommon</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DataLayerSaveCommon\DataLayerSaveCommon.csproj">
+      <Project>{CFEDB533-1918-485B-B2FB-43A1AC166A30}</Project>
+      <Name>DataLayerSaveCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataRetrievalCommon\DataRetrievalCommon.csproj">
+      <Project>{7F3C4322-E4EF-47A5-947C-9611673A58DE}</Project>
+      <Name>DataRetrievalCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SaveDataCommon\SaveDataCommon.csproj">
+      <Project>{B5277E31-13BA-4A2D-8E39-BF88780119E8}</Project>
+      <Name>SaveDataCommon</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ViewDataCommon\ViewDataCommon.csproj">
       <Project>{60E96CBF-EE02-4D31-88A0-4D19F75AEC1F}</Project>
       <Name>ViewDataCommon</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

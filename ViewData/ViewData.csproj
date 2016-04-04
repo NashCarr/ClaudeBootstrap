@@ -51,10 +51,6 @@
       <Project>{FB0DEC60-3BA3-4BD7-A268-5A78AB280F3A}</Project>
       <Name>CommonData</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ClaudeData\DataManagement.csproj">
-      <Project>{0D5B2F72-AEDC-40A6-A308-8647854EA70E}</Project>
-      <Name>DataManagement</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ClaudViewManagment\ViewManagement.csproj">
       <Project>{AE8C6DB1-6E44-4FA9-B6DC-396F9C61E0F8}</Project>
       <Name>ViewManagement</Name>

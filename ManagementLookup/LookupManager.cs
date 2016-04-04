@@ -1,12 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
-using DataManagement.DataRepository.AddressRepository;
-using DataManagement.DataRepository.LookupRepository;
-using DataManagement.Models.LookupLists;
-using ManagementLookup.LookupLists;
-using CountryLookupList = ManagementLookup.LookupData.CountryLookupList;
-using TimeZoneLookupList = ManagementLookup.LookupData.TimeZoneLookupList;
+using DataLayerRetrieval.Lookup;
+using DataRetrievalCommon.Lookup;
+using ManagementLookup.LookupData;
 
 namespace ManagementLookup
 {

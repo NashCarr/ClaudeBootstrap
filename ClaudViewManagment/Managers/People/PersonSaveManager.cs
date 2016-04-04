@@ -1,10 +1,10 @@
 using System;
-using DataManagement.DataRepository.PersonRepository;
-using DataManagement.Models.Addresses;
-using DataManagement.Models.People;
-using DataManagement.Models.Phones;
+using DataLayerCommon.Addresses;
+using DataLayerCommon.People;
+using DataLayerCommon.Phones;
+using DataLayerSave.Person;
 using SaveDataCommon;
-using ViewManagement.ViewModels.People;
+using ViewManagement.Models.People;
 
 namespace ViewManagement.Managers.People
 {

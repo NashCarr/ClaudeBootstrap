@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
 using DataLayerReorder;
-using DataManagement.DataRepository.CustomerRepository;
+using DataLayerRetrieval.Customer;
+using DataLayerSave.Customer;
 using SaveDataCommon;
 using ViewDataCommon.Customer;
 

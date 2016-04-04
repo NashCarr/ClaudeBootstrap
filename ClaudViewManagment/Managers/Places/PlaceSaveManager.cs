@@ -1,10 +1,10 @@
 using System;
-using DataManagement.DataRepository.PlaceRepository;
-using DataManagement.Models.Addresses;
-using DataManagement.Models.Phones;
-using DataManagement.Models.Places;
+using DataLayerCommon.Addresses;
+using DataLayerCommon.Phones;
+using DataLayerCommon.Places;
+using DataLayerSave.Place;
 using SaveDataCommon;
-using ViewManagement.ViewModels.Places;
+using ViewManagement.Models.Places;
 
 namespace ViewManagement.Managers.Places
 {

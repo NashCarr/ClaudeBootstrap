@@ -31,13 +31,64 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Addresses\Address.cs" />
+    <Compile Include="Addresses\AddressAssociation.cs" />
+    <Compile Include="Addresses\AddressData.cs" />
+    <Compile Include="Addresses\Coordinates.cs" />
+    <Compile Include="Addresses\Distance.cs" />
+    <Compile Include="Addresses\PostalCode.cs" />
+    <Compile Include="Addresses\PostalZone.cs" />
+    <Compile Include="Addresses\StateProvince.cs" />
+    <Compile Include="Administration\AccessRight.cs" />
+    <Compile Include="Administration\FacilityStaff.cs" />
+    <Compile Include="Administration\ProgramOption.cs" />
+    <Compile Include="Administration\RoleRight.cs" />
+    <Compile Include="Administration\StaffUserActivity.cs" />
+    <Compile Include="Administration\UserLogin.cs" />
+    <Compile Include="Administration\UserRole.cs" />
+    <Compile Include="BaseModels\AdminBase.cs" />
+    <Compile Include="BaseModels\ModelBase.cs" />
+    <Compile Include="DbBase.cs" />
     <Compile Include="DbConnect.cs" />
+    <Compile Include="Helpers\EnumHelpers.cs" />
+    <Compile Include="Lists\Settings\AssessorInfo.cs" />
+    <Compile Include="LookupLists\CompensationTypeLookupList.cs" />
+    <Compile Include="LookupLists\CustomerContactLookupList.cs" />
+    <Compile Include="LookupLists\DefaultRightLookupList.cs" />
+    <Compile Include="LookupLists\PersonLookupList.cs" />
+    <Compile Include="LookupLists\PhoneTypeLookupList.cs" />
+    <Compile Include="LookupLists\PlaceLookupList.cs" />
+    <Compile Include="LookupLists\PostalZoneLookupList.cs" />
+    <Compile Include="LookupLists\ProgramOptionLookupList.cs" />
+    <Compile Include="LookupLists\StaffUserLookupList.cs" />
+    <Compile Include="LookupLists\UserRoleLookupList.cs" />
+    <Compile Include="People\Person.cs" />
+    <Compile Include="People\PersonData.cs" />
+    <Compile Include="Phones\Phone.cs" />
+    <Compile Include="Phones\PhoneAssociation.cs" />
+    <Compile Include="Phones\PhoneData.cs" />
+    <Compile Include="Phones\PhoneSetting.cs" />
+    <Compile Include="Places\Place.cs" />
+    <Compile Include="Places\PlaceData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ClaudeCommon\CommonData.csproj">
+      <Project>{FB0DEC60-3BA3-4BD7-A268-5A78AB280F3A}</Project>
+      <Name>CommonData</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using DataLayerReorder;
-using DataManagement.DataRepository.CustomerRepository;
-using DataManagement.DataRepository.PlaceRepository;
-using DataManagement.ViewModels;
+using DataLayerRetrieval.Customer;
+using DataLayerSave.Place;
+using DataRetrievalCommon.Places;
 using SaveDataCommon;
 
 namespace ViewManagement.Managers.Customer

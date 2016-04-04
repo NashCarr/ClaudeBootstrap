@@ -32,12 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -49,10 +44,6 @@
     <ProjectReference Include="..\DataLayerSaveCommon\DataLayerSaveCommon.csproj">
       <Project>{CFEDB533-1918-485B-B2FB-43A1AC166A30}</Project>
       <Name>DataLayerSaveCommon</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DataLayerSave\DataLayerSave.csproj">
-      <Project>{E2CDF472-6531-4941-9816-B86E74D52A87}</Project>
-      <Name>DataLayerSave</Name>
     </ProjectReference>
     <ProjectReference Include="..\SaveDataCommon\SaveDataCommon.csproj">
       <Project>{B5277E31-13BA-4A2D-8E39-BF88780119E8}</Project>

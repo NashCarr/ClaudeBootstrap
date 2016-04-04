@@ -7,8 +7,8 @@ using SaveDataCommon;
 using ViewManagement.Managers.Facility;
 using ViewManagement.Managers.People;
 using ViewManagement.Managers.Places;
-using ViewManagement.ViewModels.People;
-using ViewManagement.ViewModels.Places;
+using ViewManagement.Models.People;
+using ViewManagement.Models.Places;
 
 namespace ClaudeBootstrap.Controllers.Places
 {

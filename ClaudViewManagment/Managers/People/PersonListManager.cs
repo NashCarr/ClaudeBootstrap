@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 using CommonData.Enums;
 using CommonData.Models.People;
-using DataManagement.DataRepository.LookupRepository;
-using DataManagement.DataRepository.PeopleRepository;
+using DataLayerRetrieval.Lookup;
+using DataLayerRetrieval.People;
 
 namespace ViewManagement.Managers.People
 {

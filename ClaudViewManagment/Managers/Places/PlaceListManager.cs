@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using CommonData.Enums;
 using CommonData.Models.Places;
-using DataManagement.DataRepository.PlacesRepository;
+using DataLayerRetrieval.Places;
 
 namespace ViewManagement.Managers.Places
 {

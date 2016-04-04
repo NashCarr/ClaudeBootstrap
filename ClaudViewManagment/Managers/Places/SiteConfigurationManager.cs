@@ -2,9 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using CommonData.Models.SiteConfiguration;
-using DataManagement.DataRepository.SiteConfiguration;
-using DataManagement.Models.LookupLists;
-using ManagementLookup.LookupLists;
+using DataLayerCommon.LookupLists;
+using DataLayerRetrieval.SiteConfiguration;
 
 namespace ViewManagement.Managers.Places
 {

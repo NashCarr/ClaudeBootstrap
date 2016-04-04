@@ -42,14 +42,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClaudeCommon\CommonData.csproj">
-      <Project>{FB0DEC60-3BA3-4BD7-A268-5A78AB280F3A}</Project>
-      <Name>CommonData</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ClaudeData\DataManagement.csproj">
-      <Project>{0D5B2F72-AEDC-40A6-A308-8647854EA70E}</Project>
-      <Name>DataManagement</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DataLayerReorder\DataLayerReorder.csproj">
       <Project>{7E0856C1-30BC-4F20-AD03-9955C26B5815}</Project>
       <Name>DataLayerReorder</Name>

@@ -1,6 +1,6 @@
 using System;
-using DataManagement.DataRepository.PersonRepository;
-using DataManagement.ViewModels;
+using DataLayerRetrieval.Person;
+using DataRetrievalCommon.People;
 
 namespace ViewManagement.Managers.People
 {
