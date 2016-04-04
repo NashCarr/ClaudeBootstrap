@@ -44,7 +44,7 @@
     <Compile Include="Base\AdministrationBase.cs" />
     <Compile Include="Customer\CustomerBrand.cs" />
     <Compile Include="Facility\FacilityResource.cs" />
-    <Compile Include="Facility\StaffMemberList.cs" />
+    <Compile Include="Facility\StaffMember.cs" />
     <Compile Include="Person\PersonList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

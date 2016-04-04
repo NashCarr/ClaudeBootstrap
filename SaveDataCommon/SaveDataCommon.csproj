@@ -35,7 +35,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Administration\StudyDesignSave.cs" />
-    <Compile Include="Assessor\TrainedPanel.cs" />
+    <Compile Include="Assessor\TrainedPanelSave.cs" />
     <Compile Include="Customer\CustomerBrandSave.cs" />
     <Compile Include="DisplayReorder\DisplayOrder.cs" />
     <Compile Include="Facility\FacilityResourceSave.cs" />

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using DataCommon.Models.Facility;
 using DataLayerRetrieval.Facility;
+using ViewDataCommon.Facility;
 
 namespace ManagementRetrieval.Facility
 {

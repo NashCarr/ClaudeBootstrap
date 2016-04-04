@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using DataCommon.Models.Facility;
 using DataCommon.SiteConfiguration;
 using DataLayerCommon.Enums;
 using DataLayerCommon.LookupLists;
 using DataLayerRetrieval.SiteConfiguration;
 using ManagementRetrieval.Facility;
+using ViewDataCommon.Facility;
 
 namespace ViewData.Places
 {

@@ -2,9 +2,9 @@
 
 namespace ViewDataCommon.Facility
 {
-    public class StaffMemberList : PersonList
+    public class StaffMember : PersonList
     {
-        public StaffMemberList()
+        public StaffMember()
         {
             UserName = string.Empty;
             LastLoginDate = string.Empty;

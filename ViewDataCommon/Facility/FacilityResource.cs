@@ -1,6 +1,6 @@
 ﻿using ViewDataCommon.Base;
 
-namespace DataCommon.Models.Facility
+namespace ViewDataCommon.Facility
 {
     public class FacilityResource : AdministrationBase
     {

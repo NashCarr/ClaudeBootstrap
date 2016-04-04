@@ -7,7 +7,7 @@ namespace DataLayerRetrieval.People
 {
     public class DbStaffMemberListGet : DbGetBase
     {
-        public List<StaffMemberList> GetList()
+        public List<StaffMember> GetList()
         {
             try
             {
@@ -16,13 +16,13 @@ namespace DataLayerRetrieval.People
             catch (Exception ex)
             {
                 DocumentErrorMessage(ex.ToString());
-                return new List<StaffMemberList>();
+                return new List<StaffMember>();
             }
         }
 
-        private List<StaffMemberList> GetRecords()
+        private List<StaffMember> GetRecords()
         {
-            List<StaffMemberList> data = new List<StaffMemberList>();
+            List<StaffMember> data = new List<StaffMember>();
             try
             {
                 SetConnectToDatabase("[ViewModel].[usp_Settings_StaffMemberList]");
@@ -50,7 +50,7 @@ namespace DataLayerRetrieval.People
 
                             while (dr.Read())
                             {
-                                StaffMemberList item = new StaffMemberList
+                                StaffMember item = new StaffMember
                                 {
                                     Email = Convert.ToString(dr[ordEmail]),
                                     PersonId = Convert.ToInt32(dr[ordPersonId]),

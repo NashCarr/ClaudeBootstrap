@@ -29,7 +29,7 @@ namespace ViewData.Facility
         public List<SelectListItem> TimeZones { get; set; }
         public List<SelectListItem> Countries { get; set; }
         public List<SelectListItem> Facilities { get; set; }
-        public List<StaffMemberList> ListEntity { get; set; }
+        public List<StaffMember> ListEntity { get; set; }
         public List<PostalCodeLookup> PostalCodes { get; set; }
         public List<SelectListItem> MobileCarriers { get; set; }
         public List<SelectListItem> StatesProvinces { get; set; }

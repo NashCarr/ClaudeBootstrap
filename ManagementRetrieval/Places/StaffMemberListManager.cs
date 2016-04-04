@@ -17,7 +17,7 @@ namespace ManagementRetrieval.Places
         {
         }
 
-        public List<StaffMemberList> GetList()
+        public List<StaffMember> GetList()
         {
             using (DbStaffMemberListGet data = new DbStaffMemberListGet())
             {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using DataCommon.Models.Facility;
+using ViewDataCommon.Facility;
 
 namespace DataLayerRetrieval.Facility
 {
