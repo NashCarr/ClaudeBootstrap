@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using static DataLayerCommon.Enums.PhoneEnums;
+using static CommonData.Enums.PhoneEnums;
 
 namespace DataLayerCommon.Phones
 {

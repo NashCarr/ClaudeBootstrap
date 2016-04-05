@@ -51,21 +51,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataCommon\DataCommon.csproj">
-      <Project>{FB0DEC60-3BA3-4BD7-A268-5A78AB280F3A}</Project>
-      <Name>DataCommon</Name>
+    <ProjectReference Include="..\CommonDataRetrieval\CommonDataRetrieval.csproj">
+      <Project>{7F3C4322-E4EF-47A5-947C-9611673A58DE}</Project>
+      <Name>CommonDataRetrieval</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DataLayerCommon\DataLayerCommon.csproj">
-      <Project>{1ABF531D-949D-4DCC-B31C-53DF3225BBF8}</Project>
-      <Name>DataLayerCommon</Name>
+    <ProjectReference Include="..\CommonData\CommonData.csproj">
+      <Project>{FB0DEC60-3BA3-4BD7-A268-5A78AB280F3A}</Project>
+      <Name>CommonData</Name>
     </ProjectReference>
     <ProjectReference Include="..\DataLayerRetrieval\DataLayerRetrieval.csproj">
       <Project>{B5F991B7-C327-4DA7-A417-365D5C7B8DAB}</Project>
       <Name>DataLayerRetrieval</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DataRetrievalCommon\DataRetrievalCommon.csproj">
-      <Project>{7F3C4322-E4EF-47A5-947C-9611673A58DE}</Project>
-      <Name>DataRetrievalCommon</Name>
     </ProjectReference>
     <ProjectReference Include="..\ManagementLookup\ManagementLookup.csproj">
       <Project>{78C803F9-71E5-4FD6-8763-97F39CEC113B}</Project>
@@ -74,10 +70,6 @@
     <ProjectReference Include="..\ManagementRetrieval\ManagementRetrieval.csproj">
       <Project>{793BF538-1546-48AB-93A2-F6A7164E19F6}</Project>
       <Name>ManagementRetrieval</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ViewDataCommon\ViewDataCommon.csproj">
-      <Project>{60E96CBF-EE02-4D31-88A0-4D19F75AEC1F}</Project>
-      <Name>ViewDataCommon</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

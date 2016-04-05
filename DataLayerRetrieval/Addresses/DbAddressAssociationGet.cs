@@ -2,8 +2,8 @@
 using System.Data;
 using System.Data.SqlClient;
 using DataLayerCommon.Addresses;
-using static DataLayerCommon.Enums.AddressEnums;
-using static DataLayerCommon.Enums.CountryEnums;
+using static CommonData.Enums.AddressEnums;
+using static CommonData.Enums.CountryEnums;
 
 namespace DataLayerRetrieval.Addresses
 {

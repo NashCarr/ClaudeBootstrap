@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using System.Web.Mvc;
-using static DataLayerCommon.Enums.CountryEnums;
+using static CommonData.Enums.CountryEnums;
 
 namespace DataLayerRetrieval.Lookup
 {

@@ -1,18 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using DataCommon.SiteConfiguration;
+using CommonDataSave.DisplayReorder;
+using CommonDataSave.Facility;
+using CommonDataSave.People;
+using CommonDataSave.Places;
+using CommonDataSave.SiteConfiguration;
 using ManagementRetrieval.Facility;
 using ManagementRetrieval.Places;
 using ManagementSave.Facility;
 using ManagementSave.Person;
 using ManagementSave.Places;
-using SaveDataCommon.DisplayReorder;
-using SaveDataCommon.Facility;
-using SaveDataCommon.People;
-using SaveDataCommon.Places;
 using ViewData.Places;
-using static DataLayerCommon.Enums.PersonEnums;
-using static DataLayerCommon.Enums.PlaceEnums;
 
 namespace ClaudeBootstrap.Controllers.Places
 {
@@ -27,7 +25,7 @@ namespace ClaudeBootstrap.Controllers.Places
         }
 
         [HttpPost]
-        public JsonResult SaveSiteConfiguration(SiteConfiguration c)
+        public JsonResult SaveSiteConfiguration(SiteConfigurationSave c)
         {
             //using (PlaceSaveManager mgr = new PlaceSaveManager())
             //{
@@ -39,20 +37,18 @@ namespace ClaudeBootstrap.Controllers.Places
         [HttpPost]
         public JsonResult SavePlace(PlaceSaveModel p)
         {
-            if (p.Place != null) p.Place.PlaceType = PlaceType.Facility;
             using (PlaceSaveManager mgr = new PlaceSaveManager())
             {
-                return Json(mgr.SavePlace(p));
+                return Json(mgr.SaveFacility(p));
             }
         }
 
         [HttpPost]
-        public JsonResult SaveContact(PersonSaveModel c)
+        public JsonResult SaveContact(PersonSaveModel p)
         {
-            if (c != null) c.Person.PersonType = PersonType.StaffMember;
             using (PersonSaveManager mgr = new PersonSaveManager())
             {
-                return Json(mgr.SavePerson(c));
+                return Json(mgr.SaveStaffMember(p));
             }
         }
 

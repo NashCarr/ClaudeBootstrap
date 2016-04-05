@@ -1,7 +1,7 @@
 ﻿using System;
 using DataLayerCommon.Phones;
 using DataLayerCommon.Places;
-using static DataLayerCommon.Enums.PlaceEnums;
+using static CommonData.Enums.PlaceEnums;
 
 namespace DataLayerSave.Phones
 {

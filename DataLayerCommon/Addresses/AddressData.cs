@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using static DataLayerCommon.Enums.AddressEnums;
+using static CommonData.Enums.AddressEnums;
 
 namespace DataLayerCommon.Addresses
 {

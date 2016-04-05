@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
+using CommonDataSave.DisplayReorder;
+using CommonDataSave.Return;
 using DataLayerReorder;
 using DataLayerSave.Place;
-using SaveDataCommon.DisplayReorder;
-using SaveDataCommon.Return;
 
 namespace ManagementSave.Facility
 {
@@ -29,9 +29,9 @@ namespace ManagementSave.Facility
 
         public ReturnBase DeleteFacility(int id)
         {
-            using (DbPlaceSetInactive data = new DbPlaceSetInactive())
+            using (DbPlaceSetInactive db = new DbPlaceSetInactive())
             {
-                return data.SetFacilityInactive(id);
+                return db.SetFacilityInactive(id);
             }
         }
     }

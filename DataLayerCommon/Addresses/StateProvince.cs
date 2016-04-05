@@ -1,4 +1,4 @@
-﻿using DataLayerCommon.Enums;
+﻿using static CommonData.Enums.CountryEnums;
 
 namespace DataLayerCommon.Addresses
 {
@@ -8,12 +8,12 @@ namespace DataLayerCommon.Addresses
         {
             Name = string.Empty;
             StateProvinceId = 0;
-            Country = CountryEnums.Country.None;
+            Country = Country.None;
             Abbreviation = string.Empty;
         }
 
         public string Name { get; set; }
-        public CountryEnums.Country Country { get; set; }
+        public Country Country { get; set; }
         public string Abbreviation { get; set; }
         public short StateProvinceId { get; set; }
     }

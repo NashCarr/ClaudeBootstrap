@@ -1,6 +1,6 @@
 ﻿using DataLayerCommon.BaseModels;
-using static DataLayerCommon.Enums.CountryEnums;
-using static DataLayerCommon.Enums.PhoneEnums;
+using static CommonData.Enums.CountryEnums;
+using static CommonData.Enums.PhoneEnums;
 
 namespace DataLayerCommon.Phones
 {

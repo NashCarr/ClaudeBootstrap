@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using DataLayerCommon.Helpers;
-using static DataLayerCommon.Enums.CountryEnums;
+using static CommonData.Enums.CountryEnums;
 
 namespace ManagementLookup.LookupData
 {

@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Data;
+using CommonDataSave.Return;
 using DataLayerCommon.People;
+using DataLayerCommonSave;
 using DataLayerSave.Addresses;
 using DataLayerSave.Administration;
 using DataLayerSave.Phones;
-using DataLayerSaveCommon;
-using SaveDataCommon.Return;
-using static DataLayerCommon.Enums.PersonEnums;
+using static CommonData.Enums.PersonEnums;
 
 namespace DataLayerSave.Person
 {

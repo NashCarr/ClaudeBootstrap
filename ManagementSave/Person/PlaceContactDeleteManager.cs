@@ -17,25 +17,25 @@ namespace ManagementSave.Person
 
         public string DeleteStaffMember(int id)
         {
-            using (DbPersonSetInactive data = new DbPersonSetInactive())
+            using (DbPersonSetInactive db = new DbPersonSetInactive())
             {
-                return data.SetStaffMemberInactive(id);
+                return db.SetStaffMemberInactive(id);
             }
         }
 
         public string DeleteCustomerContact(int id)
         {
-            using (DbPersonSetInactive data = new DbPersonSetInactive())
+            using (DbPersonSetInactive db = new DbPersonSetInactive())
             {
-                return data.SetCustomerContactInactive(id);
+                return db.SetCustomerContactInactive(id);
             }
         }
 
         public string DeleteOrganizationContact(int id)
         {
-            using (DbPersonSetInactive data = new DbPersonSetInactive())
+            using (DbPersonSetInactive db = new DbPersonSetInactive())
             {
-                return data.SetOrganizationContactInactive(id);
+                return db.SetOrganizationContactInactive(id);
             }
         }
     }

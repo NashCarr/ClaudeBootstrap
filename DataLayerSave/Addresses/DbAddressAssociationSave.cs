@@ -2,9 +2,9 @@
 using System.Data;
 using DataLayerCommon.Addresses;
 using DataLayerCommon.Helpers;
-using DataLayerSaveCommon;
-using static DataLayerCommon.Enums.AddressEnums;
-using static DataLayerCommon.Enums.CountryEnums;
+using DataLayerCommonSave;
+using static CommonData.Enums.AddressEnums;
+using static CommonData.Enums.CountryEnums;
 
 namespace DataLayerSave.Addresses
 {

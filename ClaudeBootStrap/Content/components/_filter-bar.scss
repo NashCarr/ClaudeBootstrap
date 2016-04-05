@@ -1,0 +1,123 @@
+.filter-bar {
+  background: none;
+  box-shadow: 0 rem(2) rem(2) rgba($black, 0.05);
+
+  &.top-bar {
+    @include mq(s) {
+      padding: 1rem 0;
+    }
+  }
+}
+
+.filter-bar .top-bar-left {
+  @include mq(s) {
+    padding-top: 0.75rem;
+    width: 70%;
+  }
+
+  .dropdown.menu a {
+    padding-left: 0;
+  }
+}
+
+.filter-bar .top-bar-right {
+  text-align: right;
+  @include mq(s) {
+    width: 30%;
+  }
+}
+
+.filter-bar .menu.status {
+  display: inline-block;
+
+  > li {
+    margin-left: rem(5);
+    line-height: 2.1rem;
+  }
+
+  .glyphicons {
+    margin-left: rem(-5);
+    line-height: 1.5rem;
+  }
+
+  .glyphicons-play {
+    color: $blue-2;
+  }
+
+  .glyphicons-stop {
+    color: $red;
+  }
+}
+
+.filter-bar .avatar-dropdown {
+  display: inline-block;
+  margin-left: 2rem;
+  margin-top: 0.3rem;
+  text-align: left;
+
+  > ul li {
+    float: none;
+    border-bottom: 1px solid $gray-4;
+
+    &:first-child a {
+      background: $blue-2;
+      &:hover { color: $white; }
+    }
+
+    &:last-child a {
+      background: $white;
+      border-radius: 0 0 rem(3) rem(3);
+      border-bottom: none;
+    }
+
+    &:first-child a::before {
+      border-left: 0.5rem solid transparent;
+      border-right: 0.5rem solid transparent;
+      border-bottom: 0.5rem solid $blue-2;
+    }
+
+    a {
+      background: $gray-5;
+    }
+
+    a:hover {
+      color: $gray-3;
+    }
+  }
+
+  @include mq(s) {
+    margin-left: 0;
+  }
+
+  .glyphicons {
+    margin-top: 0.5rem;
+  }
+}
+
+.filter-bar .menu.action {
+  background: none;
+
+  .glyphicons-chevron-down {
+    font-size: 0.75rem;
+    @include mq(s) { margin-left: rem(-5); }
+  }
+
+  li {
+    @include mq(s) {
+      display: inline-block;
+      margin: 0;
+    }
+  }
+
+  a {
+    color: $gray-3;
+    font-weight: 600;
+    text-decoration: none;
+
+    @include mq(s) {
+      display: inline;
+      font-size: rem(14);
+      padding: 0;
+    }
+  }
+}

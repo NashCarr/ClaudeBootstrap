@@ -2,8 +2,8 @@
 using System.Data;
 using System.Data.SqlClient;
 using DataLayerCommon.Phones;
-using static DataLayerCommon.Enums.CountryEnums;
-using static DataLayerCommon.Enums.PhoneEnums;
+using static CommonData.Enums.CountryEnums;
+using static CommonData.Enums.PhoneEnums;
 
 namespace DataLayerRetrieval.Phones
 {

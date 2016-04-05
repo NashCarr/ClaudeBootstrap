@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using DataLayerCommon.Addresses;
-using DataLayerCommon.Enums;
 using DataLayerCommon.Places;
+using static CommonData.Enums.PlaceEnums;
 
 namespace DataLayerSave.Addresses
 {
@@ -20,7 +20,7 @@ namespace DataLayerSave.Addresses
             if (data == null) return string.Empty;
             using (DbAddressAssociationSave db = new DbAddressAssociationSave())
             {
-                return db.SavePlaceAddress(placeId, (byte) PlaceEnums.PlaceType.Facility, data);
+                return db.SavePlaceAddress(placeId, (byte) PlaceType.Facility, data);
             }
         }
 
@@ -29,7 +29,7 @@ namespace DataLayerSave.Addresses
             if (data == null) return string.Empty;
             using (DbAddressAssociationSave db = new DbAddressAssociationSave())
             {
-                return db.SavePlaceAddress(placeId, (byte) PlaceEnums.PlaceType.Customer, data);
+                return db.SavePlaceAddress(placeId, (byte) PlaceType.Customer, data);
             }
         }
 
@@ -38,7 +38,7 @@ namespace DataLayerSave.Addresses
             if (data == null) return string.Empty;
             using (DbAddressAssociationSave db = new DbAddressAssociationSave())
             {
-                return db.SavePlaceAddress(placeId, (byte) PlaceEnums.PlaceType.Organization, data);
+                return db.SavePlaceAddress(placeId, (byte) PlaceType.Organization, data);
             }
         }
 
@@ -86,11 +86,11 @@ namespace DataLayerSave.Addresses
             if (data.AddressData == null) return string.Empty;
             switch (data.Place.PlaceType)
             {
-                case PlaceEnums.PlaceType.Facility:
+                case PlaceType.Facility:
                     return SaveFacilityAddresses(data.Place.PlaceId, data.AddressData.Addresses);
-                case PlaceEnums.PlaceType.Customer:
+                case PlaceType.Customer:
                     return SaveCustomerAddresses(data.Place.PlaceId, data.AddressData.Addresses);
-                case PlaceEnums.PlaceType.Organization:
+                case PlaceType.Organization:
                     return SaveOrganizationAddresses(data.Place.PlaceId, data.AddressData.Addresses);
                 default:
                     return "Place Type Undetermined";

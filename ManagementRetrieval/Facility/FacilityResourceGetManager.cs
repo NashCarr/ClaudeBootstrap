@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
+using CommonDataRetrieval.Facility;
 using DataLayerRetrieval.Facility;
-using ViewDataCommon.Facility;
 
 namespace ManagementRetrieval.Facility
 {
@@ -19,17 +19,17 @@ namespace ManagementRetrieval.Facility
 
         public List<FacilityResource> GetList()
         {
-            using (DbFacilityResourceGet data = new DbFacilityResourceGet())
+            using (DbFacilityResourceGet db = new DbFacilityResourceGet())
             {
-                return data.GetViewModel();
+                return db.GetViewModel();
             }
         }
 
         public List<FacilityResource> GetFacilityList(int facilityId)
         {
-            using (DbFacilityResourceGet data = new DbFacilityResourceGet())
+            using (DbFacilityResourceGet db = new DbFacilityResourceGet())
             {
-                return data.GetFacilityViewModel(facilityId);
+                return db.GetFacilityViewModel(facilityId);
             }
         }
     }

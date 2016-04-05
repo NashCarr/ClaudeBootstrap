@@ -51,6 +51,18 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CommonDataSave\CommonDataSave.csproj">
+      <Project>{B5277E31-13BA-4A2D-8E39-BF88780119E8}</Project>
+      <Name>CommonDataSave</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CommonData\CommonData.csproj">
+      <Project>{FB0DEC60-3BA3-4BD7-A268-5A78AB280F3A}</Project>
+      <Name>CommonData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataLayerCommonSave\DataLayerCommonSave.csproj">
+      <Project>{CFEDB533-1918-485B-B2FB-43A1AC166A30}</Project>
+      <Name>DataLayerCommonSave</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataLayerCommon\DataLayerCommon.csproj">
       <Project>{1ABF531D-949D-4DCC-B31C-53DF3225BBF8}</Project>
       <Name>DataLayerCommon</Name>
@@ -59,17 +71,9 @@
       <Project>{7E0856C1-30BC-4F20-AD03-9955C26B5815}</Project>
       <Name>DataLayerReorder</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DataLayerSaveCommon\DataLayerSaveCommon.csproj">
-      <Project>{CFEDB533-1918-485B-B2FB-43A1AC166A30}</Project>
-      <Name>DataLayerSaveCommon</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DataLayerSave\DataLayerSave.csproj">
       <Project>{E2CDF472-6531-4941-9816-B86E74D52A87}</Project>
       <Name>DataLayerSave</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SaveDataCommon\SaveDataCommon.csproj">
-      <Project>{B5277E31-13BA-4A2D-8E39-BF88780119E8}</Project>
-      <Name>SaveDataCommon</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,0 +1,19 @@
+.progress-bar {
+  background: $gray-5;
+  display: inline-block;
+  height: rem(13);
+  margin-left: 0.2rem;
+  width: rem(60);
+  vertical-align: middle;
+
+  .count {
+    height: rem(13);
+  }
+
+  .count.red {
+    background: $red;
+  }
+  .count.blue {
+    background: $blue-2;
+  }
+}

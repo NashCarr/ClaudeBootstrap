@@ -1,7 +1,7 @@
-﻿using DataLayerCommon.Enums;
+﻿using CommonDataRetrieval.Places;
 using DataLayerCommon.Places;
 using DataLayerRetrieval.Place;
-using DataRetrievalCommon.Places;
+using static CommonData.Enums.PlaceEnums;
 
 namespace DataLayerRetrieval.Customer
 {
@@ -23,7 +23,7 @@ namespace DataLayerRetrieval.Customer
 
             using (DbPlaceDataStub a = new DbPlaceDataStub())
             {
-                data = a.Prefill(PlaceEnums.PlaceType.Customer, data);
+                data = a.Prefill(PlaceType.Customer, data);
             }
 
             CustomerView m = new CustomerView

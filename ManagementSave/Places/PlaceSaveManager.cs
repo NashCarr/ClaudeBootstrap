@@ -1,10 +1,11 @@
 using System;
+using CommonDataSave.Places;
+using CommonDataSave.Return;
 using DataLayerCommon.Addresses;
 using DataLayerCommon.Phones;
 using DataLayerCommon.Places;
 using DataLayerSave.Place;
-using SaveDataCommon.Places;
-using SaveDataCommon.Return;
+using static CommonData.Enums.PlaceEnums;
 
 namespace ManagementSave.Places
 {
@@ -20,7 +21,25 @@ namespace ManagementSave.Places
         {
         }
 
-        public ReturnBase SavePlace(PlaceSaveModel data)
+        public ReturnBase SaveFacility(PlaceSaveModel p)
+        {
+            if (p.Place != null) p.Place.PlaceType = PlaceType.Facility;
+            return SavePlace(p);
+        }
+
+        public ReturnBase SaveCustomer(PlaceSaveModel p)
+        {
+            if (p.Place != null) p.Place.PlaceType = PlaceType.Customer;
+            return SavePlace(p);
+        }
+
+        public ReturnBase SaveOrganization(PlaceSaveModel p)
+        {
+            if (p.Place != null) p.Place.PlaceType = PlaceType.Organization;
+            return SavePlace(p);
+        }
+
+        private ReturnBase SavePlace(PlaceSaveModel data)
         {
             PlaceData p = new PlaceData
             {

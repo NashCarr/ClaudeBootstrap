@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Data;
+using CommonDataSave.Return;
 using DataLayerCommon.Places;
+using DataLayerCommonSave;
 using DataLayerSave.Addresses;
 using DataLayerSave.Phones;
-using DataLayerSaveCommon;
-using SaveDataCommon.Return;
-using static DataLayerCommon.Enums.PlaceEnums;
+using static CommonData.Enums.PlaceEnums;
 
 namespace DataLayerSave.Place
 {

@@ -1,6 +1,6 @@
 using System;
+using CommonDataRetrieval.Places;
 using DataLayerRetrieval.Customer;
-using DataRetrievalCommon.Places;
 
 namespace ManagementRetrieval.Customer
 {
@@ -18,9 +18,9 @@ namespace ManagementRetrieval.Customer
 
         public CustomerView GetCustomer(int recordId)
         {
-            using (DbCustomerViewGet data = new DbCustomerViewGet())
+            using (DbCustomerViewGet db = new DbCustomerViewGet())
             {
-                return data.GetCustomer(recordId);
+                return db.GetCustomer(recordId);
             }
         }
     }

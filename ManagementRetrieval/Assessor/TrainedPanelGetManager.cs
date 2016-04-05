@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
+using CommonDataRetrieval.Assessor;
 using DataLayerRetrieval.Assessor;
-using ViewDataCommon.Assessor;
 
 namespace ManagementRetrieval.Assessor
 {
@@ -19,9 +19,9 @@ namespace ManagementRetrieval.Assessor
 
         public List<TrainedPanel> GetList()
         {
-            using (DbTrainedPanelGet data = new DbTrainedPanelGet())
+            using (DbTrainedPanelGet db = new DbTrainedPanelGet())
             {
-                return data.GetViewModel();
+                return db.GetViewModel();
             }
         }
     }

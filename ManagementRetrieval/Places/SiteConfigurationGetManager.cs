@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
-using DataCommon.SiteConfiguration;
-using DataLayerCommon.LookupLists;
+using CommonDataRetrieval.SiteConfiguration;
+using DataLayerRetrieval.LookupLists;
 using DataLayerRetrieval.SiteConfiguration;
 
 namespace ManagementRetrieval.Places
@@ -19,11 +19,11 @@ namespace ManagementRetrieval.Places
         {
         }
 
-        public SiteConfiguration GetSiteConfiguration()
+        public SiteConfigurationGet GetSiteConfiguration()
         {
-            using (DbSiteConfigurationGet data = new DbSiteConfigurationGet())
+            using (DbSiteConfigurationGet db = new DbSiteConfigurationGet())
             {
-                return data.GetSiteConfiguration();
+                return db.GetSiteConfiguration();
             }
         }
 

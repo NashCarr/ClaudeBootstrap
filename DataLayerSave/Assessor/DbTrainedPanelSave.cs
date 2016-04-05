@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Data;
-using DataLayerSaveCommon;
-using SaveDataCommon.Assessor;
-using SaveDataCommon.Return;
+using CommonDataSave.Assessor;
+using CommonDataSave.Return;
+using DataLayerCommonSave;
 
 namespace DataLayerSave.Assessor
 {

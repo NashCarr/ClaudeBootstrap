@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
+using CommonDataSave.Assessor;
+using CommonDataSave.DisplayReorder;
+using CommonDataSave.Return;
 using DataLayerReorder;
 using DataLayerSave.Assessor;
-using SaveDataCommon.Assessor;
-using SaveDataCommon.DisplayReorder;
-using SaveDataCommon.Return;
 
 namespace ManagementSave.Assessor
 {
@@ -38,9 +38,9 @@ namespace ManagementSave.Assessor
 
         public ReturnBase DeleteRecord(int recordId)
         {
-            using (DbTrainedPanelSave data = new DbTrainedPanelSave())
+            using (DbTrainedPanelSave db = new DbTrainedPanelSave())
             {
-                return data.SetInactive(recordId);
+                return db.SetInactive(recordId);
             }
         }
     }

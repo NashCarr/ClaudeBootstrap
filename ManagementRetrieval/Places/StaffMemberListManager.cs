@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
+using CommonDataRetrieval.Places;
 using DataLayerRetrieval.People;
-using ViewDataCommon.Facility;
 
 namespace ManagementRetrieval.Places
 {
@@ -19,9 +19,9 @@ namespace ManagementRetrieval.Places
 
         public List<StaffMember> GetList()
         {
-            using (DbStaffMemberListGet data = new DbStaffMemberListGet())
+            using (DbStaffMemberListGet db = new DbStaffMemberListGet())
             {
-                return data.GetList();
+                return db.GetList();
             }
         }
     }

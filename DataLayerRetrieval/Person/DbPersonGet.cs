@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using static DataLayerCommon.Enums.PersonEnums;
+using static CommonData.Enums.PersonEnums;
 
 namespace DataLayerRetrieval.Person
 {

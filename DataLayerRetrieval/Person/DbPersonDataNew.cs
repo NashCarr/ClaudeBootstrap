@@ -4,9 +4,9 @@ using System.Linq;
 using DataLayerCommon.Addresses;
 using DataLayerCommon.People;
 using DataLayerCommon.Phones;
-using static DataLayerCommon.Enums.AddressEnums;
-using static DataLayerCommon.Enums.PersonEnums;
-using static DataLayerCommon.Enums.PhoneEnums;
+using static CommonData.Enums.AddressEnums;
+using static CommonData.Enums.PersonEnums;
+using static CommonData.Enums.PhoneEnums;
 
 namespace DataLayerRetrieval.Person
 {

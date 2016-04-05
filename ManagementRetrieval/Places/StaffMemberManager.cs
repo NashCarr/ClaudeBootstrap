@@ -1,6 +1,6 @@
 using System;
+using CommonDataRetrieval.People;
 using DataLayerRetrieval.Person;
-using DataRetrievalCommon.People;
 
 namespace ManagementRetrieval.Places
 {
@@ -18,9 +18,9 @@ namespace ManagementRetrieval.Places
 
         public PersonView GetStaffMember(int recordId)
         {
-            using (DbPersonViewGet data = new DbPersonViewGet())
+            using (DbPersonViewGet db = new DbPersonViewGet())
             {
-                return data.GetStaffMember(recordId);
+                return db.GetStaffMember(recordId);
             }
         }
     }

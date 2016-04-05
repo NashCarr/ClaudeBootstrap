@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using DataLayerCommon.Addresses;
-using DataLayerCommon.Enums;
 using DataLayerCommon.Phones;
 using DataLayerCommon.Places;
+using static CommonData.Enums.AddressEnums;
+using static CommonData.Enums.PhoneEnums;
+using static CommonData.Enums.PlaceEnums;
 
 namespace DataLayerRetrieval.Place
 {
@@ -15,7 +17,7 @@ namespace DataLayerRetrieval.Place
             GC.SuppressFinalize(this);
         }
 
-        public PlaceData Prefill(PlaceEnums.PlaceType placeType, PlaceData data)
+        public PlaceData Prefill(PlaceType placeType, PlaceData data)
         {
             try
             {
@@ -34,13 +36,13 @@ namespace DataLayerRetrieval.Place
 
                 if (data.AddressData.PhysicalAddress == null)
                 {
-                    AddressAssociation a = new AddressAssociation {AddressType = AddressEnums.AddressType.Physical};
+                    AddressAssociation a = new AddressAssociation {AddressType = AddressType.Physical};
                     data.AddressData.Addresses.Add(a);
                 }
 
                 if (data.AddressData.MailingAddress == null)
                 {
-                    AddressAssociation a = new AddressAssociation {AddressType = AddressEnums.AddressType.Mailing};
+                    AddressAssociation a = new AddressAssociation {AddressType = AddressType.Mailing};
                     data.AddressData.Addresses.Add(a);
                 }
 
@@ -51,25 +53,25 @@ namespace DataLayerRetrieval.Place
 
                 if (data.PhoneData.HomePhone == null)
                 {
-                    PhoneAssociation p = new PhoneAssociation {PhoneType = PhoneEnums.PhoneType.Home};
+                    PhoneAssociation p = new PhoneAssociation {PhoneType = PhoneType.Home};
                     data.PhoneData.Phones.Add(p);
                 }
 
                 if (data.PhoneData.CellPhone == null)
                 {
-                    PhoneAssociation p = new PhoneAssociation {PhoneType = PhoneEnums.PhoneType.Cell};
+                    PhoneAssociation p = new PhoneAssociation {PhoneType = PhoneType.Cell};
                     data.PhoneData.Phones.Add(p);
                 }
 
                 if (data.PhoneData.WorkPhone == null)
                 {
-                    PhoneAssociation p = new PhoneAssociation {PhoneType = PhoneEnums.PhoneType.Work};
+                    PhoneAssociation p = new PhoneAssociation {PhoneType = PhoneType.Work};
                     data.PhoneData.Phones.Add(p);
                 }
 
                 if (data.PhoneData.FaxPhone == null)
                 {
-                    PhoneAssociation p = new PhoneAssociation {PhoneType = PhoneEnums.PhoneType.Fax};
+                    PhoneAssociation p = new PhoneAssociation {PhoneType = PhoneType.Fax};
                     data.PhoneData.Phones.Add(p);
                 }
             }

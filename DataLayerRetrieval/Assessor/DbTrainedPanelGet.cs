@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using ViewDataCommon.Assessor;
+using CommonDataRetrieval.Assessor;
 
 namespace DataLayerRetrieval.Assessor
 {

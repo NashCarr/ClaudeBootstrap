@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Data.SqlClient;
+using CommonDataRetrieval.SiteConfiguration;
 
 namespace DataLayerRetrieval.SiteConfiguration
 {
     public class DbSiteConfigurationGet : DbGetBase
     {
-        public DataCommon.SiteConfiguration.SiteConfiguration GetSiteConfiguration()
+        public SiteConfigurationGet GetSiteConfiguration()
         {
             return LoadRecords();
         }
 
-        private DataCommon.SiteConfiguration.SiteConfiguration LoadRecords()
+        private SiteConfigurationGet LoadRecords()
         {
-            DataCommon.SiteConfiguration.SiteConfiguration data =
-                new DataCommon.SiteConfiguration.SiteConfiguration();
+            SiteConfigurationGet data = new SiteConfigurationGet();
             try
             {
                 SetConnectToDatabase("[Settings].[usp_SiteConfiguration_GetData]");

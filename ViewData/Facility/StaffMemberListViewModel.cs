@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using DataRetrievalCommon.Lookup;
+using CommonDataRetrieval.Lookup;
+using CommonDataRetrieval.Places;
 using ManagementLookup;
 using ManagementRetrieval.Places;
-using ViewDataCommon.Facility;
 
 namespace ViewData.Facility
 {

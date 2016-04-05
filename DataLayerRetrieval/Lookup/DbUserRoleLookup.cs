@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Web.Mvc;
 using DataLayerCommon.Administration;
-using DataLayerCommon.LookupLists;
 using DataLayerRetrieval.Administration;
+using DataLayerRetrieval.LookupLists;
 
 namespace DataLayerRetrieval.Lookup
 {

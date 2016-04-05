@@ -1,4 +1,4 @@
-﻿using static DataLayerCommon.Enums.PersonEnums;
+﻿using static CommonData.Enums.PersonEnums;
 
 namespace DataLayerCommon.People
 {

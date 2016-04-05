@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using DataLayerCommon.Enums;
+using CommonDataRetrieval.Places;
 using DataLayerRetrieval.Places;
-using DataRetrievalCommon.Places;
+using static CommonData.Enums.PlaceEnums;
 
 namespace ManagementRetrieval.Places
 {
@@ -18,7 +18,7 @@ namespace ManagementRetrieval.Places
         {
         }
 
-        public List<PlaceList> GetList(PlaceEnums.PlaceType pt)
+        public List<PlaceList> GetList(PlaceType pt)
         {
             using (DbPlacesGetActive data = new DbPlacesGetActive())
             {

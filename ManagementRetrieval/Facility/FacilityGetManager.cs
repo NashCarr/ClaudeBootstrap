@@ -1,6 +1,6 @@
 using System;
+using CommonDataRetrieval.Places;
 using DataLayerRetrieval.Place;
-using DataRetrievalCommon.Places;
 
 namespace ManagementRetrieval.Facility
 {
@@ -18,9 +18,9 @@ namespace ManagementRetrieval.Facility
 
         public PlaceView GetFacility(int recordId)
         {
-            using (DbPlaceViewGet data = new DbPlaceViewGet())
+            using (DbPlaceViewGet db = new DbPlaceViewGet())
             {
-                return data.GetFacility(recordId);
+                return db.GetFacility(recordId);
             }
         }
     }

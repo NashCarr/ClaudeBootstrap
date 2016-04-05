@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
-using DataLayerCommon.LookupLists;
+using CommonDataRetrieval.People;
+using DataLayerRetrieval.LookupLists;
 using DataLayerRetrieval.People;
-using ViewDataCommon.Person;
-using static DataLayerCommon.Enums.PersonEnums;
+using static CommonData.Enums.PersonEnums;
 
 namespace DataLayerRetrieval.Lookup
 {

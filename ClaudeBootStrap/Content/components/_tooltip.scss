@@ -1,0 +1,12 @@
+.tooltip {
+  background: $blue-1;
+  border-radius: rem(3);
+  box-shadow: 0 0 rem(3) rgba($black-1, 0.5);
+  font-family: $ss-pro;
+  font-weight: 600;
+  padding: 1rem;
+  
+  &::before {
+    display: none;
+  }
+}

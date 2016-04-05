@@ -1,16 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using DataLayerCommon.Enums;
-using DataRetrievalCommon.Lookup;
-using DataRetrievalCommon.Places;
+using CommonDataRetrieval.Lookup;
+using CommonDataRetrieval.Places;
 using ManagementLookup;
 using ManagementRetrieval.Places;
+using static CommonData.Enums.PlaceEnums;
 
 namespace ViewData.Places
 {
     public class PlaceListViewModel
     {
-        public PlaceListViewModel(PlaceEnums.PlaceType pt)
+        public PlaceListViewModel(PlaceType pt)
         {
             using (PlaceListGetManager mgr = new PlaceListGetManager())
             {

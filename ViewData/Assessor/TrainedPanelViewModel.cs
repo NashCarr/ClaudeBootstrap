@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
+using CommonDataRetrieval.Assessor;
 using ManagementLookup;
 using ManagementRetrieval.Assessor;
-using ViewDataCommon.Assessor;
 
 namespace ViewData.Assessor
 {

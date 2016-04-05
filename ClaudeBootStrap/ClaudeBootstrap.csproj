@@ -374,6 +374,7 @@
     <Content Include="Content\style.scss" />
     <None Include=".bin\node.cmd" />
     <None Include=".bin\npm.cmd" />
+    <Content Include="Scripts\Assessor\vmTrainedPanel.js" />
     <Content Include="Scripts\foundation.min.js" />
     <None Include="Scripts\jquery-2.2.2.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.2.js" />
@@ -388,14 +389,13 @@
     <Content Include="Scripts\knockout-sortable.min.js" />
     <Content Include="Scripts\knockout.mapping-latest.debug.js" />
     <Content Include="Scripts\knockout.mapping-latest.js" />
-    <Content Include="Scripts\KoViewModels\vmTrainedPanel.js" />
-    <Content Include="Scripts\KoViewModels\vmStaffMember.js" />
-    <Content Include="Scripts\KoViewModels\vmSiteConfiguration.js" />
-    <Content Include="Scripts\KoViewModels\vmOrganization.js" />
-    <Content Include="Scripts\KoViewModels\vmCustomer.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\People\vmStaffMember.js" />
     <Content Include="Scripts\picker.date.js" />
     <Content Include="Scripts\picker.js" />
+    <Content Include="Scripts\Places\vmCustomer.js" />
+    <Content Include="Scripts\Places\vmOrganization.js" />
+    <Content Include="Scripts\Places\vmSiteConfiguration.js" />
     <Content Include="Scripts\r.js" />
     <Content Include="Scripts\require.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -472,17 +472,17 @@
     <Content Include="Views\TrainedPanel\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataCommon\DataCommon.csproj">
-      <Project>{FB0DEC60-3BA3-4BD7-A268-5A78AB280F3A}</Project>
-      <Name>DataCommon</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DataLayerCommon\DataLayerCommon.csproj">
-      <Project>{1ABF531D-949D-4DCC-B31C-53DF3225BBF8}</Project>
-      <Name>DataLayerCommon</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DataRetrievalCommon\DataRetrievalCommon.csproj">
+    <ProjectReference Include="..\CommonDataRetrieval\CommonDataRetrieval.csproj">
       <Project>{7F3C4322-E4EF-47A5-947C-9611673A58DE}</Project>
-      <Name>DataRetrievalCommon</Name>
+      <Name>CommonDataRetrieval</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CommonDataSave\CommonDataSave.csproj">
+      <Project>{B5277E31-13BA-4A2D-8E39-BF88780119E8}</Project>
+      <Name>CommonDataSave</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CommonData\CommonData.csproj">
+      <Project>{FB0DEC60-3BA3-4BD7-A268-5A78AB280F3A}</Project>
+      <Name>CommonData</Name>
     </ProjectReference>
     <ProjectReference Include="..\ManagementRetrieval\ManagementRetrieval.csproj">
       <Project>{793BF538-1546-48AB-93A2-F6A7164E19F6}</Project>
@@ -491,14 +491,6 @@
     <ProjectReference Include="..\ManagementSave\ManagementSave.csproj">
       <Project>{652684D2-1F4B-415E-8B1D-2EA5D187FEEC}</Project>
       <Name>ManagementSave</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SaveDataCommon\SaveDataCommon.csproj">
-      <Project>{B5277E31-13BA-4A2D-8E39-BF88780119E8}</Project>
-      <Name>SaveDataCommon</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ViewDataCommon\ViewDataCommon.csproj">
-      <Project>{60E96CBF-EE02-4D31-88A0-4D19F75AEC1F}</Project>
-      <Name>ViewDataCommon</Name>
     </ProjectReference>
     <ProjectReference Include="..\ViewData\ViewData.csproj">
       <Project>{9F1858B5-9D5B-4870-A821-2CE80F5213A8}</Project>

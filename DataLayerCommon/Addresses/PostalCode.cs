@@ -1,5 +1,5 @@
 ﻿using DataLayerCommon.BaseModels;
-using static DataLayerCommon.Enums.CountryEnums;
+using static CommonData.Enums.CountryEnums;
 
 namespace DataLayerCommon.Addresses
 {

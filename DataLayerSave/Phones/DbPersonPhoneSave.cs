@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using DataLayerCommon.People;
 using DataLayerCommon.Phones;
-using static DataLayerCommon.Enums.PersonEnums;
+using static CommonData.Enums.PersonEnums;
 
 namespace DataLayerSave.Phones
 {

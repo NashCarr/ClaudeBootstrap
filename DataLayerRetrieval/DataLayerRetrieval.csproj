@@ -55,6 +55,16 @@
     <Compile Include="DbGatewayGet.cs" />
     <Compile Include="DbGetBase.cs" />
     <Compile Include="Facility\DbFacilityResourceGet.cs" />
+    <Compile Include="LookupLists\CompensationTypeLookupList.cs" />
+    <Compile Include="LookupLists\CustomerContactLookupList.cs" />
+    <Compile Include="LookupLists\DefaultRightLookupList.cs" />
+    <Compile Include="LookupLists\PersonLookupList.cs" />
+    <Compile Include="LookupLists\PhoneTypeLookupList.cs" />
+    <Compile Include="LookupLists\PlaceLookupList.cs" />
+    <Compile Include="LookupLists\PostalZoneLookupList.cs" />
+    <Compile Include="LookupLists\ProgramOptionLookupList.cs" />
+    <Compile Include="LookupLists\StaffUserLookupList.cs" />
+    <Compile Include="LookupLists\UserRoleLookupList.cs" />
     <Compile Include="Lookup\DbGatewayLookup.cs" />
     <Compile Include="Lookup\DbMobileCarrierLookup.cs" />
     <Compile Include="Lookup\DbPeopleLookup.cs" />
@@ -86,21 +96,17 @@
     <Compile Include="SiteConfiguration\DbSiteConfigurationGet.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataCommon\DataCommon.csproj">
+    <ProjectReference Include="..\CommonDataRetrieval\CommonDataRetrieval.csproj">
+      <Project>{7F3C4322-E4EF-47A5-947C-9611673A58DE}</Project>
+      <Name>CommonDataRetrieval</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CommonData\CommonData.csproj">
       <Project>{FB0DEC60-3BA3-4BD7-A268-5A78AB280F3A}</Project>
-      <Name>DataCommon</Name>
+      <Name>CommonData</Name>
     </ProjectReference>
     <ProjectReference Include="..\DataLayerCommon\DataLayerCommon.csproj">
       <Project>{1ABF531D-949D-4DCC-B31C-53DF3225BBF8}</Project>
       <Name>DataLayerCommon</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DataRetrievalCommon\DataRetrievalCommon.csproj">
-      <Project>{7F3C4322-E4EF-47A5-947C-9611673A58DE}</Project>
-      <Name>DataRetrievalCommon</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ViewDataCommon\ViewDataCommon.csproj">
-      <Project>{60E96CBF-EE02-4D31-88A0-4D19F75AEC1F}</Project>
-      <Name>ViewDataCommon</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

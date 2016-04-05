@@ -1,10 +1,11 @@
 using System;
+using CommonDataSave.People;
+using CommonDataSave.Return;
 using DataLayerCommon.Addresses;
 using DataLayerCommon.People;
 using DataLayerCommon.Phones;
 using DataLayerSave.Person;
-using SaveDataCommon.People;
-using SaveDataCommon.Return;
+using static CommonData.Enums.PersonEnums;
 
 namespace ManagementSave.Person
 {
@@ -20,7 +21,26 @@ namespace ManagementSave.Person
         {
         }
 
-        public ReturnBase SavePerson(PersonSaveModel data)
+
+        public ReturnBase SaveStaffMember(PersonSaveModel p)
+        {
+            if (p.Person != null) p.Person.PersonType = PersonType.StaffMember;
+            return SavePerson(p);
+        }
+
+        public ReturnBase SaveCustomerContact(PersonSaveModel p)
+        {
+            if (p.Person != null) p.Person.PersonType = PersonType.CustomerContact;
+            return SavePerson(p);
+        }
+
+        public ReturnBase SaveOrganizationContact(PersonSaveModel p)
+        {
+            if (p.Person != null) p.Person.PersonType = PersonType.OrganizationContact;
+            return SavePerson(p);
+        }
+
+        private ReturnBase SavePerson(PersonSaveModel data)
         {
             PersonData p = new PersonData
             {

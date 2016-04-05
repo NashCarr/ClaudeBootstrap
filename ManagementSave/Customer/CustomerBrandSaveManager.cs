@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
+using CommonDataSave.Customer;
+using CommonDataSave.DisplayReorder;
+using CommonDataSave.Return;
 using DataLayerReorder;
 using DataLayerSave.Customer;
-using SaveDataCommon.Customer;
-using SaveDataCommon.DisplayReorder;
-using SaveDataCommon.Return;
 
 namespace ManagementSave.Customer
 {
@@ -22,9 +22,9 @@ namespace ManagementSave.Customer
 
         public ReturnBase SaveRecord(CustomerBrandSave entity)
         {
-            using (DbCustomerBrandSave data = new DbCustomerBrandSave())
+            using (DbCustomerBrandSave db = new DbCustomerBrandSave())
             {
-                return data.AddUpdateRecord(entity);
+                return db.AddUpdateRecord(entity);
             }
         }
 
@@ -38,9 +38,9 @@ namespace ManagementSave.Customer
 
         public ReturnBase DeleteRecord(int recordId)
         {
-            using (DbCustomerBrandSave data = new DbCustomerBrandSave())
+            using (DbCustomerBrandSave db = new DbCustomerBrandSave())
             {
-                return data.SetInactive(recordId);
+                return db.SetInactive(recordId);
             }
         }
     }

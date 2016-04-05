@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using ViewDataCommon.Person;
-using static DataLayerCommon.Enums.PersonEnums;
+using CommonDataRetrieval.People;
+using static CommonData.Enums.PersonEnums;
 
 namespace DataLayerRetrieval.People
 {

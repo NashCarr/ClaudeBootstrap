@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using ViewDataCommon.Person;
+using CommonDataRetrieval.People;
 
 namespace DataLayerRetrieval.People
 {

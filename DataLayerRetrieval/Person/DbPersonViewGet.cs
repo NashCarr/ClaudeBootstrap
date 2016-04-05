@@ -1,6 +1,6 @@
-﻿using DataLayerCommon.People;
-using DataRetrievalCommon.People;
-using static DataLayerCommon.Enums.PersonEnums;
+﻿using CommonDataRetrieval.People;
+using DataLayerCommon.People;
+using static CommonData.Enums.PersonEnums;
 
 namespace DataLayerRetrieval.Person
 {

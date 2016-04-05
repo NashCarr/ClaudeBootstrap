@@ -59,28 +59,8 @@
     <Compile Include="BaseModels\AdminBase.cs" />
     <Compile Include="BaseModels\ModelBase.cs" />
     <Compile Include="DbConnect.cs" />
-    <Compile Include="Enums\AddressEnums.cs" />
-    <Compile Include="Enums\AdministrationEnums.cs" />
-    <Compile Include="Enums\AssessorEnums.cs" />
-    <Compile Include="Enums\CountryEnums.cs" />
-    <Compile Include="Enums\EmailEnums.cs" />
-    <Compile Include="Enums\PersonEnums.cs" />
-    <Compile Include="Enums\PhoneEnums.cs" />
-    <Compile Include="Enums\PlaceEnums.cs" />
-    <Compile Include="Enums\StudyEnums.cs" />
-    <Compile Include="Enums\TimeZoneEnums.cs" />
     <Compile Include="Helpers\EnumHelpers.cs" />
     <Compile Include="Lists\Settings\AssessorInfo.cs" />
-    <Compile Include="LookupLists\CompensationTypeLookupList.cs" />
-    <Compile Include="LookupLists\CustomerContactLookupList.cs" />
-    <Compile Include="LookupLists\DefaultRightLookupList.cs" />
-    <Compile Include="LookupLists\PersonLookupList.cs" />
-    <Compile Include="LookupLists\PhoneTypeLookupList.cs" />
-    <Compile Include="LookupLists\PlaceLookupList.cs" />
-    <Compile Include="LookupLists\PostalZoneLookupList.cs" />
-    <Compile Include="LookupLists\ProgramOptionLookupList.cs" />
-    <Compile Include="LookupLists\StaffUserLookupList.cs" />
-    <Compile Include="LookupLists\UserRoleLookupList.cs" />
     <Compile Include="People\Contact.cs" />
     <Compile Include="People\Person.cs" />
     <Compile Include="People\PersonData.cs" />
@@ -98,6 +78,12 @@
     <Compile Include="SiteConfiguration\ModuleUsage.cs" />
     <Compile Include="SiteConfiguration\PasswordRequirement.cs" />
     <Compile Include="SiteConfiguration\StudyDefinition.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CommonData\CommonData.csproj">
+      <Project>{FB0DEC60-3BA3-4BD7-A268-5A78AB280F3A}</Project>
+      <Name>CommonData</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

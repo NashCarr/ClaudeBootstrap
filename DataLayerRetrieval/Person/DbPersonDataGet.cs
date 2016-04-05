@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using DataLayerCommon.Addresses;
-using DataLayerCommon.Enums;
 using DataLayerCommon.People;
 using DataLayerCommon.Phones;
-using static DataLayerCommon.Enums.CountryEnums;
-using static DataLayerCommon.Enums.PersonEnums;
-using static DataLayerCommon.Enums.PhoneEnums;
+using static CommonData.Enums.AddressEnums;
+using static CommonData.Enums.CountryEnums;
+using static CommonData.Enums.PersonEnums;
+using static CommonData.Enums.PhoneEnums;
 
 namespace DataLayerRetrieval.Person
 {
@@ -124,7 +124,7 @@ namespace DataLayerRetrieval.Person
                                         Address2 = Convert.ToString(dr[ordAddress2]),
                                         IsActive = Convert.ToBoolean(dr[ordIsActive]),
                                         AddressId = Convert.ToInt32(dr[ordAddressId]),
-                                        AddressType = (AddressEnums.AddressType) Convert.ToInt16(dr[ordAddressType]),
+                                        AddressType = (AddressType) Convert.ToInt16(dr[ordAddressType]),
                                         CreateDate = Convert.ToDateTime(dr[ordCreateDate]),
                                         PostalCodeId = Convert.ToInt32(dr[ordPostalCodeId]),
                                         StateProvinceId = Convert.ToInt32(dr[ordStateProvinceId]),

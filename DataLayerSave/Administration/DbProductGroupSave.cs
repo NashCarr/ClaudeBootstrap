@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Data;
-using DataLayerSaveCommon;
-using SaveDataCommon;
-using SaveDataCommon.Return;
+using CommonDataSave;
+using CommonDataSave.Return;
+using DataLayerCommonSave;
 
 namespace DataLayerSave.Administration
 {

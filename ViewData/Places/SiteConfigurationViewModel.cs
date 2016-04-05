@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using DataCommon.SiteConfiguration;
-using DataLayerCommon.Enums;
-using DataLayerCommon.LookupLists;
+using CommonDataRetrieval.Facility;
+using CommonDataRetrieval.SiteConfiguration;
+using DataLayerRetrieval.LookupLists;
 using DataLayerRetrieval.SiteConfiguration;
 using ManagementRetrieval.Facility;
-using ViewDataCommon.Facility;
+using static CommonData.Enums.PlaceEnums;
 
 namespace ViewData.Places
 {
@@ -13,7 +13,7 @@ namespace ViewData.Places
     {
         public SiteConfigurationViewModel()
         {
-            Facilities = new PlaceListViewModel(PlaceEnums.PlaceType.Facility);
+            Facilities = new PlaceListViewModel(PlaceType.Facility);
             using (DbSiteConfigurationGet db = new DbSiteConfigurationGet())
             {
                 SiteConfiguration = db.GetSiteConfiguration();
@@ -29,7 +29,7 @@ namespace ViewData.Places
         }
 
         public PlaceListViewModel Facilities { get; set; }
-        public SiteConfiguration SiteConfiguration { get; set; }
+        public SiteConfigurationGet SiteConfiguration { get; set; }
         public List<SelectListItem> CompensationTypes { get; set; }
         public List<FacilityResource> FacilityResources { get; set; }
     }

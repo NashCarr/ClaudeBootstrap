@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
+using CommonDataRetrieval.Customer;
 using DataLayerRetrieval.Customer;
-using ViewDataCommon.Customer;
 
 namespace ManagementRetrieval.Customer
 {
@@ -19,9 +19,9 @@ namespace ManagementRetrieval.Customer
 
         public List<CustomerBrand> GetList(int customerId)
         {
-            using (DbCustomerBrandGet data = new DbCustomerBrandGet())
+            using (DbCustomerBrandGet db = new DbCustomerBrandGet())
             {
-                return data.GetViewModel(customerId);
+                return db.GetViewModel(customerId);
             }
         }
     }

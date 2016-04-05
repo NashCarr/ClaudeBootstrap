@@ -1,16 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using DataLayerCommon.Enums;
-using DataRetrievalCommon.Lookup;
+using CommonDataRetrieval.Lookup;
+using CommonDataRetrieval.People;
 using ManagementLookup;
 using ManagementRetrieval.Places;
-using ViewDataCommon.Person;
+using static CommonData.Enums.PersonEnums;
 
 namespace ViewData.People
 {
     public class PersonListViewModel
     {
-        public PersonListViewModel(PersonEnums.PersonType pt)
+        public PersonListViewModel(PersonType pt)
         {
             using (PersonListManager mgr = new PersonListManager())
             {

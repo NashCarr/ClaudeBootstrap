@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using DataLayerCommon.Addresses;
-using static DataLayerCommon.Enums.CountryEnums;
+using static CommonData.Enums.CountryEnums;
 
 namespace DataLayerRetrieval.Addresses
 {

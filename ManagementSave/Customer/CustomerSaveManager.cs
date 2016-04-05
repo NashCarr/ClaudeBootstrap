@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
+using CommonDataSave.DisplayReorder;
+using CommonDataSave.Return;
 using DataLayerReorder;
 using DataLayerSave.Place;
-using SaveDataCommon.DisplayReorder;
-using SaveDataCommon.Return;
 
 namespace ManagementSave.Customer
 {
@@ -29,9 +29,9 @@ namespace ManagementSave.Customer
 
         public ReturnBase DeleteCustomer(int id)
         {
-            using (DbPlaceSetInactive data = new DbPlaceSetInactive())
+            using (DbPlaceSetInactive db = new DbPlaceSetInactive())
             {
-                return data.SetCustomerInactive(id);
+                return db.SetCustomerInactive(id);
             }
         }
     }

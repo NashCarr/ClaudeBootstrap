@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using SaveDataCommon.Administration;
-using SaveDataCommon.DisplayReorder;
+using CommonDataSave.Administration;
+using CommonDataSave.DisplayReorder;
 using ViewData.Administration;
 
 namespace ClaudeBootstrap.Controllers.Administration

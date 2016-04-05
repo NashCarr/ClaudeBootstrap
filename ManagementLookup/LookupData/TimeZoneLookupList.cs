@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using DataLayerCommon.Enums;
 using DataLayerCommon.Helpers;
+using static CommonData.Enums.TimeZoneEnums;
 
 namespace ManagementLookup.LookupData
 {
@@ -13,11 +13,11 @@ namespace ManagementLookup.LookupData
         {
             LookupList =
                 new List<SelectListItem>(
-                    EnumHelpers.SelectListFor<TimeZoneEnums.ClaudeTimeZone>()
-                        .Where(e => e.Value != TimeZoneEnums.ClaudeTimeZone.None.ToString()));
+                    EnumHelpers.SelectListFor<ClaudeTimeZone>()
+                        .Where(e => e.Value != ClaudeTimeZone.None.ToString()));
             foreach (SelectListItem item in LookupList)
             {
-                item.Value = EnumHelpers.GetByteFromEnum<TimeZoneEnums.ClaudeTimeZone>(item.Value).ToString();
+                item.Value = EnumHelpers.GetByteFromEnum<ClaudeTimeZone>(item.Value).ToString();
             }
         }
 

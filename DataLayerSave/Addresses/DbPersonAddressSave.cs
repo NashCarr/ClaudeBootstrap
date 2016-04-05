@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using DataLayerCommon.Addresses;
 using DataLayerCommon.People;
-using static DataLayerCommon.Enums.PersonEnums;
+using static CommonData.Enums.PersonEnums;
 
 namespace DataLayerSave.Addresses
 {

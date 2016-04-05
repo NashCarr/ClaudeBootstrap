@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using DataLayerCommon.BaseModels;
-using static DataLayerCommon.Enums.CountryEnums;
-using static DataLayerCommon.Enums.PersonEnums;
-using static DataLayerCommon.Enums.TimeZoneEnums;
+using static CommonData.Enums.CountryEnums;
+using static CommonData.Enums.PersonEnums;
+using static CommonData.Enums.TimeZoneEnums;
 
 namespace DataLayerCommon.People
 {

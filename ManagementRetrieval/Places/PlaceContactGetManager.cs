@@ -1,6 +1,6 @@
 using System;
+using CommonDataRetrieval.People;
 using DataLayerRetrieval.Person;
-using DataRetrievalCommon.People;
 
 namespace ManagementRetrieval.Places
 {
@@ -18,25 +18,25 @@ namespace ManagementRetrieval.Places
 
         public PersonView GetCustomerContact(int recordId)
         {
-            using (DbPersonViewGet data = new DbPersonViewGet())
+            using (DbPersonViewGet db = new DbPersonViewGet())
             {
-                return data.GetCustomerContact(recordId);
+                return db.GetCustomerContact(recordId);
             }
         }
 
         public PersonView GetOrganizationContact(int recordId)
         {
-            using (DbPersonViewGet data = new DbPersonViewGet())
+            using (DbPersonViewGet db = new DbPersonViewGet())
             {
-                return data.GetOrganizationContact(recordId);
+                return db.GetOrganizationContact(recordId);
             }
         }
 
         public PersonView GetStaffMember(int recordId)
         {
-            using (DbPersonViewGet data = new DbPersonViewGet())
+            using (DbPersonViewGet db = new DbPersonViewGet())
             {
-                return data.GetStaffMember(recordId);
+                return db.GetStaffMember(recordId);
             }
         }
     }

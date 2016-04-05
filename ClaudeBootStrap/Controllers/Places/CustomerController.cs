@@ -1,17 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
+using CommonDataSave.Customer;
+using CommonDataSave.DisplayReorder;
+using CommonDataSave.People;
+using CommonDataSave.Places;
 using ManagementRetrieval.Customer;
 using ManagementRetrieval.Places;
 using ManagementSave.Customer;
 using ManagementSave.Person;
 using ManagementSave.Places;
-using SaveDataCommon.Customer;
-using SaveDataCommon.DisplayReorder;
-using SaveDataCommon.People;
-using SaveDataCommon.Places;
 using ViewData.Places;
-using static DataLayerCommon.Enums.PersonEnums;
-using static DataLayerCommon.Enums.PlaceEnums;
+using static CommonData.Enums.PlaceEnums;
 
 namespace ClaudeBootstrap.Controllers.Places
 {
@@ -28,20 +27,18 @@ namespace ClaudeBootstrap.Controllers.Places
         [HttpPost]
         public JsonResult SavePlace(PlaceSaveModel p)
         {
-            if (p.Place != null) p.Place.PlaceType = PlaceType.Customer;
             using (PlaceSaveManager mgr = new PlaceSaveManager())
             {
-                return Json(mgr.SavePlace(p));
+                return Json(mgr.SaveCustomer(p));
             }
         }
 
         [HttpPost]
-        public JsonResult SaveContact(PersonSaveModel c)
+        public JsonResult SaveContact(PersonSaveModel p)
         {
-            if (c != null) c.Person.PersonType = PersonType.CustomerContact;
             using (PersonSaveManager mgr = new PersonSaveManager())
             {
-                return Json(mgr.SavePerson(c));
+                return Json(mgr.SaveCustomerContact(p));
             }
         }
 

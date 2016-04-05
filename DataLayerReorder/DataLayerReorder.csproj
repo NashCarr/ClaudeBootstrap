@@ -41,13 +41,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataLayerSaveCommon\DataLayerSaveCommon.csproj">
-      <Project>{CFEDB533-1918-485B-B2FB-43A1AC166A30}</Project>
-      <Name>DataLayerSaveCommon</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SaveDataCommon\SaveDataCommon.csproj">
+    <ProjectReference Include="..\CommonDataSave\CommonDataSave.csproj">
       <Project>{B5277E31-13BA-4A2D-8E39-BF88780119E8}</Project>
-      <Name>SaveDataCommon</Name>
+      <Name>CommonDataSave</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataLayerCommonSave\DataLayerCommonSave.csproj">
+      <Project>{CFEDB533-1918-485B-B2FB-43A1AC166A30}</Project>
+      <Name>DataLayerCommonSave</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

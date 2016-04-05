@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using DataLayerCommon.Enums;
-using DataRetrievalCommon.Places;
+using CommonDataRetrieval.Places;
+using static CommonData.Enums.PlaceEnums;
 
 namespace DataLayerRetrieval.Places
 {
     public class DbPlacesGetActive : DbPlacesGet
     {
-        public List<PlaceList> GetActive(PlaceEnums.PlaceType pt)
+        public List<PlaceList> GetActive(PlaceType pt)
         {
             try
             {
