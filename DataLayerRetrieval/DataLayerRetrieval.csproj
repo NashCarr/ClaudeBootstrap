@@ -57,6 +57,7 @@
     <Compile Include="LookupModel\CustomerContactLookup.cs" />
     <Compile Include="LookupModel\PersonLookup.cs" />
     <Compile Include="LookupModel\PlaceLookup.cs" />
+    <Compile Include="LookupModel\PostalCodeLookup.cs" />
     <Compile Include="LookupModel\ProgramOptionLookup.cs" />
     <Compile Include="LookupModel\StaffMemberLookup.cs" />
     <Compile Include="Lookup\DbGatewayLookup.cs" />

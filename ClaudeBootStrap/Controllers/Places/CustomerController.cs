@@ -4,13 +4,12 @@ using CommonDataSave.Customer;
 using CommonDataSave.DisplayReorder;
 using CommonDataSave.People;
 using CommonDataSave.Places;
-using ManagementRetrieval.Customer;
-using ManagementRetrieval.Places;
 using ManagementSave.Customer;
 using ManagementSave.Person;
 using ManagementSave.Places;
+using ViewData.Person;
+using ViewData.Place;
 using ViewData.Places;
-using static CommonData.Enums.PlaceEnums;
 
 namespace ClaudeBootstrap.Controllers.Places
 {
@@ -21,7 +20,7 @@ namespace ClaudeBootstrap.Controllers.Places
         [HttpGet]
         public ActionResult Index()
         {
-            return View(new PlaceListViewModel(PlaceType.Customer));
+            return View(new CustomerListViewModel());
         }
 
         [HttpPost]
@@ -54,19 +53,19 @@ namespace ClaudeBootstrap.Controllers.Places
         [HttpPost]
         public JsonResult GetPlace(string id)
         {
-            using (CustomerGetManager mgr = new CustomerGetManager())
-            {
-                return Json(id != null ? mgr.GetCustomer(int.Parse(id)) : mgr.GetCustomer(0));
-            }
+            return
+                Json(string.IsNullOrEmpty(id)
+                    ? new CustomerViewModel(0)
+                    : new CustomerViewModel(int.Parse(id)));
         }
 
         [HttpPost]
         public JsonResult GetPerson(string id)
         {
-            using (PlaceContactGetManager mgr = new PlaceContactGetManager())
-            {
-                return Json(id != null ? mgr.GetCustomerContact(int.Parse(id)) : mgr.GetCustomerContact(0));
-            }
+            return
+                Json(string.IsNullOrEmpty(id)
+                    ? new CustomerContactViewModel(0)
+                    : new CustomerContactViewModel(int.Parse(id)));
         }
 
         [HttpPost]

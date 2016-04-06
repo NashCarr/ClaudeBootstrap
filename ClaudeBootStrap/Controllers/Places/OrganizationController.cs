@@ -7,7 +7,6 @@ using ManagementRetrieval.Places;
 using ManagementSave.Person;
 using ManagementSave.Places;
 using ViewData.Places;
-using static CommonData.Enums.PlaceEnums;
 
 namespace ClaudeBootstrap.Controllers.Places
 {
@@ -18,7 +17,7 @@ namespace ClaudeBootstrap.Controllers.Places
         [HttpGet]
         public ActionResult Index()
         {
-            return View(new PlaceListViewModel(PlaceType.Organization));
+            return View(new OrganizationListViewModel());
         }
 
         [HttpPost]

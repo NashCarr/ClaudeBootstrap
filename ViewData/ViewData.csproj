@@ -46,8 +46,13 @@
     <Compile Include="Assessor\TrainedPanelViewModel.cs" />
     <Compile Include="Facility\StaffMemberListViewModel.cs" />
     <Compile Include="People\PersonListViewModel.cs" />
+    <Compile Include="Person\CustomerContactViewModel.cs" />
+    <Compile Include="Places\CustomerListViewModel.cs" />
     <Compile Include="Places\PlaceListViewModel.cs" />
+    <Compile Include="Places\OrganizationListViewModel.cs" />
     <Compile Include="Places\SiteConfigurationViewModel.cs" />
+    <Compile Include="Place\OrganizationViewModel.cs" />
+    <Compile Include="Place\CustomerViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

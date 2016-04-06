@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using CommonDataRetrieval.Lookup;
 using CommonDataRetrieval.Places;
+using DataLayerRetrieval.LookupModel;
 using ManagementLookup;
 using ManagementRetrieval.Places;
 using static CommonData.Enums.PlaceEnums;

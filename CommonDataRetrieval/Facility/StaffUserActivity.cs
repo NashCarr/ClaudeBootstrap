@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DataLayerCommon.Administration
+namespace CommonDataRetrieval.Facility
 {
     public class StaffMemberActivity
     {

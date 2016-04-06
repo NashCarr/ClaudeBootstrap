@@ -1,6 +1,6 @@
-﻿using static CommonData.Enums.CountryEnums;
+﻿using CommonData.Enums;
 
-namespace CommonDataRetrieval.Lookup
+namespace DataLayerRetrieval.LookupModel
 {
     public class PostalCodeLookup
     {
@@ -10,13 +10,13 @@ namespace CommonDataRetrieval.Lookup
             Text = string.Empty;
             City = string.Empty;
             Value = string.Empty;
-            Country = Country.None;
+            Country = CountryEnums.Country.None;
         }
 
         public string Text { get; set; }
         public string City { get; set; }
         public string Value { get; set; }
-        public Country Country { get; set; }
+        public CountryEnums.Country Country { get; set; }
         public int StateProvinceId { get; set; }
     }
 }

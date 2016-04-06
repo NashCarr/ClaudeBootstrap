@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using CommonDataRetrieval.Lookup;
 using static CommonData.Enums.CountryEnums;
+using PostalCodeLookup = DataLayerRetrieval.LookupModel.PostalCodeLookup;
 
 namespace DataLayerRetrieval.Lookup
 {
