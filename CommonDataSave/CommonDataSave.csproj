@@ -39,6 +39,7 @@
     <Compile Include="Customer\CustomerBrandSave.cs" />
     <Compile Include="DisplayReorder\DisplayReorder.cs" />
     <Compile Include="Facility\FacilityResourceSave.cs" />
+    <Compile Include="Facility\FacilityStaffSave.cs" />
     <Compile Include="People\PersonSaveModel.cs" />
     <Compile Include="Places\PlaceSaveModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

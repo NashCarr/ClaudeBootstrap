@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Web.Mvc;
 using CommonDataRetrieval.People;
-using DataLayerRetrieval.LookupLists;
+using DataLayerRetrieval.LookupModel;
 using DataLayerRetrieval.People;
 using static CommonData.Enums.PersonEnums;
 
@@ -16,14 +16,14 @@ namespace DataLayerRetrieval.Lookup
             GC.SuppressFinalize(this);
         }
 
-        public StaffMemberLookupList GetStaffMemberLookup()
+        public StaffMemberLookup GetStaffMemberLookup()
         {
-            return (StaffMemberLookupList) GetLookUpList(PersonType.StaffMember);
+            return (StaffMemberLookup) GetLookUpList(PersonType.StaffMember);
         }
 
-        public CustomerContactLookupList GetCustomerContactLookup()
+        public CustomerContactLookup GetCustomerContactLookup()
         {
-            return (CustomerContactLookupList) GetLookUpList(PersonType.CustomerContact);
+            return (CustomerContactLookup) GetLookUpList(PersonType.CustomerContact);
         }
 
         private static List<PersonList> GetAssessors()
@@ -50,9 +50,9 @@ namespace DataLayerRetrieval.Lookup
             }
         }
 
-        private static PersonLookupList GetLookUpList(PersonType personType)
+        private static PersonLookup GetLookUpList(PersonType personType)
         {
-            PersonLookupList lu = new PersonLookupList();
+            PersonLookup lu = new PersonLookup();
             lu.LookupList.Add(new SelectListItem {Value = "0", Text = "None"});
 
             List<PersonList> data;

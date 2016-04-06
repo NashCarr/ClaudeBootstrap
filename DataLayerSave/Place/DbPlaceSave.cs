@@ -25,7 +25,6 @@ namespace DataLayerSave.Place
                 CmdSql.Parameters.Add("@TimeZone", SqlDbType.TinyInt).Value = data.TimeZone;
                 CmdSql.Parameters.Add("@Country", SqlDbType.SmallInt).Value = data.Country;
                 CmdSql.Parameters.Add("@DisplayOrder", SqlDbType.Int).Value = data.DisplayOrder;
-                CmdSql.Parameters.Add("@IsActive", SqlDbType.Bit).Value = data.IsActive;
 
                 SetErrMsgParameter();
 

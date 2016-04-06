@@ -47,7 +47,6 @@ namespace DataLayerSave.Phones
                 CmdSql.Parameters.Add("@PhoneNumber", SqlDbType.BigInt).Value = data.PhoneNumber;
                 CmdSql.Parameters.Add("@Country", SqlDbType.SmallInt).Value =
                     EnumHelpers.GetShortFromEnum<Country>(data.Country.ToString());
-                CmdSql.Parameters.Add("@IsActive", SqlDbType.Bit).Value = data.IsActive;
 
                 SetErrMsgParameter();
 

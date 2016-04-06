@@ -55,9 +55,6 @@ namespace DataLayerRetrieval.Phones
                             int ordCountry = dr.GetOrdinal("Country");
                             int ordPhoneType = dr.GetOrdinal("PhoneType");
 
-                            int ordIsActive = dr.GetOrdinal("IsActive");
-                            int ordCreateDate = dr.GetOrdinal("CreateDate");
-
                             while (dr.Read())
                             {
                                 data.PhoneAssociationId = Convert.ToInt32(dr[ordPhoneAssociationId]);
@@ -65,8 +62,6 @@ namespace DataLayerRetrieval.Phones
                                 data.PhoneNumber = Convert.ToInt64(dr[ordPhoneNumber]);
                                 data.Country = (Country) Convert.ToInt16(dr[ordCountry]);
                                 data.PhoneType = (PhoneType) Convert.ToInt16(dr[ordPhoneType]);
-                                data.IsActive = Convert.ToBoolean(dr[ordIsActive]);
-                                data.CreateDate = Convert.ToDateTime(dr[ordCreateDate]);
                             }
                         }
                     }

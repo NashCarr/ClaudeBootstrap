@@ -4,7 +4,7 @@ using CommonDataSave.Return;
 using DataLayerCommon.People;
 using DataLayerCommonSave;
 using DataLayerSave.Addresses;
-using DataLayerSave.Administration;
+using DataLayerSave.Facility;
 using DataLayerSave.Phones;
 using static CommonData.Enums.PersonEnums;
 
@@ -32,7 +32,6 @@ namespace DataLayerSave.Person
                 CmdSql.Parameters.Add("@TimeZone", SqlDbType.TinyInt).Value = data.TimeZone;
                 CmdSql.Parameters.Add("@Country", SqlDbType.SmallInt).Value = data.Country;
                 CmdSql.Parameters.Add("@DisplayOrder", SqlDbType.Int).Value = data.DisplayOrder;
-                CmdSql.Parameters.Add("@IsActive", SqlDbType.Bit).Value = data.IsActive;
 
                 SetErrMsgParameter();
 

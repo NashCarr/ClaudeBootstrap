@@ -77,7 +77,7 @@ namespace DataLayerRetrieval.Place
             }
             catch (Exception ex)
             {
-                data.Place = new DataLayerCommon.Places.Place {ErrMsg = ex.ToString()};
+                data.Place = new DataLayerCommon.Places.Place();
             }
             return data;
         }

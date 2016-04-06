@@ -1,12 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using DataLayerCommon.BaseModels;
 using static CommonData.Enums.CountryEnums;
 using static CommonData.Enums.PersonEnums;
 using static CommonData.Enums.TimeZoneEnums;
 
 namespace DataLayerCommon.People
 {
-    public class Person : ModelBase
+    public class Person
     {
         public Person()
         {

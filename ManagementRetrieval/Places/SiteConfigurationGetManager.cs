@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using CommonDataRetrieval.SiteConfiguration;
-using DataLayerRetrieval.LookupLists;
+using DataLayerRetrieval.Lookup;
 using DataLayerRetrieval.SiteConfiguration;
 
 namespace ManagementRetrieval.Places
@@ -29,9 +29,9 @@ namespace ManagementRetrieval.Places
 
         public List<SelectListItem> GetCompensationTypes()
         {
-            using (CompensationTypeLookupList db = new CompensationTypeLookupList())
+            using (LuCompensationTypeLookup lu = new LuCompensationTypeLookup())
             {
-                return db.LookupList;
+                return lu.LookupList;
             }
         }
     }

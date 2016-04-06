@@ -1,9 +1,8 @@
-﻿using DataLayerCommon.BaseModels;
-using static CommonData.Enums.CountryEnums;
+﻿using static CommonData.Enums.CountryEnums;
 
 namespace DataLayerCommon.Addresses
 {
-    public abstract class PostalCode : ModelBase
+    public abstract class PostalCode
     {
         protected PostalCode()
         {

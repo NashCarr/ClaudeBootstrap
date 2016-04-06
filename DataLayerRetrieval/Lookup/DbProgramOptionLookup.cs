@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 using DataLayerCommon.Administration;
 using DataLayerRetrieval.Administration;
-using DataLayerRetrieval.LookupLists;
+using DataLayerRetrieval.LookupModel;
 
 namespace DataLayerRetrieval.Lookup
 {
@@ -15,9 +15,9 @@ namespace DataLayerRetrieval.Lookup
             GC.SuppressFinalize(this);
         }
 
-        public ProgramOptionLookupList GetLookUpList(string msgPrompt)
+        public ProgramOptionLookup GetLookUpList(string msgPrompt)
         {
-            ProgramOptionLookupList lu = new ProgramOptionLookupList();
+            ProgramOptionLookup lu = new ProgramOptionLookup();
             lu.LookupList.Add(new SelectListItem {Value = "0", Text = msgPrompt});
 
             List<ProgramOption> data;

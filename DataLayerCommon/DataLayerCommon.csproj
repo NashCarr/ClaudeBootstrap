@@ -50,14 +50,11 @@
     <Compile Include="Addresses\PostalZone.cs" />
     <Compile Include="Addresses\StateProvince.cs" />
     <Compile Include="Administration\AccessRight.cs" />
-    <Compile Include="Administration\FacilityStaff.cs" />
     <Compile Include="Administration\ProgramOption.cs" />
     <Compile Include="Administration\RoleRight.cs" />
     <Compile Include="Administration\StaffUserActivity.cs" />
     <Compile Include="Administration\UserLogin.cs" />
-    <Compile Include="Administration\UserRole.cs" />
     <Compile Include="BaseModels\AdminBase.cs" />
-    <Compile Include="BaseModels\ModelBase.cs" />
     <Compile Include="DbConnect.cs" />
     <Compile Include="Helpers\EnumHelpers.cs" />
     <Compile Include="Lists\Settings\AssessorInfo.cs" />

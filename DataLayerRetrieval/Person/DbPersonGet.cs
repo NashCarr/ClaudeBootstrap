@@ -54,9 +54,6 @@ namespace DataLayerRetrieval.Person
                             int ordFirstName = dr.GetOrdinal("FirstName");
                             int ordMiddleName = dr.GetOrdinal("MiddleName");
 
-                            int ordIsActive = dr.GetOrdinal("IsActive");
-                            int ordCreateDate = dr.GetOrdinal("CreateDate");
-
                             //Person
                             while (dr.Read())
                             {
@@ -64,10 +61,8 @@ namespace DataLayerRetrieval.Person
                                 data.PlaceId = Convert.ToInt32(dr[ordPlaceId]);
                                 data.PersonId = Convert.ToInt32(dr[ordPersonId]);
                                 data.LastName = Convert.ToString(dr[ordLastName]);
-                                data.IsActive = Convert.ToBoolean(dr[ordIsActive]);
                                 data.FirstName = Convert.ToString(dr[ordFirstName]);
                                 data.MiddleName = Convert.ToString(dr[ordMiddleName]);
-                                data.CreateDate = Convert.ToDateTime(dr[ordCreateDate]);
                             }
                         }
                     }

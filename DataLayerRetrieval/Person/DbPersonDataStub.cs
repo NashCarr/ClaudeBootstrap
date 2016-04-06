@@ -77,7 +77,7 @@ namespace DataLayerRetrieval.Person
             }
             catch (Exception ex)
             {
-                data.Person = new DataLayerCommon.People.Person {ErrMsg = ex.ToString()};
+                data.Person = new DataLayerCommon.People.Person();
             }
             return data;
         }

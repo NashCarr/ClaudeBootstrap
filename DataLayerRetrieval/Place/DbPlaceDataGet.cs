@@ -67,9 +67,7 @@ namespace DataLayerRetrieval.Place
                             int ordDepartment = dr.GetOrdinal("Department");
 
                             int ordCountry = dr.GetOrdinal("Country");
-                            int ordIsActive = dr.GetOrdinal("IsActive");
                             int ordTimeZone = dr.GetOrdinal("TimeZone");
-                            int ordCreateDate = dr.GetOrdinal("CreateDate");
                             int ordDisplayOrder = dr.GetOrdinal("DisplayOrder");
 
                             //Place
@@ -80,8 +78,6 @@ namespace DataLayerRetrieval.Place
                                 data.Place.Division = Convert.ToString(dr[ordDivision]);
                                 data.Place.Department = Convert.ToString(dr[ordDepartment]);
 
-                                data.Place.IsActive = Convert.ToBoolean(dr[ordIsActive]);
-                                data.Place.CreateDate = Convert.ToDateTime(dr[ordCreateDate]);
                                 data.Place.DisplayOrder = Convert.ToByte(dr[ordDisplayOrder]);
                                 data.Place.Country = (Country) Convert.ToInt16(dr[ordCountry]);
                                 data.Place.TimeZone = (ClaudeTimeZone) Convert.ToByte(dr[ordTimeZone]);
@@ -111,8 +107,6 @@ namespace DataLayerRetrieval.Place
                                 int ordPostalLongitude = dr.GetOrdinal("PostalLongitude");
 
                                 ordCountry = dr.GetOrdinal("Country");
-                                ordIsActive = dr.GetOrdinal("IsActive");
-                                ordCreateDate = dr.GetOrdinal("CreateDate");
 
                                 while (dr.Read())
                                 {
@@ -128,8 +122,6 @@ namespace DataLayerRetrieval.Place
                                         Address1 = Convert.ToString(dr[ordAddress1]),
                                         Address2 = Convert.ToString(dr[ordAddress2]),
                                         StateProvinceId = Convert.ToInt32(dr[ordStateProvinceId]),
-                                        IsActive = Convert.ToBoolean(dr[ordIsActive]),
-                                        CreateDate = Convert.ToDateTime(dr[ordCreateDate]),
                                         AddressCoordinates = new Coordinates
                                         {
                                             Latitude = Convert.ToDecimal(dr[ordAddressLatitude]),
@@ -156,17 +148,13 @@ namespace DataLayerRetrieval.Place
                                 int ordPhoneAssociationId = dr.GetOrdinal("PhoneAssociationId");
 
                                 ordCountry = dr.GetOrdinal("Country");
-                                ordIsActive = dr.GetOrdinal("IsActive");
-                                ordCreateDate = dr.GetOrdinal("CreateDate");
 
                                 while (dr.Read())
                                 {
                                     PhoneAssociation item = new PhoneAssociation
                                     {
                                         PhoneId = Convert.ToInt32(dr[ordPhoneId]),
-                                        IsActive = Convert.ToBoolean(dr[ordIsActive]),
                                         PhoneNumber = Convert.ToInt64(dr[ordPhoneNumber]),
-                                        CreateDate = Convert.ToDateTime(dr[ordCreateDate]),
                                         Country = (Country) Convert.ToInt16(dr[ordCountry]),
                                         PhoneType = (PhoneType) Convert.ToInt16(dr[ordPhoneType]),
                                         PhoneAssociationId = Convert.ToInt32(dr[ordPhoneAssociationId])

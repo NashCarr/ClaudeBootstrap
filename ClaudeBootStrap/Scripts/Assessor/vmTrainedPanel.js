@@ -330,7 +330,7 @@
         $.ajax({
             url: baseUrl + "Save",
             type: "post",
-            data: self.TrainedPanel.Build()
+            data: self.TrainedPanel.BuildSave()
         }).then(function (returndata) {
 
             self.handlereturndata(returndata);

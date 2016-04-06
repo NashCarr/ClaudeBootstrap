@@ -2,7 +2,7 @@
 
 namespace DataLayerCommon.BaseModels
 {
-    public abstract class AdminBase : ModelBase
+    public abstract class AdminBase
     {
         protected AdminBase()
         {

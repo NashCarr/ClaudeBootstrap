@@ -2,21 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using CommonData.Enums;
 using DataLayerCommon.Helpers;
-using static CommonData.Enums.StudyEnums;
 
-namespace DataLayerRetrieval.LookupLists
+namespace DataLayerRetrieval.Lookup
 {
-    public class CompensationTypeLookupList : IDisposable
+    public class LuCompensationTypeLookup : IDisposable
     {
-        public CompensationTypeLookupList()
+        public LuCompensationTypeLookup()
         {
             LookupList =
-                new List<SelectListItem>(EnumHelpers.SelectListFor<CompensationType>()
-                    .Where(e => e.Value != CompensationType.None.ToString()));
+                new List<SelectListItem>(EnumHelpers.SelectListFor<StudyEnums.CompensationType>()
+                    .Where(e => e.Value != StudyEnums.CompensationType.None.ToString()));
             foreach (SelectListItem item in LookupList)
             {
-                item.Value = EnumHelpers.GetByteFromEnum<CompensationType>(item.Value).ToString();
+                item.Value = EnumHelpers.GetByteFromEnum<StudyEnums.CompensationType>(item.Value).ToString();
             }
         }
 

@@ -2,7 +2,7 @@
 using System.Web.Mvc;
 using CommonDataRetrieval.Facility;
 using CommonDataRetrieval.SiteConfiguration;
-using DataLayerRetrieval.LookupLists;
+using DataLayerRetrieval.Lookup;
 using DataLayerRetrieval.SiteConfiguration;
 using ManagementRetrieval.Facility;
 using static CommonData.Enums.PlaceEnums;
@@ -18,7 +18,7 @@ namespace ViewData.Places
             {
                 SiteConfiguration = db.GetSiteConfiguration();
             }
-            using (CompensationTypeLookupList db = new CompensationTypeLookupList())
+            using (LuCompensationTypeLookup db = new LuCompensationTypeLookup())
             {
                 CompensationTypes = db.LookupList;
             }

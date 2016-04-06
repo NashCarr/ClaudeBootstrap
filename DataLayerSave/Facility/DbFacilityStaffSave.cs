@@ -1,25 +1,25 @@
 ﻿using System;
 using System.Data;
+using CommonDataSave.Facility;
 using CommonDataSave.Return;
-using DataLayerCommon.Administration;
 using DataLayerCommonSave;
 
-namespace DataLayerSave.Administration
+namespace DataLayerSave.Facility
 {
     public class DbFacilityStaffSave : DbSaveBase
     {
         public ReturnBase AddUpdateStaffMember(int placeId, int staffMemberId)
         {
-            FacilityStaff d = new FacilityStaff {FacilityId = placeId, StaffMemberId = staffMemberId};
+            FacilityStaffSave d = new FacilityStaffSave {FacilityId = placeId, StaffMemberId = staffMemberId};
             return AddUpdateRecord(ref d);
         }
 
-        public ReturnBase AddUpdateStaffMember(ref FacilityStaff data)
+        public ReturnBase AddUpdateStaffMember(ref FacilityStaffSave data)
         {
             return AddUpdateRecord(ref data);
         }
 
-        private ReturnBase AddUpdateRecord(ref FacilityStaff data)
+        private ReturnBase AddUpdateRecord(ref FacilityStaffSave data)
         {
             if (data.StaffMemberId == 0)
             {
@@ -38,7 +38,6 @@ namespace DataLayerSave.Administration
 
                 CmdSql.Parameters.Add("@FacilityId", SqlDbType.Int).Value = data.FacilityId;
                 CmdSql.Parameters.Add("@StaffMemberId", SqlDbType.Int).Value = data.StaffMemberId;
-                CmdSql.Parameters.Add("@IsActive", SqlDbType.Bit).Value = data.IsActive;
 
                 SetErrMsgParameter();
 

@@ -1,10 +1,8 @@
-﻿using DataLayerCommon.BaseModels;
-
-namespace DataLayerCommon.Administration
+﻿namespace CommonDataSave.Facility
 {
-    public class FacilityStaff : ModelBase
+    public class FacilityStaffSave
     {
-        public FacilityStaff()
+        public FacilityStaffSave()
         {
             FacilityId = 0;
             StaffMemberId = 0;

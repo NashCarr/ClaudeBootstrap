@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
 
-namespace DataLayerRetrieval.LookupLists
+namespace DataLayerRetrieval.LookupModel
 {
-    public class PersonLookupList
+    public class PersonLookup
     {
-        public PersonLookupList()
+        public PersonLookup()
         {
             LookupList = new List<SelectListItem>();
         }

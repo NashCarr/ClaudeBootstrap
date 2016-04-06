@@ -57,7 +57,6 @@ namespace DataLayerSave.Addresses
                     EnumHelpers.GetShortFromEnum<Country>(data.Country.ToString());
                 CmdSql.Parameters.Add(CreateDecimalParameter("@PostalLatitude", data.PostalCoordinates.Latitude, 10, 4));
                 CmdSql.Parameters.Add(CreateDecimalParameter("@PostalLongitude", data.PostalCoordinates.Longitude, 10, 4));
-                CmdSql.Parameters.Add("@IsActive", SqlDbType.Bit).Value = data.IsActive;
 
                 SetErrMsgParameter();
 

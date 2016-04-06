@@ -1,10 +1,9 @@
-﻿using DataLayerCommon.BaseModels;
-using static CommonData.Enums.CountryEnums;
+﻿using static CommonData.Enums.CountryEnums;
 using static CommonData.Enums.PhoneEnums;
 
 namespace DataLayerCommon.Phones
 {
-    public abstract class Phone : ModelBase
+    public abstract class Phone
     {
         protected Phone()
         {

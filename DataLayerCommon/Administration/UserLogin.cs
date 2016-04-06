@@ -1,8 +1,6 @@
-﻿using DataLayerCommon.BaseModels;
-
-namespace DataLayerCommon.Administration
+﻿namespace DataLayerCommon.Administration
 {
-    public class UserLogin : ModelBase
+    public class UserLogin
     {
         public UserLogin()
         {

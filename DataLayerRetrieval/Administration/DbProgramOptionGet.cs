@@ -70,8 +70,6 @@ namespace DataLayerRetrieval.Administration
 
                             int ordProgramOptionId = dr.GetOrdinal("ProgramOptionId");
                             int ordDefaultRight = dr.GetOrdinal("DefaultRight");
-                            int ordCreateDate = dr.GetOrdinal("CreateDate");
-                            int ordIsActive = dr.GetOrdinal("IsActive");
                             int ordName = dr.GetOrdinal("Name");
 
                             while (dr.Read())
@@ -80,8 +78,6 @@ namespace DataLayerRetrieval.Administration
                                 {
                                     RecordId = Convert.ToInt32(dr[ordProgramOptionId]),
                                     DefaultRight = Convert.ToString(dr[ordDefaultRight]),
-                                    CreateDate = Convert.ToDateTime(dr[ordCreateDate]),
-                                    IsActive = Convert.ToBoolean(dr[ordIsActive]),
                                     Name = Convert.ToString(dr[ordName])
                                 };
                                 data.Add(item);

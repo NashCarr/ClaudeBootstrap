@@ -70,9 +70,6 @@ namespace DataLayerRetrieval.Person
                             int ordFirstName = dr.GetOrdinal("FirstName");
                             int ordMiddleName = dr.GetOrdinal("MiddleName");
 
-                            int ordIsActive = dr.GetOrdinal("IsActive");
-                            int ordCreateDate = dr.GetOrdinal("CreateDate");
-
                             //Person
                             while (dr.Read())
                             {
@@ -80,10 +77,8 @@ namespace DataLayerRetrieval.Person
                                 data.Person.PlaceId = Convert.ToInt32(dr[ordPlaceId]);
                                 data.Person.PersonId = Convert.ToInt32(dr[ordPersonId]);
                                 data.Person.LastName = Convert.ToString(dr[ordLastName]);
-                                data.Person.IsActive = Convert.ToBoolean(dr[ordIsActive]);
                                 data.Person.FirstName = Convert.ToString(dr[ordFirstName]);
                                 data.Person.MiddleName = Convert.ToString(dr[ordMiddleName]);
-                                data.Person.CreateDate = Convert.ToDateTime(dr[ordCreateDate]);
                             }
 
                             //Addresses
@@ -110,9 +105,6 @@ namespace DataLayerRetrieval.Person
                                 int ordPostalLatitude = dr.GetOrdinal("PostalLatitude");
                                 int ordPostalLongitude = dr.GetOrdinal("PostalLongitude");
 
-                                ordIsActive = dr.GetOrdinal("IsActive");
-                                ordCreateDate = dr.GetOrdinal("CreateDate");
-
                                 while (dr.Read())
                                 {
                                     AddressAssociation item = new AddressAssociation
@@ -122,10 +114,8 @@ namespace DataLayerRetrieval.Person
                                         ZipCode = Convert.ToString(dr[ordZipCode]),
                                         Address1 = Convert.ToString(dr[ordAddress1]),
                                         Address2 = Convert.ToString(dr[ordAddress2]),
-                                        IsActive = Convert.ToBoolean(dr[ordIsActive]),
                                         AddressId = Convert.ToInt32(dr[ordAddressId]),
                                         AddressType = (AddressType) Convert.ToInt16(dr[ordAddressType]),
-                                        CreateDate = Convert.ToDateTime(dr[ordCreateDate]),
                                         PostalCodeId = Convert.ToInt32(dr[ordPostalCodeId]),
                                         StateProvinceId = Convert.ToInt32(dr[ordStateProvinceId]),
                                         AddressAssociationId = Convert.ToInt32(dr[ordAddressAssociationId]),
@@ -155,9 +145,6 @@ namespace DataLayerRetrieval.Person
                                 int ordPhoneNumber = dr.GetOrdinal("PhoneNumber");
                                 int ordPhoneAssociationId = dr.GetOrdinal("PhoneAssociationId");
 
-                                ordIsActive = dr.GetOrdinal("IsActive");
-                                ordCreateDate = dr.GetOrdinal("CreateDate");
-
                                 while (dr.Read())
                                 {
                                     PhoneAssociation item = new PhoneAssociation
@@ -165,9 +152,7 @@ namespace DataLayerRetrieval.Person
                                         Country = (Country) Convert.ToInt16(dr[ordCountry]),
                                         PhoneId = Convert.ToInt32(dr[ordPhoneId]),
                                         PhoneType = (PhoneType) Convert.ToInt16(dr[ordPhoneType]),
-                                        IsActive = Convert.ToBoolean(dr[ordIsActive]),
                                         PhoneNumber = Convert.ToInt64(dr[ordPhoneNumber]),
-                                        CreateDate = Convert.ToDateTime(dr[ordCreateDate]),
                                         PhoneAssociationId = Convert.ToInt32(dr[ordPhoneAssociationId])
                                     };
                                     data.PhoneData.Phones.Add(item);

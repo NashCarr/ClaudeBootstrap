@@ -39,7 +39,6 @@
     <Compile Include="Addresses\DbPersonAddressSave.cs" />
     <Compile Include="Addresses\DbPlaceAddressSave.cs" />
     <Compile Include="Administration\DbBudgetCategorySave.cs" />
-    <Compile Include="Administration\DbFacilityStaffSave.cs" />
     <Compile Include="Administration\DbGiftCardSave.cs" />
     <Compile Include="Administration\DbHearAboutUsSave.cs" />
     <Compile Include="Administration\DbProductGroupSave.cs" />
@@ -47,6 +46,7 @@
     <Compile Include="Assessor\DbTrainedPanelSave.cs" />
     <Compile Include="Customer\DbCustomerBrandSave.cs" />
     <Compile Include="Facility\DbFacilityResourceSave.cs" />
+    <Compile Include="Facility\DbFacilityStaffSave.cs" />
     <Compile Include="Person\DbPersonSave.cs" />
     <Compile Include="Person\DbPersonSetInactive.cs" />
     <Compile Include="Phones\DbPersonPhoneSave.cs" />

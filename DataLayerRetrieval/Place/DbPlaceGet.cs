@@ -53,9 +53,7 @@ namespace DataLayerRetrieval.Place
                             int ordDivision = dr.GetOrdinal("Division");
                             int ordDepartment = dr.GetOrdinal("Department");
 
-                            int ordIsActive = dr.GetOrdinal("IsActive");
                             int ordTimeZone = dr.GetOrdinal("TimeZone");
-                            int ordCreateDate = dr.GetOrdinal("CreateDate");
                             int ordDisplayOrder = dr.GetOrdinal("DisplayOrder");
 
                             //Place
@@ -66,8 +64,6 @@ namespace DataLayerRetrieval.Place
                                 data.Division = Convert.ToString(dr[ordDivision]);
                                 data.Department = Convert.ToString(dr[ordDepartment]);
 
-                                data.IsActive = Convert.ToBoolean(dr[ordIsActive]);
-                                data.CreateDate = Convert.ToDateTime(dr[ordCreateDate]);
                                 data.DisplayOrder = Convert.ToByte(dr[ordDisplayOrder]);
                                 data.TimeZone = (ClaudeTimeZone) Convert.ToByte(dr[ordTimeZone]);
                             }

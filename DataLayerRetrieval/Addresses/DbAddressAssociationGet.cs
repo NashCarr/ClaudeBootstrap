@@ -70,9 +70,6 @@ namespace DataLayerRetrieval.Addresses
                             int ordPostalLatitude = dr.GetOrdinal("PostalLatitude");
                             int ordPostalLongitude = dr.GetOrdinal("PostalLongitude");
 
-                            int ordIsActive = dr.GetOrdinal("IsActive");
-                            int ordCreateDate = dr.GetOrdinal("CreateDate");
-
                             while (dr.Read())
                             {
                                 data.AddressAssociationId = Convert.ToInt32(dr[ordAddressAssociationId]);
@@ -87,9 +84,6 @@ namespace DataLayerRetrieval.Addresses
                                 data.Address2 = Convert.ToString(dr[ordAddress2]);
                                 data.Country = (Country) Convert.ToInt16(dr[ordCountry]);
                                 data.StateProvinceId = Convert.ToInt32(dr[ordStateProvinceId]);
-
-                                data.IsActive = Convert.ToBoolean(dr[ordIsActive]);
-                                data.CreateDate = Convert.ToDateTime(dr[ordCreateDate]);
 
                                 data.AddressCoordinates = new Coordinates
                                 {

@@ -3,11 +3,11 @@ using System.Web.Mvc;
 using CommonData.Enums;
 using DataLayerCommon.Helpers;
 
-namespace DataLayerRetrieval.LookupLists
+namespace DataLayerRetrieval.Lookup
 {
-    public class DefaultRightLookupList
+    public class LuDefaultRightLookup
     {
-        public DefaultRightLookupList()
+        public LuDefaultRightLookup()
         {
             LookupList = new List<SelectListItem>(EnumHelpers.SelectListFor<AdministrationEnums.DefaultRight>());
             foreach (SelectListItem item in LookupList)
