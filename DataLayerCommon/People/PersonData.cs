@@ -7,10 +7,10 @@ namespace DataLayerCommon.People
     {
         public PersonData()
         {
-            Person = new Person();
+            Person = new PersonBase();
         }
 
-        public Person Person { get; set; }
+        public PersonBase Person { get; set; }
         public PhoneData PhoneData { get; set; }
         public AddressData AddressData { get; set; }
     }

@@ -281,7 +281,7 @@
     self.ProcessSave = {
         ProcessAdd: function () {
             self.ReorderList.ReorderDragDrop();
-            self.itemlist.push(self.GiftCard.Build());
+            self.itemlist.push(self.HearAboutUs.Build());
         },
         ItemExists: function () {
             var match = ko.utils.arrayFirst(self.itemlist(), function (item) {
@@ -296,7 +296,7 @@
             return match;
         },
         ProcessEdit: function () {
-            self.itemlist.replace(self.ProcessSave.ItemExists(), self.GiftCard.Build());
+            self.itemlist.replace(self.ProcessSave.ItemExists(), self.HearAboutUs.Build());
         },
         ValidateEdit: function () {
             if (self.editid() === self.recordid()) {

@@ -9,10 +9,10 @@ namespace DataLayerCommon.Places
     {
         public PlaceData()
         {
-            Place = new Place();
+            Place = new PlaceBase();
         }
 
-        public Place Place { get; set; }
+        public PlaceBase Place { get; set; }
         public PhoneData PhoneData { get; set; }
         public List<Contact> Contacts { get; set; }
         public AddressData AddressData { get; set; }

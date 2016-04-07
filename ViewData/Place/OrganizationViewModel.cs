@@ -9,7 +9,7 @@ namespace ViewData.Place
         {
             using (OrganizationGetManager db = new OrganizationGetManager())
             {
-                Organization =  db.GetOrganization(id);
+                Organization = db.GetOrganization(id);
             }
         }
 

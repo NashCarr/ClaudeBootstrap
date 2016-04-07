@@ -5,9 +5,9 @@ using static CommonData.Enums.TimeZoneEnums;
 
 namespace DataLayerCommon.Places
 {
-    public class Place : AdminBase
+    public class PlaceBase : AdminBase
     {
-        public Place()
+        public PlaceBase()
         {
             PlaceId = 0;
             Division = string.Empty;

@@ -2,7 +2,6 @@
 using System.Web.Mvc;
 using CommonDataSave.DisplayReorder;
 using CommonDataSave.People;
-using ManagementRetrieval.Places;
 using ManagementSave.Person;
 using ViewData.Facility;
 
@@ -30,10 +29,10 @@ namespace ClaudeBootstrap.Controllers.People
         [HttpPost]
         public JsonResult GetPerson(string id)
         {
-            using (StaffMemberManager mgr = new StaffMemberManager())
-            {
-                return Json(id != null ? mgr.GetStaffMember(int.Parse(id)) : mgr.GetStaffMember(0));
-            }
+            return
+                Json(string.IsNullOrEmpty(id)
+                    ? new StaffMemberViewModel(0)
+                    : new StaffMemberViewModel(int.Parse(id)));
         }
 
         [HttpPost]

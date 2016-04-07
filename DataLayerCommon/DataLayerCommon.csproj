@@ -58,13 +58,13 @@
     <Compile Include="Helpers\EnumHelpers.cs" />
     <Compile Include="Lists\Settings\AssessorInfo.cs" />
     <Compile Include="People\Contact.cs" />
-    <Compile Include="People\Person.cs" />
+    <Compile Include="People\PersonBase.cs" />
     <Compile Include="People\PersonData.cs" />
     <Compile Include="Phones\Phone.cs" />
     <Compile Include="Phones\PhoneAssociation.cs" />
     <Compile Include="Phones\PhoneData.cs" />
     <Compile Include="Phones\PhoneSetting.cs" />
-    <Compile Include="Places\Place.cs" />
+    <Compile Include="Places\PlaceBase.cs" />
     <Compile Include="Places\PlaceData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SiteConfiguration\AssessorCompensation.cs" />

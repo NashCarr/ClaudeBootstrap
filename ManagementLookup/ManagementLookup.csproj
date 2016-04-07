@@ -45,10 +45,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CommonDataRetrieval\CommonDataRetrieval.csproj">
-      <Project>{7F3C4322-E4EF-47A5-947C-9611673A58DE}</Project>
-      <Name>CommonDataRetrieval</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CommonData\CommonData.csproj">
       <Project>{FB0DEC60-3BA3-4BD7-A268-5A78AB280F3A}</Project>
       <Name>CommonData</Name>

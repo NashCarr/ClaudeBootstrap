@@ -6,7 +6,7 @@ using CommonDataSave.People;
 using CommonDataSave.Places;
 using ManagementSave.Customer;
 using ManagementSave.Person;
-using ManagementSave.Places;
+using ManagementSave.Place;
 using ViewData.Person;
 using ViewData.Place;
 using ViewData.Places;

@@ -21,7 +21,6 @@ namespace ManagementSave.Person
         {
         }
 
-
         public ReturnBase SaveStaffMember(PersonSaveModel p)
         {
             if (p.Person != null) p.Person.PersonType = PersonType.StaffMember;
@@ -40,7 +39,7 @@ namespace ManagementSave.Person
             return SavePerson(p);
         }
 
-        private ReturnBase SavePerson(PersonSaveModel data)
+        private static ReturnBase SavePerson(PersonSaveModel data)
         {
             PersonData p = new PersonData
             {

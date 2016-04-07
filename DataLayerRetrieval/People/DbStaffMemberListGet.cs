@@ -25,7 +25,7 @@ namespace DataLayerRetrieval.People
             List<StaffMember> data = new List<StaffMember>();
             try
             {
-                SetConnectToDatabase("[ViewModel].[usp_Settings_StaffMemberList]");
+                SetConnectToDatabase("[StaffMember].[usp_StaffMemberList]");
 
                 using (ConnSql)
                 {

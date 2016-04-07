@@ -39,14 +39,14 @@ namespace DataLayerRetrieval.Person
             PersonData data = new PersonData();
             try
             {
-                data.Person = new DataLayerCommon.People.Person();
+                data.Person = new PersonBase();
                 data.PhoneData = new PhoneData {Phones = new List<PhoneAssociation>()};
                 data.AddressData = new AddressData {Addresses = new List<AddressAssociation>()};
 
                 IdValue = personId;
                 IdParameter = "@PersonId";
 
-                SetConnectToDatabase("[Admin].[usp_Person_GetPersonData]");
+                SetConnectToDatabase("[Person].[usp_GetPersonData]");
 
                 CmdSql.Parameters.Add(IdParameter, SqlDbType.Int).Value = IdValue;
                 CmdSql.Parameters.Add("@PersonType", SqlDbType.TinyInt).Value = personType;

@@ -215,7 +215,7 @@
 
     self.edit = function(editdata) {
         self.name(editdata.Name());
-        self.edirid(editdata.RecordId());
+        self.editid(editdata.RecordId());
         self.recordid(editdata.RecordId());
         self.issystem(editdata.IsSystem());
         self.displayorder(editdata.DisplayOrder());
@@ -282,7 +282,7 @@
     self.ProcessSave = {
         ProcessAdd: function () {
             self.ReorderList.ReorderDragDrop();
-            self.itemlist.push(self.GiftCard.Build());
+            self.itemlist.push(self.ProductGroup.Build());
         },
         ItemExists: function () {
             var match = ko.utils.arrayFirst(self.itemlist(), function (item) {
@@ -297,7 +297,7 @@
             return match;
         },
         ProcessEdit: function () {
-            self.itemlist.replace(self.ProcessSave.ItemExists(), self.GiftCard.Build());
+            self.itemlist.replace(self.ProcessSave.ItemExists(), self.ProductGroup.Build());
         },
         ValidateEdit: function () {
             if (self.editid() === self.recordid()) {

@@ -9,12 +9,12 @@ namespace CommonDataRetrieval.People
     {
         public PersonView()
         {
-            Person = new Person();
+            Person = new PersonBase();
             Phones = new PhoneViewModel();
             Addresses = new AddressViewModel();
         }
 
-        public Person Person { get; set; }
+        public PersonBase Person { get; set; }
         public PhoneViewModel Phones { get; set; }
         public AddressViewModel Addresses { get; set; }
 

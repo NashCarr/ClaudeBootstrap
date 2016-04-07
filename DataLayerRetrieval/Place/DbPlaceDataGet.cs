@@ -36,7 +36,7 @@ namespace DataLayerRetrieval.Place
             PlaceData data = new PlaceData();
             try
             {
-                data.Place = new DataLayerCommon.Places.Place();
+                data.Place = new DataLayerCommon.Places.PlaceBase();
                 data.Contacts = new List<Contact>();
                 data.PhoneData = new PhoneData {Phones = new List<PhoneAssociation>()};
                 data.AddressData = new AddressData {Addresses = new List<AddressAssociation>()};

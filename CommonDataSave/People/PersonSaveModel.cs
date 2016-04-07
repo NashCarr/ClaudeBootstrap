@@ -5,6 +5,6 @@ namespace CommonDataSave.People
 {
     public class PersonSaveModel : AddressPhoneSaveModel
     {
-        public Person Person { get; set; }
+        public PersonBase Person { get; set; }
     }
 }

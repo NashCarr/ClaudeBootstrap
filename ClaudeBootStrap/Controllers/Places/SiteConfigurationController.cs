@@ -5,11 +5,10 @@ using CommonDataSave.Facility;
 using CommonDataSave.People;
 using CommonDataSave.Places;
 using CommonDataSave.SiteConfiguration;
-using ManagementRetrieval.Facility;
-using ManagementRetrieval.Places;
 using ManagementSave.Facility;
 using ManagementSave.Person;
-using ManagementSave.Places;
+using ManagementSave.Place;
+using ViewData.Facility;
 using ViewData.Places;
 
 namespace ClaudeBootstrap.Controllers.Places
@@ -64,19 +63,19 @@ namespace ClaudeBootstrap.Controllers.Places
         [HttpPost]
         public JsonResult GetPlace(string id)
         {
-            using (FacilityGetManager mgr = new FacilityGetManager())
-            {
-                return Json(id != null ? mgr.GetFacility(int.Parse(id)) : mgr.GetFacility(0));
-            }
+            return
+              Json(string.IsNullOrEmpty(id)
+                   ? new FacilityViewModel(0)
+                   : new FacilityViewModel(int.Parse(id)));
         }
 
         [HttpPost]
         public JsonResult GetPerson(string id)
         {
-            using (PlaceContactGetManager mgr = new PlaceContactGetManager())
-            {
-                return Json(id != null ? mgr.GetStaffMember(int.Parse(id)) : mgr.GetStaffMember(0));
-            }
+            return
+                Json(string.IsNullOrEmpty(id)
+                    ? new StaffMemberViewModel(0)
+                    : new StaffMemberViewModel(int.Parse(id)));
         }
 
         [HttpPost]

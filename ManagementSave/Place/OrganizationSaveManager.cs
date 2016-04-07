@@ -5,7 +5,7 @@ using CommonDataSave.Return;
 using DataLayerReorder;
 using DataLayerSave.Place;
 
-namespace ManagementSave.Places
+namespace ManagementSave.Place
 {
     public class OrganizationSaveManager : IDisposable
     {

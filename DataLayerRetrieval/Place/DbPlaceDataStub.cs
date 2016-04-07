@@ -23,7 +23,7 @@ namespace DataLayerRetrieval.Place
             {
                 if (data.Place == null)
                 {
-                    data.Place = new DataLayerCommon.Places.Place
+                    data.Place = new DataLayerCommon.Places.PlaceBase
                     {
                         PlaceType = placeType
                     };
@@ -77,7 +77,7 @@ namespace DataLayerRetrieval.Place
             }
             catch (Exception ex)
             {
-                data.Place = new DataLayerCommon.Places.Place();
+                data.Place = new DataLayerCommon.Places.PlaceBase();
             }
             return data;
         }

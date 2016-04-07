@@ -9,7 +9,7 @@ namespace ViewData.Place
         {
             using (CustomerGetManager db = new CustomerGetManager())
             {
-                Customer =  db.GetCustomer(id);
+                Customer = db.GetCustomer(id);
             }
         }
 

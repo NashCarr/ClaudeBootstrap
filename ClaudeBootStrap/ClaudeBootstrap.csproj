@@ -480,10 +480,6 @@
       <Project>{B5277E31-13BA-4A2D-8E39-BF88780119E8}</Project>
       <Name>CommonDataSave</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ManagementRetrieval\ManagementRetrieval.csproj">
-      <Project>{793BF538-1546-48AB-93A2-F6A7164E19F6}</Project>
-      <Name>ManagementRetrieval</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ManagementSave\ManagementSave.csproj">
       <Project>{652684D2-1F4B-415E-8B1D-2EA5D187FEEC}</Project>
       <Name>ManagementSave</Name>

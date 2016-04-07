@@ -46,8 +46,8 @@
     <Compile Include="Facility\FacilityResourceSaveManager.cs" />
     <Compile Include="Person\PersonSaveManager.cs" />
     <Compile Include="Person\PlaceContactDeleteManager.cs" />
-    <Compile Include="Places\OrganizationSaveManager.cs" />
-    <Compile Include="Places\PlaceSaveManager.cs" />
+    <Compile Include="Place\OrganizationSaveManager.cs" />
+    <Compile Include="Place\PlaceSaveManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

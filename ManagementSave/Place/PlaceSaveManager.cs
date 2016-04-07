@@ -1,13 +1,13 @@
 using System;
+using CommonData.Enums;
 using CommonDataSave.Places;
 using CommonDataSave.Return;
 using DataLayerCommon.Addresses;
 using DataLayerCommon.Phones;
 using DataLayerCommon.Places;
 using DataLayerSave.Place;
-using static CommonData.Enums.PlaceEnums;
 
-namespace ManagementSave.Places
+namespace ManagementSave.Place
 {
     public class PlaceSaveManager : IDisposable
     {
@@ -23,23 +23,23 @@ namespace ManagementSave.Places
 
         public ReturnBase SaveFacility(PlaceSaveModel p)
         {
-            if (p.Place != null) p.Place.PlaceType = PlaceType.Facility;
+            if (p.Place != null) p.Place.PlaceType = PlaceEnums.PlaceType.Facility;
             return SavePlace(p);
         }
 
         public ReturnBase SaveCustomer(PlaceSaveModel p)
         {
-            if (p.Place != null) p.Place.PlaceType = PlaceType.Customer;
+            if (p.Place != null) p.Place.PlaceType = PlaceEnums.PlaceType.Customer;
             return SavePlace(p);
         }
 
         public ReturnBase SaveOrganization(PlaceSaveModel p)
         {
-            if (p.Place != null) p.Place.PlaceType = PlaceType.Organization;
+            if (p.Place != null) p.Place.PlaceType = PlaceEnums.PlaceType.Organization;
             return SavePlace(p);
         }
 
-        private ReturnBase SavePlace(PlaceSaveModel data)
+        private static ReturnBase SavePlace(PlaceSaveModel data)
         {
             PlaceData p = new PlaceData
             {

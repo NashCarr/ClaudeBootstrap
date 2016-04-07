@@ -3,7 +3,7 @@ using System.Web.Mvc;
 using CommonDataRetrieval.People;
 using DataLayerRetrieval.LookupModel;
 using ManagementLookup;
-using ManagementRetrieval.Places;
+using ManagementRetrieval.People;
 using static CommonData.Enums.PersonEnums;
 
 namespace ViewData.People
@@ -12,10 +12,10 @@ namespace ViewData.People
     {
         public PersonListViewModel(PersonType pt)
         {
-            using (PersonListManager mgr = new PersonListManager())
+            using (PersonListGetManager mgr = new PersonListGetManager())
             {
                 ListEntity = mgr.GetList(pt);
-                Facilities = mgr.GetFacilities();
+                Facilities = mgr.GetFacilitiesLookup();
             }
             using (LookupManager mgr = new LookupManager())
             {

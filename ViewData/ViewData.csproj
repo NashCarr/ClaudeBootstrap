@@ -44,8 +44,11 @@
     <Compile Include="Administration\ProductGroupViewModel.cs" />
     <Compile Include="Administration\StudyDesignViewModel.cs" />
     <Compile Include="Assessor\TrainedPanelViewModel.cs" />
+    <Compile Include="Facility\StaffMemberViewModel.cs" />
+    <Compile Include="Facility\FacilityViewModel.cs" />
     <Compile Include="Facility\StaffMemberListViewModel.cs" />
     <Compile Include="People\PersonListViewModel.cs" />
+    <Compile Include="Person\OrganizationContactViewModel.cs" />
     <Compile Include="Person\CustomerContactViewModel.cs" />
     <Compile Include="Places\CustomerListViewModel.cs" />
     <Compile Include="Places\PlaceListViewModel.cs" />

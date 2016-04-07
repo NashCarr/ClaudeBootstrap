@@ -12,7 +12,7 @@ namespace DataLayerSave.Person
 {
     public class DbPersonSave : DbSaveBase
     {
-        private ReturnBase AddUpdatePerson(ref DataLayerCommon.People.Person data)
+        private ReturnBase AddUpdatePerson(ref PersonBase data)
         {
             try
             {
@@ -46,7 +46,7 @@ namespace DataLayerSave.Person
             return ReturnValues;
         }
 
-        protected internal ReturnBase SaveAssessor(ref DataLayerCommon.People.Person data)
+        protected internal ReturnBase SaveAssessor(ref PersonBase data)
         {
             if (string.IsNullOrEmpty(data.FullName))
             {
@@ -58,7 +58,7 @@ namespace DataLayerSave.Person
             return AddUpdatePerson(ref data);
         }
 
-        protected internal ReturnBase SaveCustomerContact(ref DataLayerCommon.People.Person data)
+        protected internal ReturnBase SaveCustomerContact(ref PersonBase data)
         {
             if (string.IsNullOrEmpty(data.FullName))
             {
@@ -70,7 +70,7 @@ namespace DataLayerSave.Person
             return AddUpdatePerson(ref data);
         }
 
-        protected internal ReturnBase SaveStaffMember(ref DataLayerCommon.People.Person data)
+        protected internal ReturnBase SaveStaffMember(ref PersonBase data)
         {
             if (string.IsNullOrEmpty(data.FullName))
             {
@@ -82,7 +82,7 @@ namespace DataLayerSave.Person
             return AddUpdatePerson(ref data);
         }
 
-        protected internal ReturnBase SaveOrganizationContact(ref DataLayerCommon.People.Person data)
+        protected internal ReturnBase SaveOrganizationContact(ref PersonBase data)
         {
             if (string.IsNullOrEmpty(data.FullName))
             {
@@ -96,7 +96,7 @@ namespace DataLayerSave.Person
 
         protected ReturnBase SaveAssessorData(PersonData data, ref int personId)
         {
-            DataLayerCommon.People.Person p = data.Person;
+            PersonBase p = data.Person;
 
             ReturnBase rb = SaveAssessor(ref p);
             if (rb.ErrMsg.Length != 0) return rb;
@@ -107,36 +107,30 @@ namespace DataLayerSave.Person
             }
 
             string msg;
-            if (data.AddressData?.Addresses != null)
+            if (data.AddressData?.Addresses != null && data.AddressData.Addresses.Count != 0)
             {
-                if (data.AddressData.Addresses.Count != 0)
+                using (DbPersonAddressSave db = new DbPersonAddressSave())
                 {
-                    using (DbPersonAddressSave db = new DbPersonAddressSave())
+                    msg = db.SaveAssessorAddresses(personId, data.AddressData.Addresses);
+                    if (msg.Length != 0)
                     {
-                        msg = db.SaveAssessorAddresses(personId, data.AddressData.Addresses);
-                        if (msg.Length != 0)
-                        {
-                            rb.ErrMsg = msg;
-                            return rb;
-                        }
+                        rb.ErrMsg = msg;
+                        return rb;
                     }
                 }
             }
 
             if (data.PhoneData == null) return rb;
 
-            if (data.PhoneData.Phones != null)
+            if (data.PhoneData.Phones != null && data.PhoneData.Phones.Count != 0)
             {
-                if (data.PhoneData.Phones.Count != 0)
+                using (DbPersonPhoneSave db = new DbPersonPhoneSave())
                 {
-                    using (DbPersonPhoneSave db = new DbPersonPhoneSave())
+                    msg = db.SaveAssessorPhones(personId, data.PhoneData.Phones);
+                    if (msg.Length != 0)
                     {
-                        msg = db.SaveAssessorPhones(personId, data.PhoneData.Phones);
-                        if (msg.Length != 0)
-                        {
-                            rb.ErrMsg = msg;
-                            return rb;
-                        }
+                        rb.ErrMsg = msg;
+                        return rb;
                     }
                 }
             }
@@ -154,7 +148,7 @@ namespace DataLayerSave.Person
 
         protected ReturnBase SaveCustomerContactData(PersonData data, ref int personId)
         {
-            DataLayerCommon.People.Person p = data.Person;
+            PersonBase p = data.Person;
 
             ReturnBase rb = SaveCustomerContact(ref p);
             if (rb.ErrMsg.Length != 0) return rb;
@@ -165,36 +159,30 @@ namespace DataLayerSave.Person
             }
 
             string msg;
-            if (data.AddressData?.Addresses != null)
+            if (data.AddressData?.Addresses != null && data.AddressData.Addresses.Count != 0)
             {
-                if (data.AddressData.Addresses.Count != 0)
+                using (DbPersonAddressSave db = new DbPersonAddressSave())
                 {
-                    using (DbPersonAddressSave db = new DbPersonAddressSave())
+                    msg = db.SaveCustomerContactAddresses(personId, data.AddressData.Addresses);
+                    if (msg.Length != 0)
                     {
-                        msg = db.SaveCustomerContactAddresses(personId, data.AddressData.Addresses);
-                        if (msg.Length != 0)
-                        {
-                            rb.ErrMsg = msg;
-                            return rb;
-                        }
+                        rb.ErrMsg = msg;
+                        return rb;
                     }
                 }
             }
 
             if (data.PhoneData == null) return rb;
 
-            if (data.PhoneData.Phones != null)
+            if (data.PhoneData.Phones != null && data.PhoneData.Phones.Count != 0)
             {
-                if (data.PhoneData.Phones.Count != 0)
+                using (DbPersonPhoneSave db = new DbPersonPhoneSave())
                 {
-                    using (DbPersonPhoneSave db = new DbPersonPhoneSave())
+                    msg = db.SaveCustomerContactPhones(personId, data.PhoneData.Phones);
+                    if (msg.Length != 0)
                     {
-                        msg = db.SaveCustomerContactPhones(personId, data.PhoneData.Phones);
-                        if (msg.Length != 0)
-                        {
-                            rb.ErrMsg = msg;
-                            return rb;
-                        }
+                        rb.ErrMsg = msg;
+                        return rb;
                     }
                 }
             }
@@ -212,7 +200,7 @@ namespace DataLayerSave.Person
 
         protected internal ReturnBase SaveStaffMemberData(PersonData data, ref int personId)
         {
-            DataLayerCommon.People.Person p = data.Person;
+            PersonBase p = data.Person;
 
             ReturnBase rb = SaveStaffMember(ref p);
             if (rb.ErrMsg.Length != 0) return rb;
@@ -237,36 +225,30 @@ namespace DataLayerSave.Person
             }
 
             string msg;
-            if (data.AddressData?.Addresses != null)
+            if (data.AddressData?.Addresses != null && data.AddressData.Addresses.Count != 0)
             {
-                if (data.AddressData.Addresses.Count != 0)
+                using (DbPersonAddressSave db = new DbPersonAddressSave())
                 {
-                    using (DbPersonAddressSave db = new DbPersonAddressSave())
+                    msg = db.SaveStaffMemberAddresses(personId, data.AddressData.Addresses);
+                    if (msg.Length != 0)
                     {
-                        msg = db.SaveStaffMemberAddresses(personId, data.AddressData.Addresses);
-                        if (msg.Length != 0)
-                        {
-                            rb.ErrMsg = msg;
-                            return rb;
-                        }
+                        rb.ErrMsg = msg;
+                        return rb;
                     }
                 }
             }
 
             if (data.PhoneData == null) return rb;
 
-            if (data.PhoneData.Phones != null)
+            if (data.PhoneData.Phones != null && data.PhoneData.Phones.Count != 0)
             {
-                if (data.PhoneData.Phones.Count != 0)
+                using (DbPersonPhoneSave db = new DbPersonPhoneSave())
                 {
-                    using (DbPersonPhoneSave db = new DbPersonPhoneSave())
+                    msg = db.SaveStaffMemberPhones(personId, data.PhoneData.Phones);
+                    if (msg.Length != 0)
                     {
-                        msg = db.SaveStaffMemberPhones(personId, data.PhoneData.Phones);
-                        if (msg.Length != 0)
-                        {
-                            rb.ErrMsg = msg;
-                            return rb;
-                        }
+                        rb.ErrMsg = msg;
+                        return rb;
                     }
                 }
             }
@@ -282,9 +264,9 @@ namespace DataLayerSave.Person
             return rb;
         }
 
-        protected ReturnBase SaveOrganizationContactData(PersonData data, ref int personId)
+        protected internal ReturnBase SaveOrganizationContactData(PersonData data, ref int personId)
         {
-            DataLayerCommon.People.Person p = data.Person;
+            PersonBase p = data.Person;
 
             ReturnBase rb = SaveOrganizationContact(ref p);
             if (rb.ErrMsg.Length != 0) return rb;
@@ -295,36 +277,30 @@ namespace DataLayerSave.Person
             }
 
             string msg;
-            if (data.AddressData?.Addresses != null)
+            if (data.AddressData?.Addresses != null && data.AddressData.Addresses.Count != 0)
             {
-                if (data.AddressData.Addresses.Count != 0)
+                using (DbPersonAddressSave db = new DbPersonAddressSave())
                 {
-                    using (DbPersonAddressSave db = new DbPersonAddressSave())
+                    msg = db.SaveOrganizationContactAddresses(personId, data.AddressData.Addresses);
+                    if (msg.Length != 0)
                     {
-                        msg = db.SaveOrganizationContactAddresses(personId, data.AddressData.Addresses);
-                        if (msg.Length != 0)
-                        {
-                            rb.ErrMsg = msg;
-                            return rb;
-                        }
+                        rb.ErrMsg = msg;
+                        return rb;
                     }
                 }
             }
 
             if (data.PhoneData == null) return rb;
 
-            if (data.PhoneData.Phones != null)
+            if (data.PhoneData.Phones != null && data.PhoneData.Phones.Count != 0)
             {
-                if (data.PhoneData.Phones.Count != 0)
+                using (DbPersonPhoneSave db = new DbPersonPhoneSave())
                 {
-                    using (DbPersonPhoneSave db = new DbPersonPhoneSave())
+                    msg = db.SaveOrganizationContactPhones(personId, data.PhoneData.Phones);
+                    if (msg.Length != 0)
                     {
-                        msg = db.SaveOrganizationContactPhones(personId, data.PhoneData.Phones);
-                        if (msg.Length != 0)
-                        {
-                            rb.ErrMsg = msg;
-                            return rb;
-                        }
+                        rb.ErrMsg = msg;
+                        return rb;
                     }
                 }
             }

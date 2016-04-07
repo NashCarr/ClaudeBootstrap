@@ -3,16 +3,16 @@ using ManagementRetrieval.People;
 
 namespace ViewData.Person
 {
-    public class CustomerContactViewModel
+    public class OrganizationContactViewModel
     {
-        public CustomerContactViewModel(int id)
+        public OrganizationContactViewModel(int id)
         {
             using (PlaceContactGetManager db = new PlaceContactGetManager())
             {
-                CustomerContact = db.GetCustomerContact(id);
+                OrganizationContact = db.GetOrganizationContact(id);
             }
         }
 
-        public PersonView CustomerContact { get; set; }
+        public PersonView OrganizationContact { get; set; }
     }
 }

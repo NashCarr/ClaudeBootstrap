@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using CommonDataRetrieval.Places;
 using DataLayerRetrieval.People;
 
-namespace ManagementRetrieval.Places
+namespace ManagementRetrieval.People
 {
-    public class StaffMemberListManager : IDisposable
+    public class StaffMemberListGetManager : IDisposable
     {
         public void Dispose()
         {

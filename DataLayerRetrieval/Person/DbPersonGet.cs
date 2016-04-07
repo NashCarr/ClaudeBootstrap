@@ -7,24 +7,24 @@ namespace DataLayerRetrieval.Person
 {
     public class DbPersonGet : DbGetBase
     {
-        protected internal DataLayerCommon.People.Person GetAssessor(int personId)
+        protected internal DataLayerCommon.People.PersonBase GetAssessor(int personId)
         {
             return LoadRecord(personId, (byte) PersonType.Assessor);
         }
 
-        protected internal DataLayerCommon.People.Person GetCustomerContact(int personId)
+        protected internal DataLayerCommon.People.PersonBase GetCustomerContact(int personId)
         {
             return LoadRecord(personId, (byte) PersonType.CustomerContact);
         }
 
-        protected internal DataLayerCommon.People.Person GetStaffMember(int personId)
+        protected internal DataLayerCommon.People.PersonBase GetStaffMember(int personId)
         {
             return LoadRecord(personId, (byte) PersonType.StaffMember);
         }
 
-        private DataLayerCommon.People.Person LoadRecord(int personId, byte personType)
+        private DataLayerCommon.People.PersonBase LoadRecord(int personId, byte personType)
         {
-            DataLayerCommon.People.Person data = new DataLayerCommon.People.Person();
+            DataLayerCommon.People.PersonBase data = new DataLayerCommon.People.PersonBase();
             try
             {
                 IdValue = personId;

@@ -43,14 +43,14 @@
     <Compile Include="Customer\CustomerGetManager.cs" />
     <Compile Include="Facility\FacilityGetManager.cs" />
     <Compile Include="Facility\FacilityResourceGetManager.cs" />
+    <Compile Include="People\PersonGetManager.cs" />
+    <Compile Include="People\PersonListGetManager.cs" />
+    <Compile Include="People\PlaceContactGetManager.cs" />
+    <Compile Include="People\StaffMemberListGetManager.cs" />
+    <Compile Include="People\StaffMemberGetManager.cs" />
     <Compile Include="Places\OrganizationGetManager.cs" />
-    <Compile Include="Places\PersonGetManager.cs" />
-    <Compile Include="Places\PersonListManager.cs" />
-    <Compile Include="Places\PlaceContactGetManager.cs" />
     <Compile Include="Places\PlaceListGetManager.cs" />
     <Compile Include="Places\SiteConfigurationGetManager.cs" />
-    <Compile Include="Places\StaffMemberListManager.cs" />
-    <Compile Include="Places\StaffMemberManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

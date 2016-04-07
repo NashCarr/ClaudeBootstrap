@@ -5,6 +5,6 @@ namespace CommonDataSave.Places
 {
     public class PlaceSaveModel : AddressPhoneSaveModel
     {
-        public Place Place { get; set; }
+        public PlaceBase Place { get; set; }
     }
 }

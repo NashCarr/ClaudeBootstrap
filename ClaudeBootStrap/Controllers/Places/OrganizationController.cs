@@ -3,9 +3,10 @@ using System.Web.Mvc;
 using CommonDataSave.DisplayReorder;
 using CommonDataSave.People;
 using CommonDataSave.Places;
-using ManagementRetrieval.Places;
 using ManagementSave.Person;
-using ManagementSave.Places;
+using ManagementSave.Place;
+using ViewData.Person;
+using ViewData.Place;
 using ViewData.Places;
 
 namespace ClaudeBootstrap.Controllers.Places
@@ -41,19 +42,20 @@ namespace ClaudeBootstrap.Controllers.Places
         [HttpPost]
         public JsonResult GetPlace(string id)
         {
-            using (OrganizationGetManager mgr = new OrganizationGetManager())
-            {
-                return Json(id != null ? mgr.GetOrganization(int.Parse(id)) : mgr.GetOrganization(0));
-            }
+             return
+               Json(string.IsNullOrEmpty(id)
+                    ? new OrganizationViewModel(0)
+                    : new OrganizationViewModel(int.Parse(id)));
+
         }
 
         [HttpPost]
         public JsonResult GetPerson(string id)
         {
-            using (PlaceContactGetManager mgr = new PlaceContactGetManager())
-            {
-                return Json(id != null ? mgr.GetOrganizationContact(int.Parse(id)) : mgr.GetOrganizationContact(0));
-            }
+            return
+                Json(string.IsNullOrEmpty(id)
+                    ? new OrganizationContactViewModel(0)
+                    : new OrganizationContactViewModel(int.Parse(id)));
         }
 
         [HttpPost]

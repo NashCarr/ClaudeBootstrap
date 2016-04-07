@@ -8,24 +8,24 @@ namespace DataLayerRetrieval.Place
 {
     public class DbPlaceGet : DbGetBase
     {
-        protected internal DataLayerCommon.Places.Place GetFacility(int placeId)
+        protected internal DataLayerCommon.Places.PlaceBase GetFacility(int placeId)
         {
             return LoadRecord(placeId, PlaceType.Facility);
         }
 
-        protected internal DataLayerCommon.Places.Place GetCustomer(int placeId)
+        protected internal DataLayerCommon.Places.PlaceBase GetCustomer(int placeId)
         {
             return LoadRecord(placeId, PlaceType.Customer);
         }
 
-        protected internal DataLayerCommon.Places.Place GetOrganization(int placeId)
+        protected internal DataLayerCommon.Places.PlaceBase GetOrganization(int placeId)
         {
             return LoadRecord(placeId, PlaceType.Organization);
         }
 
-        private DataLayerCommon.Places.Place LoadRecord(int placeId, PlaceType placeType)
+        private DataLayerCommon.Places.PlaceBase LoadRecord(int placeId, PlaceType placeType)
         {
-            DataLayerCommon.Places.Place data = new DataLayerCommon.Places.Place();
+            DataLayerCommon.Places.PlaceBase data = new DataLayerCommon.Places.PlaceBase();
             try
             {
                 IdValue = placeId;

@@ -3,7 +3,7 @@ using System.Web.Mvc;
 using CommonDataRetrieval.Places;
 using DataLayerRetrieval.LookupModel;
 using ManagementLookup;
-using ManagementRetrieval.Places;
+using ManagementRetrieval.People;
 
 namespace ViewData.Facility
 {
@@ -11,7 +11,7 @@ namespace ViewData.Facility
     {
         public StaffMemberListViewModel()
         {
-            using (StaffMemberListManager mgr = new StaffMemberListManager())
+            using (StaffMemberListGetManager mgr = new StaffMemberListGetManager())
             {
                 ListEntity = mgr.GetList();
             }

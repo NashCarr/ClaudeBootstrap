@@ -11,14 +11,14 @@ namespace CommonDataRetrieval.Places
     {
         public PlaceView()
         {
-            Place = new Place();
+            Place = new PlaceBase();
             Phones = new PhoneViewModel();
             Addresses = new AddressViewModel();
         }
 
         public int FacilityStaffId { get; set; }
 
-        public Place Place { get; set; }
+        public PlaceBase Place { get; set; }
         public PhoneViewModel Phones { get; set; }
         public List<Contact> Contacts { get; set; }
         public AddressViewModel Addresses { get; set; }

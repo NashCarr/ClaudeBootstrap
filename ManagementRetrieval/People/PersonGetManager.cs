@@ -2,9 +2,9 @@ using System;
 using CommonDataRetrieval.People;
 using DataLayerRetrieval.Person;
 
-namespace ManagementRetrieval.Places
+namespace ManagementRetrieval.People
 {
-    public class PlaceContactGetManager : IDisposable
+    public class PersonGetManager : IDisposable
     {
         public void Dispose()
         {

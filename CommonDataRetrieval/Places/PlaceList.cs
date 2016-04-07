@@ -1,4 +1,4 @@
-﻿using CommonData.Enums;
+﻿using static CommonData.Enums.CountryEnums;
 using static CommonData.Enums.PlaceEnums;
 using static CommonData.Enums.TimeZoneEnums;
 
@@ -11,7 +11,7 @@ namespace CommonDataRetrieval.Places
             PlaceId = 0;
             DisplayOrder = 0;
             Name = string.Empty;
-            Country = CountryEnums.Country.None;
+            Country = Country.None;
             Division = string.Empty;
             Department = string.Empty;
             CountryName = string.Empty;
@@ -22,7 +22,7 @@ namespace CommonDataRetrieval.Places
 
         public int PlaceId { get; set; }
         public string Name { get; set; }
-        public CountryEnums.Country Country { get; set; }
+        public Country Country { get; set; }
         public string Division { get; set; }
         public string Department { get; set; }
         public string CountryName { get; set; }

@@ -23,7 +23,7 @@ namespace DataLayerRetrieval.Person
             PersonData data = new PersonData();
             try
             {
-                data.Person = new DataLayerCommon.People.Person
+                data.Person = new PersonBase
                 {
                     PersonType = personType
                 };
@@ -52,7 +52,7 @@ namespace DataLayerRetrieval.Person
             }
             catch (Exception ex)
             {
-                data.Person = new DataLayerCommon.People.Person();
+                data.Person = new PersonBase();
             }
             return data;
         }

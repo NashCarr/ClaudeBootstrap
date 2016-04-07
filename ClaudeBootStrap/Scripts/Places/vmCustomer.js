@@ -194,14 +194,14 @@ PlaceViewModel = function(data) {
     self.personlist = ko.observableArray([]);
 
     //list
-    self.itemlist = ko.mapping.fromJS(data.ListEntity).extend({ deferred: true });
+    self.itemlist = ko.mapping.fromJS(data.Customers.ListEntity).extend({ deferred: true });
 
     //lookups
-    self.timezones = ko.mapping.fromJS(data.TimeZones).extend({ deferred: true });
-    self.countries = ko.mapping.fromJS(data.Countries).extend({ deferred: true });
-    self.postalcodes = ko.mapping.fromJS(data.PostalCodes).extend({ deferred: true });
-    self.mobilecarriers = ko.mapping.fromJS(data.MobileCarriers).extend({ deferred: true });
-    self.statesprovinces = ko.mapping.fromJS(data.StatesProvinces).extend({ deferred: true });
+    self.timezones = ko.mapping.fromJS(data.Customers.TimeZones).extend({ deferred: true });
+    self.countries = ko.mapping.fromJS(data.Customers.Countries).extend({ deferred: true });
+    self.postalcodes = ko.mapping.fromJS(data.Customers.PostalCodes).extend({ deferred: true });
+    self.mobilecarriers = ko.mapping.fromJS(data.Customers.MobileCarriers).extend({ deferred: true });
+    self.statesprovinces = ko.mapping.fromJS(data.Customers.StatesProvinces).extend({ deferred: true });
 
     self.DefaultMailingValues = ko.computed(function() {
         if (self.placemailingpostalcode().length === 0) {
@@ -1927,7 +1927,7 @@ PlaceViewModel = function(data) {
         Build: function() {
             return {
                 RecordId: self.placephonesettingid,
-                MobileCarrier: self.placecellcarrier,
+                MobileCarrier: self.placecellcarrier(),
                 AllowText: self.placecellaccepttext(),
                 PrimaryPhoneType: self.PlacePrimaryPhone.phoneprimaryid
             };
@@ -2056,34 +2056,34 @@ PlaceViewModel = function(data) {
             type: "post"
         }).then(function(returndata) {
 
-            self.itemdata = ko.mapping.fromJS(returndata.Phones.PhoneSettings);
+            self.itemdata = ko.mapping.fromJS(returndata.Customer.Phones.PhoneSettings);
             self.PlacePhoneSettings.Populate();
 
-            self.itemdata = ko.mapping.fromJS(returndata.Phones.FaxPhone);
+            self.itemdata = ko.mapping.fromJS(returndata.Customer.Phones.FaxPhone);
             self.PlaceFax.Populate();
 
-            self.itemdata = ko.mapping.fromJS(returndata.Phones.CellPhone);
+            self.itemdata = ko.mapping.fromJS(returndata.Customer.Phones.CellPhone);
             self.PlaceCell.Populate();
 
-            self.itemdata = ko.mapping.fromJS(returndata.Phones.HomePhone);
+            self.itemdata = ko.mapping.fromJS(returndata.Customer.Phones.HomePhone);
             self.PlaceHome.Populate();
 
-            self.itemdata = ko.mapping.fromJS(returndata.Phones.WorkPhone);
+            self.itemdata = ko.mapping.fromJS(returndata.Customer.Phones.WorkPhone);
             self.PlaceWork.Populate();
 
-            self.itemdata = ko.mapping.fromJS(returndata.Addresses.ShippingAddress);
+            self.itemdata = ko.mapping.fromJS(returndata.Customer.Addresses.ShippingAddress);
             self.PlaceShipping.Populate();
 
-            self.itemdata = ko.mapping.fromJS(returndata.Addresses.MailingAddress);
+            self.itemdata = ko.mapping.fromJS(returndata.Customer.Addresses.MailingAddress);
             self.PlaceMailing.Populate();
 
-            self.itemdata = ko.mapping.fromJS(returndata.Contacts);
+            self.itemdata = ko.mapping.fromJS(returndata.Customer.Contacts);
             self.Contacts.Populate();
 
-            self.itemdata = ko.mapping.fromJS(returndata.CustomerBrands);
+            self.itemdata = ko.mapping.fromJS(returndata.Customer.CustomerBrands);
             self.Brands.Populate();
 
-            self.itemdata = ko.mapping.fromJS(returndata.Place);
+            self.itemdata = ko.mapping.fromJS(returndata.Customer.Place);
             self.Place.Populate();
         });
     };

@@ -1,14 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using CommonData.Enums;
 using CommonDataRetrieval.People;
 using DataLayerRetrieval.Lookup;
 using DataLayerRetrieval.People;
-using static CommonData.Enums.PersonEnums;
 
-namespace ManagementRetrieval.Places
+namespace ManagementRetrieval.People
 {
-    public class PersonListManager : IDisposable
+    public class PersonListGetManager : IDisposable
     {
         public void Dispose()
         {
@@ -20,7 +20,7 @@ namespace ManagementRetrieval.Places
         {
         }
 
-        public List<PersonList> GetList(PersonType pt)
+        public List<PersonList> GetList(PersonEnums.PersonType pt)
         {
             using (DbPeopleGetActive data = new DbPeopleGetActive())
             {
@@ -28,7 +28,7 @@ namespace ManagementRetrieval.Places
             }
         }
 
-        public List<SelectListItem> GetFacilities()
+        public List<SelectListItem> GetFacilitiesLookup()
         {
             using (DbPlacesLookup db = new DbPlacesLookup())
             {
