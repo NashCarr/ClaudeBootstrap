@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using CommonData.Enums;
 using DataLayerCommon.Addresses;
 using DataLayerCommon.Phones;
 using DataLayerCommon.Places;
-using static CommonData.Enums.AddressEnums;
-using static CommonData.Enums.PhoneEnums;
-using static CommonData.Enums.PlaceEnums;
 
-namespace DataLayerRetrieval.Place
+namespace DataLayerRetrieval.Places
 {
     public class DbPlaceDataNew : IDisposable
     {
@@ -18,12 +16,12 @@ namespace DataLayerRetrieval.Place
             GC.SuppressFinalize(this);
         }
 
-        protected internal PlaceData GetNew(PlaceType placeType)
+        protected internal PlaceData GetNew(PlaceEnums.PlaceType placeType)
         {
             PlaceData data = new PlaceData();
             try
             {
-                data.Place = new DataLayerCommon.Places.PlaceBase
+                data.Place = new PlaceBase
                 {
                     PlaceType = placeType
                 };
@@ -32,7 +30,7 @@ namespace DataLayerRetrieval.Place
 
                 foreach (
                     AddressAssociation aa in
-                        from AddressType val in Enum.GetValues(typeof (AddressType))
+                        from AddressEnums.AddressType val in Enum.GetValues(typeof (AddressEnums.AddressType))
                         where (short) val != 0
                         select new AddressAssociation {AddressType = val})
                 {
@@ -43,7 +41,7 @@ namespace DataLayerRetrieval.Place
 
                 foreach (
                     PhoneAssociation pa in
-                        from PhoneType val in Enum.GetValues(typeof (PhoneType))
+                        from PhoneEnums.PhoneType val in Enum.GetValues(typeof (PhoneEnums.PhoneType))
                         where (short) val != 0
                         select new PhoneAssociation {PhoneType = val})
                 {
@@ -52,7 +50,7 @@ namespace DataLayerRetrieval.Place
             }
             catch (Exception ex)
             {
-                data.Place = new DataLayerCommon.Places.PlaceBase();
+                data.Place = new PlaceBase();
             }
             return data;
         }

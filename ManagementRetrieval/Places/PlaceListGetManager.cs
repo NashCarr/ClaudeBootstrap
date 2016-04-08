@@ -18,11 +18,11 @@ namespace ManagementRetrieval.Places
         {
         }
 
-        public List<PlaceList> GetList(PlaceType pt)
+        public List<PlaceList> GetPlaceList(PlaceType pt)
         {
-            using (DbPlacesGetActive data = new DbPlacesGetActive())
+            using (DbPlacesGetList data = new DbPlacesGetList())
             {
-                return data.GetActive(pt);
+                return data.GetList(pt);
             }
         }
     }

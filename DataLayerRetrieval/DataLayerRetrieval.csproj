@@ -54,6 +54,7 @@
     <Compile Include="DbGatewayGet.cs" />
     <Compile Include="DbGetBase.cs" />
     <Compile Include="Facility\DbFacilityResourceGet.cs" />
+    <Compile Include="Facility\DbFacilityGetList.cs" />
     <Compile Include="LookupModel\CustomerContactLookup.cs" />
     <Compile Include="LookupModel\PersonLookup.cs" />
     <Compile Include="LookupModel\PlaceLookup.cs" />
@@ -83,13 +84,12 @@
     <Compile Include="Person\DbPersonGet.cs" />
     <Compile Include="Person\DbPersonViewGet.cs" />
     <Compile Include="Phones\DbPhoneAssociationGet.cs" />
-    <Compile Include="Places\DbPlacesGet.cs" />
-    <Compile Include="Places\DbPlacesGetActive.cs" />
-    <Compile Include="Place\DbPlaceDataGet.cs" />
-    <Compile Include="Place\DbPlaceDataNew.cs" />
-    <Compile Include="Place\DbPlaceDataStub.cs" />
-    <Compile Include="Place\DbPlaceGet.cs" />
-    <Compile Include="Place\DbPlaceViewGet.cs" />
+    <Compile Include="Places\DbPlaceDataGet.cs" />
+    <Compile Include="Places\DbPlaceDataNew.cs" />
+    <Compile Include="Places\DbPlaceDataStub.cs" />
+    <Compile Include="Places\DbPlaceGet.cs" />
+    <Compile Include="Places\DbPlacesGetList.cs" />
+    <Compile Include="Places\DbPlaceViewGet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SiteConfiguration\DbSiteConfigurationGet.cs" />
   </ItemGroup>

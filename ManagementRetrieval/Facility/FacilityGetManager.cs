@@ -1,6 +1,6 @@
 using System;
 using CommonDataRetrieval.Places;
-using DataLayerRetrieval.Place;
+using DataLayerRetrieval.Places;
 
 namespace ManagementRetrieval.Facility
 {

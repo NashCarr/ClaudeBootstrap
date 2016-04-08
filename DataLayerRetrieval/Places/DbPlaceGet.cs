@@ -1,31 +1,31 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using static CommonData.Enums.PlaceEnums;
-using static CommonData.Enums.TimeZoneEnums;
+using CommonData.Enums;
+using DataLayerCommon.Places;
 
-namespace DataLayerRetrieval.Place
+namespace DataLayerRetrieval.Places
 {
     public class DbPlaceGet : DbGetBase
     {
-        protected internal DataLayerCommon.Places.PlaceBase GetFacility(int placeId)
+        protected internal PlaceBase GetFacility(int placeId)
         {
-            return LoadRecord(placeId, PlaceType.Facility);
+            return LoadRecord(placeId, PlaceEnums.PlaceType.Facility);
         }
 
-        protected internal DataLayerCommon.Places.PlaceBase GetCustomer(int placeId)
+        protected internal PlaceBase GetCustomer(int placeId)
         {
-            return LoadRecord(placeId, PlaceType.Customer);
+            return LoadRecord(placeId, PlaceEnums.PlaceType.Customer);
         }
 
-        protected internal DataLayerCommon.Places.PlaceBase GetOrganization(int placeId)
+        protected internal PlaceBase GetOrganization(int placeId)
         {
-            return LoadRecord(placeId, PlaceType.Organization);
+            return LoadRecord(placeId, PlaceEnums.PlaceType.Organization);
         }
 
-        private DataLayerCommon.Places.PlaceBase LoadRecord(int placeId, PlaceType placeType)
+        private PlaceBase LoadRecord(int placeId, PlaceEnums.PlaceType placeType)
         {
-            DataLayerCommon.Places.PlaceBase data = new DataLayerCommon.Places.PlaceBase();
+            PlaceBase data = new PlaceBase();
             try
             {
                 IdValue = placeId;
@@ -65,7 +65,7 @@ namespace DataLayerRetrieval.Place
                                 data.Department = Convert.ToString(dr[ordDepartment]);
 
                                 data.DisplayOrder = Convert.ToByte(dr[ordDisplayOrder]);
-                                data.TimeZone = (ClaudeTimeZone) Convert.ToByte(dr[ordTimeZone]);
+                                data.TimeZone = (TimeZoneEnums.ClaudeTimeZone) Convert.ToByte(dr[ordTimeZone]);
                             }
                         }
                     }

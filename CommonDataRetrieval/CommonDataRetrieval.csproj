@@ -47,6 +47,7 @@
     <Compile Include="Base\AdministrationBase.cs" />
     <Compile Include="Customer\CustomerBrand.cs" />
     <Compile Include="Facility\FacilityResource.cs" />
+    <Compile Include="Facility\FacilityList.cs" />
     <Compile Include="Facility\StaffUserActivity.cs" />
     <Compile Include="People\PersonList.cs" />
     <Compile Include="People\PersonView.cs" />

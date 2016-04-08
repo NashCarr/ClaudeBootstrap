@@ -1,6 +1,6 @@
 ﻿using CommonDataRetrieval.Places;
 using DataLayerCommon.Places;
-using DataLayerRetrieval.Place;
+using DataLayerRetrieval.Places;
 using static CommonData.Enums.PlaceEnums;
 
 namespace DataLayerRetrieval.Customer

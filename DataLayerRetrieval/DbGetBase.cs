@@ -10,8 +10,8 @@ namespace DataLayerRetrieval
     {
         private const string ErrParameter = "@ErrMsg";
 
-        protected internal SqlCommand CmdSql;
-        protected internal SqlConnection ConnSql;
+        protected internal static SqlCommand CmdSql;
+        protected internal static SqlConnection ConnSql;
         protected internal string ErrMsg;
         protected internal string IdParameter;
 
@@ -69,7 +69,7 @@ namespace DataLayerRetrieval
             }
         }
 
-        protected internal void DocumentErrorMessage(string errorMessage)
+        protected internal static void DocumentErrorMessage(string errorMessage)
         {
             //using (SaveDataRepositoryError e = new SaveDataRepositoryError())
             //{

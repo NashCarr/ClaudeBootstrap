@@ -1,17 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
+using CommonData.Enums;
 using CommonDataRetrieval.Places;
-using static CommonData.Enums.CountryEnums;
-using static CommonData.Enums.TimeZoneEnums;
+using static CommonData.Enums.PlaceEnums;
 
 namespace DataLayerRetrieval.Places
 {
-    public class DbPlacesGet : DbGetBase
+    public class DbPlacesGetList : DbGetBase
     {
-        protected internal string TypeName;
+        public List<PlaceList> GetList(PlaceType pt)
+        {
+            try
+            {
+                IdValue = (byte) pt;
+                IdParameter = "@PlaceType";
 
-        protected internal List<PlaceList> GetRecords()
+                SetConnectToDatabase("[Places].[usp_GetList]");
+
+                CmdSql.Parameters.Add(IdParameter, SqlDbType.Int).Value = IdValue;
+
+                return GetRecords();
+            }
+            catch (Exception ex)
+            {
+                DocumentErrorMessage(ex.ToString());
+                return new List<PlaceList>();
+            }
+        }
+
+        private static List<PlaceList> GetRecords()
         {
             List<PlaceList> data = new List<PlaceList>();
             try
@@ -45,12 +64,12 @@ namespace DataLayerRetrieval.Places
                                     Division = Convert.ToString(dr[ordDivision]),
                                     Department = Convert.ToString(dr[ordDepartment]),
                                     DisplayOrder = Convert.ToInt16(dr[ordDisplayOrder]),
-                                    Country = (Country) Convert.ToInt16(dr[ordCountry]),
-                                    TimeZone = (ClaudeTimeZone) Convert.ToByte(dr[ordTimeZone])
+                                    Country = (CountryEnums.Country) Convert.ToInt16(dr[ordCountry]),
+                                    TimeZone = (TimeZoneEnums.ClaudeTimeZone) Convert.ToByte(dr[ordTimeZone])
                                 };
                                 item.DisplaySort = item.DisplayOrder.ToString("D3");
-                                item.CountryName = Enum.GetName(typeof (Country), item.Country);
-                                item.TimeZoneName = Enum.GetName(typeof (ClaudeTimeZone), item.TimeZone);
+                                item.CountryName = Enum.GetName(typeof (CountryEnums.Country), item.Country);
+                                item.TimeZoneName = Enum.GetName(typeof (TimeZoneEnums.ClaudeTimeZone), item.TimeZone);
                                 data.Add(item);
                             }
                         }

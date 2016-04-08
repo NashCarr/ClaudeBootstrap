@@ -14,7 +14,7 @@ namespace ViewData.Places
         {
             using (PlaceListGetManager mgr = new PlaceListGetManager())
             {
-                ListEntity = mgr.GetList(pt);
+                ListEntity = mgr.GetPlaceList(pt);
             }
             using (LookupManager mgr = new LookupManager())
             {

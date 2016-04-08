@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using CommonData.Enums;
 using DataLayerCommon.Addresses;
 using DataLayerCommon.Phones;
 using DataLayerCommon.Places;
-using static CommonData.Enums.AddressEnums;
-using static CommonData.Enums.PhoneEnums;
-using static CommonData.Enums.PlaceEnums;
 
-namespace DataLayerRetrieval.Place
+namespace DataLayerRetrieval.Places
 {
     public class DbPlaceDataStub : IDisposable
     {
@@ -17,13 +15,13 @@ namespace DataLayerRetrieval.Place
             GC.SuppressFinalize(this);
         }
 
-        public PlaceData Prefill(PlaceType placeType, PlaceData data)
+        public PlaceData Prefill(PlaceEnums.PlaceType placeType, PlaceData data)
         {
             try
             {
                 if (data.Place == null)
                 {
-                    data.Place = new DataLayerCommon.Places.PlaceBase
+                    data.Place = new PlaceBase
                     {
                         PlaceType = placeType
                     };
@@ -36,13 +34,13 @@ namespace DataLayerRetrieval.Place
 
                 if (data.AddressData.PhysicalAddress == null)
                 {
-                    AddressAssociation a = new AddressAssociation {AddressType = AddressType.Physical};
+                    AddressAssociation a = new AddressAssociation {AddressType = AddressEnums.AddressType.Physical};
                     data.AddressData.Addresses.Add(a);
                 }
 
                 if (data.AddressData.MailingAddress == null)
                 {
-                    AddressAssociation a = new AddressAssociation {AddressType = AddressType.Mailing};
+                    AddressAssociation a = new AddressAssociation {AddressType = AddressEnums.AddressType.Mailing};
                     data.AddressData.Addresses.Add(a);
                 }
 
@@ -53,31 +51,31 @@ namespace DataLayerRetrieval.Place
 
                 if (data.PhoneData.HomePhone == null)
                 {
-                    PhoneAssociation p = new PhoneAssociation {PhoneType = PhoneType.Home};
+                    PhoneAssociation p = new PhoneAssociation {PhoneType = PhoneEnums.PhoneType.Home};
                     data.PhoneData.Phones.Add(p);
                 }
 
                 if (data.PhoneData.CellPhone == null)
                 {
-                    PhoneAssociation p = new PhoneAssociation {PhoneType = PhoneType.Cell};
+                    PhoneAssociation p = new PhoneAssociation {PhoneType = PhoneEnums.PhoneType.Cell};
                     data.PhoneData.Phones.Add(p);
                 }
 
                 if (data.PhoneData.WorkPhone == null)
                 {
-                    PhoneAssociation p = new PhoneAssociation {PhoneType = PhoneType.Work};
+                    PhoneAssociation p = new PhoneAssociation {PhoneType = PhoneEnums.PhoneType.Work};
                     data.PhoneData.Phones.Add(p);
                 }
 
                 if (data.PhoneData.FaxPhone == null)
                 {
-                    PhoneAssociation p = new PhoneAssociation {PhoneType = PhoneType.Fax};
+                    PhoneAssociation p = new PhoneAssociation {PhoneType = PhoneEnums.PhoneType.Fax};
                     data.PhoneData.Phones.Add(p);
                 }
             }
             catch (Exception ex)
             {
-                data.Place = new DataLayerCommon.Places.PlaceBase();
+                data.Place = new PlaceBase();
             }
             return data;
         }

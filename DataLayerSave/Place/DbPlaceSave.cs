@@ -11,7 +11,7 @@ namespace DataLayerSave.Place
 {
     public class DbPlaceSave : DbSaveBase
     {
-        private ReturnBase AddUpdatePlace(ref DataLayerCommon.Places.PlaceBase data)
+        private ReturnBase AddUpdatePlace(ref PlaceBase data)
         {
             try
             {
@@ -39,7 +39,7 @@ namespace DataLayerSave.Place
             return ReturnValues;
         }
 
-        protected internal ReturnBase SaveFacility(ref DataLayerCommon.Places.PlaceBase data)
+        protected internal ReturnBase SaveFacility(ref PlaceBase data)
         {
             if (string.IsNullOrEmpty(data.Name))
             {
@@ -54,7 +54,7 @@ namespace DataLayerSave.Place
             return AddUpdatePlace(ref data);
         }
 
-        public ReturnBase SaveCustomer(ref DataLayerCommon.Places.PlaceBase data)
+        public ReturnBase SaveCustomer(ref PlaceBase data)
         {
             if (string.IsNullOrEmpty(data.Name))
             {
@@ -69,7 +69,7 @@ namespace DataLayerSave.Place
             return AddUpdatePlace(ref data);
         }
 
-        protected internal ReturnBase SaveOrganization(ref DataLayerCommon.Places.PlaceBase data)
+        protected internal ReturnBase SaveOrganization(ref PlaceBase data)
         {
             if (string.IsNullOrEmpty(data.Name))
             {
@@ -86,7 +86,7 @@ namespace DataLayerSave.Place
 
         protected internal ReturnBase SaveFacilityData(PlaceData data, ref int placeId)
         {
-            DataLayerCommon.Places.PlaceBase p = data.Place;
+            PlaceBase p = data.Place;
 
             ReturnBase rb = SaveFacility(ref p);
             if (rb.ErrMsg.Length != 0) return rb;
@@ -144,7 +144,7 @@ namespace DataLayerSave.Place
 
         protected internal ReturnBase SaveCustomerData(PlaceData data, ref int placeId)
         {
-            DataLayerCommon.Places.PlaceBase p = data.Place;
+            PlaceBase p = data.Place;
 
             ReturnBase rb = SaveCustomer(ref p);
             if (rb.ErrMsg.Length != 0) return rb;
@@ -202,7 +202,7 @@ namespace DataLayerSave.Place
 
         protected internal ReturnBase SaveOrganizationData(PlaceData data, ref int placeId)
         {
-            DataLayerCommon.Places.PlaceBase p = data.Place;
+            PlaceBase p = data.Place;
 
             ReturnBase rb = SaveOrganization(ref p);
             if (rb.ErrMsg.Length != 0) return rb;

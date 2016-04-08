@@ -1,30 +1,31 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using DataLayerCommon.People;
 using static CommonData.Enums.PersonEnums;
 
 namespace DataLayerRetrieval.Person
 {
     public class DbPersonGet : DbGetBase
     {
-        protected internal DataLayerCommon.People.PersonBase GetAssessor(int personId)
+        protected internal PersonBase GetAssessor(int personId)
         {
             return LoadRecord(personId, (byte) PersonType.Assessor);
         }
 
-        protected internal DataLayerCommon.People.PersonBase GetCustomerContact(int personId)
+        protected internal PersonBase GetCustomerContact(int personId)
         {
             return LoadRecord(personId, (byte) PersonType.CustomerContact);
         }
 
-        protected internal DataLayerCommon.People.PersonBase GetStaffMember(int personId)
+        protected internal PersonBase GetStaffMember(int personId)
         {
             return LoadRecord(personId, (byte) PersonType.StaffMember);
         }
 
-        private DataLayerCommon.People.PersonBase LoadRecord(int personId, byte personType)
+        private PersonBase LoadRecord(int personId, byte personType)
         {
-            DataLayerCommon.People.PersonBase data = new DataLayerCommon.People.PersonBase();
+            PersonBase data = new PersonBase();
             try
             {
                 IdValue = personId;
