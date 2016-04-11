@@ -2,22 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using DataLayerCommon.Helpers;
-using static CommonData.Enums.AddressEnums;
+using CommonData.Enums;
+using CommonData.Helpers;
 
 namespace ManagementLookup.LookupData
 {
-    public class AddressTypeLookupList : IDisposable
+    public class LuPhoneTypeLookup : IDisposable
     {
-        public AddressTypeLookupList()
+        public LuPhoneTypeLookup()
         {
             LookupList =
                 new List<SelectListItem>(
-                    EnumHelpers.SelectListFor<AddressType>()
-                        .Where(e => e.Value != AddressType.None.ToString()));
+                    EnumHelpers.SelectListFor<PhoneEnums.PhoneType>()
+                        .Where(e => e.Value != PhoneEnums.PhoneType.None.ToString()));
             foreach (SelectListItem item in LookupList)
             {
-                item.Value = EnumHelpers.GetByteFromEnum<AddressType>(item.Value).ToString();
+                item.Value = EnumHelpers.GetByteFromEnum<PhoneEnums.PhoneType>(item.Value).ToString();
             }
         }
 

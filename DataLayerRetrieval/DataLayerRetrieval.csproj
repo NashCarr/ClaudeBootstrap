@@ -55,12 +55,6 @@
     <Compile Include="DbGetBase.cs" />
     <Compile Include="Facility\DbFacilityResourceGet.cs" />
     <Compile Include="Facility\DbFacilityGetList.cs" />
-    <Compile Include="LookupModel\CustomerContactLookup.cs" />
-    <Compile Include="LookupModel\PersonLookup.cs" />
-    <Compile Include="LookupModel\PlaceLookup.cs" />
-    <Compile Include="LookupModel\PostalCodeLookup.cs" />
-    <Compile Include="LookupModel\ProgramOptionLookup.cs" />
-    <Compile Include="LookupModel\StaffMemberLookup.cs" />
     <Compile Include="Lookup\DbGatewayLookup.cs" />
     <Compile Include="Lookup\DbMobileCarrierLookup.cs" />
     <Compile Include="Lookup\DbPeopleLookup.cs" />
@@ -69,9 +63,6 @@
     <Compile Include="Lookup\DbProgramOptionLookup.cs" />
     <Compile Include="Lookup\DbStateProvinceLookup.cs" />
     <Compile Include="Lookup\DbUserGroupLookup.cs" />
-    <Compile Include="Lookup\LuCompensationTypeLookup.cs" />
-    <Compile Include="Lookup\LuDefaultRightLookup.cs" />
-    <Compile Include="Lookup\LuPhoneTypeLookup.cs" />
     <Compile Include="People\DbAssessorInfoGet.cs" />
     <Compile Include="People\DbPeopleGet.cs" />
     <Compile Include="People\DbPeopleGetActive.cs" />

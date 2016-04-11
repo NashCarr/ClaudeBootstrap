@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using CommonDataRetrieval.Administration;
-using DataLayerRetrieval.Administration;
+using ManagementRetrieval.Administration;
 
 namespace ViewData.Administration
 {
@@ -8,9 +8,9 @@ namespace ViewData.Administration
     {
         public HearAboutUsViewModel()
         {
-            using (DbHearAboutUsGet mgr = new DbHearAboutUsGet())
+            using (AdministrationGetManager mgr = new AdministrationGetManager())
             {
-                ListEntity = mgr.GetViewModel();
+                ListEntity = mgr.GetHearAboutUsList();
             }
         }
 

@@ -1,8 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.Web.Mvc;
 using CommonDataRetrieval.SiteConfiguration;
-using DataLayerRetrieval.Lookup;
 using DataLayerRetrieval.SiteConfiguration;
 
 namespace ManagementRetrieval.Places
@@ -24,14 +21,6 @@ namespace ManagementRetrieval.Places
             using (DbSiteConfigurationGet db = new DbSiteConfigurationGet())
             {
                 return db.GetSiteConfiguration();
-            }
-        }
-
-        public List<SelectListItem> GetCompensationTypes()
-        {
-            using (LuCompensationTypeLookup lu = new LuCompensationTypeLookup())
-            {
-                return lu.LookupList;
             }
         }
     }

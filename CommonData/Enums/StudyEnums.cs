@@ -51,6 +51,18 @@ namespace CommonData.Enums
             Closed
         }
 
+        public enum Membership : byte
+        {
+            None,
+            [Description("Open (No Limits)")] OpenNoLimits,
+            [Description("Open (Cookie Restriction)")] OpenCookie,
+            [Description("Open (Password Restriction)")] OpenPassword,
+            [Description("Open (Cookie/Password Restriction)")] OpenCookiePassword,
+            List,
+            [Description("Database Member")] Database,
+            [Description("List Panel Hybrid")] ListPanel
+        }
+
         public enum QuotaApplication : byte
         {
             None,
@@ -104,18 +116,6 @@ namespace CommonData.Enums
             Opened,
             Closed,
             Hidden
-        }
-
-        public enum Membership : byte
-        {
-            None,
-            [Description("Open (No Limits)")] OpenNoLimits,
-            [Description("Open (Cookie Restriction)")] OpenCookie,
-            [Description("Open (Password Restriction)")] OpenPassword,
-            [Description("Open (Cookie/Password Restriction)")] OpenCookiePassword,
-            List,
-            [Description("Database Member")] Database,
-            [Description("List Panel Hybrid")] ListPanel
         }
 
         public enum StudyStatus : byte

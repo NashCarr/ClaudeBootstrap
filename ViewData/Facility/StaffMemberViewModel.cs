@@ -7,9 +7,9 @@ namespace ViewData.Facility
     {
         public StaffMemberViewModel(int id)
         {
-            using (PlaceContactGetManager db = new PlaceContactGetManager())
+            using (PlaceContactGetManager mgr = new PlaceContactGetManager())
             {
-                StaffMember = db.GetStaffMember(id);
+                StaffMember = mgr.GetStaffMember(id);
             }
         }
 

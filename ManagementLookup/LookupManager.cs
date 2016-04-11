@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using CommonDataRetrieval.Lookup;
 using DataLayerRetrieval.Lookup;
-using DataLayerRetrieval.LookupModel;
 using ManagementLookup.LookupData;
 
 namespace ManagementLookup
@@ -45,7 +45,7 @@ namespace ManagementLookup
 
         public List<SelectListItem> GetCountries()
         {
-            using (CountryLookupList db = new CountryLookupList())
+            using (LuCountryLookup db = new LuCountryLookup())
             {
                 return db.LookupList;
             }
@@ -53,7 +53,15 @@ namespace ManagementLookup
 
         public List<SelectListItem> GetTimeZones()
         {
-            using (TimeZoneLookupList db = new TimeZoneLookupList())
+            using (LuTimeZoneLookup db = new LuTimeZoneLookup())
+            {
+                return db.LookupList;
+            }
+        }
+
+        public List<SelectListItem> GetCompensationTypes()
+        {
+            using (LuCompensationTypeLookup db = new LuCompensationTypeLookup())
             {
                 return db.LookupList;
             }

@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using DataLayerCommon.Helpers;
+using CommonData.Helpers;
 using static CommonData.Enums.CountryEnums;
 
 namespace ManagementLookup.LookupData
 {
-    public class CountryLookupList : IDisposable
+    public class LuCountryLookup : IDisposable
     {
-        public CountryLookupList()
+        public LuCountryLookup()
         {
             LookupList =
                 new List<SelectListItem>(

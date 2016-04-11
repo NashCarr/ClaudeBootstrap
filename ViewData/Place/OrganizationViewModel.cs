@@ -7,9 +7,9 @@ namespace ViewData.Place
     {
         public OrganizationViewModel(int id)
         {
-            using (OrganizationGetManager db = new OrganizationGetManager())
+            using (OrganizationGetManager mgr = new OrganizationGetManager())
             {
-                Organization = db.GetOrganization(id);
+                Organization = mgr.GetOrganization(id);
             }
         }
 

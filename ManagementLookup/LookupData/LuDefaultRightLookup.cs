@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using CommonData.Enums;
-using DataLayerCommon.Helpers;
+using CommonData.Helpers;
 
-namespace DataLayerRetrieval.Lookup
+namespace ManagementLookup.LookupData
 {
     public class LuDefaultRightLookup
     {

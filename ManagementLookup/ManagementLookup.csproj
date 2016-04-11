@@ -38,20 +38,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LookupData\AddressTypeLookupList.cs" />
-    <Compile Include="LookupData\CountryLookupList.cs" />
-    <Compile Include="LookupData\TimeZoneLookupList.cs" />
+    <Compile Include="LookupData\LuAddressTypeLookup.cs" />
+    <Compile Include="LookupData\LuCompensationTypeLookup.cs" />
+    <Compile Include="LookupData\LuCountryLookup.cs" />
+    <Compile Include="LookupData\LuDefaultRightLookup.cs" />
+    <Compile Include="LookupData\LuPhoneTypeLookup.cs" />
+    <Compile Include="LookupData\LuTimeZoneLookup.cs" />
     <Compile Include="LookupManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CommonDataRetrieval\CommonDataRetrieval.csproj">
+      <Project>{7F3C4322-E4EF-47A5-947C-9611673A58DE}</Project>
+      <Name>CommonDataRetrieval</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CommonData\CommonData.csproj">
       <Project>{FB0DEC60-3BA3-4BD7-A268-5A78AB280F3A}</Project>
       <Name>CommonData</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DataLayerCommon\DataLayerCommon.csproj">
-      <Project>{1ABF531D-949D-4DCC-B31C-53DF3225BBF8}</Project>
-      <Name>DataLayerCommon</Name>
     </ProjectReference>
     <ProjectReference Include="..\DataLayerRetrieval\DataLayerRetrieval.csproj">
       <Project>{B5F991B7-C327-4DA7-A417-365D5C7B8DAB}</Project>

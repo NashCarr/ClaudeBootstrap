@@ -2,22 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using CommonData.Enums;
-using DataLayerCommon.Helpers;
+using CommonData.Helpers;
+using static CommonData.Enums.TimeZoneEnums;
 
-namespace DataLayerRetrieval.Lookup
+namespace ManagementLookup.LookupData
 {
-    public class LuPhoneTypeLookup : IDisposable
+    public class LuTimeZoneLookup : IDisposable
     {
-        public LuPhoneTypeLookup()
+        public LuTimeZoneLookup()
         {
             LookupList =
                 new List<SelectListItem>(
-                    EnumHelpers.SelectListFor<PhoneEnums.PhoneType>()
-                        .Where(e => e.Value != PhoneEnums.PhoneType.None.ToString()));
+                    EnumHelpers.SelectListFor<ClaudeTimeZone>()
+                        .Where(e => e.Value != ClaudeTimeZone.None.ToString()));
             foreach (SelectListItem item in LookupList)
             {
-                item.Value = EnumHelpers.GetByteFromEnum<PhoneEnums.PhoneType>(item.Value).ToString();
+                item.Value = EnumHelpers.GetByteFromEnum<ClaudeTimeZone>(item.Value).ToString();
             }
         }
 

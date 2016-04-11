@@ -32,6 +32,10 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Addresses\AddressViewModel.cs" />
@@ -49,6 +53,8 @@
     <Compile Include="Facility\FacilityResource.cs" />
     <Compile Include="Facility\FacilityList.cs" />
     <Compile Include="Facility\StaffUserActivity.cs" />
+    <Compile Include="Lookup\BaseLookup.cs" />
+    <Compile Include="Lookup\PostalCodeLookup.cs" />
     <Compile Include="People\PersonList.cs" />
     <Compile Include="People\PersonView.cs" />
     <Compile Include="Phones\PhoneViewModel.cs" />

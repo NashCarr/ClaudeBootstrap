@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using CommonDataRetrieval.Administration;
-using DataLayerRetrieval.Administration;
+using ManagementRetrieval.Administration;
 
 namespace ViewData.Administration
 {
@@ -8,9 +8,9 @@ namespace ViewData.Administration
     {
         public TestTypeViewModel()
         {
-            using (DbTestTypeGet mgr = new DbTestTypeGet())
+            using (AdministrationGetManager mgr = new AdministrationGetManager())
             {
-                ListEntity = mgr.GetViewModel();
+                ListEntity = mgr.GetTestTypeList();
             }
         }
 

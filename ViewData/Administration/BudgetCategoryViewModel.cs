@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using CommonDataRetrieval.Administration;
-using DataLayerRetrieval.Administration;
+using ManagementRetrieval.Administration;
 
 namespace ViewData.Administration
 {
@@ -8,9 +8,9 @@ namespace ViewData.Administration
     {
         public BudgetCategoryViewModel()
         {
-            using (DbBudgetCategoryGet db = new DbBudgetCategoryGet())
+            using (AdministrationGetManager mgr = new AdministrationGetManager())
             {
-                ListEntity = db.GetViewModel();
+                ListEntity = mgr.GetBudgetCategoryList();
             }
         }
 

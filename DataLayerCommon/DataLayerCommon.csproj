@@ -35,10 +35,6 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Addresses\Address.cs" />
@@ -55,7 +51,6 @@
     <Compile Include="Administration\UserLogin.cs" />
     <Compile Include="BaseModels\AdminBase.cs" />
     <Compile Include="DbConnect.cs" />
-    <Compile Include="Helpers\EnumHelpers.cs" />
     <Compile Include="Lists\Settings\AssessorInfo.cs" />
     <Compile Include="People\Contact.cs" />
     <Compile Include="People\PersonBase.cs" />

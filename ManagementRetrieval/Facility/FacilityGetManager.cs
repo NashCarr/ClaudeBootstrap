@@ -1,5 +1,8 @@
 using System;
+using System.Collections.Generic;
+using CommonDataRetrieval.Facility;
 using CommonDataRetrieval.Places;
+using DataLayerRetrieval.Facility;
 using DataLayerRetrieval.Places;
 
 namespace ManagementRetrieval.Facility
@@ -21,6 +24,14 @@ namespace ManagementRetrieval.Facility
             using (DbPlaceViewGet db = new DbPlaceViewGet())
             {
                 return db.GetFacility(recordId);
+            }
+        }
+
+        public List<FacilityList> GetFacilityList()
+        {
+            using (DbFacilityGetList db = new DbFacilityGetList())
+            {
+                return db.GetList();
             }
         }
     }

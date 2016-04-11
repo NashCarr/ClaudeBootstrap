@@ -7,9 +7,9 @@ namespace ViewData.Facility
     {
         public FacilityViewModel(int id)
         {
-            using (FacilityGetManager db = new FacilityGetManager())
+            using (FacilityGetManager mgr = new FacilityGetManager())
             {
-                Facility = db.GetFacility(id);
+                Facility = mgr.GetFacility(id);
             }
         }
 

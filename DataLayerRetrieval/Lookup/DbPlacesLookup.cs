@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
-using DataLayerRetrieval.LookupModel;
+using CommonDataRetrieval.Lookup;
 using static CommonData.Enums.PlaceEnums;
 
 namespace DataLayerRetrieval.Lookup
@@ -13,12 +13,12 @@ namespace DataLayerRetrieval.Lookup
             GC.SuppressFinalize(this);
         }
 
-        public PlaceLookup GetFacilityLookup()
+        public BaseLookup GetFacilityLookup()
         {
             return GetLookUpList(PlaceType.Facility);
         }
 
-        public PlaceLookup GetCustomerLookup()
+        public BaseLookup GetCustomerLookup()
         {
             return GetLookUpList(PlaceType.Customer);
         }
@@ -47,9 +47,9 @@ namespace DataLayerRetrieval.Lookup
         //    }
         //}
 
-        private static PlaceLookup GetLookUpList(PlaceType placeType)
+        private static BaseLookup GetLookUpList(PlaceType placeType)
         {
-            PlaceLookup lu = new PlaceLookup();
+            BaseLookup lu = new BaseLookup();
             lu.LookupList.Add(new SelectListItem {Value = "0", Text = "None"});
 
             //List<Place> data;

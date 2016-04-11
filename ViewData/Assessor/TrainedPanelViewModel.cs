@@ -12,7 +12,7 @@ namespace ViewData.Assessor
         {
             using (TrainedPanelGetManager mgr = new TrainedPanelGetManager())
             {
-                //ListEntity = mgr.GetList();
+                ListEntity = mgr.GetList();
             }
             using (LookupManager mgr = new LookupManager())
             {

@@ -22,9 +22,9 @@ namespace ManagementRetrieval.People
 
         public List<PersonList> GetList(PersonEnums.PersonType pt)
         {
-            using (DbPeopleGetActive data = new DbPeopleGetActive())
+            using (DbPeopleGetActive db = new DbPeopleGetActive())
             {
-                return data.GetActive(pt);
+                return db.GetActive(pt);
             }
         }
 

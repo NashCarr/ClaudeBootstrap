@@ -2,10 +2,9 @@
 using System.Web.Mvc;
 using CommonDataRetrieval.Facility;
 using CommonDataRetrieval.SiteConfiguration;
-using DataLayerRetrieval.Facility;
-using DataLayerRetrieval.Lookup;
-using DataLayerRetrieval.SiteConfiguration;
+using ManagementLookup;
 using ManagementRetrieval.Facility;
+using ManagementRetrieval.Places;
 
 namespace ViewData.Places
 {
@@ -13,21 +12,21 @@ namespace ViewData.Places
     {
         public SiteConfigurationViewModel()
         {
-            using (DbFacilityGetList db = new DbFacilityGetList())
+            using (LookupManager mgr = new LookupManager())
             {
-                Facilities = db.GetList();
+                CompensationTypes = mgr.GetCompensationTypes();
             }
-            using (DbSiteConfigurationGet db = new DbSiteConfigurationGet())
+            using (FacilityGetManager mgr = new FacilityGetManager())
             {
-                SiteConfiguration = db.GetSiteConfiguration();
-            }
-            using (LuCompensationTypeLookup db = new LuCompensationTypeLookup())
-            {
-                CompensationTypes = db.LookupList;
+                Facilities = mgr.GetFacilityList();
             }
             using (FacilityResourceGetManager mgr = new FacilityResourceGetManager())
             {
                 FacilityResources = mgr.GetList();
+            }
+            using (SiteConfigurationGetManager mgr = new SiteConfigurationGetManager())
+            {
+                SiteConfiguration = mgr.GetSiteConfiguration();
             }
         }
 

@@ -20,9 +20,9 @@ namespace ManagementRetrieval.Places
 
         public List<PlaceList> GetPlaceList(PlaceType pt)
         {
-            using (DbPlacesGetList data = new DbPlacesGetList())
+            using (DbPlacesGetList db = new DbPlacesGetList())
             {
-                return data.GetList(pt);
+                return db.GetList(pt);
             }
         }
     }

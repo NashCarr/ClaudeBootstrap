@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
+using CommonDataRetrieval.Lookup;
 using CommonDataRetrieval.People;
-using DataLayerRetrieval.LookupModel;
 using ManagementLookup;
 using ManagementRetrieval.People;
 using static CommonData.Enums.PersonEnums;

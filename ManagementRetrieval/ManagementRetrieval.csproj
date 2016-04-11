@@ -38,6 +38,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Administration\AdministrationGetManager.cs" />
     <Compile Include="Assessor\TrainedPanelGetManager.cs" />
     <Compile Include="Customer\CustomerBrandGetManager.cs" />
     <Compile Include="Customer\CustomerGetManager.cs" />
