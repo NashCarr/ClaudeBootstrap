@@ -1,9 +1,6 @@
 using System;
-using System.Collections.Generic;
+using CommonDataReturn;
 using CommonDataSave.Customer;
-using CommonDataSave.DisplayReorder;
-using CommonDataSave.Return;
-using DataLayerReorder;
 using DataLayerSave.Customer;
 
 namespace ManagementSave.Customer
@@ -25,22 +22,6 @@ namespace ManagementSave.Customer
             using (DbCustomerBrandSave db = new DbCustomerBrandSave())
             {
                 return db.AddUpdateRecord(entity);
-            }
-        }
-
-        public void SaveDisplayReorder(List<DisplayReorder> data)
-        {
-            using (DbReorderSave db = new DbReorderSave())
-            {
-                db.CustomerBrandReorderSave(data);
-            }
-        }
-
-        public ReturnBase DeleteRecord(int recordId)
-        {
-            using (DbCustomerBrandSave db = new DbCustomerBrandSave())
-            {
-                return db.SetInactive(recordId);
             }
         }
     }

@@ -59,6 +59,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CommonDataLookup\CommonDataLookup.csproj">
+      <Project>{2A8554D8-4591-4DB6-9ADF-6EF142505384}</Project>
+      <Name>CommonDataLookup</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CommonDataRetrieval\CommonDataRetrieval.csproj">
       <Project>{7F3C4322-E4EF-47A5-947C-9611673A58DE}</Project>
       <Name>CommonDataRetrieval</Name>

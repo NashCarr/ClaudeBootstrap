@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Web;
-using CommonDataSave.Return;
+using CommonDataReturn;
 using DataLayerCommon;
 
 namespace DataLayerCommonSave

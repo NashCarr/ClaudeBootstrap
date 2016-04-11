@@ -1,9 +1,6 @@
 using System;
-using System.Collections.Generic;
+using CommonDataReturn;
 using CommonDataSave;
-using CommonDataSave.DisplayReorder;
-using CommonDataSave.Return;
-using DataLayerReorder;
 using DataLayerSave.Administration;
 
 namespace ManagementSave.Administration
@@ -25,22 +22,6 @@ namespace ManagementSave.Administration
             using (DbBudgetCategorySave db = new DbBudgetCategorySave())
             {
                 return db.AddUpdateRecord(data);
-            }
-        }
-
-        public void SaveDisplayReorder(List<DisplayReorder> data)
-        {
-            using (DbReorderSave db = new DbReorderSave())
-            {
-                db.BudgetCategoryReorderSave(data);
-            }
-        }
-
-        public ReturnBase DeleteRecord(int id)
-        {
-            using (DbBudgetCategorySave db = new DbBudgetCategorySave())
-            {
-                return db.SetInactive(id);
             }
         }
     }

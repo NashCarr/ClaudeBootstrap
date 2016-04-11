@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
-using CommonDataRetrieval.Lookup;
-using DataLayerRetrieval.Lookup;
+using CommonDataLookup;
+using DataLayerLookup.Lookup;
 using ManagementLookup.LookupData;
 
 namespace ManagementLookup

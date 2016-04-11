@@ -472,9 +472,25 @@
     <Content Include="Views\TrainedPanel\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CommonDataReorder\CommonDataReorder.csproj">
+      <Project>{F227400F-C0CD-4DD4-AAD1-3BE0A610707C}</Project>
+      <Name>CommonDataReorder</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CommonDataReturn\CommonDataReturn.csproj">
+      <Project>{FED614C4-FF73-431F-B4CF-04864E6D3F40}</Project>
+      <Name>CommonDataReturn</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CommonDataSave\CommonDataSave.csproj">
       <Project>{B5277E31-13BA-4A2D-8E39-BF88780119E8}</Project>
       <Name>CommonDataSave</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ManagementDelete\ManagementDelete.csproj">
+      <Project>{58E2CA36-85D6-4B22-A537-0D3FECC188CA}</Project>
+      <Name>ManagementDelete</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ManagementReorder\ManagementReorder.csproj">
+      <Project>{8059E65D-DAB7-45C9-A973-E0DE4D7D5949}</Project>
+      <Name>ManagementReorder</Name>
     </ProjectReference>
     <ProjectReference Include="..\ManagementSave\ManagementSave.csproj">
       <Project>{652684D2-1F4B-415E-8B1D-2EA5D187FEEC}</Project>

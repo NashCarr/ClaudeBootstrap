@@ -1,34 +1,12 @@
 ﻿using System;
 using System.Data;
+using CommonDataReturn;
 using CommonDataSave.Assessor;
-using CommonDataSave.Return;
-using DataLayerCommonSave;
 
 namespace DataLayerSave.Assessor
 {
     public class DbTrainedPanelSave : DbSaveBase
     {
-        public ReturnBase SetInactive(int recordId)
-        {
-            ReturnValues.Id = recordId;
-            try
-            {
-                SetConnectToDatabase("[TrainedPanel].[usp_SetInactive]");
-
-                CmdSql.Parameters.Add("@TrainedPanelId", SqlDbType.Int).Value = ReturnValues.Id;
-
-                SetErrMsgParameter();
-
-                SendNonQuery();
-            }
-            catch (Exception ex)
-            {
-                ReturnValues.ErrMsg = ex.Message;
-            }
-
-            return ReturnValues;
-        }
-
         public ReturnBase AddUpdateRecord(TrainedPanelSave data)
         {
             if (!string.IsNullOrEmpty(data.Name)) return SaveRecord(data);

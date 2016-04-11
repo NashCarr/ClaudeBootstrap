@@ -33,10 +33,6 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Addresses\DbAddressAssociationGet.cs" />
@@ -55,14 +51,6 @@
     <Compile Include="DbGetBase.cs" />
     <Compile Include="Facility\DbFacilityResourceGet.cs" />
     <Compile Include="Facility\DbFacilityGetList.cs" />
-    <Compile Include="Lookup\DbGatewayLookup.cs" />
-    <Compile Include="Lookup\DbMobileCarrierLookup.cs" />
-    <Compile Include="Lookup\DbPeopleLookup.cs" />
-    <Compile Include="Lookup\DbPlacesLookup.cs" />
-    <Compile Include="Lookup\DbPostalCodeLookup.cs" />
-    <Compile Include="Lookup\DbProgramOptionLookup.cs" />
-    <Compile Include="Lookup\DbStateProvinceLookup.cs" />
-    <Compile Include="Lookup\DbUserGroupLookup.cs" />
     <Compile Include="People\DbAssessorInfoGet.cs" />
     <Compile Include="People\DbPeopleGet.cs" />
     <Compile Include="People\DbPeopleGetActive.cs" />

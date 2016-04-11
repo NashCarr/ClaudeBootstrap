@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Data;
-using CommonDataSave.DisplayReorder;
-using DataLayerCommonSave;
+using CommonDataReorder;
 using Microsoft.SqlServer.Server;
 
 namespace DataLayerReorder
 {
-    public abstract class DbReorder : DbSaveBase
+    public abstract class DbReorder : DbReorderBase
     {
         protected internal static DataTable ConvertToDatatable(List<DisplayReorder> list)
         {

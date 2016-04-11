@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
+using CommonDataReorder;
 using CommonDataSave.Administration;
-using CommonDataSave.DisplayReorder;
+using ManagementDelete.Administration;
+using ManagementReorder;
 using ViewData.Administration;
 
 namespace ClaudeBootstrap.Controllers.Administration
@@ -28,7 +30,7 @@ namespace ClaudeBootstrap.Controllers.Administration
         [HttpPost]
         public void DisplayOrder(List<DisplayReorder> list)
         {
-            using (ManagementSave.Administration.TestTypeSaveManager mgr = new ManagementSave.Administration.TestTypeSaveManager())
+            using (TestTypeReorderManager mgr = new TestTypeReorderManager())
             {
                 mgr.SaveDisplayReorder(list);
             }
@@ -38,7 +40,7 @@ namespace ClaudeBootstrap.Controllers.Administration
         [HttpDelete]
         public JsonResult Delete(int id)
         {
-            using (ManagementSave.Administration.TestTypeSaveManager mgr = new ManagementSave.Administration.TestTypeSaveManager())
+            using (TestTypeDeleteManager mgr = new TestTypeDeleteManager())
             {
                 return Json(mgr.DeleteRecord(id));
             }

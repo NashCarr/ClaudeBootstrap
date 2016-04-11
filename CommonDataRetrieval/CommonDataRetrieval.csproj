@@ -53,8 +53,6 @@
     <Compile Include="Facility\FacilityResource.cs" />
     <Compile Include="Facility\FacilityList.cs" />
     <Compile Include="Facility\StaffUserActivity.cs" />
-    <Compile Include="Lookup\BaseLookup.cs" />
-    <Compile Include="Lookup\PostalCodeLookup.cs" />
     <Compile Include="People\PersonList.cs" />
     <Compile Include="People\PersonView.cs" />
     <Compile Include="Phones\PhoneViewModel.cs" />

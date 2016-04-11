@@ -1,9 +1,6 @@
 using System;
-using System.Collections.Generic;
-using CommonDataSave.DisplayReorder;
+using CommonDataReturn;
 using CommonDataSave.Facility;
-using CommonDataSave.Return;
-using DataLayerReorder;
 using DataLayerSave.Facility;
 
 namespace ManagementSave.Facility
@@ -27,21 +24,5 @@ namespace ManagementSave.Facility
                 return db.AddUpdateRecord(entity);
             }
         }
-
-        public void SaveDisplayReorder(List<DisplayReorder> data)
-        {
-            using (DbReorderSave db = new DbReorderSave())
-            {
-                db.FacilityResourceReorderSave(data);
-            }
-        }
-
-        public ReturnBase DeleteRecord(int id)
-        {
-            using (DbFacilityResourceSave db = new DbFacilityResourceSave())
-            {
-                return db.SetInactive(id);
-            }
-        }
-    }
+   }
 }

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using CommonDataRetrieval.Lookup;
+using CommonDataLookup;
 using CommonDataRetrieval.People;
 using ManagementLookup;
 using ManagementRetrieval.People;
@@ -15,7 +15,7 @@ namespace ViewData.People
             using (PersonListGetManager mgr = new PersonListGetManager())
             {
                 ListEntity = mgr.GetList(pt);
-                Facilities = mgr.GetFacilitiesLookup();
+                //Facilities = mgr.GetFacilitiesLookup();
             }
             using (LookupManager mgr = new LookupManager())
             {

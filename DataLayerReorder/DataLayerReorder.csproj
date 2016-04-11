@@ -38,16 +38,21 @@
   <ItemGroup>
     <Compile Include="DBReorder.cs" />
     <Compile Include="DbReorderSave.cs" />
+    <Compile Include="DbReorderBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CommonDataSave\CommonDataSave.csproj">
-      <Project>{B5277E31-13BA-4A2D-8E39-BF88780119E8}</Project>
-      <Name>CommonDataSave</Name>
+    <ProjectReference Include="..\CommonDataReorder\CommonDataReorder.csproj">
+      <Project>{F227400F-C0CD-4DD4-AAD1-3BE0A610707C}</Project>
+      <Name>CommonDataReorder</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DataLayerCommonSave\DataLayerCommonSave.csproj">
-      <Project>{CFEDB533-1918-485B-B2FB-43A1AC166A30}</Project>
-      <Name>DataLayerCommonSave</Name>
+    <ProjectReference Include="..\CommonDataReturn\CommonDataReturn.csproj">
+      <Project>{FED614C4-FF73-431F-B4CF-04864E6D3F40}</Project>
+      <Name>CommonDataReturn</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataLayerCommon\DataLayerCommon.csproj">
+      <Project>{1ABF531D-949D-4DCC-B31C-53DF3225BBF8}</Project>
+      <Name>DataLayerCommon</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

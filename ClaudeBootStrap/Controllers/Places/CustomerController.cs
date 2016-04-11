@@ -1,9 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
+using CommonDataReorder;
 using CommonDataSave.Customer;
-using CommonDataSave.DisplayReorder;
 using CommonDataSave.People;
 using CommonDataSave.Places;
+using ManagementDelete.Customer;
+using ManagementDelete.Person;
+using ManagementDelete.Place;
+using ManagementReorder;
 using ManagementSave.Customer;
 using ManagementSave.Person;
 using ManagementSave.Place;
@@ -71,7 +75,7 @@ namespace ClaudeBootstrap.Controllers.Places
         [HttpPost]
         public void DisplayOrder(List<DisplayReorder> list)
         {
-            using (CustomerSaveManager mgr = new CustomerSaveManager())
+            using (CustomerReorderManager mgr = new CustomerReorderManager())
             {
                 mgr.SaveDisplayOrder(list);
             }
@@ -81,7 +85,7 @@ namespace ClaudeBootstrap.Controllers.Places
         [HttpDelete]
         public JsonResult Delete(int id)
         {
-            using (CustomerSaveManager mgr = new CustomerSaveManager())
+            using (PlaceDeleteManager mgr = new PlaceDeleteManager())
             {
                 return Json(mgr.DeleteCustomer(id));
             }
@@ -90,7 +94,7 @@ namespace ClaudeBootstrap.Controllers.Places
         [HttpPost]
         public JsonResult DeleteContact(int id)
         {
-            using (PlaceContactDeleteManager mgr = new PlaceContactDeleteManager())
+            using (PersonDeleteManager mgr = new PersonDeleteManager())
             {
                 return Json(mgr.DeleteCustomerContact(id));
             }
@@ -99,7 +103,7 @@ namespace ClaudeBootstrap.Controllers.Places
         [HttpPost]
         public JsonResult DeleteBrand(int id)
         {
-            using (CustomerBrandSaveManager mgr = new CustomerBrandSaveManager())
+            using (CustomerBrandDeleteManager mgr = new CustomerBrandDeleteManager())
             {
                 return Json(mgr.DeleteRecord(id));
             }

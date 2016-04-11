@@ -48,17 +48,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CommonDataRetrieval\CommonDataRetrieval.csproj">
-      <Project>{7F3C4322-E4EF-47A5-947C-9611673A58DE}</Project>
-      <Name>CommonDataRetrieval</Name>
+    <ProjectReference Include="..\CommonDataLookup\CommonDataLookup.csproj">
+      <Project>{2A8554D8-4591-4DB6-9ADF-6EF142505384}</Project>
+      <Name>CommonDataLookup</Name>
     </ProjectReference>
     <ProjectReference Include="..\CommonData\CommonData.csproj">
       <Project>{FB0DEC60-3BA3-4BD7-A268-5A78AB280F3A}</Project>
       <Name>CommonData</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DataLayerRetrieval\DataLayerRetrieval.csproj">
-      <Project>{B5F991B7-C327-4DA7-A417-365D5C7B8DAB}</Project>
-      <Name>DataLayerRetrieval</Name>
+    <ProjectReference Include="..\DataLayerLookup\DataLayerLookup.csproj">
+      <Project>{7DBA8333-F03E-479A-B4E0-2C6C06C97715}</Project>
+      <Name>DataLayerLookup</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

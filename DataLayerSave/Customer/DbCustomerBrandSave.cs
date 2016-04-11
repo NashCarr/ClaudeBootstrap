@@ -1,34 +1,12 @@
 ﻿using System;
 using System.Data;
+using CommonDataReturn;
 using CommonDataSave.Customer;
-using CommonDataSave.Return;
-using DataLayerCommonSave;
 
 namespace DataLayerSave.Customer
 {
     public class DbCustomerBrandSave : DbSaveBase
     {
-        public ReturnBase SetInactive(int recordId)
-        {
-            ReturnValues.Id = recordId;
-            try
-            {
-                SetConnectToDatabase("[CustomerBrand].[usp_SetInactive]");
-
-                CmdSql.Parameters.Add("@CustomerBrandId", SqlDbType.Int).Value = ReturnValues.Id;
-
-                SetErrMsgParameter();
-
-                SendNonQuery();
-            }
-            catch (Exception ex)
-            {
-                ReturnValues.ErrMsg = ex.Message;
-            }
-
-            return ReturnValues;
-        }
-
         public ReturnBase AddUpdateRecord(CustomerBrandSave data)
         {
             ReturnValues.Id = data.Id;

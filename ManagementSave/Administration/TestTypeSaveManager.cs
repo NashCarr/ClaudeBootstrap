@@ -1,9 +1,6 @@
 using System;
-using System.Collections.Generic;
+using CommonDataReturn;
 using CommonDataSave.Administration;
-using CommonDataSave.DisplayReorder;
-using CommonDataSave.Return;
-using DataLayerReorder;
 using DataLayerSave.Administration;
 
 namespace ManagementSave.Administration
@@ -25,22 +22,6 @@ namespace ManagementSave.Administration
             using (DbTestTypeSave db = new DbTestTypeSave())
             {
                 return db.AddUpdateRecord(data);
-            }
-        }
-
-        public void SaveDisplayReorder(List<DisplayReorder> data)
-        {
-            using (DbReorderSave db = new DbReorderSave())
-            {
-                db.TestTypeReorderSave(data);
-            }
-        }
-
-        public ReturnBase DeleteRecord(int id)
-        {
-            using (DbTestTypeSave db = new DbTestTypeSave())
-            {
-                return db.SetInactive(id);
             }
         }
     }

@@ -1,34 +1,12 @@
 ﻿using System;
 using System.Data;
+using CommonDataReturn;
 using CommonDataSave;
-using CommonDataSave.Return;
-using DataLayerCommonSave;
 
 namespace DataLayerSave.Administration
 {
     public class DbProductGroupSave : DbSaveBase
     {
-        public ReturnBase SetInactive(int id)
-        {
-            ReturnValues.Id = id;
-            try
-            {
-                SetConnectToDatabase("[ProductGroup].[usp_SetInactive]");
-
-                CmdSql.Parameters.Add("@ProductGroupId", SqlDbType.Int).Value = ReturnValues.Id;
-
-                SetErrMsgParameter();
-
-                SendNonQuery();
-            }
-            catch (Exception ex)
-            {
-                ReturnValues.ErrMsg = ex.Message;
-            }
-
-            return ReturnValues;
-        }
-
         public ReturnBase AddUpdateRecord(SaveBase data)
         {
             ReturnValues.Id = data.Id;

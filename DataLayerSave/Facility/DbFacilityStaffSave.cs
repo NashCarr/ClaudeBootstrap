@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Data;
+using CommonDataReturn;
 using CommonDataSave.Facility;
-using CommonDataSave.Return;
-using DataLayerCommonSave;
 
 namespace DataLayerSave.Facility
 {
@@ -50,25 +49,6 @@ namespace DataLayerSave.Facility
                 ReturnValues.ErrMsg = ex.Message;
             }
             return ReturnValues;
-        }
-
-        public string SetInactive(int facilityStaffId)
-        {
-            try
-            {
-                SetConnectToDatabase("[FacilityStaff].[usp_SetInactive]");
-
-                CmdSql.Parameters.Add("@FacilityStaffId", SqlDbType.Int).Value = facilityStaffId;
-
-                SetErrMsgParameter();
-
-                SendNonQuery();
-            }
-            catch (Exception ex)
-            {
-                ReturnValues.ErrMsg = ex.Message;
-            }
-            return ReturnValues.ErrMsg;
         }
     }
 }

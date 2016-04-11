@@ -1,10 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using CommonDataSave.DisplayReorder;
+using CommonDataReorder;
 using CommonDataSave.Facility;
 using CommonDataSave.People;
 using CommonDataSave.Places;
 using CommonDataSave.SiteConfiguration;
+using ManagementDelete.Facility;
+using ManagementDelete.Person;
+using ManagementDelete.Place;
+using ManagementReorder;
 using ManagementSave.Facility;
 using ManagementSave.Person;
 using ManagementSave.Place;
@@ -81,7 +85,7 @@ namespace ClaudeBootstrap.Controllers.Places
         [HttpPost]
         public void DisplayOrder(List<DisplayReorder> list)
         {
-            using (FacilitySaveManager mgr = new FacilitySaveManager())
+            using (FacilityReorderManager mgr = new FacilityReorderManager())
             {
                 mgr.SaveDisplayOrder(list);
             }
@@ -91,7 +95,7 @@ namespace ClaudeBootstrap.Controllers.Places
         [HttpDelete]
         public JsonResult Delete(int id)
         {
-            using (FacilitySaveManager mgr = new FacilitySaveManager())
+            using (PlaceDeleteManager mgr = new PlaceDeleteManager())
             {
                 return Json(mgr.DeleteFacility(id));
             }
@@ -100,7 +104,7 @@ namespace ClaudeBootstrap.Controllers.Places
         [HttpPost]
         public JsonResult DeleteContact(int id)
         {
-            using (PlaceContactDeleteManager mgr = new PlaceContactDeleteManager())
+            using (PersonDeleteManager mgr = new PersonDeleteManager())
             {
                 return Json(mgr.DeleteStaffMember(id));
             }
@@ -109,7 +113,7 @@ namespace ClaudeBootstrap.Controllers.Places
         [HttpPost]
         public JsonResult DeleteResource(int id)
         {
-            using (FacilityResourceSaveManager mgr = new FacilityResourceSaveManager())
+            using (FacilityResourceDeleteManager mgr = new FacilityResourceDeleteManager())
             {
                 return Json(mgr.DeleteRecord(id));
             }

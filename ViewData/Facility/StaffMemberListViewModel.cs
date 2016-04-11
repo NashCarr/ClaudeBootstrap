@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using CommonDataRetrieval.Lookup;
+using CommonDataLookup;
 using CommonDataRetrieval.Places;
 using ManagementLookup;
 using ManagementRetrieval.People;

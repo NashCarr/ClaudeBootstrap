@@ -1,8 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using CommonDataSave.DisplayReorder;
+using CommonDataReorder;
 using CommonDataSave.People;
 using CommonDataSave.Places;
+using ManagementDelete.Person;
+using ManagementDelete.Place;
+using ManagementReorder;
 using ManagementSave.Person;
 using ManagementSave.Place;
 using ViewData.Person;
@@ -61,7 +64,7 @@ namespace ClaudeBootstrap.Controllers.Places
         [HttpPost]
         public void DisplayOrder(List<DisplayReorder> list)
         {
-            using (OrganizationSaveManager mgr = new OrganizationSaveManager())
+            using (OrganizationReorderManager mgr = new OrganizationReorderManager())
             {
                 mgr.SaveDisplayOrder(list);
             }
@@ -71,7 +74,7 @@ namespace ClaudeBootstrap.Controllers.Places
         [HttpDelete]
         public JsonResult Delete(int id)
         {
-            using (OrganizationSaveManager mgr = new OrganizationSaveManager())
+            using (PlaceDeleteManager mgr = new PlaceDeleteManager())
             {
                 return Json(mgr.DeleteOrganization(id));
             }
@@ -80,7 +83,7 @@ namespace ClaudeBootstrap.Controllers.Places
         [HttpPost]
         public JsonResult DeleteContact(int id)
         {
-            using (PlaceContactDeleteManager mgr = new PlaceContactDeleteManager())
+            using (PersonDeleteManager mgr = new PersonDeleteManager())
             {
                 return Json(mgr.DeleteOrganizationContact(id));
             }

@@ -1,9 +1,6 @@
 using System;
-using System.Collections.Generic;
+using CommonDataReturn;
 using CommonDataSave.Assessor;
-using CommonDataSave.DisplayReorder;
-using CommonDataSave.Return;
-using DataLayerReorder;
 using DataLayerSave.Assessor;
 
 namespace ManagementSave.Assessor
@@ -25,22 +22,6 @@ namespace ManagementSave.Assessor
             using (DbTrainedPanelSave db = new DbTrainedPanelSave())
             {
                 return db.AddUpdateRecord(data);
-            }
-        }
-
-        public void SaveDisplayReorder(List<DisplayReorder> data)
-        {
-            using (DbReorderSave db = new DbReorderSave())
-            {
-                db.TrainedPanelReorderSave(data);
-            }
-        }
-
-        public ReturnBase DeleteRecord(int recordId)
-        {
-            using (DbTrainedPanelSave db = new DbTrainedPanelSave())
-            {
-                return db.SetInactive(recordId);
             }
         }
     }

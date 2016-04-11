@@ -1,34 +1,12 @@
 ﻿using System;
 using System.Data;
+using CommonDataReturn;
 using CommonDataSave.Administration;
-using CommonDataSave.Return;
-using DataLayerCommonSave;
 
 namespace DataLayerSave.Administration
 {
     public class DbTestTypeSave : DbSaveBase
     {
-        public ReturnBase SetInactive(int id)
-        {
-            ReturnValues.Id = id;
-            try
-            {
-                SetConnectToDatabase("[TestType].[usp_SetInactive]");
-
-                CmdSql.Parameters.Add("@TestTypeId", SqlDbType.Int).Value = ReturnValues.Id;
-
-                SetErrMsgParameter();
-
-                SendNonQuery();
-            }
-            catch (Exception ex)
-            {
-                ReturnValues.ErrMsg = ex.Message;
-            }
-
-            return ReturnValues;
-        }
-
         public ReturnBase AddUpdateRecord(TestTypeSave data)
         {
             ReturnValues.Id = data.Id;

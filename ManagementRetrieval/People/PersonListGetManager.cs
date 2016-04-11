@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 using CommonData.Enums;
 using CommonDataRetrieval.People;
-using DataLayerRetrieval.Lookup;
+using DataLayerLookup.Lookup;
 using DataLayerRetrieval.People;
 
 namespace ManagementRetrieval.People
@@ -28,12 +28,12 @@ namespace ManagementRetrieval.People
             }
         }
 
-        public List<SelectListItem> GetFacilitiesLookup()
-        {
-            using (DbPlacesLookup db = new DbPlacesLookup())
-            {
-                return db.GetFacilityLookup().LookupList;
-            }
-        }
+        //public List<SelectListItem> GetFacilitiesLookup()
+        //{
+        //    using (DbPlacesLookup db = new DbPlacesLookup())
+        //    {
+        //        return db.GetFacilityLookup().LookupList;
+        //    }
+        //}
     }
 }
