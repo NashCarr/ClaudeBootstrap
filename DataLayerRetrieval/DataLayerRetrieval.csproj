@@ -46,7 +46,7 @@
     <Compile Include="Administration\DbHearAboutUsGet.cs" />
     <Compile Include="Administration\DbProductGroupGet.cs" />
     <Compile Include="Administration\DbProgramOptionGet.cs" />
-    <Compile Include="Administration\DbStudyDesignGet.cs" />
+    <Compile Include="Administration\DbTestTypeGet.cs" />
     <Compile Include="Assessor\DbTrainedPanelAssessorListGet.cs" />
     <Compile Include="Assessor\DbTrainedPanelGet.cs" />
     <Compile Include="Customer\DbCustomerBrandGet.cs" />

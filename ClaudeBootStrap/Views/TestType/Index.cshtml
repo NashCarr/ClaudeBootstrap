@@ -1,5 +1,5 @@
 ﻿@using System.Web.Script.Serialization
-@model ViewData.Administration.StudyDesignViewModel
+@model ViewData.Administration.TestTypeViewModel
 
 @{
     ViewBag.Title = "Study Design Management";
@@ -18,7 +18,7 @@
             @{ Html.RenderPartial("Message"); }
         </div>
         <div data-bind="visible: IsAddEditAreaVisible">
-            @{ Html.RenderPartial("AddEditStudyDesign"); }
+            @{ Html.RenderPartial("AddEditTestType"); }
         </div>
         <div data-bind="visible: IsListAreaVisible">
             <!--ko if: DragDropComplete-->
@@ -34,9 +34,9 @@
     <script src="~/Scripts/jquery-ui-1.11.4.min.js"></script>
     <script src="~/Scripts/knockout-3.4.0.js"></script>
     <script src="~/Scripts/knockout.mapping-latest.js"></script>
-    <script src="../../Scripts/Administration/vmStudyDesign.js"></script>
+    <script src="../../Scripts/Administration/vmTestType.js"></script>
     <script>
-        var rawData = new StudyDesignViewModel(@Html.Raw(data));
+        var rawData = new TestTypeViewModel(@Html.Raw(data));
         ko.applyBindings(rawData);
     </script>
 }

@@ -1,7 +1,7 @@
 ﻿
-StudyDesignViewModel = function(data) {
+TestTypeViewModel = function(data) {
     var self = this;
-    var baseUrl = "/StudyDesign/";
+    var baseUrl = "/TestType/";
 
     //sorting
     self.sorttype = 1;
@@ -267,7 +267,7 @@ StudyDesignViewModel = function(data) {
         self.searchvalue("");
     };
 
-    self.StudyDesign = {
+    self.TestType = {
         RadiusSortValue: function (value) {
             if (value < 10) {
                 return "0000" + value;
@@ -293,7 +293,7 @@ StudyDesignViewModel = function(data) {
                 DisplayOrder: ko.observable(self.displayorder()),
                 IsSystemSort: ko.observable(self.issystem().toString()),
                 StringLastUpdate: ko.observable(self.stringlastupdate()),
-                RadiusSort: ko.observable(self.StudyDesign.RadiusSortValue(self.radius()))
+                RadiusSort: ko.observable(self.TestType.RadiusSortValue(self.radius()))
             };
         },
         BuildSave: function () {
@@ -317,7 +317,7 @@ StudyDesignViewModel = function(data) {
     self.ProcessSave = {
         ProcessAdd: function () {
             self.ReorderList.ReorderDragDrop();
-            self.itemlist.push(self.StudyDesign.Build());
+            self.itemlist.push(self.TestType.Build());
         },
         ItemExists: function () {
             var match = ko.utils.arrayFirst(self.itemlist(), function (item) {
@@ -332,7 +332,7 @@ StudyDesignViewModel = function(data) {
             return match;
         },
         ProcessEdit: function () {
-            self.itemlist.replace(self.ProcessSave.ItemExists(), self.StudyDesign.Build());
+            self.itemlist.replace(self.ProcessSave.ItemExists(), self.TestType.Build());
         },
         ValidateEdit: function () {
             if (self.editid() === self.recordid()) {
@@ -359,7 +359,7 @@ StudyDesignViewModel = function(data) {
         $.ajax({
             url: baseUrl + "Save",
             type: "post",
-            data: self.StudyDesign.BuildSave()
+            data: self.TestType.BuildSave()
         }).then(function(returndata) {
 
             self.handlereturndata(returndata);

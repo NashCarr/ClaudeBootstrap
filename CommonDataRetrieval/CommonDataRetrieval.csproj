@@ -40,7 +40,7 @@
     <Compile Include="Administration\HearAboutUs.cs" />
     <Compile Include="Administration\IsSystemBase.cs" />
     <Compile Include="Administration\ProductGroup.cs" />
-    <Compile Include="Administration\StudyDesign.cs" />
+    <Compile Include="Administration\TestType.cs" />
     <Compile Include="Administration\UserGroup.cs" />
     <Compile Include="Assessor\TrainedPanel.cs" />
     <Compile Include="Assessor\TrainedPanelAssessor.cs" />

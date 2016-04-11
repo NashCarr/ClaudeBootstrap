@@ -106,7 +106,7 @@ namespace CommonData.Enums
             Hidden
         }
 
-        public enum StudyClass : byte
+        public enum Membership : byte
         {
             None,
             [Description("Open (No Limits)")] OpenNoLimits,
@@ -114,7 +114,7 @@ namespace CommonData.Enums
             [Description("Open (Password Restriction)")] OpenPassword,
             [Description("Open (Cookie/Password Restriction)")] OpenCookiePassword,
             List,
-            Panel,
+            [Description("Database Member")] Database,
             [Description("List Panel Hybrid")] ListPanel
         }
 

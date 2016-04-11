@@ -6,16 +6,16 @@ using DataLayerCommonSave;
 
 namespace DataLayerSave.Administration
 {
-    public class DbStudyDesignSave : DbSaveBase
+    public class DbTestTypeSave : DbSaveBase
     {
         public ReturnBase SetInactive(int id)
         {
             ReturnValues.Id = id;
             try
             {
-                SetConnectToDatabase("[StudyDesign].[usp_SetInactive]");
+                SetConnectToDatabase("[TestType].[usp_SetInactive]");
 
-                CmdSql.Parameters.Add("@StudyDesignId", SqlDbType.Int).Value = ReturnValues.Id;
+                CmdSql.Parameters.Add("@TestTypeId", SqlDbType.Int).Value = ReturnValues.Id;
 
                 SetErrMsgParameter();
 
@@ -29,7 +29,7 @@ namespace DataLayerSave.Administration
             return ReturnValues;
         }
 
-        public ReturnBase AddUpdateRecord(StudyDesignSave data)
+        public ReturnBase AddUpdateRecord(TestTypeSave data)
         {
             ReturnValues.Id = data.Id;
 
@@ -39,13 +39,13 @@ namespace DataLayerSave.Administration
             return ReturnValues;
         }
 
-        private ReturnBase SaveRecord(StudyDesignSave data)
+        private ReturnBase SaveRecord(TestTypeSave data)
         {
             try
             {
-                IdParameter = "@StudyDesignId";
+                IdParameter = "@TestTypeId";
 
-                SetConnectToDatabase("[StudyDesign].[usp_Upsert]");
+                SetConnectToDatabase("[TestType].[usp_Upsert]");
 
                 SetIdInputOutputParameter();
 

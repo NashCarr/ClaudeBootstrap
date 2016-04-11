@@ -38,7 +38,7 @@
     <Compile Include="Administration\GiftCardSaveManager.cs" />
     <Compile Include="Administration\HearAboutUsSaveManager.cs" />
     <Compile Include="Administration\ProductGroupSaveManager.cs" />
-    <Compile Include="Administration\StudyDesignSaveManager.cs" />
+    <Compile Include="Administration\TestTypeSaveManager.cs" />
     <Compile Include="Assessor\TrainedPanelSaveManager.cs" />
     <Compile Include="Customer\CustomerBrandSaveManager.cs" />
     <Compile Include="Customer\CustomerSaveManager.cs" />

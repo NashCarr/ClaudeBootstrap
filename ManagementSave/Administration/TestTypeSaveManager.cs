@@ -8,7 +8,7 @@ using DataLayerSave.Administration;
 
 namespace ManagementSave.Administration
 {
-    public class StudyDesignSaveManager : IDisposable
+    public class TestTypeSaveManager : IDisposable
     {
         public void Dispose()
         {
@@ -20,9 +20,9 @@ namespace ManagementSave.Administration
         {
         }
 
-        public ReturnBase SaveRecord(StudyDesignSave data)
+        public ReturnBase SaveRecord(TestTypeSave data)
         {
-            using (DbStudyDesignSave db = new DbStudyDesignSave())
+            using (DbTestTypeSave db = new DbTestTypeSave())
             {
                 return db.AddUpdateRecord(data);
             }
@@ -32,13 +32,13 @@ namespace ManagementSave.Administration
         {
             using (DbReorderSave db = new DbReorderSave())
             {
-                db.StudyDesignReorderSave(data);
+                db.TestTypeReorderSave(data);
             }
         }
 
         public ReturnBase DeleteRecord(int id)
         {
-            using (DbStudyDesignSave db = new DbStudyDesignSave())
+            using (DbTestTypeSave db = new DbTestTypeSave())
             {
                 return db.SetInactive(id);
             }

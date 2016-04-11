@@ -1,8 +1,8 @@
 ﻿namespace CommonDataSave.Administration
 {
-    public class StudyDesignSave : SaveBase
+    public class TestTypeSave : SaveBase
     {
-        public StudyDesignSave()
+        public TestTypeSave()
         {
             Radius = 0;
         }

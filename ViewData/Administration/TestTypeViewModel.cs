@@ -4,16 +4,16 @@ using DataLayerRetrieval.Administration;
 
 namespace ViewData.Administration
 {
-    public class StudyDesignViewModel
+    public class TestTypeViewModel
     {
-        public StudyDesignViewModel()
+        public TestTypeViewModel()
         {
-            using (DbStudyDesignGet mgr = new DbStudyDesignGet())
+            using (DbTestTypeGet mgr = new DbTestTypeGet())
             {
                 ListEntity = mgr.GetViewModel();
             }
         }
 
-        public List<StudyDesign> ListEntity { get; set; }
+        public List<TestType> ListEntity { get; set; }
     }
 }

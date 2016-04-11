@@ -5,18 +5,18 @@ using CommonDataRetrieval.Administration;
 
 namespace DataLayerRetrieval.Administration
 {
-    public class DbStudyDesignGet : DbGetBase
+    public class DbTestTypeGet : DbGetBase
     {
-        public List<StudyDesign> GetViewModel()
+        public List<TestType> GetViewModel()
         {
-            SetConnectToDatabase("[StudyDesign].[usp_GetActive]");
+            SetConnectToDatabase("[TestType].[usp_GetActive]");
 
             return LoadRecords();
         }
 
-        private List<StudyDesign> LoadRecords()
+        private List<TestType> LoadRecords()
         {
-            List<StudyDesign> data = new List<StudyDesign>();
+            List<TestType> data = new List<TestType>();
             try
             {
                 using (ConnSql)
@@ -36,17 +36,17 @@ namespace DataLayerRetrieval.Administration
                             int ordIsSystem = dr.GetOrdinal("IsSystem");
                             int ordLastUpdate = dr.GetOrdinal("LastUpdate");
                             int ordDisplayOrder = dr.GetOrdinal("DisplayOrder");
-                            int ordStudyDesignId = dr.GetOrdinal("StudyDesignId");
+                            int ordTestTypeId = dr.GetOrdinal("TestTypeId");
 
                             while (dr.Read())
                             {
-                                StudyDesign item = new StudyDesign
+                                TestType item = new TestType
                                 {
                                     Name = Convert.ToString(dr[ordName]),
                                     Radius = Convert.ToInt32(dr[ordRadius]),
                                     IsSystem = Convert.ToBoolean(dr[ordIsSystem]),
                                     IsSystemSort = Convert.ToString(dr[ordIsSystem]),
-                                    RecordId = Convert.ToInt32(dr[ordStudyDesignId]),
+                                    RecordId = Convert.ToInt32(dr[ordTestTypeId]),
                                     DisplayOrder = Convert.ToInt16(dr[ordDisplayOrder]),
                                     StringLastUpdate =
                                         Convert.ToDateTime(dr[ordLastUpdate]).ToString("MM/dd/yyyy hh:mm:ss tt")

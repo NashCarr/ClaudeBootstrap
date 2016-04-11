@@ -1,8 +1,8 @@
 ﻿namespace CommonDataRetrieval.Administration
 {
-    public class StudyDesign : IsSystemBase
+    public class TestType : IsSystemBase
     {
-        public StudyDesign()
+        public TestType()
         {
             Radius = 0;
             RadiusSort = string.Empty;

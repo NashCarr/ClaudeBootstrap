@@ -34,7 +34,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Administration\StudyDesignSave.cs" />
+    <Compile Include="Administration\TestTypeSave.cs" />
     <Compile Include="Assessor\TrainedPanelSave.cs" />
     <Compile Include="Customer\CustomerBrandSave.cs" />
     <Compile Include="DisplayReorder\DisplayReorder.cs" />

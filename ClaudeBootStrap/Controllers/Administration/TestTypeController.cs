@@ -6,20 +6,20 @@ using ViewData.Administration;
 
 namespace ClaudeBootstrap.Controllers.Administration
 {
-    [RoutePrefix("StudyDesign")]
-    public class StudyDesignController : Controller
+    [RoutePrefix("TestType")]
+    public class TestTypeController : Controller
     {
         [Route("")]
         [HttpGet]
         public ActionResult Index()
         {
-            return View(new StudyDesignViewModel());
+            return View(new TestTypeViewModel());
         }
 
         [HttpPost]
-        public JsonResult Save(StudyDesignSave data)
+        public JsonResult Save(TestTypeSave data)
         {
-            using (ManagementSave.Administration.StudyDesignSaveManager mgr = new ManagementSave.Administration.StudyDesignSaveManager())
+            using (ManagementSave.Administration.TestTypeSaveManager mgr = new ManagementSave.Administration.TestTypeSaveManager())
             {
                 return Json(mgr.SaveRecord(data));
             }
@@ -28,7 +28,7 @@ namespace ClaudeBootstrap.Controllers.Administration
         [HttpPost]
         public void DisplayOrder(List<DisplayReorder> list)
         {
-            using (ManagementSave.Administration.StudyDesignSaveManager mgr = new ManagementSave.Administration.StudyDesignSaveManager())
+            using (ManagementSave.Administration.TestTypeSaveManager mgr = new ManagementSave.Administration.TestTypeSaveManager())
             {
                 mgr.SaveDisplayReorder(list);
             }
@@ -38,7 +38,7 @@ namespace ClaudeBootstrap.Controllers.Administration
         [HttpDelete]
         public JsonResult Delete(int id)
         {
-            using (ManagementSave.Administration.StudyDesignSaveManager mgr = new ManagementSave.Administration.StudyDesignSaveManager())
+            using (ManagementSave.Administration.TestTypeSaveManager mgr = new ManagementSave.Administration.TestTypeSaveManager())
             {
                 return Json(mgr.DeleteRecord(id));
             }

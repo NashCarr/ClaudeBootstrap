@@ -27,9 +27,9 @@ namespace DataLayerReorder
             DisplayReorder("[HearAboutUs].[usp_DisplayReorder]", data);
         }
 
-        public void StudyDesignReorderSave(List<DisplayReorder> data)
+        public void TestTypeReorderSave(List<DisplayReorder> data)
         {
-            DisplayReorder("[StudyDesign].[usp_DisplayReorder]", data);
+            DisplayReorder("[TestType].[usp_DisplayReorder]", data);
         }
 
         public void ProductGroupReorderSave(List<DisplayReorder> data)

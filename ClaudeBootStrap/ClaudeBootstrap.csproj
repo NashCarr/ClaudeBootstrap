@@ -149,7 +149,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\Administration\BudgetCategoryController.cs" />
     <Compile Include="Controllers\Administration\ProductGroupController.cs" />
-    <Compile Include="Controllers\Administration\StudyDesignController.cs" />
+    <Compile Include="Controllers\Administration\TestTypeController.cs" />
     <Compile Include="Controllers\Assessor\TrainedPanelController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\People\StaffMemberController.cs" />
@@ -217,7 +217,7 @@
     <Content Include="Scripts\Administration\vmGiftCard.js" />
     <Content Include="Scripts\Administration\vmHearAboutUs.js" />
     <Content Include="Scripts\Administration\vmProductGroup.js" />
-    <Content Include="Scripts\Administration\vmStudyDesign.js" />
+    <Content Include="Scripts\Administration\vmTestType.js" />
     <Content Include="Scripts\app.js" />
     <Content Include="Content\bourbon\_bourbon.scss" />
     <Content Include="Content\bourbon\_bourbon-deprecated-upcoming.scss" />
@@ -457,9 +457,9 @@
     <Content Include="Views\Shared\Person\PersonPrimary.cshtml" />
     <Content Include="Views\BudgetCategory\Index.cshtml" />
     <Content Include="Views\BudgetCategory\List.cshtml" />
-    <Content Include="Views\StudyDesign\Index.cshtml" />
-    <Content Include="Views\StudyDesign\List.cshtml" />
-    <Content Include="Views\StudyDesign\AddEditStudyDesign.cshtml" />
+    <Content Include="Views\TestType\Index.cshtml" />
+    <Content Include="Views\TestType\List.cshtml" />
+    <Content Include="Views\TestType\AddEditTestType.cshtml" />
     <Content Include="Views\Customer\CustomerBrandList.cshtml" />
     <Content Include="Views\Customer\CustomerDetail.cshtml" />
     <Content Include="Views\Customer\CustomerAddEdit.cshtml" />

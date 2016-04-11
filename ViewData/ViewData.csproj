@@ -42,7 +42,7 @@
     <Compile Include="Administration\GiftCardViewModel.cs" />
     <Compile Include="Administration\HearAboutUsViewModel.cs" />
     <Compile Include="Administration\ProductGroupViewModel.cs" />
-    <Compile Include="Administration\StudyDesignViewModel.cs" />
+    <Compile Include="Administration\TestTypeViewModel.cs" />
     <Compile Include="Assessor\TrainedPanelViewModel.cs" />
     <Compile Include="Facility\StaffMemberViewModel.cs" />
     <Compile Include="Facility\FacilityViewModel.cs" />

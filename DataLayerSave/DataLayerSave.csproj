@@ -42,7 +42,7 @@
     <Compile Include="Administration\DbGiftCardSave.cs" />
     <Compile Include="Administration\DbHearAboutUsSave.cs" />
     <Compile Include="Administration\DbProductGroupSave.cs" />
-    <Compile Include="Administration\DbStudyDesignSave.cs" />
+    <Compile Include="Administration\DbTestTypeSave.cs" />
     <Compile Include="Assessor\DbTrainedPanelSave.cs" />
     <Compile Include="Customer\DbCustomerBrandSave.cs" />
     <Compile Include="Facility\DbFacilityResourceSave.cs" />
