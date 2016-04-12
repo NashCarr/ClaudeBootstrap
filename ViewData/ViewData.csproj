@@ -57,6 +57,8 @@
     <Compile Include="Place\OrganizationViewModel.cs" />
     <Compile Include="Place\CustomerViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Research\StudyDashboardViewModel.cs" />
+    <Compile Include="Research\ResearchDashboardViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CommonDataLookup\CommonDataLookup.csproj">

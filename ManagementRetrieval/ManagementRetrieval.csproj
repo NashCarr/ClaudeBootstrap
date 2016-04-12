@@ -49,6 +49,8 @@
     <Compile Include="Places\PlaceListGetManager.cs" />
     <Compile Include="Places\SiteConfigurationGetManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Research\StudyDashboardGetManager.cs" />
+    <Compile Include="Research\ResearchDashboardGetManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CommonDataRetrieval\CommonDataRetrieval.csproj">
