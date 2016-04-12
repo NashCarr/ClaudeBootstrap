@@ -1,92 +1,26 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using CommonDataLookup;
-using static CommonData.Enums.PlaceEnums;
 
 namespace DataLayerLookup.Lookup
 {
-    public class DbPlacesLookup : IDisposable
+    public class DbPlacesLookup : DbLookup
     {
-        public void Dispose()
+        public List<SelectListItem> GetFacilityLookup()
         {
-            Dispose(true);
-            GC.SuppressFinalize(this);
+            SetConnectToDatabase("[Facility].[usp_Lookup]");
+            return LoadLookup();
         }
 
-        public BaseLookup GetFacilityLookup()
+        public List<SelectListItem> GetCustomerLookup()
         {
-            return GetLookUpList(PlaceType.Facility);
+            SetConnectToDatabase("[Customer].[usp_Lookup]");
+            return LoadLookup();
         }
 
-        public BaseLookup GetCustomerLookup()
+        public List<SelectListItem> GetOrganizationLookup()
         {
-            return GetLookUpList(PlaceType.Customer);
-        }
-
-        //private static List<Place> GetOrganizations()
-        //{
-        //    using (DbPlacesGetActive db = new DbPlacesGetActive())
-        //    {
-        //        return db.GetActiveOrganizations();
-        //    }
-        //}
-
-        //private static List<Place> GetCustomers()
-        //{
-        //    using (DbPlacesGetActive db = new DbPlacesGetActive())
-        //    {
-        //        return db.GetActiveCustomers();
-        //    }
-        //}
-
-        //private static List<PlaceBase> GetFacilities()
-        //{
-        //    using (DbPlacesGetActive db = new DbPlacesGetActive())
-        //    {
-        //        return db.GetActiveFacilities();
-        //    }
-        //}
-
-        private static BaseLookup GetLookUpList(PlaceType placeType)
-        {
-            BaseLookup lu = new BaseLookup();
-            lu.LookupList.Add(new SelectListItem {Value = "0", Text = "None"});
-
-            //List<Place> data;
-
-            switch (placeType)
-            {
-                //case PlaceType.Facility:
-                //    data = GetFacilities();
-                //    break;
-                //case PlaceType.Organization:
-                //    data = GetOrganizations();
-                //    break;
-                //case PlaceType.Customer:
-                //    data = GetCustomers();
-                //    break;
-                case PlaceType.None:
-                    return lu;
-                default:
-                    return lu;
-            }
-
-            //if (data.Count == 0)
-            //{
-            //    return lu;
-            //}
-
-            //foreach (Place t in data)
-            //{
-            //    lu.LookupList.Add(new SelectListItem {Value = t.PlaceId.ToString(), Text = t.Name});
-            //}
-            //data.Clear();
-
-            //return lu;
-        }
-
-        protected virtual void Dispose(bool iAmBeingCalledFromDisposeAndNotFinalize)
-        {
+            SetConnectToDatabase("[Organization].[usp_Lookup]");
+            return LoadLookup();
         }
     }
 }

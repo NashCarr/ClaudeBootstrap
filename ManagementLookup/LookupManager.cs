@@ -71,7 +71,7 @@ namespace ManagementLookup
         {
             using (DbPlacesLookup db = new DbPlacesLookup())
             {
-                return db.GetFacilityLookup().LookupList;
+                return db.GetFacilityLookup();
             }
         }
     }

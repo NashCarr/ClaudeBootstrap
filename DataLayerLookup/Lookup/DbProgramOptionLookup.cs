@@ -1,48 +1,61 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Web.Mvc;
+using System.Data;
+using System.Data.SqlClient;
 using CommonDataLookup;
-using DataLayerCommon.Administration;
-using DataLayerRetrieval.Administration;
 
 namespace DataLayerLookup.Lookup
 {
-    public class DbProgramOptionLookup : IDisposable
+    public class DbProgramOptionLookup : DbGatewayLookupGet
     {
-        public void Dispose()
+        public List<ProgramOptionLookup> GetLookUpList(string msgPrompt)
         {
-            Dispose(true);
-            GC.SuppressFinalize(this);
+            SetConnectToDatabase("[SelectList].[usp_ProgramOption_Lookup]");
+            CmdSql.Parameters.Add("@ProgramOptionId", SqlDbType.Int).Value = 0;
+            return LoadLookup();
         }
 
-        public BaseLookup GetLookUpList(string msgPrompt)
+        protected internal List<ProgramOptionLookup> LoadLookup()
         {
-            BaseLookup lu = new BaseLookup();
-            lu.LookupList.Add(new SelectListItem {Value = "0", Text = msgPrompt});
-
-            List<ProgramOption> data;
-
-            using (DbProgramOptionGet db = new DbProgramOptionGet())
+            List<ProgramOptionLookup> data = new List<ProgramOptionLookup>();
+            try
             {
-                data = db.GetActiveRecords();
-            }
+                using (ConnSql)
+                {
+                    ConnSql.Open();
+                    using (CmdSql)
+                    {
+                        using (SqlDataReader dr = CmdSql.ExecuteReader())
+                        {
+                            if (!dr.HasRows)
+                            {
+                                return data;
+                            }
 
-            if (data.Count == 0)
+                            int ordText = dr.GetOrdinal("Text");
+                            int ordValue = dr.GetOrdinal("Value");
+                            int ordDefaultPermision = dr.GetOrdinal("DefaultPermision");
+
+                            while (dr.Read())
+                            {
+                                ProgramOptionLookup item = new ProgramOptionLookup
+                                {
+                                    Text = Convert.ToString(dr[ordText]),
+                                    Value = Convert.ToString(dr[ordValue]),
+                                    DefaultPermission = Convert.ToInt16(dr[ordDefaultPermision])
+                                };
+                                data.Add(item);
+                            }
+                        }
+                    }
+                    ConnSql.Close();
+                }
+            }
+            catch (Exception ex)
             {
-                return lu;
+                DocumentErrorMessage(ex.ToString());
             }
-
-            foreach (ProgramOption t in data)
-            {
-                lu.LookupList.Add(new SelectListItem {Value = t.RecordId.ToString(), Text = t.Name});
-            }
-            data.Clear();
-
-            return lu;
-        }
-
-        protected virtual void Dispose(bool iAmBeingCalledFromDisposeAndNotFinalize)
-        {
+            return data;
         }
     }
 }

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using CommonData.Enums;
 using DataLayerCommon.Addresses;
 using DataLayerCommon.Phones;
 using DataLayerCommon.Places;
+using static CommonData.Enums.AddressEnums;
+using static CommonData.Enums.PhoneEnums;
+using static CommonData.Enums.PlaceEnums;
 
 namespace DataLayerRetrieval.Places
 {
@@ -16,7 +18,7 @@ namespace DataLayerRetrieval.Places
             GC.SuppressFinalize(this);
         }
 
-        protected internal PlaceData GetNew(PlaceEnums.PlaceType placeType)
+        protected internal PlaceData GetNew(PlaceType placeType)
         {
             PlaceData data = new PlaceData();
             try
@@ -30,7 +32,7 @@ namespace DataLayerRetrieval.Places
 
                 foreach (
                     AddressAssociation aa in
-                        from AddressEnums.AddressType val in Enum.GetValues(typeof (AddressEnums.AddressType))
+                        from AddressType val in Enum.GetValues(typeof (AddressType))
                         where (short) val != 0
                         select new AddressAssociation {AddressType = val})
                 {
@@ -41,7 +43,7 @@ namespace DataLayerRetrieval.Places
 
                 foreach (
                     PhoneAssociation pa in
-                        from PhoneEnums.PhoneType val in Enum.GetValues(typeof (PhoneEnums.PhoneType))
+                        from PhoneType val in Enum.GetValues(typeof (PhoneType))
                         where (short) val != 0
                         select new PhoneAssociation {PhoneType = val})
                 {

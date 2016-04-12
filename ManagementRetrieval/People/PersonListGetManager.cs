@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.Web.Mvc;
-using CommonData.Enums;
 using CommonDataRetrieval.People;
-using DataLayerLookup.Lookup;
 using DataLayerRetrieval.People;
+using static CommonData.Enums.PersonEnums;
 
 namespace ManagementRetrieval.People
 {
@@ -20,7 +18,7 @@ namespace ManagementRetrieval.People
         {
         }
 
-        public List<PersonList> GetList(PersonEnums.PersonType pt)
+        public List<PersonList> GetList(PersonType pt)
         {
             using (DbPeopleGetActive db = new DbPeopleGetActive())
             {
@@ -30,6 +28,7 @@ namespace ManagementRetrieval.People
 
         //public List<SelectListItem> GetFacilitiesLookup()
         //{
+
         //    using (DbPlacesLookup db = new DbPlacesLookup())
         //    {
         //        return db.GetFacilityLookup().LookupList;

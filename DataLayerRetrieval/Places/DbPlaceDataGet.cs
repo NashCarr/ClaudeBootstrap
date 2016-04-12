@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using CommonData.Enums;
 using DataLayerCommon.Addresses;
 using DataLayerCommon.People;
 using DataLayerCommon.Phones;
 using DataLayerCommon.Places;
+using static CommonData.Enums.AddressEnums;
+using static CommonData.Enums.CountryEnums;
+using static CommonData.Enums.PhoneEnums;
+using static CommonData.Enums.PlaceEnums;
+using static CommonData.Enums.TimeZoneEnums;
 
 namespace DataLayerRetrieval.Places
 {
@@ -14,20 +18,20 @@ namespace DataLayerRetrieval.Places
     {
         public PlaceData GetFacilityData(int placeId)
         {
-            return LoadRecords(placeId, PlaceEnums.PlaceType.Facility);
+            return LoadRecords(placeId, PlaceType.Facility);
         }
 
         public PlaceData GetCustomerData(int placeId)
         {
-            return LoadRecords(placeId, PlaceEnums.PlaceType.Customer);
+            return LoadRecords(placeId, PlaceType.Customer);
         }
 
         public PlaceData GetOrganizationData(int placeId)
         {
-            return LoadRecords(placeId, PlaceEnums.PlaceType.Organization);
+            return LoadRecords(placeId, PlaceType.Organization);
         }
 
-        private PlaceData LoadRecords(int placeId, PlaceEnums.PlaceType placeType)
+        private PlaceData LoadRecords(int placeId, PlaceType placeType)
         {
             PlaceData data = new PlaceData();
             try
@@ -75,8 +79,8 @@ namespace DataLayerRetrieval.Places
                                 data.Place.Department = Convert.ToString(dr[ordDepartment]);
 
                                 data.Place.DisplayOrder = Convert.ToByte(dr[ordDisplayOrder]);
-                                data.Place.Country = (CountryEnums.Country) Convert.ToInt16(dr[ordCountry]);
-                                data.Place.TimeZone = (TimeZoneEnums.ClaudeTimeZone) Convert.ToByte(dr[ordTimeZone]);
+                                data.Place.Country = (Country) Convert.ToInt16(dr[ordCountry]);
+                                data.Place.TimeZone = (ClaudeTimeZone) Convert.ToByte(dr[ordTimeZone]);
                             }
 
                             //Addresses
@@ -110,10 +114,10 @@ namespace DataLayerRetrieval.Places
                                     {
                                         AddressAssociationId = Convert.ToInt32(dr[ordAddressAssociationId]),
                                         AddressId = Convert.ToInt32(dr[ordAddressId]),
-                                        AddressType = (AddressEnums.AddressType) Convert.ToInt16(dr[ordAddressType]),
+                                        AddressType = (AddressType) Convert.ToInt16(dr[ordAddressType]),
                                         PostalCodeId = Convert.ToInt32(dr[ordPostalCodeId]),
                                         City = Convert.ToString(dr[ordCity]),
-                                        Country = (CountryEnums.Country) Convert.ToInt16(dr[ordCountry]),
+                                        Country = (Country) Convert.ToInt16(dr[ordCountry]),
                                         ZipCode = Convert.ToString(dr[ordZipCode]),
                                         Address1 = Convert.ToString(dr[ordAddress1]),
                                         Address2 = Convert.ToString(dr[ordAddress2]),
@@ -151,8 +155,8 @@ namespace DataLayerRetrieval.Places
                                     {
                                         PhoneId = Convert.ToInt32(dr[ordPhoneId]),
                                         PhoneNumber = Convert.ToInt64(dr[ordPhoneNumber]),
-                                        Country = (CountryEnums.Country) Convert.ToInt16(dr[ordCountry]),
-                                        PhoneType = (PhoneEnums.PhoneType) Convert.ToInt16(dr[ordPhoneType]),
+                                        Country = (Country) Convert.ToInt16(dr[ordCountry]),
+                                        PhoneType = (PhoneType) Convert.ToInt16(dr[ordPhoneType]),
                                         PhoneAssociationId = Convert.ToInt32(dr[ordPhoneAssociationId])
                                     };
                                     data.PhoneData.Phones.Add(item);
@@ -175,7 +179,7 @@ namespace DataLayerRetrieval.Places
                                     data.PhoneData.PhoneSettings.RecordId = Convert.ToInt32(dr[ordPhoneSettingId]);
                                     data.PhoneData.PhoneSettings.MobileCarrier = Convert.ToInt16(dr[ordMobileCarrierId]);
                                     data.PhoneData.PhoneSettings.PrimaryPhoneType =
-                                        (PhoneEnums.PhoneType) Convert.ToInt16(dr[ordPrimaryPhoneType]);
+                                        (PhoneType) Convert.ToInt16(dr[ordPrimaryPhoneType]);
                                 }
                             }
 

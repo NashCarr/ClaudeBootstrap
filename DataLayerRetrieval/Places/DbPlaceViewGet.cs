@@ -1,6 +1,6 @@
-﻿using CommonData.Enums;
-using CommonDataRetrieval.Places;
+﻿using CommonDataRetrieval.Places;
 using DataLayerCommon.Places;
+using static CommonData.Enums.PlaceEnums;
 
 namespace DataLayerRetrieval.Places
 {
@@ -17,7 +17,7 @@ namespace DataLayerRetrieval.Places
 
             using (DbPlaceDataStub a = new DbPlaceDataStub())
             {
-                _data = a.Prefill(PlaceEnums.PlaceType.Customer, _data);
+                _data = a.Prefill(PlaceType.Customer, _data);
             }
 
             return SetPlaceView();
@@ -32,7 +32,7 @@ namespace DataLayerRetrieval.Places
 
             using (DbPlaceDataStub a = new DbPlaceDataStub())
             {
-                _data = a.Prefill(PlaceEnums.PlaceType.Organization, _data);
+                _data = a.Prefill(PlaceType.Organization, _data);
             }
 
             return SetPlaceView();
@@ -47,7 +47,7 @@ namespace DataLayerRetrieval.Places
 
             using (DbPlaceDataStub a = new DbPlaceDataStub())
             {
-                _data = a.Prefill(PlaceEnums.PlaceType.Facility, _data);
+                _data = a.Prefill(PlaceType.Facility, _data);
             }
 
             return SetPlaceView();

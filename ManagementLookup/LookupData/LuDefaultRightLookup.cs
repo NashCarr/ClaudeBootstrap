@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using CommonData.Enums;
 using CommonData.Helpers;
+using static CommonData.Enums.AdministrationEnums;
 
 namespace ManagementLookup.LookupData
 {
@@ -9,10 +9,10 @@ namespace ManagementLookup.LookupData
     {
         public LuDefaultRightLookup()
         {
-            LookupList = new List<SelectListItem>(EnumHelpers.SelectListFor<AdministrationEnums.DefaultRight>());
+            LookupList = new List<SelectListItem>(EnumHelpers.SelectListFor<DefaultRight>());
             foreach (SelectListItem item in LookupList)
             {
-                item.Value = EnumHelpers.GetByteFromEnum<AdministrationEnums.DefaultRight>(item.Value).ToString();
+                item.Value = EnumHelpers.GetByteFromEnum<DefaultRight>(item.Value).ToString();
             }
         }
 

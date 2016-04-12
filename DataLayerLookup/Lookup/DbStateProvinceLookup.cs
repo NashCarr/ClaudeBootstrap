@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using System.Web.Mvc;
-using CommonData.Enums;
+using static CommonData.Enums.CountryEnums;
 
 namespace DataLayerLookup.Lookup
 {
@@ -10,7 +10,7 @@ namespace DataLayerLookup.Lookup
         public List<SelectListItem> GetLookup()
         {
             SetConnectToDatabase("[SelectList].[usp_StateProvince_NameLookup]");
-            CmdSql.Parameters.Add("@CountryId", SqlDbType.Int).Value = (int) CountryEnums.Country.None;
+            CmdSql.Parameters.Add("@CountryId", SqlDbType.Int).Value = (int) Country.None;
             return LoadLookup();
         }
     }

@@ -24,5 +24,5 @@ namespace ManagementSave.Facility
                 return db.AddUpdateRecord(entity);
             }
         }
-   }
+    }
 }

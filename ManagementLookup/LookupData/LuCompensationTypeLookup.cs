@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using CommonData.Enums;
 using CommonData.Helpers;
+using static CommonData.Enums.StudyEnums;
 
 namespace ManagementLookup.LookupData
 {
@@ -12,11 +12,11 @@ namespace ManagementLookup.LookupData
         public LuCompensationTypeLookup()
         {
             LookupList =
-                new List<SelectListItem>(EnumHelpers.SelectListFor<StudyEnums.CompensationType>()
-                    .Where(e => e.Value != StudyEnums.CompensationType.None.ToString()));
+                new List<SelectListItem>(EnumHelpers.SelectListFor<CompensationType>()
+                    .Where(e => e.Value != CompensationType.None.ToString()));
             foreach (SelectListItem item in LookupList)
             {
-                item.Value = EnumHelpers.GetByteFromEnum<StudyEnums.CompensationType>(item.Value).ToString();
+                item.Value = EnumHelpers.GetByteFromEnum<CompensationType>(item.Value).ToString();
             }
         }
 

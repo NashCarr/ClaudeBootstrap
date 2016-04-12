@@ -32,10 +32,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Administration\AdministrationGetManager.cs" />
@@ -62,10 +58,6 @@
     <ProjectReference Include="..\CommonData\CommonData.csproj">
       <Project>{FB0DEC60-3BA3-4BD7-A268-5A78AB280F3A}</Project>
       <Name>CommonData</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DataLayerLookup\DataLayerLookup.csproj">
-      <Project>{7DBA8333-F03E-479A-B4E0-2C6C06C97715}</Project>
-      <Name>DataLayerLookup</Name>
     </ProjectReference>
     <ProjectReference Include="..\DataLayerRetrieval\DataLayerRetrieval.csproj">
       <Project>{B5F991B7-C327-4DA7-A417-365D5C7B8DAB}</Project>

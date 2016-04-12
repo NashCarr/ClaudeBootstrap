@@ -1,23 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using CommonDataLookup;
-using static CommonData.Enums.CountryEnums;
+using System.Web.Mvc;
 
 namespace DataLayerLookup.Lookup
 {
-    public class DbPostalCodeLookup : DbLookupGet
+    public abstract class DbLookup : DbLookupGet
     {
-        public List<PostalCodeLookup> GetLookup()
+        protected internal List<SelectListItem> LoadLookup()
         {
-            SetConnectToDatabase("[Address].[usp_PostalCode_Lookup]");
-
-            return LoadRecords();
-        }
-
-        private List<PostalCodeLookup> LoadRecords()
-        {
-            List<PostalCodeLookup> data = new List<PostalCodeLookup>();
+            List<SelectListItem> data = new List<SelectListItem>();
             try
             {
                 using (ConnSql)
@@ -32,21 +24,15 @@ namespace DataLayerLookup.Lookup
                                 return data;
                             }
 
-                            int ordCity = dr.GetOrdinal("City");
                             int ordText = dr.GetOrdinal("Text");
                             int ordValue = dr.GetOrdinal("Value");
-                            int ordCountry = dr.GetOrdinal("Country");
-                            int ordStateProvinceId = dr.GetOrdinal("StateProvinceId");
 
                             while (dr.Read())
                             {
-                                PostalCodeLookup item = new PostalCodeLookup
+                                SelectListItem item = new SelectListItem
                                 {
-                                    City = Convert.ToString(dr[ordCity]),
-                                    Text = Convert.ToString(dr[ordText]),
                                     Value = Convert.ToString(dr[ordValue]),
-                                    Country = (Country) Convert.ToInt16(dr[ordCountry]),
-                                    StateProvinceId = Convert.ToInt32(dr[ordStateProvinceId])
+                                    Text = Convert.ToString(dr[ordText])
                                 };
                                 data.Add(item);
                             }

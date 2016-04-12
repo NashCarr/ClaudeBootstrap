@@ -2,14 +2,14 @@
 @model ViewData.Administration.TestTypeViewModel
 
 @{
-    ViewBag.Title = "Study Design Management";
+    ViewBag.Title = "Test Type Management";
 }
 
 @using (Html.BeginForm())
 {
     <div class="table-descriptor small-12 columns">
         <p>
-            <span>Hear About Us</span>
+            <span>Test Type</span>
         </p>
         <div data-bind="visible: IsSearchAreaVisible">
             @{ Html.RenderPartial("Search"); }

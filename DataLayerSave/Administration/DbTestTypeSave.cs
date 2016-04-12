@@ -13,7 +13,7 @@ namespace DataLayerSave.Administration
 
             if (!string.IsNullOrEmpty(data.Name)) return SaveRecord(data);
 
-            SetEmptyStringMessage("Study Design");
+            SetEmptyStringMessage("Test Type");
             return ReturnValues;
         }
 

@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using CommonData.Enums;
 using CommonDataRetrieval.Places;
+using static CommonData.Enums.CountryEnums;
 using static CommonData.Enums.PlaceEnums;
+using static CommonData.Enums.TimeZoneEnums;
 
 namespace DataLayerRetrieval.Places
 {
@@ -64,12 +65,12 @@ namespace DataLayerRetrieval.Places
                                     Division = Convert.ToString(dr[ordDivision]),
                                     Department = Convert.ToString(dr[ordDepartment]),
                                     DisplayOrder = Convert.ToInt16(dr[ordDisplayOrder]),
-                                    Country = (CountryEnums.Country) Convert.ToInt16(dr[ordCountry]),
-                                    TimeZone = (TimeZoneEnums.ClaudeTimeZone) Convert.ToByte(dr[ordTimeZone])
+                                    Country = (Country) Convert.ToInt16(dr[ordCountry]),
+                                    TimeZone = (ClaudeTimeZone) Convert.ToByte(dr[ordTimeZone])
                                 };
                                 item.DisplaySort = item.DisplayOrder.ToString("D3");
-                                item.CountryName = Enum.GetName(typeof (CountryEnums.Country), item.Country);
-                                item.TimeZoneName = Enum.GetName(typeof (TimeZoneEnums.ClaudeTimeZone), item.TimeZone);
+                                item.CountryName = Enum.GetName(typeof (Country), item.Country);
+                                item.TimeZoneName = Enum.GetName(typeof (ClaudeTimeZone), item.TimeZone);
                                 data.Add(item);
                             }
                         }

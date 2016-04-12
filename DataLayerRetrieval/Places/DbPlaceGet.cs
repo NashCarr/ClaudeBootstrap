@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using CommonData.Enums;
 using DataLayerCommon.Places;
+using static CommonData.Enums.PlaceEnums;
+using static CommonData.Enums.TimeZoneEnums;
 
 namespace DataLayerRetrieval.Places
 {
@@ -10,20 +11,20 @@ namespace DataLayerRetrieval.Places
     {
         protected internal PlaceBase GetFacility(int placeId)
         {
-            return LoadRecord(placeId, PlaceEnums.PlaceType.Facility);
+            return LoadRecord(placeId, PlaceType.Facility);
         }
 
         protected internal PlaceBase GetCustomer(int placeId)
         {
-            return LoadRecord(placeId, PlaceEnums.PlaceType.Customer);
+            return LoadRecord(placeId, PlaceType.Customer);
         }
 
         protected internal PlaceBase GetOrganization(int placeId)
         {
-            return LoadRecord(placeId, PlaceEnums.PlaceType.Organization);
+            return LoadRecord(placeId, PlaceType.Organization);
         }
 
-        private PlaceBase LoadRecord(int placeId, PlaceEnums.PlaceType placeType)
+        private PlaceBase LoadRecord(int placeId, PlaceType placeType)
         {
             PlaceBase data = new PlaceBase();
             try
@@ -65,7 +66,7 @@ namespace DataLayerRetrieval.Places
                                 data.Department = Convert.ToString(dr[ordDepartment]);
 
                                 data.DisplayOrder = Convert.ToByte(dr[ordDisplayOrder]);
-                                data.TimeZone = (TimeZoneEnums.ClaudeTimeZone) Convert.ToByte(dr[ordTimeZone]);
+                                data.TimeZone = (ClaudeTimeZone) Convert.ToByte(dr[ordTimeZone]);
                             }
                         }
                     }

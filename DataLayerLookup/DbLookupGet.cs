@@ -6,7 +6,7 @@ using DataLayerCommon;
 
 namespace DataLayerLookup
 {
-    public abstract class DbLookupGetBase : IDisposable
+    public abstract class DbLookupGet : IDisposable
     {
         private const string ErrParameter = "@ErrMsg";
 
