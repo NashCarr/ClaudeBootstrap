@@ -376,9 +376,9 @@
     <None Include=".bin\npm.cmd" />
     <Content Include="Scripts\Assessor\vmTrainedPanel.js" />
     <Content Include="Scripts\foundation.min.js" />
-    <None Include="Scripts\jquery-2.2.2.intellisense.js" />
-    <Content Include="Scripts\jquery-2.2.2.js" />
-    <Content Include="Scripts\jquery-2.2.2.min.js" />
+    <None Include="Scripts\jquery-2.2.3.intellisense.js" />
+    <Content Include="Scripts\jquery-2.2.3.js" />
+    <Content Include="Scripts\jquery-2.2.3.min.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -468,8 +468,8 @@
     <Content Include="Views\SiteConfiguration\FacilityResourceList.cshtml" />
     <Content Include="Views\SiteConfiguration\FacilityResourceAddEdit.cshtml" />
     <Content Include="Views\SiteConfiguration\FacilityResource.cshtml" />
-    <Content Include="Scripts\jquery-2.2.2.min.map" />
     <Content Include="Views\TrainedPanel\Index.cshtml" />
+    <Content Include="Scripts\jquery-2.2.3.min.map" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CommonDataReorder\CommonDataReorder.csproj">
