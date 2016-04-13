@@ -7,7 +7,7 @@ namespace ViewData.Person
     {
         public OrganizationContactViewModel(int id)
         {
-            using (PlaceContactGetManager mgr = new PlaceContactGetManager())
+            using (PersonViewGetManager mgr = new PersonViewGetManager())
             {
                 OrganizationContact = mgr.GetOrganizationContact(id);
             }

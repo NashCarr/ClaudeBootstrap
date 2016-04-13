@@ -30,8 +30,36 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Addresses\AddressViewModel.cs" />
@@ -42,6 +70,16 @@
     <Compile Include="Administration\ProductGroup.cs" />
     <Compile Include="Administration\TestType.cs" />
     <Compile Include="Administration\UserGroup.cs" />
+    <Compile Include="Assessor\AssessorNote.cs" />
+    <Compile Include="Assessor\CallHistory.cs" />
+    <Compile Include="Assessor\EmailHistory.cs" />
+    <Compile Include="Assessor\HoseholdInfo.cs" />
+    <Compile Include="Assessor\EventInfo.cs" />
+    <Compile Include="Assessor\ParticipationInfo.cs" />
+    <Compile Include="Assessor\IncomeInfo.cs" />
+    <Compile Include="Assessor\AssessorView.cs" />
+    <Compile Include="Assessor\ProfileInfo.cs" />
+    <Compile Include="Assessor\StatusInfo.cs" />
     <Compile Include="Assessor\TrainedPanel.cs" />
     <Compile Include="Assessor\TrainedPanelAssessor.cs" />
     <Compile Include="Base\ModelBase.cs" />
@@ -58,8 +96,13 @@
     <Compile Include="Places\PlaceView.cs" />
     <Compile Include="Places\StaffMember.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Research\ResearchStudy.cs" />
+    <Compile Include="Research\StudyDefinition.cs" />
+    <Compile Include="Research\StudyCommunication.cs" />
+    <Compile Include="Research\StudyQuota.cs" />
+    <Compile Include="Research\StudyPopulation.cs" />
+    <Compile Include="Research\StudyComponent.cs" />
     <Compile Include="Research\StudyDashboard.cs" />
-    <Compile Include="Research\ResearchDashboard.cs" />
     <Compile Include="SiteConfiguration\SiteConfigurationGet.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -72,7 +115,9 @@
       <Name>DataLayerCommon</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

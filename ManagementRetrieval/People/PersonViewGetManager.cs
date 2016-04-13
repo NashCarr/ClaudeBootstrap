@@ -4,7 +4,7 @@ using DataLayerRetrieval.Person;
 
 namespace ManagementRetrieval.People
 {
-    public class PersonGetManager : IDisposable
+    public class PersonViewGetManager : IDisposable
     {
         public void Dispose()
         {
@@ -33,6 +33,14 @@ namespace ManagementRetrieval.People
         }
 
         public PersonView GetStaffMember(int recordId)
+        {
+            using (DbPersonViewGet db = new DbPersonViewGet())
+            {
+                return db.GetStaffMember(recordId);
+            }
+        }
+
+        public PersonView GetAssessor(int recordId)
         {
             using (DbPersonViewGet db = new DbPersonViewGet())
             {

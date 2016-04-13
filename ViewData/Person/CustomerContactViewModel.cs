@@ -7,7 +7,7 @@ namespace ViewData.Person
     {
         public CustomerContactViewModel(int id)
         {
-            using (PlaceContactGetManager mgr = new PlaceContactGetManager())
+            using (PersonViewGetManager mgr = new PersonViewGetManager())
             {
                 CustomerContact = mgr.GetCustomerContact(id);
             }

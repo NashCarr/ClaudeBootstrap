@@ -7,16 +7,16 @@ namespace DataLayerRetrieval.Research
 {
     public class DbResearchDashboardGet : DbGetBase
     {
-        public List<ResearchDashboard> GetViewModel()
+        public List<ResearchStudy> GetViewModel()
         {
-            SetConnectToDatabase("[ResearchDashboard].[usp_GetList]");
+            SetConnectToDatabase("[Study].[usp_GetResearchDashboard]");
 
             return LoadRecords();
         }
 
-        private List<ResearchDashboard> LoadRecords()
+        private List<ResearchStudy> LoadRecords()
         {
-            List<ResearchDashboard> data = new List<ResearchDashboard>();
+            List<ResearchStudy> data = new List<ResearchStudy>();
             try
             {
                 using (ConnSql)
@@ -32,14 +32,14 @@ namespace DataLayerRetrieval.Research
                             }
 
                             int ordName = dr.GetOrdinal("Name");
-                            int ordResearchDashboardId = dr.GetOrdinal("ResearchDashboardId");
+                            int ordResearchStudyId = dr.GetOrdinal("ResearchStudyId");
 
                             while (dr.Read())
                             {
-                                ResearchDashboard item = new ResearchDashboard
+                                ResearchStudy item = new ResearchStudy
                                 {
                                     Name = Convert.ToString(dr[ordName]),
-                                    RecordId = Convert.ToInt32(dr[ordResearchDashboardId]),
+                                    RecordId = Convert.ToInt32(dr[ordResearchStudyId]),
                                 };
                                 data.Add(item);
                             }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
 using CommonDataRetrieval.Research;
 
@@ -7,16 +6,16 @@ namespace DataLayerRetrieval.Research
 {
     public class DbStudyDashboardGet : DbGetBase
     {
-        public List<StudyDashboard> GetViewModel()
+        public StudyDashboard GetViewModel()
         {
-            SetConnectToDatabase("[StudyDashboard].[usp_GetList]");
+            SetConnectToDatabase("[Study].[usp_GetDashboard]");
 
             return LoadRecords();
         }
 
-        private List<StudyDashboard> LoadRecords()
+        private StudyDashboard LoadRecords()
         {
-            List<StudyDashboard> data = new List<StudyDashboard>();
+            StudyDashboard data = new StudyDashboard();
             try
             {
                 using (ConnSql)
@@ -36,12 +35,8 @@ namespace DataLayerRetrieval.Research
 
                             while (dr.Read())
                             {
-                                StudyDashboard item = new StudyDashboard
-                                {
-                                    Name = Convert.ToString(dr[ordName]),
-                                    RecordId = Convert.ToInt32(dr[ordStudyDashboardId]),
-                                };
-                                data.Add(item);
+                                data.Name = Convert.ToString(dr[ordName]);
+                                data.RecordId = Convert.ToInt32(dr[ordStudyDashboardId]);
                             }
                         }
                     }

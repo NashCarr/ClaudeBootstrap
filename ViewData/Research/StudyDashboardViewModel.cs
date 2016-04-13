@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using CommonDataRetrieval.Research;
+﻿using CommonDataRetrieval.Research;
 using ManagementRetrieval.Research;
 
 namespace ViewData.Research
@@ -10,10 +9,10 @@ namespace ViewData.Research
         {
             using (StudyDashboardGetManager mgr = new StudyDashboardGetManager())
             {
-                ListEntity = mgr.GetStudyDashboardList();
+                StudyDashboard = mgr.GetStudyDashboardList();
             }
         }
 
-        public List<StudyDashboard> ListEntity { get; set; }
+        public StudyDashboard StudyDashboard { get; set; }
     }
 }

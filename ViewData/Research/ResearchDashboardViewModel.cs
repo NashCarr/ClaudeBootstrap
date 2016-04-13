@@ -10,10 +10,14 @@ namespace ViewData.Research
         {
             using (ResearchDashboardGetManager mgr = new ResearchDashboardGetManager())
             {
-                ListEntity = mgr.GetResearchDashboardList();
+                Screeners = mgr.ScreenerList;
+                ActiveStudies = mgr.ActiveList;
+                CompletedStudies = mgr.CompletedList;
             }
         }
 
-        public List<ResearchDashboard> ListEntity { get; set; }
+        public List<ResearchStudy> Screeners { get; set; }
+        public List<ResearchStudy> ActiveStudies { get; set; }
+        public List<ResearchStudy> CompletedStudies { get; set; }
     }
 }

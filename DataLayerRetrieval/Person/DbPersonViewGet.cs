@@ -7,17 +7,25 @@ namespace DataLayerRetrieval.Person
     public class DbPersonViewGet : DbGetBase
     {
         private PersonData _data;
+        private PersonType _datatype;
+
+        public PersonView GetAssessor(int recordId)
+        {
+            _datatype = PersonType.Assessor;
+            using (DbPersonDataGet db = new DbPersonDataGet())
+            {
+                _data = db.GetAssessor(recordId);
+            }
+
+            return SetPersonView();
+        }
 
         public PersonView GetCustomerContact(int recordId)
         {
-            using (DbPersonDataGet a = new DbPersonDataGet())
+            _datatype = PersonType.CustomerContact;
+            using (DbPersonDataGet db = new DbPersonDataGet())
             {
-                _data = a.GetCustomerContact(recordId);
-            }
-
-            using (DbPersonDataStub a = new DbPersonDataStub())
-            {
-                _data = a.Prefill(PersonType.CustomerContact, _data);
+                _data = db.GetCustomerContact(recordId);
             }
 
             return SetPersonView();
@@ -25,14 +33,10 @@ namespace DataLayerRetrieval.Person
 
         public PersonView GetOrganizationContact(int recordId)
         {
-            using (DbPersonDataGet a = new DbPersonDataGet())
+            _datatype = PersonType.OrganizationContact;
+            using (DbPersonDataGet db = new DbPersonDataGet())
             {
-                _data = a.GetOrganizationContact(recordId);
-            }
-
-            using (DbPersonDataStub a = new DbPersonDataStub())
-            {
-                _data = a.Prefill(PersonType.OrganizationContact, _data);
+                _data = db.GetOrganizationContact(recordId);
             }
 
             return SetPersonView();
@@ -40,14 +44,10 @@ namespace DataLayerRetrieval.Person
 
         public PersonView GetStaffMember(int recordId)
         {
-            using (DbPersonDataGet a = new DbPersonDataGet())
+            _datatype = PersonType.StaffMember;
+            using (DbPersonDataGet db = new DbPersonDataGet())
             {
-                _data = a.GetStaffMember(recordId);
-            }
-
-            using (DbPersonDataStub a = new DbPersonDataStub())
-            {
-                _data = a.Prefill(PersonType.StaffMember, _data);
+                _data = db.GetStaffMember(recordId);
             }
 
             return SetPersonView();
@@ -55,7 +55,12 @@ namespace DataLayerRetrieval.Person
 
         private PersonView SetPersonView()
         {
-            PersonView m = new PersonView
+            using (DbPersonDataStub db = new DbPersonDataStub())
+            {
+                _data = db.Prefill(_datatype, _data);
+            }
+
+            PersonView p = new PersonView
             {
                 Person = _data.Person,
                 Addresses =
@@ -75,7 +80,7 @@ namespace DataLayerRetrieval.Person
 
             _data = null;
 
-            return m;
+            return p;
         }
     }
 }

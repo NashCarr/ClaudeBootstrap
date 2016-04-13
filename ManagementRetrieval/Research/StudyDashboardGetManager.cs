@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using CommonDataRetrieval.Research;
 using DataLayerRetrieval.Research;
 
@@ -17,7 +16,7 @@ namespace ManagementRetrieval.Research
         {
         }
 
-        public List<StudyDashboard> GetStudyDashboardList()
+        public StudyDashboard GetStudyDashboardList()
         {
             using (DbStudyDashboardGet db = new DbStudyDashboardGet())
             {
