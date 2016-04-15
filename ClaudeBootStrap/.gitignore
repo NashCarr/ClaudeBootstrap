@@ -45,3 +45,22 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+/bin/WebGrease.dll
+/bin/System.Web.WebPages.Razor.dll
+/bin/System.Web.WebPages.dll
+/bin/System.Web.WebPages.Deployment.dll
+/bin/System.Web.Razor.dll
+/bin/System.Web.Optimization.dll
+/bin/System.Web.Mvc.dll
+/bin/System.Web.Http.WebHost.dll
+/bin/System.Web.Http.dll
+/bin/System.Web.Helpers.dll
+/bin/System.Reactive.PlatformServices.dll
+/bin/System.Reactive.Linq.dll
+/bin/System.Reactive.Interfaces.dll
+/bin/System.Reactive.Core.dll
+/bin/System.Net.Http.Formatting.dll
+/bin/Newtonsoft.Json.dll
+/bin/Microsoft.Web.Infrastructure.dll
+/bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+/bin/Antlr3.Runtime.dll
