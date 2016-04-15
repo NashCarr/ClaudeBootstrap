@@ -1,5 +1,5 @@
-﻿using CommonDataRetrieval.Base;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using CommonDataRetrieval.Base;
 
 namespace CommonDataRetrieval.Research
 {

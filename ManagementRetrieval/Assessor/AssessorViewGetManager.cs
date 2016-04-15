@@ -7,6 +7,8 @@ namespace ManagementRetrieval.Assessor
 {
     public class AssessorViewGetManager : IDisposable
     {
+        private AssessorView _data;
+
         public void Dispose()
         {
             Dispose(true);
@@ -19,16 +21,18 @@ namespace ManagementRetrieval.Assessor
 
         public AssessorView GetViewModel(int id)
         {
-            AssessorView data;
-            using (DbAssessorViewGet db = new DbAssessorViewGet())
+            using (_data)
             {
-                data = db.GetView(id);
+                using (DbAssessorViewGet db = new DbAssessorViewGet())
+                {
+                    _data = db.GetView(id);
+                }
+                using (PersonViewGetManager mgr = new PersonViewGetManager())
+                {
+                    _data.Assessor = mgr.GetAssessor(id);
+                }
+                return _data;
             }
-            using (PersonViewGetManager mgr = new PersonViewGetManager())
-            {
-                data.Assessor = mgr.GetAssessor(id);
-            }
-            return data;
         }
     }
 }

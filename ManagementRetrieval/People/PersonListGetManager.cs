@@ -26,10 +26,10 @@ namespace ManagementRetrieval.People
             }
         }
 
-        //public List<SelectListItem> GetFacilitiesLookup()
+        //    using (DbPlacesLookup db = new DbPlacesLookup())
         //{
 
-        //    using (DbPlacesLookup db = new DbPlacesLookup())
+        //public List<SelectListItem> GetFacilitiesLookup()
         //    {
         //        return db.GetFacilityLookup().LookupList;
         //    }

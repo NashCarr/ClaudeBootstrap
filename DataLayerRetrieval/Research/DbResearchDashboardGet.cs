@@ -39,7 +39,7 @@ namespace DataLayerRetrieval.Research
                                 ResearchStudy item = new ResearchStudy
                                 {
                                     Name = Convert.ToString(dr[ordName]),
-                                    RecordId = Convert.ToInt32(dr[ordResearchStudyId]),
+                                    RecordId = Convert.ToInt32(dr[ordResearchStudyId])
                                 };
                                 data.Add(item);
                             }
